@@ -1,0 +1,48 @@
+---
+title: "R Notebook"
+bibliography: Mitt-bibliotek.bib
+CSL: elsevier-harvard.csl
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+lang: nb-NO
+editor_options:
+  chunk_output_type: inline
+---
+
+## Load needed libraries
+
+```{r setup}
+library(knitr)
+library(citr)
+library(rmarkdown)
+```
+
+## Get citation information
+
+Library must be loaded before we can get citation information.
+
+### Citation info knitr
+
+```{r cit-info-knitr}
+toBibtex(citation("knitr"))
+```
+
+### Citation info citr
+
+```{r c-info-citr}
+toBibtex(citation("citr"))
+```
+
+### Citation info rmarkdown
+
+```{r c-info-rmarkdown}
+toBibtex(citation("rmarkdown"))
+```
+
+## Referanser som er hentet
+
+Første forsøk på sitering er @wickham. Andre referanser lagt til @xie2014;, @xie2015; og @xie2020.
+
+## Referanseliste

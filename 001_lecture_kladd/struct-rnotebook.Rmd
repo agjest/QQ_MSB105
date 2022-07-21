@@ -1,0 +1,38 @@
+---
+title: "My brilliant document"
+output: html_notebook
+---
+
+# First level
+
+Phasellus laoreet lorem vel dolor tempus vehicula. Non equidem invideo, miror magis $\bar{y} = \frac{\sum_{i=1}^N y_i}{N}$ posuere velit aliquet.
+
+$$\hat{\sigma}^2_y = \frac{\sum_{i=1}^N (y_i - \bar{y})^2}{N-1}$$ 
+
+## Second level
+
+Quid securi etiam tamquam eu fugiat nulla pariatur. Ab illo tempore, ab est sed immemorabili.
+
+> `fivenum()`: Returns Tukey's five number summary (minimum, lower-hinge, median, upper-hinge, maximum) 
+
+```{r first-chunk-ex, eval=FALSE, include=FALSE}
+# do not evaluate, show nothing
+set.seed(555); x <- runif(100)
+fivenum(x)
+boxplot(x)
+```
+
+```{r second-chunk-ex, echo=FALSE, fig.height=2, fig.width=2, message=FALSE, warning=FALSE, paged.print=TRUE}
+# evaluate, do not show code, a plot would have been shown
+set.seed(555); y <- runif(100000)
+fivenum(y)
+# comment out boxplot command
+# boxplot(y)
+```
+
+```{r third-chunk-ex, echo=TRUE, fig.align='center', fig.height=2, fig.width=2, message=TRUE, warning=TRUE, cache=TRUE, paged.print=TRUE}
+# show code, evaluate code, cache result
+# y defined in previous chunk, i.e. second-chunk-ex 
+fivenum(y)
+boxplot(y)
+```

@@ -1,0 +1,56 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+
+![Packages:Management](ps5A.png)
+
+## Packages:Development
+
+![Packages:Development](ps5B.png)
+
+## R Markdown
+
+![R Markdown](ps6.png)
+
+## Sweave
+
+![Sweave](ps7.png)
+
+## Spelling
+
+![Spelling](ps8.png)
+
+Choose `Install More Languages...`from the `Main dictionary language:` drop-down menu.
+Norwegian should now be in the menu.
+
+![Spelling](ps8B.png)
+
+## Git/SVN
+
+We are only going to use Git so SVN is not to important.
+
+![Git/SVN](ps9.png)
+
+## Publishing
+
+![Publishing](ps10.png)
+
+## Terminal:General
+
+![Terminal:General](ps11A.png)
+
+## Terminal:Closing
+
+![Terminal:Closing](ps11B.png)
+
+## Accessibility:General
+
+![Accessibility:General](ps12A.png)
+
+## Accessibility:Announcements
+
+![Accessibility:Announcements](ps12B.png)
+```
