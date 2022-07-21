@@ -11,8 +11,8 @@ website:
       - about.qmd
       - text: "Introduksjon"
         menu: 
-          - 00_intro.qmd
-          - 00_undervisningsplan.qmd
+          - 00_introduction/00_intro.qmd
+          - 00_introduction/00_undervisningsplan.qmd
 
 format:
   html:

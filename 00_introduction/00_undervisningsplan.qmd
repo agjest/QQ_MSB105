@@ -3,7 +3,7 @@ title: "Undervisningsplan"
 format:
   revealjs:
         theme: simple
-        footer: '[MSB105](index.html)'
+        footer: '[MSB105](../index.html)'
         reveal_options:
         code-fold: true
         incremental: true
@@ -11,7 +11,9 @@ format:
         scrollable: true
 ---
 
-```{r setup, echo=FALSE}
+## Loading some R libraries
+
+```{r setup, echo=TRUE}
 library(tidyverse)
 library(readr)
 ```
@@ -161,7 +163,7 @@ Vi vil i hovedsak benytte [R for Data Science](https://r4ds.had.co.nz).
 
 ## Undervisningsplan; import/eksport av data
 
--   import/export av data ([r4ds: 11 Data import](https://r4ds.had.co.nz/data-import.html))
+-   Import/export av data ([r4ds: 11 Data import](https://r4ds.had.co.nz/data-import.html))
 
     -   `readr` lese/skrive diverse tekstformat (csv, tsv, fwf etc.)
     -   `readxl` leser excel regneark
@@ -169,6 +171,10 @@ Vi vil i hovedsak benytte [R for Data Science](https://r4ds.had.co.nz).
     -   Nytt prosjekt, grupper på to, samarbeid via git/Github
         -   Bruk av «branches»
         -   Gapminder datasett
+
+-   Import av data vha.
+    API.
+    Pakken PxWebApiData gjør at vi kan hente data direkte fra SSBs server rett inn i vårt R dokument.
 
 ## Undervisningsplan; Ryddige («Tidy») data
 
@@ -228,7 +234,7 @@ RegHeltLedige_l %>%
 
 ## Undervisningsplan fortsettelse
 
--   Funksjoner og vektorer ([r4ds: 19 Functions](https://r4ds.had.co.nz/functions.html), [r4ds: 20 Vectors](https://r4ds.had.co.nz/vectors.html)
+-   Funksjoner og vektorer ([r4ds: 19 Functions](https://r4ds.had.co.nz/functions.html), [r4ds: 20 Vectors](https://r4ds.had.co.nz/vectors.html))
 
     -   Skrive enkle funksjoner
     -   Litt mer om R's vektorer
@@ -240,6 +246,11 @@ RegHeltLedige_l %>%
     -   `maps` (fra `purrr` pakken i **Tidyverse**)
 
         -   bruke funksjonen på hvert element i en liste
+        -   Rs alternativ til iterasjon
+        -   Rs foretrukne måte å gjøre ting
+            -   ofte raskere
+
+            -   mer elegant
 
 ## Undervisningsplan fortsettelse
 

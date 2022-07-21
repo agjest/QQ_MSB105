@@ -3,7 +3,7 @@ title: Introduksjon Data Science
 format:
   revealjs:
         theme: simple
-        footer: '[MSB105](index.html)'
+        footer: '[MSB105](../index.html)'
         reveal_options:
         code-fold: true
         incremental: true
@@ -80,6 +80,7 @@ format:
     -   [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/) november 2020
     -   [ModernDive](https://moderndive.com/index.html) (`infer` pakken og bootstrapping)
     -   [Pro Git](https://git-scm.com/book/en/v2)
+    -   [Big Book of R](https://www.bigbookofr.com)
 
 ## Temaer i kurset
 
@@ -117,11 +118,13 @@ format:
 
 ## Nærmere om Rmarkdown
 
--   Vi vil søke å oppnå reproduserbarhet vha. såkalt `R Notebook` (Rmarkdown Notebook).
--   R Notebooks har endelsen `.Rmd`
--   I versjon 1.4 har RStudio fått «Visual Rmarkdown» funksjonalitet
--   Kan skifte mellom nesten "WYSIWYG" og markup mode
--   I versjon RStudio 2022.02.3+492 "Prairie Trillium" har vi preview versjon av Quarto (neste vesjon av R Markdown) som vi vil bruke.
+-   To foregående år:
+    -   Vi vil søke å oppnå reproduserbarhet vha. såkalt `R Notebook` (Rmarkdown Notebook).
+    -   R Notebooks har endelsen `.Rmd`
+    -   I versjon 1.4 har RStudio fått «Visual Rmarkdown» funksjonalitet
+    -   Kan skifte mellom nesten "WYSIWYG" og markup mode
+-   I år:
+    -   I versjon RStudio 2022.02.3+492 "Prairie Trillium" har vi preview versjon av Quarto (neste vesjon av R Markdown) som vi vil bruke.
 
 ## Kildekode R Markdown
 
