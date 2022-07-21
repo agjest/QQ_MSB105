@@ -1,0 +1,32 @@
+---
+title: "Demo R Notebook"
+output: html_notebook
+---
+
+## Spesielt for R Notebooks
+
+`Working directory` er mappen som `R Notebook`-en ligger i. I tillegg vil også `output` fra kommandoene og ting som `warnings` havne i selve `notebook`-en.
+
+For detaljer er [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/notebook.html) kap. 3.2 en god kilde.
+
+```{r nothing-defined}
+# Do not run this
+# Do not do this in R Notebooks you share with others. Rude!
+rm(list = ls())
+# ls() is OK
+ls()
+```
+```{r get-wd}
+getwd()
+```
+
+```{r define-x}
+x <- 1:3;x
+```
+
+```{r y-defined-in-console}
+y
+y <- 10:13 # y redefined i r notebook
+y
+```
+

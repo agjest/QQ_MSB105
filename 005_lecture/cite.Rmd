@@ -1,0 +1,17 @@
+---
+title: "Citations in R Notebooks"
+bibliography: citeRnotebook.bib
+csl: apa-no-ampersand.csl
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+## What we want to accomplish:
+
+The ideas of @gentleman2003, which were implemented by @gentleman2005 when parts of @golub1999 was reproduced as a *compendium* [@gentleman2003], i.e. reproducible research. The @rstudioteam2020 implementation of `R Notebook`is a modern implementation of the same basic ideas. R Notebooks achieves this by using the @rcoreteam2020 packages `knitr`[@xie2014] and `rmarkdown` [@allaire2020]. The process is documented in @xie2015, @xie2020, @xie2018 and @wickham2016. R Notebooks support mathematical typesetting via $\LaTeX $, see [@lamport1986] and also [@knuth1986texbook], and can be converted to different output formats with the help of Pandoc [@zotero-94].
+
+Futher tips might be found in @tierneya.
+
+## References
+<div id="refs"></div>
