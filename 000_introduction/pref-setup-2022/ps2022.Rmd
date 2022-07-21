@@ -1,0 +1,144 @@
+---
+title: "RStudio preference setup 2022"
+output:
+  html_document:
+    df_print: paged
+    toc: true
+    toc_float: true
+---
+
+# Setup preferences in R Studio
+
+We set up the RStudio preferences so that we all work in an identical environment.
+This is for RStudio version2022.02.3 Build 492.
+
+Select `Preferences..` from the `File` menu (mac) or `Tools` menu (pc).
+
+![Select Preferences...](ps0.png)
+
+## General:Basic
+
+![General:Basic](General-Basic.png)
+
+## General:Graphics
+
+![General:Graphics](General-Graphics.png)
+
+## General:Advanced
+
+![General:Advanced](General-Advanced.png)
+
+## Code:Editing
+
+![Code:Editing](Code-Editing.png)
+
+## Code:Display
+
+![Code:Display](Code-Display.png)
+
+## Code:Saving
+
+![Code:Saving](Code-Saving.png)
+
+## Code:Completion
+
+![Code:Completion](Code-Completion.png)
+
+## Code:Diagnostic
+
+![Code:Diagnostic](Code-Diagnostic.png)
+
+## Console
+
+![Console](Console.png)
+
+## Appearance
+
+What font to use is up to you, but use a fixed-width font.
+I like [fira-code](https://www.fontsquirrel.com/fonts/fira-code).
+Courier or Monaco are good alternatives.
+
+![Appearance](Appearance.png)
+
+```{r}
+# fira-code font
+test <- "test"
+```
+
+## Pane layout
+
+![Pane layout](Pane-Layout.png)
+
+## Packages:Management
+
+![Packages:Management](Packages-Management.png)
+
+## Packages:Development
+
+![Packages:Development](Packages-Development.png)
+
+## Packages:C/C++
+
+![Packages:C/C++](Packages-Development-c.png)
+
+## R Markdown:Basic
+
+See [rmarkdown-cookbook chapter 16](https://bookdown.org/yihui/rmarkdown-cookbook/working-directory.html) for details.
+We select "Document" for where to evaluate chunck, hence our "working directory will be the directory where our R Notebook is placed.
+
+![R Markdown:Basic](R-Markdown-Basic.png)
+
+## R Markdown Advanced
+
+![R Markdown:Advanced](R-Markdown-Advanced.png)
+
+## R Markdown Visual
+
+![R Markdown:Visual](R-Markdown-Visual.png)
+
+## R Markdown Citations
+
+![R Markdown:Citations](R-Markdown-Citations.png)
+
+## R Markdown Quarto
+
+![R Markdown:Quarto](R-Markdown-Quarto.png)
+
+## Sweave
+
+![Sweave](Sweave.png)
+
+## Spelling
+
+![Spelling](Spelling.png)
+
+Choose `Install More Languages...`from the `Main dictionary language:` drop-down menu.
+Norwegian should now be in the menu.
+
+## Git/SVN
+
+We are only going to use Git so SVN is not to important.
+
+![Git/SVN](Git-SVN.png)
+
+## Publishing
+
+![Publishing](Publishing.png)
+
+## Terminal:General
+
+![Terminal:General](Terminal-General.png)
+
+## Terminal:Closing
+
+![Terminal:Closing](Terminal-Closing.png)
+
+## Accessibility:General
+
+![Accessibility:General](Accessibility-General.png)
+
+## Accessibility:Announcements
+
+![Accessibility:Announcements](Accessibility-Announcements.png) \## Python
+
+![Python](Python.png)

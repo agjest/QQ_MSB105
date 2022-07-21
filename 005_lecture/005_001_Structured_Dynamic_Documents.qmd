@@ -245,7 +245,62 @@ What's in the `Addins` menu will depend on the packages we have installed.
 
 ![run-all-above](run-all-above.png){width="60%"}
 
-## Citations; What we want to accomplish
+## Spesielt for R Notebooks/Quarto documents/presentations
+
+`Working directory` er mappen som `R Notebook`-en ligger i.
+I tillegg vil også `output` fra kommandoene og ting som `warnings` havne i selve `notebook`-en.
+
+For detaljer er [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/notebook.html) kap.
+3.2 en god kilde.
+
+```{r nothing-defined}
+# Do not run this
+# Do not do this in R Notebooks you share with others. Rude!
+rm(list = ls())
+# ls() is OK
+ls()
+```
+
+```{r get-wd}
+getwd()
+```
+
+```{r define-x}
+(x <- 1:3)
+```
+
+![y not defined](y-not-defined.png)
+
+## From Console
+
+![From Console](Console.png)
+
+## In R chunck
+
+```{r y-defined-in-console}
+#| echo: true
+#Gives problem when we try to compile document
+#y
+```
+
+```{r}
+#| echo: true
+#Have to define it in document
+y <- 2
+```
+
+```{r}
+#| echo: true
+x + y
+```
+
+-   Things defined in Console available in Quarto document (but not reproducible).
+-   Things defined in Console **not** available in Quarto document when we try to render.
+-   Things evaluated in Quarto available in Console.
+
+## Citations
+
+### What we want to accomplish
 
     ---
     title: "Citations in R Notebooks"
@@ -326,7 +381,7 @@ Trust me, you do not want to do this by hand.
 -   ~~Install the `citr` package~~
 -   Support for citation is now a default feature of RStudio.
 
-## Exercise 1  {.smaller}
+## Exercise 1 {.smaller}
 
 **Work alone this time so we avoid the problems with syncing via Github.**
 

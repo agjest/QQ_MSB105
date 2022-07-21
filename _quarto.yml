@@ -11,8 +11,10 @@ website:
       - about.qmd
       - text: "Introduksjon"
         menu: 
-          - 00_introduction/00_intro.qmd
-          - 00_introduction/00_undervisningsplan.qmd
+          - 000_introduction/001_intro.qmd
+          - 000_introduction/005_undervisningsplan.qmd
+          - 000_introduction/pref-setup-2022/ps2022.qmd
+          - 005_lecture/005_001_Structured_Dynamic_Documents.qmd
 
 format:
   html:
