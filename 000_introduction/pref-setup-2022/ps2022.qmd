@@ -59,14 +59,10 @@ Courier or Monaco are good alternatives.
 
 ![Appearance](Appearance.png)
 
-```{r}
-# fira-code font
-test <- "test"
-```
-
 ## Pane layout 1
 
 ![Pane layout 1](Pane-Layout-1.png)
+
 ## Pane layout 2
 
 ![Pane layout 2](Pane-Layout-2.png)
@@ -77,7 +73,11 @@ test <- "test"
 
 ## Packages:Development
 
-![Packages:Development](Packages-Development.png)
+![Packages:Development](Packages-Development.png) 
+
+## Packages:C/C++
+
+![Packages:C/C++](Packages-Development-c.png)
 
 ## R Markdown:Basic
 
