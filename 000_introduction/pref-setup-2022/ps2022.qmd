@@ -73,7 +73,7 @@ Courier or Monaco are good alternatives.
 
 ## Packages:Development
 
-![Packages:Development](Packages-Development.png) 
+![Packages:Development](Packages-Development.png)
 
 ## Packages:C/C++
 
@@ -96,11 +96,15 @@ We select "Document" for where to evaluate chunck, hence our "working directory 
 
 ## R Markdown Citations
 
-![R Markdown:Citations](R-Markdown-Citations.png)
+![R Markdown:Citations. Note! **We will soon be changing *Use libraries:,* but *My Library* is OK for now.** ](R-Markdown-Citations.png)
 
 ## R Markdown Quarto
 
-![R Markdown:Quarto](R-Markdown-Quarto.png)
+![R Markdown:Quarto. **Note! This pane does not exists in the latest version since Quarto now is the default.**](R-Markdown-Quarto.png)
+
+## Python
+
+![Python](Python.png){width="724"}
 
 ## Sweave
 

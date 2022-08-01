@@ -9,12 +9,10 @@ website:
       - href: index.qmd
         text: "Home"
       - about.qmd
-      - text: "Introduksjon"
-        menu: 
-          - 000_introduction/001_intro.qmd
-          - 000_introduction/005_undervisningsplan.qmd
-          - 000_introduction/pref-setup-2022/ps2022.qmd
-          - 005_lecture/005_001_Structured_Dynamic_Documents.qmd
+      - text: "Lectures"
+        menu:
+          - introduction.qmd
+
 
 format:
   html:

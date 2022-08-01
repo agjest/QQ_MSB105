@@ -1,0 +1,43 @@
+---
+title: "Install R Packages"
+editor: visual
+---
+
+## Packages we will need
+
+We set some options to make sure that we include dependencies and also that we install pre-compiled binaries.
+
+I'm sure we'll have forgotten some, but we'll install them when needed.
+
+We can also install packages by using `Install` button on the **Packages** tab.
+
+```{r}
+#| echo: true
+#| eval: false
+install.packages("tidyverse", dependencies = TRUE, 
+                 type="binary", repos='http://cran.uib.no')
+install.packages("modelr", dependencies = TRUE, 
+                 type="binary", repos='http://cran.uib.no')
+install.packages("readr", dependencies = TRUE, 
+                 type="binary", repos='http://cran.uib.no')
+install.packages("huxtable", dependencies = TRUE, 
+                 type="binary", repos='http://cran.uib.no')
+# To be used to set up git/github
+install.packages("usethis", dependencies = TRUE, 
+                 type="binary", repos='http://cran.uib.no')
+install.packages("credentials", dependencies = TRUE, 
+                 type="binary", repos='http://cran.uib.no')
+install.packages("styler", dependencies = TRUE, 
+                 type="binary", repos='http://cran.uib.no')
+# For packages not on CRAN we need devtools
+install.packages("devtools", dependencies = TRUE, 
+                 type="binary", repos='http://cran.uib.no')
+```
+
+I often use the following trick at the end of my documents, a simple R chunk with a single comment.
+Clicking the "Run All Chunks Above" above button will run all chunks in the document.
+
+```{r}
+#| echo: true
+#siste
+```

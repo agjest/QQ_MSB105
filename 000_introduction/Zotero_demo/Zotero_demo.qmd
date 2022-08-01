@@ -1,0 +1,231 @@
+---
+title: "Zotero demo"
+author: "Arnstein Gjestland"
+bibliography: agag.bib
+CSL: chicago-author-date.csl
+format:
+  revealjs:
+        theme: simple
+        footer: '[MSB105](../index.html)'
+        reveal_options:
+        code-fold: true
+        incremental: true
+        smaller: true
+        scrollable: true
+---
+
+## References in Norwegian
+
+Add `lang: nb-NO` to YAML right below `bibliography:`.
+
+`CSL:` decides which format to use for the reference list and citations in the text.
+<https://www.zotero.org/styles> had 10,324 to choose from last I checked.
+
+## Load needed libraries
+
+```{r setup}
+#| echo: true
+library(knitr)
+library(rmarkdown)
+library(tidyverse)
+```
+
+## Software
+
+-   Zotero from <http://www.zoerto.org>.
+-   Zotero Connector
+    -   Install from Zoteros web site if needed
+
+    -   Enable in preferences (Safari on mac)
+-   Better BibTex for Zotero from <https://retorque.re/zotero-better-bibtex/installation/>.
+
+## Define group on zotero.org
+
+-   You are going to write paper together, hence a shared library in the sky is essential.
+-   Define a private library at Zotero.
+    -   You can grant access for your co-worker later.
+-   A shared library reduce the risk of getting a merge conflict.
+
+## New group on zotero.org cont.
+
+![Create New Group](new-group.png)
+
+## Configure group on zotero.org cont.
+
+![Configure Group](create-group.png)
+
+## Select your library in RStudio preference
+
+-   This might have to be changed when you are working together on a project
+
+![Group settings](group-settings.png){width="367"}
+
+## My new Group
+
+![My new group](my-new-group.png)
+
+## Select Web Library
+
+![Web library for new group](web-library.png)
+
+## Select New Empty Library for group
+
+-   Please, don't mind all my junk
+
+![Group Library](group-library.png)
+
+## Sync in Zotero app
+
+-   We have to sync our Zotero app with the web.
+
+![Sync app with zotero.org](sync-in-zotero.png)
+
+## Harvest some references
+
+-   Point you web browser to <https://r4ds.had.co.nz>.
+-   Click the "Harvest icon" icon in your web browser.
+
+![Harvest reference](harvest-ref.png)
+
+## Select Library
+
+-   Select the library to add the reference to (you probably just have one alternative).
+
+![Select Library](select-library.png)
+
+## First reference in Local Zotero Library
+
+![First Local Reference](first-ref.png)
+
+## Sync to the Sky
+
+-   Click sync upper right corner to get the reference from your machine to the web library.
+
+![Reference copied to zotero.org](ref-in-the-sky.png)
+
+## Exercise
+
+Harvest the bibliographic info for "R for everyone, Jared Lander, 2. ed.".
+
+![Lander reference](ref-lander.png)
+
+## Some Zotero configuration 1
+
+![](pref-1.png)
+
+## Some Zotero configuration 2
+
+![](pref-2.png)
+
+## Some Zotero configuration 2
+
+![](pref-3.png)
+
+## Get citation information
+
+Library must be loaded before we can get citation information.
+
+We can easily get reference information for all the wonderful R packages we use.
+
+```{r}
+#| echo: true
+#| eval: false
+# map functions over a list of packages
+# output result to a text file
+map(map(c("knitr", "rmarkdown", "tidyverse"), citation), toBibtex)
+```
+
+Above we see function within function, which might be a bit hard to follow.
+
+## Get citation information with a pipe
+
+The following code that uses a pipe is probably far easier to follow.
+
+```{r}
+#| echo: true
+#| eval: true
+# Easier to understand with a pipe
+c("knitr", "rmarkdown", "tidyverse") %>% 
+  # use the R citation function on the package list
+  map(citation) %>% 
+  # convert the reference info to bibtex format by using the toBibtex
+  # function on each member of the reference list
+  map(toBibtex) %>%
+  # print the list
+  map(print) %>% 
+  # only want the list elements combined, not each list item
+  # in addition, hence max.level=0 
+  str(max.level=0)
+```
+
+## Copy package references
+
+-   Select the text above (not List of 3)
+-   Copy the text
+-   Switch to Zotero an select 'Importer fra utklippstavle' fra Fil menyen.
+-   Sync with zotero.org
+
+![](package-refs-zotero.png)
+
+## Export to bib file
+
+-   Export to bibtex file
+-   Place the file in same directory as your document
+-   Right-click (mac: ctrl + click) on Library name (mine agag)
+-   Select 'Eksporter bibliotek ...'
+
+![](export-bib.png)
+
+## Export to bib file cont.
+
+![](export-settings.png)
+
+-   Give it a nice name that ends with .bib
+-   Remember to save in same directory as your document
+-   Edit to `bibliography: your_name.bib` in the YAML header
+
+## Exercise
+
+1.  Get the reference info. for the paper version of R for Data Science and add it to your library.
+2.  Sync with your zotero.org library (it might do this automatically).
+3.  Export your updated library to your .bib file (overwrite the previous version).
+
+## Citations
+
+Now we can cite all the R packages that makes this possible.
+See [@wickham2019; @xie2014; @xie2015; @xie2018; @xie2020; @xie2022].
+
+To learn more, take a look at the Zotero documentation.
+
+We also have the two excellent books @grolemund2017 and @lander2017.
+
+## Insert Citations
+
+-   Place the cursor where you want the citations.
+-   Select 'Citation' from the 'Insert' menu in Visual mode.
+-   Press Shift to select multiple references.
+
+![](insert-citations.png){width="522"}
+
+## Bibliography
+
+::: {#refs}
+:::
+
+## Appendix
+
+By default the reference list/bibliography is dumped at the end of document.
+How can we place it somewhere else?
+The solution is some raw html code
+
+    <div id="refs"></div>
+
+placed right after the heading for References/Bibliography.
+
+## Exercise
+
+Change the citation style to Apa 7.
+ed.
+no ampersand.
+
+Change the citation style to Chicago Manual of Style 17th edition (author-date).
