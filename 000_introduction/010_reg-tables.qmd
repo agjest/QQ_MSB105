@@ -1,0 +1,57 @@
+---
+title: "Regression Tables"
+editor: visual
+---
+
+
+```{r setup}
+#| echo: true
+#| eval: true
+library(huxtable)
+```
+
+
+A short example illustrating the use of regresssion tables.
+
+```{r sumamry}
+summary(mtcars)
+```
+
+```{r models}
+lm1 <- lm(mpg ~ cyl, data = mtcars)
+lm2 <- lm(mpg ~ cyl + disp + hp, data = mtcars)
+lm3 <- lm(mpg ~ disp + gear + carb + am, data = mtcars)
+```
+
+```{r report_stderror}
+huxreg(lm1, lm2, lm3)
+```
+
+```{r report_tvalue}
+huxreg(
+        lm1, lm2, lm3, 
+        error_format = "[{statistic}]", 
+        note         = "{stars}. T statistics in brackets."
+      )
+```
+
+Suppose that we discover that the observations number 4 to 6, 13 and 17 should not be included.
+
+```{r reduced_model}
+lm1_red <- lm(mpg ~ cyl, data = mtcars[-c(4:6, 13, 17), ])
+lm2_red <- lm(mpg ~ cyl + disp + hp, data = mtcars[-c(4:6, 13, 17), ])
+lm3_red <- lm(mpg ~ disp + gear + carb + am, data = mtcars[-c(4:6, 13, 17), ])
+```
+
+```{r report_tvalue_red}
+huxreg(
+        lm1_red, lm2_red, lm3_red, 
+        error_format = "[{statistic}]", 
+        note         = "{stars}. T statistics in brackets."
+      )
+```
+
+```{r siste}
+#siste
+```
+

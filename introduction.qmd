@@ -3,8 +3,15 @@ title: "Introduction"
 editor: visual
 ---
 
+## Presentations
+
 -   [Intro](000_introduction/001_intro.qmd)
 -   [Undervisningsplan](000_introduction/005_undervisningsplan.qmd)
+-   [Structured Dynamic Documents](000_introduction/s-d-d/Structured-Dynamic-Documents.qmd)
+
+## Documents
+
 -   [Preferences RStudio](000_introduction/pref-setup-2022/ps2022.qmd)
--   [Structured Dynamic Documents](005_lecture/005_001_Structured_Dynamic_Documents.qmd)
--   [Install R packages](000_introduction/007_install-R-packages.html)
+-   [Install R packages](000_introduction/007_install-R-packages.qmd)
+-   [Regression Tables](000_introduction/010_reg-tables.qmd)
+-   [Writing Functions](000_introduction/015_write-functions.qmd)

@@ -234,8 +234,7 @@ This Markdown document is then in turn converted by pandoc into the format we wa
     -   is to never acquire them in the first place
 -   hence we use `tidyverse` style guide ([tidyverse style guide](https://style.tidyverse.org))
 -   Rstudio has integrated support for `tidyverse` style and will indicate when we err.
-    -   Important to set the [Preferences...](../000_introduction/pref-setup-2022/ps2022.html) correctly .
-        Home work to next time.
+    -   Important to set the [Preferences...](../000_introduction/pref-setup-2022/ps2022.html) correctly . Home work to next time.
 -   Additional help from the AddIn **styler** (install the `styler` package to get the add-in)
 
 ## Rcode style guide
@@ -409,7 +408,7 @@ Trust me, you do not want to do this by hand.
 
 ## Citation, how does it work?
 
-![@ Citation from the Insert menu in Visual mode.](citation-newRS.png)
+![\@ Citation from the Insert menu in Visual mode.](citation-newRS.png)
 
 -   Addin (citr) not needed any more. Citation now supported by default in RStudio.
 
