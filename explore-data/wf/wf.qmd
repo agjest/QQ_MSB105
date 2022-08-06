@@ -1,0 +1,151 @@
+---
+title: "Our Workflow"
+author: "ag"
+format:
+  revealjs:
+        theme: simple
+        footer: '[MSB105](/index.html)'
+        reveal_options:
+        code-fold: show
+        incremental: true
+        smaller: true
+        scrollable: true
+        slide-number: c/t
+editor: visual
+editor_options:
+  markdown:
+    wrap: 72
+    canonical: true
+    chunk_output_type: console
+echo: true
+eval: true
+---
+
+## Introduction Workflow
+
+-   We allways start by defining a new repository at Github
+    1.  Remember to choose an R .gitignore
+
+    2.  `.gitignore` specifies the files in our project that Git should
+        ignore
+-   Then we create a new project in RStudio with git version control
+-   Then we do a `Pull` from Github
+    1.  This will copy the files automatically generated at Github down
+        to our local project
+
+    2.  Edit the .gitignore file
+-   Then we create a new Quarto Document from **File \> New File** menu
+    in RStudio
+    1.  Just save the template into your project
+
+    2.  Do a Commit, Pull, Push
+
+        1.  Remeber to write an informative commit message (be kind to
+            others and a future self)
+
+## Introduction Workflow
+
+-   Start editing your Quarto Document
+    1.  Save when you have done some work
+
+    2.  Do a Commit, Pull, Push
+
+## Creating a New Repository on Github
+
+![Create new repository at github.](new-repo.png)
+
+## Give repo a name
+
+![Give the repo a name](repo-name.png)
+
+## Configure repo
+
+![Configure repo](repo-config.png)
+
+## Select R .gitignore
+
+![Select R .gitignore](rep-gitignore-tmpl.png)
+
+## Create repo
+
+![Ceate repo](repo-create.png)
+
+## Copy repo address
+
+![Copy repo address](repo-copy-addr.png)
+
+## RStudio `New Project…` from `File` menu
+
+![Select new project from File menu](rs-new-proj.png)
+
+## Choose Version Control
+
+![New Project with Version Control](rs-new-proj-vc.png)
+
+## Choose Git Version Control
+
+![Select Git for version Control](rs-new-proj-vc-git.png)
+
+## Paste in Repo Address
+
+![Paste Repo Address](rs-create-proj.png)
+
+## Edit .gitignore
+
+![Edit the .gitignore File](rs-edit-gitignore.png)
+
+## RStudio New Quarto Document
+
+![Select File \> New File \> Quarto Document...](rs-new-quarto-doc.png)
+
+## RStudio Name new Quarto Document
+
+![Give Title of Quarto Document](rs-create-quarto-doc.png)
+
+## Save New Quarto document
+
+![Save New Quarto Document. You might add some text yourself before
+saving.](rs-quarto-doc-save-as.png)
+
+RStudio Name File
+
+![Give Document File a name](rs-quarto-doc-save-name.png)
+
+## Select Git Tab
+
+![Files Changed since we Created Project](rs-git-changed-files.png)
+
+## Press Commit Button
+
+![Press Commit Button](rs-git-changed-files-commit-button.png)
+
+## Commit
+
+![Stage Files, write commit message and Press Commit
+Button](rs-git-commit.png)
+
+## Commit Results
+
+![Commit Results. Click Close Button.](rs-git-commit-res.png)
+
+## Click Pull Button
+
+![Pull Down from Github. We know that there have been no changes, but
+Commit, Pull, Push is a nice habit.](rs-git-pull.png)
+
+## Click Push Button
+
+![Result of Push. Two files Pushed to Github without any
+problems.](rs-git-push-res.png)
+
+## Updated Repo on Github
+
+![The new File at Github.](repo-updated.png)
+
+## RStudio File \> Save All
+
+![Save All Changes in Project.](rs-save-all.png)
+
+## RStudio Close Project
+
+![Close your Project.](rs-close-proj.png)

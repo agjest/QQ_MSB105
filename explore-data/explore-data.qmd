@@ -1,0 +1,21 @@
+---
+title: "Explore Data"
+editor: visual
+---
+
+In this section we will learn to explore our data.
+We will learn how to use the R package ggplot2 to plot our data, how to reorder data with a few powerful verbs from tidyverse and some general advices for how to explore our data.
+It's all about getting to know our data.
+
+We will also set up the workflow we are going to use.
+All our work will be done in a Quarto document in an RStudio project, version controlled by git and connected to Github.
+
+We will for the most part follow [R for Data Science](https://r4ds.had.co.nz).
+
+## Presentations
+
+-   [Our Workflow](wf/wf.qmd)
+-   [Using Graphics to Explore Data (chap. 3 r4ds)](intro-ggplot2/intro-ggplot2.qmd)
+-   [Transforming Data (chap. 5 r4ds)](trans-data/trans-data.qmd)
+-   [Git/Github Braching and Merging](branch-merge/branch-merge.qmd)
+-   [Exploratory Data Analysis (chap. 7 r4ds)](eda/eda.qmd)

@@ -1,0 +1,218 @@
+---
+title: "Git and Github"
+author: "ag@hvl.no"
+format:
+  revealjs:
+        theme: simple
+        footer: '[MSB105](/index.html)'
+        reveal_options:
+        code-fold: show
+        incremental: true
+        smaller: true
+        scrollable: true
+        slide-number: c/t
+editor: visual
+editor_options:
+  markdown:
+    wrap: 72
+    canonical: true
+    chunk_output_type: console
+echo: true
+eval: true
+---
+
+## Git in RStudio
+
+![git in RStudio](git.png)
+
+Den til venstre dreier seg i hovedsak om dokumentet jeg arbeider på nå,
+mens den til høyre er mer sentrert om hele prosjektet.
+
+## Git in RStudio
+
+-   Open source Version Control System
+-   cmd-line client
+    -   we can run this under Terminal in RStudio
+    -   most of what we need is implemented in the Git pane in RStudio
+        (can spare us from some [command line
+        bullshittery](https://pg.ucsd.edu/command-line-bullshittery.htm))
+-   We can currently (version RStudio 2022.07.1+554 "Spotted Wakerobin")
+    create branches in the RStudio git-pane, but not merge the branch
+    back into master/main
+
+## Git in RStudio cont.
+
+-   To merge branches we currently have 2 options
+    -   use the Terminal (`git merge <branch-name>`), but first we have
+        to switch back to master/main
+        -   This will be the alternative we use
+    -   use a GUI git client (GitAhead or others)
+-   If we are using Github we can also use a web-based client to merge
+    branches. The [Github](https://github.com) web-pages is then the
+    client.
+
+## Git branches
+
+-   An important design-goal for git was lightweight branches
+    -   easy to do
+    -   uses few resources
+-   Why branch?
+    -   for sw development; always a master ready to ship
+    -   for our use: an (unfinished) printable draft always ready for
+        printing or previewing
+    -   reduces the chance of a merge conflict
+    -   reduces the chance of a push rejection
+-   Hence we should **not** commit directly to master/main
+
+## Git branches
+
+-   Example:
+    -   We want to update, or start writing, the Introduction
+    -   We check out a new branch, perhaps name it Update-Introduction
+    -   We work on the updated introduction in the branch, possibly with
+        several commits
+    -   The document/report is available in master/main, with the old
+        introduction, while we are working
+    -   When we are ready with the updated introduction we merge it back
+        into master/main and master/main gets an updated introduction
+-   For more info on git branching (using the command line) see:
+    -   [Happy Git and GitHub for the useR: 22
+        Branches](https://happygitwithr.com/git-branches.html)
+    -   [Git Branching (the Git
+        Book)](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell)
+
+## Git branches in RStudio
+
+-   ![newbranch](new-branch.png)
+
+-   Click the small icon, left of master/main, in the upper right corner
+    ![](branch-icon.png)
+
+-   Do not use space in branch-names (i.e. `Update-Introduction` not
+    `Update Introduction`)
+
+## Git branches in RStudio
+
+-   ![branching](branch.png){width="70%"}
+
+-   Note that Rstudio does:
+    `/usr/bin/git checkout -B Update-Introduction` which is the same as:
+
+    -   `git branch Update-Introduction`
+        -   create a branch
+    -   `git checkout Update-Introduction`
+        -   switch to the branch `Update-Introduction`
+
+        -   There is also a `-b` version. Subtile differences, see
+            `man git-checkout` in Terminal for details (type `q` to exit
+            man)
+
+## Git branches in RStudio
+
+-   Work and commit on branch `Update-Introduction`
+-   When finished:
+    -   Select **Terminal** in lower left paneGit branches in RStudio
+
+![Terminal Tab in Lowe Left Pane](Terminal.png)
+
+-   Then give the commands
+
+    -   `git checkout master` or `git checkout main`
+        -   this command switch back to the branch `master` or `main`
+            (local)
+    -   `git merge Update-Introduction`
+        -   merge the branch `Update-Introduction` into `master` or
+            `main` branch
+
+## Git branches in RStudio
+
+-   We should now have an updated Introduction.
+-   **Let´s practice branching**
+    -   Start with your citation project
+
+    -   Create a new branch `Introduction`
+
+    -   Check that you are in the new branch
+
+    -   Write/update your Introduction
+
+    -   Do three commits
+-   Select the **Terminal** tab in the lower left pane
+-   Give the command: `git checkout master` or `git checkout main`
+-   Then give the command: `git merge Introduction`
+
+## Register on Github
+
+-   use *same* email as git
+    -   check with `git config --global --list` in terminal
+-   [some good advice](https://happygitwithr.com/github-acct.html) for
+    selecting user_name on Github
+    -   No ...,
+        -   `BigSexyThing` should probably *not* be your username on
+            Github
+
+        -   and before you ask ...
+
+            -   neither should `big_sexy_thing`
+-   Go to `www.github.com`
+
+## Workflow stud. A and B working together
+
+-   Stud. A creates new project on Github
+-   Choose Create Readme.md.
+    -   Gives us some default text, can be edited later
+-   Switch back to RStudio
+-   New project, version control
+-   Back to Github. Copy URL from **Code** button
+-   Back to RStudio, paste the URL and **Create** project
+
+## Workflow stud. A and B working together
+
+-   Stud. A selects `File > Quarto Document …` in RStudio
+    -   write something (use Visual mode)
+
+    -   Save, give Quarto Document a meaningful name
+
+    -   Select **Git** tab in upper right corner
+
+        1.  **Commit (**check the box for your Quarto Document under
+            Staged)
+
+        2.  **Pull** (get any changes from Github)
+
+            -   Reduces the change of a merge conflict
+
+        3.  **Push** (send your changes up to Github)
+
+## Workflow stud. A and B working together
+
+-   Stud. A gives stud. B access to repository
+-   Stud. B clones repository
+-   Stud. B edits the Quarto Document
+
+------------------------------------------------------------------------
+
+    ---
+    title: "new paper"
+    editor: visual
+    bibliography: new-paper.bib
+    ---
+    ## Introduction
+    ## Review of literature
+    ## Description of data
+    ## Analysis
+    ## Results
+    ## Conclusion
+    ## References
+
+## Workflow stud. A and B working together
+
+-   Stud. B
+-   save **Quarto Document**
+    -   **Commit**
+
+    -   **Pull**
+
+    -   **Push**
+-   Time to discuss who do what
+    -   Issues at Github might be useful

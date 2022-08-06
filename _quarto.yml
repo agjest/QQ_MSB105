@@ -11,7 +11,8 @@ website:
       - about.qmd
       - text: "Lectures"
         menu:
-          - introduction.qmd
+          - introduction/introduction.qmd
+          - explore-data/explore-data.qmd
 
 
 format:

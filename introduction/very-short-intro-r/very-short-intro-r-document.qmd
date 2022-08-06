@@ -1,0 +1,1381 @@
+---
+title: "Very Short Intro to R"
+format: html
+echo: true
+eval: true
+---
+
+```{r setup}
+suppressPackageStartupMessages(
+  c(
+    library(tidyverse),
+    library(huxtable)
+  )
+)
+```
+
+```{r}
+#| echo: false
+# want to start with nothing defined
+rm(list=ls())
+```
+
+## Calculator
+
+```{r}
+2+2
+```
+
+
+
+```{r}
+(2/15)^0.25*exp(4) - 200
+```
+
+## Variables
+
+```{r}
+2
+```
+
+
+
+Must give it a name (an address to location in memory) to be able to retrieve it.
+
+```{r}
+x <- 2
+```
+
+
+
+We can also write `x = 2`, but `<-` is the R way.
+We **assign** 2 to x.
+
+```{r}
+# get x
+x
+```
+
+## Variables cont.
+
+To both assign and print out result use parentheses.
+
+```{r}
+(y <- 5)
+```
+
+
+
+```{r}
+(z <- x + y)
+```
+
+## Variables cont.
+
+We can change an assignment.
+
+```{r}
+(x <- 13)
+```
+
+
+
+```{r}
+z
+```
+
+z retains value
+
+
+
+```{r}
+# update assignment
+(z <- x + y)
+```
+
+z gets new value
+
+## Integers, floating point (decimal), numeric
+
+```{r}
+typeof(z)
+```
+
+
+
+If we want z to be an integer we must do
+
+```{r}
+# Why L? I don't know.
+x <- 13L
+y <- 5L
+(z <- x + y)
+```
+
+
+
+```{r}
+typeof(z)
+```
+
+## Vectors
+
+R works on vectors.
+Even single digits, as above, are vectors of length 1.
+
+```{r}
+(x <- c(2, 8, 9, 21:29, 17:12))
+```
+
+
+
+```{r}
+(y <- 6:(5 + length(x)))
+```
+
+
+
+```{r}
+(z <- x + y)
+```
+
+
+
+What happend?
+
+## Vectors cont.
+
+```{r}
+(y <- 6:14) 
+```
+
+What will z now be?
+
+
+
+```{r}
+(z <- x + y)
+```
+
+
+
+```{r}
+(y <- 6:13) 
+```
+
+## Vectors cont.
+
+```{r}
+#| warning: true
+(z <- x + y)
+```
+
+-   If vectors not of same length R will replicate the shortest.
+-   If a multiple **NO WARNING!**
+    -   **DANGER!**
+-   Else the warning above
+
+## Change type
+
+```{r}
+typeof(z)
+```
+
+
+
+```{r}
+z <- as.integer(z)
+```
+
+
+
+```{r}
+typeof(z)
+```
+
+## Change type cont.
+
+```{r}
+z <- as.character(z)
+```
+
+
+
+```{r}
+typeof(z)
+```
+
+
+
+```{r}
+z
+```
+
+-   Now quotes around number, hence `character`.
+
+## Picking values in vector
+
+```{r}
+# first value
+z[1]
+```
+
+
+
+What will happen?
+Why?
+
+
+
+```{r}
+# commented out else document will not run
+#z[1] + z[2]
+```
+
+## Picking values in vector cont.
+
+Convert back to integer
+
+```{r}
+z <- as.integer(z)
+z[1] + z[2]
+```
+
+
+
+```{r}
+z
+```
+
+
+
+What will the next one return?
+
+```{r}
+#| eval: false
+z[1] + z[2:4]
+```
+
+## Picking values in vector cont.
+
+Quite flexible, we can for instance do:
+
+```{r}
+x[5] + z[c(1:2, c(9, 3, 1), 13:11)]
+```
+
+Note that the indexes must be put inside `c()`.
+
+
+
+```{r}
+c(1:2, c(9, 3, 1), 13:11)
+```
+
+## Picking values in vector cont.
+
+What happened previous slide?
+
+```{r}
+x[5]
+```
+
+
+
+```{r}
+z[c(1:2, c(9, 3, 1), 13:11)]
+```
+
+
+
+```{r}
+x[5] + z[c(1:2, c(9, 3, 1), 13:11)]
+```
+
+## Picking values in vector cont.
+
+```{r}
+z <- c(3, 5, 1, 9)
+```
+
+What will the following return?
+
+```{r}
+#| eval: false
+z[-1]
+```
+
+
+
+What will the following return?
+
+```{r}
+#| eval: false
+z[-c(2:3)]
+```
+
+```{r}
+#| eval: false
+z[-c(3:2)]
+```
+
+## Picking values in vector cont.
+
+How to drop last value?
+
+```{r}
+head(z, n = -1)
+```
+
+
+
+```{r}
+head(z, n = -2)
+```
+
+
+
+Get the two values at the end
+
+```{r}
+z[(length(z)-1):length(z)]
+```
+
+or
+
+
+
+```{r}
+tail(z, n = 2)
+```
+
+## Generating empty vectors
+
+```{r}
+x <- numeric(10)
+```
+
+
+
+```{r}
+x
+```
+
+```{r}
+typeof(x)
+```
+
+-   Important technique used in loops.
+-   **Faste**r to generate an empty vector of needed length than to grow it with one new value many times.
+
+## Generating empty vectors
+
+R starts indexing at 1 (not 0).
+
+```{r}
+# empty numeric vector
+x <- numeric(1000000)
+set.seed(666)
+# fill with values
+t1 <- Sys.time()
+for (i in 1:1000000) {
+  # standard normal
+  x[i] = rnorm(n = 1)
+}
+t2 <- Sys.time()
+(d1 <- t2 - t1)
+```
+
+```{r}
+head(x, n = 10)
+```
+
+## Generating vector incrementally
+
+Slower code.
+Allocate more space in memory for x for each iteration.
+
+```{r}
+# "slow" code
+rm(x)
+set.seed(666)
+# fill with values
+t1 <- Sys.time()
+x <- 0
+for (i in 1:1000000) {
+  # standard normal
+  x[i] = rnorm(n = 1)
+}
+t2 <- Sys.time()
+(d2 <- t2 - t1)
+```
+
+```{r}
+head(x, n = 10)
+```
+
+## Speed Difference
+
+```{r}
+# percent slower
+round((as.double(d2 - d1)/as.double(d1))*100, digits = 2)
+```
+
+## The R way
+
+```{r}
+set.seed(666)
+t1 <- Sys.time()
+x <- rnorm(1000000)
+t2 <- Sys.time()
+(d3 <- t2 - t1)
+```
+
+```{r}
+head(x, n = 10)
+```
+
+
+
+```{r}
+# percent faster
+round((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)
+```
+
+## Other types of vectors; logical
+
+```{r}
+x <- x[1:10]
+q <- x < 0
+```
+
+
+
+```{r}
+q
+```
+
+-   q is a **boolen** or **logical** vector
+    -   TRUE for the values of x that are less than 0, and false for the ones that are not.
+
+## Other types of vectors; named
+
+```{r}
+temp <- c(11, 17, 22, 15, 15, 25)
+weather <- c("Rainy", "Sunny", "Sunny", "Fair", "Fair", "Sunny") 
+```
+
+
+
+```{r}
+names(temp) <- weather
+```
+
+
+
+```{r}
+temp
+```
+
+```{r}
+temp[names(temp) == "Sunny"]
+```
+
+## Other types of vectors; factor
+
+```{r}
+# some codeing of sex, 1 female, 2 male
+sex <- c(1, 2, 1, 2, 2, 1, 2)
+```
+
+
+
+```{r}
+# new labels, "F" for 1 and "M" for 2
+sex_f <- factor(sex, labels = c("F", "M"))
+```
+
+
+
+```{r}
+sex_f
+```
+
+```{r}
+table(sex_f)
+```
+
+## Rules for vectors
+
+-   Every element of a vector **must** be of the **same type**.
+-   If not, elements will be converted
+
+
+
+```{r}
+(x <- 1:3)
+```
+
+```{r}
+typeof(x)
+```
+
+```{r}
+# insert "b" second place
+x[2] <- "b"
+```
+
+```{r}
+x
+```
+
+## Rules for vectors cont.
+
+```{r}
+typeof(x)
+```
+
+```{r}
+# will fail
+# x <- as.integer(x)
+```
+
+```{r}
+x <- 1:3
+```
+
+```{r}
+x[3] <- 5.0
+```
+
+```{r}
+x
+```
+
+```{r}
+typeof(x)
+```
+
+## Lists
+
+-   Most flexible datatype in R, but also more complex and perhaps more difficult to work with
+
+
+
+```{r}
+l <- list(x = 1:3, y = c("A", letters[4:13]), z = seq(from = 1.3, to = 2.7, by = 0.2))
+```
+
+```{r}
+l
+```
+
+```{r}
+typeof(l)
+```
+
+## Lists cont.
+
+```{r}
+typeof(l$x)
+```
+
+```{r}
+is.vector(l$x)
+```
+
+-   l\$x, element x in list l
+
+
+
+```{r}
+typeof(l$y)
+```
+
+
+
+```{r}
+typeof(l$z)
+```
+
+## List in list
+
+-   We can have lists inside lists
+
+
+
+```{r}
+l <- list(
+  x = 1:3, 
+  y = c("A", letters[4:13]), 
+  z = list(
+    za = seq(from = 1.3, to = 2.7, by = 0.2), 
+    zb = c(TRUE, FALSE), 
+    zc = 5:9,
+    zd = list(1, "F", 3.2)
+    )
+  )
+```
+
+## List in list cont.
+
+```{r}
+#| code-fold: true
+l
+```
+
+## List in list cont.
+
+```{r}
+l$z$zb
+```
+
+## Dataframes
+
+-   The most used datastructure in R
+-   A dataframe is a list of vectors and/or lists of the **same length**.
+
+
+
+```{r}
+df <- data.frame(x = 1:3, y = letters[1:3], z = LETTERS[1:3])
+```
+
+```{r}
+df
+```
+
+## The following will not work:
+
+![x and y 3 elements, z 4 elements. x, y and z can not be put into a dataframe.](df-error.png)
+
+## This will work
+
+```{r}
+df1 <- data.frame(x = 1:3, y = letters[1:3], 
+                 z = df)
+```
+
+```{r}
+str(df1)
+```
+
+## This will work cont.
+
+-   Remember that a dataframe is a **list** of vectors **and lists**, hence we **can** have whole dataframes in a column (variable) in a dataframe.
+-   Many modern R packages uses this trick including tidyverse and the sf\* packages
+-   They do it a bit more advanced and include a *different* dataframe in each row
+
+## Adding a variable to a dataframe
+
+```{r}
+df
+```
+
+## Adding a variable to a dataframe
+
+```{r}
+df$q <- c(2.1, 0.4, 0.9)
+```
+
+
+
+```{r}
+#| code-fold: true
+df
+```
+
+## Selecting Values from a `dataframe`
+
+Selecting column 2
+
+```{r}
+# all rows, col 2
+df[,2]
+```
+
+Selecting columns 1 and 3
+
+```{r}
+# col 1 and 3
+df[, c(1,3)]
+```
+
+## Selecting Values from a `dataframe` cont.
+
+Selecting column 2 by name
+
+```{r}
+# col 2 by name
+df[, "y"]
+```
+
+Selecting columns 1 and 3 by name
+
+```{r}
+df[, c("x", "z")]
+```
+
+## Selecting Values from a `dataframe` cont.
+
+Selecting row 1
+
+```{r}
+# select row 1
+df[1,]
+```
+
+## Selecting Values from a `dataframe` cont.
+
+```{r}
+# selecting row 1 and 3
+df[c(1, 3),]
+```
+
+## Selecting Values from a `dataframe` cont.
+
+Selecting row 1 and 3 from column 2 and 3
+
+```{r}
+#| df-print: tibble
+df[c(1, 3), 2:3]
+```
+
+## Selecting Values from a `dataframe` cont.
+
+Selecting value from row 2 and column 3
+
+```{r}
+df[2, 3]
+```
+
+## Be aware of the following
+
+What type?
+
+```{r}
+typeof(df[2, 3])
+```
+
+```{r}
+is.vector(df[2, 3])
+```
+
+```{r}
+is.data.frame(df[2, 3])
+```
+
+```{r}
+typeof(df[1:2, 3])
+```
+
+## Be aware of the following cont.
+
+```{r}
+is.vector(df[1:2, 3])
+```
+
+```{r}
+is.data.frame(df[1:2, 3])
+```
+
+```{r}
+is.data.frame(df[2, 2:3])
+```
+
+## Be aware of the following cont.
+
+```{r}
+typeof(df[c(1, 3), 2:3])
+```
+
+```{r}
+is.vector(df[c(1, 3), 2:3])
+```
+
+```{r}
+is.data.frame(df[c(1, 3), 2:3])
+```
+
+## Be aware of the following cont.
+
+-   If we select a single item from a dataframe we end up with a vector with one element
+-   If we select multiple values from a row in a dataframe we end up with a vector with multiple arguments
+-   If we select multiple values from a column in a dataframe we end up a dataframe
+-   If we select values from multiple rows and columns we end up with a dataframe
+
+## Dataframe versus Tibble
+
+Tibble part of tidyverse to be introduced later on, but important point
+
+A Tibble is a modernised version of a dataframe
+
+```{r}
+tib <- as_tibble(df)
+```
+
+```{r}
+tib
+```
+
+## Dataframe versus Tibble cont.
+
+```{r}
+is.vector(tib[2,3])
+```
+
+
+
+```{r}
+# tibble just an updated dataframe
+is.data.frame(tib[2,3])
+```
+
+
+
+**Note! Selecting from a tibble ALWAYS return a dataframe, selecting from a dataframe will return a dataframe OR a vector.**
+
+## Matrices
+
+-   Rectangular collection of numbers.
+-   Important in econometrics (appendix D in Wooldridge)
+-   Used for solving systems of equations
+-   Special versions of the arithmetic operations for matrices
+
+## Matrices cont.
+
+```{r}
+# define a matirc in R
+X <- matrix(c(2, 2, -1, 5, 2, 6), nrow = 3, byrow = FALSE)
+```
+
+
+
+```{r}
+X
+```
+
+
+
+```{r}
+matrix(c(2, 2, -1, 5, 2, 6), nrow = 3, byrow = TRUE)
+```
+
+## Matrices cont.
+
+```{r}
+# transpose
+t(X)
+```
+
+
+
+```{r}
+Y <- matrix(c(-3, 2, 2.5, 6, -4, 4), nrow = 2, byrow = FALSE)
+```
+
+
+
+```{r}
+Y
+```
+
+## Matrices cont.
+
+-   Dimension of a matrix is number of rows (m), number of columns (n)
+-   The rule for matrix multiplication (`X %*% Y`) is that it is only defined when $n_x = m_y$ and the result will be a matrix with dimension $m_x, n_y$.
+
+## Matrices cont.
+
+```{r}
+dim(X)
+```
+
+```{r}
+dim(Y)
+```
+
+```{r}
+# X %*% Y will be defined since (n_X = 2 = m_Y = 2) and the result will have dimension 3x3
+X %*% Y
+```
+
+## Matrices cont.
+
+$X^TX$ is important in econometrics
+
+```{r}
+# X, two variables with 3 obs. for each variable
+t(X) %*% X
+```
+
+Finding the inverse of a square matrix
+
+```{r}
+(XTX_inv <- solve(t(X) %*% X))
+```
+
+## Matrices cont.
+
+Multiplying a matrix with its inverse will give the identity matrix **I**
+
+```{r}
+(t(X) %*% X) %*% XTX_inv
+```
+
+Generate identity matrix **I**
+
+```{r}
+(I <- diag(2))
+```
+
+## Matrices cont.
+
+Multiplying a square matrix with I will return the matrix
+
+```{r}
+(t(X) %*% X) %*% I
+```
+
+```{r}
+I %*% (t(X) %*% X)
+```
+
+## Matrices cont.
+
+We select elements from matrices like we do for dataframes
+
+```{r}
+X
+```
+
+```{r}
+X[3, 1:2]
+```
+
+## Subsets
+
+```{r}
+dim(cars)
+```
+
+```{r}
+head(cars, n = 4)
+```
+
+## Subsets cont.
+
+```{r}
+summary(cars)
+```
+
+## Subsets cont.
+
+```{r}
+(cars_sub <- subset(cars, subset = cars$speed > 6 & cars$speed < 11))
+```
+
+## Subsets cont.
+
+-   `subset` is nice to use with the `lm()` (linear model, default command to run regressions in R) command to run regressions on a subset of the data
+
+## Save/load data
+
+```{r}
+save(cars_sub, file = "cars_sub.Rdata")
+```
+
+Delete cars_sub
+
+```{r}
+rm(cars_sub)
+```
+
+```{r}
+# should have done some house keeping ;-)
+# no cars_sub
+ls()
+```
+
+## Save/load data
+
+```{r}
+# Note! we don't have to do cars_sub <- load(…)
+load(file = "cars_sub.Rdata")
+```
+
+```{r}
+# it's back
+dim(cars_sub)
+```
+
+## Help
+
+-   R has built in help
+-   For packages to be accepted at CRAN they have to be well documented
+-   `tidyverse` has very nice documentation
+-   help for a command in Console: help(dim) or ?dim
+-   Also search in the Help tab
+-   If we click on the package name in the Package tab we will get documentation for all the commands in the package
+-   Exercise: Find help for dim {base} via the Package tab
+
+## Very simple regression analysis in R
+
+```{r}
+lm1 <- lm(formula = dist ~ speed, data = cars)
+```
+
+```{r}
+summary(lm1)
+```
+
+## Very simple regression analysis in R
+
+Without intercept term
+
+```{r}
+# Note! -1 at end of formula
+lm2 <- lm(formula = dist ~ speed -1, data = cars)
+```
+
+```{r}
+summary(lm2)
+```
+
+## Very simple regression analysis in R
+
+```{r}
+# only on a subset of data
+lm3 <- lm(formula = dist ~ speed, 
+          data = cars, 
+          subset = cars$speed > 6 & cars$speed < 11
+          )
+```
+
+```{r}
+summary(lm3)
+```
+
+## Reporting Regression Results
+
+```{r}
+#| echo: true
+#| eval: false
+huxreg(
+        lm1, lm2, lm3,
+        error_format = "({statistic})", 
+        note         = "{stars}. T statistics in parentheses."
+      )
+```
+
+## Reporting Regression Results cont.
+
+```{r}
+#| echo: false
+#| eval: true
+huxreg(
+        lm1, lm2, lm3,
+        error_format = "({statistic})", 
+        note         = "{stars}. T statistics in parentheses."
+      )
+```
+
+## Classic plotting
+
+We will mainly use the ggplot2 package in tidyverse for plotting
+
+Here is a tiny bit about the classic R `plot()` function
+
+```{r}
+plot(cars)
+```
+
+## Classic plotting cont.
+
+```{r}
+plot(x = cars$dist, y = cars$speed)
+```
+
+## Classic plotting cont.
+
+Classic plot with regression line
+
+```{r}
+plot(cars)
+abline(lm(formula = dist ~ speed, data = cars))
+```
+
+## Classic plotting cont.
+
+```{r}
+# multiple regression
+# LifeCycleSavings from package Datasets
+mreg1 <- lm(
+  formula =sr ~ pop15 + pop75 + dpi + ddpi, 
+  data = LifeCycleSavings
+  )
+summary(mreg1)
+```
+
+## Classic plotting cont.
+
+Nicer output than `summary()`
+
+```{r}
+#| echo: true
+#| eval: false
+huxreg(
+        mreg1,
+        error_format = "({statistic})", 
+        note         = "{stars}. T statistics in parentheses."
+      )
+```
+
+## Classic plotting cont.
+
+```{r}
+#| echo: false
+#| eval: true
+huxreg(
+        mreg1,
+        error_format = "({statistic})", 
+        note         = "{stars}. T statistics in parentheses."
+      )
+```
+
+## Very Simple Function
+
+It's very easy to write functions in R and we should *start to practice at once*.
+
+```{r}
+add_numbers <- function(x, y) {
+  x + y
+}
+```
+
+```{r}
+add_numbers(2,2)
+```
+
+```{r}
+# will fail
+#add_numbers(2)
+```
+
+## Very simple function cont.
+
+Improved version
+
+```{r}
+# default value 0
+add_numbers <- function(x=0, y=0) {
+  x + y
+}
+```
+
+```{r}
+add_numbers()
+```
+
+```{r}
+add_numbers(5, 10)
+```
+
+```{r}
+add_numbers(3)
+```
+
+## Very simple function cont.
+
+Divide two numbers
+
+```{r}
+divide_numbers <- function(x=0, y=1) {
+  x/y
+}
+```
+
+```{r}
+divide_numbers()
+```
+
+```{r}
+divide_numbers(5)
+```
+
+```{r}
+# x = 0, y = 5
+divide_numbers(,5)
+```
+
+## Very simple function cont.
+
+```{r}
+# x is 5, y = 2
+divide_numbers(5,2)
+```
+
+```{r}
+# named arguments, sequence does not matter
+divide_numbers(y = 2, x = 5)
+```
+
+## Simple function with *for next loop*.
+
+```{r}
+start_stupid_fun <- function(x1 = 0, n = 10) {
+# initialise x
+x = vector(mode = "numeric", length = n)
+x[1] = x1
+
+for (i in seq_along(x[-1])) {
+  x[i + 1] = x[i] + 1
+}
+print(x)
+}
+```
+
+```{r}
+start_stupid_fun()
+```
+
+```{r}
+start_stupid_fun(x1 = 5, n = 15)
+```
+
+## Extensions
+
+```{r}
+# probably from jørn
+stupid_fun <- function(
+    x1 = 0, 
+    n = 10, 
+    d = 1, # how much to increase number
+    w = 80, # text width in chacters
+    width_fraction = 1, # how wide should the output be
+    print_to_console = TRUE # where to send the output
+    ) {
+  # we stop if we are to produce zero numbers
+  # stopifnot(n > 0) an alternative but throws an error
+  # and stop compilation of the document/presentation
+  if(!n > 0) return("n needs to be positive.")
+  # max number of digits in numbers
+  dig =  nchar(n*d)
+  # width in number of charcter for output
+  w_out = w * width_fraction
+  # allocate a numeric vector with room for n numbers
+  x = vector(mode = "numeric", length = n)
+  # First number in output vector is x1
+  x[1] = x1
+  # we loop through x vector but drop first element
+  for (i in seq_along(x[-1])) {
+    # i starts at 1, so first is x1 + d
+    x[i + 1] = x[i] + d
+    }
+
+# nice trick to control print to console
+if (print_to_console) {
+print(stringr::str_pad(x, width = dig, side = "left", pad = " "),
+      width = w_out)
+  } else {
+    tibble(x)
+  }
+}
+```
+
+## Testing
+
+```{r}
+# Generate 33 number starting with -13 and increasing by 5, default width
+stupid_fun(x1 = -13, n = 33, d = 5, print_to_console = TRUE)
+```
+
+```{r}
+# 13 numbers
+stupid_fun(x1 = -7, n = 13, width_fraction = 0.3, d = 5, 
+           print_to_console = TRUE)
+```
+
+## Print to console FALSE
+
+```{r}
+stupid_fun(x1 = -21, n = 5, width_fraction = 0.6, d = 5, 
+           print_to_console = FALSE)
+```
+
+## Zero numbers
+
+```{r}
+# result for n=0, no error so the presentation compiles
+stupid_fun(x1 = -21, n = 0, width_fraction = 0.6, 
+           d = 5, print_to_console=TRUE)
+```
+
+## Head_and_tail
+
+We have the functions `head()` and `tail()` to inspect respectively the start and end of a dataframe or similar object.
+Sometimes we might want to do bought with one command.
+
+### First attempt
+
+```{r}
+head_and_tail <- function(x) {
+  c(head(x), tail(x))
+}
+```
+
+## Head_and_tail cont.
+
+```{r}
+head_and_tail(mtcars[,1:6])
+```
+
+## Head_and_tail cont.
+
+### Second attempt
+
+```{r}
+head_and_tail <- function(x, n=3L) {
+res = rbind(rep('Head',length(names(x))),
+        head(x, n = n),
+        rep('*-*-*',length(names(x))), 
+        rep('Tail',length(names(x))), 
+        tail(x, n = n)
+        )
+as_tibble(res)
+}
+```
+
+## Head_and_tail cont.
+
+### Testing
+
+```{r}
+head_and_tail(mtcars[,1:6], n = 3)
+```
+
+## Head_and_tail cont.
+
+### Testing
+
+```{r}
+h_a_t <- head_and_tail(mtcars[,1:5], n = 2)
+```
+
+## Head_and_tail cont.
+
+```{r}
+h_a_t
+```
+
+## Want to learn more classic R?
+
+-   Try the Tutorials in upper right pane
+-   Try the Introduction chapter in [Using R for Introductory Econometrics](http://www.urfie.net/read/index.html)
+-   See section 2 in [Big Book of R](https://www.bigbookofr.com/new-to-r-start-here.html)
+-   *R for everyone: Advanced Analytics and Graphics, 2nd Edition* av Jared P. Lander
+
+```{r}
+#| echo: false
+#siste
+```
