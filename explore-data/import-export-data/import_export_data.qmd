@@ -1,0 +1,386 @@
+---
+title: "Import/Export Data"
+author: "ag@hvl.no"
+format:
+  revealjs:
+        theme: simple
+        footer: '[MSB105](/index.html)'
+        reveal_options:
+        code-fold: show
+        incremental: true
+        smaller: true
+        scrollable: true
+        slide-number: c/t
+editor: visual
+editor_options:
+  markdown:
+    wrap: 72
+    canonical: true
+    chunk_output_type: console
+echo: true
+eval: true
+bibliography: "ag_ds.bib"
+---
+
+```{r setup}
+library(tidyverse)
+library(PxWebApiData)
+```
+
+```{r bib, include=FALSE}
+# create a bib file for the R packages 
+# used in this document
+# Note! Needs to do a touch(ag_ds.bib) in terminal before first run
+# else stops when bibliography: "ag_ds.bib" not found in YAML
+knitr::write_bib(c(
+  "base",
+  "rmarkdown",
+  "tufte",
+  "tidyverse",
+  "PxWebApiData",
+  "nycflights13",
+  "readxl"
+),
+file = "ag_ds.bib"
+)
+```
+
+## Workflow (chap. 4)
+
+[Chap. 4 Workflow: basics](https://r4ds.had.co.nz/workflow-basics.html)
+
+-   I think we have covered most of this already, but a quick skim of
+    the chapter is recommended. One noteworthy point is "fast printing"
+
+. . .
+
+```{r fast-printing}
+# cumbersome
+x <- c(1, 2, 3)
+x
+# faster, to assign and print on one line enclose 
+# in parentheses
+(x <- c(1, 2, 3))
+
+```
+
+## Getting data from external source. (chap. 11)
+
+-   We will download some data from SSB.
+-   We will get data from [ssb tab.
+    10540](https://www.ssb.no/statbank/table/10540/) which gives us
+    percentage of the workforce (split on age-group) that is unemployed.
+-   We will get data for municipalities in Rogaland in the period Jan.
+    1999 to Dec. 2002
+
+## Getting data from external source. (chap. 11) cont.
+
+![Registrerte ledige 15--74 år](RegLedige15-74-web.png)The SSB web page.
+
+## Getting data from external source. (chap. 11) cont.
+
+-   We can get the data into R in (at least) two ways:
+    1)  Use SSB web-app to select part of tables (up to 300000 cells
+        max)
+    2)  Use the SSB api (up to 800000 cells max)
+
+## SSB web-app
+
+We can use the web-pages of SSB and download the data as .xlsx format
+and use the `read_xlsx()` function from the `readxl` package,
+[@R-readxl]
+
+Generate the table in xlsx-format
+
+![The .xlsx File.](RegLedige15-74-xlsx.png)
+
+## SSB web-app cont.
+
+-   As .csv
+
+. . .
+
+![The csv file RegLedige15-74-web-csv](RegLedige15-74-web-csv.png)
+
+## SSB web-app cont.
+
+Note that:
+
+-   decimal point is ',' and not '.'
+-   ';', not ',', is used to separate values
+-   To read the data into R we will use the classic functions from the
+    `util` package `read.table()` and `read.csv2()`.
+    -   The `read_table()` and `read_csv2()` functions are "modern"
+        equivalents of these classics.
+-   We use `read.table` since it's possible to specify `dec = ""` and
+    `sep = ""`.
+    -   `read.csv2` is a form of `read.table()` that already uses these
+        options.
+
+    -   The modern ones uses `locale()`, by I could not get it to work
+        properly.
+-   Under `Environment` in the upper right pane i R Studio there is also
+    an `Import Dataset` menu.
+-   Note that it gives an error for the .csv file ("multibyte
+    character").
+-   Probably a bug in the SSB function generating the file.
+
+## Read Excel file
+
+-   The `Tidyverse` library does not load the `readxl` package.
+    -   To use the `read_xlsx()` function we will either have to use
+        `readxl::read_xlsx()` or first load the `readxl` package with
+        `library(readxl)`
+-   put the `library()` commands in an r-chunk called *setup* at the
+    very start of your notebook.
+-   This chunk will be run every time you open the notebook.
+-   If you haven't got the `readxl` package you have to install it
+    first.
+
+## Read Excel file
+
+```{r read-excel-file}
+x <- readxl::read_xlsx(path = "./RegHeltLedige.xlsx", 
+                       skip = 3, col_names = TRUE)
+# Have a look at the names generated
+names(x)
+# Must fix names, put the names in names_x
+names_x <- names(x)
+#R does not like variable names that start with a digit, 
+#OK with tibble, but we still choose to add a "Y"
+names_x <- c("knrn", "age", 
+             paste("Y", names_x[3:length(names_x)], 
+                   sep = "")
+             )
+names(x) <- names_x
+# Clean up, delete names_x since not needed anymore
+rm(names_x)
+# have a look
+head(x, n = 5)
+# Just have to fill in the NAs for knrn, 
+# we will learn about this in a short while
+x <- x %>% fill(knrn)
+head(x, n = 10)
+```
+
+## Read .csv (Comma Separated Values) file
+
+-   In Norway we use "," as decimal sign and ";" as group marker.
+    -   Not "." and ":".
+-   Hence our .csv files is really *semicolon* separated values.
+-   We skip the first 3 lines and use the fourth as "header", i.e. as
+    variable names
+-   SSB seems to be serving the files with iso-8859-1 encoding (or is it
+    CP-1252?).
+    -   ![File -I command in Terminal](Terminal-File-I.png)
+
+    -   Those that find this very interesting might check out
+        [Windows-1252](https://en.wikipedia.org/wiki/Windows-1252)
+
+        -   Thank God for unicode
+
+## Set `locale()`
+
+```{r alt2-csv}
+# locale Norwegian with decimal and grouping_mark
+# Nynorsk locale
+#l_no <- locale("nn", decimal_mark = ",", 
+#   grouping_mark = ";")
+#l_no <- locale("nb")
+# could not get l_no to work with read_table()
+```
+
+## Read csv file with encoding
+
+-   Select readr from the Import Dataset drop-down menu in the
+    Environment pane in the upper right corner.
+
+. . .
+
+![Import Dataset from Environment Pane.](env-import-data.png)
+
+## Read csv file with encoding cont.
+
+-   This doesn't look to good.
+
+. . .
+
+![Readr error. Hit Return/Enter or click
+OK.](readr-prob.png){width="574"}
+
+## Read csv file with encoding cont.
+
+-   Click **Locale: Configure...**
+-   Change:
+    1.  Encoding to ISO-8859-1
+
+    2.  SSB .csv download seems to be using '.' as decimal marker
+-   Click **Configure**
+
+## Read csv file with encoding cont.
+
+![Wrong encoding, i.e. UTF. Change it to ISO-8859-1.](readr-enc2.png)
+
+## Read csv file with encoding cont.
+
+![Changed encoding](readr-enc3.png)
+
+## Read csv file with encoding cont.
+
+![Fixed readr problem.](readr-fixed.png)
+
+## Read csv file with encoding cont.
+
+-   Copy code and make sure that `library(readr)` is in the setup chunk.
+
+![Copy the code into document.](readr-fixed-copy-code.png)
+
+## Read csv file with encoding update
+
+-   Code to read .csv file from SSB
+
+. . .
+
+```{r}
+my_data <- read_delim(
+  # Change the file argument
+  file = "10540_20220808-102633.csv",
+  delim = ";",
+  escape_double = FALSE,
+  locale = locale(encoding = "ISO-8859-1"),
+  trim_ws = TRUE, 
+  skip = 1,
+  show_col_types = FALSE
+  )
+```
+
+## Read csv file with encoding update
+
+```{r}
+head(my_data)
+```
+
+## Read csv file with encoding update
+
+```{r}
+summary(my_data)
+```
+
+## SSB api (`PxWebApiData`)
+
+-   We can also use the api provided from SSB together with the package
+    `PxWebApiData` and download the data directly into R.
+
+-   See [ApiData tutorial](https://ssbviz.shinyapps.io/ApiData/) for a
+    simple introduction to the ApiData function in the *PxWebApiData*
+    package.
+
+-   The *Introduction to PxWebApiData* vignette to the *PxWebApiData*
+    package is also a nice introduction.
+
+    ## Check metadata 04471 table
+
+```{r metadata}
+metadata_04471 <- ApiData(
+  "http://data.ssb.no/api/v0/en/table/04471",
+  returnMetaFrames = TRUE
+  )
+# metadata_04471 is a list so we apply the 
+# function head to the elements of the list
+# send the named argument n = 5 via …
+lapply(metadata_04471, FUN = head, n = 5)
+```
+
+## Check variables 10540 table
+
+```{r}
+#Get info about table
+ApiData(
+"http://data.ssb.no/api/v0/en/table/10540",
+returnApiQuery = TRUE
+) 
+```
+
+## Read 10540 table
+
+```{r}
+unemp99to02 <- ApiData(
+  "http://data.ssb.no/api/v0/en/table/10540",
+  # Have not been able to specify more complex regions
+  Region = list("11*"), 
+  Tid = c(paste(
+    rep(1999:2002, each = 12), 
+    "M",
+    sprintf("%02d", 1:12), 
+    sep = "")
+    )
+  )
+str(unemp99to02)
+```
+
+## Bind dataframes
+
+Bind the two dataframes together.
+
+Each row is for the same observation (in both dataframes).
+
+```{r}
+# one labels df and one values df, cbind them
+unemp99to02 <- cbind(
+  unemp99to02[[1]], 
+  unemp99to02[[2]]
+  )
+head(unemp99to02, n = 10)
+```
+
+## Bind dataframes
+
+-   We pick the variables we need in the order we want them.
+
+. . .
+
+```{r}
+#pick and order variables
+unemp99to02 <- unemp99to02[, c(
+  "Region",
+  "region",
+  "month",
+  "age",
+  "value"
+)]
+```
+
+## Set the names we want
+
+-   Give the variables names we like.
+
+. . .
+
+```{r}
+names(unemp99to02)
+# new variable names
+names(unemp99to02) <- c(
+  "knr",
+  "knavn",
+  "y_m",
+  "age",
+  "unemp"
+)
+```
+
+## Write the data as a csv file.
+
+-   Write data out to disk
+
+. . .
+
+```{r}
+head(unemp99to02, n = 10)
+dim(unemp99to02)
+# save it as csv
+write.table(unemp99to02,
+  file = "tmp.csv",
+  dec = ".",
+  sep = ","
+)
+```
