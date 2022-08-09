@@ -39,7 +39,8 @@ knitr::write_bib(c(
   "tidyverse",
   "PxWebApiData",
   "nycflights13",
-  "readxl"
+  "readxl",
+  "readr"
 ),
 file = "ag_ds.bib"
 )
@@ -246,6 +247,7 @@ head(as.data.frame(RegHeltLedige), n =200)
 
 -   Select readr from the Import Dataset drop-down menu in the
     Environment pane in the upper right corner.
+-   This menu selection uses the @R-readr.
 
 . . .
 
