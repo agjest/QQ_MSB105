@@ -163,6 +163,13 @@ x <- x %>% fill(knrn)
 head(x, n = 10)
 ```
 
+## Write .xlsx files
+
+-   Be future proof, write .csv files
+-   `readxl` packages does not have any `write*()` function
+-   If you really have to write out an Excel worksheet try the `writexl`
+    package
+
 ## Read .csv (Comma Separated Values) file
 
 -   In Norway we use "," as decimal sign and ";" as group marker.
