@@ -2,5 +2,9 @@
 .Rhistory
 .RData
 .Ruserdata
+.DS_Store
+*.Rproj
+
+/_site/
 
 /.quarto/
