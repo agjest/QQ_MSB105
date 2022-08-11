@@ -21,4 +21,632 @@ echo: true
 eval: true
 ---
 
-## Introduction to Transforming Data
+```{r setup}
+library(tidyverse)
+library(nycflights13)
+library(ViewPipeSteps)
+```
+
+## Introduction to Transforming Data (chp. 5)
+
+### Addin `ViewPipeSteps`
+
+-   Package (addIn) ViewPipeSteps
+
+-   easier debugging of pipes
+
+## Nice tutorials on RStudio
+
+-   [RStudio Crash Course for beginners
+    2020](https://youtu.be/PXiY8muVUec).
+    -   More on [Bryan Jenks](https://www.youtube.com/c/BryanJenksTech)
+-   [Introduction to R and RStudio](https://youtu.be/lL0s1coNtRk)
+-   [R Programming Tutorial - Learn the Basics of
+    StatisticalComputing](https://youtu.be/_V8eKsto3Ug)
+-   more tips on Twitter: \@rstudiotips
+
+## Introduction
+
+-   Chapter 5 is a central chapter.
+-   It covers how to manipulate a dataframe/tibble.
+-   I highly recommend that you work through (follow) the example in the
+    book.
+-   Suggestions:
+    -   Do it in a Quarto Document.
+
+    -   Copy the code from the book into your own Quarto Document.
+
+    -   Try to experiment with the code and write your own
+        remarks/comment about the code and how it works.
+-   I will cover the most important material in lectures, but we do not
+    have time to cover all the finer details.
+
+## Small collection of verbs
+
+-   We will use a small collection of verbs:
+    -   `filter()`: show us just the data that satisfies one or more
+        conditions
+
+    -   `arrange()`: sort (rearranges) the rows
+
+    -   `select()`: select some of the variables (remove the variables
+        that does not interest us)
+
+    -   `mutate()`: make new variables in the dataframe/tibble
+
+        -   `transmute()` only keeps the new variables
+
+        -   `rename()`: change the name of a variable (this is really a
+            variant of mutate()).
+-   `summarise()` and `group_by()`: Group by one or more criteria and
+    then summarise the variables (`max`, `min`, `mean`, `median`, `sd`
+    etc.)
+-   The functions above are from the `dplyr` package which is part of
+    the `tidyverse`.
+
+## Data: nycflights13
+
+-   We will follow the book and use the dataset `nycflights13`.
+-   The dataset is in a package (called nycflights13) that we have to
+    install first.
+-   See also:
+    -   `vignette("dplyr")`,
+
+    -   *starwars* dataset,
+
+    -   `vignette("grouping")`,
+
+    -   `vignette("colwise")` and
+
+    -   `vignette("rowwise")`
+
+## The pipe, 5.6.1 and more details in chap. 18
+
+-   Three equivalent ways to calculate in R
+-   Function in function in function in function ...
+-   Temporary variables
+-   The pipe
+
+## Function in function in function ...
+
+```{r fun-in-fun}
+set.seed(1234)
+res_mean_rnorm_3dig <- paste("Result:", round(mean(rnorm(n = 10, mean = 0, sd = 1)), digits = 3), sep = "")
+res_mean_rnorm_3dig
+```
+
+## Temporary variables
+
+-   Meaningful names with clean-up
+
+. . .
+
+```{r temp-var}
+set.seed(1234)
+res_rnorm <- rnorm(n = 10, mean = 0, sd = 1)
+res_mean_rnorm <- mean(res_rnorm)
+res_mean_rnorm_3dig <- round(res_mean_rnorm, digits = 3)
+res_mean_rnorm_3dig_string <- paste("Result:", res_mean_rnorm_3dig, sep = "")
+# print result
+res_mean_rnorm_3dig_string
+# cleanup
+rm(res_rnorm, res_mean_rnorm, res_mean_rnorm_3dig, res_mean_rnorm_3dig_string)
+```
+
+## Temporary variables (in reality)
+
+-   What we usually do, bad variable names and no clean-up
+
+. . .
+
+```{r temp-var-real}
+set.seed(1234)
+tmp <- rnorm(n = 10, mean = 0, sd = 1)
+tmp1 <- mean(tmp)
+tmp2 <- round(tmp1, digits = 3)
+paste("Result:", tmp2, sep = "")
+```
+
+```{r}
+# ^t, object names that start with 't' 
+ls(pattern = "^t")
+```
+
+## *The pipe with addin viewpipesteps*
+
+```{r the-pipe}
+set.seed(1234)
+res_mean_rnorm_3dig_string <- 
+  rnorm(n = 10, mean = 0, sd = 1) %>%
+  mean() %>%
+  round(digits = 3) %>% 
+  # The dot '.' is to show where the content of the pipe should be put
+  paste("Result:", .)
+res_mean_rnorm_3dig_string
+```
+
+## *The pipe cont.*
+
+-   What would happen if we dropped the '.' in `paste("Result:", .)`?
+
+. . .
+
+```{r}
+set.seed(1234)
+res_mean_rnorm_3dig_string <- 
+  rnorm(n = 10, mean = 0, sd = 1) %>%
+  mean() %>%
+  round(digits = 3) %>% 
+  # The dot '.' is to show where the content of the pipe should be put
+  paste("Result:")
+res_mean_rnorm_3dig_string
+```
+
+## *The pipe with Addin `viewpipesteps`*
+
+-   Run the set.seed() function
+-   Select the pipe
+-   Choose Print Pipe Chain Steps
+
+. . .
+
+![Select the pipe](select-pipe.png)
+
+## *The pipe with Addin `viewpipesteps`* cont.
+
+-   Select Print Pipe Chain Steps from **Addins** menu
+
+. . .
+
+![Select Print Pipe Chain Steps in the Addins drop-down
+menu.](print-pipe-chain-steps.png)
+
+## *The pipe with Addin `viewpipesteps`* cont.
+
+-   In the Console we will get the result (output) of every step in the
+    pipe
+
+. . .
+
+![Select Print Pipe Chain Steps from Addins drop-down
+menu.](res-print-pipe-chain-steps.png)
+
+## *The pipe*, alternative not much used
+
+```{r the-pipe-alt}
+set.seed(1234)
+rnorm(
+  n = 10,
+  mean = 0,
+  sd = 1
+) %>%
+  mean() %>%
+  round(digits = 3) %>% 
+  paste("Result:", .) -> res_mean_rnorm_3dig_string
+res_mean_rnorm_3dig_string
+```
+
+## More about *the pipe*
+
+-   Work like the unix shell pipe ('\|')
+-   **Output from one** function is **the input of the next** function
+-   Temporary variables in the background, but we don't have to come up
+    with names or remove them when not needed any more.
+-   Uses the fact that most R functions have the data as their first
+    argument
+    -   The regression function `lm(formula, data, …)` is an important
+        counter example
+    -   We use '.' to specify where the data in the pipe enters a
+        function
+        -   If not the first argument
+            (`function_name(., other arguments)` is the default)
+-   The `tidyverse` is designed to work well with *the pipe*
+    -   The `sf` packages we will encounter next year are also designed
+        to work well with tidyverse and pipes
+
+## nycflights13
+
+```{r help-nycflights13}
+# see setup at the top for loading of 
+# nycflights13 package
+?nycflights13
+```
+
+![Load the nycflights13 package.](load-nycflights13.png)
+
+-   Get help via Packages pane and click nycflights13.
+
+## nycflights13
+
+-   The package contains 5 datsets
+    -   airline
+
+    -   airports
+
+    -   flights
+
+    -   planes
+
+    -   weather
+-   use `?` to read the help for each
+
+. . .
+
+```{r help-flights}
+?flights
+```
+
+## Variables in `flights` (from help)
+
+-   `year, month, day`: Date of departure.
+-   `dep_time, arr_time`: Actual departure and arrival times (format
+    HHMM or HMM), local tz.
+-   `sched_dep_time, sched_arr_time`: Scheduled departure and arrival
+    times (format HHMM or HMM), local tz.
+-   `dep_delay, arr_delay`: Departure and arrival delays, in minutes.
+    Negative times represent early departures/arrivals.
+-   `carrier`: Two letters carrier abbreviation. See airlines to get
+    name.
+-   `flight`: Flight number.
+
+## Variables in `flights` (from help) cont.
+
+-   `tailnum`: Plane tail number. See planes for additional metadata.
+-   `origin, dest`: Origin and destination. See airports for additional
+    metadata.
+-   `air_time`: Amount of time spent in the air, in minutes.
+-   `distance`: Distance between airports, in miles.
+-   `hour, minute`: Time of scheduled departure broken into hour and
+    minutes.
+-   `time_hour`: Scheduled date and hour of the flight as a POSIXct
+    date. Along with origin, can be used to join flights data to weather
+    data.
+
+## A first look on `flights`
+
+```{r flights-first-look}
+# what size is it
+dim(flights)
+```
+
+. . .
+
+```{r}
+# what type; data.frame, tibble?
+class(flights)
+```
+
+## A first look on `flights`
+
+```{r flights-first-look-cont}
+print(
+  head(flights, n = 5),
+  width = 70
+  )
+```
+
+## Using `filter()`, from [r4ds](r4ds.had.co.nz)
+
+```{r filter-ex-1}
+print(
+  filter(flights, month == 1, day == 1),
+  n = 5, 
+  width = 70
+  )
+```
+
+## More filter-ex-1
+
+```{r filter-ex-1-b}
+print(
+  filter(flights, month == 1, day %in% c(1, 15, 30)),
+  n = 5,
+  width = 70
+  )
+```
+
+-   Why no day 15 and 30?
+-   note `%in%`, it's very handy and flexible
+
+## More filter-ex-1
+
+```{r filter-ex-1-c}
+flights_some_days_jan <- filter(flights, month == 1, day %in% c(1, 15, 30))
+# tail(flights_some_days_jan, n = 5)
+# more control
+print(
+  slice_tail(flights_some_days_jan, n = 7),
+  width = 70
+  )
+```
+
+## Doing it with a Pipe
+
+```{r filter-ex-1-c-pipe}
+  flights %>% 
+  filter(month == 1, day %in% c(1, 15, 30)) %>% 
+  slice_tail(n = 7) %>% 
+  print(width = 70)
+```
+
+## Operators
+
+-   `==` NB! *not* `=`; equal
+-   `<, >, >=, <=`
+-   `!` for negate, `!near(1/5 * 5, 5/5)` is FALSE
+-   `|` is `or`, ex. TRUE \| FALSE is TRUE
+-   `&` is `and`, ex. TRUE & FALSE is FALSE. TRUE & TRUE is TRUE, !(TRUE
+    & FALSE) is TRUE
+-   `%in%` is very handy, x %in% c(1, 3), TRUE if x is 1 or 3
+
+## Use `near()` not `==` for `double`/`numeric`
+
+```{r}
+(1/49) * 49 == 1
+# and
+(1/49) * 49 == 49/49
+# but
+(1/5) * 5 == 5/5
+# but
+(5/4) == 1.25
+```
+
+## Use `near()` not `==` for `double`/`numeric` cont.
+
+-   use `near()`
+
+. . .
+
+```{r}
+near(1/49 * 49, 1)
+near(1/5 * 5, 5/5)
+```
+
+## Small Exercise
+
+1\) How many flights were there in April and September (total)?
+
+2\) How many flights were there in total the first two days of a month?
+
+3\) How may flights were there during 2013 that had an arrival delay
+greater than or equal to 15 min., but less than 30 min.?
+
+## Solution Small Exercise
+
+1\) How many flights were there in April and September (total)?
+
+. . .
+
+```{r}
+#| eval: true
+filter(flights, month %in% c(4,9)) %>%
+  nrow()
+```
+
+. . .
+
+```{r}
+# or
+filter(flights, month %in% c(4,9)) %>%
+  dim() %>% 
+  # pick just the number of rows
+  .[1]
+```
+
+## Solution Small Exercise cont.
+
+2\) How many flights were there in total the first two days of a month?
+
+```{r}
+#| eval: true
+filter(flights, day %in% c(1:2)) %>%
+  nrow()
+```
+
+```{r}
+#| eval: true
+filter(flights, day %in% c(1:2)) %>%
+  dim() %>% 
+  .[1]
+```
+
+## Solution Small Exercise cont.
+
+3\) How may flights were there during 2013 that had an arrival delay
+greater than or equal to 15 min., but less than 30 min.?
+
+```{r}
+#| eval: true
+filter(flights, arr_delay >= 15 & arr_delay < 30) %>%
+  nrow()
+```
+
+. . .
+
+```{r}
+# or
+filter(flights, arr_delay >= 15, arr_delay < 30) %>%
+  dim() %>%
+  .[1]
+```
+
+. . .
+
+-   Note use of `.`. Needed when using classic functions like `[`.
+
+## Missing values NA
+
+-   General rule: If one is NA, whole result will be NA,
+    -   ex. `sum(c(1, 2, NA, 4, 5))` will return
+
+    -    `r sum(c(1, 2, NA, 4, 5))`.
+-   Check for NA with `is.na()`
+    -   **NOT** `x == NA`
+-   `is.na()` returns TRUE if NA
+-   How to count number of NAs in a vector?
+    -   `sum(is.na(flights$arr_delay))` will return
+
+    -   `r sum(is.na(flights$arr_delay))`
+
+## `arrange()` sorts rows
+
+```{r}
+print(
+  arrange(flights, year, month, day),
+  n = 10,
+  width = 70
+  )
+```
+
+## `arrange()` sorts rows as pipe
+
+```{r}
+flights %>% 
+  arrange(year, month, day) %>% 
+  print(n = 10, width = 70)
+```
+
+## `arrange()` sort rows decending
+
+```{r}
+#dec. first
+print(arrange(flights, year, desc(month), day), n = 10, width = 70)
+```
+
+## `select()` selects the variables you want
+
+```{r}
+(my_vars <- select(flights, day, month, year, arr_delay))
+```
+
+-   How to select the same variables, but only for May?
+
+## `filter()` and `select()` in pipe
+
+```{r}
+# Use a pipe
+my_vars_May <- flights %>%
+  filter(month == 5) %>%
+  select(day, month, year, arr_delay)
+head(my_vars_May)
+```
+
+-   How do we find median arr_delay in May?
+
+## `filter()` and `select()` in pipe cont.
+
+```{r}
+# Use a pipe
+my_vars_May <-  flights %>%
+  filter(month == 5) %>%
+  select(arr_delay)
+
+median(my_vars_May$arr_delay, na.rm = TRUE)
+```
+
+-   To calculate the median direct in the pipe we need another function
+    called `summarise()` that we will cover soon.
+
+## New variable, use `mutate`
+
+```{r}
+my_new_data <- flights %>%
+  select(year:day, ends_with("delay"), distance, air_time) %>%
+  mutate(
+    gain = dep_delay - arr_delay,
+    speed = (distance/air_time) * 60
+    ) %>%
+  select(year:day, gain, everything()) %>%
+  arrange(gain)
+head(my_new_data, n = 5) 
+```
+
+. . .
+
+-   Note use of the helper function `ends_with()`
+    -   Many helper functions and they can save a lot of time
+
+    -   See `?select` for details
+-   How do we get `speed` between `dep_delay` and `arr_delay`?
+
+## New variable, use `mutate` cont.
+
+```{r}
+my_new_data <- flights %>%
+  select(year:day, ends_with("delay"), distance, air_time) %>%
+  mutate(
+    gain = dep_delay - arr_delay,
+    speed = (distance/air_time) * 60
+    ) %>%
+  select(year:day, gain, dep_delay, speed, everything()) %>%
+  arrange(gain)
+head(my_new_data, n=5) 
+```
+
+## `transmute()`
+
+-   When should we use `transmute()`
+-   When we just want to keep the new variable(s)
+
+## `transmute()`
+
+```{r}
+my_data <- flights %>%
+    transmute(
+    gain = dep_delay - arr_delay,
+    speed = (distance/air_time) * 60
+    ) %>%
+  arrange(gain)
+head(my_data, n = 3)
+```
+
+## `transmute()` alternative to `mutate()` and then `select()`
+
+```{r}
+my_data <- flights %>%
+    mutate(
+    gain = dep_delay - arr_delay,
+    speed = (distance/air_time) * 60
+    ) %>%
+  select(gain, speed) %>%
+  arrange(gain)
+head(my_data, n = 3)
+```
+
+## `summarise()` and `group_by()`
+
+```{r}
+# note na.rm = TRUE, else everything will be NA 
+# even if just one NA
+flights %>%
+  summarise(delay = median(arr_delay, na.rm = TRUE))
+```
+
+. . .
+
+-   Our example with `arr_delay` from earlier
+
+. . .
+
+```{r}
+flights %>%
+  filter(month == 5) %>%
+  select(arr_delay) %>%
+  summarise(median_arr_delay = median(arr_delay, na.rm = TRUE))
+```
+
+## `summarise()` and `group_by()`
+
+-   How to get median `arr_delay` for each month?
+
+. . .
+
+```{r}
+flights %>%
+  group_by(month) %>%
+  summarise(median_arr_delay = median(arr_delay, na.rm = TRUE))
+```
+
+```{r}
+#siste
+```

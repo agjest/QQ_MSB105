@@ -19,7 +19,8 @@ editor_options:
     chunk_output_type: console
 echo: true
 eval: true
-bibliography: "ag_ds.bib"
+bibliography: ag_ds.bib
+nocite: '@*'
 ---
 
 ```{r setup}

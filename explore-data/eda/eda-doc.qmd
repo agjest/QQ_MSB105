@@ -1,22 +1,7 @@
 ---
 title: "Exploratory Data Analysis (EDA)"
 author: "ag@hvl.no"
-format:
-  revealjs:
-        theme: simple
-        footer: '[MSB105](/index.html)'
-        reveal_options:
-        code-fold: show
-        incremental: true
-        smaller: true
-        scrollable: true
-        slide-number: c/t
-editor: visual
-editor_options:
-  markdown:
-    wrap: 72
-    canonical: true
-    chunk_output_type: console
+format: html
 echo: true
 eval: true
 bibliography: eda.bib
@@ -45,6 +30,10 @@ unique(packs)
 
 ## Generate References for Packages used
 
+-   References for used packages will be found at the end of document.
+
+. . .
+
 ```{r bib}
 # create a bib file for the R packages 
 # used in this document
@@ -61,10 +50,8 @@ rm(packs)
 
 -   Not all to relevant for us since we use Quarto Documents,
 -   but some important points
--   **Cmd + Return/Ctrl + Enter** runs *current* statement and jumps to
-    next statement
--   Selecting some statements and hitting **Cmd + Return/Ctrl + Enter**
-    will run the selected statements.
+-   **Cmd + Return/Ctrl + Enter** runs *current* statement and jumps to next statement
+-   Selecting some statements and hitting **Cmd + Return/Ctrl + Enter** will run the selected statements.
     -   Nice for debugging pipes
     -   Be very careful when you select the statements
     -   Missing a ')' or a '"' can bring a lot of hurt.
@@ -72,9 +59,8 @@ rm(packs)
 
 ## Exploratory Data Analysis (r4ds chap. 7)
 
-General reflection up on the concept of *Exploratory Data Analysis*. You
-will find details and more code in [chapter 7 of
-r4ds](https://r4ds.had.co.nz/exploratory-data-analysis.html).
+General reflection up on the concept of *Exploratory Data Analysis*.
+You will find details and more code in [chapter 7 of r4ds](https://r4ds.had.co.nz/exploratory-data-analysis.html).
 
 -   Getting to know your data
     -   Variation **in** variables
@@ -82,10 +68,8 @@ r4ds](https://r4ds.had.co.nz/exploratory-data-analysis.html).
 
 ## Some definitions
 
--   **Variable:** some quality of the underlying phenomenon that one can
-    measure
--   **Value:** the recorded number or category resulting from the
-    measurement
+-   **Variable:** some quality of the underlying phenomenon that one can measure
+-   **Value:** the recorded number or category resulting from the measurement
 -   **Observation:** a set of measurements of the underlying phenomenon
     -   same time
     -   same object
@@ -239,9 +223,7 @@ ggplot(data = my_heights) +
 
 -   Example: How does income vary in the `modelr::heights` dataset?
     -   Does someone have zero income?
-    -   How to display the variable? \> - histogram;
-        `hist(my_df$var_name, breaks = 20)` or `geom_histogram()` from
-        ggplot \> - density/violin plot
+    -   How to display the variable? \> - histogram; `hist(my_df$var_name, breaks = 20)` or `geom_histogram()` from ggplot \> - density/violin plot
 -   Be aware of outliers?
     -   Might be difficult to spot in a histogram
 
@@ -310,8 +292,7 @@ gridExtra::grid.arrange(hist6, hist7, hist8, nrow = 1)
 ## `geom_density()`; faceted on sex
 
 -   Distribution of income
-    -   Three levels of education (\[0-12) "NotHS", \[12-14) "NotTC",
-        \[14-16) "NotC", \[16-21\] "C+")
+    -   Three levels of education (\[0-12) "NotHS", \[12-14) "NotTC", \[14-16) "NotC", \[16-21\] "C+")
     -   Faceted on the `sex` variable
     -   Use the `cut` function to make the categories
     -   Have to use `right = FALSE` to get open interval on the right
@@ -516,32 +497,27 @@ my_heights %>%
         -   can give a very plausible explanation for the faulty entry.
             Document **very** carefully.
 
-        -   Ex. percentage unemployed timeseries: 2,3%, 3,7% ... 270%
-            ... 4,1%.
+        -   Ex.
+            percentage unemployed timeseries: 2,3%, 3,7% ... 270% ... 4,1%.
 
-            -   If you can argue that 2,7 probably has been entered
-                instead of 0,027 it **might** be defensible to edit the
-                observation, but normally you should change it to NA and
-                document your edit.
+            -   If you can argue that 2,7 probably has been entered instead of 0,027 it **might** be defensible to edit the observation, but normally you should change it to NA and document your edit.
 
     -   Do not use `na.rm = TRUE` in `ggplot` before last edit.
 
-        -   Make sure that you have thoroughly documented the missing
-            values.
+        -   Make sure that you have thoroughly documented the missing values.
 
-        -   `ggplot` is nice and warns you about missing values and
-            tells you how many there are.
+        -   `ggplot` is nice and warns you about missing values and tells you how many there are.
 
 ## How to treat bad data cont.
 
 -   With real outliers
     -   Explanation. Is there a missing variable?
-    -   Do the analysis with and without the outliers. If similar
-        results not to much of a problem, if not ...
+    -   Do the analysis with and without the outliers. If similar results not to much of a problem, if not ...
 
 ## Quiz
 
-From r4ds. Use help (?)
+From r4ds.
+Use help (?)
 
 > 1)  How are NAs handled in `geom_histogram()`?
 > 2)  How are NAs handled in `geom_bar()`?
@@ -626,8 +602,7 @@ sum(my_data$val, na.rm = TRUE); mean(my_data$val, na.rm = TRUE)
 
 -   Now the two seems handle NAs the same way.
 -   Normal rule: One NA =\> result NA
--   For `sum()` and `mean()` `na.rm = TRUE` returns the result of the
-    calculation when NAs are removed
+-   For `sum()` and `mean()` `na.rm = TRUE` returns the result of the calculation when NAs are removed
 
 ## Covariation
 
