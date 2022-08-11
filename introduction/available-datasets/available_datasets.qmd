@@ -1,0 +1,101 @@
+---
+title: "Available datasets"
+editor: visual
+---
+
+## What is loaded
+
+```{r}
+#s1 <- search(); s1
+s1 <- .packages();s1
+#alternative
+#(s1 <- .packages())
+
+```
+
+## Standard datasets
+
+```{r}
+d1 <- as.list(data(package=s1))
+d1 <- as.data.frame(d1[3]$results[,c(3, 4)])
+d1 #df_print: paged in YAML
+```
+
+## We will need `tidyverse`
+
+```{r}
+library(tidyverse)# 8 packages
+```
+
+## What is loaded now
+
+```{r}
+s2 <- .packages()
+s2
+```
+
+## Packages loaded above
+
+`s1`is default packages, while `s2`is default packages and the ones we loaded above.
+`s3`will be the new packages loaded.
+
+```{r}
+(s3 <- setdiff(s2, s1))
+```
+
+## new data sets
+
+Data sets in the packages loaded above (the 9 in `tidyverse`).
+
+```{r}
+d3 <- as.list(data(package = s3))
+d3 <- as.data.frame(d3[3]$results[,c(3, 4)])
+d3
+```
+
+*R for data science* uses the `mpg` dataset for many of the examples in chapter 3.
+The first one `ggplot()` command is
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy))
+```
+
+and as you will see the dataset is `mpg`.
+You should work through the examples in chapter 3.
+It´s easy to copy the code into R.
+
+![Ex. ggplot2.](gg1.png)
+
+Just click the icon in the upper right corner and then paste the code into an R Notebook.
+(remember alt + ctrl + i (pc) or alt + cmb + i (on mac) before you paste in the copied code)
+
+I will use another classic dataset called `mtcars`.
+It´s one of the classics and is allways available in R.
+We can read about it by entering `mtcars` in the search field in help.
+
+![Documentation of Dataset mtcars.](help1.png)
+
+We can start by viewing the data.
+Note there is a big difference between `view` and `View`.
+It´s the one with capital v we want here.
+
+```{r}
+#View(mtcars)
+```
+
+![Using View() function to inspect data.](View1.png)
+
+This gives us a nice spreadsheet view of the dataset.
+We can return to our document either by clicking its tab, clicking the white arrow pointing left or by closing the `mtcars` tab by clicking the little x to the right of the tab name.
+
+Another way to take a swift look at the data is by
+
+```{r}
+head(mtcars)
+```
+
+(note that this is displayed as a nice table because we have `df_print: paged` up in the YAML header).
+In the `console` the same command would have given us
+
+![mtcars Dataset in Console.](console1.png)

@@ -21,6 +21,103 @@ echo: true
 eval: true
 ---
 
+## Register on Github
+
+-   use *same* email as git
+    -   check with `git config --global --list` in terminal
+-   [some good advice](https://happygitwithr.com/github-acct.html) for
+    selecting user_name on Github
+    -   No ...,
+        -   `BigSexyThing` should probably *not* be your username on
+            Github
+
+        -   and before you ask ...
+
+            -   neither should `big_sexy_thing`
+-   Go to `www.github.com`
+
+## Register on Github cont.
+
+This is taken from https://gist.github.com/Z3tt/
+
+-   We have to connect RStudio to Github securely, with a **token**.
+-   If you **haven't** registered yourself in git do:
+
+. . .
+
+```{r}
+#| eval: false
+# You have probably allready done this
+usethis::use_git_config(user.name = "YourName", user.email = "your@mail.com")
+```
+
+-   Make sure that you have installed the packages:
+    -   usethis
+
+    -   credential
+
+## Register on Github cont.
+
+-   Generate a **token** on Github
+-   Select 90 days unless you enjoy this so much that you want to do it
+    more often.
+
+. . .
+
+```{r}
+#| eval: false
+## create a personal access token for authentication:
+usethis::create_github_token()
+```
+
+## Register on Github cont.
+
+![New toke 90 days.](new-token.png)
+
+## Register on Github cont.
+
+-   Scroll down an click **Generate**.
+
+. . .
+
+![Click **Generate token**.](generate-token.png)
+
+-   Copy the new token.
+
+. . .
+
+![Copy the new token.](copy-token.png)
+
+## Register on Github cont.
+
+-   Run the command below.
+-   paste your new token into YourPAT
+
+. . .
+
+```{r}
+#| eval: false
+# set personal access token:
+credentials::set_github_pat("YourPAT")
+```
+
+-   If asked by your local security system; paste the PAT and click OK
+
+## Register on Github cont.
+
+-   Verify your settings.
+
+. . .
+
+```{r}
+#| eval: false
+#### 4. Verify settings ######################################################
+usethis::git_sitrep()
+```
+
+-   Now RStudio should be connected to Github for 90 days.
+-   DO NOT SAVE A DOCUMENT WITH YOUR PAT IN IT!
+
 ## Git in RStudio
 
 ![git in RStudio](git.png)
@@ -140,21 +237,6 @@ mens den til høyre er mer sentrert om hele prosjektet.
 -   Select the **Terminal** tab in the lower left pane
 -   Give the command: `git checkout master` or `git checkout main`
 -   Then give the command: `git merge Introduction`
-
-## Register on Github
-
--   use *same* email as git
-    -   check with `git config --global --list` in terminal
--   [some good advice](https://happygitwithr.com/github-acct.html) for
-    selecting user_name on Github
-    -   No ...,
-        -   `BigSexyThing` should probably *not* be your username on
-            Github
-
-        -   and before you ask ...
-
-            -   neither should `big_sexy_thing`
--   Go to `www.github.com`
 
 ## Workflow stud. A and B working together
 

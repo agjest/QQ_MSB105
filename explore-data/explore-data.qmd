@@ -18,6 +18,31 @@ We will for the most part follow [R for Data Science](https://r4ds.had.co.nz).
 -   [Import and Export Data](import-export-data/import-export-data.qmd)
 -   [Using Graphics to Explore Data (chap. 3 r4ds)](intro-ggplot2/intro-ggplot2.qmd)
 -   [Transforming Data (chap. 5 r4ds)](trans-data/trans-data.qmd)
--   [Git/Github Braching and Merging](branch-merge/branch-merge.qmd)
+-   [Git/Github Braching and Merging](../../introduction/git-github/git-github.html#/git-in-rstudio-1) repetition from Introduction
 -   [Exploratory Data Analysis (chap. 7 r4ds)](eda/eda.qmd)
     -   [Exploratory Data Analysis (chap. 7 r4ds)](eda/eda-doc.qmd) as Document
+
+## Other Resources
+
+-   ggplot2 and Grapchics:
+    -   [Graphics for communication; chap. 28 inr4ds](https://r4ds.had.co.nz/graphics-for-communication.html) by Hadley Wickham and Garret Grolemund
+
+    -   [Ggplot2 Tutorial for Beautiful Plotting in R](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/) by Cédric Scherer
+
+    -   [Data Visualization; A practical introduction](https://socviz.co) by Kieran Healy
+
+    -   [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/) by *Claus O. Wilke*
+
+    -   [Data Visualization with R](https://rkabacoff.github.io/datavis/) by *Rob Kabacoff*
+
+    -   [ggplot2: elegant graphics for data analysis](https://ggplot2-book.org/individual-geoms.html) by Hadley Wickham, Danielle Navarro and Thomas Lin Pedersen
+-   git and Github:
+    -   [Happy Git and GitHub for the useR](https://happygitwithr.com) by Jennifer Bryan
+-   EDA in R:
+    -   [Exploratory Data Analysis in R for beginners (Part 1)](https://towardsdatascience.com/exploratory-data-analysis-in-r-for-beginners-fe031add7072) by Joe Tran
+
+    -   [Exploratory Data Analysis in R for beginners (Part 2)](https://towardsdatascience.com/exploratory-data-analysis-in-r-for-beginners-part-2-5bfd35fc9781) by Joe Tran
+
+    -   [Data Analysis in R; chap. 4](https://bookdown.org/steve_midway/DAR/exploratory-data-analysis.html) by Steve Midway
+
+    -   [Exploratory Data Analysis in R](https://rpubs.com/odenipinedo/exploratory-data-analysis-in-R) by Andrew Bray
