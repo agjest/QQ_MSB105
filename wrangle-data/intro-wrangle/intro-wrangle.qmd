@@ -1,0 +1,19 @@
+---
+title: "Data Wrangle Introduction"
+format: revealjs
+editor: visual
+---
+
+## Workflow: projects (chap. 8)
+
+-   Not to much new, but some points
+-   Remember un-check these options
+
+![](005_lect_insertimage_3.png)
+
+## Workflow: projects (chap. 8)
+
+-   Nice short-cuts to restart R
+-   Press Cmd/Ctrl + Shift + F10 to restart RStudio.
+-   Press Cmd/Ctrl + Shift + S to rerun the current script.
+-   Remember that 'working directory' for us is the directory where our `.Rmd` is located. Everything is relative to current Notebook.
