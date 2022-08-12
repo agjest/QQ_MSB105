@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="ag@hvl.no">
+
+<title>MSB105 - Exploratory Data Analysis (EDA)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MSB105</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">About</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lectures" role="button" data-bs-toggle="dropdown" aria-expanded="false">Lectures</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lectures">    
+        <li>
+    <a class="dropdown-item" href="../../introduction/introduction.html">
+ <span class="dropdown-text">Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../explore-data/explore-data.html">
+ <span class="dropdown-text">Explore Data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../wrangle-data/wrangle-data.html">
+ <span class="dropdown-text">Data Wrangling</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#packages-used" id="toc-packages-used" class="nav-link active" data-scroll-target="#packages-used">Packages used</a></li>
+  <li><a href="#generate-references-for-packages-used" id="toc-generate-references-for-packages-used" class="nav-link" data-scroll-target="#generate-references-for-packages-used">Generate References for Packages used</a></li>
+  <li><a href="#chapter-6-workflow" id="toc-chapter-6-workflow" class="nav-link" data-scroll-target="#chapter-6-workflow">Chapter 6; Workflow</a></li>
+  <li><a href="#exploratory-data-analysis-r4ds-chap.-7" id="toc-exploratory-data-analysis-r4ds-chap.-7" class="nav-link" data-scroll-target="#exploratory-data-analysis-r4ds-chap.-7">Exploratory Data Analysis (r4ds chap.&nbsp;7)</a></li>
+  <li><a href="#some-definitions" id="toc-some-definitions" class="nav-link" data-scroll-target="#some-definitions">Some definitions</a></li>
+  <li><a href="#single-variable-load-data" id="toc-single-variable-load-data" class="nav-link" data-scroll-target="#single-variable-load-data">Single variable, load data</a></li>
+  <li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics">Descriptive Statistics</a></li>
+  <li><a href="#descriptive-statistics-ex.-my_heights" id="toc-descriptive-statistics-ex.-my_heights" class="nav-link" data-scroll-target="#descriptive-statistics-ex.-my_heights">Descriptive Statistics ex. my_heights</a></li>
+  <li><a href="#descriptive-statistics-ex.-my_heights-1" id="toc-descriptive-statistics-ex.-my_heights-1" class="nav-link" data-scroll-target="#descriptive-statistics-ex.-my_heights-1">Descriptive Statistics ex. my_heights</a></li>
+  <li><a href="#descriptive-statistics-ex.-my_heights-2" id="toc-descriptive-statistics-ex.-my_heights-2" class="nav-link" data-scroll-target="#descriptive-statistics-ex.-my_heights-2">Descriptive Statistics ex. my_heights</a></li>
+  <li><a href="#descriptive-statistics-ex.-my_heights-3" id="toc-descriptive-statistics-ex.-my_heights-3" class="nav-link" data-scroll-target="#descriptive-statistics-ex.-my_heights-3">Descriptive Statistics ex. my_heights</a></li>
+  <li><a href="#descriptive-statistics-ex.-my_heights-4" id="toc-descriptive-statistics-ex.-my_heights-4" class="nav-link" data-scroll-target="#descriptive-statistics-ex.-my_heights-4">Descriptive Statistics ex. my_heights</a></li>
+  <li><a href="#descriptive-statistics-ex.-my_heights-5" id="toc-descriptive-statistics-ex.-my_heights-5" class="nav-link" data-scroll-target="#descriptive-statistics-ex.-my_heights-5">Descriptive Statistics ex. my_heights</a></li>
+  <li><a href="#single-variable-graphical-description-bar-chart" id="toc-single-variable-graphical-description-bar-chart" class="nav-link" data-scroll-target="#single-variable-graphical-description-bar-chart">Single variable graphical description, bar chart</a></li>
+  <li><a href="#single-variable-graphical-description-bar-chart-1" id="toc-single-variable-graphical-description-bar-chart-1" class="nav-link" data-scroll-target="#single-variable-graphical-description-bar-chart-1">Single variable graphical description, bar chart</a></li>
+  <li><a href="#the-peaks" id="toc-the-peaks" class="nav-link" data-scroll-target="#the-peaks">The peaks?</a></li>
+  <li><a href="#single-variable-i.e.-variation-in-a-variable" id="toc-single-variable-i.e.-variation-in-a-variable" class="nav-link" data-scroll-target="#single-variable-i.e.-variation-in-a-variable">Single variable, i.e.&nbsp;variation in a variable</a></li>
+  <li><a href="#hist-and-geom_histogram" id="toc-hist-and-geom_histogram" class="nav-link" data-scroll-target="#hist-and-geom_histogram"><code>hist()</code> and <code>geom_histogram()</code></a></li>
+  <li><a href="#geom_histogram-other-variables" id="toc-geom_histogram-other-variables" class="nav-link" data-scroll-target="#geom_histogram-other-variables"><code>geom_histogram()</code> other variables</a></li>
+  <li><a href="#geom_histogram-other-variables-1" id="toc-geom_histogram-other-variables-1" class="nav-link" data-scroll-target="#geom_histogram-other-variables-1"><code>geom_histogram()</code> other variables</a></li>
+  <li><a href="#geom_histogram-other-variables-2" id="toc-geom_histogram-other-variables-2" class="nav-link" data-scroll-target="#geom_histogram-other-variables-2"><code>geom_histogram()</code> other variables</a></li>
+  <li><a href="#geom_histogram-other-variables-3" id="toc-geom_histogram-other-variables-3" class="nav-link" data-scroll-target="#geom_histogram-other-variables-3"><code>geom_histogram()</code> other variables</a></li>
+  <li><a href="#variation-in-a-variable-given-another-variable" id="toc-variation-in-a-variable-given-another-variable" class="nav-link" data-scroll-target="#variation-in-a-variable-given-another-variable">Variation in a variable, given another variable</a></li>
+  <li><a href="#geom_density-faceted-on-sex" id="toc-geom_density-faceted-on-sex" class="nav-link" data-scroll-target="#geom_density-faceted-on-sex"><code>geom_density()</code>; faceted on sex</a></li>
+  <li><a href="#geom_density-faceted-on-sex-1" id="toc-geom_density-faceted-on-sex-1" class="nav-link" data-scroll-target="#geom_density-faceted-on-sex-1"><code>geom_density()</code>; faceted on sex</a></li>
+  <li><a href="#geom_density-faceted-on-sex-2" id="toc-geom_density-faceted-on-sex-2" class="nav-link" data-scroll-target="#geom_density-faceted-on-sex-2"><code>geom_density()</code>; faceted on sex</a></li>
+  <li><a href="#geom_density-facet-edu_fac" id="toc-geom_density-facet-edu_fac" class="nav-link" data-scroll-target="#geom_density-facet-edu_fac"><code>geom_density()</code>; facet edu_fac</a></li>
+  <li><a href="#geom_density-facet-edu_fac-1" id="toc-geom_density-facet-edu_fac-1" class="nav-link" data-scroll-target="#geom_density-facet-edu_fac-1"><code>geom_density()</code>; facet edu_fac</a></li>
+  <li><a href="#income-equal-to-0" id="toc-income-equal-to-0" class="nav-link" data-scroll-target="#income-equal-to-0">Income equal to 0?</a></li>
+  <li><a href="#income-equal-to-0-1" id="toc-income-equal-to-0-1" class="nav-link" data-scroll-target="#income-equal-to-0-1">Income equal to 0?</a></li>
+  <li><a href="#income-equal-to-0-2" id="toc-income-equal-to-0-2" class="nav-link" data-scroll-target="#income-equal-to-0-2">Income equal to 0?</a></li>
+  <li><a href="#boxplot" id="toc-boxplot" class="nav-link" data-scroll-target="#boxplot">Boxplot</a></li>
+  <li><a href="#boxplot-1" id="toc-boxplot-1" class="nav-link" data-scroll-target="#boxplot-1">Boxplot</a></li>
+  <li><a href="#boxplot-code-turned-90" id="toc-boxplot-code-turned-90" class="nav-link" data-scroll-target="#boxplot-code-turned-90">Boxplot code, turned 90</a></li>
+  <li><a href="#boxplot-plot-turned-90" id="toc-boxplot-plot-turned-90" class="nav-link" data-scroll-target="#boxplot-plot-turned-90">Boxplot plot, turned 90</a></li>
+  <li><a href="#how-to-treat-bad-data" id="toc-how-to-treat-bad-data" class="nav-link" data-scroll-target="#how-to-treat-bad-data">How to treat bad data</a></li>
+  <li><a href="#how-to-treat-bad-data-cont." id="toc-how-to-treat-bad-data-cont." class="nav-link" data-scroll-target="#how-to-treat-bad-data-cont.">How to treat bad data cont.</a></li>
+  <li><a href="#how-to-treat-bad-data-cont.-1" id="toc-how-to-treat-bad-data-cont.-1" class="nav-link" data-scroll-target="#how-to-treat-bad-data-cont.-1">How to treat bad data cont.</a></li>
+  <li><a href="#quiz" id="toc-quiz" class="nav-link" data-scroll-target="#quiz">Quiz</a></li>
+  <li><a href="#answer-quiz" id="toc-answer-quiz" class="nav-link" data-scroll-target="#answer-quiz">Answer Quiz</a></li>
+  <li><a href="#answer-quiz-1" id="toc-answer-quiz-1" class="nav-link" data-scroll-target="#answer-quiz-1">Answer Quiz</a></li>
+  <li><a href="#answer-quiz-2" id="toc-answer-quiz-2" class="nav-link" data-scroll-target="#answer-quiz-2">Answer Quiz</a></li>
+  <li><a href="#answer-quiz-3" id="toc-answer-quiz-3" class="nav-link" data-scroll-target="#answer-quiz-3">Answer Quiz</a></li>
+  <li><a href="#answer-quiz-4" id="toc-answer-quiz-4" class="nav-link" data-scroll-target="#answer-quiz-4">Answer Quiz</a></li>
+  <li><a href="#answer-quiz-5" id="toc-answer-quiz-5" class="nav-link" data-scroll-target="#answer-quiz-5">Answer Quiz</a></li>
+  <li><a href="#covariation" id="toc-covariation" class="nav-link" data-scroll-target="#covariation">Covariation</a></li>
+  <li><a href="#categorical-and-continuous-variable" id="toc-categorical-and-continuous-variable" class="nav-link" data-scroll-target="#categorical-and-continuous-variable">Categorical and continuous variable</a></li>
+  <li><a href="#categorical-and-continuous-variable-code" id="toc-categorical-and-continuous-variable-code" class="nav-link" data-scroll-target="#categorical-and-continuous-variable-code">Categorical and continuous variable; code</a></li>
+  <li><a href="#categorical-and-continuous-variable-plot" id="toc-categorical-and-continuous-variable-plot" class="nav-link" data-scroll-target="#categorical-and-continuous-variable-plot">Categorical and continuous variable; plot</a></li>
+  <li><a href="#two-categorical-variable-code" id="toc-two-categorical-variable-code" class="nav-link" data-scroll-target="#two-categorical-variable-code">Two categorical variable; code</a></li>
+  <li><a href="#two-categorical-variable-plot" id="toc-two-categorical-variable-plot" class="nav-link" data-scroll-target="#two-categorical-variable-plot">Two categorical variable; plot</a></li>
+  <li><a href="#one-continuouse-variable-one-with-many-categories" id="toc-one-continuouse-variable-one-with-many-categories" class="nav-link" data-scroll-target="#one-continuouse-variable-one-with-many-categories">One continuouse variable, one with many categories</a></li>
+  <li><a href="#one-continuouse-variable-one-with-many-categories-1" id="toc-one-continuouse-variable-one-with-many-categories-1" class="nav-link" data-scroll-target="#one-continuouse-variable-one-with-many-categories-1">One continuouse variable, one with many categories</a></li>
+  <li><a href="#two-continuous-variables" id="toc-two-continuous-variables" class="nav-link" data-scroll-target="#two-continuous-variables">Two continuous variables</a></li>
+  <li><a href="#two-continuous-variables-1" id="toc-two-continuous-variables-1" class="nav-link" data-scroll-target="#two-continuous-variables-1">Two continuous variables</a></li>
+  <li><a href="#two-continuous-variables-alpha" id="toc-two-continuous-variables-alpha" class="nav-link" data-scroll-target="#two-continuous-variables-alpha">Two continuous variables; alpha</a></li>
+  <li><a href="#two-continuous-variables-alpha-1" id="toc-two-continuous-variables-alpha-1" class="nav-link" data-scroll-target="#two-continuous-variables-alpha-1">Two continuous variables; alpha</a></li>
+  <li><a href="#two-continuous-variables-make-one-categorical" id="toc-two-continuous-variables-make-one-categorical" class="nav-link" data-scroll-target="#two-continuous-variables-make-one-categorical">Two continuous variables; make one categorical</a></li>
+  <li><a href="#two-continuous-variables-make-one-categorical-1" id="toc-two-continuous-variables-make-one-categorical-1" class="nav-link" data-scroll-target="#two-continuous-variables-make-one-categorical-1">Two continuous variables; make one categorical</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Exploratory Data Analysis (EDA)</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>ag@hvl.no </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="packages-used" class="level2">
+<h2 class="anchored" data-anchor-id="packages-used">Packages used</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>packs <span class="ot">&lt;-</span> <span class="fu">suppressPackageStartupMessages</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(tidyverse),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(nycflights13),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(gridExtra),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(modelr),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(grid),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(ggplotify),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(vtable)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(packs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "forcats"      "stringr"      "dplyr"        "purrr"        "readr"       
+ [6] "tidyr"        "tibble"       "ggplot2"      "tidyverse"    "stats"       
+[11] "graphics"     "grDevices"    "utils"        "datasets"     "methods"     
+[16] "base"         "nycflights13" "gridExtra"    "modelr"       "grid"        
+[21] "ggplotify"    "vtable"       "kableExtra"  </code></pre>
+</div>
+</div>
+</section>
+<section id="generate-references-for-packages-used" class="level2">
+<h2 class="anchored" data-anchor-id="generate-references-for-packages-used">Generate References for Packages used</h2>
+<ul>
+<li>References for used packages will be found at the end of document.</li>
+</ul>
+<div class="incremental">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a bib file for the R packages </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># used in this document</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Note! Needs to do a touch(eda.bib) in terminal before first run</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># else stops when bibliography: "eda.bib" not found in YAML</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">write_bib</span>(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  packs,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"eda.bib"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(packs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="chapter-6-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-6-workflow">Chapter 6; Workflow</h2>
+<ul>
+<li>Not all to relevant for us since we use Quarto Documents,</li>
+<li>but some important points</li>
+<li><strong>Cmd + Return/Ctrl + Enter</strong> runs <em>current</em> statement and jumps to next statement</li>
+<li>Selecting some statements and hitting <strong>Cmd + Return/Ctrl + Enter</strong> will run the selected statements.
+<ul>
+<li>Nice for debugging pipes</li>
+<li>Be very careful when you select the statements</li>
+<li>Missing a ‘)’ or a ‘“’ can bring a lot of hurt.</li>
+<li>If sh*t happens, ESC is your best friend</li>
+</ul></li>
+</ul>
+</section>
+<section id="exploratory-data-analysis-r4ds-chap.-7" class="level2">
+<h2 class="anchored" data-anchor-id="exploratory-data-analysis-r4ds-chap.-7">Exploratory Data Analysis (r4ds chap.&nbsp;7)</h2>
+<p>General reflection up on the concept of <em>Exploratory Data Analysis</em>. You will find details and more code in <a href="https://r4ds.had.co.nz/exploratory-data-analysis.html">chapter 7 of r4ds</a>.</p>
+<ul>
+<li>Getting to know your data
+<ul>
+<li>Variation <strong>in</strong> variables</li>
+<li>Variation <strong>between</strong> variables</li>
+</ul></li>
+</ul>
+</section>
+<section id="some-definitions" class="level2">
+<h2 class="anchored" data-anchor-id="some-definitions">Some definitions</h2>
+<ul>
+<li><strong>Variable:</strong> some quality of the underlying phenomenon that one can measure</li>
+<li><strong>Value:</strong> the recorded number or category resulting from the measurement</li>
+<li><strong>Observation:</strong> a set of measurements of the underlying phenomenon
+<ul>
+<li>same time</li>
+<li>same object</li>
+</ul></li>
+<li><strong>Tabular data</strong> Listing of variables, observations and values</li>
+<li><strong>Tidy tabular data:</strong> Tabular data where
+<ul>
+<li>each variable is in a column,</li>
+<li>each observation in a row and</li>
+<li>each cell in the table contains <strong>one</strong> value</li>
+</ul></li>
+</ul>
+</section>
+<section id="single-variable-load-data" class="level2">
+<h2 class="anchored" data-anchor-id="single-variable-load-data">Single variable, load data</h2>
+<ul>
+<li>Load the data</li>
+</ul>
+<div class="incremental">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>my_heights <span class="ot">&lt;-</span> modelr<span class="sc">::</span>heights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="incremental">
+<p>Any NAs?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NAs in my_heights?</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">apply</span>(<span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> is.na) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">apply</span>(<span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> sum) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   income    height    weight       age   marital       sex education      afqt 
+        0         0        95         0         0         0        10       262 </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="descriptive-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive Statistics</h2>
+<p>Describe data by tables showing:</p>
+<ul>
+<li>Different statistics (characteristics) of the data
+<ul>
+<li><p>Number of obs.</p></li>
+<li><p>Number of missing values</p></li>
+<li><p>Minimum value</p></li>
+<li><p>Maximum value</p></li>
+<li><p>Mean</p></li>
+<li><p>Dispersion</p>
+<ul>
+<li><p>Standard deviation</p></li>
+<li><p>Variance</p></li>
+<li><p>Percentiles</p></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="descriptive-statistics-ex.-my_heights" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-statistics-ex.-my_heights">Descriptive Statistics ex. my_heights</h2>
+<ul>
+<li>Splits variables into two tables</li>
+</ul>
+<div class="incremental">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># package vtable must be installed</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>marital, <span class="sc">-</span>sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># . to stop RStudio complaining about no data</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  vtable<span class="sc">::</span><span class="fu">st</span>(.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>Summary Statistics</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Variable </th>
+   <th style="text-align:left;"> N </th>
+   <th style="text-align:left;"> Mean </th>
+   <th style="text-align:left;"> Std. Dev. </th>
+   <th style="text-align:left;"> Min </th>
+   <th style="text-align:left;"> Pctl. 25 </th>
+   <th style="text-align:left;"> Pctl. 75 </th>
+   <th style="text-align:left;"> Max </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> income </td>
+   <td style="text-align:left;"> 7006 </td>
+   <td style="text-align:left;"> 41203.938 </td>
+   <td style="text-align:left;"> 55892.117 </td>
+   <td style="text-align:left;"> 0 </td>
+   <td style="text-align:left;"> 165.5 </td>
+   <td style="text-align:left;"> 55000 </td>
+   <td style="text-align:left;"> 343830 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> height </td>
+   <td style="text-align:left;"> 7006 </td>
+   <td style="text-align:left;"> 67.104 </td>
+   <td style="text-align:left;"> 4.082 </td>
+   <td style="text-align:left;"> 52 </td>
+   <td style="text-align:left;"> 64 </td>
+   <td style="text-align:left;"> 70 </td>
+   <td style="text-align:left;"> 84 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> weight </td>
+   <td style="text-align:left;"> 6911 </td>
+   <td style="text-align:left;"> 188.304 </td>
+   <td style="text-align:left;"> 44.473 </td>
+   <td style="text-align:left;"> 76 </td>
+   <td style="text-align:left;"> 157 </td>
+   <td style="text-align:left;"> 212 </td>
+   <td style="text-align:left;"> 524 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> age </td>
+   <td style="text-align:left;"> 7006 </td>
+   <td style="text-align:left;"> 51.325 </td>
+   <td style="text-align:left;"> 2.235 </td>
+   <td style="text-align:left;"> 47 </td>
+   <td style="text-align:left;"> 49 </td>
+   <td style="text-align:left;"> 53 </td>
+   <td style="text-align:left;"> 56 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> education </td>
+   <td style="text-align:left;"> 6996 </td>
+   <td style="text-align:left;"> 13.218 </td>
+   <td style="text-align:left;"> 2.6 </td>
+   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:left;"> 12 </td>
+   <td style="text-align:left;"> 15 </td>
+   <td style="text-align:left;"> 20 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> afqt </td>
+   <td style="text-align:left;"> 6744 </td>
+   <td style="text-align:left;"> 41.211 </td>
+   <td style="text-align:left;"> 29.031 </td>
+   <td style="text-align:left;"> 0 </td>
+   <td style="text-align:left;"> 15.115 </td>
+   <td style="text-align:left;"> 65.235 </td>
+   <td style="text-align:left;"> 100 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="descriptive-statistics-ex.-my_heights-1" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-statistics-ex.-my_heights-1">Descriptive Statistics ex. my_heights</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># package vtable must be installed</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(marital, sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  vtable<span class="sc">::</span><span class="fu">st</span>(.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="descriptive-statistics-ex.-my_heights-2" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-statistics-ex.-my_heights-2">Descriptive Statistics ex. my_heights</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>Summary Statistics</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Variable </th>
+   <th style="text-align:left;"> N </th>
+   <th style="text-align:left;"> Percent </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> marital </td>
+   <td style="text-align:left;"> 7006 </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ... single </td>
+   <td style="text-align:left;"> 1124 </td>
+   <td style="text-align:left;"> 16% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ... married </td>
+   <td style="text-align:left;"> 3806 </td>
+   <td style="text-align:left;"> 54.3% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ... separated </td>
+   <td style="text-align:left;"> 366 </td>
+   <td style="text-align:left;"> 5.2% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ... divorced </td>
+   <td style="text-align:left;"> 1549 </td>
+   <td style="text-align:left;"> 22.1% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ... widowed </td>
+   <td style="text-align:left;"> 161 </td>
+   <td style="text-align:left;"> 2.3% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> sex </td>
+   <td style="text-align:left;"> 7006 </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ... male </td>
+   <td style="text-align:left;"> 3402 </td>
+   <td style="text-align:left;"> 48.6% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ... female </td>
+   <td style="text-align:left;"> 3604 </td>
+   <td style="text-align:left;"> 51.4% </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="descriptive-statistics-ex.-my_heights-3" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-statistics-ex.-my_heights-3">Descriptive Statistics ex. my_heights</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>marital) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  vtable<span class="sc">::</span><span class="fu">st</span>(<span class="at">group =</span> <span class="st">'sex'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>Summary Statistics</caption>
+ <thead>
+<tr>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">sex</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">male</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">female</div></th>
+</tr>
+  <tr>
+   <th style="text-align:left;"> Variable </th>
+   <th style="text-align:left;"> N </th>
+   <th style="text-align:left;"> Mean </th>
+   <th style="text-align:left;"> SD </th>
+   <th style="text-align:left;"> N </th>
+   <th style="text-align:left;"> Mean </th>
+   <th style="text-align:left;"> SD </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> income </td>
+   <td style="text-align:left;"> 3402 </td>
+   <td style="text-align:left;"> 53510.056 </td>
+   <td style="text-align:left;"> 69399.058 </td>
+   <td style="text-align:left;"> 3604 </td>
+   <td style="text-align:left;"> 29587.564 </td>
+   <td style="text-align:left;"> 35346.899 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> height </td>
+   <td style="text-align:left;"> 3402 </td>
+   <td style="text-align:left;"> 70.106 </td>
+   <td style="text-align:left;"> 2.993 </td>
+   <td style="text-align:left;"> 3604 </td>
+   <td style="text-align:left;"> 64.271 </td>
+   <td style="text-align:left;"> 2.723 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> weight </td>
+   <td style="text-align:left;"> 3392 </td>
+   <td style="text-align:left;"> 204.134 </td>
+   <td style="text-align:left;"> 40.727 </td>
+   <td style="text-align:left;"> 3519 </td>
+   <td style="text-align:left;"> 173.046 </td>
+   <td style="text-align:left;"> 42.562 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> age </td>
+   <td style="text-align:left;"> 3402 </td>
+   <td style="text-align:left;"> 51.275 </td>
+   <td style="text-align:left;"> 2.224 </td>
+   <td style="text-align:left;"> 3604 </td>
+   <td style="text-align:left;"> 51.373 </td>
+   <td style="text-align:left;"> 2.245 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> education </td>
+   <td style="text-align:left;"> 3396 </td>
+   <td style="text-align:left;"> 13.053 </td>
+   <td style="text-align:left;"> 2.565 </td>
+   <td style="text-align:left;"> 3600 </td>
+   <td style="text-align:left;"> 13.374 </td>
+   <td style="text-align:left;"> 2.623 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> afqt </td>
+   <td style="text-align:left;"> 3248 </td>
+   <td style="text-align:left;"> 41.876 </td>
+   <td style="text-align:left;"> 29.78 </td>
+   <td style="text-align:left;"> 3496 </td>
+   <td style="text-align:left;"> 40.594 </td>
+   <td style="text-align:left;"> 28.309 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="descriptive-statistics-ex.-my_heights-4" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-statistics-ex.-my_heights-4">Descriptive Statistics ex. my_heights</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># package vtable must be installed</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">married =</span> <span class="fu">if_else</span>(marital <span class="sc">==</span> <span class="st">'married'</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">'female'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>sex, <span class="sc">-</span>marital) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  vtable<span class="sc">::</span><span class="fu">st</span>(<span class="at">group =</span> <span class="st">'married'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>Summary Statistics</caption>
+ <thead>
+<tr>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">married</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">No</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">Yes</div></th>
+</tr>
+  <tr>
+   <th style="text-align:left;"> Variable </th>
+   <th style="text-align:left;"> N </th>
+   <th style="text-align:left;"> Mean </th>
+   <th style="text-align:left;"> SD </th>
+   <th style="text-align:left;"> N </th>
+   <th style="text-align:left;"> Mean </th>
+   <th style="text-align:left;"> SD </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> income </td>
+   <td style="text-align:left;"> 1703 </td>
+   <td style="text-align:left;"> 26682.337 </td>
+   <td style="text-align:left;"> 30962.112 </td>
+   <td style="text-align:left;"> 1901 </td>
+   <td style="text-align:left;"> 32190.195 </td>
+   <td style="text-align:left;"> 38680.357 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> height </td>
+   <td style="text-align:left;"> 1703 </td>
+   <td style="text-align:left;"> 64.197 </td>
+   <td style="text-align:left;"> 2.785 </td>
+   <td style="text-align:left;"> 1901 </td>
+   <td style="text-align:left;"> 64.338 </td>
+   <td style="text-align:left;"> 2.665 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> weight </td>
+   <td style="text-align:left;"> 1662 </td>
+   <td style="text-align:left;"> 177.223 </td>
+   <td style="text-align:left;"> 45.254 </td>
+   <td style="text-align:left;"> 1857 </td>
+   <td style="text-align:left;"> 169.307 </td>
+   <td style="text-align:left;"> 39.64 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> age </td>
+   <td style="text-align:left;"> 1703 </td>
+   <td style="text-align:left;"> 51.36 </td>
+   <td style="text-align:left;"> 2.267 </td>
+   <td style="text-align:left;"> 1901 </td>
+   <td style="text-align:left;"> 51.384 </td>
+   <td style="text-align:left;"> 2.225 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> education </td>
+   <td style="text-align:left;"> 1701 </td>
+   <td style="text-align:left;"> 13.018 </td>
+   <td style="text-align:left;"> 2.559 </td>
+   <td style="text-align:left;"> 1899 </td>
+   <td style="text-align:left;"> 13.694 </td>
+   <td style="text-align:left;"> 2.638 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> afqt </td>
+   <td style="text-align:left;"> 1647 </td>
+   <td style="text-align:left;"> 33.119 </td>
+   <td style="text-align:left;"> 26.169 </td>
+   <td style="text-align:left;"> 1849 </td>
+   <td style="text-align:left;"> 47.251 </td>
+   <td style="text-align:left;"> 28.486 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="descriptive-statistics-ex.-my_heights-5" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-statistics-ex.-my_heights-5">Descriptive Statistics ex. my_heights</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># package vtable must be installed</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">married =</span> <span class="fu">if_else</span>(marital <span class="sc">==</span> <span class="st">'married'</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">'male'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>sex, <span class="sc">-</span>marital) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  vtable<span class="sc">::</span><span class="fu">st</span>(<span class="at">group =</span> <span class="st">'married'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>Summary Statistics</caption>
+ <thead>
+<tr>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">married</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">No</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">Yes</div></th>
+</tr>
+  <tr>
+   <th style="text-align:left;"> Variable </th>
+   <th style="text-align:left;"> N </th>
+   <th style="text-align:left;"> Mean </th>
+   <th style="text-align:left;"> SD </th>
+   <th style="text-align:left;"> N </th>
+   <th style="text-align:left;"> Mean </th>
+   <th style="text-align:left;"> SD </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> income </td>
+   <td style="text-align:left;"> 1497 </td>
+   <td style="text-align:left;"> 32122.171 </td>
+   <td style="text-align:left;"> 50519.952 </td>
+   <td style="text-align:left;"> 1905 </td>
+   <td style="text-align:left;"> 70317.228 </td>
+   <td style="text-align:left;"> 77170.587 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> height </td>
+   <td style="text-align:left;"> 1497 </td>
+   <td style="text-align:left;"> 69.835 </td>
+   <td style="text-align:left;"> 3.082 </td>
+   <td style="text-align:left;"> 1905 </td>
+   <td style="text-align:left;"> 70.318 </td>
+   <td style="text-align:left;"> 2.904 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> weight </td>
+   <td style="text-align:left;"> 1492 </td>
+   <td style="text-align:left;"> 200.097 </td>
+   <td style="text-align:left;"> 41.932 </td>
+   <td style="text-align:left;"> 1900 </td>
+   <td style="text-align:left;"> 207.304 </td>
+   <td style="text-align:left;"> 39.478 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> age </td>
+   <td style="text-align:left;"> 1497 </td>
+   <td style="text-align:left;"> 51.164 </td>
+   <td style="text-align:left;"> 2.161 </td>
+   <td style="text-align:left;"> 1905 </td>
+   <td style="text-align:left;"> 51.362 </td>
+   <td style="text-align:left;"> 2.269 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> education </td>
+   <td style="text-align:left;"> 1494 </td>
+   <td style="text-align:left;"> 12.434 </td>
+   <td style="text-align:left;"> 2.244 </td>
+   <td style="text-align:left;"> 1902 </td>
+   <td style="text-align:left;"> 13.539 </td>
+   <td style="text-align:left;"> 2.695 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> afqt </td>
+   <td style="text-align:left;"> 1426 </td>
+   <td style="text-align:left;"> 34.076 </td>
+   <td style="text-align:left;"> 27.893 </td>
+   <td style="text-align:left;"> 1822 </td>
+   <td style="text-align:left;"> 47.981 </td>
+   <td style="text-align:left;"> 29.792 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="single-variable-graphical-description-bar-chart" class="level2">
+<h2 class="anchored" data-anchor-id="single-variable-graphical-description-bar-chart">Single variable graphical description, bar chart</h2>
+<ul>
+<li>Simplest, bar-chart</li>
+</ul>
+<div class="incremental">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_heights) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> education), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="single-variable-graphical-description-bar-chart-1" class="level2">
+<h2 class="anchored" data-anchor-id="single-variable-graphical-description-bar-chart-1">Single variable graphical description, bar chart</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="eda-doc_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="the-peaks" class="level2">
+<h2 class="anchored" data-anchor-id="the-peaks">The peaks?</h2>
+<ul>
+<li>What is the reason behind the peak at 12 years?
+<ul>
+<li>High-school</li>
+</ul></li>
+<li>What is the reason behind the peak at 14 years?
+<ul>
+<li>2 year trade college</li>
+</ul></li>
+<li>What is the reason behind the peak at 16 years?
+<ul>
+<li>4 year college</li>
+</ul></li>
+</ul>
+</section>
+<section id="single-variable-i.e.-variation-in-a-variable" class="level2">
+<h2 class="anchored" data-anchor-id="single-variable-i.e.-variation-in-a-variable">Single variable, i.e.&nbsp;variation in a variable</h2>
+<ul>
+<li>Example: How does income vary in the <code>modelr::heights</code> dataset?
+<ul>
+<li>Does someone have zero income?</li>
+<li>How to display the variable? &gt; - histogram; <code>hist(my_df$var_name, breaks = 20)</code> or <code>geom_histogram()</code> from ggplot &gt; - density/violin plot</li>
+</ul></li>
+<li>Be aware of outliers?
+<ul>
+<li>Might be difficult to spot in a histogram</li>
+</ul></li>
+</ul>
+</section>
+<section id="hist-and-geom_histogram" class="level2">
+<h2 class="anchored" data-anchor-id="hist-and-geom_histogram"><code>hist()</code> and <code>geom_histogram()</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>hist1 <span class="ot">&lt;-</span> ggplotify<span class="sc">::</span><span class="fu">as.ggplot</span>(<span class="sc">~</span><span class="fu">hist</span>(my_heights<span class="sc">$</span>income, <span class="at">breaks =</span> <span class="dv">20</span>))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>hist2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_heights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> income)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(hist1, hist2, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="eda-doc_files/figure-html/two-hist-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="geom_histogram-other-variables" class="level2">
+<h2 class="anchored" data-anchor-id="geom_histogram-other-variables"><code>geom_histogram()</code> other variables</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>hist3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_heights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> income)) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>hist4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_heights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height)) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>hist5 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_heights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> weight)) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(hist3, hist4, hist5, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="geom_histogram-other-variables-1" class="level2">
+<h2 class="anchored" data-anchor-id="geom_histogram-other-variables-1"><code>geom_histogram()</code> other variables</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="eda-doc_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="geom_histogram-other-variables-2" class="level2">
+<h2 class="anchored" data-anchor-id="geom_histogram-other-variables-2"><code>geom_histogram()</code> other variables</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>hist6 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_heights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>hist7 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_heights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> education)) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>hist8 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_heights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> afqt)) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(hist6, hist7, hist8, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="geom_histogram-other-variables-3" class="level2">
+<h2 class="anchored" data-anchor-id="geom_histogram-other-variables-3"><code>geom_histogram()</code> other variables</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="eda-doc_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="variation-in-a-variable-given-another-variable" class="level2">
+<h2 class="anchored" data-anchor-id="variation-in-a-variable-given-another-variable">Variation in a variable, given another variable</h2>
+<ul>
+<li>We can use the facet feature of <code>ggplot</code></li>
+</ul>
+</section>
+<section id="geom_density-faceted-on-sex" class="level2">
+<h2 class="anchored" data-anchor-id="geom_density-faceted-on-sex"><code>geom_density()</code>; faceted on sex</h2>
+<ul>
+<li>Distribution of income
+<ul>
+<li>Three levels of education ([0-12) “NotHS”, [12-14) “NotTC”, [14-16) “NotC”, [16-21] “C+”)</li>
+<li>Faceted on the <code>sex</code> variable</li>
+<li>Use the <code>cut</code> function to make the categories</li>
+<li>Have to use <code>right = FALSE</code> to get open interval on the right</li>
+</ul></li>
+</ul>
+</section>
+<section id="geom_density-faceted-on-sex-1" class="level2">
+<h2 class="anchored" data-anchor-id="geom_density-faceted-on-sex-1"><code>geom_density()</code>; faceted on sex</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(education, </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>), </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NotHS"</span>, <span class="st">"NotTC"</span>, <span class="st">"NotC"</span>, <span class="st">"C+"</span>),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">right =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(edu_fac) <span class="sc">&amp;</span> income <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">fill =</span> edu_fac, <span class="at">colour =</span> edu_fac)) <span class="sc">+</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="geom_density-faceted-on-sex-2" class="level2">
+<h2 class="anchored" data-anchor-id="geom_density-faceted-on-sex-2"><code>geom_density()</code>; faceted on sex</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="eda-doc_files/figure-html/facet-sex-plot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="geom_density-facet-edu_fac" class="level2">
+<h2 class="anchored" data-anchor-id="geom_density-facet-edu_fac"><code>geom_density()</code>; facet edu_fac</h2>
+<ul>
+<li>Perhaps better to facet on education</li>
+</ul>
+<div class="incremental">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(education, </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>), </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NotHS"</span>, <span class="st">"NotTC"</span>, <span class="st">"NotC"</span>, <span class="st">"C+"</span>),</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">right =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(edu_fac) <span class="sc">&amp;</span> income <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">fill =</span> sex, <span class="at">colour =</span> sex)) <span class="sc">+</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>edu_fac)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="geom_density-facet-edu_fac-1" class="level2">
+<h2 class="anchored" data-anchor-id="geom_density-facet-edu_fac-1"><code>geom_density()</code>; facet edu_fac</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="eda-doc_files/figure-html/facet_edu_fac_plot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="income-equal-to-0" class="level2">
+<h2 class="anchored" data-anchor-id="income-equal-to-0">Income equal to 0?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dim</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7006    8</code></pre>
+</div>
+</div>
+<div class="incremental">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(income <span class="sc">&lt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dim</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1740    8</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="income-equal-to-0-1" class="level2">
+<h2 class="anchored" data-anchor-id="income-equal-to-0-1">Income equal to 0?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(income <span class="sc">&lt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>sex
+  male female 
+   745    995 </code></pre>
+</div>
+</div>
+</section>
+<section id="income-equal-to-0-2" class="level2">
+<h2 class="anchored" data-anchor-id="income-equal-to-0-2">Income equal to 0?</h2>
+<ul>
+<li>No income, grouped by sex and edu_fac</li>
+</ul>
+<div class="incremental">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(education, </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>), </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NotHS"</span>, <span class="st">"NotTC"</span>, <span class="st">"NotC"</span>, <span class="st">"C+"</span>),</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">right =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(income <span class="sc">&lt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sex, edu_fac) <span class="sc">%&gt;%</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        edu_fac
+sex      NotHS NotTC NotC  C+
+  male     252   359   74  56
+  female   245   476  137 133</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="boxplot" class="level2">
+<h2 class="anchored" data-anchor-id="boxplot">Boxplot</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(education, </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>), </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NotHS"</span>, <span class="st">"NotTC"</span>, <span class="st">"NotC"</span>, <span class="st">"C+"</span>),</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">right =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(income <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> edu_fac, <span class="at">y =</span> income)) <span class="sc">+</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sex) <span class="sc">+</span> </span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="boxplot-1" class="level2">
+<h2 class="anchored" data-anchor-id="boxplot-1">Boxplot</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="eda-doc_files/figure-html/boxplot_plot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="boxplot-code-turned-90" class="level2">
+<h2 class="anchored" data-anchor-id="boxplot-code-turned-90">Boxplot code, turned 90</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(education, </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>), </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NotHS"</span>, <span class="st">"NotTC"</span>, <span class="st">"NotC"</span>, <span class="st">"C+"</span>),</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">right =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(income <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> edu_fac, <span class="at">y =</span> income)) <span class="sc">+</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sex) <span class="sc">+</span> </span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="boxplot-plot-turned-90" class="level2">
+<h2 class="anchored" data-anchor-id="boxplot-plot-turned-90">Boxplot plot, turned 90</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="eda-doc_files/figure-html/boxplot_plot_plot_flip-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="how-to-treat-bad-data" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-treat-bad-data">How to treat bad data</h2>
+<ul>
+<li>Outliers?
+<ul>
+<li>Real outliers or faulty registration?</li>
+</ul></li>
+<li>What to do?
+<ul>
+<li><p>To just delete the observation is seldom the right solution</p></li>
+<li><p>Document what you do!</p></li>
+<li><p>If you suspect faulty data entry/registration change value to NA</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="how-to-treat-bad-data-cont." class="level2">
+<h2 class="anchored" data-anchor-id="how-to-treat-bad-data-cont.">How to treat bad data cont.</h2>
+<ul>
+<li>What to do? cont.
+<ul>
+<li><p>In some rare cases it might be acceptable to edit the data</p>
+<ul>
+<li><p>if you have very few observations</p></li>
+<li><p>can give a very plausible explanation for the faulty entry. Document <strong>very</strong> carefully.</p></li>
+<li><p>Ex. percentage unemployed timeseries: 2,3%, 3,7% … 270% … 4,1%.</p>
+<ul>
+<li>If you can argue that 2,7 probably has been entered instead of 0,027 it <strong>might</strong> be defensible to edit the observation, but normally you should change it to NA and document your edit.</li>
+</ul></li>
+</ul></li>
+<li><p>Do not use <code>na.rm = TRUE</code> in <code>ggplot</code> before last edit.</p>
+<ul>
+<li><p>Make sure that you have thoroughly documented the missing values.</p></li>
+<li><p><code>ggplot</code> is nice and warns you about missing values and tells you how many there are.</p></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="how-to-treat-bad-data-cont.-1" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-treat-bad-data-cont.-1">How to treat bad data cont.</h2>
+<ul>
+<li>With real outliers
+<ul>
+<li>Explanation. Is there a missing variable?</li>
+<li>Do the analysis with and without the outliers. If similar results not to much of a problem, if not …</li>
+</ul></li>
+</ul>
+</section>
+<section id="quiz" class="level2">
+<h2 class="anchored" data-anchor-id="quiz">Quiz</h2>
+<p>From r4ds. Use help (?)</p>
+<blockquote class="blockquote">
+<ol type="1">
+<li>How are NAs handled in <code>geom_histogram()</code>?</li>
+<li>How are NAs handled in <code>geom_bar()</code>?</li>
+<li>How are NAs handled in <code>sum</code> and <code>mean</code></li>
+</ol>
+</blockquote>
+</section>
+<section id="answer-quiz" class="level2">
+<h2 class="anchored" data-anchor-id="answer-quiz">Answer Quiz</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">val =</span> <span class="fu">c</span>(<span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">97</span>, <span class="dv">1</span>, <span class="dv">10</span>), <span class="dv">0</span>), <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">3</span>)))</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> val)) </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> g <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> g <span class="sc">+</span> <span class="fu">geom_bar</span>()</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(g1, g2, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val); <span class="fu">mean</span>(my_data<span class="sc">$</span>val)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>); <span class="fu">mean</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="answer-quiz-1" class="level2">
+<h2 class="anchored" data-anchor-id="answer-quiz-1">Answer Quiz</h2>
+<div class="cell" data-warnings="true">
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 3 rows containing non-finite values (stat_bin).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 3 rows containing non-finite values (stat_count).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="eda-doc_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="answer-quiz-2" class="level2">
+<h2 class="anchored" data-anchor-id="answer-quiz-2">Answer Quiz</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="warnings-NA.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Warnings about NAs from ggplot.</figcaption><p></p>
+</figure>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val); <span class="fu">mean</span>(my_data<span class="sc">$</span>val)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>); <span class="fu">mean</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 519</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.350515</code></pre>
+</div>
+</div>
+</section>
+<section id="answer-quiz-3" class="level2">
+<h2 class="anchored" data-anchor-id="answer-quiz-3">Answer Quiz</h2>
+<ul>
+<li>Using <code>na.rm = TRUE</code>.</li>
+</ul>
+<div class="incremental">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">val =</span> <span class="fu">c</span>(<span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">97</span>, <span class="dv">1</span>, <span class="dv">10</span>), <span class="dv">0</span>), <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">3</span>)))</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> val)) </span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> g <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> g <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(g1, g2, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val); <span class="fu">mean</span>(my_data<span class="sc">$</span>val)</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>); <span class="fu">mean</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="answer-quiz-4" class="level2">
+<h2 class="anchored" data-anchor-id="answer-quiz-4">Answer Quiz</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="eda-doc_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val); <span class="fu">mean</span>(my_data<span class="sc">$</span>val)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>); <span class="fu">mean</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 519</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.350515</code></pre>
+</div>
+</div>
+</section>
+<section id="answer-quiz-5" class="level2">
+<h2 class="anchored" data-anchor-id="answer-quiz-5">Answer Quiz</h2>
+<ul>
+<li>Now the two seems handle NAs the same way.</li>
+<li>Normal rule: One NA =&gt; result NA</li>
+<li>For <code>sum()</code> and <code>mean()</code> <code>na.rm = TRUE</code> returns the result of the calculation when NAs are removed</li>
+</ul>
+</section>
+<section id="covariation" class="level2">
+<h2 class="anchored" data-anchor-id="covariation">Covariation</h2>
+<ul>
+<li>Use facets as above</li>
+<li>Some cases
+<ul>
+<li>Categorical and continuous variable</li>
+<li>Two categorial variables</li>
+<li>Two continuous variables</li>
+</ul></li>
+</ul>
+</section>
+<section id="categorical-and-continuous-variable" class="level2">
+<h2 class="anchored" data-anchor-id="categorical-and-continuous-variable">Categorical and continuous variable</h2>
+<ul>
+<li><code>geom_freqpoly()</code>
+<ul>
+<li>Lines, category by colour or linetype (BW)</li>
+<li>Default gives count, density often better</li>
+</ul></li>
+</ul>
+</section>
+<section id="categorical-and-continuous-variable-code" class="level2">
+<h2 class="anchored" data-anchor-id="categorical-and-continuous-variable-code">Categorical and continuous variable; code</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(education, </span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>), </span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NotHS"</span>, <span class="st">"NotTC"</span>, <span class="st">"NotC"</span>, <span class="st">"C+"</span>),</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">right =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(income <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(weight) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(afqt) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(edu_fac)) <span class="sc">%&gt;%</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> ..density..)) <span class="sc">+</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">colour =</span> edu_fac), <span class="at">binwidth =</span> <span class="dv">10000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Try also <code>binwidth = 3000</code></li>
+</ul>
+</section>
+<section id="categorical-and-continuous-variable-plot" class="level2">
+<h2 class="anchored" data-anchor-id="categorical-and-continuous-variable-plot">Categorical and continuous variable; plot</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="eda-doc_files/figure-html/freqpoly_plot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="two-categorical-variable-code" class="level2">
+<h2 class="anchored" data-anchor-id="two-categorical-variable-code">Two categorical variable; code</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(education, </span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>), </span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NotHS"</span>, <span class="st">"NotTC"</span>, <span class="st">"NotC"</span>, <span class="st">"C+"</span>),</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">right =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(income <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(weight) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(afqt) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(edu_fac)) <span class="sc">%&gt;%</span></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_count</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> marital, <span class="at">y =</span> edu_fac))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="two-categorical-variable-plot" class="level2">
+<h2 class="anchored" data-anchor-id="two-categorical-variable-plot">Two categorical variable; plot</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="eda-doc_files/figure-html/geom_count_plot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="one-continuouse-variable-one-with-many-categories" class="level2">
+<h2 class="anchored" data-anchor-id="one-continuouse-variable-one-with-many-categories">One continuouse variable, one with many categories</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(income <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(weight) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(afqt) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(education)) <span class="sc">%&gt;%</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> education, <span class="at">y =</span> income), <span class="at">alpha =</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="one-continuouse-variable-one-with-many-categories-1" class="level2">
+<h2 class="anchored" data-anchor-id="one-continuouse-variable-one-with-many-categories-1">One continuouse variable, one with many categories</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="eda-doc_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="two-continuous-variables" class="level2">
+<h2 class="anchored" data-anchor-id="two-continuous-variables">Two continuous variables</h2>
+<ul>
+<li>Use <code>diamonds</code> dataset</li>
+<li>Smaller point size</li>
+</ul>
+<div class="incremental">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="two-continuous-variables-1" class="level2">
+<h2 class="anchored" data-anchor-id="two-continuous-variables-1">Two continuous variables</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="eda-doc_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="two-continuous-variables-alpha" class="level2">
+<h2 class="anchored" data-anchor-id="two-continuous-variables-alpha">Two continuous variables; alpha</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>, <span class="at">size =</span> <span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="two-continuous-variables-alpha-1" class="level2">
+<h2 class="anchored" data-anchor-id="two-continuous-variables-alpha-1">Two continuous variables; alpha</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="eda-doc_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="two-continuous-variables-make-one-categorical" class="level2">
+<h2 class="anchored" data-anchor-id="two-continuous-variables-make-one-categorical">Two continuous variables; make one categorical</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(carat <span class="sc">&lt;=</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">group =</span> <span class="fu">cut_width</span>(carat, <span class="fl">0.1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="two-continuous-variables-make-one-categorical-1" class="level2">
+<h2 class="anchored" data-anchor-id="two-continuous-variables-make-one-categorical-1">Two continuous variables; make one categorical</h2>
+<ul>
+<li>Not like the one in r4ds</li>
+</ul>
+<div class="incremental">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="eda-doc_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="references" class="level2">
+
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-R-gridExtra" class="csl-entry" role="doc-biblioentry">
+Auguie, Baptiste. 2017. <em>gridExtra: Miscellaneous Functions for "Grid" Graphics</em>. <a href="https://CRAN.R-project.org/package=gridExtra">https://CRAN.R-project.org/package=gridExtra</a>.
+</div>
+<div id="ref-R-purrr" class="csl-entry" role="doc-biblioentry">
+Henry, Lionel, and Hadley Wickham. 2020. <em>Purrr: Functional Programming Tools</em>. <a href="https://CRAN.R-project.org/package=purrr">https://CRAN.R-project.org/package=purrr</a>.
+</div>
+<div id="ref-R-vtable" class="csl-entry" role="doc-biblioentry">
+Huntington-Klein, Nick. 2022. <em>Vtable: Variable Table for Variable Documentation</em>. <a href="https://nickch-k.github.io/vtable/">https://nickch-k.github.io/vtable/</a>.
+</div>
+<div id="ref-R-tibble" class="csl-entry" role="doc-biblioentry">
+Müller, Kirill, and Hadley Wickham. 2022. <em>Tibble: Simple Data Frames</em>. <a href="https://CRAN.R-project.org/package=tibble">https://CRAN.R-project.org/package=tibble</a>.
+</div>
+<div id="ref-R-base" class="csl-entry" role="doc-biblioentry">
+R Core Team. 2022. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
+</div>
+<div id="ref-ggplot22016" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
+</div>
+<div id="ref-R-stringr" class="csl-entry" role="doc-biblioentry">
+———. 2019. <em>Stringr: Simple, Consistent Wrappers for Common String Operations</em>. <a href="https://CRAN.R-project.org/package=stringr">https://CRAN.R-project.org/package=stringr</a>.
+</div>
+<div id="ref-R-modelr" class="csl-entry" role="doc-biblioentry">
+———. 2020. <em>Modelr: Modelling Functions That Work with the Pipe</em>. <a href="https://CRAN.R-project.org/package=modelr">https://CRAN.R-project.org/package=modelr</a>.
+</div>
+<div id="ref-R-forcats" class="csl-entry" role="doc-biblioentry">
+———. 2021a. <em>Forcats: Tools for Working with Categorical Variables (Factors)</em>. <a href="https://CRAN.R-project.org/package=forcats">https://CRAN.R-project.org/package=forcats</a>.
+</div>
+<div id="ref-R-nycflights13" class="csl-entry" role="doc-biblioentry">
+———. 2021b. <em>Nycflights13: Flights That Departed NYC in 2013</em>. <a href="https://github.com/hadley/nycflights13">https://github.com/hadley/nycflights13</a>.
+</div>
+<div id="ref-R-tidyverse" class="csl-entry" role="doc-biblioentry">
+———. 2021c. <em>Tidyverse: Easily Install and Load the Tidyverse</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.
+</div>
+<div id="ref-tidyverse2019" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the <span class="nocase">tidyverse</span>.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
+</div>
+<div id="ref-R-ggplot2" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, Hiroaki Yutani, and Dewey Dunnington. 2022. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a>.
+</div>
+<div id="ref-R-dplyr" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2022. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.
+</div>
+<div id="ref-R-tidyr" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, and Maximilian Girlich. 2022. <em>Tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.
+</div>
+<div id="ref-R-readr" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Jim Hester, and Jennifer Bryan. 2022. <em>Readr: Read Rectangular Text Data</em>. <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a>.
+</div>
+<div id="ref-R-ggplotify" class="csl-entry" role="doc-biblioentry">
+Yu, Guangchuang. 2021. <em>Ggplotify: Convert Plot to Grob or Ggplot Object</em>. <a href="https://github.com/GuangchuangYu/ggplotify">https://github.com/GuangchuangYu/ggplotify</a>.
+</div>
+<div id="ref-R-kableExtra" class="csl-entry" role="doc-biblioentry">
+Zhu, Hao. 2021. <em>kableExtra: Construct Complex Table with Kable and Pipe Syntax</em>. <a href="https://CRAN.R-project.org/package=kableExtra">https://CRAN.R-project.org/package=kableExtra</a>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

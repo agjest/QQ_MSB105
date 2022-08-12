@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MSB105 - RStudio preference setup 2022</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MSB105</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">About</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lectures" role="button" data-bs-toggle="dropdown" aria-expanded="false">Lectures</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lectures">    
+        <li>
+    <a class="dropdown-item" href="../../introduction/introduction.html">
+ <span class="dropdown-text">Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../explore-data/explore-data.html">
+ <span class="dropdown-text">Explore Data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../wrangle-data/wrangle-data.html">
+ <span class="dropdown-text">Data Wrangling</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#setup-preferences-in-r-studio" id="toc-setup-preferences-in-r-studio" class="nav-link active" data-scroll-target="#setup-preferences-in-r-studio">Setup preferences in R Studio</a>
+  <ul class="collapse">
+  <li><a href="#generalbasic" id="toc-generalbasic" class="nav-link" data-scroll-target="#generalbasic">General:Basic</a></li>
+  <li><a href="#generalgraphics" id="toc-generalgraphics" class="nav-link" data-scroll-target="#generalgraphics">General:Graphics</a></li>
+  <li><a href="#generaladvanced" id="toc-generaladvanced" class="nav-link" data-scroll-target="#generaladvanced">General:Advanced</a></li>
+  <li><a href="#codeediting" id="toc-codeediting" class="nav-link" data-scroll-target="#codeediting">Code:Editing</a></li>
+  <li><a href="#codedisplay" id="toc-codedisplay" class="nav-link" data-scroll-target="#codedisplay">Code:Display</a></li>
+  <li><a href="#codesaving" id="toc-codesaving" class="nav-link" data-scroll-target="#codesaving">Code:Saving</a></li>
+  <li><a href="#codecompletion" id="toc-codecompletion" class="nav-link" data-scroll-target="#codecompletion">Code:Completion</a></li>
+  <li><a href="#codediagnostic" id="toc-codediagnostic" class="nav-link" data-scroll-target="#codediagnostic">Code:Diagnostic</a></li>
+  <li><a href="#console" id="toc-console" class="nav-link" data-scroll-target="#console">Console</a></li>
+  <li><a href="#appearance" id="toc-appearance" class="nav-link" data-scroll-target="#appearance">Appearance</a></li>
+  <li><a href="#pane-layout-1" id="toc-pane-layout-1" class="nav-link" data-scroll-target="#pane-layout-1">Pane layout 1</a></li>
+  <li><a href="#pane-layout-2" id="toc-pane-layout-2" class="nav-link" data-scroll-target="#pane-layout-2">Pane layout 2</a></li>
+  <li><a href="#packagesmanagement" id="toc-packagesmanagement" class="nav-link" data-scroll-target="#packagesmanagement">Packages:Management</a></li>
+  <li><a href="#packagesdevelopment" id="toc-packagesdevelopment" class="nav-link" data-scroll-target="#packagesdevelopment">Packages:Development</a></li>
+  <li><a href="#packagescc" id="toc-packagescc" class="nav-link" data-scroll-target="#packagescc">Packages:C/C++</a></li>
+  <li><a href="#r-markdownbasic" id="toc-r-markdownbasic" class="nav-link" data-scroll-target="#r-markdownbasic">R Markdown:Basic</a></li>
+  <li><a href="#r-markdown-advanced" id="toc-r-markdown-advanced" class="nav-link" data-scroll-target="#r-markdown-advanced">R Markdown Advanced</a></li>
+  <li><a href="#r-markdown-visual" id="toc-r-markdown-visual" class="nav-link" data-scroll-target="#r-markdown-visual">R Markdown Visual</a></li>
+  <li><a href="#r-markdown-citations" id="toc-r-markdown-citations" class="nav-link" data-scroll-target="#r-markdown-citations">R Markdown Citations</a></li>
+  <li><a href="#r-markdown-quarto" id="toc-r-markdown-quarto" class="nav-link" data-scroll-target="#r-markdown-quarto">R Markdown Quarto</a></li>
+  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
+  <li><a href="#sweave" id="toc-sweave" class="nav-link" data-scroll-target="#sweave">Sweave</a></li>
+  <li><a href="#spelling" id="toc-spelling" class="nav-link" data-scroll-target="#spelling">Spelling</a></li>
+  <li><a href="#gitsvn" id="toc-gitsvn" class="nav-link" data-scroll-target="#gitsvn">Git/SVN</a></li>
+  <li><a href="#publishing" id="toc-publishing" class="nav-link" data-scroll-target="#publishing">Publishing</a></li>
+  <li><a href="#terminalgeneral" id="toc-terminalgeneral" class="nav-link" data-scroll-target="#terminalgeneral">Terminal:General</a></li>
+  <li><a href="#terminalclosing" id="toc-terminalclosing" class="nav-link" data-scroll-target="#terminalclosing">Terminal:Closing</a></li>
+  <li><a href="#accessibilitygeneral" id="toc-accessibilitygeneral" class="nav-link" data-scroll-target="#accessibilitygeneral">Accessibility:General</a></li>
+  <li><a href="#accessibilityannouncements" id="toc-accessibilityannouncements" class="nav-link" data-scroll-target="#accessibilityannouncements">Accessibility:Announcements</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">RStudio preference setup 2022</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="setup-preferences-in-r-studio" class="level1">
+<h1>Setup preferences in R Studio</h1>
+<p>We set up the RStudio preferences so that we all work in an identical environment.</p>
+<p>Select <code>Preferences..</code> from the <code>File</code> menu</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ps0.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Select Preferences…</figcaption><p></p>
+</figure>
+</div>
+<section id="generalbasic" class="level2">
+<h2 class="anchored" data-anchor-id="generalbasic">General:Basic</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="General-Basic.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">General:Basic</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="generalgraphics" class="level2">
+<h2 class="anchored" data-anchor-id="generalgraphics">General:Graphics</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="General-Graphics.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">General:Graphics</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="generaladvanced" class="level2">
+<h2 class="anchored" data-anchor-id="generaladvanced">General:Advanced</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="General-Advanced.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">General:Advanced</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="codeediting" class="level2">
+<h2 class="anchored" data-anchor-id="codeediting">Code:Editing</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Code-Editing.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Code:Editing</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="codedisplay" class="level2">
+<h2 class="anchored" data-anchor-id="codedisplay">Code:Display</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Code-Display.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Code:Display</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="codesaving" class="level2">
+<h2 class="anchored" data-anchor-id="codesaving">Code:Saving</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Code-Saving.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Code:Saving</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="codecompletion" class="level2">
+<h2 class="anchored" data-anchor-id="codecompletion">Code:Completion</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Code-Completion.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Code:Completion</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="codediagnostic" class="level2">
+<h2 class="anchored" data-anchor-id="codediagnostic">Code:Diagnostic</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Code-Diagnostic.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Code:Diagnostic</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="console" class="level2">
+<h2 class="anchored" data-anchor-id="console">Console</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Console.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Console</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="appearance" class="level2">
+<h2 class="anchored" data-anchor-id="appearance">Appearance</h2>
+<p>What font to use is up to you, but use a fixed-width font. I like <a href="https://www.fontsquirrel.com/fonts/fira-code">fira-code</a>. Courier or Monaco are good alternatives.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Appearance.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Appearance</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="pane-layout-1" class="level2">
+<h2 class="anchored" data-anchor-id="pane-layout-1">Pane layout 1</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Pane-Layout-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Pane layout 1</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="pane-layout-2" class="level2">
+<h2 class="anchored" data-anchor-id="pane-layout-2">Pane layout 2</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Pane-Layout-2.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Pane layout 2</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="packagesmanagement" class="level2">
+<h2 class="anchored" data-anchor-id="packagesmanagement">Packages:Management</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Packages-Management.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Packages:Management</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="packagesdevelopment" class="level2">
+<h2 class="anchored" data-anchor-id="packagesdevelopment">Packages:Development</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Packages-Development.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Packages:Development</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="packagescc" class="level2">
+<h2 class="anchored" data-anchor-id="packagescc">Packages:C/C++</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Packages-Development-c.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Packages:C/C++</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="r-markdownbasic" class="level2">
+<h2 class="anchored" data-anchor-id="r-markdownbasic">R Markdown:Basic</h2>
+<p>See <a href="https://bookdown.org/yihui/rmarkdown-cookbook/working-directory.html">rmarkdown-cookbook chapter 16</a> for details. We select “Document” for where to evaluate chunck, hence our “working directory will be the directory where our R Notebook is placed.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="R-Markdown-Basic.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">R Markdown:Basic</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="r-markdown-advanced" class="level2">
+<h2 class="anchored" data-anchor-id="r-markdown-advanced">R Markdown Advanced</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="R-Markdown-Advanced.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">R Markdown:Advanced</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="r-markdown-visual" class="level2">
+<h2 class="anchored" data-anchor-id="r-markdown-visual">R Markdown Visual</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="R-Markdown-Visual.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">R Markdown:Visual</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="r-markdown-citations" class="level2">
+<h2 class="anchored" data-anchor-id="r-markdown-citations">R Markdown Citations</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="R-Markdown-Citations.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">R Markdown:Citations. Note! <strong>We will soon be changing <em>Use libraries:,</em> but <em>My Library</em> is OK for now.</strong></figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="r-markdown-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="r-markdown-quarto">R Markdown Quarto</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="R-Markdown-Quarto.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">R Markdown:Quarto. <strong>Note! This pane does not exists in the latest version since Quarto now is the default.</strong></figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="python" class="level2">
+<h2 class="anchored" data-anchor-id="python">Python</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Python.png" class="img-fluid figure-img" width="724"></p>
+<p></p><figcaption class="figure-caption">Python</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="sweave" class="level2">
+<h2 class="anchored" data-anchor-id="sweave">Sweave</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sweave.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Sweave</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="spelling" class="level2">
+<h2 class="anchored" data-anchor-id="spelling">Spelling</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Spelling.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Spelling</figcaption><p></p>
+</figure>
+</div>
+<p>Choose <code>Install More Languages...</code>from the <code>Main dictionary language:</code> drop-down menu. Norwegian should now be in the menu.</p>
+</section>
+<section id="gitsvn" class="level2">
+<h2 class="anchored" data-anchor-id="gitsvn">Git/SVN</h2>
+<p>We are only going to use Git so SVN is not to important.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Git-SVN.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Git/SVN</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="publishing" class="level2">
+<h2 class="anchored" data-anchor-id="publishing">Publishing</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Publishing.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Publishing</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="terminalgeneral" class="level2">
+<h2 class="anchored" data-anchor-id="terminalgeneral">Terminal:General</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Terminal-General.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Terminal:General</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="terminalclosing" class="level2">
+<h2 class="anchored" data-anchor-id="terminalclosing">Terminal:Closing</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Terminal-Closing.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Terminal:Closing</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="accessibilitygeneral" class="level2">
+<h2 class="anchored" data-anchor-id="accessibilitygeneral">Accessibility:General</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Accessibility-General.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Accessibility:General</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="accessibilityannouncements" class="level2">
+<h2 class="anchored" data-anchor-id="accessibilityannouncements">Accessibility:Announcements</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Accessibility-Announcements.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Accessibility:Announcements</figcaption><p></p>
+</figure>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

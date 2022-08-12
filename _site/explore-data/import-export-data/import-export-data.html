@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.0.36">
+
+  <meta name="author" content="ag@hvl.no">
+  <title>MSB105 - Import/Export Data</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-captioned.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-captioned) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-captioned .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-captioned .callout-caption  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-captioned.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-captioned.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-caption {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-caption {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-caption {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-captioned .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-captioned .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-captioned) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-caption {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-caption {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-caption {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-caption {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-caption {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="center">
+  <h1 class="title">Import/Export Data</h1>
+  <p class="author">ag@hvl.no</p>
+</section>
+
+<section class="slide level2">
+
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(PxWebApiData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="workflow-chap.-4" class="slide level2">
+<h2>Workflow (chap.&nbsp;4)</h2>
+<p><a href="https://r4ds.had.co.nz/workflow-basics.html">Chap. 4 Workflow: basics</a></p>
+<ul>
+<li class="fragment">I think we have covered most of this already</li>
+<li class="fragment">A quick skim of the chapter is recommended.</li>
+<li class="fragment">One noteworthy point is “fast printing”</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># cumbersome</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3</code></pre>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Fast, to assign and print on one line enclose </span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co"># in parentheses</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>(x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="getting-data-from-external-source.-chap.-11" class="slide level2">
+<h2>Getting data from external source. (chap.&nbsp;11)</h2>
+<ul>
+<li class="fragment">We will download some data from SSB.</li>
+<li class="fragment">We will get data from <a href="https://www.ssb.no/statbank/table/10540/">ssb tab. 10540</a> which gives us percentage of the workforce (split on age-group) that is unemployed.</li>
+<li class="fragment">We will get data for municipalities in Rogaland in the period Jan. 1999 to Dec.&nbsp;2002</li>
+</ul>
+</section>
+<section id="getting-data-from-external-source.-chap.-11-cont." class="slide level2">
+<h2>Getting data from external source. (chap.&nbsp;11) cont.</h2>
+<p><img data-src="RegLedige15-74-web.png" alt="Registrerte ledige 15–74 år">The SSB web page.</p>
+</section>
+<section id="getting-data-from-external-source.-chap.-11-cont.-1" class="slide level2">
+<h2>Getting data from external source. (chap.&nbsp;11) cont.</h2>
+<ul>
+<li class="fragment">We can get the data into R in (at least) two ways:
+<ol type="1">
+<li class="fragment">Use SSB web-app to select part of tables (up to 300000 cells max)</li>
+<li class="fragment">Use the SSB api (up to 800000 cells max)</li>
+</ol></li>
+</ul>
+</section>
+<section id="ssb-web-app" class="slide level2">
+<h2>SSB web-app</h2>
+<p>We can use the web-pages of SSB and download the data as .xlsx format and use the <code>read_xlsx()</code> function from the <code>readxl</code> package, <span class="citation" data-cites="R-readxl">(<a href="#/ref-R-readxl" role="doc-biblioref" onclick="return false;">Wickham and Bryan 2022</a>)</span></p>
+<p>Generate the table in xlsx-format</p>
+
+<img data-src="RegLedige15-74-xlsx.png" class="r-stretch quarto-figure-center"><p class="caption">The .xlsx File.</p></section>
+<section id="ssb-web-app-cont." class="slide level2">
+<h2>SSB web-app cont.</h2>
+<ul>
+<li class="fragment">As .csv</li>
+</ul>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="RegLedige15-74-web-csv.png"></p>
+<p></p><figcaption>The csv file RegLedige15-74-web-csv</figcaption><p></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="ssb-web-app-cont.-1" class="slide level2">
+<h2>SSB web-app cont.</h2>
+<p>Note that:</p>
+<ul>
+<li class="fragment">decimal point is ‘,’ and not ‘.’ in “Norwegian .csv files”
+<ul>
+<li class="fragment">decimal point in SSB semicolon separated files seems to be ‘.’</li>
+</ul></li>
+<li class="fragment">‘;’, not ‘,’, is used to separate values in “Norwegian .csv files”</li>
+<li class="fragment">To read the data into R we will use the classic functions from the <code>util</code> package <code>read.table()</code> and <code>read.csv2()</code>.
+<ul>
+<li class="fragment">The <code>read_table()</code> and <code>read_csv2()</code> functions are “modern” equivalents of these classics.</li>
+</ul></li>
+<li class="fragment">We use <code>read.table</code> since it’s possible to specify <code>dec = ""</code> and <code>sep = ""</code>.
+<ul>
+<li class="fragment"><p><code>read.csv2</code> is a form of <code>read.table()</code> that already uses these options.</p></li>
+<li class="fragment"><p>The modern ones uses <code>locale()</code>, by I could not get it to work properly.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="ssb-web-app-cont.-2" class="slide level2">
+<h2>SSB web-app cont.</h2>
+<ul>
+<li class="fragment">Under <code>Environment</code> in the upper right pane i R Studio there is also an <code>Import Dataset</code> menu.</li>
+<li class="fragment">Note that it gives an error for the .csv file (“multibyte character”).</li>
+</ul>
+</section>
+<section id="read-excel-file" class="slide level2">
+<h2>Read Excel file</h2>
+<ul>
+<li class="fragment">The <code>Tidyverse</code> library does not load the <code>readxl</code> package.
+<ul>
+<li class="fragment">To use the <code>read_xlsx()</code> function we will either have to use <code>readxl::read_xlsx()</code> or first load the <code>readxl</code> package with <code>library(readxl)</code></li>
+</ul></li>
+<li class="fragment">put the <code>library()</code> commands in an r-chunk called <em>setup</em> at the very start of your notebook.
+<ul>
+<li class="fragment">The chunk named <em>setup</em> will be run <em>every time</em> you render the quarto document.</li>
+</ul></li>
+<li class="fragment">If you haven’t got the <code>readxl</code> package you have to install it first.</li>
+</ul>
+</section>
+<section id="read-excel-file-cont." class="slide level2">
+<h2>Read Excel file cont.</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>RegHeltLedige <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(</span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="at">path =</span> <span class="st">"RegHeltLedige.xlsx"</span>, </span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="at">sheet =</span> <span class="st">"RegHeltLedige"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="at">skip =</span> <span class="dv">1</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>  )</span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co"># Have a look at the names generated</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="fu">names</span>(RegHeltLedige)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "...1"                          "...2"                         
+[3] "...3"                          "Registrert helt arbeidsledige"</code></pre>
+</div>
+</div>
+</section>
+<section id="read-excel-file-cont.-1" class="slide level2">
+<h2>Read Excel file cont.</h2>
+<ul>
+<li class="fragment">Check head of file. 15 first lines.</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">head</span>(RegHeltLedige, <span class="at">n =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 × 4
+   ...1           ...2     ...3    `Registrert helt arbeidsledige`
+   &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;                          
+ 1 1101 Eigersund 15-74 år 1999M01 1.5                            
+ 2 &lt;NA&gt;           &lt;NA&gt;     1999M02 1.5                            
+ 3 &lt;NA&gt;           &lt;NA&gt;     1999M03 1.3                            
+ 4 &lt;NA&gt;           &lt;NA&gt;     1999M04 1.8                            
+ 5 &lt;NA&gt;           &lt;NA&gt;     1999M05 1.3                            
+ 6 &lt;NA&gt;           &lt;NA&gt;     1999M06 1.4                            
+ 7 &lt;NA&gt;           &lt;NA&gt;     1999M07 2                              
+ 8 &lt;NA&gt;           &lt;NA&gt;     1999M08 2.4                            
+ 9 &lt;NA&gt;           &lt;NA&gt;     1999M09 1.9                            
+10 &lt;NA&gt;           &lt;NA&gt;     1999M10 1.6                            
+11 &lt;NA&gt;           &lt;NA&gt;     1999M11 1.5                            
+12 &lt;NA&gt;           &lt;NA&gt;     1999M12 1.6                            
+13 &lt;NA&gt;           &lt;NA&gt;     2000M01 2.1                            
+14 &lt;NA&gt;           &lt;NA&gt;     2000M02 1.9                            
+15 &lt;NA&gt;           &lt;NA&gt;     2000M03 2                              </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="read-excel-file-cont.-2" class="slide level2">
+<h2>Read Excel file cont.</h2>
+<ul>
+<li class="fragment">Check head of file, where age_group change. Lines 45:55.</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">print</span>(RegHeltLedige[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">45</span><span class="sc">:</span><span class="dv">55</span>),], <span class="at">n =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 16 × 4
+   ...1           ...2     ...3    `Registrert helt arbeidsledige`
+   &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;                          
+ 1 1101 Eigersund 15-74 år 1999M01 1.5                            
+ 2 &lt;NA&gt;           &lt;NA&gt;     1999M02 1.5                            
+ 3 &lt;NA&gt;           &lt;NA&gt;     1999M03 1.3                            
+ 4 &lt;NA&gt;           &lt;NA&gt;     1999M04 1.8                            
+ 5 &lt;NA&gt;           &lt;NA&gt;     1999M05 1.3                            
+ 6 &lt;NA&gt;           &lt;NA&gt;     2002M09 2.1                            
+ 7 &lt;NA&gt;           &lt;NA&gt;     2002M10 2.1                            
+ 8 &lt;NA&gt;           &lt;NA&gt;     2002M11 3                              
+ 9 &lt;NA&gt;           &lt;NA&gt;     2002M12 2.9                            
+10 &lt;NA&gt;           15-29 år 1999M01 2                              
+11 &lt;NA&gt;           &lt;NA&gt;     1999M02 1.8                            
+12 &lt;NA&gt;           &lt;NA&gt;     1999M03 1.7                            
+13 &lt;NA&gt;           &lt;NA&gt;     1999M04 2.5                            
+14 &lt;NA&gt;           &lt;NA&gt;     1999M05 1.7                            
+15 &lt;NA&gt;           &lt;NA&gt;     1999M06 1.9                            
+16 &lt;NA&gt;           &lt;NA&gt;     1999M07 2.6                            </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="read-excel-file-cont.-3" class="slide level2">
+<h2>Read Excel file cont.</h2>
+<p>We must fix variable names</p>
+<p>We must fill in for NAs in municipality names and age group</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">names</span>(RegHeltLedige) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"knr_kname"</span>, <span class="st">"age_group"</span>, <span class="st">"year_month"</span>, <span class="st">"unempl"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">head</span>(RegHeltLedige, <span class="at">n =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  knr_kname      age_group year_month unempl
+  &lt;chr&gt;          &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt; 
+1 1101 Eigersund 15-74 år  1999M01    1.5   
+2 &lt;NA&gt;           &lt;NA&gt;      1999M02    1.5   
+3 &lt;NA&gt;           &lt;NA&gt;      1999M03    1.3   </code></pre>
+</div>
+</div>
+</section>
+<section id="read-excel-file-cont.-4" class="slide level2">
+<h2>Read Excel file cont.</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Fill in for NA</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>RegHeltLedige <span class="ot">&lt;-</span> <span class="fu">fill</span>(</span>
+<span id="cb14-3"><a href="#cb14-3"></a>  <span class="at">data =</span> RegHeltLedige,</span>
+<span id="cb14-4"><a href="#cb14-4"></a>  <span class="co"># column to fill, Note use of c() when multiple columns</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>  <span class="fu">c</span>(knr_kname, age_group),</span>
+<span id="cb14-6"><a href="#cb14-6"></a>  <span class="co"># </span><span class="al">NOTE</span><span class="co">! .direction, NOT direction</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a>  <span class="at">.direction =</span> <span class="st">"down"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="read-excel-file-cont.-5" class="slide level2">
+<h2>Read Excel file cont.</h2>
+<ul>
+<li class="fragment">Re-check head of file</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">print</span>(RegHeltLedige[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">45</span><span class="sc">:</span><span class="dv">55</span>),], <span class="at">n =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 16 × 4
+   knr_kname      age_group year_month unempl
+   &lt;chr&gt;          &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt; 
+ 1 1101 Eigersund 15-74 år  1999M01    1.5   
+ 2 1101 Eigersund 15-74 år  1999M02    1.5   
+ 3 1101 Eigersund 15-74 år  1999M03    1.3   
+ 4 1101 Eigersund 15-74 år  1999M04    1.8   
+ 5 1101 Eigersund 15-74 år  1999M05    1.3   
+ 6 1101 Eigersund 15-74 år  2002M09    2.1   
+ 7 1101 Eigersund 15-74 år  2002M10    2.1   
+ 8 1101 Eigersund 15-74 år  2002M11    3     
+ 9 1101 Eigersund 15-74 år  2002M12    2.9   
+10 1101 Eigersund 15-29 år  1999M01    2     
+11 1101 Eigersund 15-29 år  1999M02    1.8   
+12 1101 Eigersund 15-29 år  1999M03    1.7   
+13 1101 Eigersund 15-29 år  1999M04    2.5   
+14 1101 Eigersund 15-29 år  1999M05    1.7   
+15 1101 Eigersund 15-29 år  1999M06    1.9   
+16 1101 Eigersund 15-29 år  1999M07    2.6   </code></pre>
+</div>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li class="fragment">Ok, NAs filled in</li>
+</ul>
+</div>
+</section>
+<section id="read-excel-file-cont.-6" class="slide level2">
+<h2>Read Excel file cont.</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">head</span>(<span class="fu">as.data.frame</span>(RegHeltLedige), <span class="at">n =</span><span class="dv">200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>               knr_kname age_group year_month unempl
+1         1101 Eigersund  15-74 år    1999M01    1.5
+2         1101 Eigersund  15-74 år    1999M02    1.5
+3         1101 Eigersund  15-74 år    1999M03    1.3
+4         1101 Eigersund  15-74 år    1999M04    1.8
+5         1101 Eigersund  15-74 år    1999M05    1.3
+6         1101 Eigersund  15-74 år    1999M06    1.4
+7         1101 Eigersund  15-74 år    1999M07      2
+8         1101 Eigersund  15-74 år    1999M08    2.4
+9         1101 Eigersund  15-74 år    1999M09    1.9
+10        1101 Eigersund  15-74 år    1999M10    1.6
+11        1101 Eigersund  15-74 år    1999M11    1.5
+12        1101 Eigersund  15-74 år    1999M12    1.6
+13        1101 Eigersund  15-74 år    2000M01    2.1
+14        1101 Eigersund  15-74 år    2000M02    1.9
+15        1101 Eigersund  15-74 år    2000M03      2
+16        1101 Eigersund  15-74 år    2000M04    2.7
+17        1101 Eigersund  15-74 år    2000M05    2.6
+18        1101 Eigersund  15-74 år    2000M06    3.3
+19        1101 Eigersund  15-74 år    2000M07    4.9
+20        1101 Eigersund  15-74 år    2000M08    3.7
+21        1101 Eigersund  15-74 år    2000M09    3.1
+22        1101 Eigersund  15-74 år    2000M10    2.6
+23        1101 Eigersund  15-74 år    2000M11    2.6
+24        1101 Eigersund  15-74 år    2000M12      3
+25        1101 Eigersund  15-74 år    2001M01    2.8
+26        1101 Eigersund  15-74 år    2001M02    2.6
+27        1101 Eigersund  15-74 år    2001M03    2.6
+28        1101 Eigersund  15-74 år    2001M04    2.7
+29        1101 Eigersund  15-74 år    2001M05    2.3
+30        1101 Eigersund  15-74 år    2001M06    2.1
+31        1101 Eigersund  15-74 år    2001M07    2.7
+32        1101 Eigersund  15-74 år    2001M08    2.6
+33        1101 Eigersund  15-74 år    2001M09    2.2
+34        1101 Eigersund  15-74 år    2001M10      2
+35        1101 Eigersund  15-74 år    2001M11      2
+36        1101 Eigersund  15-74 år    2001M12    2.1
+37        1101 Eigersund  15-74 år    2002M01    2.3
+38        1101 Eigersund  15-74 år    2002M02    2.2
+39        1101 Eigersund  15-74 år    2002M03    2.1
+40        1101 Eigersund  15-74 år    2002M04    2.3
+41        1101 Eigersund  15-74 år    2002M05      2
+42        1101 Eigersund  15-74 år    2002M06    1.7
+43        1101 Eigersund  15-74 år    2002M07    2.4
+44        1101 Eigersund  15-74 år    2002M08    2.4
+45        1101 Eigersund  15-74 år    2002M09    2.1
+46        1101 Eigersund  15-74 år    2002M10    2.1
+47        1101 Eigersund  15-74 år    2002M11      3
+48        1101 Eigersund  15-74 år    2002M12    2.9
+49        1101 Eigersund  15-29 år    1999M01      2
+50        1101 Eigersund  15-29 år    1999M02    1.8
+51        1101 Eigersund  15-29 år    1999M03    1.7
+52        1101 Eigersund  15-29 år    1999M04    2.5
+53        1101 Eigersund  15-29 år    1999M05    1.7
+54        1101 Eigersund  15-29 år    1999M06    1.9
+55        1101 Eigersund  15-29 år    1999M07    2.6
+56        1101 Eigersund  15-29 år    1999M08    2.9
+57        1101 Eigersund  15-29 år    1999M09    2.1
+58        1101 Eigersund  15-29 år    1999M10    2.1
+59        1101 Eigersund  15-29 år    1999M11      2
+60        1101 Eigersund  15-29 år    1999M12    2.5
+61        1101 Eigersund  15-29 år    2000M01      3
+62        1101 Eigersund  15-29 år    2000M02    3.3
+63        1101 Eigersund  15-29 år    2000M03    2.7
+64        1101 Eigersund  15-29 år    2000M04    3.9
+65        1101 Eigersund  15-29 år    2000M05    3.6
+66        1101 Eigersund  15-29 år    2000M06    4.8
+67        1101 Eigersund  15-29 år    2000M07    6.1
+68        1101 Eigersund  15-29 år    2000M08    5.1
+69        1101 Eigersund  15-29 år    2000M09      4
+70        1101 Eigersund  15-29 år    2000M10    3.3
+71        1101 Eigersund  15-29 år    2000M11    2.9
+72        1101 Eigersund  15-29 år    2000M12    3.5
+73        1101 Eigersund  15-29 år    2001M01    3.8
+74        1101 Eigersund  15-29 år    2001M02    3.4
+75        1101 Eigersund  15-29 år    2001M03    3.5
+76        1101 Eigersund  15-29 år    2001M04    3.3
+77        1101 Eigersund  15-29 år    2001M05    2.9
+78        1101 Eigersund  15-29 år    2001M06    2.2
+79        1101 Eigersund  15-29 år    2001M07    3.1
+80        1101 Eigersund  15-29 år    2001M08    3.7
+81        1101 Eigersund  15-29 år    2001M09    2.9
+82        1101 Eigersund  15-29 år    2001M10    2.5
+83        1101 Eigersund  15-29 år    2001M11    2.6
+84        1101 Eigersund  15-29 år    2001M12    2.7
+85        1101 Eigersund  15-29 år    2002M01    2.8
+86        1101 Eigersund  15-29 år    2002M02    2.7
+87        1101 Eigersund  15-29 år    2002M03    2.7
+88        1101 Eigersund  15-29 år    2002M04    2.6
+89        1101 Eigersund  15-29 år    2002M05      2
+90        1101 Eigersund  15-29 år    2002M06    2.2
+91        1101 Eigersund  15-29 år    2002M07    3.1
+92        1101 Eigersund  15-29 år    2002M08    3.4
+93        1101 Eigersund  15-29 år    2002M09    2.6
+94        1101 Eigersund  15-29 år    2002M10    2.7
+95        1101 Eigersund  15-29 år    2002M11    3.9
+96        1101 Eigersund  15-29 år    2002M12    3.8
+97        1101 Eigersund  30-74 år    1999M01    1.3
+98        1101 Eigersund  30-74 år    1999M02    1.3
+99        1101 Eigersund  30-74 år    1999M03    1.1
+100       1101 Eigersund  30-74 år    1999M04    1.5
+101       1101 Eigersund  30-74 år    1999M05    1.2
+102       1101 Eigersund  30-74 år    1999M06    1.2
+103       1101 Eigersund  30-74 år    1999M07    1.7
+104       1101 Eigersund  30-74 år    1999M08    2.2
+105       1101 Eigersund  30-74 år    1999M09    1.8
+106       1101 Eigersund  30-74 år    1999M10    1.5
+107       1101 Eigersund  30-74 år    1999M11    1.3
+108       1101 Eigersund  30-74 år    1999M12    1.2
+109       1101 Eigersund  30-74 år    2000M01    1.8
+110       1101 Eigersund  30-74 år    2000M02    1.4
+111       1101 Eigersund  30-74 år    2000M03    1.7
+112       1101 Eigersund  30-74 år    2000M04    2.2
+113       1101 Eigersund  30-74 år    2000M05    2.2
+114       1101 Eigersund  30-74 år    2000M06    2.7
+115       1101 Eigersund  30-74 år    2000M07    4.5
+116       1101 Eigersund  30-74 år    2000M08    3.1
+117       1101 Eigersund  30-74 år    2000M09    2.8
+118       1101 Eigersund  30-74 år    2000M10    2.3
+119       1101 Eigersund  30-74 år    2000M11    2.6
+120       1101 Eigersund  30-74 år    2000M12    2.9
+121       1101 Eigersund  30-74 år    2001M01    2.4
+122       1101 Eigersund  30-74 år    2001M02    2.3
+123       1101 Eigersund  30-74 år    2001M03    2.2
+124       1101 Eigersund  30-74 år    2001M04    2.5
+125       1101 Eigersund  30-74 år    2001M05    2.1
+126       1101 Eigersund  30-74 år    2001M06      2
+127       1101 Eigersund  30-74 år    2001M07    2.6
+128       1101 Eigersund  30-74 år    2001M08    2.2
+129       1101 Eigersund  30-74 år    2001M09    1.9
+130       1101 Eigersund  30-74 år    2001M10    1.9
+131       1101 Eigersund  30-74 år    2001M11    1.8
+132       1101 Eigersund  30-74 år    2001M12    1.9
+133       1101 Eigersund  30-74 år    2002M01    2.1
+134       1101 Eigersund  30-74 år    2002M02      2
+135       1101 Eigersund  30-74 år    2002M03    1.8
+136       1101 Eigersund  30-74 år    2002M04    2.2
+137       1101 Eigersund  30-74 år    2002M05    2.1
+138       1101 Eigersund  30-74 år    2002M06    1.5
+139       1101 Eigersund  30-74 år    2002M07    2.2
+140       1101 Eigersund  30-74 år    2002M08      2
+141       1101 Eigersund  30-74 år    2002M09    1.9
+142       1101 Eigersund  30-74 år    2002M10    1.9
+143       1101 Eigersund  30-74 år    2002M11    2.7
+144       1101 Eigersund  30-74 år    2002M12    2.6
+145 1102 Sandnes (-2019)  15-74 år    1999M01    2.2
+146 1102 Sandnes (-2019)  15-74 år    1999M02    2.2
+147 1102 Sandnes (-2019)  15-74 år    1999M03    2.2
+148 1102 Sandnes (-2019)  15-74 år    1999M04    2.1
+149 1102 Sandnes (-2019)  15-74 år    1999M05      2
+150 1102 Sandnes (-2019)  15-74 år    1999M06    2.3
+151 1102 Sandnes (-2019)  15-74 år    1999M07    2.7
+152 1102 Sandnes (-2019)  15-74 år    1999M08    2.7
+153 1102 Sandnes (-2019)  15-74 år    1999M09    2.4
+154 1102 Sandnes (-2019)  15-74 år    1999M10    2.4
+155 1102 Sandnes (-2019)  15-74 år    1999M11    2.5
+156 1102 Sandnes (-2019)  15-74 år    1999M12    2.4
+157 1102 Sandnes (-2019)  15-74 år    2000M01    2.9
+158 1102 Sandnes (-2019)  15-74 år    2000M02    2.7
+159 1102 Sandnes (-2019)  15-74 år    2000M03    2.6
+160 1102 Sandnes (-2019)  15-74 år    2000M04    2.7
+161 1102 Sandnes (-2019)  15-74 år    2000M05    2.8
+162 1102 Sandnes (-2019)  15-74 år    2000M06    2.8
+163 1102 Sandnes (-2019)  15-74 år    2000M07    3.1
+164 1102 Sandnes (-2019)  15-74 år    2000M08    3.2
+165 1102 Sandnes (-2019)  15-74 år    2000M09    3.1
+166 1102 Sandnes (-2019)  15-74 år    2000M10    3.1
+167 1102 Sandnes (-2019)  15-74 år    2000M11    3.2
+168 1102 Sandnes (-2019)  15-74 år    2000M12    3.3
+169 1102 Sandnes (-2019)  15-74 år    2001M01    3.3
+170 1102 Sandnes (-2019)  15-74 år    2001M02    3.1
+171 1102 Sandnes (-2019)  15-74 år    2001M03    3.1
+172 1102 Sandnes (-2019)  15-74 år    2001M04    2.8
+173 1102 Sandnes (-2019)  15-74 år    2001M05    2.6
+174 1102 Sandnes (-2019)  15-74 år    2001M06    2.6
+175 1102 Sandnes (-2019)  15-74 år    2001M07    2.7
+176 1102 Sandnes (-2019)  15-74 år    2001M08    2.9
+177 1102 Sandnes (-2019)  15-74 år    2001M09    2.8
+178 1102 Sandnes (-2019)  15-74 år    2001M10    2.9
+179 1102 Sandnes (-2019)  15-74 år    2001M11      3
+180 1102 Sandnes (-2019)  15-74 år    2001M12      3
+181 1102 Sandnes (-2019)  15-74 år    2002M01    3.5
+182 1102 Sandnes (-2019)  15-74 år    2002M02    3.1
+183 1102 Sandnes (-2019)  15-74 år    2002M03    3.1
+184 1102 Sandnes (-2019)  15-74 år    2002M04      3
+185 1102 Sandnes (-2019)  15-74 år    2002M05    2.9
+186 1102 Sandnes (-2019)  15-74 år    2002M06    2.9
+187 1102 Sandnes (-2019)  15-74 år    2002M07    3.3
+188 1102 Sandnes (-2019)  15-74 år    2002M08    3.4
+189 1102 Sandnes (-2019)  15-74 år    2002M09    3.2
+190 1102 Sandnes (-2019)  15-74 år    2002M10    3.3
+191 1102 Sandnes (-2019)  15-74 år    2002M11    3.2
+192 1102 Sandnes (-2019)  15-74 år    2002M12    3.3
+193 1102 Sandnes (-2019)  15-29 år    1999M01    2.8
+194 1102 Sandnes (-2019)  15-29 år    1999M02    2.7
+195 1102 Sandnes (-2019)  15-29 år    1999M03    2.5
+196 1102 Sandnes (-2019)  15-29 år    1999M04    2.4
+197 1102 Sandnes (-2019)  15-29 år    1999M05    2.3
+198 1102 Sandnes (-2019)  15-29 år    1999M06      3
+199 1102 Sandnes (-2019)  15-29 år    1999M07    3.3
+200 1102 Sandnes (-2019)  15-29 år    1999M08    3.2</code></pre>
+</div>
+</div>
+</section>
+<section id="write-.xlsx-files" class="slide level2">
+<h2>Write .xlsx files</h2>
+<ul>
+<li class="fragment">Be future proof, write .csv files</li>
+<li class="fragment"><code>readxl</code> packages does not have any <code>write*()</code> function</li>
+<li class="fragment">If you really have to write out an Excel worksheet try the <code>writexl</code> package</li>
+</ul>
+</section>
+<section id="read-.csv-comma-separated-values-file" class="slide level2">
+<h2>Read .csv (Comma Separated Values) file</h2>
+<ul>
+<li class="fragment">In Norway we use “,” as decimal sign.
+<ul>
+<li class="fragment">Not “.”</li>
+</ul></li>
+<li class="fragment">Hence our .csv files is really <em>semicolon</em> separated values.</li>
+<li class="fragment">We skip the first 3 lines and use the fourth as “header”, i.e.&nbsp;as variable names</li>
+<li class="fragment">SSB seems to be serving the files with iso-8859-1 encoding (or is it CP-1252?).
+<ul>
+<li class="fragment"><div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Terminal-File-I.png"></p>
+<p></p><figcaption>File -I command in Terminal</figcaption><p></p>
+</figure>
+</div></li>
+<li class="fragment"><p>The command might be <code>file -i</code> on linux and windows</p></li>
+<li class="fragment"><p>Those that find this very interesting might check out <a href="https://en.wikipedia.org/wiki/Windows-1252">Windows-1252</a></p>
+<ul>
+<li class="fragment">Thank God for unicode</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="read-csv-file-with-encoding" class="slide level2">
+<h2>Read csv file with encoding</h2>
+<ul>
+<li class="fragment">Select readr from the Import Dataset drop-down menu in the Environment pane in the upper right corner.</li>
+<li class="fragment">This menu selection uses the <span class="citation" data-cites="R-readr">Wickham, Hester, and Bryan (<a href="#/ref-R-readr" role="doc-biblioref" onclick="return false;">2022</a>)</span>.</li>
+</ul>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="env-import-data.png"></p>
+<p></p><figcaption>Import Dataset from Environment Pane.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="read-csv-file-with-encoding-cont." class="slide level2">
+<h2>Read csv file with encoding cont.</h2>
+
+<img data-src="readr-prob.png" width="574" class="r-stretch quarto-figure-center"><p class="caption">Readr error. Hit Return/Enter or click OK.</p><ul>
+<li class="fragment">This doesn’t look to good.</li>
+</ul>
+</section>
+<section id="read-csv-file-with-encoding-cont.-1" class="slide level2">
+<h2>Read csv file with encoding cont.</h2>
+<ul>
+<li class="fragment">Click <strong>Locale: Configure…</strong></li>
+<li class="fragment">Change:
+<ol type="1">
+<li class="fragment"><p>Encoding to ISO-8859-1</p></li>
+<li class="fragment"><p>SSB .csv download seems to be using ‘.’ as decimal marker</p></li>
+</ol></li>
+<li class="fragment">Click <strong>Configure</strong></li>
+</ul>
+</section>
+<section id="read-csv-file-with-encoding-cont.-2" class="slide level2">
+<h2>Read csv file with encoding cont.</h2>
+
+<img data-src="readr-enc2.png" class="r-stretch quarto-figure-center"><p class="caption">Wrong encoding, i.e.&nbsp;UTF. Change it to ISO-8859-1.</p></section>
+<section id="read-csv-file-with-encoding-cont.-3" class="slide level2">
+<h2>Read csv file with encoding cont.</h2>
+
+<img data-src="readr-enc3.png" class="r-stretch quarto-figure-center"><p class="caption">Changed encoding</p></section>
+<section id="read-csv-file-with-encoding-cont.-4" class="slide level2">
+<h2>Read csv file with encoding cont.</h2>
+
+<img data-src="readr-fixed.png" class="r-stretch quarto-figure-center"><p class="caption">Fixed readr problem.</p></section>
+<section id="read-csv-file-with-encoding-cont.-5" class="slide level2">
+<h2>Read csv file with encoding cont.</h2>
+<ul>
+<li class="fragment">Copy code and make sure that <code>library(readr)</code> is in the setup chunk.</li>
+</ul>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="readr-fixed-copy-code.png"></p>
+<p></p><figcaption>Copy the code into document.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="read-csv-file-with-encoding-update" class="slide level2">
+<h2>Read csv file with encoding update</h2>
+<ul>
+<li class="fragment">Code to read .csv file from SSB</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(</span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="co"># Change the file argument</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="at">file =</span> <span class="st">"RegHeltLedige.csv"</span>,</span>
+<span id="cb19-4"><a href="#cb19-4"></a>  <span class="at">delim =</span> <span class="st">";"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5"></a>  <span class="at">escape_double =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb19-6"><a href="#cb19-6"></a>  <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"ISO-8859-1"</span>),</span>
+<span id="cb19-7"><a href="#cb19-7"></a>  <span class="at">trim_ws =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb19-8"><a href="#cb19-8"></a>  <span class="at">skip =</span> <span class="dv">1</span>,</span>
+<span id="cb19-9"><a href="#cb19-9"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="read-csv-file-with-encoding-update-1" class="slide level2">
+<h2>Read csv file with encoding update</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">head</span>(my_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  region         alder    måned   `Registrert helt arbeidsledige`
+  &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;                             &lt;dbl&gt;
+1 1101 Eigersund 15-74 år 1999M01                             1.5
+2 1101 Eigersund 15-74 år 1999M02                             1.5
+3 1101 Eigersund 15-74 år 1999M03                             1.3
+4 1101 Eigersund 15-74 år 1999M04                             1.8
+5 1101 Eigersund 15-74 år 1999M05                             1.3
+6 1101 Eigersund 15-74 år 1999M06                             1.4</code></pre>
+</div>
+</div>
+</section>
+<section id="read-csv-file-with-encoding-update-2" class="slide level2">
+<h2>Read csv file with encoding update</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">summary</span>(my_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    region             alder              måned          
+ Length:3744        Length:3744        Length:3744       
+ Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character  
+                                                         
+                                                         
+                                                         
+ Registrert helt arbeidsledige
+ Min.   : 0.000               
+ 1st Qu.: 1.400               
+ Median : 2.100               
+ Mean   : 2.392               
+ 3rd Qu.: 3.100               
+ Max.   :33.700               </code></pre>
+</div>
+</div>
+</section>
+<section id="ssb-api-pxwebapidata" class="slide level2">
+<h2>SSB api (<code>PxWebApiData</code>)</h2>
+<ul>
+<li class="fragment"><p>We can also use the api provided by SSB together with the package <code>PxWebApiData</code> and download the data directly into R.</p></li>
+<li class="fragment"><p>See <a href="https://ssbviz.shinyapps.io/ApiData/">ApiData tutorial</a> for a simple introduction to the ApiData function in the <em>PxWebApiData</em> package.</p></li>
+<li class="fragment"><p>The <em>Introduction to PxWebApiData</em> vignette to the <em>PxWebApiData</em> package is also a nice introduction.</p></li>
+</ul>
+</section>
+<section id="check-metadata-10540-table" class="slide level2">
+<h2>Check metadata 10540 table</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>metadata_10540 <span class="ot">&lt;-</span> <span class="fu">ApiData</span>(</span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="st">"http://data.ssb.no/api/v0/en/table/10540"</span>,</span>
+<span id="cb24-3"><a href="#cb24-3"></a>  <span class="at">returnMetaFrames =</span> <span class="cn">TRUE</span></span>
+<span id="cb24-4"><a href="#cb24-4"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="check-metadata-10540-table-cont" class="slide level2">
+<h2>Check metadata 10540 table cont</h2>
+
+<img data-src="metadata-10540.png" class="r-stretch quarto-figure-center"><p class="caption">Metadata SSB table 10540</p></section>
+<section id="check-variables-10540-table" class="slide level2">
+<h2>Check variables 10540 table</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co">#Get more info about table</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="fu">ApiData</span>(</span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="st">"http://data.ssb.no/api/v0/en/table/10540"</span>,</span>
+<span id="cb25-4"><a href="#cb25-4"></a><span class="at">returnApiQuery =</span> <span class="cn">TRUE</span></span>
+<span id="cb25-5"><a href="#cb25-5"></a>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>{
+  "query": [
+    {
+      "code": "Region",
+      "selection": {
+        "filter": "item",
+        "values": ["0", "99", "9999"]
+      }
+    },
+    {
+      "code": "Alder",
+      "selection": {
+        "filter": "item",
+        "values": ["15-74", "15-29", "30-74"]
+      }
+    },
+    {
+      "code": "ContentsCode",
+      "selection": {
+        "filter": "item",
+        "values": ["RegHeltLedige"]
+      }
+    },
+    {
+      "code": "Tid",
+      "selection": {
+        "filter": "item",
+        "values": ["1999M01", "2020M03", "2020M11"]
+      }
+    }
+  ],
+  "response": {
+    "format": "json-stat"
+  }
+} </code></pre>
+</div>
+</div>
+</section>
+<section id="read-10540-table" class="slide level2">
+<h2>Read 10540 table</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>unemp99to02 <span class="ot">&lt;-</span> <span class="fu">ApiData</span>(</span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="st">"http://data.ssb.no/api/v0/en/table/10540"</span>,</span>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="co"># Have not been able to specify more complex regions</span></span>
+<span id="cb27-4"><a href="#cb27-4"></a>  <span class="at">Region =</span> <span class="fu">list</span>(<span class="st">"11*"</span>),</span>
+<span id="cb27-5"><a href="#cb27-5"></a>  <span class="at">Tid =</span> <span class="fu">c</span>(<span class="fu">paste</span>(</span>
+<span id="cb27-6"><a href="#cb27-6"></a>    <span class="fu">rep</span>(<span class="dv">1999</span><span class="sc">:</span><span class="dv">2002</span>, <span class="at">each =</span> <span class="dv">12</span>), </span>
+<span id="cb27-7"><a href="#cb27-7"></a>    <span class="st">"M"</span>,</span>
+<span id="cb27-8"><a href="#cb27-8"></a>    <span class="fu">sprintf</span>(<span class="st">"%02d"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>), </span>
+<span id="cb27-9"><a href="#cb27-9"></a>    <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb27-10"><a href="#cb27-10"></a>    )</span>
+<span id="cb27-11"><a href="#cb27-11"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="read-10540-table-1" class="slide level2">
+<h2>Read 10540 table</h2>
+<p>What is returned by <code>Region = list("11*")</code>?</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># Note the two $ signs</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="fu">unique</span>(unemp99to02<span class="sc">$</span><span class="st">`</span><span class="at">10540: Unemployed persons registered at the Employment Office (per cent), by region, age, contents and month</span><span class="st">`</span><span class="sc">$</span>region)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Rogaland"        "Eigersund"       "Sandnes (-2019)" "Stavanger"      
+ [5] "Haugesund"       "Sandnes"         "Sokndal"         "Lund"           
+ [9] "Bjerkreim"       "Hå"             </code></pre>
+</div>
+</div>
+</section>
+<section id="read-10540-table-2" class="slide level2">
+<h2>Read 10540 table</h2>
+<ul>
+<li class="fragment">Check structure of result</li>
+</ul>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="structure-result.png"></p>
+<p></p><figcaption>Structure of the answer from SSB server.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="bind-dataframes" class="slide level2">
+<h2>Bind dataframes</h2>
+<ul>
+<li class="fragment">We see that what’s returned is a list with two element</li>
+<li class="fragment">The elements are</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">is.data.frame</span>(unemp99to02<span class="sc">$</span><span class="st">`</span><span class="at">10540: Unemployed persons registered at the Employment Office (per cent), by region, age, contents and month</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">is.data.frame</span>(unemp99to02<span class="sc">$</span>dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="bind-dataframes-1" class="slide level2">
+<h2>Bind dataframes</h2>
+<ul>
+<li class="fragment">Bind the two dataframes together.</li>
+<li class="fragment">Each row is for the same observation (in both dataframes).</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># one labels df and one values df, cbind them</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a>unemp99to02_df <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
+<span id="cb34-3"><a href="#cb34-3"></a>  unemp99to02[[<span class="dv">1</span>]], </span>
+<span id="cb34-4"><a href="#cb34-4"></a>  unemp99to02[[<span class="dv">2</span>]]</span>
+<span id="cb34-5"><a href="#cb34-5"></a>  )</span>
+<span id="cb34-6"><a href="#cb34-6"></a><span class="fu">head</span>(unemp99to02_df, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    region         age                                               contents
+1 Rogaland 15-74 years Unemployed persons registered at the Employment Office
+2 Rogaland 15-74 years Unemployed persons registered at the Employment Office
+3 Rogaland 15-74 years Unemployed persons registered at the Employment Office
+4 Rogaland 15-74 years Unemployed persons registered at the Employment Office
+5 Rogaland 15-74 years Unemployed persons registered at the Employment Office
+    month value NAstatus Region Alder  ContentsCode     Tid value NAstatus
+1 1999M01   2.1     &lt;NA&gt;     11 15-74 RegHeltLedige 1999M01   2.1     &lt;NA&gt;
+2 1999M02   2.0     &lt;NA&gt;     11 15-74 RegHeltLedige 1999M02   2.0     &lt;NA&gt;
+3 1999M03   2.0     &lt;NA&gt;     11 15-74 RegHeltLedige 1999M03   2.0     &lt;NA&gt;
+4 1999M04   2.0     &lt;NA&gt;     11 15-74 RegHeltLedige 1999M04   2.0     &lt;NA&gt;
+5 1999M05   1.8     &lt;NA&gt;     11 15-74 RegHeltLedige 1999M05   1.8     &lt;NA&gt;</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="bind-dataframes-2" class="slide level2">
+<h2>Bind dataframes</h2>
+
+<img data-src="structure-df.png" class="r-stretch quarto-figure-center"><p class="caption">Structure of the new dataframe.</p></section>
+<section id="bind-dataframes-3" class="slide level2">
+<h2>Bind dataframes</h2>
+<ul>
+<li class="fragment">We pick the variables we need in the order we want them.</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="co">#pick and order variables. Pick them by name.</span></span>
+<span id="cb36-2"><a href="#cb36-2"></a>unemp99to02 <span class="ot">&lt;-</span> unemp99to02_df[, <span class="fu">c</span>(</span>
+<span id="cb36-3"><a href="#cb36-3"></a>  <span class="st">"Region"</span>,</span>
+<span id="cb36-4"><a href="#cb36-4"></a>  <span class="st">"region"</span>,</span>
+<span id="cb36-5"><a href="#cb36-5"></a>  <span class="st">"month"</span>,</span>
+<span id="cb36-6"><a href="#cb36-6"></a>  <span class="st">"age"</span>,</span>
+<span id="cb36-7"><a href="#cb36-7"></a>  <span class="st">"value"</span></span>
+<span id="cb36-8"><a href="#cb36-8"></a>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="set-the-names-we-want" class="slide level2">
+<h2>Set the names we want</h2>
+<ul>
+<li class="fragment">Give the variables names we like.</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">names</span>(unemp99to02)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Region" "region" "month"  "age"    "value" </code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="co"># new variable names</span></span>
+<span id="cb39-2"><a href="#cb39-2"></a><span class="fu">names</span>(unemp99to02) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb39-3"><a href="#cb39-3"></a>  <span class="st">"knr"</span>,</span>
+<span id="cb39-4"><a href="#cb39-4"></a>  <span class="st">"knavn"</span>,</span>
+<span id="cb39-5"><a href="#cb39-5"></a>  <span class="st">"y_m"</span>,</span>
+<span id="cb39-6"><a href="#cb39-6"></a>  <span class="st">"age"</span>,</span>
+<span id="cb39-7"><a href="#cb39-7"></a>  <span class="st">"unemp"</span></span>
+<span id="cb39-8"><a href="#cb39-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="write-the-data-as-a-csv-file." class="slide level2">
+<h2>Write the data as a csv file.</h2>
+<ul>
+<li class="fragment">Write data out to disk.</li>
+<li class="fragment">It is recommended to save data as .csv files (pure text) to be future proof.</li>
+<li class="fragment">Check that it looks OK</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="co"># Check that it looks OK</span></span>
+<span id="cb40-2"><a href="#cb40-2"></a><span class="fu">head</span>(unemp99to02, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  knr    knavn     y_m         age unemp
+1  11 Rogaland 1999M01 15-74 years   2.1
+2  11 Rogaland 1999M02 15-74 years   2.0
+3  11 Rogaland 1999M03 15-74 years   2.0
+4  11 Rogaland 1999M04 15-74 years   2.0
+5  11 Rogaland 1999M05 15-74 years   1.8</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="write-the-data-as-a-csv-file-cont." class="slide level2">
+<h2>Write the data as a csv file cont.</h2>
+<ul>
+<li class="fragment">Check that the dimensions seems reasonable.</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">dim</span>(unemp99to02)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4464    5</code></pre>
+</div>
+</div>
+<ul>
+<li class="fragment">Write the data in international CSV format.
+<ul>
+<li class="fragment"><p>Decimal separator: .</p></li>
+<li class="fragment"><p>Value separator: ,</p></li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="co"># save it as csv</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a><span class="fu">write.table</span>(unemp99to02,</span>
+<span id="cb44-3"><a href="#cb44-3"></a>  <span class="at">file =</span> <span class="st">"tmp.csv"</span>,</span>
+<span id="cb44-4"><a href="#cb44-4"></a>  <span class="at">dec =</span> <span class="st">"."</span>,</span>
+<span id="cb44-5"><a href="#cb44-5"></a>  <span class="at">sep =</span> <span class="st">","</span></span>
+<span id="cb44-6"><a href="#cb44-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+
+</div>
+</div>
+</section>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
+
+<div class="footer footer-default">
+<p><a href="../../index.html">MSB105</a></p>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-R-rmarkdown" class="csl-entry" role="doc-biblioentry">
+Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, Winston Chang, and Richard Iannone. 2022. <em>Rmarkdown: Dynamic Documents for r</em>. <a href="https://CRAN.R-project.org/package=rmarkdown">https://CRAN.R-project.org/package=rmarkdown</a>.
+</div>
+<div id="ref-R-PxWebApiData" class="csl-entry" role="doc-biblioentry">
+Langsrud, Øyvind, and Jan Bruusgaard. 2021. <em>PxWebApiData: PX-Web Data by API</em>. <a href="https://github.com/statisticsnorway/PxWebApiData">https://github.com/statisticsnorway/PxWebApiData</a>.
+</div>
+<div id="ref-R-base" class="csl-entry" role="doc-biblioentry">
+R Core Team. 2022. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
+</div>
+<div id="ref-R-nycflights13" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley. 2021a. <em>Nycflights13: Flights That Departed NYC in 2013</em>. <a href="https://github.com/hadley/nycflights13">https://github.com/hadley/nycflights13</a>.
+</div>
+<div id="ref-R-tidyverse" class="csl-entry" role="doc-biblioentry">
+———. 2021b. <em>Tidyverse: Easily Install and Load the Tidyverse</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.
+</div>
+<div id="ref-tidyverse2019" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the <span class="nocase">tidyverse</span>.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
+</div>
+<div id="ref-R-readxl" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, and Jennifer Bryan. 2022. <em>Readxl: Read Excel Files</em>. <a href="https://CRAN.R-project.org/package=readxl">https://CRAN.R-project.org/package=readxl</a>.
+</div>
+<div id="ref-R-readr" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Jim Hester, and Jennifer Bryan. 2022. <em>Readr: Read Rectangular Text Data</em>. <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a>.
+</div>
+<div id="ref-rmarkdown2018" class="csl-entry" role="doc-biblioentry">
+Xie, Yihui, J. J. Allaire, and Garrett Grolemund. 2018. <em>R Markdown: The Definitive Guide</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://bookdown.org/yihui/rmarkdown">https://bookdown.org/yihui/rmarkdown</a>.
+</div>
+<div id="ref-rmarkdown2020" class="csl-entry" role="doc-biblioentry">
+Xie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. <em>R Markdown Cookbook</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://bookdown.org/yihui/rmarkdown-cookbook">https://bookdown.org/yihui/rmarkdown-cookbook</a>.
+</div>
+</div>
+</section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'smaller': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': true,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          // dispatch for htmlwidgets
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for reveal
+        if (window.Reveal) {
+          window.Reveal.addEventListener("slidechanged", function(event) {
+            fireSlideChanged(event.previousSlide, event.currentSlide);
+          });
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        target: function(trigger) {
+          return trigger.previousElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        setTimeout(function() {
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto-reveal',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          let href = ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+        tippyHover(ref, function() {
+          var popup = window.document.createElement('div');
+          cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    });
+    </script>
+    
+
+</body></html>
