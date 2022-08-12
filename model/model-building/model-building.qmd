@@ -1,9 +1,759 @@
 ---
 title: "Model building"
-format: revealjs
+author: "ag"
+format:
+  revealjs:
+        theme: simple
+        footer: '[MSB105](/index.html)'
+        reveal_options:
+        code-fold: show
+        incremental: true
+        smaller: true
+        scrollable: true
+        slide-number: c/t
 editor: visual
+editor_options:
+  markdown:
+    wrap: 72
+    canonical: true
+    chunk_output_type: console
+echo: true
+eval: true
+bibliography: ag_model_building.bib
+nocite: '@*'
 ---
 
-::: callout-note
-## Just a place holder
-:::
+```{r setup}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(modelr)
+  options(na.action = na.exclude)
+  library(nycflights13)
+  library(lubridate)
+  library(tseries)
+  library(patchwork)
+  library(hexbin)
+})
+```
+
+```{r}
+# create a bib file for the R packages
+# used in this document
+# Note! Needs to do a touch ag_model_building.bib in terminal before first run
+# else stops when bibliography: "ag_model_building.bib" not found in YAML
+knitr::write_bib(
+  c(
+    "tidyverse",
+    "modelr",
+    "nycflights13",
+    "lubridate",
+    "tseries",
+    "patchwork",
+    "hexbin"
+    ),
+  file = "ag_model_building.bib"
+  )
+```
+
+## Introduction
+
+-   Will look at two models
+    -   Diamonds (data in ggplot2)
+    -   NYCflights13 (data in nycflights13) also needs lubridate
+-   Will follow r4ds
+
+## Diamonds
+
+-   In the dataset diamonds of lower quality seems to obtain higher
+    prices
+-   Worse cut higher price
+
+. . .
+
+```{r, eval=FALSE}
+ggplot(diamonds, aes(cut, price)) + geom_boxplot() +
+  ggtitle("The connection between quality of cut and price")
+```
+
+## Diamonds {.smaller}
+
+```{r, echo=FALSE}
+ggplot(diamonds, aes(cut, price)) + geom_boxplot() +
+  ggtitle("The connection between quality of cut and price")
+```
+
+## Diamonds
+
+```{r, eval=FALSE}
+ggplot(diamonds, aes(color, price)) + geom_boxplot() +
+  ggtitle("The connection between quality of colour and price")
+```
+
+## Diamonds
+
+```{r, echo=FALSE}
+ggplot(diamonds, aes(color, price)) + geom_boxplot() +
+  ggtitle("The connection between quality of colour and price")
+```
+
+## Diamonds
+
+```{r, eval=FALSE}
+ggplot(diamonds, aes(clarity, price)) + geom_boxplot() +
+  ggtitle("The connection between clarity and price")
+```
+
+## Diamonds
+
+```{r, echo=FALSE}
+ggplot(diamonds, aes(clarity, price)) + geom_boxplot() +
+  ggtitle("The connection between clarity and price")
+```
+
+## What's going on?
+
+-   Confounding variable
+-   A missing variable that is negatively correlated with the variables
+    above
+    -   Size, bigger diamonds are often of less quality, but
+    -   large diamonds sell for a higher price
+    -   size often measured by weight, *carats*
+
+## Diamonds 2; exclude big diamonds
+
+```{r}
+diamonds2 <- diamonds %>% 
+  filter(carat <= 2.5)
+```
+
+## Connection between size and price
+
+```{r, eval=FALSE}
+g1 <- ggplot(data = diamonds2) + 
+  geom_point(mapping = aes(x = carat, y = price), 
+             size = 0.3,
+             alpha = 0.05
+             )
+g2 <- ggplot(diamonds2, aes(x = carat, y = price)) + 
+  geom_hex(bins = 50)
+# made possible by patchwork
+g1 + g2
+```
+
+## Connection between size and price
+
+```{r, echo=FALSE}
+g1 <- ggplot(data = diamonds2) + 
+  geom_point(mapping = aes(x = carat, y = price), 
+             size = 0.3,
+             alpha = 0.05
+             )
+g2 <- ggplot(diamonds2, aes(x = carat, y = price)) + 
+  geom_hex(bins = 50)
+# made possible by patchwork
+g1 + g2
+```
+
+## Non-linear relationship between carat and price
+
+-   Transform the two variables to get rid of the non-linearity
+-   Use ln (`log()`) instead of log2,since the former is a more common
+    transformation in econometrics
+-   log log gives us an elasticity (norsk: elastisitet)
+-   p percentage change in size (carat) gives
+    $e^{ln((100+p)/100)\hat{\beta}}$ percentage change in price.
+
+## Non-linear relationship between carat and price
+
+```{r, echo = TRUE, eval = FALSE}
+g3 <- ggplot(data = diamonds2) + 
+  geom_point(mapping = aes(x = log(carat), y = log(price)), 
+             size = 0.3,
+             alpha = 0.05
+  )
+g4 <- ggplot(diamonds2, aes(x = log(carat), y = log(price))) + 
+  geom_hex(bins = 50)
+g3 + g4
+```
+
+## Non-linear relationship between carat and price
+
+```{r, echo = FALSE, eval = TRUE}
+g3 <- ggplot(data = diamonds2) + 
+  geom_point(mapping = aes(x = log(carat), y = log(price)), 
+             size = 0.3,
+             alpha = 0.05
+  )
+g4 <- ggplot(diamonds2, aes(x = log(carat), y = log(price))) + 
+  geom_hex(bins = 50)
+g3 + g4
+```
+
+## Model log log
+
+```{r}
+mod_ll <- 'log(price) ~ log(carat)'
+lm_ll <- lm(formula = mod_ll, data = diamonds2)
+coefficients(lm_ll)
+```
+
+## Model log log cont.
+
+-   How much will a 10% increase in size on average increase price?
+    -   $e^{ln((100+s)/100)\hat{\beta}} = e^{ln((100+10)/100)·1.6814} \approx 0,16$,
+        dvs 10% økning i størrelse gir 16% økning i pris (husk at
+        `log()` er ln i R)
+-   How much will a 1% increase in size on average increase price?
+    -   $e^{ln((100+s)/100)\hat{\beta}} = e^{ln((100+1)/100)·1.6814} \approx 0,01673$,
+        dvs 1% økning i størrelse gir 1,67% økning i pris. For small
+        changes in size the relative price change is approximately equal
+        to the coefficient (1.6814).
+
+## Checking residuals for normality
+
+```{r, eval=FALSE}
+diamonds2 <- diamonds2 %>% 
+  add_residuals(lm_ll, var = "resid_lm_ll")
+
+res_m <- mean(diamonds2$resid_lm_ll)
+res_sd <- sd(diamonds2$resid_lm_ll)
+
+diamonds2 %>% 
+  ggplot() +
+  geom_histogram(mapping = aes(x = resid_lm_ll, y = ..density..),
+    alpha = 0.3, binwidth = 0.01) +
+  stat_function(fun = dnorm, args = list(mean = res_m, sd = res_sd))
+```
+
+## Checking residuals for normality
+
+```{r, echo=FALSE}
+diamonds2 <- diamonds2 %>% 
+  add_residuals(lm_ll, var = "resid_lm_ll")
+
+res_m <- mean(diamonds2$resid_lm_ll)
+res_sd <- sd(diamonds2$resid_lm_ll)
+
+diamonds2 %>% 
+  ggplot() +
+  geom_histogram(mapping = aes(x = resid_lm_ll, y = ..density..),
+    alpha = 0.3, binwidth = 0.01) +
+  stat_function(fun = dnorm, args = list(mean = res_m, sd = res_sd))
+```
+
+## Checking residuals for normality
+
+```{r}
+jarque.bera.test(diamonds2$resid_lm_ll)
+```
+
+-   Visual inspection: The assumption of normal distribution of
+    residuals not to bad.
+-   jarque-bera-test: The residuals are **not** normally distributed.
+
+## Problems with the model
+
+-   Missing variable bias.
+    -   When important variables are missing from the model the
+        coefficients estimated in the model will be biased
+    -   size (carat) is probably correlated with cut, colour and clarity
+        and will draw with it some of the effects that are in reality
+        caused by the latter three variables.
+    -   We will underestimate the importance of size, since on average
+        larger diamonds seems to be of lower quality.
+    -   If we compare diamonds of equal quality size will have a
+        *bigger* effect than what is implied by the simple model.
+-   Naive backtransformation bias
+
+## Problems with the model cont.
+
+-   Naive backtransformation `exp(log_price_p)` will also introduce
+    bias.
+    -   [Miller
+        1984](https://www.jstor.org/stable/2683247?seq=1#metadata_info_tab_contents)
+    -   [Duan
+        1983](https://www.jstor.org/stable/2288126?seq=1#metadata_info_tab_contents)
+    -   [Newman
+        1993](https://www.vims.edu/people/newman_mc/pubs/Newman1993.pdf)
+
+## Problems with the model cont.
+
+-   There is mixed results on how munch better these more advanced
+    backtransformations are in practice.
+-   In this case, I tried them, it seems that the naive
+    backtransformation works as well (RMSE; Root Mean Square Error), if
+    not better, than the more advanced alternatives.
+-   The reason might be that the two biases work in different
+    directions. \> - The bias caused by missing variables will lower the
+    estimate of the size (carat) coefficient.
+    -   The bias caused by the naive backtransformation tend to heighten
+        the same estimate.
+
+## Checking correlations between carat, cut, colour and clarity (`pairs()`)
+
+-   `pairs()` is a nice tool, but doesn't work so well with big datasets
+    (we drawn a sample of 200 observation from 53814) and categorical
+    variables.
+
+. . .
+
+```{r, eval=FALSE}
+diamonds2 %>% 
+  select(carat, cut, color, clarity) %>%
+  slice_sample(n = 200) %>% 
+  pairs()
+```
+
+## Checking correlations between carat, cut, colour and clarity (`pairs()`)
+
+```{r, echo=FALSE}
+diamonds2 %>% 
+  select(carat, cut, color, clarity) %>%
+  slice_sample(n = 200) %>% 
+  pairs()
+```
+
+## Checking correlations between carat, cut, colour and clarity
+
+-   Negative correlation between carat and cut, carat and clarity
+-   Positive correlation between carat and (bad) colour
+-   The bigger the diamond the worse cut, colour and clarity on average.
+
+. . .
+
+```{r, eval=FALSE}
+g7 <- ggplot(diamonds2, aes(cut, carat)) + geom_boxplot()
+g8 <- ggplot(diamonds2, aes(color, carat)) + geom_boxplot()
+g9 <- ggplot(diamonds2, aes(clarity, carat)) + geom_boxplot()
+g7 + g8 + g9
+```
+
+## Checking correlations between carat, cut, colour and clarity
+
+```{r, echo=FALSE}
+g7 <- ggplot(diamonds2, aes(cut, carat)) + geom_boxplot()
+g8 <- ggplot(diamonds2, aes(color, carat)) + geom_boxplot()
+g9 <- ggplot(diamonds2, aes(clarity, carat)) + geom_boxplot()
+g7 + g8 + g9
+```
+
+## Grid
+
+-   A grid is used to generate values to later draw the "model line"
+-   Here 20 points, grid same size as later plot
+-   The `geom_line()` function in the next plot uses data from grid to
+    draw the line
+
+. . .
+
+```{r}
+# generate 20 data points on a grid
+# to be used to draw the predictions
+grid <- diamonds2 %>% 
+  data_grid(carat = seq_range(carat, 20))  %>% 
+  add_predictions(lm_ll, "log_price_p") %>% 
+  mutate(price = exp(log_price_p))
+#View(grid)
+```
+
+## Plot of price against carat, model line added
+
+```{r, eval=FALSE}
+g5 <- ggplot(diamonds2, aes(x = carat, y = price)) + 
+  geom_point(size = 0.5, alpha = 0.05) + 
+  geom_line(data = grid,  colour = "red", size = 1)
+g6 <- ggplot(diamonds2, aes(carat, price)) + 
+  geom_hex(bins = 50) + 
+  geom_line(data = grid,  colour = "red", size = 1)
+g5 + g6
+```
+
+## Plot of price against carat, model line added
+
+```{r, echo=FALSE}
+g5 <- ggplot(diamonds2, aes(x = carat, y = price)) + 
+  geom_point(size = 0.5, alpha = 0.05) + 
+  geom_line(data = grid,  colour = "red", size = 1)
+g6 <- ggplot(diamonds2, aes(carat, price)) + 
+  geom_hex(bins = 15) + 
+  geom_line(data = grid,  colour = "red", size = 1)
+g5 + g6
+```
+
+## Is the linear trend removed?
+
+-   Plotting the residuals against log(carat)
+
+. . .
+
+```{r, eval=FALSE}
+diamonds2 <- diamonds2 %>% 
+  add_residuals(lm_ll, "log_resid")
+ggplot(diamonds2, aes(log(carat), log_resid)) + 
+  geom_hex(bins = 50)
+```
+
+## Is the linear trend removed?
+
+-   Plotting the residuals against log(carat)
+
+. . .
+
+```{r, echo=FALSE}
+diamonds2 <- diamonds2 %>% 
+  add_residuals(lm_ll, "log_resid")
+ggplot(diamonds2, aes(log(carat), log_resid)) + 
+  geom_hex(bins = 50)
+```
+
+## Boxplot, carat effect removed
+
+-   Cut and price
+
+. . .
+
+```{r, eval=FALSE}
+ggplot(diamonds2, aes(cut, log_resid)) + geom_boxplot() +
+  ggtitle("Better cuts have higher prices (as we would suspect)")
+```
+
+## Boxplot, carat effect removed
+
+-   Cut and price
+
+. . .
+
+```{r, echo=FALSE}
+ggplot(diamonds2, aes(cut, log_resid)) + geom_boxplot() +
+  ggtitle("Better cuts have higher prices (as we would suspect)")
+```
+
+## Boxplot, carat effect removed
+
+-   Colour and price
+
+. . .
+
+```{r, eval=FALSE}
+ggplot(diamonds2, aes(color, log_resid)) + geom_boxplot() +
+  ggtitle("Better colour gives a higher price (as we would suspect)")
+```
+
+## Boxplot, carat effect removed
+
+```{r, echo=FALSE}
+ggplot(diamonds2, aes(color, log_resid)) + geom_boxplot() +
+  ggtitle("Better colour gives a higher price (as we would suspect)")
+```
+
+## Boxplot, carat effect removed
+
+-   Clarity and price
+
+. . .
+
+```{r, eval=FALSE}
+ggplot(diamonds2, aes(clarity, log_resid)) + geom_boxplot() +
+  ggtitle("Better clarity give a higher price (as we would suspect)")
+```
+
+## Boxplot, carat effect removed
+
+```{r, echo=FALSE}
+ggplot(diamonds2, aes(clarity, log_resid)) + geom_boxplot() +
+  ggtitle("Better clarity give a higher price (as we would suspect)")
+```
+
+## Full model
+
+-   Also use the variables cut, colour and clarity.
+    -   Ordered categorical variables
+    -   Note that colour is ordered according to increasing "badness"
+        -   D best colour, J worst colour
+
+. . .
+
+```{r}
+mod2_ll <- 'log(price) ~ log(carat) + cut + color + clarity'
+lm2_ll <- lm(mod2_ll, data = diamonds2)
+diamonds2 <- diamonds2 %>% 
+  add_residuals(lm2_ll, var = "res_lm2")
+```
+
+## Residuals full model
+
+```{r, eval=FALSE}
+g10 <- diamonds2 %>% 
+  ggplot(mapping = aes(x = log(price), y = res_lm2)) +
+  geom_point(size = 0.5, alpha = 0.05)
+g11 <- diamonds2 %>% 
+  ggplot(mapping = aes(x = log(carat), y = res_lm2)) +
+  geom_point(size = 0.5, alpha = 0.05)
+g10 + g11
+```
+
+## Residuals full model
+
+```{r, echo=FALSE}
+g10 <- diamonds2 %>% 
+  ggplot(mapping = aes(x = log(price), y = res_lm2)) +
+  geom_point(size = 0.5, alpha = 0.05)
+g11 <- diamonds2 %>% 
+  ggplot(mapping = aes(x = log(carat), y = res_lm2)) +
+  geom_point(size = 0.5, alpha = 0.05)
+g10 + g11
+```
+
+## Comments full model
+
+-   Still plenty to play with.
+-   Using coefficient estimate for carat in full model to remove linear
+    trend.
+-   Further investigations of alternative backtransformations.
+-   What is really the association between cut and size? It might look
+    like cut quality is sacrificed to get the finished diamonds over
+    some size thresholds.
+-   What characterize the diamonds with big residuals?
+
+## NYC flight data {.smaller}
+
+-   Load data (nycflights13 must be loaded via library(nycflights13))
+-   make a date from year, mont and day
+-   then summarise and count observations for each date
+
+. . .
+
+```{r}
+# uses nycflights13, lubridate and tidyverse packages
+# options get rid of the warning about ungrouping, waste space here
+options(dplyr.summarise.inform = FALSE)
+daily <- flights %>% 
+  mutate(date = make_date(year, month, day)) %>% 
+  group_by(date) %>% 
+  summarise(n = n())
+```
+
+## NYC flight data cont. {.smaller}
+
+```{r}
+# OK in slide output
+options(tibble.print_min = 3)
+print(daily, n = 3)
+```
+
+## Plotting daily
+
+```{r, eval=FALSE}
+daily %>% 
+  ggplot(mapping = aes(x = date, y = n)) +
+  geom_line()
+```
+
+## Plotting daily
+
+```{r, echo=FALSE}
+daily %>% 
+  ggplot(mapping = aes(x = date, y = n)) +
+  geom_line()
+```
+
+## Day of week (Norwegian week)
+
+-   `wday()` function in lubridate gives us the day of the week for a
+    date. Remember Sunday first day of the week in the US. Here it is
+    Monday.
+-   Can be controlled by
+    `week_start = getOption("lubridate.week.start", 7)` and `locale`
+
+. . .
+
+```{r, eval=FALSE}
+daily_no <- daily %>%
+  mutate(wday = wday(date, label = TRUE, week_start = 1))
+
+ggplot(daily_no, mapping = aes(x = wday, n)) +
+  geom_boxplot()
+rm(daily_no)
+```
+
+## Day of week (Norwegian week)
+
+```{r, echo=FALSE}
+daily_no <- daily %>%
+  mutate(wday = wday(date, label = TRUE, week_start = 1))
+
+ggplot(daily_no, mapping = aes(x = wday, n)) +
+  geom_boxplot()
+rm(daily_no)
+```
+
+## Day of week
+
+-   Follow r4ds
+
+. . .
+
+```{r, eval=FALSE}
+daily <- daily %>% 
+  mutate(wday = wday(date, label = TRUE))
+ggplot(daily, aes(wday, n)) + 
+  geom_boxplot()
+```
+
+## Day of week
+
+```{r, echo=FALSE}
+daily <- daily %>% 
+  mutate(wday = wday(date, label = TRUE))
+ggplot(daily, aes(wday, n)) + 
+  geom_boxplot()
+```
+
+## Simple model
+
+-   Simple model with wday as a category variable
+
+. . .
+
+```{r}
+mod <- lm(n ~ wday, data = daily)
+daily %>% 
+  model_matrix(n ~ wday) %>% 
+  .[1:3, ] # 3 first rows
+```
+
+## Simple model; grid
+
+-   make a grid
+
+. . .
+
+```{r}
+grid <- daily %>% 
+  data_grid(wday) %>% 
+  add_predictions(mod, "n")
+grid
+```
+
+## Plot predicted flights
+
+-   Model prediction is red dots
+
+. . .
+
+```{r, eval=FALSE}
+ggplot(daily, aes(wday, n)) + 
+  geom_boxplot() +
+  geom_point(data = grid, colour = "red", size = 4)
+```
+
+## Plot predicted flights
+
+```{r, echo=FALSE}
+ggplot(daily, aes(wday, n)) + 
+  geom_boxplot() +
+  geom_point(data = grid, colour = "red", size = 4)
+```
+
+## Plot residuals
+
+-   Model remove most of day-of-week effect
+-   Easier to see special events
+
+. . .
+
+```{r, eval=FALSE}
+daily <- daily %>% 
+  add_residuals(mod)
+daily %>% 
+  ggplot(aes(date, resid)) + 
+  geom_ref_line(h = 0) + 
+  geom_line()
+```
+
+## Plot residuals
+
+```{r, echo=FALSE}
+daily <- daily %>% 
+  add_residuals(mod)
+daily %>% 
+  ggplot(aes(date, resid)) + 
+  geom_ref_line(h = 0) + 
+  geom_line()
+```
+
+## Residuals for each week day
+
+```{r, eval=FALSE}
+ggplot(daily, aes(date, resid, colour = wday)) + 
+  geom_ref_line(h = 0) + 
+  geom_line()
+```
+
+## Residuals for each week day
+
+```{r, echo=FALSE}
+ggplot(daily, aes(date, resid, colour = wday)) + 
+  geom_ref_line(h = 0) + 
+  geom_line()
+```
+
+## Residual for Saturday
+
+```{r, eval=FALSE}
+daily %>% 
+  filter(wday == "Sat") %>% 
+ggplot(mapping = aes(x = date, y = resid)) + 
+  geom_ref_line(h = 0) + 
+  geom_line()
+```
+
+## Residual for Saturday
+
+```{r, echo=FALSE}
+daily %>% 
+  filter(wday == "Sat") %>% 
+ggplot(mapping = aes(x = date, y = resid)) + 
+  geom_ref_line(h = 0) + 
+  geom_line()
+```
+
+## Comments regarding residuals
+
+-   The model under-estimate traffic on Saturdays in the spring and
+    summer and over-estimate the Saturday traffic in the autumn and late
+    winter.
+-   There is a spike in late December. Wonder what that might be? ;-)
+-   Dates with low traffic.
+
+## Comments regarding residuals cont. {.smaller}
+
+```{r}
+daily %>% 
+  filter(resid < -100)
+```
+
+-   New years, Thanksgiving, Christmas
+
+## Comments regarding residuals cont.
+
+-   Traffic seems to be more spread out before an event than after.
+-   Higher traffic than predicted on Saturdays during the summer.
+-   Higher traffic before and after Thanksgiving and Christmas.
+
+## Comments regarding residuals cont. {.smaller}
+
+```{r}
+daily %>% 
+  filter(resid > 50)
+```
+
+## Further development of the model
+
+-   One might add a variable taking care of the seasonal effect
+-   One might add variables for the special holidays, i.e Thanksgiving
+    and Christmas
+-   We will not elaborate further on the model, see r4ds chapter 24 for
+    more on the model
+
+## References

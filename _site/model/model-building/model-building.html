@@ -9,6 +9,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.0.36">
 
+  <meta name="author" content="ag">
   <title>MSB105 - Model building</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -22,6 +23,89 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -236,6 +320,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -319,26 +404,868 @@
 
 <section id="title-slide" class="center">
   <h1 class="title">Model building</h1>
+  <p class="author">ag</p>
 </section>
 
 <section class="slide level2">
 
-<div class="callout callout-note callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">suppressPackageStartupMessages</span>({</span>
+<span id="cb1-2"><a href="#cb1-2"></a>  <span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3"></a>  <span class="fu">library</span>(modelr)</span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="fu">options</span>(<span class="at">na.action =</span> na.exclude)</span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="fu">library</span>(nycflights13)</span>
+<span id="cb1-6"><a href="#cb1-6"></a>  <span class="fu">library</span>(lubridate)</span>
+<span id="cb1-7"><a href="#cb1-7"></a>  <span class="fu">library</span>(tseries)</span>
+<span id="cb1-8"><a href="#cb1-8"></a>  <span class="fu">library</span>(patchwork)</span>
+<span id="cb1-9"><a href="#cb1-9"></a>  <span class="fu">library</span>(hexbin)</span>
+<span id="cb1-10"><a href="#cb1-10"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<p><strong>Just a place holder</strong></p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># create a bib file for the R packages</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># used in this document</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># Note! Needs to do a touch ag_model_building.bib in terminal before first run</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># else stops when bibliography: "ag_model_building.bib" not found in YAML</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>knitr<span class="sc">::</span><span class="fu">write_bib</span>(</span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">c</span>(</span>
+<span id="cb2-7"><a href="#cb2-7"></a>    <span class="st">"tidyverse"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8"></a>    <span class="st">"modelr"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9"></a>    <span class="st">"nycflights13"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="st">"lubridate"</span>,</span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="st">"tseries"</span>,</span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="st">"patchwork"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13"></a>    <span class="st">"hexbin"</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>    ),</span>
+<span id="cb2-15"><a href="#cb2-15"></a>  <span class="at">file =</span> <span class="st">"ag_model_building.bib"</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<div class="callout-content">
+</section>
+<section id="introduction" class="slide level2">
+<h2>Introduction</h2>
+<ul>
+<li class="fragment">Will look at two models
+<ul>
+<li class="fragment">Diamonds (data in ggplot2)</li>
+<li class="fragment">NYCflights13 (data in nycflights13) also needs lubridate</li>
+</ul></li>
+<li class="fragment">Will follow r4ds</li>
+</ul>
+</section>
+<section id="diamonds" class="slide level2">
+<h2>Diamonds</h2>
+<ul>
+<li class="fragment">In the dataset diamonds of lower quality seems to obtain higher prices</li>
+<li class="fragment">Worse cut higher price</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(cut, price)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">ggtitle</span>(<span class="st">"The connection between quality of cut and price"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="diamonds-1" class="slide level2 smaller">
+<h2>Diamonds</h2>
 
+<img data-src="model-building_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
+<section id="diamonds-2" class="slide level2">
+<h2>Diamonds</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(color, price)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">ggtitle</span>(<span class="st">"The connection between quality of colour and price"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="diamonds-3" class="slide level2">
+<h2>Diamonds</h2>
+
+<img data-src="model-building_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<section id="diamonds-4" class="slide level2">
+<h2>Diamonds</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(clarity, price)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">ggtitle</span>(<span class="st">"The connection between clarity and price"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="diamonds-5" class="slide level2">
+<h2>Diamonds</h2>
+
+<img data-src="model-building_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
+<section id="whats-going-on" class="slide level2">
+<h2>What’s going on?</h2>
+<ul>
+<li class="fragment">Confounding variable</li>
+<li class="fragment">A missing variable that is negatively correlated with the variables above
+<ul>
+<li class="fragment">Size, bigger diamonds are often of less quality, but</li>
+<li class="fragment">large diamonds sell for a higher price</li>
+<li class="fragment">size often measured by weight, <em>carats</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="diamonds-2-exclude-big-diamonds" class="slide level2">
+<h2>Diamonds 2; exclude big diamonds</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>diamonds2 <span class="ot">&lt;-</span> diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">filter</span>(carat <span class="sc">&lt;=</span> <span class="fl">2.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="connection-between-size-and-price" class="slide level2">
+<h2>Connection between size and price</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> diamonds2) <span class="sc">+</span> </span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price), </span>
+<span id="cb7-3"><a href="#cb7-3"></a>             <span class="at">size =</span> <span class="fl">0.3</span>,</span>
+<span id="cb7-4"><a href="#cb7-4"></a>             <span class="at">alpha =</span> <span class="fl">0.05</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>             )</span>
+<span id="cb7-6"><a href="#cb7-6"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span> </span>
+<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">geom_hex</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="co"># made possible by patchwork</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a>g1 <span class="sc">+</span> g2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="connection-between-size-and-price-1" class="slide level2">
+<h2>Connection between size and price</h2>
+
+<img data-src="model-building_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
+<section id="non-linear-relationship-between-carat-and-price" class="slide level2">
+<h2>Non-linear relationship between carat and price</h2>
+<ul>
+<li class="fragment">Transform the two variables to get rid of the non-linearity</li>
+<li class="fragment">Use ln (<code>log()</code>) instead of log2,since the former is a more common transformation in econometrics</li>
+<li class="fragment">log log gives us an elasticity (norsk: elastisitet)</li>
+<li class="fragment">p percentage change in size (carat) gives <span class="math inline">\(e^{ln((100+p)/100)\hat{\beta}}\)</span> percentage change in price.</li>
+</ul>
+</section>
+<section id="non-linear-relationship-between-carat-and-price-1" class="slide level2">
+<h2>Non-linear relationship between carat and price</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>g3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> diamonds2) <span class="sc">+</span> </span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(carat), <span class="at">y =</span> <span class="fu">log</span>(price)), </span>
+<span id="cb8-3"><a href="#cb8-3"></a>             <span class="at">size =</span> <span class="fl">0.3</span>,</span>
+<span id="cb8-4"><a href="#cb8-4"></a>             <span class="at">alpha =</span> <span class="fl">0.05</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>  )</span>
+<span id="cb8-6"><a href="#cb8-6"></a>g4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(carat), <span class="at">y =</span> <span class="fu">log</span>(price))) <span class="sc">+</span> </span>
+<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">geom_hex</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span>
+<span id="cb8-8"><a href="#cb8-8"></a>g3 <span class="sc">+</span> g4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="non-linear-relationship-between-carat-and-price-2" class="slide level2">
+<h2>Non-linear relationship between carat and price</h2>
+
+<img data-src="model-building_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
+<section id="model-log-log" class="slide level2">
+<h2>Model log log</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>mod_ll <span class="ot">&lt;-</span> <span class="st">'log(price) ~ log(carat)'</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>lm_ll <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> mod_ll, <span class="at">data =</span> diamonds2)</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="fu">coefficients</span>(lm_ll)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)  log(carat) 
+   8.452142    1.681371 </code></pre>
+</div>
+</div>
+</section>
+<section id="model-log-log-cont." class="slide level2">
+<h2>Model log log cont.</h2>
+<ul>
+<li class="fragment">How much will a 10% increase in size on average increase price?
+<ul>
+<li class="fragment"><span class="math inline">\(e^{ln((100+s)/100)\hat{\beta}} = e^{ln((100+10)/100)·1.6814} \approx 0,16\)</span>, dvs 10% økning i størrelse gir 16% økning i pris (husk at <code>log()</code> er ln i R)</li>
+</ul></li>
+<li class="fragment">How much will a 1% increase in size on average increase price?
+<ul>
+<li class="fragment"><span class="math inline">\(e^{ln((100+s)/100)\hat{\beta}} = e^{ln((100+1)/100)·1.6814} \approx 0,01673\)</span>, dvs 1% økning i størrelse gir 1,67% økning i pris. For small changes in size the relative price change is approximately equal to the coefficient (1.6814).</li>
+</ul></li>
+</ul>
+</section>
+<section id="checking-residuals-for-normality" class="slide level2">
+<h2>Checking residuals for normality</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>diamonds2 <span class="ot">&lt;-</span> diamonds2 <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">add_residuals</span>(lm_ll, <span class="at">var =</span> <span class="st">"resid_lm_ll"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3"></a></span>
+<span id="cb11-4"><a href="#cb11-4"></a>res_m <span class="ot">&lt;-</span> <span class="fu">mean</span>(diamonds2<span class="sc">$</span>resid_lm_ll)</span>
+<span id="cb11-5"><a href="#cb11-5"></a>res_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(diamonds2<span class="sc">$</span>resid_lm_ll)</span>
+<span id="cb11-6"><a href="#cb11-6"></a></span>
+<span id="cb11-7"><a href="#cb11-7"></a>diamonds2 <span class="sc">%&gt;%</span> </span>
+<span id="cb11-8"><a href="#cb11-8"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> resid_lm_ll, <span class="at">y =</span> ..density..),</span>
+<span id="cb11-10"><a href="#cb11-10"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">binwidth =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> res_m, <span class="at">sd =</span> res_sd))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="checking-residuals-for-normality-1" class="slide level2">
+<h2>Checking residuals for normality</h2>
+
+<img data-src="model-building_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
+<section id="checking-residuals-for-normality-2" class="slide level2">
+<h2>Checking residuals for normality</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">jarque.bera.test</span>(diamonds2<span class="sc">$</span>resid_lm_ll)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Jarque Bera Test
+
+data:  diamonds2$resid_lm_ll
+X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<ul>
+<li class="fragment">Visual inspection: The assumption of normal distribution of residuals not to bad.</li>
+<li class="fragment">jarque-bera-test: The residuals are <strong>not</strong> normally distributed.</li>
+</ul>
+</section>
+<section id="problems-with-the-model" class="slide level2">
+<h2>Problems with the model</h2>
+<ul>
+<li class="fragment">Missing variable bias.
+<ul>
+<li class="fragment">When important variables are missing from the model the coefficients estimated in the model will be biased</li>
+<li class="fragment">size (carat) is probably correlated with cut, colour and clarity and will draw with it some of the effects that are in reality caused by the latter three variables.</li>
+<li class="fragment">We will underestimate the importance of size, since on average larger diamonds seems to be of lower quality.</li>
+<li class="fragment">If we compare diamonds of equal quality size will have a <em>bigger</em> effect than what is implied by the simple model.</li>
+</ul></li>
+<li class="fragment">Naive backtransformation bias</li>
+</ul>
+</section>
+<section id="problems-with-the-model-cont." class="slide level2">
+<h2>Problems with the model cont.</h2>
+<ul>
+<li class="fragment">Naive backtransformation <code>exp(log_price_p)</code> will also introduce bias.
+<ul>
+<li class="fragment"><a href="https://www.jstor.org/stable/2683247?seq=1#metadata_info_tab_contents">Miller 1984</a></li>
+<li class="fragment"><a href="https://www.jstor.org/stable/2288126?seq=1#metadata_info_tab_contents">Duan 1983</a></li>
+<li class="fragment"><a href="https://www.vims.edu/people/newman_mc/pubs/Newman1993.pdf">Newman 1993</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="problems-with-the-model-cont.-1" class="slide level2">
+<h2>Problems with the model cont.</h2>
+<ul>
+<li class="fragment">There is mixed results on how munch better these more advanced backtransformations are in practice.</li>
+<li class="fragment">In this case, I tried them, it seems that the naive backtransformation works as well (RMSE; Root Mean Square Error), if not better, than the more advanced alternatives.</li>
+<li class="fragment">The reason might be that the two biases work in different directions. &gt; - The bias caused by missing variables will lower the estimate of the size (carat) coefficient.
+<ul>
+<li class="fragment">The bias caused by the naive backtransformation tend to heighten the same estimate.</li>
+</ul></li>
+</ul>
+</section>
+<section id="checking-correlations-between-carat-cut-colour-and-clarity-pairs" class="slide level2">
+<h2>Checking correlations between carat, cut, colour and clarity (<code>pairs()</code>)</h2>
+<ul>
+<li class="fragment"><code>pairs()</code> is a nice tool, but doesn’t work so well with big datasets (we drawn a sample of 200 observation from 53814) and categorical variables.</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>diamonds2 <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">select</span>(carat, cut, color, clarity) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">200</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">pairs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="checking-correlations-between-carat-cut-colour-and-clarity-pairs-1" class="slide level2">
+<h2>Checking correlations between carat, cut, colour and clarity (<code>pairs()</code>)</h2>
+
+<img data-src="model-building_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section>
+<section id="checking-correlations-between-carat-cut-colour-and-clarity" class="slide level2">
+<h2>Checking correlations between carat, cut, colour and clarity</h2>
+<ul>
+<li class="fragment">Negative correlation between carat and cut, carat and clarity</li>
+<li class="fragment">Positive correlation between carat and (bad) colour</li>
+<li class="fragment">The bigger the diamond the worse cut, colour and clarity on average.</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>g7 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(cut, carat)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span>
+<span id="cb15-2"><a href="#cb15-2"></a>g8 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(color, carat)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span>
+<span id="cb15-3"><a href="#cb15-3"></a>g9 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(clarity, carat)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span>
+<span id="cb15-4"><a href="#cb15-4"></a>g7 <span class="sc">+</span> g8 <span class="sc">+</span> g9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="checking-correlations-between-carat-cut-colour-and-clarity-1" class="slide level2">
+<h2>Checking correlations between carat, cut, colour and clarity</h2>
+
+<img data-src="model-building_files/figure-revealjs/unnamed-chunk-20-1.png" width="960" class="r-stretch"></section>
+<section id="grid" class="slide level2">
+<h2>Grid</h2>
+<ul>
+<li class="fragment">A grid is used to generate values to later draw the “model line”</li>
+<li class="fragment">Here 20 points, grid same size as later plot</li>
+<li class="fragment">The <code>geom_line()</code> function in the next plot uses data from grid to draw the line</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># generate 20 data points on a grid</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="co"># to be used to draw the predictions</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a>grid <span class="ot">&lt;-</span> diamonds2 <span class="sc">%&gt;%</span> </span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="fu">data_grid</span>(<span class="at">carat =</span> <span class="fu">seq_range</span>(carat, <span class="dv">20</span>))  <span class="sc">%&gt;%</span> </span>
+<span id="cb16-5"><a href="#cb16-5"></a>  <span class="fu">add_predictions</span>(lm_ll, <span class="st">"log_price_p"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-6"><a href="#cb16-6"></a>  <span class="fu">mutate</span>(<span class="at">price =</span> <span class="fu">exp</span>(log_price_p))</span>
+<span id="cb16-7"><a href="#cb16-7"></a><span class="co">#View(grid)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="plot-of-price-against-carat-model-line-added" class="slide level2">
+<h2>Plot of price against carat, model line added</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>g5 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span> </span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span> </span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> grid,  <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb17-4"><a href="#cb17-4"></a>g6 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(carat, price)) <span class="sc">+</span> </span>
+<span id="cb17-5"><a href="#cb17-5"></a>  <span class="fu">geom_hex</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span> </span>
+<span id="cb17-6"><a href="#cb17-6"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> grid,  <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb17-7"><a href="#cb17-7"></a>g5 <span class="sc">+</span> g6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="plot-of-price-against-carat-model-line-added-1" class="slide level2">
+<h2>Plot of price against carat, model line added</h2>
+
+<img data-src="model-building_files/figure-revealjs/unnamed-chunk-23-1.png" width="960" class="r-stretch"></section>
+<section id="is-the-linear-trend-removed" class="slide level2">
+<h2>Is the linear trend removed?</h2>
+<ul>
+<li class="fragment">Plotting the residuals against log(carat)</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>diamonds2 <span class="ot">&lt;-</span> diamonds2 <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">add_residuals</span>(lm_ll, <span class="st">"log_resid"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(<span class="fu">log</span>(carat), log_resid)) <span class="sc">+</span> </span>
+<span id="cb18-4"><a href="#cb18-4"></a>  <span class="fu">geom_hex</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="is-the-linear-trend-removed-1" class="slide level2">
+<h2>Is the linear trend removed?</h2>
+<ul>
+<li class="fragment">Plotting the residuals against log(carat)</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="model-building_files/figure-revealjs/unnamed-chunk-25-1.png" width="960"></p>
 </div>
 </div>
 </div>
+</section>
+<section id="boxplot-carat-effect-removed" class="slide level2">
+<h2>Boxplot, carat effect removed</h2>
+<ul>
+<li class="fragment">Cut and price</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(cut, log_resid)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">ggtitle</span>(<span class="st">"Better cuts have higher prices (as we would suspect)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="boxplot-carat-effect-removed-1" class="slide level2">
+<h2>Boxplot, carat effect removed</h2>
+<ul>
+<li class="fragment">Cut and price</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="model-building_files/figure-revealjs/unnamed-chunk-27-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="boxplot-carat-effect-removed-2" class="slide level2">
+<h2>Boxplot, carat effect removed</h2>
+<ul>
+<li class="fragment">Colour and price</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(color, log_resid)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">ggtitle</span>(<span class="st">"Better colour gives a higher price (as we would suspect)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="boxplot-carat-effect-removed-3" class="slide level2">
+<h2>Boxplot, carat effect removed</h2>
+
+<img data-src="model-building_files/figure-revealjs/unnamed-chunk-29-1.png" width="960" class="r-stretch"></section>
+<section id="boxplot-carat-effect-removed-4" class="slide level2">
+<h2>Boxplot, carat effect removed</h2>
+<ul>
+<li class="fragment">Clarity and price</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(clarity, log_resid)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">ggtitle</span>(<span class="st">"Better clarity give a higher price (as we would suspect)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="boxplot-carat-effect-removed-5" class="slide level2">
+<h2>Boxplot, carat effect removed</h2>
+
+<img data-src="model-building_files/figure-revealjs/unnamed-chunk-31-1.png" width="960" class="r-stretch"></section>
+<section id="full-model" class="slide level2">
+<h2>Full model</h2>
+<ul>
+<li class="fragment">Also use the variables cut, colour and clarity.
+<ul>
+<li class="fragment">Ordered categorical variables</li>
+<li class="fragment">Note that colour is ordered according to increasing “badness”
+<ul>
+<li class="fragment">D best colour, J worst colour</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>mod2_ll <span class="ot">&lt;-</span> <span class="st">'log(price) ~ log(carat) + cut + color + clarity'</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>lm2_ll <span class="ot">&lt;-</span> <span class="fu">lm</span>(mod2_ll, <span class="at">data =</span> diamonds2)</span>
+<span id="cb22-3"><a href="#cb22-3"></a>diamonds2 <span class="ot">&lt;-</span> diamonds2 <span class="sc">%&gt;%</span> </span>
+<span id="cb22-4"><a href="#cb22-4"></a>  <span class="fu">add_residuals</span>(lm2_ll, <span class="at">var =</span> <span class="st">"res_lm2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="residuals-full-model" class="slide level2">
+<h2>Residuals full model</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>g10 <span class="ot">&lt;-</span> diamonds2 <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(price), <span class="at">y =</span> res_lm2)) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>)</span>
+<span id="cb23-4"><a href="#cb23-4"></a>g11 <span class="ot">&lt;-</span> diamonds2 <span class="sc">%&gt;%</span> </span>
+<span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(carat), <span class="at">y =</span> res_lm2)) <span class="sc">+</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>)</span>
+<span id="cb23-7"><a href="#cb23-7"></a>g10 <span class="sc">+</span> g11</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="residuals-full-model-1" class="slide level2">
+<h2>Residuals full model</h2>
+
+<img data-src="model-building_files/figure-revealjs/unnamed-chunk-34-1.png" width="960" class="r-stretch"></section>
+<section id="comments-full-model" class="slide level2">
+<h2>Comments full model</h2>
+<ul>
+<li class="fragment">Still plenty to play with.</li>
+<li class="fragment">Using coefficient estimate for carat in full model to remove linear trend.</li>
+<li class="fragment">Further investigations of alternative backtransformations.</li>
+<li class="fragment">What is really the association between cut and size? It might look like cut quality is sacrificed to get the finished diamonds over some size thresholds.</li>
+<li class="fragment">What characterize the diamonds with big residuals?</li>
+</ul>
+</section>
+<section id="nyc-flight-data" class="slide level2 smaller">
+<h2>NYC flight data</h2>
+<ul>
+<li class="fragment">Load data (nycflights13 must be loaded via library(nycflights13))</li>
+<li class="fragment">make a date from year, mont and day</li>
+<li class="fragment">then summarise and count observations for each date</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># uses nycflights13, lubridate and tidyverse packages</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="co"># options get rid of the warning about ungrouping, waste space here</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="fu">options</span>(<span class="at">dplyr.summarise.inform =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb24-4"><a href="#cb24-4"></a>daily <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span> </span>
+<span id="cb24-5"><a href="#cb24-5"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">make_date</span>(year, month, day)) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-6"><a href="#cb24-6"></a>  <span class="fu">group_by</span>(date) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-7"><a href="#cb24-7"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="nyc-flight-data-cont." class="slide level2 smaller">
+<h2>NYC flight data cont.</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># OK in slide output</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="fu">options</span>(<span class="at">tibble.print_min =</span> <span class="dv">3</span>)</span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="fu">print</span>(daily, <span class="at">n =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 365 × 2
+  date           n
+  &lt;date&gt;     &lt;int&gt;
+1 2013-01-01   842
+2 2013-01-02   943
+3 2013-01-03   914
+# … with 362 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="plotting-daily" class="slide level2">
+<h2>Plotting daily</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>daily <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="plotting-daily-1" class="slide level2">
+<h2>Plotting daily</h2>
+
+<img data-src="model-building_files/figure-revealjs/unnamed-chunk-38-1.png" width="960" class="r-stretch"></section>
+<section id="day-of-week-norwegian-week" class="slide level2">
+<h2>Day of week (Norwegian week)</h2>
+<ul>
+<li class="fragment"><code>wday()</code> function in lubridate gives us the day of the week for a date. Remember Sunday first day of the week in the US. Here it is Monday.</li>
+<li class="fragment">Can be controlled by <code>week_start = getOption("lubridate.week.start", 7)</code> and <code>locale</code></li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>daily_no <span class="ot">&lt;-</span> daily <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">mutate</span>(<span class="at">wday =</span> <span class="fu">wday</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">week_start =</span> <span class="dv">1</span>))</span>
+<span id="cb28-3"><a href="#cb28-3"></a></span>
+<span id="cb28-4"><a href="#cb28-4"></a><span class="fu">ggplot</span>(daily_no, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> wday, n)) <span class="sc">+</span></span>
+<span id="cb28-5"><a href="#cb28-5"></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb28-6"><a href="#cb28-6"></a><span class="fu">rm</span>(daily_no)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="day-of-week-norwegian-week-1" class="slide level2">
+<h2>Day of week (Norwegian week)</h2>
+
+<img data-src="model-building_files/figure-revealjs/unnamed-chunk-40-1.png" width="960" class="r-stretch"></section>
+<section id="day-of-week" class="slide level2">
+<h2>Day of week</h2>
+<ul>
+<li class="fragment">Follow r4ds</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>daily <span class="ot">&lt;-</span> daily <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">mutate</span>(<span class="at">wday =</span> <span class="fu">wday</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="fu">ggplot</span>(daily, <span class="fu">aes</span>(wday, n)) <span class="sc">+</span> </span>
+<span id="cb29-4"><a href="#cb29-4"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="day-of-week-1" class="slide level2">
+<h2>Day of week</h2>
+
+<img data-src="model-building_files/figure-revealjs/unnamed-chunk-42-1.png" width="960" class="r-stretch"></section>
+<section id="simple-model" class="slide level2">
+<h2>Simple model</h2>
+<ul>
+<li class="fragment">Simple model with wday as a category variable</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(n <span class="sc">~</span> wday, <span class="at">data =</span> daily)</span>
+<span id="cb30-2"><a href="#cb30-2"></a>daily <span class="sc">%&gt;%</span> </span>
+<span id="cb30-3"><a href="#cb30-3"></a>  <span class="fu">model_matrix</span>(n <span class="sc">~</span> wday) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-4"><a href="#cb30-4"></a>  .[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, ] <span class="co"># 3 first rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 7
+  `(Intercept)`    wday.L wday.Q    wday.C `wday^4`  `wday^5` `wday^6`
+          &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1             1 -1.89e- 1 -0.327  4.08e- 1   0.0806 -5.46e- 1    0.493
+2             1  2.10e-17 -0.436  3.02e-17   0.483  -9.75e-16   -0.658
+3             1  1.89e- 1 -0.327 -4.08e- 1   0.0806  5.46e- 1    0.493</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="simple-model-grid" class="slide level2">
+<h2>Simple model; grid</h2>
+<ul>
+<li class="fragment">make a grid</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>grid <span class="ot">&lt;-</span> daily <span class="sc">%&gt;%</span> </span>
+<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">data_grid</span>(wday) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-3"><a href="#cb32-3"></a>  <span class="fu">add_predictions</span>(mod, <span class="st">"n"</span>)</span>
+<span id="cb32-4"><a href="#cb32-4"></a>grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 2
+  wday      n
+  &lt;ord&gt; &lt;dbl&gt;
+1 Sun    891.
+2 Mon    975.
+3 Tue    951.
+4 Wed    963.
+5 Thu    966.
+6 Fri    967.
+7 Sat    745.</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-predicted-flights" class="slide level2">
+<h2>Plot predicted flights</h2>
+<ul>
+<li class="fragment">Model prediction is red dots</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">ggplot</span>(daily, <span class="fu">aes</span>(wday, n)) <span class="sc">+</span> </span>
+<span id="cb34-2"><a href="#cb34-2"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb34-3"><a href="#cb34-3"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> grid, <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="plot-predicted-flights-1" class="slide level2">
+<h2>Plot predicted flights</h2>
+
+<img data-src="model-building_files/figure-revealjs/unnamed-chunk-46-1.png" width="960" class="r-stretch"></section>
+<section id="plot-residuals" class="slide level2">
+<h2>Plot residuals</h2>
+<ul>
+<li class="fragment">Model remove most of day-of-week effect</li>
+<li class="fragment">Easier to see special events</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>daily <span class="ot">&lt;-</span> daily <span class="sc">%&gt;%</span> </span>
+<span id="cb35-2"><a href="#cb35-2"></a>  <span class="fu">add_residuals</span>(mod)</span>
+<span id="cb35-3"><a href="#cb35-3"></a>daily <span class="sc">%&gt;%</span> </span>
+<span id="cb35-4"><a href="#cb35-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(date, resid)) <span class="sc">+</span> </span>
+<span id="cb35-5"><a href="#cb35-5"></a>  <span class="fu">geom_ref_line</span>(<span class="at">h =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb35-6"><a href="#cb35-6"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="plot-residuals-1" class="slide level2">
+<h2>Plot residuals</h2>
+
+<img data-src="model-building_files/figure-revealjs/unnamed-chunk-48-1.png" width="960" class="r-stretch"></section>
+<section id="residuals-for-each-week-day" class="slide level2">
+<h2>Residuals for each week day</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">ggplot</span>(daily, <span class="fu">aes</span>(date, resid, <span class="at">colour =</span> wday)) <span class="sc">+</span> </span>
+<span id="cb36-2"><a href="#cb36-2"></a>  <span class="fu">geom_ref_line</span>(<span class="at">h =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb36-3"><a href="#cb36-3"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="residuals-for-each-week-day-1" class="slide level2">
+<h2>Residuals for each week day</h2>
+
+<img data-src="model-building_files/figure-revealjs/unnamed-chunk-50-1.png" width="960" class="r-stretch"></section>
+<section id="residual-for-saturday" class="slide level2">
+<h2>Residual for Saturday</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>daily <span class="sc">%&gt;%</span> </span>
+<span id="cb37-2"><a href="#cb37-2"></a>  <span class="fu">filter</span>(wday <span class="sc">==</span> <span class="st">"Sat"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-3"><a href="#cb37-3"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> resid)) <span class="sc">+</span> </span>
+<span id="cb37-4"><a href="#cb37-4"></a>  <span class="fu">geom_ref_line</span>(<span class="at">h =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb37-5"><a href="#cb37-5"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="residual-for-saturday-1" class="slide level2">
+<h2>Residual for Saturday</h2>
+
+<img data-src="model-building_files/figure-revealjs/unnamed-chunk-52-1.png" width="960" class="r-stretch"></section>
+<section id="comments-regarding-residuals" class="slide level2">
+<h2>Comments regarding residuals</h2>
+<ul>
+<li class="fragment">The model under-estimate traffic on Saturdays in the spring and summer and over-estimate the Saturday traffic in the autumn and late winter.</li>
+<li class="fragment">There is a spike in late December. Wonder what that might be? ;-)</li>
+<li class="fragment">Dates with low traffic.</li>
+</ul>
+</section>
+<section id="comments-regarding-residuals-cont." class="slide level2 smaller">
+<h2>Comments regarding residuals cont.</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>daily <span class="sc">%&gt;%</span> </span>
+<span id="cb38-2"><a href="#cb38-2"></a>  <span class="fu">filter</span>(resid <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11 × 4
+   date           n wday  resid
+   &lt;date&gt;     &lt;int&gt; &lt;ord&gt; &lt;dbl&gt;
+ 1 2013-01-01   842 Tue   -109.
+ 2 2013-01-20   786 Sun   -105.
+ 3 2013-05-26   729 Sun   -162.
+ 4 2013-07-04   737 Thu   -229.
+ 5 2013-07-05   822 Fri   -145.
+ 6 2013-09-01   718 Sun   -173.
+ 7 2013-11-28   634 Thu   -332.
+ 8 2013-11-29   661 Fri   -306.
+ 9 2013-12-24   761 Tue   -190.
+10 2013-12-25   719 Wed   -244.
+11 2013-12-31   776 Tue   -175.</code></pre>
+</div>
+</div>
+<ul>
+<li class="fragment">New years, Thanksgiving, Christmas</li>
+</ul>
+</section>
+<section id="comments-regarding-residuals-cont.-1" class="slide level2">
+<h2>Comments regarding residuals cont.</h2>
+<ul>
+<li class="fragment">Traffic seems to be more spread out before an event than after.</li>
+<li class="fragment">Higher traffic than predicted on Saturdays during the summer.</li>
+<li class="fragment">Higher traffic before and after Thanksgiving and Christmas.</li>
+</ul>
+</section>
+<section id="comments-regarding-residuals-cont.-2" class="slide level2 smaller">
+<h2>Comments regarding residuals cont.</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>daily <span class="sc">%&gt;%</span> </span>
+<span id="cb40-2"><a href="#cb40-2"></a>  <span class="fu">filter</span>(resid <span class="sc">&gt;</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14 × 4
+   date           n wday  resid
+   &lt;date&gt;     &lt;int&gt; &lt;ord&gt; &lt;dbl&gt;
+ 1 2013-06-15   801 Sat    56.4
+ 2 2013-06-22   812 Sat    67.4
+ 3 2013-06-29   812 Sat    67.4
+ 4 2013-07-06   805 Sat    60.4
+ 5 2013-07-13   811 Sat    66.4
+ 6 2013-07-20   810 Sat    65.4
+ 7 2013-07-27   811 Sat    66.4
+ 8 2013-08-03   809 Sat    64.4
+ 9 2013-08-10   807 Sat    62.4
+10 2013-11-27  1014 Wed    51.3
+11 2013-11-30   857 Sat   112. 
+12 2013-12-01   987 Sun    95.5
+13 2013-12-21   811 Sat    66.4
+14 2013-12-28   814 Sat    69.4</code></pre>
+</div>
+</div>
+</section>
+<section id="further-development-of-the-model" class="slide level2">
+<h2>Further development of the model</h2>
+<ul>
+<li class="fragment">One might add a variable taking care of the seasonal effect</li>
+<li class="fragment">One might add variables for the special holidays, i.e Thanksgiving and Christmas</li>
+<li class="fragment">We will not elaborate further on the model, see r4ds chapter 24 for more on the model</li>
+</ul>
+</section>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
 
 <div class="footer footer-default">
-
+<p><a href="../../index.html">MSB105</a></p>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-R-hexbin" class="csl-entry" role="doc-biblioentry">
+Carr, Dan, Nicholas Lewin-Koh, and Martin Maechler. 2021. <em>Hexbin: Hexagonal Binning Routines</em>. <a href="https://github.com/edzer/hexbin">https://github.com/edzer/hexbin</a>.
+</div>
+<div id="ref-lubridate2011" class="csl-entry" role="doc-biblioentry">
+Grolemund, Garrett, and Hadley Wickham. 2011. <span>“Dates and Times Made Easy with <span class="nocase">lubridate</span>.”</span> <em>Journal of Statistical Software</em> 40 (3): 1–25. <a href="https://www.jstatsoft.org/v40/i03/">https://www.jstatsoft.org/v40/i03/</a>.
+</div>
+<div id="ref-R-patchwork" class="csl-entry" role="doc-biblioentry">
+Pedersen, Thomas Lin. 2020. <em>Patchwork: The Composer of Plots</em>. <a href="https://CRAN.R-project.org/package=patchwork">https://CRAN.R-project.org/package=patchwork</a>.
+</div>
+<div id="ref-R-lubridate" class="csl-entry" role="doc-biblioentry">
+Spinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. <em>Lubridate: Make Dealing with Dates a Little Easier</em>. <a href="https://CRAN.R-project.org/package=lubridate">https://CRAN.R-project.org/package=lubridate</a>.
+</div>
+<div id="ref-R-tseries" class="csl-entry" role="doc-biblioentry">
+Trapletti, Adrian, and Kurt Hornik. 2022. <em>Tseries: Time Series Analysis and Computational Finance</em>. <a href="https://CRAN.R-project.org/package=tseries">https://CRAN.R-project.org/package=tseries</a>.
+</div>
+<div id="ref-R-modelr" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley. 2020. <em>Modelr: Modelling Functions That Work with the Pipe</em>. <a href="https://CRAN.R-project.org/package=modelr">https://CRAN.R-project.org/package=modelr</a>.
+</div>
+<div id="ref-R-nycflights13" class="csl-entry" role="doc-biblioentry">
+———. 2021a. <em>Nycflights13: Flights That Departed NYC in 2013</em>. <a href="https://github.com/hadley/nycflights13">https://github.com/hadley/nycflights13</a>.
+</div>
+<div id="ref-R-tidyverse" class="csl-entry" role="doc-biblioentry">
+———. 2021b. <em>Tidyverse: Easily Install and Load the Tidyverse</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.
+</div>
+<div id="ref-tidyverse2019" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the <span class="nocase">tidyverse</span>.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
+</div>
 </div>
 </section>
     </div>
@@ -367,13 +1294,13 @@
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
+'smaller': true,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'smaller': false,
+'smaller': true,
  
         // Display controls in the bottom right corner
         controls: false,
@@ -393,7 +1320,7 @@
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -552,6 +1479,48 @@
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          // dispatch for htmlwidgets
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for reveal
+        if (window.Reveal) {
+          window.Reveal.addEventListener("slidechanged", function(event) {
+            fireSlideChanged(event.previousSlide, event.currentSlide);
+          });
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

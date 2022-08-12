@@ -6739,5 +6739,460 @@
     "title": "Iteration",
     "section": "References",
     "text": "References\n\n\nMSB105\n\n\n\nBache, Stefan Milton, and Hadley Wickham. 2022. Magrittr: A Forward-Pipe Operator for r. https://CRAN.R-project.org/package=magrittr.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nMersmann, Olaf. 2021. Microbenchmark: Accurate Timing Functions. https://github.com/joshuaulrich/microbenchmark/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nWickham, Hadley. 2021. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+  },
+  {
+    "objectID": "model/model-building/model-building.html#introduction",
+    "href": "model/model-building/model-building.html#introduction",
+    "title": "Model building",
+    "section": "Introduction",
+    "text": "Introduction\n\nWill look at two models\n\nDiamonds (data in ggplot2)\nNYCflights13 (data in nycflights13) also needs lubridate\n\nWill follow r4ds"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#diamonds",
+    "href": "model/model-building/model-building.html#diamonds",
+    "title": "Model building",
+    "section": "Diamonds",
+    "text": "Diamonds\n\nIn the dataset diamonds of lower quality seems to obtain higher prices\nWorse cut higher price\n\n\n\n\nCode\nggplot(diamonds, aes(cut, price)) + geom_boxplot() +\n  ggtitle(\"The connection between quality of cut and price\")"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#diamonds-1",
+    "href": "model/model-building/model-building.html#diamonds-1",
+    "title": "Model building",
+    "section": "Diamonds",
+    "text": "Diamonds"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#diamonds-2",
+    "href": "model/model-building/model-building.html#diamonds-2",
+    "title": "Model building",
+    "section": "Diamonds",
+    "text": "Diamonds\n\n\nCode\nggplot(diamonds, aes(color, price)) + geom_boxplot() +\n  ggtitle(\"The connection between quality of colour and price\")"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#diamonds-3",
+    "href": "model/model-building/model-building.html#diamonds-3",
+    "title": "Model building",
+    "section": "Diamonds",
+    "text": "Diamonds"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#diamonds-4",
+    "href": "model/model-building/model-building.html#diamonds-4",
+    "title": "Model building",
+    "section": "Diamonds",
+    "text": "Diamonds\n\n\nCode\nggplot(diamonds, aes(clarity, price)) + geom_boxplot() +\n  ggtitle(\"The connection between clarity and price\")"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#diamonds-5",
+    "href": "model/model-building/model-building.html#diamonds-5",
+    "title": "Model building",
+    "section": "Diamonds",
+    "text": "Diamonds"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#whats-going-on",
+    "href": "model/model-building/model-building.html#whats-going-on",
+    "title": "Model building",
+    "section": "What’s going on?",
+    "text": "What’s going on?\n\nConfounding variable\nA missing variable that is negatively correlated with the variables above\n\nSize, bigger diamonds are often of less quality, but\nlarge diamonds sell for a higher price\nsize often measured by weight, carats"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#diamonds-2-exclude-big-diamonds",
+    "href": "model/model-building/model-building.html#diamonds-2-exclude-big-diamonds",
+    "title": "Model building",
+    "section": "Diamonds 2; exclude big diamonds",
+    "text": "Diamonds 2; exclude big diamonds\n\n\nCode\ndiamonds2 <- diamonds %>% \n  filter(carat <= 2.5)"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#connection-between-size-and-price",
+    "href": "model/model-building/model-building.html#connection-between-size-and-price",
+    "title": "Model building",
+    "section": "Connection between size and price",
+    "text": "Connection between size and price\n\n\nCode\ng1 <- ggplot(data = diamonds2) + \n  geom_point(mapping = aes(x = carat, y = price), \n             size = 0.3,\n             alpha = 0.05\n             )\ng2 <- ggplot(diamonds2, aes(x = carat, y = price)) + \n  geom_hex(bins = 50)\n# made possible by patchwork\ng1 + g2"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#connection-between-size-and-price-1",
+    "href": "model/model-building/model-building.html#connection-between-size-and-price-1",
+    "title": "Model building",
+    "section": "Connection between size and price",
+    "text": "Connection between size and price"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#non-linear-relationship-between-carat-and-price",
+    "href": "model/model-building/model-building.html#non-linear-relationship-between-carat-and-price",
+    "title": "Model building",
+    "section": "Non-linear relationship between carat and price",
+    "text": "Non-linear relationship between carat and price\n\nTransform the two variables to get rid of the non-linearity\nUse ln (log()) instead of log2,since the former is a more common transformation in econometrics\nlog log gives us an elasticity (norsk: elastisitet)\np percentage change in size (carat) gives \\(e^{ln((100+p)/100)\\hat{\\beta}}\\) percentage change in price."
+  },
+  {
+    "objectID": "model/model-building/model-building.html#non-linear-relationship-between-carat-and-price-1",
+    "href": "model/model-building/model-building.html#non-linear-relationship-between-carat-and-price-1",
+    "title": "Model building",
+    "section": "Non-linear relationship between carat and price",
+    "text": "Non-linear relationship between carat and price\n\n\nCode\ng3 <- ggplot(data = diamonds2) + \n  geom_point(mapping = aes(x = log(carat), y = log(price)), \n             size = 0.3,\n             alpha = 0.05\n  )\ng4 <- ggplot(diamonds2, aes(x = log(carat), y = log(price))) + \n  geom_hex(bins = 50)\ng3 + g4"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#non-linear-relationship-between-carat-and-price-2",
+    "href": "model/model-building/model-building.html#non-linear-relationship-between-carat-and-price-2",
+    "title": "Model building",
+    "section": "Non-linear relationship between carat and price",
+    "text": "Non-linear relationship between carat and price"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#model-log-log",
+    "href": "model/model-building/model-building.html#model-log-log",
+    "title": "Model building",
+    "section": "Model log log",
+    "text": "Model log log\n\n\nCode\nmod_ll <- 'log(price) ~ log(carat)'\nlm_ll <- lm(formula = mod_ll, data = diamonds2)\ncoefficients(lm_ll)\n\n\n(Intercept)  log(carat) \n   8.452142    1.681371"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#model-log-log-cont.",
+    "href": "model/model-building/model-building.html#model-log-log-cont.",
+    "title": "Model building",
+    "section": "Model log log cont.",
+    "text": "Model log log cont.\n\nHow much will a 10% increase in size on average increase price?\n\n\\(e^{ln((100+s)/100)\\hat{\\beta}} = e^{ln((100+10)/100)·1.6814} \\approx 0,16\\), dvs 10% økning i størrelse gir 16% økning i pris (husk at log() er ln i R)\n\nHow much will a 1% increase in size on average increase price?\n\n\\(e^{ln((100+s)/100)\\hat{\\beta}} = e^{ln((100+1)/100)·1.6814} \\approx 0,01673\\), dvs 1% økning i størrelse gir 1,67% økning i pris. For small changes in size the relative price change is approximately equal to the coefficient (1.6814)."
+  },
+  {
+    "objectID": "model/model-building/model-building.html#checking-residuals-for-normality",
+    "href": "model/model-building/model-building.html#checking-residuals-for-normality",
+    "title": "Model building",
+    "section": "Checking residuals for normality",
+    "text": "Checking residuals for normality\n\n\nCode\ndiamonds2 <- diamonds2 %>% \n  add_residuals(lm_ll, var = \"resid_lm_ll\")\n\nres_m <- mean(diamonds2$resid_lm_ll)\nres_sd <- sd(diamonds2$resid_lm_ll)\n\ndiamonds2 %>% \n  ggplot() +\n  geom_histogram(mapping = aes(x = resid_lm_ll, y = ..density..),\n    alpha = 0.3, binwidth = 0.01) +\n  stat_function(fun = dnorm, args = list(mean = res_m, sd = res_sd))"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#checking-residuals-for-normality-1",
+    "href": "model/model-building/model-building.html#checking-residuals-for-normality-1",
+    "title": "Model building",
+    "section": "Checking residuals for normality",
+    "text": "Checking residuals for normality"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#checking-residuals-for-normality-2",
+    "href": "model/model-building/model-building.html#checking-residuals-for-normality-2",
+    "title": "Model building",
+    "section": "Checking residuals for normality",
+    "text": "Checking residuals for normality\n\n\nCode\njarque.bera.test(diamonds2$resid_lm_ll)\n\n\n\n    Jarque Bera Test\n\ndata:  diamonds2$resid_lm_ll\nX-squared = 1345.4, df = 2, p-value < 2.2e-16\n\n\n\nVisual inspection: The assumption of normal distribution of residuals not to bad.\njarque-bera-test: The residuals are not normally distributed."
+  },
+  {
+    "objectID": "model/model-building/model-building.html#problems-with-the-model",
+    "href": "model/model-building/model-building.html#problems-with-the-model",
+    "title": "Model building",
+    "section": "Problems with the model",
+    "text": "Problems with the model\n\nMissing variable bias.\n\nWhen important variables are missing from the model the coefficients estimated in the model will be biased\nsize (carat) is probably correlated with cut, colour and clarity and will draw with it some of the effects that are in reality caused by the latter three variables.\nWe will underestimate the importance of size, since on average larger diamonds seems to be of lower quality.\nIf we compare diamonds of equal quality size will have a bigger effect than what is implied by the simple model.\n\nNaive backtransformation bias"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#problems-with-the-model-cont.",
+    "href": "model/model-building/model-building.html#problems-with-the-model-cont.",
+    "title": "Model building",
+    "section": "Problems with the model cont.",
+    "text": "Problems with the model cont.\n\nNaive backtransformation exp(log_price_p) will also introduce bias.\n\nMiller 1984\nDuan 1983\nNewman 1993"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#problems-with-the-model-cont.-1",
+    "href": "model/model-building/model-building.html#problems-with-the-model-cont.-1",
+    "title": "Model building",
+    "section": "Problems with the model cont.",
+    "text": "Problems with the model cont.\n\nThere is mixed results on how munch better these more advanced backtransformations are in practice.\nIn this case, I tried them, it seems that the naive backtransformation works as well (RMSE; Root Mean Square Error), if not better, than the more advanced alternatives.\nThe reason might be that the two biases work in different directions. > - The bias caused by missing variables will lower the estimate of the size (carat) coefficient.\n\nThe bias caused by the naive backtransformation tend to heighten the same estimate."
+  },
+  {
+    "objectID": "model/model-building/model-building.html#checking-correlations-between-carat-cut-colour-and-clarity-pairs",
+    "href": "model/model-building/model-building.html#checking-correlations-between-carat-cut-colour-and-clarity-pairs",
+    "title": "Model building",
+    "section": "Checking correlations between carat, cut, colour and clarity (pairs())",
+    "text": "Checking correlations between carat, cut, colour and clarity (pairs())\n\npairs() is a nice tool, but doesn’t work so well with big datasets (we drawn a sample of 200 observation from 53814) and categorical variables.\n\n\n\n\nCode\ndiamonds2 %>% \n  select(carat, cut, color, clarity) %>%\n  slice_sample(n = 200) %>% \n  pairs()"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#checking-correlations-between-carat-cut-colour-and-clarity-pairs-1",
+    "href": "model/model-building/model-building.html#checking-correlations-between-carat-cut-colour-and-clarity-pairs-1",
+    "title": "Model building",
+    "section": "Checking correlations between carat, cut, colour and clarity (pairs())",
+    "text": "Checking correlations between carat, cut, colour and clarity (pairs())"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#checking-correlations-between-carat-cut-colour-and-clarity",
+    "href": "model/model-building/model-building.html#checking-correlations-between-carat-cut-colour-and-clarity",
+    "title": "Model building",
+    "section": "Checking correlations between carat, cut, colour and clarity",
+    "text": "Checking correlations between carat, cut, colour and clarity\n\nNegative correlation between carat and cut, carat and clarity\nPositive correlation between carat and (bad) colour\nThe bigger the diamond the worse cut, colour and clarity on average.\n\n\n\n\nCode\ng7 <- ggplot(diamonds2, aes(cut, carat)) + geom_boxplot()\ng8 <- ggplot(diamonds2, aes(color, carat)) + geom_boxplot()\ng9 <- ggplot(diamonds2, aes(clarity, carat)) + geom_boxplot()\ng7 + g8 + g9"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#checking-correlations-between-carat-cut-colour-and-clarity-1",
+    "href": "model/model-building/model-building.html#checking-correlations-between-carat-cut-colour-and-clarity-1",
+    "title": "Model building",
+    "section": "Checking correlations between carat, cut, colour and clarity",
+    "text": "Checking correlations between carat, cut, colour and clarity"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#grid",
+    "href": "model/model-building/model-building.html#grid",
+    "title": "Model building",
+    "section": "Grid",
+    "text": "Grid\n\nA grid is used to generate values to later draw the “model line”\nHere 20 points, grid same size as later plot\nThe geom_line() function in the next plot uses data from grid to draw the line\n\n\n\n\nCode\n# generate 20 data points on a grid\n# to be used to draw the predictions\ngrid <- diamonds2 %>% \n  data_grid(carat = seq_range(carat, 20))  %>% \n  add_predictions(lm_ll, \"log_price_p\") %>% \n  mutate(price = exp(log_price_p))\n#View(grid)"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#plot-of-price-against-carat-model-line-added",
+    "href": "model/model-building/model-building.html#plot-of-price-against-carat-model-line-added",
+    "title": "Model building",
+    "section": "Plot of price against carat, model line added",
+    "text": "Plot of price against carat, model line added\n\n\nCode\ng5 <- ggplot(diamonds2, aes(x = carat, y = price)) + \n  geom_point(size = 0.5, alpha = 0.05) + \n  geom_line(data = grid,  colour = \"red\", size = 1)\ng6 <- ggplot(diamonds2, aes(carat, price)) + \n  geom_hex(bins = 50) + \n  geom_line(data = grid,  colour = \"red\", size = 1)\ng5 + g6"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#plot-of-price-against-carat-model-line-added-1",
+    "href": "model/model-building/model-building.html#plot-of-price-against-carat-model-line-added-1",
+    "title": "Model building",
+    "section": "Plot of price against carat, model line added",
+    "text": "Plot of price against carat, model line added"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#is-the-linear-trend-removed",
+    "href": "model/model-building/model-building.html#is-the-linear-trend-removed",
+    "title": "Model building",
+    "section": "Is the linear trend removed?",
+    "text": "Is the linear trend removed?\n\nPlotting the residuals against log(carat)\n\n\n\n\nCode\ndiamonds2 <- diamonds2 %>% \n  add_residuals(lm_ll, \"log_resid\")\nggplot(diamonds2, aes(log(carat), log_resid)) + \n  geom_hex(bins = 50)"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#is-the-linear-trend-removed-1",
+    "href": "model/model-building/model-building.html#is-the-linear-trend-removed-1",
+    "title": "Model building",
+    "section": "Is the linear trend removed?",
+    "text": "Is the linear trend removed?\n\nPlotting the residuals against log(carat)"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#boxplot-carat-effect-removed",
+    "href": "model/model-building/model-building.html#boxplot-carat-effect-removed",
+    "title": "Model building",
+    "section": "Boxplot, carat effect removed",
+    "text": "Boxplot, carat effect removed\n\nCut and price\n\n\n\n\nCode\nggplot(diamonds2, aes(cut, log_resid)) + geom_boxplot() +\n  ggtitle(\"Better cuts have higher prices (as we would suspect)\")"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#boxplot-carat-effect-removed-1",
+    "href": "model/model-building/model-building.html#boxplot-carat-effect-removed-1",
+    "title": "Model building",
+    "section": "Boxplot, carat effect removed",
+    "text": "Boxplot, carat effect removed\n\nCut and price"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#boxplot-carat-effect-removed-2",
+    "href": "model/model-building/model-building.html#boxplot-carat-effect-removed-2",
+    "title": "Model building",
+    "section": "Boxplot, carat effect removed",
+    "text": "Boxplot, carat effect removed\n\nColour and price\n\n\n\n\nCode\nggplot(diamonds2, aes(color, log_resid)) + geom_boxplot() +\n  ggtitle(\"Better colour gives a higher price (as we would suspect)\")"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#boxplot-carat-effect-removed-3",
+    "href": "model/model-building/model-building.html#boxplot-carat-effect-removed-3",
+    "title": "Model building",
+    "section": "Boxplot, carat effect removed",
+    "text": "Boxplot, carat effect removed"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#boxplot-carat-effect-removed-4",
+    "href": "model/model-building/model-building.html#boxplot-carat-effect-removed-4",
+    "title": "Model building",
+    "section": "Boxplot, carat effect removed",
+    "text": "Boxplot, carat effect removed\n\nClarity and price\n\n\n\n\nCode\nggplot(diamonds2, aes(clarity, log_resid)) + geom_boxplot() +\n  ggtitle(\"Better clarity give a higher price (as we would suspect)\")"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#boxplot-carat-effect-removed-5",
+    "href": "model/model-building/model-building.html#boxplot-carat-effect-removed-5",
+    "title": "Model building",
+    "section": "Boxplot, carat effect removed",
+    "text": "Boxplot, carat effect removed"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#full-model",
+    "href": "model/model-building/model-building.html#full-model",
+    "title": "Model building",
+    "section": "Full model",
+    "text": "Full model\n\nAlso use the variables cut, colour and clarity.\n\nOrdered categorical variables\nNote that colour is ordered according to increasing “badness”\n\nD best colour, J worst colour\n\n\n\n\n\n\nCode\nmod2_ll <- 'log(price) ~ log(carat) + cut + color + clarity'\nlm2_ll <- lm(mod2_ll, data = diamonds2)\ndiamonds2 <- diamonds2 %>% \n  add_residuals(lm2_ll, var = \"res_lm2\")"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#residuals-full-model",
+    "href": "model/model-building/model-building.html#residuals-full-model",
+    "title": "Model building",
+    "section": "Residuals full model",
+    "text": "Residuals full model\n\n\nCode\ng10 <- diamonds2 %>% \n  ggplot(mapping = aes(x = log(price), y = res_lm2)) +\n  geom_point(size = 0.5, alpha = 0.05)\ng11 <- diamonds2 %>% \n  ggplot(mapping = aes(x = log(carat), y = res_lm2)) +\n  geom_point(size = 0.5, alpha = 0.05)\ng10 + g11"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#residuals-full-model-1",
+    "href": "model/model-building/model-building.html#residuals-full-model-1",
+    "title": "Model building",
+    "section": "Residuals full model",
+    "text": "Residuals full model"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#comments-full-model",
+    "href": "model/model-building/model-building.html#comments-full-model",
+    "title": "Model building",
+    "section": "Comments full model",
+    "text": "Comments full model\n\nStill plenty to play with.\nUsing coefficient estimate for carat in full model to remove linear trend.\nFurther investigations of alternative backtransformations.\nWhat is really the association between cut and size? It might look like cut quality is sacrificed to get the finished diamonds over some size thresholds.\nWhat characterize the diamonds with big residuals?"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#nyc-flight-data",
+    "href": "model/model-building/model-building.html#nyc-flight-data",
+    "title": "Model building",
+    "section": "NYC flight data",
+    "text": "NYC flight data\n\nLoad data (nycflights13 must be loaded via library(nycflights13))\nmake a date from year, mont and day\nthen summarise and count observations for each date\n\n\n\n\nCode\n# uses nycflights13, lubridate and tidyverse packages\n# options get rid of the warning about ungrouping, waste space here\noptions(dplyr.summarise.inform = FALSE)\ndaily <- flights %>% \n  mutate(date = make_date(year, month, day)) %>% \n  group_by(date) %>% \n  summarise(n = n())"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#nyc-flight-data-cont.",
+    "href": "model/model-building/model-building.html#nyc-flight-data-cont.",
+    "title": "Model building",
+    "section": "NYC flight data cont.",
+    "text": "NYC flight data cont.\n\n\nCode\n# OK in slide output\noptions(tibble.print_min = 3)\nprint(daily, n = 3)\n\n\n# A tibble: 365 × 2\n  date           n\n  <date>     <int>\n1 2013-01-01   842\n2 2013-01-02   943\n3 2013-01-03   914\n# … with 362 more rows\n# ℹ Use `print(n = ...)` to see more rows"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#plotting-daily",
+    "href": "model/model-building/model-building.html#plotting-daily",
+    "title": "Model building",
+    "section": "Plotting daily",
+    "text": "Plotting daily\n\n\nCode\ndaily %>% \n  ggplot(mapping = aes(x = date, y = n)) +\n  geom_line()"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#plotting-daily-1",
+    "href": "model/model-building/model-building.html#plotting-daily-1",
+    "title": "Model building",
+    "section": "Plotting daily",
+    "text": "Plotting daily"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#day-of-week-norwegian-week",
+    "href": "model/model-building/model-building.html#day-of-week-norwegian-week",
+    "title": "Model building",
+    "section": "Day of week (Norwegian week)",
+    "text": "Day of week (Norwegian week)\n\nwday() function in lubridate gives us the day of the week for a date. Remember Sunday first day of the week in the US. Here it is Monday.\nCan be controlled by week_start = getOption(\"lubridate.week.start\", 7) and locale\n\n\n\n\nCode\ndaily_no <- daily %>%\n  mutate(wday = wday(date, label = TRUE, week_start = 1))\n\nggplot(daily_no, mapping = aes(x = wday, n)) +\n  geom_boxplot()\nrm(daily_no)"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#day-of-week-norwegian-week-1",
+    "href": "model/model-building/model-building.html#day-of-week-norwegian-week-1",
+    "title": "Model building",
+    "section": "Day of week (Norwegian week)",
+    "text": "Day of week (Norwegian week)"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#day-of-week",
+    "href": "model/model-building/model-building.html#day-of-week",
+    "title": "Model building",
+    "section": "Day of week",
+    "text": "Day of week\n\nFollow r4ds\n\n\n\n\nCode\ndaily <- daily %>% \n  mutate(wday = wday(date, label = TRUE))\nggplot(daily, aes(wday, n)) + \n  geom_boxplot()"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#day-of-week-1",
+    "href": "model/model-building/model-building.html#day-of-week-1",
+    "title": "Model building",
+    "section": "Day of week",
+    "text": "Day of week"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#simple-model",
+    "href": "model/model-building/model-building.html#simple-model",
+    "title": "Model building",
+    "section": "Simple model",
+    "text": "Simple model\n\nSimple model with wday as a category variable\n\n\n\n\nCode\nmod <- lm(n ~ wday, data = daily)\ndaily %>% \n  model_matrix(n ~ wday) %>% \n  .[1:3, ] # 3 first rows\n\n\n# A tibble: 3 × 7\n  `(Intercept)`    wday.L wday.Q    wday.C `wday^4`  `wday^5` `wday^6`\n          <dbl>     <dbl>  <dbl>     <dbl>    <dbl>     <dbl>    <dbl>\n1             1 -1.89e- 1 -0.327  4.08e- 1   0.0806 -5.46e- 1    0.493\n2             1  2.10e-17 -0.436  3.02e-17   0.483  -9.75e-16   -0.658\n3             1  1.89e- 1 -0.327 -4.08e- 1   0.0806  5.46e- 1    0.493"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#simple-model-grid",
+    "href": "model/model-building/model-building.html#simple-model-grid",
+    "title": "Model building",
+    "section": "Simple model; grid",
+    "text": "Simple model; grid\n\nmake a grid\n\n\n\n\nCode\ngrid <- daily %>% \n  data_grid(wday) %>% \n  add_predictions(mod, \"n\")\ngrid\n\n\n# A tibble: 7 × 2\n  wday      n\n  <ord> <dbl>\n1 Sun    891.\n2 Mon    975.\n3 Tue    951.\n4 Wed    963.\n5 Thu    966.\n6 Fri    967.\n7 Sat    745."
+  },
+  {
+    "objectID": "model/model-building/model-building.html#plot-predicted-flights",
+    "href": "model/model-building/model-building.html#plot-predicted-flights",
+    "title": "Model building",
+    "section": "Plot predicted flights",
+    "text": "Plot predicted flights\n\nModel prediction is red dots\n\n\n\n\nCode\nggplot(daily, aes(wday, n)) + \n  geom_boxplot() +\n  geom_point(data = grid, colour = \"red\", size = 4)"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#plot-predicted-flights-1",
+    "href": "model/model-building/model-building.html#plot-predicted-flights-1",
+    "title": "Model building",
+    "section": "Plot predicted flights",
+    "text": "Plot predicted flights"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#plot-residuals",
+    "href": "model/model-building/model-building.html#plot-residuals",
+    "title": "Model building",
+    "section": "Plot residuals",
+    "text": "Plot residuals\n\nModel remove most of day-of-week effect\nEasier to see special events\n\n\n\n\nCode\ndaily <- daily %>% \n  add_residuals(mod)\ndaily %>% \n  ggplot(aes(date, resid)) + \n  geom_ref_line(h = 0) + \n  geom_line()"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#plot-residuals-1",
+    "href": "model/model-building/model-building.html#plot-residuals-1",
+    "title": "Model building",
+    "section": "Plot residuals",
+    "text": "Plot residuals"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#residuals-for-each-week-day",
+    "href": "model/model-building/model-building.html#residuals-for-each-week-day",
+    "title": "Model building",
+    "section": "Residuals for each week day",
+    "text": "Residuals for each week day\n\n\nCode\nggplot(daily, aes(date, resid, colour = wday)) + \n  geom_ref_line(h = 0) + \n  geom_line()"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#residuals-for-each-week-day-1",
+    "href": "model/model-building/model-building.html#residuals-for-each-week-day-1",
+    "title": "Model building",
+    "section": "Residuals for each week day",
+    "text": "Residuals for each week day"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#residual-for-saturday",
+    "href": "model/model-building/model-building.html#residual-for-saturday",
+    "title": "Model building",
+    "section": "Residual for Saturday",
+    "text": "Residual for Saturday\n\n\nCode\ndaily %>% \n  filter(wday == \"Sat\") %>% \nggplot(mapping = aes(x = date, y = resid)) + \n  geom_ref_line(h = 0) + \n  geom_line()"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#residual-for-saturday-1",
+    "href": "model/model-building/model-building.html#residual-for-saturday-1",
+    "title": "Model building",
+    "section": "Residual for Saturday",
+    "text": "Residual for Saturday"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#comments-regarding-residuals",
+    "href": "model/model-building/model-building.html#comments-regarding-residuals",
+    "title": "Model building",
+    "section": "Comments regarding residuals",
+    "text": "Comments regarding residuals\n\nThe model under-estimate traffic on Saturdays in the spring and summer and over-estimate the Saturday traffic in the autumn and late winter.\nThere is a spike in late December. Wonder what that might be? ;-)\nDates with low traffic."
+  },
+  {
+    "objectID": "model/model-building/model-building.html#comments-regarding-residuals-cont.",
+    "href": "model/model-building/model-building.html#comments-regarding-residuals-cont.",
+    "title": "Model building",
+    "section": "Comments regarding residuals cont.",
+    "text": "Comments regarding residuals cont.\n\n\nCode\ndaily %>% \n  filter(resid < -100)\n\n\n# A tibble: 11 × 4\n   date           n wday  resid\n   <date>     <int> <ord> <dbl>\n 1 2013-01-01   842 Tue   -109.\n 2 2013-01-20   786 Sun   -105.\n 3 2013-05-26   729 Sun   -162.\n 4 2013-07-04   737 Thu   -229.\n 5 2013-07-05   822 Fri   -145.\n 6 2013-09-01   718 Sun   -173.\n 7 2013-11-28   634 Thu   -332.\n 8 2013-11-29   661 Fri   -306.\n 9 2013-12-24   761 Tue   -190.\n10 2013-12-25   719 Wed   -244.\n11 2013-12-31   776 Tue   -175.\n\n\n\nNew years, Thanksgiving, Christmas"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#comments-regarding-residuals-cont.-1",
+    "href": "model/model-building/model-building.html#comments-regarding-residuals-cont.-1",
+    "title": "Model building",
+    "section": "Comments regarding residuals cont.",
+    "text": "Comments regarding residuals cont.\n\nTraffic seems to be more spread out before an event than after.\nHigher traffic than predicted on Saturdays during the summer.\nHigher traffic before and after Thanksgiving and Christmas."
+  },
+  {
+    "objectID": "model/model-building/model-building.html#comments-regarding-residuals-cont.-2",
+    "href": "model/model-building/model-building.html#comments-regarding-residuals-cont.-2",
+    "title": "Model building",
+    "section": "Comments regarding residuals cont.",
+    "text": "Comments regarding residuals cont.\n\n\nCode\ndaily %>% \n  filter(resid > 50)\n\n\n# A tibble: 14 × 4\n   date           n wday  resid\n   <date>     <int> <ord> <dbl>\n 1 2013-06-15   801 Sat    56.4\n 2 2013-06-22   812 Sat    67.4\n 3 2013-06-29   812 Sat    67.4\n 4 2013-07-06   805 Sat    60.4\n 5 2013-07-13   811 Sat    66.4\n 6 2013-07-20   810 Sat    65.4\n 7 2013-07-27   811 Sat    66.4\n 8 2013-08-03   809 Sat    64.4\n 9 2013-08-10   807 Sat    62.4\n10 2013-11-27  1014 Wed    51.3\n11 2013-11-30   857 Sat   112. \n12 2013-12-01   987 Sun    95.5\n13 2013-12-21   811 Sat    66.4\n14 2013-12-28   814 Sat    69.4"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#further-development-of-the-model",
+    "href": "model/model-building/model-building.html#further-development-of-the-model",
+    "title": "Model building",
+    "section": "Further development of the model",
+    "text": "Further development of the model\n\nOne might add a variable taking care of the seasonal effect\nOne might add variables for the special holidays, i.e Thanksgiving and Christmas\nWe will not elaborate further on the model, see r4ds chapter 24 for more on the model"
+  },
+  {
+    "objectID": "model/model-building/model-building.html#references",
+    "href": "model/model-building/model-building.html#references",
+    "title": "Model building",
+    "section": "References",
+    "text": "References\n\n\nMSB105\n\n\n\nCarr, Dan, Nicholas Lewin-Koh, and Martin Maechler. 2021. Hexbin: Hexagonal Binning Routines. https://github.com/edzer/hexbin.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nPedersen, Thomas Lin. 2020. Patchwork: The Composer of Plots. https://CRAN.R-project.org/package=patchwork.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nTrapletti, Adrian, and Kurt Hornik. 2022. Tseries: Time Series Analysis and Computational Finance. https://CRAN.R-project.org/package=tseries.\n\n\nWickham, Hadley. 2020. Modelr: Modelling Functions That Work with the Pipe. https://CRAN.R-project.org/package=modelr.\n\n\n———. 2021a. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2021b. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   }
 ]
