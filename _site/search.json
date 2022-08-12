@@ -7116,7 +7116,7 @@
     "href": "program/program.html",
     "title": "Program",
     "section": "",
-    "text": "Introduction (r4ds chap. 9)\nMore on Pipes (r4ds chap. 18)\nFunctions (r4ds chap. 19)\nVectors (r4ds chap. 20)\nIteration (r4ds chap. 21)"
+    "text": "Introduction (r4ds chap. 17)\nMore on Pipes (r4ds chap. 18)\nFunctions (r4ds chap. 19)\nVectors (r4ds chap. 20)\nIteration (r4ds chap. 21)"
   },
   {
     "objectID": "program/functions/functions.html#load-tidyverse-and-magrittr",

@@ -5,7 +5,7 @@ editor: visual
 
 ## Presentations
 
-[Introduction (r4ds chap. 9)](intro-program/intro-program.qmd)
+[Introduction (r4ds chap. 17)](intro-program/intro-program.qmd)
 
 [More on Pipes (r4ds chap. 18)](pipes-cont/pipes-cont.qmd)
 
@@ -14,4 +14,3 @@ editor: visual
 [Vectors (r4ds chap. 20)](vectors/vectors.qmd)
 
 [Iteration (r4ds chap. 21)](iteration/iteration.qmd)
-
