@@ -508,7 +508,7 @@
     "href": "wrangle-data/time-data/time-data.html#change-type",
     "title": "Time Data",
     "section": "Change type",
-    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2022-08-12\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2022-08-12 18:37:23 CEST\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2022-08-12\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2022-08-12 UTC\""
+    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2022-08-12\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2022-08-12 19:28:06 CEST\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2022-08-12\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2022-08-12 UTC\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#different-inputs",
@@ -1411,28 +1411,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\n\nTime difference of 3.060289 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\n\nTime difference of 3.404512 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\n\nTime difference of 3.514486 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\n\nTime difference of 3.737937 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n\nCode\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n\n[1] 14.84"
+    "text": "Speed Difference\n\n\nCode\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n\n[1] 9.79"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\n\nTime difference of 0.1084619 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 3140.3"
+    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\n\nTime difference of 0.1116111 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 3249.07"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#other-types-of-vectors-logical",
@@ -2062,28 +2062,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\nTime difference of 3.017939 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\nTime difference of 3.809263 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\nTime difference of 3.477018 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\nTime difference of 4.041292 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 15.21"
+    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 6.09"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\nTime difference of 0.1081669 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 3114.49"
+    "text": "The R way\n\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\nTime difference of 0.103436 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 3807.05"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#other-types-of-vectors-logical",
@@ -5607,6 +5607,363 @@
     "text": "1 + 1\n\n[1] 2"
   },
   {
+    "objectID": "model/model.html",
+    "href": "model/model.html",
+    "title": "Model",
+    "section": "",
+    "text": "Model Introduction (r4ds chap. 22)\nModel basics (r4ds chap. 23)\nModel building (r4ds chap. 24)\nMany models (r4ds chap. 19)"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#introduction",
+    "href": "model/model-basics/model-basics.html#introduction",
+    "title": "Model basics",
+    "section": "Introduction",
+    "text": "Introduction\n\nr4ds has somewhat different perspective than econometrics\n\nmore concerned with making predictions\neconometrics more concerned with testing a theoretical model on data\nchp. 23 contains a lot of code meant to build intuition around linear models\nwe will skip most of it\n\nCalculate the estimated coefficients with some matrix algebra instead"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#linear-model",
+    "href": "model/model-basics/model-basics.html#linear-model",
+    "title": "Model basics",
+    "section": "Linear model",
+    "text": "Linear model\n\nThe model is specified with a formula notation\n\ny ~ x represents the model\n\\[y = a_1 + a_2 · x\\]\nFit the model on some simulated data from modelr package, sim1\n\n\n\n\n\nCode\ns1_mod <- lm(y ~ x, data = sim1)\n# Pick out the coefficients\ncoef(s1_mod)\n\n\n(Intercept)           x \n   4.220822    2.051533"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#predictions",
+    "href": "model/model-basics/model-basics.html#predictions",
+    "title": "Model basics",
+    "section": "Predictions",
+    "text": "Predictions\n\n\nCode\ng1 <- sim1 %>% \nggplot(mapping = aes(x = x, y = y)) + \n  geom_point() +\n  geom_smooth(formula = \"y ~ x\", method = \"lm\", se = FALSE)\ng1"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#predictions-1",
+    "href": "model/model-basics/model-basics.html#predictions-1",
+    "title": "Model basics",
+    "section": "Predictions",
+    "text": "Predictions"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#adding-predictions-to-sim1",
+    "href": "model/model-basics/model-basics.html#adding-predictions-to-sim1",
+    "title": "Model basics",
+    "section": "Adding predictions to sim1",
+    "text": "Adding predictions to sim1\n\nEstimated linear model \\[y = 4.2208 + 2.0515 · x\\]\nWhat values of y does our model predict for our x values?"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#adding-predictions-to-sim1-1",
+    "href": "model/model-basics/model-basics.html#adding-predictions-to-sim1-1",
+    "title": "Model basics",
+    "section": "Adding predictions to sim1",
+    "text": "Adding predictions to sim1\n\nEstimated linear model \\[y = 4.2208 + 2.0515 · x\\]\nWhat values of y does our model predict for our x values?\n\n\n\n\nCode\nsim1a <- sim1 %>% \n  add_predictions(model = s1_mod)\n\ng1 + geom_point(data = sim1a, mapping = aes(x = x, y = pred), colour = \"red\", size = 3)"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#adding-predictions-to-sim1-2",
+    "href": "model/model-basics/model-basics.html#adding-predictions-to-sim1-2",
+    "title": "Model basics",
+    "section": "Adding predictions to sim1",
+    "text": "Adding predictions to sim1"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#adding-residuals-to-sim1a",
+    "href": "model/model-basics/model-basics.html#adding-residuals-to-sim1a",
+    "title": "Model basics",
+    "section": "Adding residuals to sim1a",
+    "text": "Adding residuals to sim1a\n\n\nCode\nsim1a <- sim1a %>% \n  add_residuals(s1_mod)\nhead(sim1a, n = 3)\n\n\n# A tibble: 3 × 4\n      x     y  pred resid\n  <int> <dbl> <dbl> <dbl>\n1     1  4.20  6.27 -2.07\n2     1  7.51  6.27  1.24\n3     1  2.13  6.27 -4.15"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#plotting-x-values-against-residuals-points",
+    "href": "model/model-basics/model-basics.html#plotting-x-values-against-residuals-points",
+    "title": "Model basics",
+    "section": "Plotting x-values against residuals; points",
+    "text": "Plotting x-values against residuals; points\n\n\nCode\nsim1a %>% \n  ggplot(mapping = aes(x = x, y = resid)) +\n  geom_point() +\n  geom_hline(yintercept = 0)"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#plotting-x-values-against-residuals-points-1",
+    "href": "model/model-basics/model-basics.html#plotting-x-values-against-residuals-points-1",
+    "title": "Model basics",
+    "section": "Plotting x-values against residuals; points",
+    "text": "Plotting x-values against residuals; points"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#plotting-x-values-against-residuals-frequency",
+    "href": "model/model-basics/model-basics.html#plotting-x-values-against-residuals-frequency",
+    "title": "Model basics",
+    "section": "Plotting x-values against residuals; frequency",
+    "text": "Plotting x-values against residuals; frequency\n\n\nCode\nsim1a %>% \n  ggplot(mapping = aes(x = resid)) +\n  # experiment with binwidth = 1 and binwidth = 0.25\n  geom_freqpoly(binwidth = 0.5)"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#plotting-x-values-against-residuals-frequency-1",
+    "href": "model/model-basics/model-basics.html#plotting-x-values-against-residuals-frequency-1",
+    "title": "Model basics",
+    "section": "Plotting x-values against residuals; frequency",
+    "text": "Plotting x-values against residuals; frequency"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#matrix-multiplication",
+    "href": "model/model-basics/model-basics.html#matrix-multiplication",
+    "title": "Model basics",
+    "section": "Matrix multiplication",
+    "text": "Matrix multiplication\n\\[\nM= \\begin{bmatrix} a_{1,1} & a_{1,2} \\\\ a_{2,1} & a_{2,2} \\\\ a_{3,1} & a_{3,2} \\end{bmatrix} \\quad\nt(M) = \\begin{bmatrix}a_{1,1} & a_{2,1} & a_{3,1}\\\\\na_{1,2} & a_{2,2} & a_{3,2}\\end{bmatrix}\\quad \\boldsymbol{M'M}\n\\]\n\n\nRow 1 in t(m) is to be multiplied pairwise with column 1 in M and summed. This sum gives the new value at place (1,1) in the resulting matrix.\nRow 1 in t(m) is to be multiplied pairwise with column 2 in M and summed. This sum gives the new value at place (1,2) in the resulting matrix.\nRow 2 in t(m) is to be multiplied pairwise with column 1 in M and summed. This sum gives the new value at place (2,1) in the resulting matrix.\nRow 2 in t(m) is to be multiplied pairwise with column 2 in M and summed. This sum gives the new value at place (2,2) in the resulting matrix.\n\n\n\n\\[\nt(M) * M =\n\\]\n\\[\\begin{bmatrix}a_{1,1}·a_{1,1} + a_{2,1} · a_{2,1} + a_{3,1} · a_{3,1} & a_{1,1}·a_{1,2} + a_{2,1} · a_{2,2} + a_{3,1} · a_{3,2} \\\\ a_{1,2}·a_{1,1} + a_{2,2} · a_{2,1} + a_{3,2} · a_{3,1} & a_{1,2}·a_{1,2} + a_{2,2} · a_{2,2} + a_{3,2} · a_{3,2}\\end{bmatrix}\\]"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#matrix-multiplication-1",
+    "href": "model/model-basics/model-basics.html#matrix-multiplication-1",
+    "title": "Model basics",
+    "section": "Matrix multiplication",
+    "text": "Matrix multiplication\n\\[t(M) = \\begin{bmatrix}1 & 9 & 8\\\\3 & 7 & 4\\end{bmatrix} \\quad M = \\begin{bmatrix}1 & 3\\\\9 & 7\\\\8 & 4\\end{bmatrix}\\]\n\\[t(M) * M = \\begin{bmatrix}1·1 + 9·9 + 8·8 & 1·3 + 9·7+8·4\\\\3·1+7·9+4·8 & 3·3+7·7+4·4\\end{bmatrix} = \\begin{bmatrix}146 & 98\\\\98 & 74 \\end{bmatrix}\\]\n\n\nThe rules for X · Y\n\nX, m rows, n columns\nY, s rows, t columns\n\nFor X · Y to be possible:\n\nn = s and the dimension of the result will be\nm x t, i.e. m rows and t columns."
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#matrix-multiplication-2",
+    "href": "model/model-basics/model-basics.html#matrix-multiplication-2",
+    "title": "Model basics",
+    "section": "Matrix multiplication",
+    "text": "Matrix multiplication\n\nMatrix multiplication in R are done with %*%\n\n\n\n\nCode\nM <- matrix(c(1, 3, 9, 7, 8, 4), nrow = 3, ncol = 2, byrow = TRUE)\nt(M) %*% M # 2 X 3 3 x 2, 3 3 ok, result 2 x 2\n\n\n     [,1] [,2]\n[1,]  146   98\n[2,]   98   74"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#matrix-multiplication-3",
+    "href": "model/model-basics/model-basics.html#matrix-multiplication-3",
+    "title": "Model basics",
+    "section": "Matrix multiplication",
+    "text": "Matrix multiplication\n\\[M * t(M)\\quad 3 x 2\\quad 2 x 3\\]\n\nM * t(M) is possible since we have 2’s in the middle. The dimension of the result will be 3x3.\n\n\n\\[M * t(M) =\n\\begin{bmatrix}1·1+3·3 & 1·9+3·7&1·8+3·4\\\\\n9·1+7·3&9·9+7·7&9·8+7·4\\\\\n8·1+4·3&8·9+4·7&8·8+4·4\n\\end{bmatrix}\\]"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#matrix-multiplication-4",
+    "href": "model/model-basics/model-basics.html#matrix-multiplication-4",
+    "title": "Model basics",
+    "section": "Matrix multiplication",
+    "text": "Matrix multiplication\n$$=\n\\[\\begin{bmatrix}\n10 & 30 & 20 \\\\\n30 & 130 & 100\\\\\n20 & 100 & 80\n\\end{bmatrix}\\]\n$$\n\n\nCode\nM %*% t(M)\n\n\n     [,1] [,2] [,3]\n[1,]   10   30   20\n[2,]   30  130  100\n[3,]   20  100   80"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#multiplication-by-vector",
+    "href": "model/model-basics/model-basics.html#multiplication-by-vector",
+    "title": "Model basics",
+    "section": "Multiplication by vector",
+    "text": "Multiplication by vector\n\nJust like multiplying by a matrix with 1 row or 1 column\n\n\n\\[y = \\begin{bmatrix}7\\\\2\\\\4\\end{bmatrix}\\]\n\\[(\\boldsymbol{M} · t(\\boldsymbol{M})) · \\boldsymbol{y}\\]\n\n\n\n(M %*% t(M)) is 3x3\ny is 3x1\n(M · t(M)) · y, 3x3 3x1\nPossible, since 3x3 in the middle, and dimension of result will be 3x1, 3 rows and 1 column"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#multiplication-by-vector-1",
+    "href": "model/model-basics/model-basics.html#multiplication-by-vector-1",
+    "title": "Model basics",
+    "section": "Multiplication by vector",
+    "text": "Multiplication by vector\n\n(M %*% t(M)) is 3x3\ny is 3x1\n(M · t(M)) · y, 3x3 3x1\nPossible, since 3x3 in the middle, and dimension of result will be 3x1, 3 rows and 1 column\n\n\n\\[(M · t(M)) · y = \\begin{bmatrix}\n10 & 30 & 20 \\\\\n30 & 130 & 100\\\\\n20 & 100 & 80\n\\end{bmatrix} · \\begin{bmatrix}7\\\\2\\\\4\\end{bmatrix} =\n\\begin{bmatrix}\n10·7+30·2+20·4\\\\\n30·7+130·2+100·4\\\\\n20·7+100·2+80·4\n\\end{bmatrix}\\]\n$$=\n\\[\\begin{bmatrix}\n\n\n210\\\\\n870\\\\\n660\n\\end{bmatrix}\\]\n$$"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#multiplication-by-vector-2",
+    "href": "model/model-basics/model-basics.html#multiplication-by-vector-2",
+    "title": "Model basics",
+    "section": "Multiplication by vector",
+    "text": "Multiplication by vector\n\n\nCode\ny <- matrix(c(7, 2, 4), nrow = 3)\ny\n\n\n     [,1]\n[1,]    7\n[2,]    2\n[3,]    4\n\n\n\n\nCode\n(M %*% t(M)) %*% y\n\n\n     [,1]\n[1,]  210\n[2,]  870\n[3,]  660"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#model-matrix",
+    "href": "model/model-basics/model-basics.html#model-matrix",
+    "title": "Model basics",
+    "section": "Model matrix",
+    "text": "Model matrix\n\nOLS: . . .\n\n\\[\\hat{\\beta} = (X^T X)^{-1} X^T y\\]\n\nX above is the model_matrix\n\n\n\n\nCode\nX_mod <- model_matrix(data = sim1a, formula = y ~ x)\nX_mod <- X_mod %>% rename(\"a_1\" = \"(Intercept)\")\ndim(X_mod)\n\n\n[1] 30  2"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#model-matrix-1",
+    "href": "model/model-basics/model-basics.html#model-matrix-1",
+    "title": "Model basics",
+    "section": "Model matrix",
+    "text": "Model matrix\n\n\nCode\nhead(X_mod, n = 4)\n\n\n# A tibble: 4 × 2\n    a_1     x\n  <dbl> <dbl>\n1     1     1\n2     1     1\n3     1     1\n4     1     2\n\n\nCode\ntail(X_mod, n = 4)\n\n\n# A tibble: 4 × 2\n    a_1     x\n  <dbl> <dbl>\n1     1     9\n2     1    10\n3     1    10\n4     1    10"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#model-matrix-2",
+    "href": "model/model-basics/model-basics.html#model-matrix-2",
+    "title": "Model basics",
+    "section": "Model matrix",
+    "text": "Model matrix\n\nUse \\[\\hat{\\beta} = (X^T X)^{-1} X^T y\\] to calculate the two coefficients\n\n\n\n\nCode\nX <- as.matrix(X_mod)\ny <- sim1a$y\n(XTX <- t(X) %*% X) # 2 x 30 * 30 x 2, result 2 x 2\n\n\n    a_1    x\na_1  30  165\nx   165 1155\n\n\nCode\n(XTXinv <- solve(t(X) %*% X)) # invert\n\n\n            a_1            x\na_1  0.15555556 -0.022222222\nx   -0.02222222  0.004040404\n\n\nCode\n# check, should give I 2 x 2\nround(XTX %*% XTXinv, 2)\n\n\n    a_1 x\na_1   1 0\nx     0 1"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#model-matrix-3",
+    "href": "model/model-basics/model-basics.html#model-matrix-3",
+    "title": "Model basics",
+    "section": "Model matrix",
+    "text": "Model matrix\n\n\nCode\nM <- solve(t(X) %*% X) %*% t(X) # 2 x 2 * 2 x 30, result 2 x 30\nround(M, 3)\n\n\n      [,1]   [,2]   [,3]   [,4]   [,5]   [,6]   [,7]   [,8]   [,9]  [,10]\na_1  0.133  0.133  0.133  0.111  0.111  0.111  0.089  0.089  0.089  0.067\nx   -0.018 -0.018 -0.018 -0.014 -0.014 -0.014 -0.010 -0.010 -0.010 -0.006\n     [,11]  [,12]  [,13]  [,14]  [,15] [,16] [,17] [,18] [,19] [,20] [,21]\na_1  0.067  0.067  0.044  0.044  0.044 0.022 0.022 0.022 0.000 0.000 0.000\nx   -0.006 -0.006 -0.002 -0.002 -0.002 0.002 0.002 0.002 0.006 0.006 0.006\n     [,22]  [,23]  [,24]  [,25]  [,26]  [,27]  [,28]  [,29]  [,30]\na_1 -0.022 -0.022 -0.022 -0.044 -0.044 -0.044 -0.067 -0.067 -0.067\nx    0.010  0.010  0.010  0.014  0.014  0.014  0.018  0.018  0.018\n\n\n\n\nCode\nsolve(t(X) %*% X) %*% t(X) %*% y # 2 x 30 * 30 x 1 result 2 x 1\n\n\n        [,1]\na_1 4.220822\nx   2.051533\n\n\n\n\nThe same coefficients we found earlier by using the lm() function.\nNote! Finding the inverse of \\(X^T·X\\), i.e. \\((X^T·X)^{-1}\\) is not trivial for larger models. The lm() uses many clever tricks to calculate it quickly while also avoiding numerical problems. So the calculations above are to show what’s going on and should not be used on real models."
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#small-dataset",
+    "href": "model/model-basics/model-basics.html#small-dataset",
+    "title": "Model basics",
+    "section": "Small dataset",
+    "text": "Small dataset\n\nSmall dataset with 6 obs.\nMakes it easier to see what’s going on\n\n\n\n\nCode\nset.seed(444)\ns <- seq_along(t(sim1$x))\nsim1b <- sim1[sample(s,size = 6),]\nsim1b\n\n\n# A tibble: 6 × 2\n      x     y\n  <int> <dbl>\n1     2 11.3 \n2     1  2.13\n3    10 23.3 \n4     6 16.0 \n5    10 25.0 \n6     4 12.4"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#small-dataset-1",
+    "href": "model/model-basics/model-basics.html#small-dataset-1",
+    "title": "Model basics",
+    "section": "Small dataset",
+    "text": "Small dataset\n\n\nCode\nX_mod <- model_matrix(data = sim1b, formula = y ~ x)\nX_mod <- X_mod %>% rename(\"a_1\" = \"(Intercept)\")\nX <- as.matrix(X_mod)\nX\n\n\n     a_1  x\n[1,]   1  2\n[2,]   1  1\n[3,]   1 10\n[4,]   1  6\n[5,]   1 10\n[6,]   1  4\n\n\n\n\nCode\nround(solve(t(X) %*% X), 4)\n\n\n        a_1       x\na_1  0.5673 -0.0728\nx   -0.0728  0.0132"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#small-dataset-2",
+    "href": "model/model-basics/model-basics.html#small-dataset-2",
+    "title": "Model basics",
+    "section": "Small dataset",
+    "text": "Small dataset\n\n\nCode\nround(solve(t(X) %*% X) %*% t(X), 4)\n\n\n       [,1]    [,2]    [,3]   [,4]    [,5]    [,6]\na_1  0.4216  0.4945 -0.1611 0.1302 -0.1611  0.2759\nx   -0.0464 -0.0596  0.0596 0.0066  0.0596 -0.0199\n\n\n\n\nCode\n(y <- as.matrix(sim1b$y, nrow = 6))\n\n\n          [,1]\n[1,] 11.296823\n[2,]  2.125473\n[3,] 23.346422\n[4,] 15.955975\n[5,] 24.968099\n[6,] 12.434589"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#small-dataset-3",
+    "href": "model/model-basics/model-basics.html#small-dataset-3",
+    "title": "Model basics",
+    "section": "Small dataset",
+    "text": "Small dataset\n\n\nCode\nround(solve(t(X) %*% X) %*% t(X) %*% y, 4)\n\n\n      [,1]\na_1 3.5377\nx   2.0879\n\n\n\n\nCode\ncoefficients(lm(y ~ x, data = sim1b))\n\n\n(Intercept)           x \n   3.537672    2.087920"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#small-dataset-no-constant",
+    "href": "model/model-basics/model-basics.html#small-dataset-no-constant",
+    "title": "Model basics",
+    "section": "small dataset, no constant",
+    "text": "small dataset, no constant\n\nIn lm() we specifies that we do not want to estimate a constant with lm(y ~ x - 1), i.e. by adding -1 to the formula.\nThis gives us the following model matrix\n\n\n\n\nCode\nX_mod <- model_matrix(data = sim1b, formula = y ~ x - 1)\nX <- as.matrix(X_mod)\nX\n\n\n      x\n[1,]  2\n[2,]  1\n[3,] 10\n[4,]  6\n[5,] 10\n[6,]  4"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#small-dataset-no-constant-1",
+    "href": "model/model-basics/model-basics.html#small-dataset-no-constant-1",
+    "title": "Model basics",
+    "section": "small dataset, no constant",
+    "text": "small dataset, no constant\n\n\nCode\nround(solve(t(X) %*% X) %*% t(X), 4)\n\n\n    [,1]   [,2]   [,3]   [,4]   [,5]   [,6]\nx 0.0078 0.0039 0.0389 0.0233 0.0389 0.0156\n\n\n\n\nCode\nround(solve(t(X) %*% X) %*% t(X) %*% y, 4)\n\n\n    [,1]\nx 2.5422\n\n\n\n\nCode\ncoefficients(lm(y ~ x - 1, data = sim1b))\n\n\n       x \n2.542173"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#small-dataset-perfect-multicolinearity",
+    "href": "model/model-basics/model-basics.html#small-dataset-perfect-multicolinearity",
+    "title": "Model basics",
+    "section": "Small dataset, perfect multicolinearity",
+    "text": "Small dataset, perfect multicolinearity\n\n\nCode\nsim1c <- sim1b %>% \nrename(x_1 = x) %>% \nmutate(x_2 = 2.25 * x_1)\n\n\n\n\nCode\nX_mod <- model_matrix(data = sim1c, formula = y ~ x_1 + x_2)\nX <- as.matrix(X_mod)\nX\n\n\n     (Intercept) x_1   x_2\n[1,]           1   2  4.50\n[2,]           1   1  2.25\n[3,]           1  10 22.50\n[4,]           1   6 13.50\n[5,]           1  10 22.50\n[6,]           1   4  9.00\n\n\n\n\nCode\nt(X) %*% X\n\n\n            (Intercept)    x_1      x_2\n(Intercept)        6.00  33.00   74.250\nx_1               33.00 257.00  578.250\nx_2               74.25 578.25 1301.062"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#small-dataset-perfect-multicolinearity-1",
+    "href": "model/model-basics/model-basics.html#small-dataset-perfect-multicolinearity-1",
+    "title": "Model basics",
+    "section": "Small dataset, perfect multicolinearity",
+    "text": "Small dataset, perfect multicolinearity\n\n\nCode\nsolve(t(X) %*% X)\n\n\n\n\nResult: Error in solve.default(t(X) %*% X) : Lapack routine dgesv: system is exactly singular: U[3,3] = 0\nThe matrix don’t have an inverse. The reason is that x_1 and x_2 essentially contains the same information.\nX has less than full rank."
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#small-dataset-near-multicolinearity-case-1",
+    "href": "model/model-basics/model-basics.html#small-dataset-near-multicolinearity-case-1",
+    "title": "Model basics",
+    "section": "Small dataset, near multicolinearity, case 1",
+    "text": "Small dataset, near multicolinearity, case 1\n\nadd small amount of white noise to x_3\n\n\n\n\nCode\nl = length(sim1c$x_2)\nsim1c$x_3  = sim1c$x_2 + rnorm(n = l, mean = 0, sd = 0.001)\nrm(l)\n\n\n\n\nCode\nX_mod <- model_matrix(data = sim1c, formula = y ~ x_1 + x_3)\nX <- as.matrix(X_mod)\nX\n\n\n     (Intercept) x_1       x_3\n[1,]           1   2  4.500150\n[2,]           1   1  2.251032\n[3,]           1  10 22.499488\n[4,]           1   6 13.499080\n[5,]           1  10 22.499040\n[6,]           1   4  9.001334"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#small-dataset-near-multicolinearity-case-1-1",
+    "href": "model/model-basics/model-basics.html#small-dataset-near-multicolinearity-case-1-1",
+    "title": "Model basics",
+    "section": "Small dataset, near multicolinearity, case 1",
+    "text": "Small dataset, near multicolinearity, case 1\n\n\nCode\nsolve(t(X) %*% X)\n\n\n            (Intercept)          x_1           x_3\n(Intercept)    1.076134     1080.807     -480.4311\nx_1         1080.806517  2296162.329 -1020602.2147\nx_3         -480.431138 -1020602.215   453639.0453\n\n\n\n\nCode\nround(solve(t(X) %*% X) %*% t(X) %*% y, 4)\n\n\n                  [,1]\n(Intercept)     4.6093\nx_1          2278.6098\nx_3         -1011.8724"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#small-dataset-near-multicolinearity-case-2",
+    "href": "model/model-basics/model-basics.html#small-dataset-near-multicolinearity-case-2",
+    "title": "Model basics",
+    "section": "Small dataset, near multicolinearity, case 2",
+    "text": "Small dataset, near multicolinearity, case 2\n\nadd small amount of white noise to x_3\n\n\n\n\nCode\nl = length(sim1c$x_2)\nsim1c$x_3  = sim1c$x_2 + rnorm(n = l, mean = 0, sd = 0.001)\nrm(l)\n\n\n\n\nCode\nX_mod <- model_matrix(data = sim1c, formula = y ~ x_1 + x_3)\nX <- as.matrix(X_mod)\nX\n\n\n     (Intercept) x_1       x_3\n[1,]           1   2  4.500082\n[2,]           1   1  2.248922\n[3,]           1  10 22.499646\n[4,]           1   6 13.499613\n[5,]           1  10 22.500897\n[6,]           1   4  9.000650"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#small-dataset-near-multicolinearity-case-2-1",
+    "href": "model/model-basics/model-basics.html#small-dataset-near-multicolinearity-case-2-1",
+    "title": "Model basics",
+    "section": "Small dataset, near multicolinearity, case 2",
+    "text": "Small dataset, near multicolinearity, case 2\n\n\nCode\nsolve(t(X) %*% X)\n\n\n            (Intercept)          x_1           x_3\n(Intercept)    0.661639     -464.577      206.4392\nx_1         -464.576957  2287815.609 -1016771.9862\nx_3          206.439176 -1016771.986   451883.1297\n\n\n\n\nCode\nround(solve(t(X) %*% X) %*% t(X) %*% y, 4)\n\n\n                  [,1]\n(Intercept)     4.6397\nx_1         -5425.5198\nx_3          2412.1872"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#conclusion-case-1-and-2",
+    "href": "model/model-basics/model-basics.html#conclusion-case-1-and-2",
+    "title": "Model basics",
+    "section": "Conclusion case 1 and 2",
+    "text": "Conclusion case 1 and 2\n\nJust tiny changes in x_3 gives dramatic changes in the coefficient estimates\nWell known consequence of multicollinearity"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#small-dataset-factor-variable",
+    "href": "model/model-basics/model-basics.html#small-dataset-factor-variable",
+    "title": "Model basics",
+    "section": "Small dataset, factor variable",
+    "text": "Small dataset, factor variable\n\n\nCode\nsim1c <- sim1c %>% \nmutate(x_4 = sample(c(\"M\", \"F\"),\n                    size = 6, \n                    prob = c(0.5, 0.5), \n                    replace = TRUE\n                    )\n       )\nsim1c[1:3,]\n\n\n# A tibble: 3 × 5\n    x_1     y   x_2   x_3 x_4  \n  <int> <dbl> <dbl> <dbl> <chr>\n1     2 11.3   4.5   4.50 M    \n2     1  2.13  2.25  2.25 M    \n3    10 23.3  22.5  22.5  F"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#small-dataset-factor-variable-1",
+    "href": "model/model-basics/model-basics.html#small-dataset-factor-variable-1",
+    "title": "Model basics",
+    "section": "Small dataset, factor variable",
+    "text": "Small dataset, factor variable\n\n\nCode\nX_mod <- model_matrix(data = sim1c, formula = y ~ x_1 + x_4)\nX <- as.matrix(X_mod)\nX\n\n\n     (Intercept) x_1 x_4M\n[1,]           1   2    1\n[2,]           1   1    1\n[3,]           1  10    0\n[4,]           1   6    1\n[5,]           1  10    0\n[6,]           1   4    0"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#small-dataset-factor-variable-2",
+    "href": "model/model-basics/model-basics.html#small-dataset-factor-variable-2",
+    "title": "Model basics",
+    "section": "Small dataset, factor variable",
+    "text": "Small dataset, factor variable\n\n\nCode\nsolve(t(X) %*% X)\n\n\n            (Intercept)         x_1       x_4M\n(Intercept)   2.0175439 -0.21052632 -1.3859649\nx_1          -0.2105263  0.02631579  0.1315789\nx_4M         -1.3859649  0.13157895  1.3245614\n\n\n\n\nCode\nround(solve(t(X) %*% X) %*% t(X) %*% y, 4)\n\n\n               [,1]\n(Intercept)  3.5737\nx_1          2.0845\nx_4M        -0.0345\n\n\n\n\nCode\ncoefficients(lm(y ~ x_1 + x_4, data = sim1c))\n\n\n(Intercept)         x_1        x_4M \n 3.57373665  2.08449586 -0.03446724"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#small-dataset-interaction",
+    "href": "model/model-basics/model-basics.html#small-dataset-interaction",
+    "title": "Model basics",
+    "section": "Small dataset, interaction",
+    "text": "Small dataset, interaction\n\nformula y ~ x_1 * x_4\nequation: y = a_0 + a_1 * x_1 + a_4 * x_4 + a_14 * x_1 * x_4\n\n\n\n\nCode\nX_mod <- model_matrix(data = sim1c, formula = y ~ x_1 * x_4)\nX_mod\n\n\n# A tibble: 6 × 4\n  `(Intercept)`   x_1  x_4M `x_1:x_4M`\n          <dbl> <dbl> <dbl>      <dbl>\n1             1     2     1          2\n2             1     1     1          1\n3             1    10     0          0\n4             1     6     1          6\n5             1    10     0          0\n6             1     4     0          0\n\n\nCode\nX <- as.matrix(X_mod)"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#small-dataset-interaction-1",
+    "href": "model/model-basics/model-basics.html#small-dataset-interaction-1",
+    "title": "Model basics",
+    "section": "Small dataset, interaction",
+    "text": "Small dataset, interaction\n\n\nCode\nsolve(t(X) %*% X)\n\n\n            (Intercept)         x_1       x_4M    x_1:x_4M\n(Intercept)   3.0000000 -0.33333333 -3.0000000  0.33333333\nx_1          -0.3333333  0.04166667  0.3333333 -0.04166667\nx_4M         -3.0000000  0.33333333  3.9761905 -0.54761905\nx_1:x_4M      0.3333333 -0.04166667 -0.5476190  0.11309524\n\n\n\n\nCode\nbeta <- solve(t(X) %*% X) %*% t(X) %*% y\nround(beta, 4)\n\n\n               [,1]\n(Intercept)  4.6195\nx_1          1.9538\nx_4M        -1.7525\nx_1:x_4M     0.3548"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#small-dataset-interaction-2",
+    "href": "model/model-basics/model-basics.html#small-dataset-interaction-2",
+    "title": "Model basics",
+    "section": "Small dataset, interaction",
+    "text": "Small dataset, interaction\n\n\nCode\nmod <- lm(y ~ x_1 * x_4, data = sim1c)\ncoefficients(mod)\n\n\n(Intercept)         x_1        x_4M    x_1:x_4M \n   4.619475    1.953779   -1.752465    0.354804 \n\n\nCode\nsim1c <- sim1c %>% \n    select(y, x_1, x_2, x_4) %>% \n  add_predictions(mod)\n\n\n\n\nCode\n# Predicton for x_1 = 0 and x_1 = 10\nx_0 <- c(1, 1, 1, 1); x_1 <- c(0, 10, 0, 10); x_4 <-  c(0, 0, 1, 1)\nnew_data <- matrix(c(x_0, x_1, x_4, x_1*x_4), ncol = 4)\nnew_data\n\n\n     [,1] [,2] [,3] [,4]\n[1,]    1    0    0    0\n[2,]    1   10    0    0\n[3,]    1    0    1    0\n[4,]    1   10    1   10"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#small-dataset-interaction-3",
+    "href": "model/model-basics/model-basics.html#small-dataset-interaction-3",
+    "title": "Model basics",
+    "section": "Small dataset, interaction",
+    "text": "Small dataset, interaction\n\n\nCode\nnew_pred <- new_data %*% beta\nt(new_pred)\n\n\n         [,1]     [,2]     [,3]     [,4]\n[1,] 4.619475 24.15726 2.867009 25.95284\n\n\nCode\nnew_pred_data <- data.frame(x_1 = new_data[,2], x_4 = c(\"F\", \"F\", \"M\", \"M\"), pred = new_pred)\nnew_pred_data\n\n\n  x_1 x_4      pred\n1   0   F  4.619475\n2  10   F 24.157261\n3   0   M  2.867009\n4  10   M 25.952835\n\n\n\n\nPlotting our interaction mode\nFemale: \\(y_F = 4.6195 + 1.9538· x_1 -1.7525 · x_4 + 0.3548 · x_1 · x_4\\) \\(= 4.6195 + 1.9538· x_1 -1.7525 · 0 + 0.3548 · x_1 · 0\\) \\(= 4.6195 + 1.9538· x_1\\)\nMale: \\(y_M = 4.6195 + 1.9538· x_1 -1.7525 · x_4 + 0.3548 · x_1 · x_4\\) \\(= 4.6195 + 1.9538· x_1 -1.7525 · 1 + 0.3548 · x_1 · 1\\) \\(= 2.867 + 2.3086 · x_1\\)"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#small-dataset-interaction-4",
+    "href": "model/model-basics/model-basics.html#small-dataset-interaction-4",
+    "title": "Model basics",
+    "section": "Small dataset, interaction",
+    "text": "Small dataset, interaction\n\n\nCode\nggplot(mapping = aes(x = x_1, y = y, colour = x_4), data = sim1c) +\n  geom_point() +\n  geom_point(mapping = aes(y = pred), size = 2) +\n  geom_line(data = new_pred_data, mapping = aes(x = x_1, y = pred), lwd = 1)"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#small-dataset-interaction-5",
+    "href": "model/model-basics/model-basics.html#small-dataset-interaction-5",
+    "title": "Model basics",
+    "section": "Small dataset, interaction",
+    "text": "Small dataset, interaction"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#transformations",
+    "href": "model/model-basics/model-basics.html#transformations",
+    "title": "Model basics",
+    "section": "Transformations",
+    "text": "Transformations\n\nRemember to put +, *,^,- into I() function\nElse use transformations freely\nNo need to make a new transformed variable before using it in model\n\n\n\n\nCode\n# log transform x_2\nmod2 <- lm(y ~ x_1 + log(x_2), data = sim1c)\nsim1c %>% \n  ggplot(mapping = aes(x = x_1, y = log(x_2))) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE, formula = 'y ~ x')"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#transformations-1",
+    "href": "model/model-basics/model-basics.html#transformations-1",
+    "title": "Model basics",
+    "section": "Transformations",
+    "text": "Transformations"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#missing-values",
+    "href": "model/model-basics/model-basics.html#missing-values",
+    "title": "Model basics",
+    "section": "Missing values",
+    "text": "Missing values\n\nDefault R behaviour; drop missing values silently in models.\nCan turn on warnings through setting an option.\n\noptions(na.action = na.warn)\nwill give warnings when observations are dropped\n\nGet rid of warnings\n\nna.action = na.exclude as model function argument\nor reset option, options(na.action = na.exclude)\n\n\n\n\n\nCode\noptions(na.action = na.warn)\noptions(na.action = na.exclude)"
+  },
+  {
+    "objectID": "model/model-basics/model-basics.html#references",
+    "href": "model/model-basics/model-basics.html#references",
+    "title": "Model basics",
+    "section": "References",
+    "text": "References\n\n\nMSB105\n\n\n\nWickham, Hadley. 2020. Modelr: Modelling Functions That Work with the Pipe. https://CRAN.R-project.org/package=modelr.\n\n\n———. 2021. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+  },
+  {
     "objectID": "program/pipes-cont/pipes-cont.html#load-tidyverse-and-magrittr",
     "href": "program/pipes-cont/pipes-cont.html#load-tidyverse-and-magrittr",
     "title": "Pipes",
@@ -6150,7 +6507,7 @@
     "href": "program/iteration/iteration.html#for-loop-tibble-2",
     "title": "Iteration",
     "section": "For loop, tibble",
-    "text": "For loop, tibble\n\ntesting\n\n\n\n\nCode\nmyT(my_df)\n\n\n# A tibble: 3 × 10\n    V_1   V_2   V_3   V_4   V_5   V_6   V_7    V_8    V_9   V_10\n  <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>  <dbl>  <dbl>\n1 99.2  119.  79.5  103.  84.7  97.3  112.  106.   104.    94.4 \n2 43.0   37.1 49.1   56.8 81.7  43.2   58.0  48.7   50.5  115.  \n3  9.22  15.3  8.23 114.   3.45  1.80  51.1   1.79   6.56   4.66\n\n\nCode\ntest <- matrix(sample(1:10, 10000, replace = TRUE), \n               nrow = 100, ncol = 100)\n# checking speed\nmicrobenchmark(myT(test), t(test))\n\n\nUnit: microseconds\n      expr      min        lq       mean    median        uq      max neval\n myT(test) 1689.917 1778.0325 2105.02893 1882.2335 2170.3590 4580.632   100\n   t(test)   28.991   42.7295   59.62987   51.4035   66.4015  179.793   100\n\n\n\nOur routine is about 40 times slower than Rs t(). Why so much slower? See Efficient R programming."
+    "text": "For loop, tibble\n\ntesting\n\n\n\n\nCode\nmyT(my_df)\n\n\n# A tibble: 3 × 10\n    V_1   V_2   V_3   V_4   V_5   V_6   V_7    V_8    V_9   V_10\n  <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>  <dbl>  <dbl>\n1 99.2  119.  79.5  103.  84.7  97.3  112.  106.   104.    94.4 \n2 43.0   37.1 49.1   56.8 81.7  43.2   58.0  48.7   50.5  115.  \n3  9.22  15.3  8.23 114.   3.45  1.80  51.1   1.79   6.56   4.66\n\n\nCode\ntest <- matrix(sample(1:10, 10000, replace = TRUE), \n               nrow = 100, ncol = 100)\n# checking speed\nmicrobenchmark(myT(test), t(test))\n\n\nUnit: microseconds\n      expr      min        lq       mean   median        uq      max neval\n myT(test) 1701.533 1895.4285 2423.47628 2185.811 2745.0825 6714.163   100\n   t(test)   34.334   47.0785   75.61206   55.496   82.3965  569.849   100\n\n\n\nOur routine is about 40 times slower than Rs t(). Why so much slower? See Efficient R programming."
   },
   {
     "objectID": "program/iteration/iteration.html#myt-with-other-input",
@@ -6192,7 +6549,7 @@
     "href": "program/iteration/iteration.html#testing",
     "title": "Iteration",
     "section": "Testing",
-    "text": "Testing\n\n\nCode\n# checking speed\nset.seed(444)\ntest_vec <- sample(1:10, 10000, replace = TRUE)\nmicrobenchmark::microbenchmark(decide_number_vec(test), decide_numvec(test))\n\n\nUnit: milliseconds\n                    expr       min        lq      mean    median        uq\n decide_number_vec(test) 39.503511 40.132146 43.872260 41.417838 46.001707\n     decide_numvec(test)  8.608615  8.823093  9.591373  8.926803  9.246742\n      max neval\n 65.50209   100\n 18.39141   100\n\n\n\nvector version about 7 times faster"
+    "text": "Testing\n\n\nCode\n# checking speed\nset.seed(444)\ntest_vec <- sample(1:10, 10000, replace = TRUE)\nmicrobenchmark::microbenchmark(decide_number_vec(test), decide_numvec(test))\n\n\nUnit: milliseconds\n                    expr       min        lq     mean    median       uq\n decide_number_vec(test) 39.926030 42.883319 51.07413 47.343553 52.88363\n     decide_numvec(test)  8.656392  9.038183 10.39523  9.559947 10.64254\n       max neval\n 151.56987   100\n  40.84672   100\n\n\n\nvector version about 7 times faster"
   },
   {
     "objectID": "program/iteration/iteration.html#for-loop-variations",

@@ -1,0 +1,1882 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.0.36">
+
+  <meta name="author" content="ag">
+  <title>MSB105 - Model basics</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-captioned.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-captioned) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-captioned .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-captioned .callout-caption  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-captioned.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-captioned.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-caption {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-caption {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-caption {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-captioned .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-captioned .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-captioned) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-caption {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-caption {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-caption {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-caption {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-caption {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="center">
+  <h1 class="title">Model basics</h1>
+  <p class="author">ag</p>
+</section>
+
+<section class="slide level2">
+
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># get tidyverse to shut up</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">suppressPackageStartupMessages</span>({</span>
+<span id="cb1-3"><a href="#cb1-3"></a>  <span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="fu">library</span>(modelr)</span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="fu">options</span>(<span class="at">na.action =</span> na.warn)</span>
+<span id="cb1-6"><a href="#cb1-6"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># create a bib file for the R packages</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># used in this document</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># Note! Needs to do a touch ag_model_basics.bib in terminal before first run</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># else stops when bibliography: "ag_model_basics.bib" not found in YAML</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>knitr<span class="sc">::</span><span class="fu">write_bib</span>(</span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">c</span>(</span>
+<span id="cb2-7"><a href="#cb2-7"></a>    <span class="st">"tidyverse"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8"></a>    <span class="st">"modelr"</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>    ),</span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="at">file =</span> <span class="st">"ag_model_basics.bib"</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="introduction" class="slide level2">
+<h2>Introduction</h2>
+<ul>
+<li class="fragment">r4ds has somewhat different perspective than econometrics
+<ul>
+<li class="fragment">more concerned with making predictions</li>
+<li class="fragment">econometrics more concerned with testing a theoretical model on data</li>
+<li class="fragment">chp. 23 contains a lot of code meant to build intuition around linear models</li>
+<li class="fragment">we will skip most of it</li>
+</ul></li>
+<li class="fragment">Calculate the estimated coefficients with some matrix algebra instead</li>
+</ul>
+</section>
+<section id="linear-model" class="slide level2">
+<h2>Linear model</h2>
+<ul>
+<li class="fragment">The model is specified with a formula notation
+<ul>
+<li class="fragment"><code>y ~ x</code> represents the model</li>
+<li class="fragment"><span class="math display">\[y = a_1 + a_2 · x\]</span></li>
+<li class="fragment">Fit the model on some simulated data from <em>modelr</em> package, sim1</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>s1_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> sim1)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co"># Pick out the coefficients</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">coef</span>(s1_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)           x 
+   4.220822    2.051533 </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="predictions" class="slide level2">
+<h2>Predictions</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>g1 <span class="ot">&lt;-</span> sim1 <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">geom_smooth</span>(<span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-5"><a href="#cb5-5"></a>g1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="predictions-1" class="slide level2">
+<h2>Predictions</h2>
+
+<img data-src="model-basics_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<section id="adding-predictions-to-sim1" class="slide level2">
+<h2>Adding predictions to sim1</h2>
+<ul>
+<li class="fragment">Estimated linear model <span class="math display">\[y = 4.2208 + 2.0515 · x\]</span></li>
+<li class="fragment">What values of y does our model predict for our x values?</li>
+</ul>
+</section>
+<section id="adding-predictions-to-sim1-1" class="slide level2">
+<h2>Adding predictions to sim1</h2>
+<ul>
+<li class="fragment">Estimated linear model <span class="math display">\[y = 4.2208 + 2.0515 · x\]</span></li>
+<li class="fragment">What values of y does our model predict for our x values?</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>sim1a <span class="ot">&lt;-</span> sim1 <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">add_predictions</span>(<span class="at">model =</span> s1_mod)</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a>g1 <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">data =</span> sim1a, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> pred), <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="adding-predictions-to-sim1-2" class="slide level2 smaller">
+<h2>Adding predictions to sim1</h2>
+
+<img data-src="model-basics_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+<section id="adding-residuals-to-sim1a" class="slide level2">
+<h2>Adding residuals to sim1a</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>sim1a <span class="ot">&lt;-</span> sim1a <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">add_residuals</span>(s1_mod)</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">head</span>(sim1a, <span class="at">n =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+      x     y  pred resid
+  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     1  4.20  6.27 -2.07
+2     1  7.51  6.27  1.24
+3     1  2.13  6.27 -4.15</code></pre>
+</div>
+</div>
+</section>
+<section id="plotting-x-values-against-residuals-points" class="slide level2">
+<h2>Plotting x-values against residuals; points</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>sim1a <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> resid)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="plotting-x-values-against-residuals-points-1" class="slide level2">
+<h2>Plotting x-values against residuals; points</h2>
+
+<img data-src="model-basics_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<section id="plotting-x-values-against-residuals-frequency" class="slide level2">
+<h2>Plotting x-values against residuals; frequency</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>sim1a <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> resid)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="co"># experiment with binwidth = 1 and binwidth = 0.25</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">binwidth =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="plotting-x-values-against-residuals-frequency-1" class="slide level2">
+<h2>Plotting x-values against residuals; frequency</h2>
+
+<img data-src="model-basics_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
+<section id="matrix-multiplication" class="slide level2">
+<h2>Matrix multiplication</h2>
+<p><span class="math display">\[
+M= \begin{bmatrix} a_{1,1} &amp; a_{1,2} \\ a_{2,1} &amp; a_{2,2} \\ a_{3,1} &amp; a_{3,2} \end{bmatrix} \quad
+t(M) = \begin{bmatrix}a_{1,1} &amp; a_{2,1} &amp; a_{3,1}\\
+a_{1,2} &amp; a_{2,2} &amp; a_{3,2}\end{bmatrix}\quad \boldsymbol{M'M}
+\]</span></p>
+<div class="fragment">
+<ul>
+<li class="fragment">Row 1 in t(m) is to be multiplied pairwise with column 1 in M and summed. This sum gives the new value at place (1,1) in the resulting matrix.</li>
+<li class="fragment">Row 1 in t(m) is to be multiplied pairwise with column 2 in M and summed. This sum gives the new value at place (1,2) in the resulting matrix.</li>
+<li class="fragment">Row 2 in t(m) is to be multiplied pairwise with column 1 in M and summed. This sum gives the new value at place (2,1) in the resulting matrix.</li>
+<li class="fragment">Row 2 in t(m) is to be multiplied pairwise with column 2 in M and summed. This sum gives the new value at place (2,2) in the resulting matrix.</li>
+</ul>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+t(M) * M =
+\]</span></p>
+<p><span class="math display">\[\begin{bmatrix}a_{1,1}·a_{1,1} + a_{2,1} · a_{2,1} + a_{3,1} · a_{3,1} &amp; a_{1,1}·a_{1,2} + a_{2,1} · a_{2,2} + a_{3,1} · a_{3,2} \\ a_{1,2}·a_{1,1} + a_{2,2} · a_{2,1} + a_{3,2} · a_{3,1} &amp; a_{1,2}·a_{1,2} + a_{2,2} · a_{2,2} + a_{3,2} · a_{3,2}\end{bmatrix}\]</span></p>
+</div>
+</section>
+<section id="matrix-multiplication-1" class="slide level2">
+<h2>Matrix multiplication</h2>
+<p><span class="math display">\[t(M) = \begin{bmatrix}1 &amp; 9 &amp; 8\\3 &amp; 7 &amp; 4\end{bmatrix} \quad M = \begin{bmatrix}1 &amp; 3\\9 &amp; 7\\8 &amp; 4\end{bmatrix}\]</span></p>
+<p><span class="math display">\[t(M) * M = \begin{bmatrix}1·1 + 9·9 + 8·8 &amp; 1·3 + 9·7+8·4\\3·1+7·9+4·8 &amp; 3·3+7·7+4·4\end{bmatrix} = \begin{bmatrix}146 &amp; 98\\98 &amp; 74 \end{bmatrix}\]</span></p>
+<div class="fragment">
+<ul>
+<li class="fragment">The rules for <strong>X · Y</strong>
+<ul>
+<li class="fragment">X, m rows, n columns</li>
+<li class="fragment">Y, s rows, t columns</li>
+</ul></li>
+<li class="fragment">For <strong>X · Y</strong> to be possible:
+<ul>
+<li class="fragment">n = s and the dimension of the result will be</li>
+<li class="fragment"><code>m x t</code>, i.e.&nbsp;m rows and t columns.</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="matrix-multiplication-2" class="slide level2">
+<h2>Matrix multiplication</h2>
+<ul>
+<li class="fragment">Matrix multiplication in R are done with <code>%*%</code></li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>M <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">4</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">t</span>(M) <span class="sc">%*%</span> M <span class="co"># 2 X 3 3 x 2, 3 3 ok, result 2 x 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]  146   98
+[2,]   98   74</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="matrix-multiplication-3" class="slide level2">
+<h2>Matrix multiplication</h2>
+<p><span class="math display">\[M * t(M)\quad 3 x 2\quad 2 x 3\]</span></p>
+<div class="fragment">
+<p><strong>M * t(M)</strong> is possible since we have 2’s in the middle. The dimension of the result will be 3x3.</p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[M * t(M) =
+\begin{bmatrix}1·1+3·3 &amp; 1·9+3·7&amp;1·8+3·4\\
+9·1+7·3&amp;9·9+7·7&amp;9·8+7·4\\
+8·1+4·3&amp;8·9+4·7&amp;8·8+4·4
+\end{bmatrix}\]</span></p>
+</div>
+</section>
+<section id="matrix-multiplication-4" class="slide level2">
+<h2>Matrix multiplication</h2>
+<p>$$=</p>
+<span class="math display">\[\begin{bmatrix}
+10 &amp; 30 &amp; 20 \\
+30 &amp; 130 &amp; 100\\
+20 &amp; 100 &amp; 80
+\end{bmatrix}\]</span>
+<p>$$</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>M <span class="sc">%*%</span> <span class="fu">t</span>(M)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]   10   30   20
+[2,]   30  130  100
+[3,]   20  100   80</code></pre>
+</div>
+</div>
+</section>
+<section id="multiplication-by-vector" class="slide level2">
+<h2>Multiplication by vector</h2>
+<ul>
+<li class="fragment">Just like multiplying by a matrix with 1 row or 1 column</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[y = \begin{bmatrix}7\\2\\4\end{bmatrix}\]</span></p>
+<p><span class="math display">\[(\boldsymbol{M} · t(\boldsymbol{M})) · \boldsymbol{y}\]</span></p>
+</div>
+<div class="fragment">
+<ul>
+<li class="fragment">(M %*% t(M)) is 3x3</li>
+<li class="fragment"><strong>y</strong> is 3x1</li>
+<li class="fragment"><strong>(M · t(M)) · y</strong>, 3x3 3x1</li>
+<li class="fragment">Possible, since 3x3 in the middle, and dimension of result will be 3x1, 3 rows and 1 column</li>
+</ul>
+</div>
+</section>
+<section id="multiplication-by-vector-1" class="slide level2">
+<h2>Multiplication by vector</h2>
+<ul>
+<li class="fragment">(M %*% t(M)) is 3x3</li>
+<li class="fragment"><strong>y</strong> is 3x1</li>
+<li class="fragment"><strong>(M · t(M)) · y</strong>, 3x3 3x1</li>
+<li class="fragment">Possible, since 3x3 in the middle, and dimension of result will be 3x1, 3 rows and 1 column</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[(M · t(M)) · y = \begin{bmatrix}
+10 &amp; 30 &amp; 20 \\
+30 &amp; 130 &amp; 100\\
+20 &amp; 100 &amp; 80
+\end{bmatrix} · \begin{bmatrix}7\\2\\4\end{bmatrix} =
+\begin{bmatrix}
+10·7+30·2+20·4\\
+30·7+130·2+100·4\\
+20·7+100·2+80·4
+\end{bmatrix}\]</span></p>
+$$=
+<span class="math display">\[\begin{bmatrix}
+
+
+210\\
+870\\
+660
+\end{bmatrix}\]</span>
+<p>$$</p>
+</div>
+</section>
+<section id="multiplication-by-vector-2" class="slide level2">
+<h2>Multiplication by vector</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>y <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">4</span>), <span class="at">nrow =</span> <span class="dv">3</span>)</span>
+<span id="cb15-2"><a href="#cb15-2"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1]
+[1,]    7
+[2,]    2
+[3,]    4</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>(M <span class="sc">%*%</span> <span class="fu">t</span>(M)) <span class="sc">%*%</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1]
+[1,]  210
+[2,]  870
+[3,]  660</code></pre>
+</div>
+</div>
+</section>
+<section id="model-matrix" class="slide level2">
+<h2>Model matrix</h2>
+<ul>
+<li class="fragment">OLS: . . .</li>
+</ul>
+<p><span class="math display">\[\hat{\beta} = (X^T X)^{-1} X^T y\]</span></p>
+<ul>
+<li class="fragment">X above is the model_matrix</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1a, <span class="at">formula =</span> y <span class="sc">~</span> x)</span>
+<span id="cb19-2"><a href="#cb19-2"></a>X_mod <span class="ot">&lt;-</span> X_mod <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">"a_1"</span> <span class="ot">=</span> <span class="st">"(Intercept)"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="fu">dim</span>(X_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 30  2</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="model-matrix-1" class="slide level2">
+<h2>Model matrix</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">head</span>(X_mod, <span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+    a_1     x
+  &lt;dbl&gt; &lt;dbl&gt;
+1     1     1
+2     1     1
+3     1     1
+4     1     2</code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">tail</span>(X_mod, <span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+    a_1     x
+  &lt;dbl&gt; &lt;dbl&gt;
+1     1     9
+2     1    10
+3     1    10
+4     1    10</code></pre>
+</div>
+</div>
+</section>
+<section id="model-matrix-2" class="slide level2 smaller">
+<h2>Model matrix</h2>
+<ul>
+<li class="fragment">Use <span class="math display">\[\hat{\beta} = (X^T X)^{-1} X^T y\]</span> to calculate the two coefficients</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span>
+<span id="cb25-2"><a href="#cb25-2"></a>y <span class="ot">&lt;-</span> sim1a<span class="sc">$</span>y</span>
+<span id="cb25-3"><a href="#cb25-3"></a>(XTX <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="co"># 2 x 30 * 30 x 2, result 2 x 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    a_1    x
+a_1  30  165
+x   165 1155</code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>(XTXinv <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X)) <span class="co"># invert</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>            a_1            x
+a_1  0.15555556 -0.022222222
+x   -0.02222222  0.004040404</code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># check, should give I 2 x 2</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="fu">round</span>(XTX <span class="sc">%*%</span> XTXinv, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    a_1 x
+a_1   1 0
+x     0 1</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="model-matrix-3" class="slide level2 smaller">
+<h2>Model matrix</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>M <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="co"># 2 x 2 * 2 x 30, result 2 x 30</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a><span class="fu">round</span>(M, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>      [,1]   [,2]   [,3]   [,4]   [,5]   [,6]   [,7]   [,8]   [,9]  [,10]
+a_1  0.133  0.133  0.133  0.111  0.111  0.111  0.089  0.089  0.089  0.067
+x   -0.018 -0.018 -0.018 -0.014 -0.014 -0.014 -0.010 -0.010 -0.010 -0.006
+     [,11]  [,12]  [,13]  [,14]  [,15] [,16] [,17] [,18] [,19] [,20] [,21]
+a_1  0.067  0.067  0.044  0.044  0.044 0.022 0.022 0.022 0.000 0.000 0.000
+x   -0.006 -0.006 -0.002 -0.002 -0.002 0.002 0.002 0.002 0.006 0.006 0.006
+     [,22]  [,23]  [,24]  [,25]  [,26]  [,27]  [,28]  [,29]  [,30]
+a_1 -0.022 -0.022 -0.022 -0.044 -0.044 -0.044 -0.067 -0.067 -0.067
+x    0.010  0.010  0.010  0.014  0.014  0.014  0.018  0.018  0.018</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y <span class="co"># 2 x 30 * 30 x 1 result 2 x 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>        [,1]
+a_1 4.220822
+x   2.051533</code></pre>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li class="fragment">The same coefficients we found earlier by using the <code>lm()</code> function.</li>
+<li class="fragment">Note! Finding the inverse of <span class="math inline">\(X^T·X\)</span>, i.e.&nbsp;<span class="math inline">\((X^T·X)^{-1}\)</span> is not trivial for larger models. The <code>lm()</code> uses many clever tricks to calculate it quickly while also avoiding numerical problems. So the calculations above are to show what’s going on and should not be used on real models.</li>
+</ul>
+</div>
+</section>
+<section id="small-dataset" class="slide level2">
+<h2>Small dataset</h2>
+<ul>
+<li class="fragment">Small dataset with 6 obs.</li>
+<li class="fragment">Makes it easier to see what’s going on</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">set.seed</span>(<span class="dv">444</span>)</span>
+<span id="cb35-2"><a href="#cb35-2"></a>s <span class="ot">&lt;-</span> <span class="fu">seq_along</span>(<span class="fu">t</span>(sim1<span class="sc">$</span>x))</span>
+<span id="cb35-3"><a href="#cb35-3"></a>sim1b <span class="ot">&lt;-</span> sim1[<span class="fu">sample</span>(s,<span class="at">size =</span> <span class="dv">6</span>),]</span>
+<span id="cb35-4"><a href="#cb35-4"></a>sim1b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+      x     y
+  &lt;int&gt; &lt;dbl&gt;
+1     2 11.3 
+2     1  2.13
+3    10 23.3 
+4     6 16.0 
+5    10 25.0 
+6     4 12.4 </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="small-dataset-1" class="slide level2">
+<h2>Small dataset</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1b, <span class="at">formula =</span> y <span class="sc">~</span> x)</span>
+<span id="cb37-2"><a href="#cb37-2"></a>X_mod <span class="ot">&lt;-</span> X_mod <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">"a_1"</span> <span class="ot">=</span> <span class="st">"(Intercept)"</span>)</span>
+<span id="cb37-3"><a href="#cb37-3"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span>
+<span id="cb37-4"><a href="#cb37-4"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     a_1  x
+[1,]   1  2
+[2,]   1  1
+[3,]   1 10
+[4,]   1  6
+[5,]   1 10
+[6,]   1  4</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X), <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>        a_1       x
+a_1  0.5673 -0.0728
+x   -0.0728  0.0132</code></pre>
+</div>
+</div>
+</section>
+<section id="small-dataset-2" class="slide level2">
+<h2>Small dataset</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X), <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>       [,1]    [,2]    [,3]   [,4]    [,5]    [,6]
+a_1  0.4216  0.4945 -0.1611 0.1302 -0.1611  0.2759
+x   -0.0464 -0.0596  0.0596 0.0066  0.0596 -0.0199</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>(y <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(sim1b<span class="sc">$</span>y, <span class="at">nrow =</span> <span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>          [,1]
+[1,] 11.296823
+[2,]  2.125473
+[3,] 23.346422
+[4,] 15.955975
+[5,] 24.968099
+[6,] 12.434589</code></pre>
+</div>
+</div>
+</section>
+<section id="small-dataset-3" class="slide level2">
+<h2>Small dataset</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>      [,1]
+a_1 3.5377
+x   2.0879</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">coefficients</span>(<span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> sim1b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)           x 
+   3.537672    2.087920 </code></pre>
+</div>
+</div>
+</section>
+<section id="small-dataset-no-constant" class="slide level2">
+<h2>small dataset, no constant</h2>
+<ul>
+<li class="fragment">In <code>lm()</code> we specifies that we do not want to estimate a constant with <code>lm(y ~ x - 1)</code>, i.e.&nbsp;by adding -1 to the formula.</li>
+<li class="fragment">This gives us the following model matrix</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1b, <span class="at">formula =</span> y <span class="sc">~</span> x <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb49-2"><a href="#cb49-2"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span>
+<span id="cb49-3"><a href="#cb49-3"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>      x
+[1,]  2
+[2,]  1
+[3,] 10
+[4,]  6
+[5,] 10
+[6,]  4</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="small-dataset-no-constant-1" class="slide level2">
+<h2>small dataset, no constant</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X), <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    [,1]   [,2]   [,3]   [,4]   [,5]   [,6]
+x 0.0078 0.0039 0.0389 0.0233 0.0389 0.0156</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    [,1]
+x 2.5422</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="fu">coefficients</span>(<span class="fu">lm</span>(y <span class="sc">~</span> x <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> sim1b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>       x 
+2.542173 </code></pre>
+</div>
+</div>
+</section>
+<section id="small-dataset-perfect-multicolinearity" class="slide level2 smaller">
+<h2>Small dataset, perfect multicolinearity</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a>sim1c <span class="ot">&lt;-</span> sim1b <span class="sc">%&gt;%</span> </span>
+<span id="cb57-2"><a href="#cb57-2"></a><span class="fu">rename</span>(<span class="at">x_1 =</span> x) <span class="sc">%&gt;%</span> </span>
+<span id="cb57-3"><a href="#cb57-3"></a><span class="fu">mutate</span>(<span class="at">x_2 =</span> <span class="fl">2.25</span> <span class="sc">*</span> x_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1c, <span class="at">formula =</span> y <span class="sc">~</span> x_1 <span class="sc">+</span> x_2)</span>
+<span id="cb58-2"><a href="#cb58-2"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span>
+<span id="cb58-3"><a href="#cb58-3"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     (Intercept) x_1   x_2
+[1,]           1   2  4.50
+[2,]           1   1  2.25
+[3,]           1  10 22.50
+[4,]           1   6 13.50
+[5,]           1  10 22.50
+[6,]           1   4  9.00</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="fu">t</span>(X) <span class="sc">%*%</span> X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>            (Intercept)    x_1      x_2
+(Intercept)        6.00  33.00   74.250
+x_1               33.00 257.00  578.250
+x_2               74.25 578.25 1301.062</code></pre>
+</div>
+</div>
+</section>
+<section id="small-dataset-perfect-multicolinearity-1" class="slide level2">
+<h2>Small dataset, perfect multicolinearity</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="fragment">
+<ul>
+<li class="fragment"><p>Result: Error in solve.default(t(X) %*% X) : Lapack routine dgesv: system is exactly singular: U[3,3] = 0</p></li>
+<li class="fragment"><p>The matrix don’t have an inverse. The reason is that x_1 and x_2 essentially contains the same information.</p></li>
+<li class="fragment"><p>X has less than full rank.</p></li>
+</ul>
+</div>
+</section>
+<section id="small-dataset-near-multicolinearity-case-1" class="slide level2">
+<h2>Small dataset, near multicolinearity, case 1</h2>
+<ul>
+<li class="fragment">add small amount of white noise to x_3</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a>l <span class="ot">=</span> <span class="fu">length</span>(sim1c<span class="sc">$</span>x_2)</span>
+<span id="cb63-2"><a href="#cb63-2"></a>sim1c<span class="sc">$</span>x_3  <span class="ot">=</span> sim1c<span class="sc">$</span>x_2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> l, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.001</span>)</span>
+<span id="cb63-3"><a href="#cb63-3"></a><span class="fu">rm</span>(l)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1c, <span class="at">formula =</span> y <span class="sc">~</span> x_1 <span class="sc">+</span> x_3)</span>
+<span id="cb64-2"><a href="#cb64-2"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span>
+<span id="cb64-3"><a href="#cb64-3"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     (Intercept) x_1       x_3
+[1,]           1   2  4.500150
+[2,]           1   1  2.251032
+[3,]           1  10 22.499488
+[4,]           1   6 13.499080
+[5,]           1  10 22.499040
+[6,]           1   4  9.001334</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="small-dataset-near-multicolinearity-case-1-1" class="slide level2">
+<h2>Small dataset, near multicolinearity, case 1</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a><span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>            (Intercept)          x_1           x_3
+(Intercept)    1.076134     1080.807     -480.4311
+x_1         1080.806517  2296162.329 -1020602.2147
+x_3         -480.431138 -1020602.215   453639.0453</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  [,1]
+(Intercept)     4.6093
+x_1          2278.6098
+x_3         -1011.8724</code></pre>
+</div>
+</div>
+</section>
+<section id="small-dataset-near-multicolinearity-case-2" class="slide level2">
+<h2>Small dataset, near multicolinearity, case 2</h2>
+<ul>
+<li class="fragment">add small amount of white noise to x_3</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a>l <span class="ot">=</span> <span class="fu">length</span>(sim1c<span class="sc">$</span>x_2)</span>
+<span id="cb70-2"><a href="#cb70-2"></a>sim1c<span class="sc">$</span>x_3  <span class="ot">=</span> sim1c<span class="sc">$</span>x_2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> l, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.001</span>)</span>
+<span id="cb70-3"><a href="#cb70-3"></a><span class="fu">rm</span>(l)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1c, <span class="at">formula =</span> y <span class="sc">~</span> x_1 <span class="sc">+</span> x_3)</span>
+<span id="cb71-2"><a href="#cb71-2"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span>
+<span id="cb71-3"><a href="#cb71-3"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     (Intercept) x_1       x_3
+[1,]           1   2  4.500082
+[2,]           1   1  2.248922
+[3,]           1  10 22.499646
+[4,]           1   6 13.499613
+[5,]           1  10 22.500897
+[6,]           1   4  9.000650</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="small-dataset-near-multicolinearity-case-2-1" class="slide level2">
+<h2>Small dataset, near multicolinearity, case 2</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a><span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>            (Intercept)          x_1           x_3
+(Intercept)    0.661639     -464.577      206.4392
+x_1         -464.576957  2287815.609 -1016771.9862
+x_3          206.439176 -1016771.986   451883.1297</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  [,1]
+(Intercept)     4.6397
+x_1         -5425.5198
+x_3          2412.1872</code></pre>
+</div>
+</div>
+</section>
+<section id="conclusion-case-1-and-2" class="slide level2">
+<h2>Conclusion case 1 and 2</h2>
+<ul>
+<li class="fragment">Just tiny changes in x_3 gives dramatic changes in the coefficient estimates</li>
+<li class="fragment">Well known consequence of multicollinearity</li>
+</ul>
+</section>
+<section id="small-dataset-factor-variable" class="slide level2">
+<h2>Small dataset, factor variable</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1"></a>sim1c <span class="ot">&lt;-</span> sim1c <span class="sc">%&gt;%</span> </span>
+<span id="cb77-2"><a href="#cb77-2"></a><span class="fu">mutate</span>(<span class="at">x_4 =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"M"</span>, <span class="st">"F"</span>),</span>
+<span id="cb77-3"><a href="#cb77-3"></a>                    <span class="at">size =</span> <span class="dv">6</span>, </span>
+<span id="cb77-4"><a href="#cb77-4"></a>                    <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>), </span>
+<span id="cb77-5"><a href="#cb77-5"></a>                    <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb77-6"><a href="#cb77-6"></a>                    )</span>
+<span id="cb77-7"><a href="#cb77-7"></a>       )</span>
+<span id="cb77-8"><a href="#cb77-8"></a>sim1c[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+    x_1     y   x_2   x_3 x_4  
+  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
+1     2 11.3   4.5   4.50 M    
+2     1  2.13  2.25  2.25 M    
+3    10 23.3  22.5  22.5  F    </code></pre>
+</div>
+</div>
+</section>
+<section id="small-dataset-factor-variable-1" class="slide level2">
+<h2>Small dataset, factor variable</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1c, <span class="at">formula =</span> y <span class="sc">~</span> x_1 <span class="sc">+</span> x_4)</span>
+<span id="cb79-2"><a href="#cb79-2"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span>
+<span id="cb79-3"><a href="#cb79-3"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     (Intercept) x_1 x_4M
+[1,]           1   2    1
+[2,]           1   1    1
+[3,]           1  10    0
+[4,]           1   6    1
+[5,]           1  10    0
+[6,]           1   4    0</code></pre>
+</div>
+</div>
+</section>
+<section id="small-dataset-factor-variable-2" class="slide level2">
+<h2>Small dataset, factor variable</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a><span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>            (Intercept)         x_1       x_4M
+(Intercept)   2.0175439 -0.21052632 -1.3859649
+x_1          -0.2105263  0.02631579  0.1315789
+x_4M         -1.3859649  0.13157895  1.3245614</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1"></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>               [,1]
+(Intercept)  3.5737
+x_1          2.0845
+x_4M        -0.0345</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1"></a><span class="fu">coefficients</span>(<span class="fu">lm</span>(y <span class="sc">~</span> x_1 <span class="sc">+</span> x_4, <span class="at">data =</span> sim1c))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)         x_1        x_4M 
+ 3.57373665  2.08449586 -0.03446724 </code></pre>
+</div>
+</div>
+</section>
+<section id="small-dataset-interaction" class="slide level2">
+<h2>Small dataset, interaction</h2>
+<ul>
+<li class="fragment">formula <code>y ~ x_1 * x_4</code></li>
+<li class="fragment">equation: y = a_0 + a_1 * x_1 + a_4 * x_4 + a_14 * x_1 * x_4</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1"></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1c, <span class="at">formula =</span> y <span class="sc">~</span> x_1 <span class="sc">*</span> x_4)</span>
+<span id="cb87-2"><a href="#cb87-2"></a>X_mod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  `(Intercept)`   x_1  x_4M `x_1:x_4M`
+          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
+1             1     2     1          2
+2             1     1     1          1
+3             1    10     0          0
+4             1     6     1          6
+5             1    10     0          0
+6             1     4     0          0</code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="small-dataset-interaction-1" class="slide level2">
+<h2>Small dataset, interaction</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1"></a><span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>            (Intercept)         x_1       x_4M    x_1:x_4M
+(Intercept)   3.0000000 -0.33333333 -3.0000000  0.33333333
+x_1          -0.3333333  0.04166667  0.3333333 -0.04166667
+x_4M         -3.0000000  0.33333333  3.9761905 -0.54761905
+x_1:x_4M      0.3333333 -0.04166667 -0.5476190  0.11309524</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y</span>
+<span id="cb92-2"><a href="#cb92-2"></a><span class="fu">round</span>(beta, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>               [,1]
+(Intercept)  4.6195
+x_1          1.9538
+x_4M        -1.7525
+x_1:x_4M     0.3548</code></pre>
+</div>
+</div>
+</section>
+<section id="small-dataset-interaction-2" class="slide level2">
+<h2>Small dataset, interaction</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x_1 <span class="sc">*</span> x_4, <span class="at">data =</span> sim1c)</span>
+<span id="cb94-2"><a href="#cb94-2"></a><span class="fu">coefficients</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)         x_1        x_4M    x_1:x_4M 
+   4.619475    1.953779   -1.752465    0.354804 </code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1"></a>sim1c <span class="ot">&lt;-</span> sim1c <span class="sc">%&gt;%</span> </span>
+<span id="cb96-2"><a href="#cb96-2"></a>    <span class="fu">select</span>(y, x_1, x_2, x_4) <span class="sc">%&gt;%</span> </span>
+<span id="cb96-3"><a href="#cb96-3"></a>  <span class="fu">add_predictions</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1"></a><span class="co"># Predicton for x_1 = 0 and x_1 = 10</span></span>
+<span id="cb97-2"><a href="#cb97-2"></a>x_0 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>); x_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">10</span>); x_4 <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb97-3"><a href="#cb97-3"></a>new_data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(x_0, x_1, x_4, x_1<span class="sc">*</span>x_4), <span class="at">ncol =</span> <span class="dv">4</span>)</span>
+<span id="cb97-4"><a href="#cb97-4"></a>new_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3] [,4]
+[1,]    1    0    0    0
+[2,]    1   10    0    0
+[3,]    1    0    1    0
+[4,]    1   10    1   10</code></pre>
+</div>
+</div>
+</section>
+<section id="small-dataset-interaction-3" class="slide level2 smaller">
+<h2>Small dataset, interaction</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1"></a>new_pred <span class="ot">&lt;-</span> new_data <span class="sc">%*%</span> beta</span>
+<span id="cb99-2"><a href="#cb99-2"></a><span class="fu">t</span>(new_pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>         [,1]     [,2]     [,3]     [,4]
+[1,] 4.619475 24.15726 2.867009 25.95284</code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1"></a>new_pred_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x_1 =</span> new_data[,<span class="dv">2</span>], <span class="at">x_4 =</span> <span class="fu">c</span>(<span class="st">"F"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"M"</span>), <span class="at">pred =</span> new_pred)</span>
+<span id="cb101-2"><a href="#cb101-2"></a>new_pred_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x_1 x_4      pred
+1   0   F  4.619475
+2  10   F 24.157261
+3   0   M  2.867009
+4  10   M 25.952835</code></pre>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li class="fragment">Plotting our interaction mode</li>
+<li class="fragment">Female: <span class="math inline">\(y_F = 4.6195 + 1.9538· x_1 -1.7525 · x_4 + 0.3548 · x_1 · x_4\)</span> <span class="math inline">\(= 4.6195 + 1.9538· x_1 -1.7525 · 0 + 0.3548 · x_1 · 0\)</span> <span class="math inline">\(= 4.6195 + 1.9538· x_1\)</span></li>
+<li class="fragment">Male: <span class="math inline">\(y_M = 4.6195 + 1.9538· x_1 -1.7525 · x_4 + 0.3548 · x_1 · x_4\)</span> <span class="math inline">\(= 4.6195 + 1.9538· x_1 -1.7525 · 1 + 0.3548 · x_1 · 1\)</span> <span class="math inline">\(= 2.867 + 2.3086 · x_1\)</span></li>
+</ul>
+</div>
+</section>
+<section id="small-dataset-interaction-4" class="slide level2">
+<h2>Small dataset, interaction</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x_1, <span class="at">y =</span> y, <span class="at">colour =</span> x_4), <span class="at">data =</span> sim1c) <span class="sc">+</span></span>
+<span id="cb103-2"><a href="#cb103-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb103-3"><a href="#cb103-3"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> pred), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb103-4"><a href="#cb103-4"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> new_pred_data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x_1, <span class="at">y =</span> pred), <span class="at">lwd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="small-dataset-interaction-5" class="slide level2">
+<h2>Small dataset, interaction</h2>
+
+<img data-src="model-basics_files/figure-revealjs/unnamed-chunk-56-1.png" width="960" class="r-stretch"></section>
+<section id="transformations" class="slide level2">
+<h2>Transformations</h2>
+<ul>
+<li class="fragment">Remember to put <code>+, *,^,-</code> into <code>I()</code> function</li>
+<li class="fragment">Else use transformations freely</li>
+<li class="fragment">No need to make a new transformed variable before using it in model</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1"></a><span class="co"># log transform x_2</span></span>
+<span id="cb104-2"><a href="#cb104-2"></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x_1 <span class="sc">+</span> <span class="fu">log</span>(x_2), <span class="at">data =</span> sim1c)</span>
+<span id="cb104-3"><a href="#cb104-3"></a>sim1c <span class="sc">%&gt;%</span> </span>
+<span id="cb104-4"><a href="#cb104-4"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x_1, <span class="at">y =</span> <span class="fu">log</span>(x_2))) <span class="sc">+</span></span>
+<span id="cb104-5"><a href="#cb104-5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb104-6"><a href="#cb104-6"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> <span class="st">'y ~ x'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="transformations-1" class="slide level2">
+<h2>Transformations</h2>
+
+<img data-src="model-basics_files/figure-revealjs/unnamed-chunk-58-1.png" width="960" class="r-stretch"></section>
+<section id="missing-values" class="slide level2">
+<h2>Missing values</h2>
+<ul>
+<li class="fragment">Default R behaviour; drop missing values silently in models.</li>
+<li class="fragment">Can turn on warnings through setting an option.
+<ul>
+<li class="fragment">options(na.action = na.warn)</li>
+<li class="fragment">will give warnings when observations are dropped</li>
+</ul></li>
+<li class="fragment">Get rid of warnings
+<ul>
+<li class="fragment"><code>na.action = na.exclude</code> as model function argument</li>
+<li class="fragment">or reset option, options(na.action = na.exclude)</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1"></a><span class="fu">options</span>(<span class="at">na.action =</span> na.warn)</span>
+<span id="cb105-2"><a href="#cb105-2"></a><span class="fu">options</span>(<span class="at">na.action =</span> na.exclude)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
+
+<div class="footer footer-default">
+<p><a href="../../index.html">MSB105</a></p>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-R-modelr" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley. 2020. <em>Modelr: Modelling Functions That Work with the Pipe</em>. <a href="https://CRAN.R-project.org/package=modelr">https://CRAN.R-project.org/package=modelr</a>.
+</div>
+<div id="ref-R-tidyverse" class="csl-entry" role="doc-biblioentry">
+———. 2021. <em>Tidyverse: Easily Install and Load the Tidyverse</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.
+</div>
+<div id="ref-tidyverse2019" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the <span class="nocase">tidyverse</span>.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
+</div>
+</div>
+</section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'smaller': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': true,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          // dispatch for htmlwidgets
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for reveal
+        if (window.Reveal) {
+          window.Reveal.addEventListener("slidechanged", function(event) {
+            fireSlideChanged(event.previousSlide, event.currentSlide);
+          });
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        target: function(trigger) {
+          return trigger.previousElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        setTimeout(function() {
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto-reveal',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          let href = ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+        tippyHover(ref, function() {
+          var popup = window.document.createElement('div');
+          cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    });
+    </script>
+    
+
+</body></html>
