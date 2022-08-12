@@ -1,0 +1,10 @@
+---
+title: "Program"
+editor: visual
+---
+
+## Presentations
+
+[Introduction (r4ds chap. 9)](intro-program/intro-program.qmd)
+[More on Pipes (r4ds chap. 18)](pipes-cont/pipes-cont.qmd)
+[Functions (r4ds chap. 19)](functions/functions.qmd)

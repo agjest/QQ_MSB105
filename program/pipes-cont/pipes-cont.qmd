@@ -1,0 +1,182 @@
+---
+title: "Pipes"
+author: "ag"
+format:
+  revealjs:
+        theme: simple
+        footer: '[MSB105](/index.html)'
+        reveal_options:
+        code-fold: show
+        incremental: true
+        smaller: true
+        scrollable: true
+        slide-number: c/t
+editor: visual
+editor_options:
+  markdown:
+    wrap: 72
+    canonical: true
+    chunk_output_type: console
+echo: true
+eval: true
+bibliography: ag_pipes.bib
+nocite: '@*'
+---
+
+## Load *tidyverse* and *magrittr*
+
+```{r setup}
+# get tidyverse to shut up
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(lubridate)
+  library(magrittr)
+})
+```
+
+```{r}
+# create a bib file for the R packages
+# used in this document
+# Note! Needs to do a touch(ag_factors.bib) in terminal before first run
+# else stops when bibliography: "ag_factors.bib" not found in YAML
+knitr::write_bib(
+  c(
+    "tidyverse",
+    "lubridate",
+    "magrittr"
+    ),
+  file = "ag_pipes.bib"
+  )
+```
+
+## Pipes
+
+-   We already know a lot about pipes
+-   Comes from the package `magrittr`
+    -   `%>%` also defined in `tidyverse`
+    -   `magrittr` also define `%$%` and `%T>%` (must do
+        `libray(magrittr)` to use them)
+
+## Define *my_df*
+
+```{r my_df}
+set.seed(333)
+my_df <- tibble(
+  x = rnorm(10, mean = 100, sd = 10),
+  y = runif(10, min = 30, max = 130),
+  z = rlnorm(10, 2, 2)
+)
+```
+
+## Define *my_dates*
+
+-   also define `my_dates` from previous lecture
+
+. . .
+
+```{r}
+set.seed(1234)
+my_dates <- tibble(
+  y = 1999:2008,
+  m = sample(1:12, size = 10, replace = TRUE),
+  # make it simple, seed 1234 gives no impossible date
+  d = sample(1:31, size = 10, replace = TRUE),
+  date = make_date(year = y, month = m, day = d)
+)
+```
+
+## "Exploding pipe" `%$%`
+
+-   Gives access to variables in dataframe/tibble
+-   Use with functions that don't have a *data* argument
+
+. . .
+
+```{r}
+args(cor)
+```
+
+```{r}
+#| eval: false
+# cor can't find y
+my_df %>% cor(x,y)
+```
+
+-   Error message: Error in pmatch(use, c("all.obs", "complete.obs",
+    "pairwise.complete.obs", : object 'y' not found
+
+## With exploding pipe it works
+
+```{r}
+# %$% exposes the names in my_df
+my_df %$% cor(x,y)
+```
+
+## From last lecture
+
+-   Did not work
+-   `my_dates %>% floor_date(date, "month")`
+-   Gives error: Error in as.character(unit) : cannot coerce type
+    'closure' to vector of type 'character'
+-   R speak for "Never heard about a variable called 'date'".
+-   Use `%$%` from `magrittr`
+
+. . .
+
+```{r}
+# Dosn't work
+# my_dates %>% floor_date(date, "month")
+# Explodes out the names in my_dates
+my_dates %$% floor_date(date, "month")
+```
+
+## T-pipe `%T>%`
+
+-   T-pipe sends data along left side also
+-   makes `plot()` in the middle of a pipe possible
+-   without T-pipe
+
+. . .
+
+```{r}
+#| out.width: "30%"
+my_df %>% 
+  select(x,y) %>% 
+  plot() %>% 
+  glimpse()
+```
+
+## T-pipe `%T>%`
+
+-   Out from `plot()` in a normal pipe we get a plot object
+    -   No glimpse of the variables (x and y)
+-   If we put in a `%T>%` (a T-pipe) before the `plot()` the output from
+    `select(x, y)` will also flow on the left hand side down to glimpse.
+
+## T-pipe `%T>%`{.smaller}
+
+```{r}
+#| out.width: "30%"
+my_df %>% 
+  select(x,y) %T>% 
+  plot() %>% 
+  glimpse()
+```
+
+## General advice regarding pipes
+
+-   Don't use with many inputs
+    -   Designed for one tibble/dataframe to be poured into the pipe
+    -   It is possible to refer to values defined outside of pipe (like
+        we did for heights when we needed mean and sd for males and
+        females to draw the distributions)
+    -   Try to calculate such values right before the pipe or write a
+        comment indicating where they are calculated. Remember to be
+        kind to your future self.
+-   Long pipes should be broken up
+    -   No more than 10 steps
+    -   Break up, output first pipe input second pipe etc.
+-   Do not use pipes for complex data structures (not relevant for us at
+    this stage)
+
+## References
