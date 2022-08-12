@@ -11,5 +11,5 @@ editor: visual
 
 [Model building (r4ds chap. 24)](model-building/model-building.qmd)
 
-[Many models (r4ds chap. 19)](many-models/many-models.qmd)
+[Many models (r4ds chap. 25)](many-models/many-models.qmd)
 

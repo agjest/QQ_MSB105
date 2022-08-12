@@ -1,9 +1,916 @@
 ---
 title: "Many models"
-format: revealjs
+author: "ag"
+format:
+  revealjs:
+        theme: simple
+        footer: '[MSB105](/index.html)'
+        reveal_options:
+        code-fold: show
+        incremental: true
+        smaller: true
+        scrollable: true
+        slide-number: c/t
 editor: visual
+editor_options:
+  markdown:
+    wrap: 72
+    canonical: true
+    chunk_output_type: console
+echo: true
+eval: true
+bibliography: ag_many_models.bib
+nocite: '@*'
 ---
 
-::: callout-note
-## Just a place holder
-:::
+```{r setup}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(modelr)
+  options(na.action = na.exclude)
+  library(nycflights13)
+  library(lubridate)
+  library(tseries)
+  library(patchwork)
+  library(broom)
+})
+```
+
+```{r}
+# create a bib file for the R packages
+# used in this document
+# Note! Needs to do a touch ag_many_models.bib in terminal before first run
+# else stops when bibliography: "ag_many_models.bib" not found in YAML
+knitr::write_bib(
+  c(
+    "tidyverse",
+    "modelr",
+    "nycflights13",
+    "lubridate",
+    "tseries",
+    "patchwork",
+    "hexbin"
+    ),
+  file = "ag_many_models.bib"
+  )
+```
+
+## Introduction
+
+-   Many simple models on complex datasets
+-   List-columns to store arbitrary data structures in a data frame
+-   broom package to turn models into tidy data.
+-   Example gapminder, we will use newgapminder our updated version of
+    the dataset from last assignment
+
+## Read in newgapminder
+
+-   Our dataset is somewhat smaller than the one in *gapminder*, but
+    have more updated data
+
+. . .
+
+```{r}
+newgapminder <- read_csv(file = "./newgapminder.csv")
+```
+
+## Plotting the data for each country
+
+```{r, eval=FALSE}
+newgapminder %>% 
+  ggplot(aes(year, lifeExp, group = country, colour = continent)) +
+    geom_line(alpha = 1/3)
+```
+
+## Plotting the data for each country
+
+```{r, echo=FALSE}
+newgapminder %>% 
+  ggplot(aes(year, lifeExp, group = country, colour = continent)) +
+    geom_line(alpha = 2/3) +
+  theme(legend.position = "bottom")
+```
+
+## Plotting the data for Africa
+
+```{r, eval=FALSE}
+newgapminder %>% 
+  filter(continent == "Africa")  %>% 
+  ggplot(aes(year, lifeExp, group = country)) +
+    geom_line()
+```
+
+## Plotting the data for Africa
+
+```{r, echo=FALSE}
+newgapminder %>% 
+  filter(continent == "Africa")  %>% 
+  ggplot(aes(year, lifeExp, group = country)) +
+    geom_line()
+```
+
+## Simple model
+
+-   Remove growth
+-   Problem: 90 different countries
+-   Start with one: Norway
+
+. . .
+
+```{r, eval = FALSE}
+no <- newgapminder %>% filter(country == "Norway")
+no_mod = lm(lifeExp ~ year, data = no)
+no1 <- no %>%
+  ggplot(mapping = aes(x = year, y = lifeExp)) +
+  geom_line() +
+  ggtitle("Full data =")
+no2 <- no %>% 
+  add_predictions(no_mod, var = "pred_no") %>% 
+  ggplot(mapping = aes(x = year, y = pred_no)) +
+  geom_line() +
+  ggtitle("Linear trend + ")
+no3 <- no %>% 
+  add_residuals(no_mod, var = "res_no") %>% 
+  ggplot(mapping = aes(x = year, y = res_no)) +
+  geom_line() +
+  ggtitle(" Residuals")
+no1 + no2 + no3
+```
+
+## Simple model
+
+```{r, echo = FALSE}
+no <- newgapminder %>% filter(country == "Norway")
+no_mod = lm(lifeExp ~ year, data = no)
+no1 <- no %>%
+  ggplot(mapping = aes(x = year, y = lifeExp)) +
+  geom_line() +
+  ggtitle("Full data =")
+no2 <- no %>% 
+  add_predictions(no_mod, var = "pred_no") %>% 
+  ggplot(mapping = aes(x = year, y = pred_no)) +
+  geom_line() +
+  ggtitle("Linear trend + ")
+no3 <- no %>% 
+  add_residuals(no_mod, var = "res_no") %>% 
+  ggplot(mapping = aes(x = year, y = res_no)) +
+  geom_line() +
+  ggtitle(" Remaining pattern\n(Residuals)")
+no1 + no2 + no3
+```
+
+## Only 89 left to do!
+
+-   What can one do?
+    -   `nest()` the data
+    -   Common code in a function, map onto each country
+-   Used to apply function on new variables, now subset of rows (1962
+    -2017 for 90 different countries)
+-   Nested data frame: `group_by()`first, then `nest()`
+
+. . .
+
+```{r}
+by_country <- newgapminder %>% 
+  # next a trick to bring with us continent variable
+  # not needed for the grouping (no two countries with same name)
+  group_by(country, continent) %>% 
+  nest()
+```
+
+## Nested dataframes
+
+-   That was easy!
+-   What's in by_country?
+
+. . .
+
+```{r}
+by_country
+```
+
+## Nested dataframes
+
+-   country and continent just two normal character vectors.
+-   data is something new
+    -   It's a vector of tibbles
+    -   Is that even permissible after R rules?
+        -   It is. It's just a vector of lists of vectors of equal
+            length
+        -   Remember, a tibble (and dataframe) is nothing but a list of
+            vectors of equal length
+        -   A list is a permissible vector type, and data contains
+            nothing but lists.
+        -   Data is also of the same length as country and continent.
+        -   Everything is in order.
+        -   Every tibble in data has 12 rows and 4 columns
+
+## Nested dataframes
+
+-   This kind of structure is quite "new"
+-   No good tools to inspect it
+-   `str()` tends to give to much info
+-   The best solution is to inspect a single element with `[[]]`
+
+. . .
+
+```{r, eval = FALSE}
+by_country %>% 
+  # pick Norway
+  filter(country == "Norway") %>%
+  # pick the data variable for norway
+  .$data %>% 
+  # we want the content
+  .[[1]]
+```
+
+## Nested dataframes
+
+```{r, echo = FALSE}
+by_country %>% 
+  # pick Norway
+  filter(country == "Norway") %>%
+  # pick the data variable for norway
+  .$data %>% 
+  # we want the content
+  .[[1]]
+```
+
+## Nested dataframes
+
+-   Standard grouped dataframe
+    -   Each row is an **observation**
+-   Nested grouped dataframe
+    -   Each row is a **group** of observations
+
+## More on list-columns {.smaller}
+
+-   Define a model function
+
+. . .
+
+```{r}
+country_model <- function(a_df) {
+  # same simple model for each country
+  lm(lifeExp ~ year, data = a_df)
+}
+```
+
+-   Want to map this function onto the data for each country
+-   Store it in `by_country` as the variable `model`
+
+. . .
+
+```{r}
+by_country <- by_country %>% 
+  # remember map(data, function), our data named data
+  mutate(model = map(data, .f = country_model))
+```
+
+```{r}
+print(by_country, n = 3)
+```
+
+## Summary of the model for Norway
+
+```{r}
+by_country %>% 
+  # pick Norway
+  filter(country == "Norway") %>%
+  # pick the data variable for norway
+  .$model %>% 
+  # we want the content
+  .[[1]] %>% 
+  summary()
+```
+
+## Coefficients of the model for Norway
+
+```{r}
+by_country %>% 
+  # pick Norway
+  filter(country == "Norway") %>%
+  # pick the data variable for norway
+  .$model %>% 
+  # we want the content
+  .[[1]] %>% 
+  coefficients()
+```
+
+## More by_country
+
+-   `by_country` now contains both data and models for each of the 90
+    countries
+-   Easy to filter on country or continent
+-   Will always be kept in sync, just like observations
+
+## Adding residuals (and predictions if we want to)
+
+```{r}
+by_country <- by_country %>% 
+  mutate(
+    # remember map2(var1, var2, function)
+    # we want to vary data and model
+    # one combination for each country
+    #add_residuals(data, model)
+    res = map2(data, model, add_residuals)
+  )
+```
+
+-   Then we have added the residuals for each country to `by_country`
+
+## How to get things out of their nest?
+
+-   `unnest()`
+-   Say we want to see the residuals. How will we get them?
+
+. . .
+
+```{r}
+res_90c <- by_country %>% 
+  unnest(res)
+print(res_90c, n = 4)
+```
+
+## Residuals and the variables for Norway
+
+```{r}
+res_90c %>% 
+  filter(country == "Norway") %>% 
+  print(n = 5)
+```
+
+## Plot of residuals against year for Norway
+
+```{r, eval = FALSE}
+res_90c %>% 
+  filter(country == "Norway") %>% 
+  ggplot(mapping = aes(x = year, y = resid)) + 
+  geom_point() +
+  geom_line() +
+  geom_hline(yintercept = 0)
+```
+
+## Plot of residuals against year for Norway {.smaller}
+
+-   Shows clear signs of autocorrelation
+
+. . .
+
+```{r, echo = FALSE}
+res_90c %>% 
+  filter(country == "Norway") %>% 
+  ggplot(mapping = aes(x = year, y = resid)) + 
+  geom_point() +
+  geom_line() +
+  geom_hline(yintercept = 0)
+```
+
+## Plot residuals for all countries
+
+```{r, eval=FALSE}
+res_90c %>% 
+  ggplot(mapping = aes(x = year, y = resid)) + 
+  # because of group = country one line for each country
+  geom_line(aes(group = country), alpha = 1/6) +
+  # general smooth for all countries
+  geom_smooth(se = FALSE) +
+  geom_hline(yintercept = 0)
+```
+
+## Plot residuals for all countries {.smaller}
+
+```{r, echo=FALSE}
+res_90c %>% 
+  ggplot(mapping = aes(x = year, y = resid)) + 
+  # because of group = country one line for each country
+  geom_line(aes(group = country), alpha = 1/6) +
+  # general smooth for all countries
+  geom_smooth(se = FALSE) +
+  geom_hline(yintercept = 0)
+```
+
+## Facetting by continent
+
+```{r, eval=FALSE}
+res_90c %>% 
+  ggplot(mapping = aes(x = year, y = resid)) + 
+  # because of group = country one line for each country
+  geom_line(aes(group = country), alpha = 1/3) +
+  geom_hline(yintercept = 0, colour = "white") +
+  facet_wrap(~continent)
+```
+
+## Facetting by continent
+
+-   Europe is dull, all the action is in Africa.
+
+. . .
+
+```{r, echo=FALSE}
+res_90c %>% 
+  ggplot(mapping = aes(x = year, y = resid)) + 
+  # because of group = country one line for each country
+  geom_line(aes(group = country), alpha = 1/3) +
+  geom_hline(yintercept = 0, colour = "white") +
+  facet_wrap(~continent) 
+```
+
+## Mean lifeExp (over country not population) per continent
+
+```{r, eval = FALSE}
+by_country %>% 
+  unnest(c(data)) %>% 
+  group_by(continent, year) %>% 
+  summarise(mean_lifeExp = mean(lifeExp)
+           ) %>% 
+  ggplot(aes(x = year, y = mean_lifeExp, colour = continent)) +
+    geom_line(lwd = 1)
+```
+
+## Mean lifeExp (over country not population) per continent
+
+```{r, echo = FALSE}
+by_country %>% 
+  unnest(c(data)) %>% 
+  group_by(continent, year) %>% 
+  summarise(mean_lifeExp = mean(lifeExp)
+           ) %>% 
+  ggplot(aes(x = year, y = mean_lifeExp, colour = continent)) +
+    geom_line(lwd = 1)
+```
+
+## Model quality {.smaller}
+
+-   Filter on a country
+-   Get model from tibble
+-   Pick out the lm object and send it to summary
+
+. . .
+
+```{r, eval = FALSE}
+by_country %>% 
+  filter(country %in% c("Norway")) %>% 
+  .$model %>%
+  .[[1]] %>% 
+  summary()  
+```
+
+## Model quality cont. {.smaller}
+
+```{r}
+by_country %>% 
+  filter(country %in% c("Norway")) %>% 
+  .$model %>%
+  .[[1]] %>% 
+  summary()  
+```
+
+-   Cumbersome
+-   Package `broom` is your friend
+
+## Model quality; `broom::glance()`{.smaller}
+
+```{r}
+options(tibble.width = 60)
+by_country %>% 
+  filter(
+    country %in% c("Norway", "Sweden", 
+                        "Denmark", "Finland")
+    ) %>% 
+  .$model %>% 
+  map_df(glance) %>% 
+  print()
+```
+
+## Model quality; `broom::glance()`
+
+-   Better solution
+    -   Put model summaries in by_country with `mutate(mod_summary = )`
+    -   Then `unnest(mod_summary)`
+
+. . .
+
+```{r, eval=FALSE}
+by_country %>%
+    filter(
+    country %in% c(
+      "Norway", "Sweden",
+      "Denmark", "Finland"
+    )
+  ) %>% 
+  mutate(mod_summary = map(.x = model, .f = glance)) %>%
+  unnest(mod_summary) %>% 
+  # don't want too many rows in the slide
+  print(n = 4)
+
+```
+
+## Model quality; `broom::glance()`{.smaller}
+
+```{r}
+by_country %>%
+    filter(
+    country %in% c(
+      "Norway", "Sweden",
+      "Denmark", "Finland"
+    )
+  ) %>% 
+  mutate(mod_summary = map(.x = model, .f = glance)) %>%
+  unnest(mod_summary) %>% 
+  # don't want to may rows in the slide
+  print(n = 4)
+```
+
+## Model quality
+
+```{r}
+by_country %>%
+  mutate(mod_summary = map(.x = model, .f = glance)) %>%
+  unnest(mod_summary) %>% 
+  group_by(continent) %>% 
+  summarise(mean_r_adj = mean(adj.r.squared))
+```
+
+-   The model seems to have the best fit in Europe
+-   The worst fit in Africa
+
+## Model quality, preserve mod_summary
+
+```{r}
+by_country <- by_country %>%
+  mutate(mod_summary = map(.x = model, .f = glance))
+```
+
+```{r}
+by_country %>% 
+  # drop = TRUE, deprecated, use select() instead
+  select(-data, -model, -res) %>% 
+  # new interface, wrap in c()
+  unnest(c(mod_summary)) %>% 
+  print(n = 4)
+```
+
+## The 10 best models {.smaller}
+
+```{r}
+by_country %>% 
+  # drop = TRUE, deprecated, use select() instead
+  select(-data, -model, -res) %>% 
+  # new interface, wrap in c()
+  unnest(c(mod_summary)) %>% 
+  arrange(desc(adj.r.squared)) %>% 
+  print(n = 10)
+```
+
+## The 10 worst models {.smaller}
+
+```{r}
+by_country %>% 
+  # drop = TRUE, deprecated, use select() instead
+  select(-data, -model, -res) %>% 
+  # new interface, wrap in c()
+  unnest(c(mod_summary)) %>% 
+  arrange(adj.r.squared) %>% 
+  print(n = 10)
+```
+
+## Plot adj.r.square and sigma by continent
+
+```{r, eval = FALSE}
+by_country %>% 
+  # unnest data to get to pop
+  unnest(c(data, mod_summary)) %>% 
+  ggplot(mapping = aes(x = sigma, y = adj.r.squared, 
+                       colour = continent, size = pop)) +
+  geom_point(alpha = 0.3) +
+  theme(legend.position = "bottom")
+```
+
+## Plot adj.r.square and sigma by continent
+
+```{r, echo = FALSE}
+by_country %>% 
+  # unnest data to get to pop
+  unnest(c(data, mod_summary)) %>% 
+  ggplot(mapping = aes(x = sigma, y = adj.r.squared, 
+                       colour = continent, size = pop)) +
+  geom_point(alpha = 0.3) +
+  theme(legend.position = "bottom")
+```
+
+## Plot of the worst fits
+
+```{r, eval=FALSE}
+# Special case Rwanda
+rw <- by_country %>% filter(country == "Rwanda") %>% unnest(c(data,mod_summary))
+by_country %>% 
+    # unnest data to get to pop
+  unnest(c(data, mod_summary)) %>% 
+  filter(continent == "Africa") %>% 
+  filter(adj.r.squared < 0.25) %>% 
+  ggplot(mapping = aes(x = year, y = lifeExp, colour = country)) +
+  geom_line(lwd=1) + 
+  geom_line(data = rw, mapping = aes(x = year, y = lifeExp), colour = "black", lwd=1) +
+  ggtitle("AIDS and genocide in Rwanda 1994")
+```
+
+## Plot of the worst fits
+
+```{r, echo=FALSE}
+# Special case Rwanda
+rw <- by_country %>% filter(country == "Rwanda") %>% unnest(c(data,mod_summary))
+by_country %>% 
+    # unnest data to get to pop
+  unnest(c(data, mod_summary)) %>% 
+  filter(continent == "Africa") %>% 
+  filter(adj.r.squared < 0.25) %>% 
+  ggplot(mapping = aes(x = year, y = lifeExp, colour = country)) +
+  geom_line() + 
+  geom_line(data = rw, mapping = aes(x = year, y = lifeExp), colour = "black") +
+  ggtitle("AIDS and genocide in Rwanda 1994")
+```
+
+## Difference 2007 2017
+
+-   Compare previous figure with a similar one in r4ds 25.2.4
+-   What do we see?
+    -   The effect of cheap and available AIDS drugs (from 2000-)
+
+## Details list-columns
+
+-   data frame: a named list of equal length vectors
+-   A list is one of Rs vector types
+-   Always been permissible to have a list of dataframes as a vector in
+    a dataframe
+-   Not easy in classic R
+-   New tools make it a lot easier
+
+## How classic Rs `data.frame()` function handles a list of vectors {.smaller}
+
+```{r}
+# we want a list with two vectors
+data.frame(x = list(1:3, 3:5))
+```
+
+-   Get two columns
+-   Can force the matter with `I()`
+
+. . .
+
+```{r}
+# I() Inhibit Interpretation/Conversion of Objects
+a_df <- data.frame(x = I(list(1:3, 3:5)))
+a_df
+a_df$x[[1]]
+a_df$x[[2]]
+```
+
+## Not a problem with tribbles/tibbels {.smaller}
+
+```{r}
+tibble(x = list(1:3, 3:5))
+```
+
+```{r}
+tribble(
+  ~x,
+  1:3,
+  3:5
+)
+```
+
+-   `tribble()` even makes a list for us
+-   List-columns handy for storing things, but we typically need to
+    "unpack" them before use
+-   Remember: Most R functions work with vectors and/or dataframes
+
+## List-column pipe line
+
+-   Create
+    -   nest()
+
+    -   summarise() + list()
+
+    -   mutate() + map()
+-   Make additional list-columns by transforming existing list-columns
+    with
+    -   map(),
+
+    -   map2() or
+
+    -   pmap().
+
+        -   Ex. transforming a list-column of dataframes (with data) to
+            a list-column of models.
+
+## List-column pipe line cont.
+
+-   Then further transforming a list-column of models to a listcolumn of
+    model summaries
+-   Finally one *simplify* list-columns back to vector or dataframes
+    ready to use by regular R functions `mutate()` with
+    -   `map_chr()`,
+
+    -   `map_lgl()`,
+
+    -    `map_int()` and
+
+    -   `map_dbl()`
+-    `unnest(c(list-column1, list-column2, etc.))`.
+    -   Note you now have to use `c()` even with one list-column.
+
+    -   Option `drop = TRUE` is now depricated.
+
+    -   Use `select(-list-column, etc)` before `unnest()` if you want to
+        drop some columns.
+
+## List to vector
+
+-   Get type and length, always works
+-   Useful for `filter()`
+
+. . .
+
+```{r}
+# all sorts
+a_trib <- tribble(
+  ~x,
+  letters[1:5],
+  1:3,
+  runif(5)
+)
+
+a_trib %>% mutate(
+  # if we use plain map we get a list. NOT what we want.
+  type = map_chr(.x = x, .f = typeof),
+  length = map_int(.x = x, .f = length)
+)
+```
+
+## List to vector
+
+```{r}
+a_trib %>% mutate(
+  # if we use plain map we get a list. NOT what we want.
+  type = map_chr(.x = x, .f = typeof),
+  length = map_int(.x = x, .f = length)
+) %>% 
+  filter(length == 5)
+
+a_trib %>% mutate(
+  # if we use plain map we get a list. NOT what we want.
+  type = map_chr(.x = x, .f = typeof),
+  length = map_int(.x = x, .f = length)
+) %>% 
+  filter(type == "double")
+```
+
+## List to vector
+
+-   Use argument `.null =` to provide for missing values
+
+. . .
+
+```{r}
+a_trib <- tribble(
+  ~x,
+  list(a = 1, b = 2),
+  list(a = 2, c = 4)
+)
+a_trib
+```
+
+## List to vector
+
+```{r}
+a_trib  %>% mutate(
+  # pick the values for a's
+  a = map_dbl(x, "a"),
+  #pick the values b's, NA_real_ if missing. 
+  # No b in the second list
+  b = map_dbl(x, "b", .null = NA_real_)
+)
+```
+
+## `unnest()`
+
+-   Repeats the regular columns once for each element of the
+    list-column.
+
+. . .
+
+```{r}
+a_tib <- tibble(x = 1:2, y = list(1:4, 1))
+a_tib
+a_tib %>% unnest(c(y))
+```
+
+## `unnest()`
+
+```{r}
+a_tib <- tibble(x = list(1:2, 1:5), y = list(1:4, 1))
+a_tib
+a_tib %>% unnest(c(y))
+```
+
+## `unnest()`{.smaller}
+
+```{r}
+a_tib %>% unnest(c(x))
+```
+
+```{r, eval=FALSE}
+# Does not work, different number of elements in rows
+a_tib %>% unnest(c(x, y))
+```
+
+Returns: Error: Incompatible lengths: 2, 4. Run `rlang::last_error()` to
+see where the error occurred.
+
+## `unnest()`
+
+```{r}
+a_tib <- tibble(x = list(1:2, 1:3), y = list(10:11, 1))
+a_tib
+```
+
+```{r}
+# same number of elemets or vector of length 1
+a_tib %>% unnest(c(x, y))
+```
+
+-   Same with list-columns of dataframes. You can unnest multiple list
+    columns, but the data frames in each row **must** have the same
+    number of rows.
+
+## More from broom
+
+-   We used `broom::glance(model)` above.
+-   We also have: `broom::tidy(model)` and `broom:augment(model, data)`
+
+## Tidy data with broom
+
+-   Gives us model coefficients and accompanying statistics
+
+. . .
+
+```{r}
+by_country <- by_country %>%
+  mutate(mod_tidy = map(.x = model, .f = tidy))
+```
+
+```{r}
+by_country %>%
+  select(-data, -res, -mod_summary) %>% 
+  unnest(mod_tidy) %>% 
+  print(n = 4)
+```
+
+## Tidy data with broom
+
+-   Now we can do things like
+
+. . .
+
+```{r}
+by_country <- by_country %>%
+  mutate(
+ new18 = map(c(ymd("2018-01-01")), as_tibble_col, column_name = "year"),
+ pred18 = map2(model, new18, predict.lm)
+) 
+
+by_country %>% 
+  group_by(continent) %>% 
+  unnest(pred18 ) %>% 
+  summarise(mean_p18 = mean(pred18),
+            sd_p18 = sd(pred18),
+            min_p18 = min(pred18),
+            max_p18 = max(pred18))
+```
+
+## `broom:augment()`
+
+-   `augment()` gives us a lot of goodies regarding the model
+
+. . .
+
+```{r}
+by_country <- by_country %>%
+  mutate(mod_aug = map(.x = model, .f = augment))
+```
+
+```{r}
+by_country %>%
+  select(-data, -res, -mod_summary, -mod_tidy, -c(model:pred18)) %>% 
+  unnest(mod_aug) %>% 
+  print(n = 4)
+```
+
+## Still more broom!
+
+-   To learn more have a look at the broom package vignettes.
+    -   Find broom under packages and click the link
+    -   Links to the vignettes are at the top of the page
+
+## References

@@ -9,6 +9,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.0.36">
 
+  <meta name="author" content="ag">
   <title>MSB105 - Many models</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -22,6 +23,89 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -236,6 +320,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -319,26 +404,1437 @@
 
 <section id="title-slide" class="center">
   <h1 class="title">Many models</h1>
+  <p class="author">ag</p>
 </section>
 
 <section class="slide level2">
 
-<div class="callout callout-note callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">suppressPackageStartupMessages</span>({</span>
+<span id="cb1-2"><a href="#cb1-2"></a>  <span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3"></a>  <span class="fu">library</span>(modelr)</span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="fu">options</span>(<span class="at">na.action =</span> na.exclude)</span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="fu">library</span>(nycflights13)</span>
+<span id="cb1-6"><a href="#cb1-6"></a>  <span class="fu">library</span>(lubridate)</span>
+<span id="cb1-7"><a href="#cb1-7"></a>  <span class="fu">library</span>(tseries)</span>
+<span id="cb1-8"><a href="#cb1-8"></a>  <span class="fu">library</span>(patchwork)</span>
+<span id="cb1-9"><a href="#cb1-9"></a>  <span class="fu">library</span>(broom)</span>
+<span id="cb1-10"><a href="#cb1-10"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<p><strong>Just a place holder</strong></p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># create a bib file for the R packages</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># used in this document</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># Note! Needs to do a touch ag_many_models.bib in terminal before first run</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># else stops when bibliography: "ag_many_models.bib" not found in YAML</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>knitr<span class="sc">::</span><span class="fu">write_bib</span>(</span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">c</span>(</span>
+<span id="cb2-7"><a href="#cb2-7"></a>    <span class="st">"tidyverse"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8"></a>    <span class="st">"modelr"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9"></a>    <span class="st">"nycflights13"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="st">"lubridate"</span>,</span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="st">"tseries"</span>,</span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="st">"patchwork"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13"></a>    <span class="st">"hexbin"</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>    ),</span>
+<span id="cb2-15"><a href="#cb2-15"></a>  <span class="at">file =</span> <span class="st">"ag_many_models.bib"</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<div class="callout-content">
+</section>
+<section id="introduction" class="slide level2">
+<h2>Introduction</h2>
+<ul>
+<li class="fragment">Many simple models on complex datasets</li>
+<li class="fragment">List-columns to store arbitrary data structures in a data frame</li>
+<li class="fragment">broom package to turn models into tidy data.</li>
+<li class="fragment">Example gapminder, we will use newgapminder our updated version of the dataset from last assignment</li>
+</ul>
+</section>
+<section id="read-in-newgapminder" class="slide level2">
+<h2>Read in newgapminder</h2>
+<ul>
+<li class="fragment">Our dataset is somewhat smaller than the one in <em>gapminder</em>, but have more updated data</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>newgapminder <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"./newgapminder.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="plotting-the-data-for-each-country" class="slide level2">
+<h2>Plotting the data for each country</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>newgapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, lifeExp, <span class="at">group =</span> country, <span class="at">colour =</span> continent)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="plotting-the-data-for-each-country-1" class="slide level2">
+<h2>Plotting the data for each country</h2>
 
+<img data-src="many-models_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<section id="plotting-the-data-for-africa" class="slide level2">
+<h2>Plotting the data for Africa</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>newgapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Africa"</span>)  <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, lifeExp, <span class="at">group =</span> country)) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="plotting-the-data-for-africa-1" class="slide level2">
+<h2>Plotting the data for Africa</h2>
+
+<img data-src="many-models_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+<section id="simple-model" class="slide level2">
+<h2>Simple model</h2>
+<ul>
+<li class="fragment">Remove growth</li>
+<li class="fragment">Problem: 90 different countries</li>
+<li class="fragment">Start with one: Norway</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>no <span class="ot">&lt;-</span> newgapminder <span class="sc">%&gt;%</span> <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Norway"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a>no_mod <span class="ot">=</span> <span class="fu">lm</span>(lifeExp <span class="sc">~</span> year, <span class="at">data =</span> no)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>no1 <span class="ot">&lt;-</span> no <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> lifeExp)) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">ggtitle</span>(<span class="st">"Full data ="</span>)</span>
+<span id="cb6-7"><a href="#cb6-7"></a>no2 <span class="ot">&lt;-</span> no <span class="sc">%&gt;%</span> </span>
+<span id="cb6-8"><a href="#cb6-8"></a>  <span class="fu">add_predictions</span>(no_mod, <span class="at">var =</span> <span class="st">"pred_no"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-9"><a href="#cb6-9"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> pred_no)) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>  <span class="fu">ggtitle</span>(<span class="st">"Linear trend + "</span>)</span>
+<span id="cb6-12"><a href="#cb6-12"></a>no3 <span class="ot">&lt;-</span> no <span class="sc">%&gt;%</span> </span>
+<span id="cb6-13"><a href="#cb6-13"></a>  <span class="fu">add_residuals</span>(no_mod, <span class="at">var =</span> <span class="st">"res_no"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-14"><a href="#cb6-14"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> res_no)) <span class="sc">+</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>  <span class="fu">ggtitle</span>(<span class="st">" Residuals"</span>)</span>
+<span id="cb6-17"><a href="#cb6-17"></a>no1 <span class="sc">+</span> no2 <span class="sc">+</span> no3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="simple-model-1" class="slide level2">
+<h2>Simple model</h2>
+
+<img data-src="many-models_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+<section id="only-89-left-to-do" class="slide level2">
+<h2>Only 89 left to do!</h2>
+<ul>
+<li class="fragment">What can one do?
+<ul>
+<li class="fragment"><code>nest()</code> the data</li>
+<li class="fragment">Common code in a function, map onto each country</li>
+</ul></li>
+<li class="fragment">Used to apply function on new variables, now subset of rows (1962 -2017 for 90 different countries)</li>
+<li class="fragment">Nested data frame: <code>group_by()</code>first, then <code>nest()</code></li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>by_country <span class="ot">&lt;-</span> newgapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="co"># next a trick to bring with us continent variable</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="co"># not needed for the grouping (no two countries with same name)</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">group_by</span>(country, continent) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="fu">nest</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="nested-dataframes" class="slide level2">
+<h2>Nested dataframes</h2>
+<ul>
+<li class="fragment">That was easy!</li>
+<li class="fragment">What’s in by_country?</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>by_country</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 90 × 3
+# Groups:   country, continent [90]
+   country      continent data             
+   &lt;chr&gt;        &lt;chr&gt;     &lt;list&gt;           
+ 1 Argentina    Americas  &lt;tibble [12 × 4]&gt;
+ 2 Australia    Oceania   &lt;tibble [12 × 4]&gt;
+ 3 Austria      Europe    &lt;tibble [12 × 4]&gt;
+ 4 Burundi      Africa    &lt;tibble [12 × 4]&gt;
+ 5 Belgium      Europe    &lt;tibble [12 × 4]&gt;
+ 6 Benin        Africa    &lt;tibble [12 × 4]&gt;
+ 7 Burkina Faso Africa    &lt;tibble [12 × 4]&gt;
+ 8 Bangladesh   Asia      &lt;tibble [12 × 4]&gt;
+ 9 Bahamas      Americas  &lt;tibble [12 × 4]&gt;
+10 Belize       Americas  &lt;tibble [12 × 4]&gt;
+# … with 80 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
 </div>
 </div>
+</section>
+<section id="nested-dataframes-1" class="slide level2">
+<h2>Nested dataframes</h2>
+<ul>
+<li class="fragment">country and continent just two normal character vectors.</li>
+<li class="fragment">data is something new
+<ul>
+<li class="fragment">It’s a vector of tibbles</li>
+<li class="fragment">Is that even permissible after R rules?
+<ul>
+<li class="fragment">It is. It’s just a vector of lists of vectors of equal length</li>
+<li class="fragment">Remember, a tibble (and dataframe) is nothing but a list of vectors of equal length</li>
+<li class="fragment">A list is a permissible vector type, and data contains nothing but lists.</li>
+<li class="fragment">Data is also of the same length as country and continent.</li>
+<li class="fragment">Everything is in order.</li>
+<li class="fragment">Every tibble in data has 12 rows and 4 columns</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="nested-dataframes-2" class="slide level2">
+<h2>Nested dataframes</h2>
+<ul>
+<li class="fragment">This kind of structure is quite “new”</li>
+<li class="fragment">No good tools to inspect it</li>
+<li class="fragment"><code>str()</code> tends to give to much info</li>
+<li class="fragment">The best solution is to inspect a single element with <code>[[]]</code></li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>by_country <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="co"># pick Norway</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Norway"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="co"># pick the data variable for norway</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>  .<span class="sc">$</span>data <span class="sc">%&gt;%</span> </span>
+<span id="cb10-6"><a href="#cb10-6"></a>  <span class="co"># we want the content</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>  .[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="nested-dataframes-3" class="slide level2">
+<h2>Nested dataframes</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 4
+   year       lifeExp     pop gdpPercap
+   &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+ 1 1962-01-01    73.2 3639213    24912.
+ 2 1967-01-01    73.8 3784867    30311.
+ 3 1972-01-01    74.2 3933726    35368.
+ 4 1977-01-01    75.1 4044335    43237.
+ 5 1982-01-01    75.8 4111650    49046.
+ 6 1987-01-01    76.0 4186972    59392.
+ 7 1992-01-01    77.1 4292685    63630.
+ 8 1997-01-01    78.3 4420266    77045.
+ 9 2002-01-01    79.0 4546017    83674.
+10 2007-01-01    80.6 4719403    91566.
+11 2012-01-01    81.5 5013716    88605.
+12 2017-01-01    82.3 5296324    91549.</code></pre>
+</div>
+</div>
+</section>
+<section id="nested-dataframes-4" class="slide level2">
+<h2>Nested dataframes</h2>
+<ul>
+<li class="fragment">Standard grouped dataframe
+<ul>
+<li class="fragment">Each row is an <strong>observation</strong></li>
+</ul></li>
+<li class="fragment">Nested grouped dataframe
+<ul>
+<li class="fragment">Each row is a <strong>group</strong> of observations</li>
+</ul></li>
+</ul>
+</section>
+<section id="more-on-list-columns" class="slide level2 smaller">
+<h2>More on list-columns</h2>
+<ul>
+<li class="fragment">Define a model function</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>country_model <span class="ot">&lt;-</span> <span class="cf">function</span>(a_df) {</span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="co"># same simple model for each country</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">lm</span>(lifeExp <span class="sc">~</span> year, <span class="at">data =</span> a_df)</span>
+<span id="cb12-4"><a href="#cb12-4"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li class="fragment">Want to map this function onto the data for each country</li>
+<li class="fragment">Store it in <code>by_country</code> as the variable <code>model</code></li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>by_country <span class="ot">&lt;-</span> by_country <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="co"># remember map(data, function), our data named data</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="fu">map</span>(data, <span class="at">.f =</span> country_model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">print</span>(by_country, <span class="at">n =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 90 × 4
+# Groups:   country, continent [90]
+  country   continent data              model 
+  &lt;chr&gt;     &lt;chr&gt;     &lt;list&gt;            &lt;list&gt;
+1 Argentina Americas  &lt;tibble [12 × 4]&gt; &lt;lm&gt;  
+2 Australia Oceania   &lt;tibble [12 × 4]&gt; &lt;lm&gt;  
+3 Austria   Europe    &lt;tibble [12 × 4]&gt; &lt;lm&gt;  
+# … with 87 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="summary-of-the-model-for-norway" class="slide level2">
+<h2>Summary of the model for Norway</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>by_country <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="co"># pick Norway</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Norway"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="co"># pick the data variable for norway</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a>  .<span class="sc">$</span>model <span class="sc">%&gt;%</span> </span>
+<span id="cb16-6"><a href="#cb16-6"></a>  <span class="co"># we want the content</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a>  .[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> </span>
+<span id="cb16-8"><a href="#cb16-8"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = lifeExp ~ year, data = a_df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.78146 -0.26734 -0.08243  0.39243  0.63660 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 7.396e+01  2.033e-01  363.76  &lt; 2e-16 ***
+year        4.619e-04  2.138e-05   21.61 1.01e-09 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4668 on 10 degrees of freedom
+Multiple R-squared:  0.979, Adjusted R-squared:  0.9769 
+F-statistic:   467 on 1 and 10 DF,  p-value: 1.005e-09</code></pre>
+</div>
+</div>
+</section>
+<section id="coefficients-of-the-model-for-norway" class="slide level2">
+<h2>Coefficients of the model for Norway</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>by_country <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="#cb18-2"></a>  <span class="co"># pick Norway</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Norway"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a>  <span class="co"># pick the data variable for norway</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a>  .<span class="sc">$</span>model <span class="sc">%&gt;%</span> </span>
+<span id="cb18-6"><a href="#cb18-6"></a>  <span class="co"># we want the content</span></span>
+<span id="cb18-7"><a href="#cb18-7"></a>  .[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> </span>
+<span id="cb18-8"><a href="#cb18-8"></a>  <span class="fu">coefficients</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> (Intercept)         year 
+7.396322e+01 4.619491e-04 </code></pre>
+</div>
+</div>
+</section>
+<section id="more-by_country" class="slide level2">
+<h2>More by_country</h2>
+<ul>
+<li class="fragment"><code>by_country</code> now contains both data and models for each of the 90 countries</li>
+<li class="fragment">Easy to filter on country or continent</li>
+<li class="fragment">Will always be kept in sync, just like observations</li>
+</ul>
+</section>
+<section id="adding-residuals-and-predictions-if-we-want-to" class="slide level2">
+<h2>Adding residuals (and predictions if we want to)</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>by_country <span class="ot">&lt;-</span> by_country <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb20-3"><a href="#cb20-3"></a>    <span class="co"># remember map2(var1, var2, function)</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a>    <span class="co"># we want to vary data and model</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>    <span class="co"># one combination for each country</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a>    <span class="co">#add_residuals(data, model)</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a>    <span class="at">res =</span> <span class="fu">map2</span>(data, model, add_residuals)</span>
+<span id="cb20-8"><a href="#cb20-8"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li class="fragment">Then we have added the residuals for each country to <code>by_country</code></li>
+</ul>
+</section>
+<section id="how-to-get-things-out-of-their-nest" class="slide level2">
+<h2>How to get things out of their nest?</h2>
+<ul>
+<li class="fragment"><code>unnest()</code></li>
+<li class="fragment">Say we want to see the residuals. How will we get them?</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>res_90c <span class="ot">&lt;-</span> by_country <span class="sc">%&gt;%</span> </span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">unnest</span>(res)</span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="fu">print</span>(res_90c, <span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,080 × 9
+# Groups:   country, continent [90]
+  country   continent data     model  year       lifeExp      pop gdpPe…¹  resid
+  &lt;chr&gt;     &lt;chr&gt;     &lt;list&gt;   &lt;list&gt; &lt;date&gt;       &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+1 Argentina Americas  &lt;tibble&gt; &lt;lm&gt;   1962-01-01    64.4 21153042   5711. -0.365
+2 Argentina Americas  &lt;tibble&gt; &lt;lm&gt;   1967-01-01    64.9 22828872   6255. -1.06 
+3 Argentina Americas  &lt;tibble&gt; &lt;lm&gt;   1972-01-01    66.2 24653172   7369. -0.945
+4 Argentina Americas  &lt;tibble&gt; &lt;lm&gt;   1977-01-01    68.4 26661397   7744.  0.105
+# … with 1,076 more rows, and abbreviated variable name ¹​gdpPercap
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="residuals-and-the-variables-for-norway" class="slide level2">
+<h2>Residuals and the variables for Norway</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>res_90c <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Norway"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 9
+# Groups:   country, continent [1]
+  country continent data     model  year       lifeExp     pop gdpPercap   resid
+  &lt;chr&gt;   &lt;chr&gt;     &lt;list&gt;   &lt;list&gt; &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1 Norway  Europe    &lt;tibble&gt; &lt;lm&gt;   1962-01-01    73.2 3639213    24912.  0.637 
+2 Norway  Europe    &lt;tibble&gt; &lt;lm&gt;   1967-01-01    73.8 3784867    30311.  0.383 
+3 Norway  Europe    &lt;tibble&gt; &lt;lm&gt;   1972-01-01    74.2 3933726    35368. -0.110 
+4 Norway  Europe    &lt;tibble&gt; &lt;lm&gt;   1977-01-01    75.1 4044335    43237. -0.0544
+5 Norway  Europe    &lt;tibble&gt; &lt;lm&gt;   1982-01-01    75.8 4111650    49046. -0.148 
+# … with 7 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="plot-of-residuals-against-year-for-norway" class="slide level2">
+<h2>Plot of residuals against year for Norway</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>res_90c <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Norway"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-3"><a href="#cb25-3"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> resid)) <span class="sc">+</span> </span>
+<span id="cb25-4"><a href="#cb25-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb25-6"><a href="#cb25-6"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="plot-of-residuals-against-year-for-norway-1" class="slide level2 smaller">
+<h2>Plot of residuals against year for Norway</h2>
+<ul>
+<li class="fragment">Shows clear signs of autocorrelation</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="many-models_files/figure-revealjs/unnamed-chunk-22-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-residuals-for-all-countries" class="slide level2">
+<h2>Plot residuals for all countries</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>res_90c <span class="sc">%&gt;%</span> </span>
+<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> resid)) <span class="sc">+</span> </span>
+<span id="cb26-3"><a href="#cb26-3"></a>  <span class="co"># because of group = country one line for each country</span></span>
+<span id="cb26-4"><a href="#cb26-4"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> country), <span class="at">alpha =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb26-5"><a href="#cb26-5"></a>  <span class="co"># general smooth for all countries</span></span>
+<span id="cb26-6"><a href="#cb26-6"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb26-7"><a href="#cb26-7"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="plot-residuals-for-all-countries-1" class="slide level2 smaller">
+<h2>Plot residuals for all countries</h2>
+
+<img data-src="many-models_files/figure-revealjs/unnamed-chunk-24-1.png" width="960" class="r-stretch"></section>
+<section id="facetting-by-continent" class="slide level2">
+<h2>Facetting by continent</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>res_90c <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> resid)) <span class="sc">+</span> </span>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="co"># because of group = country one line for each country</span></span>
+<span id="cb27-4"><a href="#cb27-4"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> country), <span class="at">alpha =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb27-5"><a href="#cb27-5"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb27-6"><a href="#cb27-6"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>continent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="facetting-by-continent-1" class="slide level2">
+<h2>Facetting by continent</h2>
+<ul>
+<li class="fragment">Europe is dull, all the action is in Africa.</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="many-models_files/figure-revealjs/unnamed-chunk-26-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="mean-lifeexp-over-country-not-population-per-continent" class="slide level2">
+<h2>Mean lifeExp (over country not population) per continent</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>by_country <span class="sc">%&gt;%</span> </span>
+<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">unnest</span>(<span class="fu">c</span>(data)) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-3"><a href="#cb28-3"></a>  <span class="fu">group_by</span>(continent, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-4"><a href="#cb28-4"></a>  <span class="fu">summarise</span>(<span class="at">mean_lifeExp =</span> <span class="fu">mean</span>(lifeExp)</span>
+<span id="cb28-5"><a href="#cb28-5"></a>           ) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-6"><a href="#cb28-6"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_lifeExp, <span class="at">colour =</span> continent)) <span class="sc">+</span></span>
+<span id="cb28-7"><a href="#cb28-7"></a>    <span class="fu">geom_line</span>(<span class="at">lwd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="mean-lifeexp-over-country-not-population-per-continent-1" class="slide level2">
+<h2>Mean lifeExp (over country not population) per continent</h2>
+
+<img data-src="many-models_files/figure-revealjs/unnamed-chunk-28-1.png" width="960" class="r-stretch"></section>
+<section id="model-quality" class="slide level2 smaller">
+<h2>Model quality</h2>
+<ul>
+<li class="fragment">Filter on a country</li>
+<li class="fragment">Get model from tibble</li>
+<li class="fragment">Pick out the lm object and send it to summary</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>by_country <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Norway"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-3"><a href="#cb29-3"></a>  .<span class="sc">$</span>model <span class="sc">%&gt;%</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a>  .[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> </span>
+<span id="cb29-5"><a href="#cb29-5"></a>  <span class="fu">summary</span>()  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="model-quality-cont." class="slide level2 smaller">
+<h2>Model quality cont.</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>by_country <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a href="#cb30-2"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Norway"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-3"><a href="#cb30-3"></a>  .<span class="sc">$</span>model <span class="sc">%&gt;%</span></span>
+<span id="cb30-4"><a href="#cb30-4"></a>  .[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> </span>
+<span id="cb30-5"><a href="#cb30-5"></a>  <span class="fu">summary</span>()  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = lifeExp ~ year, data = a_df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.78146 -0.26734 -0.08243  0.39243  0.63660 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 7.396e+01  2.033e-01  363.76  &lt; 2e-16 ***
+year        4.619e-04  2.138e-05   21.61 1.01e-09 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4668 on 10 degrees of freedom
+Multiple R-squared:  0.979, Adjusted R-squared:  0.9769 
+F-statistic:   467 on 1 and 10 DF,  p-value: 1.005e-09</code></pre>
+</div>
+</div>
+<ul>
+<li class="fragment">Cumbersome</li>
+<li class="fragment">Package <code>broom</code> is your friend</li>
+</ul>
+</section>
+<section id="model-quality-broomglance" class="slide level2">
+<h2>Model quality; <code class="smaller">broom::glance()</code></h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">options</span>(<span class="at">tibble.width =</span> <span class="dv">60</span>)</span>
+<span id="cb32-2"><a href="#cb32-2"></a>by_country <span class="sc">%&gt;%</span> </span>
+<span id="cb32-3"><a href="#cb32-3"></a>  <span class="fu">filter</span>(</span>
+<span id="cb32-4"><a href="#cb32-4"></a>    country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Norway"</span>, <span class="st">"Sweden"</span>, </span>
+<span id="cb32-5"><a href="#cb32-5"></a>                        <span class="st">"Denmark"</span>, <span class="st">"Finland"</span>)</span>
+<span id="cb32-6"><a href="#cb32-6"></a>    ) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-7"><a href="#cb32-7"></a>  .<span class="sc">$</span>model <span class="sc">%&gt;%</span> </span>
+<span id="cb32-8"><a href="#cb32-8"></a>  <span class="fu">map_df</span>(glance) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-9"><a href="#cb32-9"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 12
+  r.squa…¹ adj.r…² sigma stati…³  p.value    df logLik   AIC
+     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+1    0.952   0.948 0.641    200. 6.20e- 8     1 -10.6  27.2 
+2    0.994   0.994 0.345   1702. 1.68e-12     1  -3.15 12.3 
+3    0.979   0.977 0.467    467. 1.01e- 9     1  -6.79 19.6 
+4    0.998   0.998 0.152   4524. 1.28e-14     1   6.64 -7.29
+# … with 4 more variables: BIC &lt;dbl&gt;, deviance &lt;dbl&gt;,
+#   df.residual &lt;int&gt;, nobs &lt;int&gt;, and abbreviated variable
+#   names ¹​r.squared, ²​adj.r.squared, ³​statistic
+# ℹ Use `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+</section>
+<section id="model-quality-broomglance-1" class="slide level2">
+<h2>Model quality; <code>broom::glance()</code></h2>
+<ul>
+<li class="fragment">Better solution
+<ul>
+<li class="fragment">Put model summaries in by_country with <code>mutate(mod_summary = )</code></li>
+<li class="fragment">Then <code>unnest(mod_summary)</code></li>
+</ul></li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>by_country <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a>    <span class="fu">filter</span>(</span>
+<span id="cb34-3"><a href="#cb34-3"></a>    country <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb34-4"><a href="#cb34-4"></a>      <span class="st">"Norway"</span>, <span class="st">"Sweden"</span>,</span>
+<span id="cb34-5"><a href="#cb34-5"></a>      <span class="st">"Denmark"</span>, <span class="st">"Finland"</span></span>
+<span id="cb34-6"><a href="#cb34-6"></a>    )</span>
+<span id="cb34-7"><a href="#cb34-7"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-8"><a href="#cb34-8"></a>  <span class="fu">mutate</span>(<span class="at">mod_summary =</span> <span class="fu">map</span>(<span class="at">.x =</span> model, <span class="at">.f =</span> glance)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-9"><a href="#cb34-9"></a>  <span class="fu">unnest</span>(mod_summary) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-10"><a href="#cb34-10"></a>  <span class="co"># don't want too many rows in the slide</span></span>
+<span id="cb34-11"><a href="#cb34-11"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="model-quality-broomglance-2" class="slide level2">
+<h2>Model quality; <code class="smaller">broom::glance()</code></h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>by_country <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a>    <span class="fu">filter</span>(</span>
+<span id="cb35-3"><a href="#cb35-3"></a>    country <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb35-4"><a href="#cb35-4"></a>      <span class="st">"Norway"</span>, <span class="st">"Sweden"</span>,</span>
+<span id="cb35-5"><a href="#cb35-5"></a>      <span class="st">"Denmark"</span>, <span class="st">"Finland"</span></span>
+<span id="cb35-6"><a href="#cb35-6"></a>    )</span>
+<span id="cb35-7"><a href="#cb35-7"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-8"><a href="#cb35-8"></a>  <span class="fu">mutate</span>(<span class="at">mod_summary =</span> <span class="fu">map</span>(<span class="at">.x =</span> model, <span class="at">.f =</span> glance)) <span class="sc">%&gt;%</span></span>
+<span id="cb35-9"><a href="#cb35-9"></a>  <span class="fu">unnest</span>(mod_summary) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-10"><a href="#cb35-10"></a>  <span class="co"># don't want to may rows in the slide</span></span>
+<span id="cb35-11"><a href="#cb35-11"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 17
+# Groups:   country, continent [4]
+  country continent data     model  res      r.squ…¹ adj.r…²
+  &lt;chr&gt;   &lt;chr&gt;     &lt;list&gt;   &lt;list&gt; &lt;list&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1 Denmark Europe    &lt;tibble&gt; &lt;lm&gt;   &lt;tibble&gt;   0.952   0.948
+2 Finland Europe    &lt;tibble&gt; &lt;lm&gt;   &lt;tibble&gt;   0.994   0.994
+3 Norway  Europe    &lt;tibble&gt; &lt;lm&gt;   &lt;tibble&gt;   0.979   0.977
+4 Sweden  Europe    &lt;tibble&gt; &lt;lm&gt;   &lt;tibble&gt;   0.998   0.998
+# … with 10 more variables: sigma &lt;dbl&gt;, statistic &lt;dbl&gt;,
+#   p.value &lt;dbl&gt;, df &lt;dbl&gt;, logLik &lt;dbl&gt;, AIC &lt;dbl&gt;,
+#   BIC &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;,
+#   nobs &lt;int&gt;, and abbreviated variable names ¹​r.squared,
+#   ²​adj.r.squared
+# ℹ Use `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+</section>
+<section id="model-quality-1" class="slide level2">
+<h2>Model quality</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>by_country <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="#cb37-2"></a>  <span class="fu">mutate</span>(<span class="at">mod_summary =</span> <span class="fu">map</span>(<span class="at">.x =</span> model, <span class="at">.f =</span> glance)) <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="#cb37-3"></a>  <span class="fu">unnest</span>(mod_summary) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-4"><a href="#cb37-4"></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-5"><a href="#cb37-5"></a>  <span class="fu">summarise</span>(<span class="at">mean_r_adj =</span> <span class="fu">mean</span>(adj.r.squared))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  continent mean_r_adj
+  &lt;chr&gt;          &lt;dbl&gt;
+1 Africa         0.655
+2 Americas       0.918
+3 Asia           0.951
+4 Europe         0.982
+5 Oceania        0.686</code></pre>
+</div>
+</div>
+<ul>
+<li class="fragment">The model seems to have the best fit in Europe</li>
+<li class="fragment">The worst fit in Africa</li>
+</ul>
+</section>
+<section id="model-quality-preserve-mod_summary" class="slide level2">
+<h2>Model quality, preserve mod_summary</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>by_country <span class="ot">&lt;-</span> by_country <span class="sc">%&gt;%</span></span>
+<span id="cb39-2"><a href="#cb39-2"></a>  <span class="fu">mutate</span>(<span class="at">mod_summary =</span> <span class="fu">map</span>(<span class="at">.x =</span> model, <span class="at">.f =</span> glance))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>by_country <span class="sc">%&gt;%</span> </span>
+<span id="cb40-2"><a href="#cb40-2"></a>  <span class="co"># drop = TRUE, deprecated, use select() instead</span></span>
+<span id="cb40-3"><a href="#cb40-3"></a>  <span class="fu">select</span>(<span class="sc">-</span>data, <span class="sc">-</span>model, <span class="sc">-</span>res) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-4"><a href="#cb40-4"></a>  <span class="co"># new interface, wrap in c()</span></span>
+<span id="cb40-5"><a href="#cb40-5"></a>  <span class="fu">unnest</span>(<span class="fu">c</span>(mod_summary)) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-6"><a href="#cb40-6"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 90 × 14
+# Groups:   country, continent [90]
+  country   continent r.squ…¹ adj.r…² sigma stati…³  p.value
+  &lt;chr&gt;     &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+1 Argentina Americas    0.962   0.958 0.882  252.   2.04e- 8
+2 Australia Oceania     0.983   0.981 0.589  581.   3.45e-10
+3 Austria   Europe      0.991   0.990 0.441 1052.   1.83e-11
+4 Burundi   Africa      0.456   0.402 8.32     8.40 1.59e- 2
+# … with 86 more rows, 7 more variables: df &lt;dbl&gt;,
+#   logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, deviance &lt;dbl&gt;,
+#   df.residual &lt;int&gt;, nobs &lt;int&gt;, and abbreviated variable
+#   names ¹​r.squared, ²​adj.r.squared, ³​statistic
+# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+</section>
+<section id="the-10-best-models" class="slide level2 smaller">
+<h2>The 10 best models</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>by_country <span class="sc">%&gt;%</span> </span>
+<span id="cb42-2"><a href="#cb42-2"></a>  <span class="co"># drop = TRUE, deprecated, use select() instead</span></span>
+<span id="cb42-3"><a href="#cb42-3"></a>  <span class="fu">select</span>(<span class="sc">-</span>data, <span class="sc">-</span>model, <span class="sc">-</span>res) <span class="sc">%&gt;%</span> </span>
+<span id="cb42-4"><a href="#cb42-4"></a>  <span class="co"># new interface, wrap in c()</span></span>
+<span id="cb42-5"><a href="#cb42-5"></a>  <span class="fu">unnest</span>(<span class="fu">c</span>(mod_summary)) <span class="sc">%&gt;%</span> </span>
+<span id="cb42-6"><a href="#cb42-6"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(adj.r.squared)) <span class="sc">%&gt;%</span> </span>
+<span id="cb42-7"><a href="#cb42-7"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 90 × 14
+# Groups:   country, continent [90]
+   country    conti…¹ r.squ…² adj.r…³ sigma stati…⁴  p.value
+   &lt;chr&gt;      &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+ 1 France     Europe    0.998   0.998 0.168   6500. 2.11e-15
+ 2 Sweden     Europe    0.998   0.998 0.152   4524. 1.28e-14
+ 3 Singapore  Asia      0.997   0.997 0.353   3183. 7.43e-14
+ 4 Italy      Europe    0.997   0.996 0.274   3076. 8.80e-14
+ 5 Bolivia    Americ…   0.996   0.995 0.634   2215. 4.52e-13
+ 6 Belgium    Europe    0.995   0.994 0.293   1866. 1.06e-12
+ 7 Finland    Europe    0.994   0.994 0.345   1702. 1.68e-12
+ 8 Luxembourg Europe    0.993   0.993 0.370   1486. 3.30e-12
+ 9 Haiti      Americ…   0.993   0.993 0.613   1483. 3.33e-12
+10 Mauritania Africa    0.993   0.992 0.590   1453. 3.69e-12
+# … with 80 more rows, 7 more variables: df &lt;dbl&gt;,
+#   logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, deviance &lt;dbl&gt;,
+#   df.residual &lt;int&gt;, nobs &lt;int&gt;, and abbreviated variable
+#   names ¹​continent, ²​r.squared, ³​adj.r.squared,
+#   ⁴​statistic
+# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+</section>
+<section id="the-10-worst-models" class="slide level2 smaller">
+<h2>The 10 worst models</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>by_country <span class="sc">%&gt;%</span> </span>
+<span id="cb44-2"><a href="#cb44-2"></a>  <span class="co"># drop = TRUE, deprecated, use select() instead</span></span>
+<span id="cb44-3"><a href="#cb44-3"></a>  <span class="fu">select</span>(<span class="sc">-</span>data, <span class="sc">-</span>model, <span class="sc">-</span>res) <span class="sc">%&gt;%</span> </span>
+<span id="cb44-4"><a href="#cb44-4"></a>  <span class="co"># new interface, wrap in c()</span></span>
+<span id="cb44-5"><a href="#cb44-5"></a>  <span class="fu">unnest</span>(<span class="fu">c</span>(mod_summary)) <span class="sc">%&gt;%</span> </span>
+<span id="cb44-6"><a href="#cb44-6"></a>  <span class="fu">arrange</span>(adj.r.squared) <span class="sc">%&gt;%</span> </span>
+<span id="cb44-7"><a href="#cb44-7"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 90 × 14
+# Groups:   country, continent [90]
+   country     conti…¹ r.squ…² adj.r…³ sigma stati…⁴ p.value
+   &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 Zambia      Africa   0.0574 -0.0369  5.17   0.609 0.453  
+ 2 Zimbabwe    Africa   0.0585 -0.0357  5.80   0.621 0.449  
+ 3 South Afri… Africa   0.0633 -0.0304  4.50   0.675 0.430  
+ 4 Lesotho     Africa   0.233   0.157   4.66   3.04  0.112  
+ 5 Botswana    Africa   0.256   0.181   4.70   3.43  0.0936 
+ 6 Kenya       Africa   0.262   0.188   3.38   3.55  0.0888 
+ 7 Central Af… Africa   0.271   0.199   2.49   3.73  0.0824 
+ 8 Fiji        Oceania  0.386   0.325   1.22   6.30  0.0309 
+ 9 Burundi     Africa   0.456   0.402   8.32   8.40  0.0159 
+10 Malawi      Africa   0.613   0.575   4.20  15.9   0.00259
+# … with 80 more rows, 7 more variables: df &lt;dbl&gt;,
+#   logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, deviance &lt;dbl&gt;,
+#   df.residual &lt;int&gt;, nobs &lt;int&gt;, and abbreviated variable
+#   names ¹​continent, ²​r.squared, ³​adj.r.squared,
+#   ⁴​statistic
+# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+</section>
+<section id="plot-adj.r.square-and-sigma-by-continent" class="slide level2">
+<h2>Plot adj.r.square and sigma by continent</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>by_country <span class="sc">%&gt;%</span> </span>
+<span id="cb46-2"><a href="#cb46-2"></a>  <span class="co"># unnest data to get to pop</span></span>
+<span id="cb46-3"><a href="#cb46-3"></a>  <span class="fu">unnest</span>(<span class="fu">c</span>(data, mod_summary)) <span class="sc">%&gt;%</span> </span>
+<span id="cb46-4"><a href="#cb46-4"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sigma, <span class="at">y =</span> adj.r.squared, </span>
+<span id="cb46-5"><a href="#cb46-5"></a>                       <span class="at">colour =</span> continent, <span class="at">size =</span> pop)) <span class="sc">+</span></span>
+<span id="cb46-6"><a href="#cb46-6"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb46-7"><a href="#cb46-7"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="plot-adj.r.square-and-sigma-by-continent-1" class="slide level2">
+<h2>Plot adj.r.square and sigma by continent</h2>
+
+<img data-src="many-models_files/figure-revealjs/unnamed-chunk-40-1.png" width="960" class="r-stretch"></section>
+<section id="plot-of-the-worst-fits" class="slide level2">
+<h2>Plot of the worst fits</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="co"># Special case Rwanda</span></span>
+<span id="cb47-2"><a href="#cb47-2"></a>rw <span class="ot">&lt;-</span> by_country <span class="sc">%&gt;%</span> <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Rwanda"</span>) <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(<span class="fu">c</span>(data,mod_summary))</span>
+<span id="cb47-3"><a href="#cb47-3"></a>by_country <span class="sc">%&gt;%</span> </span>
+<span id="cb47-4"><a href="#cb47-4"></a>    <span class="co"># unnest data to get to pop</span></span>
+<span id="cb47-5"><a href="#cb47-5"></a>  <span class="fu">unnest</span>(<span class="fu">c</span>(data, mod_summary)) <span class="sc">%&gt;%</span> </span>
+<span id="cb47-6"><a href="#cb47-6"></a>  <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Africa"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb47-7"><a href="#cb47-7"></a>  <span class="fu">filter</span>(adj.r.squared <span class="sc">&lt;</span> <span class="fl">0.25</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb47-8"><a href="#cb47-8"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> lifeExp, <span class="at">colour =</span> country)) <span class="sc">+</span></span>
+<span id="cb47-9"><a href="#cb47-9"></a>  <span class="fu">geom_line</span>(<span class="at">lwd=</span><span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb47-10"><a href="#cb47-10"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> rw, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> lifeExp), <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">lwd=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb47-11"><a href="#cb47-11"></a>  <span class="fu">ggtitle</span>(<span class="st">"AIDS and genocide in Rwanda 1994"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="plot-of-the-worst-fits-1" class="slide level2">
+<h2>Plot of the worst fits</h2>
+
+<img data-src="many-models_files/figure-revealjs/unnamed-chunk-42-1.png" width="960" class="r-stretch"></section>
+<section id="difference-2007-2017" class="slide level2">
+<h2>Difference 2007 2017</h2>
+<ul>
+<li class="fragment">Compare previous figure with a similar one in r4ds 25.2.4</li>
+<li class="fragment">What do we see?
+<ul>
+<li class="fragment">The effect of cheap and available AIDS drugs (from 2000-)</li>
+</ul></li>
+</ul>
+</section>
+<section id="details-list-columns" class="slide level2">
+<h2>Details list-columns</h2>
+<ul>
+<li class="fragment">data frame: a named list of equal length vectors</li>
+<li class="fragment">A list is one of Rs vector types</li>
+<li class="fragment">Always been permissible to have a list of dataframes as a vector in a dataframe</li>
+<li class="fragment">Not easy in classic R</li>
+<li class="fragment">New tools make it a lot easier</li>
+</ul>
+</section>
+<section id="how-classic-rs-data.frame-function-handles-a-list-of-vectors" class="slide level2 smaller">
+<h2>How classic Rs <code>data.frame()</code> function handles a list of vectors</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="co"># we want a list with two vectors</span></span>
+<span id="cb48-2"><a href="#cb48-2"></a><span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x.1.3 x.3.5
+1     1     3
+2     2     4
+3     3     5</code></pre>
+</div>
+</div>
+<ul>
+<li class="fragment">Get two columns</li>
+<li class="fragment">Can force the matter with <code>I()</code></li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="co"># I() Inhibit Interpretation/Conversion of Objects</span></span>
+<span id="cb50-2"><a href="#cb50-2"></a>a_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">I</span>(<span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>)))</span>
+<span id="cb50-3"><a href="#cb50-3"></a>a_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>        x
+1 1, 2, 3
+2 3, 4, 5</code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>a_df<span class="sc">$</span>x[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3</code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a>a_df<span class="sc">$</span>x[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3 4 5</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="not-a-problem-with-tribblestibbels" class="slide level2 smaller">
+<h2>Not a problem with tribbles/tibbels</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 1
+  x        
+  &lt;list&gt;   
+1 &lt;int [3]&gt;
+2 &lt;int [3]&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="fu">tribble</span>(</span>
+<span id="cb58-2"><a href="#cb58-2"></a>  <span class="sc">~</span>x,</span>
+<span id="cb58-3"><a href="#cb58-3"></a>  <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb58-4"><a href="#cb58-4"></a>  <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb58-5"><a href="#cb58-5"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 1
+  x        
+  &lt;list&gt;   
+1 &lt;int [3]&gt;
+2 &lt;int [3]&gt;</code></pre>
+</div>
+</div>
+<ul>
+<li class="fragment"><code>tribble()</code> even makes a list for us</li>
+<li class="fragment">List-columns handy for storing things, but we typically need to “unpack” them before use</li>
+<li class="fragment">Remember: Most R functions work with vectors and/or dataframes</li>
+</ul>
+</section>
+<section id="list-column-pipe-line" class="slide level2">
+<h2>List-column pipe line</h2>
+<ul>
+<li class="fragment">Create
+<ul>
+<li class="fragment"><p>nest()</p></li>
+<li class="fragment"><p>summarise() + list()</p></li>
+<li class="fragment"><p>mutate() + map()</p></li>
+</ul></li>
+<li class="fragment">Make additional list-columns by transforming existing list-columns with
+<ul>
+<li class="fragment"><p>map(),</p></li>
+<li class="fragment"><p>map2() or</p></li>
+<li class="fragment"><p>pmap().</p>
+<ul>
+<li class="fragment">Ex. transforming a list-column of dataframes (with data) to a list-column of models.</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="list-column-pipe-line-cont." class="slide level2">
+<h2>List-column pipe line cont.</h2>
+<ul>
+<li class="fragment">Then further transforming a list-column of models to a listcolumn of model summaries</li>
+<li class="fragment">Finally one <em>simplify</em> list-columns back to vector or dataframes ready to use by regular R functions <code>mutate()</code> with
+<ul>
+<li class="fragment"><p><code>map_chr()</code>,</p></li>
+<li class="fragment"><p><code>map_lgl()</code>,</p></li>
+<li class="fragment"><p><code>map_int()</code> and</p></li>
+<li class="fragment"><p><code>map_dbl()</code></p></li>
+</ul></li>
+<li class="fragment"><code>unnest(c(list-column1, list-column2, etc.))</code>. - Note you now have to use <code>c()</code> even with one list-column.</li>
+</ul>
+<pre><code>-   Option `drop = TRUE` is now depricated.
+
+-   Use `select(-list-column, etc)` before `unnest()` if you want to
+    drop some columns.</code></pre>
+</section>
+<section id="list-to-vector" class="slide level2">
+<h2>List to vector</h2>
+<ul>
+<li class="fragment">Get type and length, always works</li>
+<li class="fragment">Useful for <code>filter()</code></li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a><span class="co"># all sorts</span></span>
+<span id="cb61-2"><a href="#cb61-2"></a>a_trib <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb61-3"><a href="#cb61-3"></a>  <span class="sc">~</span>x,</span>
+<span id="cb61-4"><a href="#cb61-4"></a>  letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
+<span id="cb61-5"><a href="#cb61-5"></a>  <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb61-6"><a href="#cb61-6"></a>  <span class="fu">runif</span>(<span class="dv">5</span>)</span>
+<span id="cb61-7"><a href="#cb61-7"></a>)</span>
+<span id="cb61-8"><a href="#cb61-8"></a></span>
+<span id="cb61-9"><a href="#cb61-9"></a>a_trib <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb61-10"><a href="#cb61-10"></a>  <span class="co"># if we use plain map we get a list. NOT what we want.</span></span>
+<span id="cb61-11"><a href="#cb61-11"></a>  <span class="at">type =</span> <span class="fu">map_chr</span>(<span class="at">.x =</span> x, <span class="at">.f =</span> typeof),</span>
+<span id="cb61-12"><a href="#cb61-12"></a>  <span class="at">length =</span> <span class="fu">map_int</span>(<span class="at">.x =</span> x, <span class="at">.f =</span> length)</span>
+<span id="cb61-13"><a href="#cb61-13"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  x         type      length
+  &lt;list&gt;    &lt;chr&gt;      &lt;int&gt;
+1 &lt;chr [5]&gt; character      5
+2 &lt;int [3]&gt; integer        3
+3 &lt;dbl [5]&gt; double         5</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="list-to-vector-1" class="slide level2">
+<h2>List to vector</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a>a_trib <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb63-2"><a href="#cb63-2"></a>  <span class="co"># if we use plain map we get a list. NOT what we want.</span></span>
+<span id="cb63-3"><a href="#cb63-3"></a>  <span class="at">type =</span> <span class="fu">map_chr</span>(<span class="at">.x =</span> x, <span class="at">.f =</span> typeof),</span>
+<span id="cb63-4"><a href="#cb63-4"></a>  <span class="at">length =</span> <span class="fu">map_int</span>(<span class="at">.x =</span> x, <span class="at">.f =</span> length)</span>
+<span id="cb63-5"><a href="#cb63-5"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb63-6"><a href="#cb63-6"></a>  <span class="fu">filter</span>(length <span class="sc">==</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  x         type      length
+  &lt;list&gt;    &lt;chr&gt;      &lt;int&gt;
+1 &lt;chr [5]&gt; character      5
+2 &lt;dbl [5]&gt; double         5</code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a>a_trib <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb65-2"><a href="#cb65-2"></a>  <span class="co"># if we use plain map we get a list. NOT what we want.</span></span>
+<span id="cb65-3"><a href="#cb65-3"></a>  <span class="at">type =</span> <span class="fu">map_chr</span>(<span class="at">.x =</span> x, <span class="at">.f =</span> typeof),</span>
+<span id="cb65-4"><a href="#cb65-4"></a>  <span class="at">length =</span> <span class="fu">map_int</span>(<span class="at">.x =</span> x, <span class="at">.f =</span> length)</span>
+<span id="cb65-5"><a href="#cb65-5"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb65-6"><a href="#cb65-6"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">"double"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  x         type   length
+  &lt;list&gt;    &lt;chr&gt;   &lt;int&gt;
+1 &lt;dbl [5]&gt; double      5</code></pre>
+</div>
+</div>
+</section>
+<section id="list-to-vector-2" class="slide level2">
+<h2>List to vector</h2>
+<ul>
+<li class="fragment">Use argument <code>.null =</code> to provide for missing values</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a>a_trib <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb67-2"><a href="#cb67-2"></a>  <span class="sc">~</span>x,</span>
+<span id="cb67-3"><a href="#cb67-3"></a>  <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">1</span>, <span class="at">b =</span> <span class="dv">2</span>),</span>
+<span id="cb67-4"><a href="#cb67-4"></a>  <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">2</span>, <span class="at">c =</span> <span class="dv">4</span>)</span>
+<span id="cb67-5"><a href="#cb67-5"></a>)</span>
+<span id="cb67-6"><a href="#cb67-6"></a>a_trib</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 1
+  x               
+  &lt;list&gt;          
+1 &lt;named list [2]&gt;
+2 &lt;named list [2]&gt;</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="list-to-vector-3" class="slide level2">
+<h2>List to vector</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a>a_trib  <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb69-2"><a href="#cb69-2"></a>  <span class="co"># pick the values for a's</span></span>
+<span id="cb69-3"><a href="#cb69-3"></a>  <span class="at">a =</span> <span class="fu">map_dbl</span>(x, <span class="st">"a"</span>),</span>
+<span id="cb69-4"><a href="#cb69-4"></a>  <span class="co">#pick the values b's, NA_real_ if missing. </span></span>
+<span id="cb69-5"><a href="#cb69-5"></a>  <span class="co"># No b in the second list</span></span>
+<span id="cb69-6"><a href="#cb69-6"></a>  <span class="at">b =</span> <span class="fu">map_dbl</span>(x, <span class="st">"b"</span>, <span class="at">.null =</span> <span class="cn">NA_real_</span>)</span>
+<span id="cb69-7"><a href="#cb69-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  x                    a     b
+  &lt;list&gt;           &lt;dbl&gt; &lt;dbl&gt;
+1 &lt;named list [2]&gt;     1     2
+2 &lt;named list [2]&gt;     2    NA</code></pre>
+</div>
+</div>
+</section>
+<section id="unnest" class="slide level2">
+<h2><code>unnest()</code></h2>
+<ul>
+<li class="fragment">Repeats the regular columns once for each element of the list-column.</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a>a_tib <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">y =</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">1</span>))</span>
+<span id="cb71-2"><a href="#cb71-2"></a>a_tib</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+      x y        
+  &lt;int&gt; &lt;list&gt;   
+1     1 &lt;int [4]&gt;
+2     2 &lt;dbl [1]&gt;</code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a>a_tib <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(<span class="fu">c</span>(y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+      x     y
+  &lt;int&gt; &lt;dbl&gt;
+1     1     1
+2     1     2
+3     1     3
+4     1     4
+5     2     1</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="unnest-1" class="slide level2">
+<h2><code>unnest()</code></h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a>a_tib <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>), <span class="at">y =</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">1</span>))</span>
+<span id="cb75-2"><a href="#cb75-2"></a>a_tib</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  x         y        
+  &lt;list&gt;    &lt;list&gt;   
+1 &lt;int [2]&gt; &lt;int [4]&gt;
+2 &lt;int [5]&gt; &lt;dbl [1]&gt;</code></pre>
+</div>
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1"></a>a_tib <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(<span class="fu">c</span>(y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  x             y
+  &lt;list&gt;    &lt;dbl&gt;
+1 &lt;int [2]&gt;     1
+2 &lt;int [2]&gt;     2
+3 &lt;int [2]&gt;     3
+4 &lt;int [2]&gt;     4
+5 &lt;int [5]&gt;     1</code></pre>
+</div>
+</div>
+</section>
+<section id="unnest-2" class="slide level2">
+<h2><code class="smaller">unnest()</code></h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a>a_tib <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(<span class="fu">c</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 2
+      x y        
+  &lt;int&gt; &lt;list&gt;   
+1     1 &lt;int [4]&gt;
+2     2 &lt;int [4]&gt;
+3     1 &lt;dbl [1]&gt;
+4     2 &lt;dbl [1]&gt;
+5     3 &lt;dbl [1]&gt;
+6     4 &lt;dbl [1]&gt;
+7     5 &lt;dbl [1]&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a><span class="co"># Does not work, different number of elements in rows</span></span>
+<span id="cb81-2"><a href="#cb81-2"></a>a_tib <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(<span class="fu">c</span>(x, y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Returns: Error: Incompatible lengths: 2, 4. Run <code>rlang::last_error()</code> to see where the error occurred.</p>
+</section>
+<section id="unnest-3" class="slide level2">
+<h2><code>unnest()</code></h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1"></a>a_tib <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>), <span class="at">y =</span> <span class="fu">list</span>(<span class="dv">10</span><span class="sc">:</span><span class="dv">11</span>, <span class="dv">1</span>))</span>
+<span id="cb82-2"><a href="#cb82-2"></a>a_tib</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  x         y        
+  &lt;list&gt;    &lt;list&gt;   
+1 &lt;int [2]&gt; &lt;int [2]&gt;
+2 &lt;int [3]&gt; &lt;dbl [1]&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1"></a><span class="co"># same number of elemets or vector of length 1</span></span>
+<span id="cb84-2"><a href="#cb84-2"></a>a_tib <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(<span class="fu">c</span>(x, y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+      x     y
+  &lt;int&gt; &lt;dbl&gt;
+1     1    10
+2     2    11
+3     1     1
+4     2     1
+5     3     1</code></pre>
+</div>
+</div>
+<ul>
+<li class="fragment">Same with list-columns of dataframes. You can unnest multiple list columns, but the data frames in each row <strong>must</strong> have the same number of rows.</li>
+</ul>
+</section>
+<section id="more-from-broom" class="slide level2">
+<h2>More from broom</h2>
+<ul>
+<li class="fragment">We used <code>broom::glance(model)</code> above.</li>
+<li class="fragment">We also have: <code>broom::tidy(model)</code> and <code>broom:augment(model, data)</code></li>
+</ul>
+</section>
+<section id="tidy-data-with-broom" class="slide level2">
+<h2>Tidy data with broom</h2>
+<ul>
+<li class="fragment">Gives us model coefficients and accompanying statistics</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1"></a>by_country <span class="ot">&lt;-</span> by_country <span class="sc">%&gt;%</span></span>
+<span id="cb86-2"><a href="#cb86-2"></a>  <span class="fu">mutate</span>(<span class="at">mod_tidy =</span> <span class="fu">map</span>(<span class="at">.x =</span> model, <span class="at">.f =</span> tidy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1"></a>by_country <span class="sc">%&gt;%</span></span>
+<span id="cb87-2"><a href="#cb87-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>data, <span class="sc">-</span>res, <span class="sc">-</span>mod_summary) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-3"><a href="#cb87-3"></a>  <span class="fu">unnest</span>(mod_tidy) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-4"><a href="#cb87-4"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 180 × 8
+# Groups:   country, continent [90]
+  country   continent model  term    estim…¹ std.e…² stati…³
+  &lt;chr&gt;     &lt;chr&gt;     &lt;list&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 Argentina Americas  &lt;lm&gt;   (Inter… 6.67e+1 3.84e-1   174. 
+2 Argentina Americas  &lt;lm&gt;   year    6.41e-4 4.04e-5    15.9
+3 Australia Oceania   &lt;lm&gt;   (Inter… 7.21e+1 2.56e-1   281. 
+4 Australia Oceania   &lt;lm&gt;   year    6.50e-4 2.70e-5    24.1
+# … with 176 more rows, 1 more variable: p.value &lt;dbl&gt;, and
+#   abbreviated variable names ¹​estimate, ²​std.error,
+#   ³​statistic
+# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="tidy-data-with-broom-1" class="slide level2">
+<h2>Tidy data with broom</h2>
+<ul>
+<li class="fragment">Now we can do things like</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1"></a>by_country <span class="ot">&lt;-</span> by_country <span class="sc">%&gt;%</span></span>
+<span id="cb89-2"><a href="#cb89-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb89-3"><a href="#cb89-3"></a> <span class="at">new18 =</span> <span class="fu">map</span>(<span class="fu">c</span>(<span class="fu">ymd</span>(<span class="st">"2018-01-01"</span>)), as_tibble_col, <span class="at">column_name =</span> <span class="st">"year"</span>),</span>
+<span id="cb89-4"><a href="#cb89-4"></a> <span class="at">pred18 =</span> <span class="fu">map2</span>(model, new18, predict.lm)</span>
+<span id="cb89-5"><a href="#cb89-5"></a>) </span>
+<span id="cb89-6"><a href="#cb89-6"></a></span>
+<span id="cb89-7"><a href="#cb89-7"></a>by_country <span class="sc">%&gt;%</span> </span>
+<span id="cb89-8"><a href="#cb89-8"></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span> </span>
+<span id="cb89-9"><a href="#cb89-9"></a>  <span class="fu">unnest</span>(pred18 ) <span class="sc">%&gt;%</span> </span>
+<span id="cb89-10"><a href="#cb89-10"></a>  <span class="fu">summarise</span>(<span class="at">mean_p18 =</span> <span class="fu">mean</span>(pred18),</span>
+<span id="cb89-11"><a href="#cb89-11"></a>            <span class="at">sd_p18 =</span> <span class="fu">sd</span>(pred18),</span>
+<span id="cb89-12"><a href="#cb89-12"></a>            <span class="at">min_p18 =</span> <span class="fu">min</span>(pred18),</span>
+<span id="cb89-13"><a href="#cb89-13"></a>            <span class="at">max_p18 =</span> <span class="fu">max</span>(pred18))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  continent mean_p18 sd_p18 min_p18 max_p18
+  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 Africa        62.5  7.01     49.2    81.1
+2 Americas      77.2  4.26     65.1    84.8
+3 Asia          77.6  6.23     67.0    85.7
+4 Europe        82.2  0.962    80.1    83.9
+5 Oceania       70.2 12.4      58.9    83.5</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="broomaugment" class="slide level2">
+<h2><code>broom:augment()</code></h2>
+<ul>
+<li class="fragment"><code>augment()</code> gives us a lot of goodies regarding the model</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1"></a>by_country <span class="ot">&lt;-</span> by_country <span class="sc">%&gt;%</span></span>
+<span id="cb91-2"><a href="#cb91-2"></a>  <span class="fu">mutate</span>(<span class="at">mod_aug =</span> <span class="fu">map</span>(<span class="at">.x =</span> model, <span class="at">.f =</span> augment))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1"></a>by_country <span class="sc">%&gt;%</span></span>
+<span id="cb92-2"><a href="#cb92-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>data, <span class="sc">-</span>res, <span class="sc">-</span>mod_summary, <span class="sc">-</span>mod_tidy, <span class="sc">-</span><span class="fu">c</span>(model<span class="sc">:</span>pred18)) <span class="sc">%&gt;%</span> </span>
+<span id="cb92-3"><a href="#cb92-3"></a>  <span class="fu">unnest</span>(mod_aug) <span class="sc">%&gt;%</span> </span>
+<span id="cb92-4"><a href="#cb92-4"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,080 × 10
+# Groups:   country, continent [90]
+  country   contin…¹ lifeExp year       .fitted .resid  .hat
+  &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;date&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+1 Argentina Americas    64.4 1962-01-01    64.8 -0.365 0.295
+2 Argentina Americas    64.9 1967-01-01    66.0 -1.06  0.225
+3 Argentina Americas    66.2 1972-01-01    67.1 -0.945 0.169
+4 Argentina Americas    68.4 1977-01-01    68.3  0.105 0.127
+# … with 1,076 more rows, 3 more variables: .sigma &lt;dbl&gt;,
+#   .cooksd &lt;dbl&gt;, .std.resid &lt;dbl&gt;, and abbreviated
+#   variable name ¹​continent
+# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="still-more-broom" class="slide level2">
+<h2>Still more broom!</h2>
+<ul>
+<li class="fragment">To learn more have a look at the broom package vignettes.
+<ul>
+<li class="fragment">Find broom under packages and click the link</li>
+<li class="fragment">Links to the vignettes are at the top of the page</li>
+</ul></li>
+</ul>
+</section>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
 
 <div class="footer footer-default">
-
+<p><a href="../../index.html">MSB105</a></p>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-R-hexbin" class="csl-entry" role="doc-biblioentry">
+Carr, Dan, Nicholas Lewin-Koh, and Martin Maechler. 2021. <em>Hexbin: Hexagonal Binning Routines</em>. <a href="https://github.com/edzer/hexbin">https://github.com/edzer/hexbin</a>.
+</div>
+<div id="ref-lubridate2011" class="csl-entry" role="doc-biblioentry">
+Grolemund, Garrett, and Hadley Wickham. 2011. <span>“Dates and Times Made Easy with <span class="nocase">lubridate</span>.”</span> <em>Journal of Statistical Software</em> 40 (3): 1–25. <a href="https://www.jstatsoft.org/v40/i03/">https://www.jstatsoft.org/v40/i03/</a>.
+</div>
+<div id="ref-R-patchwork" class="csl-entry" role="doc-biblioentry">
+Pedersen, Thomas Lin. 2020. <em>Patchwork: The Composer of Plots</em>. <a href="https://CRAN.R-project.org/package=patchwork">https://CRAN.R-project.org/package=patchwork</a>.
+</div>
+<div id="ref-R-lubridate" class="csl-entry" role="doc-biblioentry">
+Spinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. <em>Lubridate: Make Dealing with Dates a Little Easier</em>. <a href="https://CRAN.R-project.org/package=lubridate">https://CRAN.R-project.org/package=lubridate</a>.
+</div>
+<div id="ref-R-tseries" class="csl-entry" role="doc-biblioentry">
+Trapletti, Adrian, and Kurt Hornik. 2022. <em>Tseries: Time Series Analysis and Computational Finance</em>. <a href="https://CRAN.R-project.org/package=tseries">https://CRAN.R-project.org/package=tseries</a>.
+</div>
+<div id="ref-R-modelr" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley. 2020. <em>Modelr: Modelling Functions That Work with the Pipe</em>. <a href="https://CRAN.R-project.org/package=modelr">https://CRAN.R-project.org/package=modelr</a>.
+</div>
+<div id="ref-R-nycflights13" class="csl-entry" role="doc-biblioentry">
+———. 2021a. <em>Nycflights13: Flights That Departed NYC in 2013</em>. <a href="https://github.com/hadley/nycflights13">https://github.com/hadley/nycflights13</a>.
+</div>
+<div id="ref-R-tidyverse" class="csl-entry" role="doc-biblioentry">
+———. 2021b. <em>Tidyverse: Easily Install and Load the Tidyverse</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.
+</div>
+<div id="ref-tidyverse2019" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the <span class="nocase">tidyverse</span>.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
+</div>
 </div>
 </section>
     </div>
@@ -367,13 +1863,13 @@
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
+'smaller': true,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'smaller': false,
+'smaller': true,
  
         // Display controls in the bottom right corner
         controls: false,
@@ -393,7 +1889,7 @@
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -552,6 +2048,48 @@
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          // dispatch for htmlwidgets
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for reveal
+        if (window.Reveal) {
+          window.Reveal.addEventListener("slidechanged", function(event) {
+            fireSlideChanged(event.previousSlide, event.currentSlide);
+          });
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
