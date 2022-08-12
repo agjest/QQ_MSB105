@@ -1,0 +1,369 @@
+---
+title: "Vectors"
+author: "ag"
+format:
+  revealjs:
+        theme: simple
+        footer: '[MSB105](/index.html)'
+        reveal_options:
+        code-fold: show
+        incremental: true
+        smaller: true
+        scrollable: true
+        slide-number: c/t
+editor: visual
+editor_options:
+  markdown:
+    wrap: 72
+    canonical: true
+    chunk_output_type: console
+echo: true
+eval: true
+bibliography: ag_vectors.bib
+nocite: '@*'
+---
+
+## Load *tidyverse*
+
+```{r setup}
+# get tidyverse to shut up
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(lubridate)
+  library(magrittr)
+})
+```
+
+```{r}
+# create a bib file for the R packages
+# used in this document
+# Note! Needs to do a touch ag_functions.bib in terminal before first run
+# else stops when bibliography: "ag_functions.bib" not found in YAML
+knitr::write_bib(
+  c(
+    "tidyverse",
+    "lubridate",
+    "magrittr"
+    ),
+  file = "ag_vectors.bib"
+  )
+```
+
+## Define *my_df* and *my_dates*
+
+-   define `my_df` and `my_dates` from previous lecture (code not shown)
+
+. . .
+
+```{r my_df}
+set.seed(333)
+my_df <- tibble(
+  x = rnorm(10, mean = 100, sd = 10),
+  y = runif(10, min = 30, max = 130),
+  z = rlnorm(10, 2, 2)
+)
+set.seed(1234)
+my_dates <- tibble(
+  y = 1999:2008,
+  m = sample(1:12, size = 10, replace = TRUE),
+  # make it simple, seed 1234 gives no impossible date
+  d = sample(1:31, size = 10, replace = TRUE),
+  date = make_date(year = y, month = m, day = d)
+)
+```
+
+## Vectors
+
+-   6 types of atomic vectors, 4 of importance to us
+    -   logical
+    -   integer (numeric)
+    -   double (numeric)
+    -   character
+-   All data in an atomic vector is of the same type
+-   Lists, can contain data of different kinds including other lists
+-   NULL, absence of vector
+    -   behaves like a vector of length 0
+-   NA, absence of element in vector
+
+## Vector properties
+
+-   type, check type with `typeof(my_df$x)`
+-   length, get length with `length(my_df$x)` \> - has no dimension so
+    `dim(my_df$x)` will give an error
+-   augmented vectors, attributes used to give additional behaviour
+    -   factors built on integer
+    -   Date and date-times built on double
+    -   dataframes/tibbles built on lists
+-   dataframes/tibbles are lists of vectors of the same length. The
+    vectors can be of different type
+
+## Vector properties; code
+
+```{r}
+class(my_df)
+typeof(my_df)
+str(my_df)
+```
+
+## More about vectors
+
+-   Coercion, conversion from one type to another
+-   Explicit: we convert with functions lik `as.logical()`,
+    `as.integer()`, `as.numeric()`, `as.double()` and `as.character()`
+    -   Note! Many also have a new implementation in *tidyverse*.
+    -   *tidyverse* versions start with `as_`, i.e. `_` instead of `.`
+-   Implicit: use a vector in a context that demands a certain type of
+    vector.
+    -   Classic example: `sum(is.na(x))`. `is.na(x)` returns TRUE or
+        FALSE. `sum()` expect numeric input. TRUE and FALSE are
+        converted on the fly to their numeric representations 1 and 0.
+-   Do not use implicit conversion from integer to logical.
+    -   Example: `if (length(x)) {}`
+    -   Means: do something if length of x is not 0
+    -   It works, but harder to understand
+    -   Instead use: `if (length(x) > 0) {}`
+-   General rule: **The most complex type wins.**
+
+## Some exsamples
+
+-   General rule: **The most complex type wins.**
+
+. . .
+
+```{r}
+(x <- c(1, 4, 7, TRUE, "a"))
+typeof(x)
+(y <- c(1L, 1.5))
+typeof(y)
+```
+
+## Naming elements in vector {.smaller}
+
+-   Classic R `names()`
+-   More modern: `purrr:set_names()` (imported from `rlang`)
+
+. . .
+
+```{r}
+(x <- 1:4)
+# set names by nameing the element
+x <- c(a = 1, b = 2, c = 3, d = 4)
+x
+# remove the names with set_names
+x <- purrr::set_names(x, nm = NULL)
+x
+# set names again
+x <- purrr::set_names(x, nm = c("a", "b", "c", "d"))
+x
+```
+
+## Naming elements in vector
+
+```{r}
+# remove names
+names(x) <- NULL
+x
+# set names again
+x <- set_names(x, letters[1:4])
+x
+names(x) # get the names
+# change one name
+names(x)[[2]] <- "B"
+x
+```
+
+## Subsetting vectors {.smaller}
+
+```{r}
+x <- letters[10:15]
+x
+# pick elements 3 and 5
+x[c(3,5)]
+# name with capital letters
+x <- purrr::set_names(x, nm = LETTERS[10:15])
+x
+# subset by name
+x[c("J", "L", "M")]
+# replicate elements
+x[c("L", "L", "J", "L", rep("M", 4))]
+```
+
+## Subsetting vectors by dropping elements {.smaller}
+
+```{r}
+x
+# Drop elements, 1, 4 and 5
+x[c(-1, -4, -5)]
+# subsetting with logicals
+x[c(TRUE, rep(FALSE,3), TRUE, FALSE)]
+(y <- c(TRUE, rep(FALSE,3), TRUE, FALSE))
+x[y]
+```
+
+## Subsetting vectors by dropping elements {.smaller}
+
+```{r, eval = FALSE}
+# we can not mix + and -
+x[c(1, -4, 5)]
+```
+
+\`Returns: Error in x\[c(1, -4, 5)\] : only 0's may be mixed with
+negative subscripts
+
+## Subsetting with `[[` and `[` {.smaller}
+
+-   `[[` extract only **a single element**
+
+. . .
+
+```{r}
+typeof(`[[`)
+typeof(`[`)
+x
+x[1]
+x[[1]]
+```
+
+## Subsetting with `[[` and `[` {.smaller}
+
+```{r}
+str(x[1])
+str(x[[1]])
+typeof(x[1])
+typeof(x[[1]])
+names(x[1])
+names(x[[1]])
+```
+
+## Subsetting dataframe with `[[` and `[` {.smaller}
+
+-   \`df\[row(s), column(s)\]
+-   One dimension not given returns all rows or columns
+
+. . .
+
+```{r}
+my_df1 <- my_df[1:3, ]
+# column 1 all rows
+my_df1[, 1]
+# row 3, all columns
+my_df1[3, ]
+```
+
+## Subsetting dataframe with `[[` and `[` {.smaller}
+
+```{r}
+# element in row 3, column 3
+my_df1[3, 3]
+my_df1[[3,3]]
+class(my_df1[3, 3])
+typeof(my_df1[3, 3])
+class(my_df1[[3,3]])
+```
+
+## Subsetting dataframe with `[[` and `[` {.smaller}
+
+```{r}
+typeof(my_df1[[3,3]])
+```
+
+```{r, eval = FALSE}
+# multiple elements [[]] gives an error
+my_df1[[3,1:3]]
+```
+
+-   Error: Must extract column with a single valid subscript. x
+    Subscript `1:3` has size 3 but must be size 1. Run
+    `rlang::last_error()` to see where the error occurred.
+
+## Subsetting dataframe with `[[` and `[` {.smaller}
+
+-   Note the difference between `[[` and `[`
+    -   `[[` returns a single value
+    -   `[` also returns a single value, but inside a dataframe/tibble
+-   Very important for lists
+
+## Subsetting list with `[[` and `[` {.smaller}
+
+-   Note the difference between `[[` and `[`
+    -   `[[` returns a single value
+    -   `[` also returns a single value, but inside a dataframe/tibble
+-   Very important for lists
+
+. . .
+
+```{r}
+my_list <- list(letters[1:4], 1:3, "a", 1.25, TRUE)
+str(my_list)
+my_list <- list(letters[1:4], list(1:3), list("a", 1.25, TRUE))
+str(my_list)
+```
+
+## Subsetting list with `[[` and `[` {.smaller}
+
+```{r}
+my_list[2]
+my_list[[2]]
+str(my_list[2])
+str(my_list[[2]])
+```
+
+## Subsetting list with `[[` and `[` {.smaller}
+
+-   named components
+
+. . .
+
+```{r}
+my_list <- list(A = letters[1:4], B = list(1, 2, 3), C = list("a", 1.25, TRUE))
+str(my_list)
+l <- my_list[["C"]]
+str(l)
+l[[1]]
+```
+
+## Subsetting list with `[[` and `[` {.smaller}
+
+-   `[[` trekker elementer opp av listen
+
+. . .
+
+```{r}
+l <- my_list[["B"]]
+str(l)
+# The value
+l[[1]]
+# The value
+my_list[["C"]][[2]]
+# The value
+my_list$C[[2]]
+```
+
+## Subsetting list with `[[` and `[` {.smaller}
+
+-   See [r4ds 20.5.3 Lists of
+    condiments](https://r4ds.had.co.nz/vectors.html#lists-of-condiments)
+    for a famous explanation of the difference between `[[` and `[`.
+
+. . .
+
+```{r}
+# notice the difference
+list(1:3)
+list(c(1:3))
+list(c(1, 2, 3))
+list(c(1, 2, 3))[[1]]
+list(1, 2, 3)[[1]]
+```
+
+## Subsetting list with `[[` and `[` {.smaller}
+
+```{r}
+list(1, 2, 3)
+list(1:3)[[1]][[2]]
+list(1, 2, 3)[[2]]
+unlist(my_list)
+typeof(unlist(my_list))
+```
+
+## References

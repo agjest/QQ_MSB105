@@ -508,7 +508,7 @@
     "href": "wrangle-data/time-data/time-data.html#change-type",
     "title": "Time Data",
     "section": "Change type",
-    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2022-08-12\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2022-08-12 17:42:33 CEST\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2022-08-12\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2022-08-12 UTC\""
+    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2022-08-12\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2022-08-12 18:08:31 CEST\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2022-08-12\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2022-08-12 UTC\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#different-inputs",
@@ -1411,28 +1411,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\n\nTime difference of 3.580823 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\n\nTime difference of 3.908708 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\n\nTime difference of 5.150203 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\n\nTime difference of 3.771666 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n\nCode\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n\n[1] 43.83"
+    "text": "Speed Difference\n\n\nCode\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n\n[1] -3.51"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\n\nTime difference of 0.1447048 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 3459.11"
+    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\n\nTime difference of 0.117111 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 3120.59"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#other-types-of-vectors-logical",
@@ -2062,28 +2062,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\nTime difference of 2.98186 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\nTime difference of 4.907053 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\nTime difference of 3.393214 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\nTime difference of 6.407615 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 13.8"
+    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 30.58"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\nTime difference of 0.104223 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 3155.72"
+    "text": "The R way\n\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\nTime difference of 0.108119 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 5826.45"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#other-types-of-vectors-logical",
@@ -5691,232 +5691,407 @@
     "text": "References\n\n\nMSB105\n\n\n\nBache, Stefan Milton, and Hadley Wickham. 2022. Magrittr: A Forward-Pipe Operator for r. https://CRAN.R-project.org/package=magrittr.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nWickham, Hadley. 2021. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
+    "objectID": "program/vectors/vectors.html#load-tidyverse",
+    "href": "program/vectors/vectors.html#load-tidyverse",
+    "title": "Vectors",
+    "section": "Load tidyverse",
+    "text": "Load tidyverse\n\n\nCode\n# get tidyverse to shut up\nsuppressPackageStartupMessages({\n  library(tidyverse)\n  library(lubridate)\n  library(magrittr)\n})\n\n\n\n\nCode\n# create a bib file for the R packages\n# used in this document\n# Note! Needs to do a touch ag_functions.bib in terminal before first run\n# else stops when bibliography: \"ag_functions.bib\" not found in YAML\nknitr::write_bib(\n  c(\n    \"tidyverse\",\n    \"lubridate\",\n    \"magrittr\"\n    ),\n  file = \"ag_vectors.bib\"\n  )"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#define-my_df-and-my_dates",
+    "href": "program/vectors/vectors.html#define-my_df-and-my_dates",
+    "title": "Vectors",
+    "section": "Define my_df and my_dates",
+    "text": "Define my_df and my_dates\n\ndefine my_df and my_dates from previous lecture (code not shown)\n\n\n\n\nCode\nset.seed(333)\nmy_df <- tibble(\n  x = rnorm(10, mean = 100, sd = 10),\n  y = runif(10, min = 30, max = 130),\n  z = rlnorm(10, 2, 2)\n)\nset.seed(1234)\nmy_dates <- tibble(\n  y = 1999:2008,\n  m = sample(1:12, size = 10, replace = TRUE),\n  # make it simple, seed 1234 gives no impossible date\n  d = sample(1:31, size = 10, replace = TRUE),\n  date = make_date(year = y, month = m, day = d)\n)"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#vectors",
+    "href": "program/vectors/vectors.html#vectors",
+    "title": "Vectors",
+    "section": "Vectors",
+    "text": "Vectors\n\n6 types of atomic vectors, 4 of importance to us\n\nlogical\ninteger (numeric)\ndouble (numeric)\ncharacter\n\nAll data in an atomic vector is of the same type\nLists, can contain data of different kinds including other lists\nNULL, absence of vector\n\nbehaves like a vector of length 0\n\nNA, absence of element in vector"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#vector-properties",
+    "href": "program/vectors/vectors.html#vector-properties",
+    "title": "Vectors",
+    "section": "Vector properties",
+    "text": "Vector properties\n\ntype, check type with typeof(my_df$x)\nlength, get length with length(my_df$x) > - has no dimension so dim(my_df$x) will give an error\naugmented vectors, attributes used to give additional behaviour\n\nfactors built on integer\nDate and date-times built on double\ndataframes/tibbles built on lists\n\ndataframes/tibbles are lists of vectors of the same length. The vectors can be of different type"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#vector-properties-code",
+    "href": "program/vectors/vectors.html#vector-properties-code",
+    "title": "Vectors",
+    "section": "Vector properties; code",
+    "text": "Vector properties; code\n\n\nCode\nclass(my_df)\n\n\n[1] \"tbl_df\"     \"tbl\"        \"data.frame\"\n\n\nCode\ntypeof(my_df)\n\n\n[1] \"list\"\n\n\nCode\nstr(my_df)\n\n\ntibble [10 × 3] (S3: tbl_df/tbl/data.frame)\n $ x: num [1:10] 99.2 119.3 79.5 102.8 84.7 ...\n $ y: num [1:10] 43 37.1 49.1 56.8 81.7 ...\n $ z: num [1:10] 9.22 15.32 8.23 114.13 3.45 ..."
+  },
+  {
+    "objectID": "program/vectors/vectors.html#more-about-vectors",
+    "href": "program/vectors/vectors.html#more-about-vectors",
+    "title": "Vectors",
+    "section": "More about vectors",
+    "text": "More about vectors\n\nCoercion, conversion from one type to another\nExplicit: we convert with functions lik as.logical(), as.integer(), as.numeric(), as.double() and as.character()\n\nNote! Many also have a new implementation in tidyverse.\ntidyverse versions start with as_, i.e. _ instead of .\n\nImplicit: use a vector in a context that demands a certain type of vector.\n\nClassic example: sum(is.na(x)). is.na(x) returns TRUE or FALSE. sum() expect numeric input. TRUE and FALSE are converted on the fly to their numeric representations 1 and 0.\n\nDo not use implicit conversion from integer to logical.\n\nExample: if (length(x)) {}\nMeans: do something if length of x is not 0\nIt works, but harder to understand\nInstead use: if (length(x) > 0) {}\n\nGeneral rule: The most complex type wins."
+  },
+  {
+    "objectID": "program/vectors/vectors.html#some-exsamples",
+    "href": "program/vectors/vectors.html#some-exsamples",
+    "title": "Vectors",
+    "section": "Some exsamples",
+    "text": "Some exsamples\n\nGeneral rule: The most complex type wins.\n\n\n\n\nCode\n(x <- c(1, 4, 7, TRUE, \"a\"))\n\n\n[1] \"1\"    \"4\"    \"7\"    \"TRUE\" \"a\"   \n\n\nCode\ntypeof(x)\n\n\n[1] \"character\"\n\n\nCode\n(y <- c(1L, 1.5))\n\n\n[1] 1.0 1.5\n\n\nCode\ntypeof(y)\n\n\n[1] \"double\""
+  },
+  {
+    "objectID": "program/vectors/vectors.html#naming-elements-in-vector",
+    "href": "program/vectors/vectors.html#naming-elements-in-vector",
+    "title": "Vectors",
+    "section": "Naming elements in vector",
+    "text": "Naming elements in vector\n\nClassic R names()\nMore modern: purrr:set_names() (imported from rlang)\n\n\n\n\nCode\n(x <- 1:4)\n\n\n[1] 1 2 3 4\n\n\nCode\n# set names by nameing the element\nx <- c(a = 1, b = 2, c = 3, d = 4)\nx\n\n\na b c d \n1 2 3 4 \n\n\nCode\n# remove the names with set_names\nx <- purrr::set_names(x, nm = NULL)\nx\n\n\n[1] 1 2 3 4\n\n\nCode\n# set names again\nx <- purrr::set_names(x, nm = c(\"a\", \"b\", \"c\", \"d\"))\nx\n\n\na b c d \n1 2 3 4"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#naming-elements-in-vector-1",
+    "href": "program/vectors/vectors.html#naming-elements-in-vector-1",
+    "title": "Vectors",
+    "section": "Naming elements in vector",
+    "text": "Naming elements in vector\n\n\nCode\n# remove names\nnames(x) <- NULL\nx\n\n\n[1] 1 2 3 4\n\n\nCode\n# set names again\nx <- set_names(x, letters[1:4])\nx\n\n\na b c d \n1 2 3 4 \n\n\nCode\nnames(x) # get the names\n\n\n[1] \"a\" \"b\" \"c\" \"d\"\n\n\nCode\n# change one name\nnames(x)[[2]] <- \"B\"\nx\n\n\na B c d \n1 2 3 4"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-vectors",
+    "href": "program/vectors/vectors.html#subsetting-vectors",
+    "title": "Vectors",
+    "section": "Subsetting vectors",
+    "text": "Subsetting vectors\n\n\nCode\nx <- letters[10:15]\nx\n\n\n[1] \"j\" \"k\" \"l\" \"m\" \"n\" \"o\"\n\n\nCode\n# pick elements 3 and 5\nx[c(3,5)]\n\n\n[1] \"l\" \"n\"\n\n\nCode\n# name with capital letters\nx <- purrr::set_names(x, nm = LETTERS[10:15])\nx\n\n\n  J   K   L   M   N   O \n\"j\" \"k\" \"l\" \"m\" \"n\" \"o\" \n\n\nCode\n# subset by name\nx[c(\"J\", \"L\", \"M\")]\n\n\n  J   L   M \n\"j\" \"l\" \"m\" \n\n\nCode\n# replicate elements\nx[c(\"L\", \"L\", \"J\", \"L\", rep(\"M\", 4))]\n\n\n  L   L   J   L   M   M   M   M \n\"l\" \"l\" \"j\" \"l\" \"m\" \"m\" \"m\" \"m\""
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-vectors-by-dropping-elements",
+    "href": "program/vectors/vectors.html#subsetting-vectors-by-dropping-elements",
+    "title": "Vectors",
+    "section": "Subsetting vectors by dropping elements",
+    "text": "Subsetting vectors by dropping elements\n\n\nCode\nx\n\n\n  J   K   L   M   N   O \n\"j\" \"k\" \"l\" \"m\" \"n\" \"o\" \n\n\nCode\n# Drop elements, 1, 4 and 5\nx[c(-1, -4, -5)]\n\n\n  K   L   O \n\"k\" \"l\" \"o\" \n\n\nCode\n# subsetting with logicals\nx[c(TRUE, rep(FALSE,3), TRUE, FALSE)]\n\n\n  J   N \n\"j\" \"n\" \n\n\nCode\n(y <- c(TRUE, rep(FALSE,3), TRUE, FALSE))\n\n\n[1]  TRUE FALSE FALSE FALSE  TRUE FALSE\n\n\nCode\nx[y]\n\n\n  J   N \n\"j\" \"n\""
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-vectors-by-dropping-elements-1",
+    "href": "program/vectors/vectors.html#subsetting-vectors-by-dropping-elements-1",
+    "title": "Vectors",
+    "section": "Subsetting vectors by dropping elements",
+    "text": "Subsetting vectors by dropping elements\n\n\nCode\n# we can not mix + and -\nx[c(1, -4, 5)]\n\n\n`Returns: Error in x[c(1, -4, 5)] : only 0’s may be mixed with negative subscripts"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-with-and",
+    "href": "program/vectors/vectors.html#subsetting-with-and",
+    "title": "Vectors",
+    "section": "Subsetting with [[ and [",
+    "text": "Subsetting with [[ and [\n\n[[ extract only a single element\n\n\n\n\nCode\ntypeof(`[[`)\n\n\n[1] \"special\"\n\n\nCode\ntypeof(`[`)\n\n\n[1] \"special\"\n\n\nCode\nx\n\n\n  J   K   L   M   N   O \n\"j\" \"k\" \"l\" \"m\" \"n\" \"o\" \n\n\nCode\nx[1]\n\n\n  J \n\"j\" \n\n\nCode\nx[[1]]\n\n\n[1] \"j\""
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-with-and-1",
+    "href": "program/vectors/vectors.html#subsetting-with-and-1",
+    "title": "Vectors",
+    "section": "Subsetting with [[ and [",
+    "text": "Subsetting with [[ and [\n\n\nCode\nstr(x[1])\n\n\n Named chr \"j\"\n - attr(*, \"names\")= chr \"J\"\n\n\nCode\nstr(x[[1]])\n\n\n chr \"j\"\n\n\nCode\ntypeof(x[1])\n\n\n[1] \"character\"\n\n\nCode\ntypeof(x[[1]])\n\n\n[1] \"character\"\n\n\nCode\nnames(x[1])\n\n\n[1] \"J\"\n\n\nCode\nnames(x[[1]])\n\n\nNULL"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-dataframe-with-and",
+    "href": "program/vectors/vectors.html#subsetting-dataframe-with-and",
+    "title": "Vectors",
+    "section": "Subsetting dataframe with [[ and [",
+    "text": "Subsetting dataframe with [[ and [\n\n`df[row(s), column(s)]\nOne dimension not given returns all rows or columns\n\n\n\n\nCode\nmy_df1 <- my_df[1:3, ]\n# column 1 all rows\nmy_df1[, 1]\n\n\n# A tibble: 3 × 1\n      x\n  <dbl>\n1  99.2\n2 119. \n3  79.5\n\n\nCode\n# row 3, all columns\nmy_df1[3, ]\n\n\n# A tibble: 1 × 3\n      x     y     z\n  <dbl> <dbl> <dbl>\n1  79.5  49.1  8.23"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-dataframe-with-and-1",
+    "href": "program/vectors/vectors.html#subsetting-dataframe-with-and-1",
+    "title": "Vectors",
+    "section": "Subsetting dataframe with [[ and [",
+    "text": "Subsetting dataframe with [[ and [\n\n\nCode\n# element in row 3, column 3\nmy_df1[3, 3]\n\n\n# A tibble: 1 × 1\n      z\n  <dbl>\n1  8.23\n\n\nCode\nmy_df1[[3,3]]\n\n\n[1] 8.22684\n\n\nCode\nclass(my_df1[3, 3])\n\n\n[1] \"tbl_df\"     \"tbl\"        \"data.frame\"\n\n\nCode\ntypeof(my_df1[3, 3])\n\n\n[1] \"list\"\n\n\nCode\nclass(my_df1[[3,3]])\n\n\n[1] \"numeric\""
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-dataframe-with-and-2",
+    "href": "program/vectors/vectors.html#subsetting-dataframe-with-and-2",
+    "title": "Vectors",
+    "section": "Subsetting dataframe with [[ and [",
+    "text": "Subsetting dataframe with [[ and [\n\n\nCode\ntypeof(my_df1[[3,3]])\n\n\n[1] \"double\"\n\n\n\n\nCode\n# multiple elements [[]] gives an error\nmy_df1[[3,1:3]]\n\n\n\nError: Must extract column with a single valid subscript. x Subscript 1:3 has size 3 but must be size 1. Run rlang::last_error() to see where the error occurred."
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-dataframe-with-and-3",
+    "href": "program/vectors/vectors.html#subsetting-dataframe-with-and-3",
+    "title": "Vectors",
+    "section": "Subsetting dataframe with [[ and [",
+    "text": "Subsetting dataframe with [[ and [\n\nNote the difference between [[ and [\n\n[[ returns a single value\n[ also returns a single value, but inside a dataframe/tibble\n\nVery important for lists"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-list-with-and",
+    "href": "program/vectors/vectors.html#subsetting-list-with-and",
+    "title": "Vectors",
+    "section": "Subsetting list with [[ and [",
+    "text": "Subsetting list with [[ and [\n\nNote the difference between [[ and [\n\n[[ returns a single value\n[ also returns a single value, but inside a dataframe/tibble\n\nVery important for lists\n\n\n\n\nCode\nmy_list <- list(letters[1:4], 1:3, \"a\", 1.25, TRUE)\nstr(my_list)\n\n\nList of 5\n $ : chr [1:4] \"a\" \"b\" \"c\" \"d\"\n $ : int [1:3] 1 2 3\n $ : chr \"a\"\n $ : num 1.25\n $ : logi TRUE\n\n\nCode\nmy_list <- list(letters[1:4], list(1:3), list(\"a\", 1.25, TRUE))\nstr(my_list)\n\n\nList of 3\n $ : chr [1:4] \"a\" \"b\" \"c\" \"d\"\n $ :List of 1\n  ..$ : int [1:3] 1 2 3\n $ :List of 3\n  ..$ : chr \"a\"\n  ..$ : num 1.25\n  ..$ : logi TRUE"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-1",
+    "href": "program/vectors/vectors.html#subsetting-list-with-and-1",
+    "title": "Vectors",
+    "section": "Subsetting list with [[ and [",
+    "text": "Subsetting list with [[ and [\n\n\nCode\nmy_list[2]\n\n\n[[1]]\n[[1]][[1]]\n[1] 1 2 3\n\n\nCode\nmy_list[[2]]\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nstr(my_list[2])\n\n\nList of 1\n $ :List of 1\n  ..$ : int [1:3] 1 2 3\n\n\nCode\nstr(my_list[[2]])\n\n\nList of 1\n $ : int [1:3] 1 2 3"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-2",
+    "href": "program/vectors/vectors.html#subsetting-list-with-and-2",
+    "title": "Vectors",
+    "section": "Subsetting list with [[ and [",
+    "text": "Subsetting list with [[ and [\n\nnamed components\n\n\n\n\nCode\nmy_list <- list(A = letters[1:4], B = list(1, 2, 3), C = list(\"a\", 1.25, TRUE))\nstr(my_list)\n\n\nList of 3\n $ A: chr [1:4] \"a\" \"b\" \"c\" \"d\"\n $ B:List of 3\n  ..$ : num 1\n  ..$ : num 2\n  ..$ : num 3\n $ C:List of 3\n  ..$ : chr \"a\"\n  ..$ : num 1.25\n  ..$ : logi TRUE\n\n\nCode\nl <- my_list[[\"C\"]]\nstr(l)\n\n\nList of 3\n $ : chr \"a\"\n $ : num 1.25\n $ : logi TRUE\n\n\nCode\nl[[1]]\n\n\n[1] \"a\""
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-3",
+    "href": "program/vectors/vectors.html#subsetting-list-with-and-3",
+    "title": "Vectors",
+    "section": "Subsetting list with [[ and [",
+    "text": "Subsetting list with [[ and [\n\n[[ trekker elementer opp av listen\n\n\n\n\nCode\nl <- my_list[[\"B\"]]\nstr(l)\n\n\nList of 3\n $ : num 1\n $ : num 2\n $ : num 3\n\n\nCode\n# The value\nl[[1]]\n\n\n[1] 1\n\n\nCode\n# The value\nmy_list[[\"C\"]][[2]]\n\n\n[1] 1.25\n\n\nCode\n# The value\nmy_list$C[[2]]\n\n\n[1] 1.25"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-4",
+    "href": "program/vectors/vectors.html#subsetting-list-with-and-4",
+    "title": "Vectors",
+    "section": "Subsetting list with [[ and [",
+    "text": "Subsetting list with [[ and [\n\nSee r4ds 20.5.3 Lists of condiments for a famous explanation of the difference between [[ and [.\n\n\n\n\nCode\n# notice the difference\nlist(1:3)\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nlist(c(1:3))\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nlist(c(1, 2, 3))\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nlist(c(1, 2, 3))[[1]]\n\n\n[1] 1 2 3\n\n\nCode\nlist(1, 2, 3)[[1]]\n\n\n[1] 1"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-5",
+    "href": "program/vectors/vectors.html#subsetting-list-with-and-5",
+    "title": "Vectors",
+    "section": "Subsetting list with [[ and [",
+    "text": "Subsetting list with [[ and [\n\n\nCode\nlist(1, 2, 3)\n\n\n[[1]]\n[1] 1\n\n[[2]]\n[1] 2\n\n[[3]]\n[1] 3\n\n\nCode\nlist(1:3)[[1]][[2]]\n\n\n[1] 2\n\n\nCode\nlist(1, 2, 3)[[2]]\n\n\n[1] 2\n\n\nCode\nunlist(my_list)\n\n\n    A1     A2     A3     A4     B1     B2     B3     C1     C2     C3 \n   \"a\"    \"b\"    \"c\"    \"d\"    \"1\"    \"2\"    \"3\"    \"a\" \"1.25\" \"TRUE\" \n\n\nCode\ntypeof(unlist(my_list))\n\n\n[1] \"character\""
+  },
+  {
+    "objectID": "program/vectors/vectors.html#references",
+    "href": "program/vectors/vectors.html#references",
+    "title": "Vectors",
+    "section": "References",
+    "text": "References\n\n\nMSB105\n\n\n\nBache, Stefan Milton, and Hadley Wickham. 2022. Magrittr: A Forward-Pipe Operator for r. https://CRAN.R-project.org/package=magrittr.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nWickham, Hadley. 2021. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+  },
+  {
     "objectID": "program/program.html",
     "href": "program/program.html",
     "title": "Program",
     "section": "",
-    "text": "Introduction (r4ds chap. 9)\nMore on Pipes (r4ds chap. 18)\nFunctions (r4ds chap. 19)"
+    "text": "Introduction (r4ds chap. 9)\nMore on Pipes (r4ds chap. 18)\nFunctions (r4ds chap. 19)\nVectors (r4ds chap. 19)"
   },
   {
-    "objectID": "functions/functions.html#load-tidyverse-and-magrittr",
-    "href": "functions/functions.html#load-tidyverse-and-magrittr",
+    "objectID": "program/functions/functions.html#load-tidyverse-and-magrittr",
+    "href": "program/functions/functions.html#load-tidyverse-and-magrittr",
     "title": "Functions",
     "section": "Load tidyverse and magrittr",
     "text": "Load tidyverse and magrittr\n\n\nCode\n# get tidyverse to shut up\nsuppressPackageStartupMessages({\n  library(tidyverse)\n})\n\n\n\n\nCode\n# create a bib file for the R packages\n# used in this document\n# Note! Needs to do a touch ag_functions.bib in terminal before first run\n# else stops when bibliography: \"ag_functions.bib\" not found in YAML\nknitr::write_bib(\n  c(\n    \"tidyverse\"\n    ),\n  file = \"ag_functions.bib\"\n  )"
   },
   {
-    "objectID": "functions/functions.html#functions-chp.-19",
-    "href": "functions/functions.html#functions-chp.-19",
+    "objectID": "program/functions/functions.html#functions-chp.-19",
+    "href": "program/functions/functions.html#functions-chp.-19",
     "title": "Functions",
     "section": "Functions, chp. 19",
     "text": "Functions, chp. 19\nr4ds: “You should consider writing a function whenever you’ve copied and pasted a block of code more than twice”\n\nSound advice\nWhy?\n\nReduces the risk of bugs\nEasier to change (only need to change the function code)\n\nStarting to write functions in R is easy\nUse verb as name (functions verbs, objects nouns)"
   },
   {
-    "objectID": "functions/functions.html#naming",
-    "href": "functions/functions.html#naming",
+    "objectID": "program/functions/functions.html#naming",
+    "href": "program/functions/functions.html#naming",
     "title": "Functions",
     "section": "Naming",
     "text": "Naming\n\nx, y, z: vectors.\nw: a vector of weights.\ndf: a data frame.\n\nNote df, density of F distribution, is a function in R package stats. Maybe my_df or a_df is better.\n\ni, j: numeric indices (typically rows and columns).\nn: length, or number of rows.\np: number of columns.\nMatch names of existing functions\n\ni.e. use na.rm for option to remove NAs, not rm.na, remove etc."
   },
   {
-    "objectID": "functions/functions.html#inputs",
-    "href": "functions/functions.html#inputs",
+    "objectID": "program/functions/functions.html#inputs",
+    "href": "program/functions/functions.html#inputs",
     "title": "Functions",
     "section": "Inputs",
     "text": "Inputs\n\nOmit the data argument (data, x etc.), write the others out in full length (R support partial matching).\n\nRstudio has completion so not much extra to write.\n\nWe should check input values.\nHow thoroughly?\n\nstopifnot() reasonable compromise.\nAt least for functions that are not ment to have a wide distribution.\n\n...: Arbitrary number of inputs.\n\nCan also be sent to another function (passing on arguments)"
   },
   {
-    "objectID": "functions/functions.html#output",
-    "href": "functions/functions.html#output",
+    "objectID": "program/functions/functions.html#output",
+    "href": "program/functions/functions.html#output",
     "title": "Functions",
     "section": "Output",
     "text": "Output\n\nUsually last statement evaluated\nReturn early with return()\nUse invisible()to make functions pipeable\n\nIf only side-effect (save, print etc.) no data out\nThe pipe ends\nCan send data past print() with invisible()"
   },
   {
-    "objectID": "functions/functions.html#environment",
-    "href": "functions/functions.html#environment",
+    "objectID": "program/functions/functions.html#environment",
+    "href": "program/functions/functions.html#environment",
     "title": "Functions",
     "section": "Environment",
     "text": "Environment\n\nInside function all variables defined are local\nIf variable is not defined R will look outside function (the environment where function was defined)\n\nMost programming language would give an error\nWhy we in the heights assignment could calculate mean and sd for male and female and then use them in a pipe to draw different distributions for male and female.\nThe values for mean and sd was not available in the pipe, but when R could not find them it looked outside the pipe."
   },
   {
-    "objectID": "functions/functions.html#if-else-if-and-else",
-    "href": "functions/functions.html#if-else-if-and-else",
+    "objectID": "program/functions/functions.html#if-else-if-and-else",
+    "href": "program/functions/functions.html#if-else-if-and-else",
     "title": "Functions",
     "section": "if(), else if() and else",
     "text": "if(), else if() and else\n\nConditions\nThe structure\n\n\n\n\nCode\nmy_verb <- function(x) {\n  if(some condition on x) {\n    do alternative 1\n  } else if(another condition on x) {\n    do alternative 2\n  } else if(another condition on x) {\n    do alternative 3\n  } else {\n    If none of the conditions is TRUE, do\n    alternative 4\n  }\n}"
   },
   {
-    "objectID": "functions/functions.html#to-sum-up",
-    "href": "functions/functions.html#to-sum-up",
+    "objectID": "program/functions/functions.html#to-sum-up",
+    "href": "program/functions/functions.html#to-sum-up",
     "title": "Functions",
     "section": "To sum up",
     "text": "To sum up\n\n\nCode\nmy_verb <- function(my_arguments) {\n  My code\n}\n\n\n\n\nPick a name for the function (verb).\nList the inputs, or arguments, to the function inside function(), i.e. function(x, y, z).\nThe code in body of the function, i.e in {code} after function(...).\nTry to follow the tidyverse rules for nice code.\n\nRstudio warns you if you fail to comply.\nAddin Styler and function Style selection is an invaluable tool for writing nice code."
   },
   {
-    "objectID": "functions/functions.html#to-sum-up-cont.",
-    "href": "functions/functions.html#to-sum-up-cont.",
+    "objectID": "program/functions/functions.html#to-sum-up-cont.",
+    "href": "program/functions/functions.html#to-sum-up-cont.",
     "title": "Functions",
     "section": "To sum up cont.",
     "text": "To sum up cont.\n\nDon’t do things like + <- function(x, y) {x - y}.\n\nWhat we just did was to give a new definition of the function +.\nEven operators are functions in R.\nThe new + is defined in our current environment (“workspace”).\nIf we delete it, R will find the normal version.\nIf you just had to try it, remove with rm(+).\n\nThe + has to be enclosed in tick marks."
   },
   {
-    "objectID": "functions/functions.html#simple-example",
-    "href": "functions/functions.html#simple-example",
+    "objectID": "program/functions/functions.html#simple-example",
+    "href": "program/functions/functions.html#simple-example",
     "title": "Functions",
     "section": "Simple example",
     "text": "Simple example\n\n\nCode\ndecide_number <- function(x) {\n#  stopifnot(is.numeric(x) & length(x) == 1)\n  if (x > 0) {\n    paste(x, \"is greater than zero\")\n  } else if (x < 0) {\n    paste(x, \"is less than zero\")\n  } else {\n    paste(x, \"is zero\")\n  }\n}"
   },
   {
-    "objectID": "functions/functions.html#simple-example-1",
-    "href": "functions/functions.html#simple-example-1",
+    "objectID": "program/functions/functions.html#simple-example-1",
+    "href": "program/functions/functions.html#simple-example-1",
     "title": "Functions",
     "section": "Simple example",
     "text": "Simple example\n\n\nCode\ndecide_number <- function(x) {\n#  stopifnot(is.numeric(x) & length(x) == 1)\n  if (x > 0) {\n    paste(x, \"is greater than zero\")\n  } else if (x < 0) {\n    paste(x, \"is less than zero\")\n  } else {\n    paste(x, \"is zero\")\n  }\n}\n\n\n\n\nCode\n# testing\ndecide_number(10)\n\n\n[1] \"10 is greater than zero\"\n\n\nCode\ndecide_number(-2)\n\n\n[1] \"-2 is less than zero\""
   },
   {
-    "objectID": "functions/functions.html#testing-simple-function",
-    "href": "functions/functions.html#testing-simple-function",
+    "objectID": "program/functions/functions.html#testing-simple-function",
+    "href": "program/functions/functions.html#testing-simple-function",
     "title": "Functions",
     "section": "Testing simple function",
     "text": "Testing simple function\n\n\nCode\ndecide_number(0)\n\n\n[1] \"0 is zero\"\n\n\n\n\nCode\ndecide_number(c(-2, 5))\n\n\nReturns: the condition has length > 1 and only the first element will be usedthe condition has length > 1 and only the first element will be used[1] \"-2 is less than zero\" \"5 is less than zero\""
   },
   {
-    "objectID": "functions/functions.html#simple-function-on-vectors",
-    "href": "functions/functions.html#simple-function-on-vectors",
+    "objectID": "program/functions/functions.html#simple-function-on-vectors",
+    "href": "program/functions/functions.html#simple-function-on-vectors",
     "title": "Functions",
     "section": "Simple function on vectors",
     "text": "Simple function on vectors\n\nDoing it the R way (with vectors)\n\n\n\n\nCode\ndecide_numvec <- function(x) {\n  stopifnot(is.numeric(x))\n  x_g <- x > 0\n  x_l <- x < 0\n  x_ans <- case_when(\n    x_g == TRUE~ paste(x, \"is greater than zero\"),\n    x_l == TRUE ~ paste(x, \"is less than zero\"),\n    !(x_g | x_l) == TRUE ~ paste(x, \"is zero\")\n  )\n  x_ans\n}"
   },
   {
-    "objectID": "functions/functions.html#testing-with-vectors",
-    "href": "functions/functions.html#testing-with-vectors",
+    "objectID": "program/functions/functions.html#testing-with-vectors",
+    "href": "program/functions/functions.html#testing-with-vectors",
     "title": "Functions",
     "section": "Testing with vectors",
     "text": "Testing with vectors\n\n\nCode\n# testing\ndecide_numvec(10)\n\n\n[1] \"10 is greater than zero\"\n\n\nCode\ndecide_numvec(-2)\n\n\n[1] \"-2 is less than zero\"\n\n\nCode\ndecide_numvec(0)\n\n\n[1] \"0 is zero\"\n\n\nCode\ndecide_numvec(c(10, -2, 0))\n\n\n[1] \"10 is greater than zero\" \"-2 is less than zero\"   \n[3] \"0 is zero\""
   },
   {
-    "objectID": "functions/functions.html#example-show_head_tail",
-    "href": "functions/functions.html#example-show_head_tail",
+    "objectID": "program/functions/functions.html#example-show_head_tail",
+    "href": "program/functions/functions.html#example-show_head_tail",
     "title": "Functions",
     "section": "Example; show_head_tail()",
     "text": "Example; show_head_tail()\n\nFunction that gives us head, tail, and NAs\nStart with a very simple function\nAdd features only when we have the simple one working"
   },
   {
-    "objectID": "functions/functions.html#define-my_df",
-    "href": "functions/functions.html#define-my_df",
+    "objectID": "program/functions/functions.html#define-my_df",
+    "href": "program/functions/functions.html#define-my_df",
     "title": "Functions",
     "section": "Define my_df",
     "text": "Define my_df\n\n\nCode\nset.seed(333)\nmy_df <- tibble(\n  x = rnorm(10, mean = 100, sd = 10),\n  y = runif(10, min = 30, max = 130),\n  z = rlnorm(10, 2, 2)\n)"
   },
   {
-    "objectID": "functions/functions.html#example-show_head_tail-1",
-    "href": "functions/functions.html#example-show_head_tail-1",
+    "objectID": "program/functions/functions.html#example-show_head_tail-1",
+    "href": "program/functions/functions.html#example-show_head_tail-1",
     "title": "Functions",
     "section": "Example; show_head_tail()",
     "text": "Example; show_head_tail()\n\n\nCode\n# head and tail for dataframes\nshow_head_tail <- function(a_df) {\n  h = head(a_df, n = 3)\n  t = tail(a_df, n = 3)\n  rbind(h, t)\n}\nshow_head_tail(my_df)\n\n\n# A tibble: 6 × 3\n      x     y     z\n  <dbl> <dbl> <dbl>\n1  99.2  43.0  9.22\n2 119.   37.1 15.3 \n3  79.5  49.1  8.23\n4 106.   48.7  1.79\n5 104.   50.5  6.56\n6  94.4 115.   4.66"
   },
   {
-    "objectID": "functions/functions.html#example-show_head_tail-2",
-    "href": "functions/functions.html#example-show_head_tail-2",
+    "objectID": "program/functions/functions.html#example-show_head_tail-2",
+    "href": "program/functions/functions.html#example-show_head_tail-2",
     "title": "Functions",
     "section": "Example; show_head_tail()",
     "text": "Example; show_head_tail()\n\nAdd support for vectors\n\n\n\n\nCode\nshow_head_tail <- function(df_or_vec) {\n  stopifnot(is.data.frame(df_or_vec) | is.vector(df_or_vec))\n  h = head(df_or_vec, n = 3)\n  t = tail(df_or_vec, n = 3)\n  rbind(vec_head = h, vec_tail = t)\n}\nshow_head_tail(my_df$x)\n\n\n              [,1]     [,2]     [,3]\nvec_head  99.17188 119.3468 79.48710\nvec_tail 106.33608 103.5272 94.39518"
   },
   {
-    "objectID": "functions/functions.html#example-show_head_tail-3",
-    "href": "functions/functions.html#example-show_head_tail-3",
+    "objectID": "program/functions/functions.html#example-show_head_tail-3",
+    "href": "program/functions/functions.html#example-show_head_tail-3",
     "title": "Functions",
     "section": "Example; show_head_tail()",
     "text": "Example; show_head_tail()\n\nAdd support for selecting n\nStart better printing for df\n\nPrinting of vectors ok\nFor df we have to indicate what is head and what is tail\nHow should we report number of NAs?"
   },
   {
-    "objectID": "functions/functions.html#example-show_head_tail-4",
-    "href": "functions/functions.html#example-show_head_tail-4",
+    "objectID": "program/functions/functions.html#example-show_head_tail-4",
+    "href": "program/functions/functions.html#example-show_head_tail-4",
     "title": "Functions",
     "section": "Example; show_head_tail()",
     "text": "Example; show_head_tail()\n\n\nCode\nshow_head_tail <- function(df_or_vec, n = 3) {\n  stopifnot(is.data.frame(df_or_vec) | is.vector(df_or_vec))\n  h = head(df_or_vec, n = n)\n  t = tail(df_or_vec, n = n)\n  if(is.vector(df_or_vec)){\n    rbind(vec_head = h, vec_tail = t)\n  } else {\n        rbind(h, t)\n  }\n}"
   },
   {
-    "objectID": "functions/functions.html#testing",
-    "href": "functions/functions.html#testing",
+    "objectID": "program/functions/functions.html#testing",
+    "href": "program/functions/functions.html#testing",
     "title": "Functions",
     "section": "Testing",
     "text": "Testing\n\n\nCode\nshow_head_tail(my_df$x, n = 2)\n\n\n              [,1]      [,2]\nvec_head  99.17188 119.34681\nvec_tail 103.52717  94.39518\n\n\nCode\nshow_head_tail(my_df, n = 5)\n\n\n# A tibble: 10 × 3\n       x     y      z\n   <dbl> <dbl>  <dbl>\n 1  99.2  43.0   9.22\n 2 119.   37.1  15.3 \n 3  79.5  49.1   8.23\n 4 103.   56.8 114.  \n 5  84.7  81.7   3.45\n 6  97.3  43.2   1.80\n 7 112.   58.0  51.1 \n 8 106.   48.7   1.79\n 9 104.   50.5   6.56\n10  94.4 115.    4.66"
   },
   {
-    "objectID": "functions/functions.html#example-full-show_head_tail",
-    "href": "functions/functions.html#example-full-show_head_tail",
+    "objectID": "program/functions/functions.html#example-full-show_head_tail",
+    "href": "program/functions/functions.html#example-full-show_head_tail",
     "title": "Functions",
     "section": "Example; Full show_head_tail()",
     "text": "Example; Full show_head_tail()\n\nIndicates head and tail for df\nImplement count of NAs\nNumber the elements for both head and tail"
   },
   {
-    "objectID": "functions/functions.html#example-full-show_head_tail-1",
-    "href": "functions/functions.html#example-full-show_head_tail-1",
+    "objectID": "program/functions/functions.html#example-full-show_head_tail-1",
+    "href": "program/functions/functions.html#example-full-show_head_tail-1",
     "title": "Functions",
     "section": "Example; Full show_head_tail()",
     "text": "Example; Full show_head_tail()\n\n\nCode\nshow_head_tail <- function(df_or_vec, n = 3) {\n    stopifnot(is.data.frame(df_or_vec) | is.vector(df_or_vec))\n  h = head(df_or_vec, n = n)\n  t = tail(df_or_vec, n = n)\n  if(is.vector(df_or_vec)) {\n    # vectors\n    c = length(df_or_vec)\n    snr_na = sum(is.na(df_or_vec))\n    nh = as.character(1:n)\n    nt = as.character((c-(n-1)):c)\n    rbind(element_head = nh, vec_head = h, \n          element_tail = nt, vec_tail = t, num._of_NAs = c(snr_na, rep(\"-\", n - 1)))\n  } else {\n    # dataframes\n    c = dim(df_or_vec)[2]\n    l = dim(df_or_vec)[1]\n    rh = rep(\"Head\", c)\n    rt = rep(\"Tail\", c)\n    nna = rep(\"NAs\", c)\n    snr_na = apply(df_or_vec, MARGIN = 2, FUN = function(x) sum(is.na(x)))\n    ht = rbind(rh, h, rt, t, nna, snr_na)\n    ht_row = c(\"\", 1:n, \"\", (l - (n - 1)):l, \"\", \"\")\n    cbind(ht_row, ht)\n  }\n}"
   },
   {
-    "objectID": "functions/functions.html#testing-1",
-    "href": "functions/functions.html#testing-1",
+    "objectID": "program/functions/functions.html#testing-1",
+    "href": "program/functions/functions.html#testing-1",
     "title": "Functions",
     "section": "Testing",
     "text": "Testing\n\n\nCode\ntmp <- my_df\ntmp[3, 1] = NA; tmp[2, 2] = NA; tmp[3, 2] = NA; tmp[8, 2] = NA\nshow_head_tail(tmp$y, n = 2)\n\n\n             [,1]               [,2]              \nelement_head \"1\"                \"2\"               \nvec_head     \"43.0315650254488\" NA                \nelement_tail \"9\"                \"10\"              \nvec_tail     \"50.5169109860435\" \"114.789783554152\"\nnum._of_NAs  \"3\"                \"-\""
   },
   {
-    "objectID": "functions/functions.html#testing-2",
-    "href": "functions/functions.html#testing-2",
+    "objectID": "program/functions/functions.html#testing-2",
+    "href": "program/functions/functions.html#testing-2",
     "title": "Functions",
     "section": "Testing",
     "text": "Testing\n\n\nCode\nshow_head_tail(tmp, n = 7)\n\n\n   ht_row                x                y                z\n1                     Head             Head             Head\n2       1 99.1718835922188 43.0315650254488 9.21825357823283\n3       2 119.346809931093             <NA> 15.3245414351788\n4       3             <NA>             <NA> 8.22684017970637\n5       4 102.777389710092 56.7655442701653 114.130747157911\n6       5 84.7403940420975 81.7492646584287 3.45245479981737\n7       6 97.3083638218034  43.172302627936 1.79923085477392\n8       7 112.330538819689 57.9618517495692 51.0983968181822\n9                     Tail             Tail             Tail\n10      4 102.777389710092 56.7655442701653 114.130747157911\n11      5 84.7403940420975 81.7492646584287 3.45245479981737\n12      6 97.3083638218034  43.172302627936 1.79923085477392\n13      7 112.330538819689 57.9618517495692 51.0983968181822\n14      8 106.336077373601             <NA> 1.78544384223553\n15      9 103.527174614708 50.5169109860435 6.56434481220229\n16     10 94.3951752119365 114.789783554152 4.65579727424833\n17                     NAs              NAs              NAs\n18                       1                3                0"
   },
   {
-    "objectID": "functions/functions.html#testing-3",
-    "href": "functions/functions.html#testing-3",
+    "objectID": "program/functions/functions.html#testing-3",
+    "href": "program/functions/functions.html#testing-3",
     "title": "Functions",
     "section": "Testing",
     "text": "Testing\n\n\nCode\n# input something that is not vector or datafarme\nshow_head_tail(show_head_tail)\nshow_head_tail(plot(x = c(1, 2), y = c(3, 4)))\n\n\nGives: Error in show_head_tail(show_head_tail) : is.data.frame(df_or_vec) | is.vector(df_or_vec) is not TRUE"
   },
   {
-    "objectID": "functions/functions.html#example-splitting-the-function",
-    "href": "functions/functions.html#example-splitting-the-function",
+    "objectID": "program/functions/functions.html#example-splitting-the-function",
+    "href": "program/functions/functions.html#example-splitting-the-function",
     "title": "Functions",
     "section": "Example; Splitting the function",
     "text": "Example; Splitting the function\n\nshow_head_tail_vec() for vectors\n\n\n\n\nCode\nshow_head_tail_vec <- function(df_or_vec, n) {\n  # vectors\n  h <- head(df_or_vec, n = n)\n  t <- tail(df_or_vec, n = n)\n  c <- length(df_or_vec)\n  snr_na <- sum(is.na(df_or_vec))\n  nh <- as.character(1:n)\n  nt <- as.character((c - (n - 1)):c)\n  rbind(\n    element_head = nh, vec_head = h,\n    element_tail = nt, vec_tail = t, num._of_NAs = c(snr_na, rep(\"-\", n - 1))\n  )\n}"
   },
   {
-    "objectID": "functions/functions.html#example-splitting-the-function-1",
-    "href": "functions/functions.html#example-splitting-the-function-1",
+    "objectID": "program/functions/functions.html#example-splitting-the-function-1",
+    "href": "program/functions/functions.html#example-splitting-the-function-1",
     "title": "Functions",
     "section": "Example; Splitting the function",
     "text": "Example; Splitting the function\n\nshow_head_tail_df() for dataframes\n\n\n\n\nCode\nshow_head_tail_df <- function(df_or_vec, n) {\n  # dataframes\n  h <- head(df_or_vec, n = n)\n  t <- tail(df_or_vec, n = n)\n  c <- dim(df_or_vec)[2]\n  l <- dim(df_or_vec)[1]\n  rh <- rep(\"Head\", c)\n  rt <- rep(\"Tail\", c)\n  nna <- rep(\"NAs\", c)\n  snr_na <- apply(df_or_vec, MARGIN = 2, FUN = function(x) sum(is.na(x)))\n  ht <- rbind(rh, h, rt, t, nna, snr_na)\n  ht_row <- c(\"\", 1:n, \"\", (l - (n - 1)):l, \"\", \"\")\n  cbind(ht_row, ht)\n}"
   },
   {
-    "objectID": "functions/functions.html#example-splitting-the-function-2",
-    "href": "functions/functions.html#example-splitting-the-function-2",
+    "objectID": "program/functions/functions.html#example-splitting-the-function-2",
+    "href": "program/functions/functions.html#example-splitting-the-function-2",
     "title": "Functions",
     "section": "Example; Splitting the function",
     "text": "Example; Splitting the function\n\nshow_head_tail() for dataframes and vectors\n\n\n\n\nCode\nshow_head_tail <- function(df_or_vec, n = 3) {\n  if (is.vector(df_or_vec)) {\n    show_head_tail_vec(df_or_vec, n)\n  } else if(is.data.frame(df_or_vec)) {\n    show_head_tail_df(df_or_vec, n)\n  } else {\n    paste(\"Input is of type \", class(df_or_vec), \". Only know\n          how to handle dataframes and vectors.\", sep = \"\")\n  }\n}"
   },
   {
-    "objectID": "functions/functions.html#final-testing",
-    "href": "functions/functions.html#final-testing",
+    "objectID": "program/functions/functions.html#final-testing",
+    "href": "program/functions/functions.html#final-testing",
     "title": "Functions",
     "section": "Final testing",
     "text": "Final testing\n\n\nCode\nshow_head_tail_vec(tmp$y, n = 2)\n\n\n             [,1]               [,2]              \nelement_head \"1\"                \"2\"               \nvec_head     \"43.0315650254488\" NA                \nelement_tail \"9\"                \"10\"              \nvec_tail     \"50.5169109860435\" \"114.789783554152\"\nnum._of_NAs  \"3\"                \"-\"               \n\n\nCode\nshow_head_tail_df(tmp, n = 2)\n\n\n  ht_row                x                y                z\n1                    Head             Head             Head\n2      1 99.1718835922188 43.0315650254488 9.21825357823283\n3      2 119.346809931093             <NA> 15.3245414351788\n4                    Tail             Tail             Tail\n5      9 103.527174614708 50.5169109860435 6.56434481220229\n6     10 94.3951752119365 114.789783554152 4.65579727424833\n7                     NAs              NAs              NAs\n8                       1                3                0"
   },
   {
-    "objectID": "functions/functions.html#final-testing-1",
-    "href": "functions/functions.html#final-testing-1",
+    "objectID": "program/functions/functions.html#final-testing-1",
+    "href": "program/functions/functions.html#final-testing-1",
     "title": "Functions",
     "section": "Final testing",
     "text": "Final testing\n\n\nCode\nshow_head_tail(tmp, n = 4)\n\n\n   ht_row                x                y                z\n1                     Head             Head             Head\n2       1 99.1718835922188 43.0315650254488 9.21825357823283\n3       2 119.346809931093             <NA> 15.3245414351788\n4       3             <NA>             <NA> 8.22684017970637\n5       4 102.777389710092 56.7655442701653 114.130747157911\n6                     Tail             Tail             Tail\n7       7 112.330538819689 57.9618517495692 51.0983968181822\n8       8 106.336077373601             <NA> 1.78544384223553\n9       9 103.527174614708 50.5169109860435 6.56434481220229\n10     10 94.3951752119365 114.789783554152 4.65579727424833\n11                     NAs              NAs              NAs\n12                       1                3                0"
   },
   {
-    "objectID": "functions/functions.html#references",
-    "href": "functions/functions.html#references",
+    "objectID": "program/functions/functions.html#references",
+    "href": "program/functions/functions.html#references",
     "title": "Functions",
     "section": "References",
     "text": "References\n\n\nMSB105\n\n\n\nWickham, Hadley. 2021. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
