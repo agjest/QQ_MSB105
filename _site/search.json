@@ -508,7 +508,7 @@
     "href": "wrangle-data/time-data/time-data.html#change-type",
     "title": "Time Data",
     "section": "Change type",
-    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2022-08-12\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2022-08-12 15:10:54 CEST\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2022-08-12\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2022-08-12 UTC\""
+    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2022-08-12\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2022-08-12 17:42:33 CEST\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2022-08-12\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2022-08-12 UTC\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#different-inputs",
@@ -1411,28 +1411,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\n\nTime difference of 2.930573 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\n\nTime difference of 3.580823 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\n\nTime difference of 3.331657 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\n\nTime difference of 5.150203 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n\nCode\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n\n[1] 13.69"
+    "text": "Speed Difference\n\n\nCode\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n\n[1] 43.83"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\n\nTime difference of 0.1066079 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 3025.15"
+    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\n\nTime difference of 0.1447048 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 3459.11"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#other-types-of-vectors-logical",
@@ -2062,28 +2062,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\nTime difference of 2.891926 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\nTime difference of 2.98186 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\nTime difference of 3.362133 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\nTime difference of 3.393214 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 16.26"
+    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 13.8"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\nTime difference of 0.1075702 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 3025.53"
+    "text": "The R way\n\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\nTime difference of 0.104223 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 3155.72"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#other-types-of-vectors-logical",
@@ -5628,6 +5628,13 @@
     "text": "Define my_df\n\n\nCode\nset.seed(333)\nmy_df <- tibble(\n  x = rnorm(10, mean = 100, sd = 10),\n  y = runif(10, min = 30, max = 130),\n  z = rlnorm(10, 2, 2)\n)"
   },
   {
+    "objectID": "program/pipes-cont/pipes-cont.html#define-my_dates",
+    "href": "program/pipes-cont/pipes-cont.html#define-my_dates",
+    "title": "Pipes",
+    "section": "Define my_dates",
+    "text": "Define my_dates\n\nalso define my_dates from previous lecture\n\n\n\n\nCode\nset.seed(1234)\nmy_dates <- tibble(\n  y = 1999:2008,\n  m = sample(1:12, size = 10, replace = TRUE),\n  # make it simple, seed 1234 gives no impossible date\n  d = sample(1:31, size = 10, replace = TRUE),\n  date = make_date(year = y, month = m, day = d)\n)"
+  },
+  {
     "objectID": "program/pipes-cont/pipes-cont.html#exploding-pipe",
     "href": "program/pipes-cont/pipes-cont.html#exploding-pipe",
     "title": "Pipes",
@@ -5635,29 +5642,15 @@
     "text": "“Exploding pipe” %$%\n\nGives access to variables in dataframe/tibble\nUse with functions that don’t have a data argument\n\n\n\n\nCode\nargs(cor)\n\n\nfunction (x, y = NULL, use = \"everything\", method = c(\"pearson\", \n    \"kendall\", \"spearman\")) \nNULL\n\n\n\n\nCode\n# cor can't find y\nmy_df %>% cor(x,y)\n\n\n\nError message: Error in pmatch(use, c(“all.obs”, “complete.obs”, “pairwise.complete.obs”, : object ‘y’ not found"
   },
   {
-    "objectID": "program/pipes-cont/pipes-cont.html#exploding-pipe-1",
-    "href": "program/pipes-cont/pipes-cont.html#exploding-pipe-1",
+    "objectID": "program/pipes-cont/pipes-cont.html#with-exploding-pipe-it-works",
+    "href": "program/pipes-cont/pipes-cont.html#with-exploding-pipe-it-works",
     "title": "Pipes",
-    "section": "“Exploding pipe” %$%",
-    "text": "“Exploding pipe” %$%\n\nGives access to variables in dataframe/tibble\nUse with functions that don’t have a data argument\n\n\n\n\nCode\nargs(cor)\n\n\nfunction (x, y = NULL, use = \"everything\", method = c(\"pearson\", \n    \"kendall\", \"spearman\")) \nNULL\n\n\n\n\nCode\n# cor can't find y\nmy_df %>% cor(x,y)\n\n\n\nError message: Error in pmatch(use, c(“all.obs”, “complete.obs”, “pairwise.complete.obs”, : object ‘y’ not found"
-  },
-  {
-    "objectID": "program/pipes-cont/pipes-cont.html#exploding-pipe-2",
-    "href": "program/pipes-cont/pipes-cont.html#exploding-pipe-2",
-    "title": "Pipes",
-    "section": "“Exploding pipe” %$%",
-    "text": "“Exploding pipe” %$%\n\nGives access to variables in dataframe/tibble\nUse with functions that don’t have a data argument\n\n\n\n\nCode\nargs(cor)\n\n\nfunction (x, y = NULL, use = \"everything\", method = c(\"pearson\", \n    \"kendall\", \"spearman\")) \nNULL\n\n\n\n\nCode\n# cor can't find y\nmy_df %>% cor(x,y)\n\n\n\nError message: Error in pmatch(use, c(“all.obs”, “complete.obs”, “pairwise.complete.obs”, : object ‘y’ not found"
+    "section": "With exploding pipe it works",
+    "text": "With exploding pipe it works\n\n\nCode\n# %$% exposes the names in my_df\nmy_df %$% cor(x,y)\n\n\n[1] -0.3750568"
   },
   {
     "objectID": "program/pipes-cont/pipes-cont.html#from-last-lecture",
     "href": "program/pipes-cont/pipes-cont.html#from-last-lecture",
-    "title": "Pipes",
-    "section": "From last lecture",
-    "text": "From last lecture\n\nDid not work\nmy_dates %>% floor_date(date, \"month\")\nGives error: Error in as.character(unit) : cannot coerce type ‘closure’ to vector of type ‘character’\nR speak for “Never heard about a variable called ‘date’”.\nUse %$% from magrittr\n\n\n\n\nCode\n# Dosn't work\n# my_dates %>% floor_date(date, \"month\")\n# Explodes out the names in my_dates\nmy_dates %$% floor_date(date, \"month\")\n\n\n [1] \"1999-12-01\" \"2000-10-01\" \"2001-06-01\" \"2002-05-01\" \"2003-12-01\"\n [6] \"2004-09-01\" \"2005-05-01\" \"2006-06-01\" \"2007-04-01\" \"2008-02-01\""
-  },
-  {
-    "objectID": "program/pipes-cont/pipes-cont.html#from-last-lecture-1",
-    "href": "program/pipes-cont/pipes-cont.html#from-last-lecture-1",
     "title": "Pipes",
     "section": "From last lecture",
     "text": "From last lecture\n\nDid not work\nmy_dates %>% floor_date(date, \"month\")\nGives error: Error in as.character(unit) : cannot coerce type ‘closure’ to vector of type ‘character’\nR speak for “Never heard about a variable called ‘date’”.\nUse %$% from magrittr\n\n\n\n\nCode\n# Dosn't work\n# my_dates %>% floor_date(date, \"month\")\n# Explodes out the names in my_dates\nmy_dates %$% floor_date(date, \"month\")\n\n\n [1] \"1999-12-01\" \"2000-10-01\" \"2001-06-01\" \"2002-05-01\" \"2003-12-01\"\n [6] \"2004-09-01\" \"2005-05-01\" \"2006-06-01\" \"2007-04-01\" \"2008-02-01\""
@@ -5684,13 +5677,6 @@
     "text": "T-pipe %T>%\n\n\nCode\nmy_df %>% \n  select(x,y) %T>% \n  plot() %>% \n  glimpse()\n\n\n\nRows: 10\nColumns: 2\n$ x <dbl> 99.17188, 119.34681, 79.48710, 102.77739, 84.74039, 97.30836, 112.33…\n$ y <dbl> 43.03157, 37.14962, 49.09765, 56.76554, 81.74926, 43.17230, 57.96185…"
   },
   {
-    "objectID": "program/pipes-cont/pipes-cont.html#t-pipe-t-3",
-    "href": "program/pipes-cont/pipes-cont.html#t-pipe-t-3",
-    "title": "Pipes",
-    "section": "T-pipe %T>%",
-    "text": "T-pipe %T>%\n\n\nCode\nmy_df %>% \n  select(x,y) %T>% \n  plot() %>% \n  glimpse()\n\n\n\nRows: 10\nColumns: 2\n$ x <dbl> 99.17188, 119.34681, 79.48710, 102.77739, 84.74039, 97.30836, 112.33…\n$ y <dbl> 43.03157, 37.14962, 49.09765, 56.76554, 81.74926, 43.17230, 57.96185…"
-  },
-  {
     "objectID": "program/pipes-cont/pipes-cont.html#general-advice-regarding-pipes",
     "href": "program/pipes-cont/pipes-cont.html#general-advice-regarding-pipes",
     "title": "Pipes",
@@ -5709,21 +5695,7 @@
     "href": "program/program.html",
     "title": "Program",
     "section": "",
-    "text": "Introduction (r4ds chap. 9)\nMore on Pipes (r4ds chap. 18)"
-  },
-  {
-    "objectID": "program/pipes-cont/pipes-cont.html#define-my_dates",
-    "href": "program/pipes-cont/pipes-cont.html#define-my_dates",
-    "title": "Pipes",
-    "section": "Define my_dates",
-    "text": "Define my_dates\n\nalso define my_dates from previous lecture\n\n\n\n\nCode\nset.seed(1234)\nmy_dates <- tibble(\n  y = 1999:2008,\n  m = sample(1:12, size = 10, replace = TRUE),\n  # make it simple, seed 1234 gives no impossible date\n  d = sample(1:31, size = 10, replace = TRUE),\n  date = make_date(year = y, month = m, day = d)\n)"
-  },
-  {
-    "objectID": "program/pipes-cont/pipes-cont.html#with-exploding-pipe-it-works",
-    "href": "program/pipes-cont/pipes-cont.html#with-exploding-pipe-it-works",
-    "title": "Pipes",
-    "section": "With exploding pipe it works",
-    "text": "With exploding pipe it works\n\n\nCode\n# %$% exposes the names in my_df\nmy_df %$% cor(x,y)\n\n\n[1] -0.3750568"
+    "text": "Introduction (r4ds chap. 9)\nMore on Pipes (r4ds chap. 18)\nFunctions (r4ds chap. 19)"
   },
   {
     "objectID": "functions/functions.html#load-tidyverse-and-magrittr",
@@ -5780,6 +5752,13 @@
     "title": "Functions",
     "section": "To sum up",
     "text": "To sum up\n\n\nCode\nmy_verb <- function(my_arguments) {\n  My code\n}\n\n\n\n\nPick a name for the function (verb).\nList the inputs, or arguments, to the function inside function(), i.e. function(x, y, z).\nThe code in body of the function, i.e in {code} after function(...).\nTry to follow the tidyverse rules for nice code.\n\nRstudio warns you if you fail to comply.\nAddin Styler and function Style selection is an invaluable tool for writing nice code."
+  },
+  {
+    "objectID": "functions/functions.html#to-sum-up-cont.",
+    "href": "functions/functions.html#to-sum-up-cont.",
+    "title": "Functions",
+    "section": "To sum up cont.",
+    "text": "To sum up cont.\n\nDon’t do things like + <- function(x, y) {x - y}.\n\nWhat we just did was to give a new definition of the function +.\nEven operators are functions in R.\nThe new + is defined in our current environment (“workspace”).\nIf we delete it, R will find the normal version.\nIf you just had to try it, remove with rm(+).\n\nThe + has to be enclosed in tick marks."
   },
   {
     "objectID": "functions/functions.html#simple-example",
@@ -5934,13 +5913,6 @@
     "title": "Functions",
     "section": "Final testing",
     "text": "Final testing\n\n\nCode\nshow_head_tail(tmp, n = 4)\n\n\n   ht_row                x                y                z\n1                     Head             Head             Head\n2       1 99.1718835922188 43.0315650254488 9.21825357823283\n3       2 119.346809931093             <NA> 15.3245414351788\n4       3             <NA>             <NA> 8.22684017970637\n5       4 102.777389710092 56.7655442701653 114.130747157911\n6                     Tail             Tail             Tail\n7       7 112.330538819689 57.9618517495692 51.0983968181822\n8       8 106.336077373601             <NA> 1.78544384223553\n9       9 103.527174614708 50.5169109860435 6.56434481220229\n10     10 94.3951752119365 114.789783554152 4.65579727424833\n11                     NAs              NAs              NAs\n12                       1                3                0"
-  },
-  {
-    "objectID": "functions/functions.html#to-sum-up-cont.",
-    "href": "functions/functions.html#to-sum-up-cont.",
-    "title": "Functions",
-    "section": "To sum up cont.",
-    "text": "To sum up cont.\n\nDon’t do things like + <- function(x, y) {x - y}.\n\nWhat we just did was to give a new definition of the function +.\nEven operators are functions in R.\nThe new + is defined in our current environment (“workspace”).\nIf we delete it, R will find the normal version.\nIf you just had to try it, remove with rm(+).\n\nThe + has to be enclosed in tick marks."
   },
   {
     "objectID": "functions/functions.html#references",
