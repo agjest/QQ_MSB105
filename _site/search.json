@@ -508,7 +508,7 @@
     "href": "wrangle-data/time-data/time-data.html#change-type",
     "title": "Time Data",
     "section": "Change type",
-    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2022-08-12\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2022-08-12 18:08:31 CEST\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2022-08-12\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2022-08-12 UTC\""
+    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2022-08-12\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2022-08-12 18:37:23 CEST\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2022-08-12\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2022-08-12 UTC\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#different-inputs",
@@ -1411,28 +1411,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\n\nTime difference of 3.908708 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\n\nTime difference of 3.060289 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\n\nTime difference of 3.771666 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\n\nTime difference of 3.514486 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n\nCode\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n\n[1] -3.51"
+    "text": "Speed Difference\n\n\nCode\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n\n[1] 14.84"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\n\nTime difference of 0.117111 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 3120.59"
+    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\n\nTime difference of 0.1084619 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 3140.3"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#other-types-of-vectors-logical",
@@ -2062,28 +2062,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\nTime difference of 4.907053 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\nTime difference of 3.017939 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\nTime difference of 6.407615 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\nTime difference of 3.477018 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 30.58"
+    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 15.21"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\nTime difference of 0.108119 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 5826.45"
+    "text": "The R way\n\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\nTime difference of 0.1081669 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 3114.49"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#other-types-of-vectors-logical",
@@ -5870,7 +5870,7 @@
     "href": "program/program.html",
     "title": "Program",
     "section": "",
-    "text": "Introduction (r4ds chap. 9)\nMore on Pipes (r4ds chap. 18)\nFunctions (r4ds chap. 19)\nVectors (r4ds chap. 19)"
+    "text": "Introduction (r4ds chap. 9)\nMore on Pipes (r4ds chap. 18)\nFunctions (r4ds chap. 19)\nVectors (r4ds chap. 19)\nIteration (r4ds chap. 19)"
   },
   {
     "objectID": "program/functions/functions.html#load-tidyverse-and-magrittr",
@@ -6095,5 +6095,292 @@
     "title": "Functions",
     "section": "References",
     "text": "References\n\n\nMSB105\n\n\n\nWickham, Hadley. 2021. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+  },
+  {
+    "objectID": "program/iteration/iteration.html#define-my_df",
+    "href": "program/iteration/iteration.html#define-my_df",
+    "title": "Iteration",
+    "section": "Define my_df",
+    "text": "Define my_df\n\ndefine my_df from previous lecture (code not shown)\n\n\n\n\nCode\nset.seed(333)\nmy_df <- tibble(\n  x = rnorm(10, mean = 100, sd = 10),\n  y = runif(10, min = 30, max = 130),\n  z = rlnorm(10, 2, 2)\n)\nmy_df1 <- my_df[1:3, 1:3]"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#iteration",
+    "href": "program/iteration/iteration.html#iteration",
+    "title": "Iteration",
+    "section": "Iteration",
+    "text": "Iteration\n\nFor loops, used to be quite slow in R, but not any more\n\nNot “The R way”, but OK to use if it gives an easy solution\nOften there is cleaner R way if one can just recognise it\n\nThe R way\n\nUsing vectors\nUsing the classic apply family of functions\nApply a function to every row, column or element in a dataframe\n\nWe will use the tidyvers’ reimplementation of the apply family\n\nMore consistent"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#for-loop",
+    "href": "program/iteration/iteration.html#for-loop",
+    "title": "Iteration",
+    "section": "For loop",
+    "text": "For loop\n\nOutput: allocate space for result before the loop starts (very important) and fill in with values. Building the output sequentially is very inefficient (your code will be slow)\nSequence: What to loop over, i.e. for (i in 1:n) {} or for (i in seq_along(df) {})\nBody: What you do for each iteration"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#for-loop-vector",
+    "href": "program/iteration/iteration.html#for-loop-vector",
+    "title": "Iteration",
+    "section": "For loop, vector",
+    "text": "For loop, vector\n\n\nCode\n# allocate empty vector for output\nout <- vector(mode = \"integer\", length = 10)\nfor (i in 1L:10L) {\n  out[[i]] <- 5L + i\n}\nout\n\n\n [1]  6  7  8  9 10 11 12 13 14 15"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#for-loop-tibble",
+    "href": "program/iteration/iteration.html#for-loop-tibble",
+    "title": "Iteration",
+    "section": "For loop, tibble",
+    "text": "For loop, tibble\n\n\nCode\nmy_df1\n\n\n# A tibble: 3 × 3\n      x     y     z\n  <dbl> <dbl> <dbl>\n1  99.2  43.0  9.22\n2 119.   37.1 15.3 \n3  79.5  49.1  8.23\n\n\nCode\n# allocate empty vector for output\nout <- tibble(x = vector(mode = \"double\", length = 3),\n              y = vector(mode = \"double\", length = 3),\n              z = vector(mode = \"double\", length = 3))\n# i row, j column\nfor (j in 1:ncol(my_df1)) {\n  for (i in 1:nrow(my_df1)) {\n    out[[i, j]] <-  my_df1[[i, j]] + 5\n  }\n}\nout\n\n\n# A tibble: 3 × 3\n      x     y     z\n  <dbl> <dbl> <dbl>\n1 104.   48.0  14.2\n2 124.   42.1  20.3\n3  84.5  54.1  13.2"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#for-loop-tibble-rows-to-columns",
+    "href": "program/iteration/iteration.html#for-loop-tibble-rows-to-columns",
+    "title": "Iteration",
+    "section": "For loop, tibble, rows to columns",
+    "text": "For loop, tibble, rows to columns\n\n\nCode\nmy_df1\n\n\n# A tibble: 3 × 3\n      x     y     z\n  <dbl> <dbl> <dbl>\n1  99.2  43.0  9.22\n2 119.   37.1 15.3 \n3  79.5  49.1  8.23\n\n\nCode\n# allocate empty vector for output\nout <- tibble(x = vector(mode = \"double\", length = 3),\n              y = vector(mode = \"double\", length = 3),\n              z = vector(mode = \"double\", length = 3))\n# i row, j column\nfor (j in 1:ncol(my_df1)) {\n  for (i in 1:nrow(my_df1)) {\n    out[[i, j]] <-  my_df1[[j, i]]\n  }\n}\nout\n\n\n# A tibble: 3 × 3\n      x     y     z\n  <dbl> <dbl> <dbl>\n1 99.2  119.  79.5 \n2 43.0   37.1 49.1 \n3  9.22  15.3  8.23"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#for-loop-tibble-1",
+    "href": "program/iteration/iteration.html#for-loop-tibble-1",
+    "title": "Iteration",
+    "section": "For loop, tibble",
+    "text": "For loop, tibble\n\nHome made transpose, for any dataframe\nPreallocate with matrix()\n\n\n\n\nCode\nmyT <- function(df) {\n# allocate empty tibble for transposed df\nout <- matrix(ncol = nrow(df), nrow = ncol(df))\n# i row, j column\nfor (j in 1:ncol(df)) {\n  for (i in 1:nrow(df)) {\n    out[[j, i]] <-  df[[i, j]]\n  }\n}\n# have to set colnames on matrix to keep as_tibble happy\ncolnames(out) <- paste(\"V\", 1:nrow(df), sep = \"_\")\nas_tibble(out)\n}"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#for-loop-tibble-2",
+    "href": "program/iteration/iteration.html#for-loop-tibble-2",
+    "title": "Iteration",
+    "section": "For loop, tibble",
+    "text": "For loop, tibble\n\ntesting\n\n\n\n\nCode\nmyT(my_df)\n\n\n# A tibble: 3 × 10\n    V_1   V_2   V_3   V_4   V_5   V_6   V_7    V_8    V_9   V_10\n  <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>  <dbl>  <dbl>\n1 99.2  119.  79.5  103.  84.7  97.3  112.  106.   104.    94.4 \n2 43.0   37.1 49.1   56.8 81.7  43.2   58.0  48.7   50.5  115.  \n3  9.22  15.3  8.23 114.   3.45  1.80  51.1   1.79   6.56   4.66\n\n\nCode\ntest <- matrix(sample(1:10, 10000, replace = TRUE), \n               nrow = 100, ncol = 100)\n# checking speed\nmicrobenchmark(myT(test), t(test))\n\n\nUnit: microseconds\n      expr      min        lq       mean    median        uq      max neval\n myT(test) 1689.917 1778.0325 2105.02893 1882.2335 2170.3590 4580.632   100\n   t(test)   28.991   42.7295   59.62987   51.4035   66.4015  179.793   100\n\n\n\nOur routine is about 40 times slower than Rs t(). Why so much slower? See Efficient R programming."
+  },
+  {
+    "objectID": "program/iteration/iteration.html#myt-with-other-input",
+    "href": "program/iteration/iteration.html#myt-with-other-input",
+    "title": "Iteration",
+    "section": "myT() with other input",
+    "text": "myT() with other input\n\nNote that now all columns are character since all contains one element from previous column 2 which was changed into character.\n\n\n\n\nCode\ntmp <- my_df\ntmp[, 2] <- apply(tmp[,2], MARGIN = 1, FUN = \"as.character\")\ntmp[3, 2] <- \"some text\"\nmyT(tmp)\n\n\n# A tibble: 3 × 10\n  V_1              V_2           V_3   V_4   V_5   V_6   V_7   V_8   V_9   V_10 \n  <chr>            <chr>         <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr>\n1 99.1718835922188 119.34680993… 79.4… 102.… 84.7… 97.3… 112.… 106.… 103.… 94.3…\n2 43.0315650254488 37.149616465… some… 56.7… 81.7… 43.1… 57.9… 48.7… 50.5… 114.…\n3 9.21825357823283 15.324541435… 8.22… 114.… 3.45… 1.79… 51.0… 1.78… 6.56… 4.65…"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#example-for-loop-and-decide_number",
+    "href": "program/iteration/iteration.html#example-for-loop-and-decide_number",
+    "title": "Iteration",
+    "section": "Example; for loop and decide_number()",
+    "text": "Example; for loop and decide_number()\n\nOur function from earlier. Didn’t support vectors.\n\n\n\n\nCode\ndecide_number <- function(x) {\n#  stopifnot(is.numeric(x) & length(x) == 1)\n  if (x > 0) {\n    paste(x, \"is greater than zero\")\n  } else if (x < 0) {\n    paste(x, \"is less than zero\")\n  } else {\n    paste(x, \"is zero\")\n  }\n}"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#example-for-loop-and-decide_number-1",
+    "href": "program/iteration/iteration.html#example-for-loop-and-decide_number-1",
+    "title": "Iteration",
+    "section": "Example; for loop and decide_number()",
+    "text": "Example; for loop and decide_number()\n\nadd support for vectors\nInput the vector, preallocate space for result vec\nThe for loop spin through the elements of x (input vector)\nFor each element our previously defined function decide_number() is called. The result is placed in vec\n\n\n\n\nCode\ndecide_number <- function(x) {\n#  stopifnot(is.numeric(x) & length(x) == 1)\n  if (x > 0) {\n    paste(x, \"is greater than zero\")\n  } else if (x < 0) {\n    paste(x, \"is less than zero\")\n  } else {\n    paste(x, \"is zero\")\n  }\n}"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#example-for-loop-and-decide_number-2",
+    "href": "program/iteration/iteration.html#example-for-loop-and-decide_number-2",
+    "title": "Iteration",
+    "section": "Example; for loop and decide_number()",
+    "text": "Example; for loop and decide_number()\n\n\nCode\ndecide_number_vec <- function(x) {\n  vec <- vector(mode = \"character\", length = length(x))\n  for (i in seq_along(x)) {\n    vec[i] <- decide_number(x[i])\n  }\n  vec\n}\n\n\n\n\nCode\ndecide_number_vec(c(1.25, 0, -0.1, 20, -17.5))\n\n\n[1] \"1.25 is greater than zero\" \"0 is zero\"                \n[3] \"-0.1 is less than zero\"    \"20 is greater than zero\"  \n[5] \"-17.5 is less than zero\""
+  },
+  {
+    "objectID": "program/iteration/iteration.html#example-the-r-way-decide_num_vec",
+    "href": "program/iteration/iteration.html#example-the-r-way-decide_num_vec",
+    "title": "Iteration",
+    "section": "Example; The R way decide_num_vec()",
+    "text": "Example; The R way decide_num_vec()\n\nWe solved this the R way under functions\nNeater, and probably faster\n\n\n\n\nCode\ndecide_numvec <- function(x) {\n  stopifnot(is.numeric(x))\n  x_g <- x > 0\n  x_l <- x < 0\n  x_ans <- case_when(\n    x_g == TRUE~ paste(x, \"is greater than zero\"),\n    x_l == TRUE ~ paste(x, \"is less than zero\"),\n    !(x_g | x_g) == TRUE ~ paste(x, \"is zero\")\n  )\n  x_ans\n}"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#testing",
+    "href": "program/iteration/iteration.html#testing",
+    "title": "Iteration",
+    "section": "Testing",
+    "text": "Testing\n\n\nCode\n# checking speed\nset.seed(444)\ntest_vec <- sample(1:10, 10000, replace = TRUE)\nmicrobenchmark::microbenchmark(decide_number_vec(test), decide_numvec(test))\n\n\nUnit: milliseconds\n                    expr       min        lq      mean    median        uq\n decide_number_vec(test) 39.503511 40.132146 43.872260 41.417838 46.001707\n     decide_numvec(test)  8.608615  8.823093  9.591373  8.926803  9.246742\n      max neval\n 65.50209   100\n 18.39141   100\n\n\n\nvector version about 7 times faster"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#for-loop-variations",
+    "href": "program/iteration/iteration.html#for-loop-variations",
+    "title": "Iteration",
+    "section": "For loop variations",
+    "text": "For loop variations\nModifying an existing object, instead of creating a new object. Looping over names or values, instead of indices. Handling outputs of unknown length. Handling sequences of unknown length."
+  },
+  {
+    "objectID": "program/iteration/iteration.html#modifying-an-existing-object",
+    "href": "program/iteration/iteration.html#modifying-an-existing-object",
+    "title": "Iteration",
+    "section": "Modifying an existing object",
+    "text": "Modifying an existing object\n\nSimple, we already have the output allocated (it’ s the input). We only have to modify elements in input and return as output.\n\nWorking on elements, so very important to use [[]]\n\nLooping patterns\n\nLoop over elements (for (x in xs))\nLoop over names (for (nm in names(xs)))\nLoop over index, most general. Can extract both name and value."
+  },
+  {
+    "objectID": "program/iteration/iteration.html#modifying-an-existing-object-1",
+    "href": "program/iteration/iteration.html#modifying-an-existing-object-1",
+    "title": "Iteration",
+    "section": "Modifying an existing object",
+    "text": "Modifying an existing object\n\nSimple, we already have the output allocated (it’ s the input). We only have to modify elements in input and return as output.\n\nWorking on elements, so very important to use [[]]\n\nLooping patterns\n\nLoop over elements (for (x in xs))\nLoop over names (for (nm in names(xs)))\nLoop over index, most general. Can extract both name and value.\n\n\n\n\n\nCode\nfor (i in seq_along(x)) {\n  name <- names(x)[[i]]\n  value <- x[[i]]\n}"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#unknown-output-length",
+    "href": "program/iteration/iteration.html#unknown-output-length",
+    "title": "Iteration",
+    "section": "Unknown output length",
+    "text": "Unknown output length\n\nSolution: put results in a list and then flatten the list to a vector before returning the result\nOutput will be values generated from different normal distributions\nTry to generalise to also take different sd\n\n\n\n\nCode\n# rnorm with different means\nuol_list  <- function(means) {\n  out <- vector(\"list\", length = length(means))\n  for(i in seq_along(means)) {\n    n <- sample(50:100, 1)\n    out[[i]] <- rnorm(n, means[i])\n  }\nstr(out)\n}\n\n\n\n\nCode\nuol_list(c(0.5, -2, 1.25))\n\n\nList of 3\n $ : num [1:53] 0.275 2.235 1.623 -0.373 1.924 ...\n $ : num [1:85] -0.654 -1.126 -2.848 -2.107 -1.835 ...\n $ : num [1:67] 2.575 1.766 0.288 1.488 0.891 ..."
+  },
+  {
+    "objectID": "program/iteration/iteration.html#unknown-output-length-1",
+    "href": "program/iteration/iteration.html#unknown-output-length-1",
+    "title": "Iteration",
+    "section": "Unknown output length",
+    "text": "Unknown output length\n\nunlist() output\n\n\n\n\nCode\n# rnorm with different means\nuol_list  <- function(means) {\n  out <- vector(\"list\", length = length(means))\n  for(i in seq_along(means)) {\n    n <- sample(50:100, 1)\n    out[[i]] <- rnorm(n, means[i])\n  }\nunlist(out)\n}\n\n\n\n\nCode\ndata <- uol_list(c(0.5, -2, 1.25))\nlength(data)\n\n\n[1] 226\n\n\nCode\nhead(data, n = 15)\n\n\n [1] -1.33511061  1.71526141  0.54582061 -0.20362918  0.42661207  0.88737118\n [7]  0.02370048 -0.17819198  1.26495212  0.61323391  1.02402149 -0.18348371\n[13] -0.73901344  1.96779956  0.51157630"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#unknown-output-length-2",
+    "href": "program/iteration/iteration.html#unknown-output-length-2",
+    "title": "Iteration",
+    "section": "Unknown output length",
+    "text": "Unknown output length\n\nBuilding long strings.\n\nDo not use incremental paste.\nPut results in a list instead.\nFlatten before output with paste(list, collapse = \"\")\n\nBuilding dataframe.\n\nDo not use incremental rbind for each iteration.\nInstead put intermediate results into a_list.\nUse dplyr::bind_rows(a_list) as last statement."
+  },
+  {
+    "objectID": "program/iteration/iteration.html#unknown-sequence-length",
+    "href": "program/iteration/iteration.html#unknown-sequence-length",
+    "title": "Iteration",
+    "section": "Unknown sequence length",
+    "text": "Unknown sequence length\n\nUse while()\nNice for simulations (“continue until something happens”)\nStructure"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#unknown-sequence-length-1",
+    "href": "program/iteration/iteration.html#unknown-sequence-length-1",
+    "title": "Iteration",
+    "section": "Unknown sequence length",
+    "text": "Unknown sequence length\n\nUse while()\nNice for simulations (“continue until something happens”)\nStructure\n\n\n\n\nCode\nwhile (condition) {\n  body\n}\n\n\n\nBe aware of infinite loops.\n\nYou must make sure that the condition is met eventually, otherwise it will run forever (or until you stop it)"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#for-loops-vs.-functionals",
+    "href": "program/iteration/iteration.html#for-loops-vs.-functionals",
+    "title": "Iteration",
+    "section": "For loops vs. functionals",
+    "text": "For loops vs. functionals\n\nfor loops essential in most programming languages\nNot as essential i R\n\nR functional programming language\nWrap up for loops in functions and call the function instead\nSee r4ds 21.4 for details\n\na tibble/dataframe is a list of equal length vectors. The length() function used on a list will return the number of elements, i.e. the number of vectors in df which is also det number of columns."
+  },
+  {
+    "objectID": "program/iteration/iteration.html#for-loops-vs.-functionals-1",
+    "href": "program/iteration/iteration.html#for-loops-vs.-functionals-1",
+    "title": "Iteration",
+    "section": "For loops vs. functionals",
+    "text": "For loops vs. functionals\n\nfor loops essential in most programming languages\nNot as essential i R\n\nR functional programming language\nWrap up for loops in functions and call the function instead\nSee r4ds 21.4 for details\n\na tibble/dataframe is a list of equal length vectors. The length() function used on a list will return the number of elements, i.e. the number of vectors in df which is also det number of columns.\n\n\n\n\nCode\ndf2 <- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5))\nlength(df2)\n\n\n[1] 3\n\n\nCode\n# column 3 in df\ndf2[[3]]\n\n\n[1]  0.14072070  1.35305311 -0.03810984  1.91214048 -2.97970052"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#for-loops-vs.-functionals-2",
+    "href": "program/iteration/iteration.html#for-loops-vs.-functionals-2",
+    "title": "Iteration",
+    "section": "For loops vs. functionals",
+    "text": "For loops vs. functionals\n\nNote how we get hold of function name in stopifnot().\n\nstopifnot(fun %in% c(mean, median, sd, min, max)) will not work\nOne of those tricks it’s nice to know\n\nBeing able to pass a function to another function is very powerful\nseq_along() is very handy.\n\n\n\n\nCode\nv <- 7:11\nseq_along(v)\n\n\n[1] 1 2 3 4 5\n\n\nCode\ndim(my_df)\n\n\n[1] 10  3\n\n\nCode\n# remember my_df is a list of three vectors\nseq_along(my_df)\n\n\n[1] 1 2 3"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#for-loops-vs.-functionals-3",
+    "href": "program/iteration/iteration.html#for-loops-vs.-functionals-3",
+    "title": "Iteration",
+    "section": "For loops vs. functionals",
+    "text": "For loops vs. functionals\n\n\nCode\ncol_summary <- function(df, fun) {\n  stopifnot(deparse(substitute(fun)) %in% \n              c(\"mean\", \"median\", \"sd\", \"min\", \"max\"))\n  out <- vector(\"double\", length(df))\n#for every column in df\n  for (i in seq_along(df)) {\n#call fun on column i in df\n    out[i] <- fun(df[[i]])\n  }\n  out\n}\n\n\n\n\nCode\nglimpse(df2)\n\n\nRows: 5\nColumns: 3\n$ a <dbl> -1.3306949, -1.8742314, 0.5701098, -0.7623284, -2.9827534\n$ b <dbl> -0.01497162, 1.38387721, -1.55565322, 0.76845435, 0.38137415\n$ c <dbl> 0.14072070, 1.35305311, -0.03810984, 1.91214048, -2.97970052"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#testing-1",
+    "href": "program/iteration/iteration.html#testing-1",
+    "title": "Iteration",
+    "section": "Testing",
+    "text": "Testing\n\n\nCode\ncol_summary(df2, median)\n\n\n[1] -1.3306949  0.3813741  0.1407207\n\n\nCode\ncol_summary(df2, max)\n\n\n[1] 0.5701098 1.3838772 1.9121405\n\n\nCode\ncol_summary(df2, sd)\n\n\n[1] 1.317750 1.105199 1.894517"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#function-name-in-front-of-result",
+    "href": "program/iteration/iteration.html#function-name-in-front-of-result",
+    "title": "Iteration",
+    "section": "Function name in front of result",
+    "text": "Function name in front of result\n\n\nCode\ncol_summary <- function(df, fun) {\n  stopifnot(deparse(substitute(fun)) %in% \n              c(\"mean\", \"median\", \"sd\", \"min\", \"max\"))\n  out <- vector(\"double\", length(df))\n#for every column in df\n  for (i in seq_along(df)) {\n#call fun on column i in df\n    out[i] <- fun(df[[i]])\n  }\n  c(deparse(substitute(fun)), round(out, 4))\n}\n\n\n\n\nCode\ncol_summary(df2, median)\n\n\n[1] \"median\"  \"-1.3307\" \"0.3814\"  \"0.1407\" \n\n\nCode\ncol_summary(df2, max)\n\n\n[1] \"max\"    \"0.5701\" \"1.3839\" \"1.9121\"\n\n\nCode\ncol_summary(df2, sd)\n\n\n[1] \"sd\"     \"1.3177\" \"1.1052\" \"1.8945\""
+  },
+  {
+    "objectID": "program/iteration/iteration.html#map-functions",
+    "href": "program/iteration/iteration.html#map-functions",
+    "title": "Iteration",
+    "section": "Map functions",
+    "text": "Map functions\n\nFrom the purrr package. Part of core tidyverse\ntidyverse reimplementation of the classic apply family of functions\nLoop over a vector, do something to the elements, save output\nmap() makes a list.\nmap_lgl() makes a logical vector.\nmap_int() makes an integer vector.\nmap_dbl() makes a double vector.\nmap_chr() makes a character vector."
+  },
+  {
+    "objectID": "program/iteration/iteration.html#map-family",
+    "href": "program/iteration/iteration.html#map-family",
+    "title": "Iteration",
+    "section": "map family",
+    "text": "map family\n\nTakes a vector as input\napplies a function\nreturn vector of same length as the input\nThe type of the output is decided by map_*() suffix (the asterisk bit)\nThis is more the R way than for-loops.\n\nIf you havn’t done any programming before (c, fortran etc.) this is the way to go.\n\nThe map-functions makes the code easier to read and understand\nWhy map_* when we have the apply family\n\nThe map_* family is more consistent. Easier to transfer skills from one function to another."
+  },
+  {
+    "objectID": "program/iteration/iteration.html#map-family-examples",
+    "href": "program/iteration/iteration.html#map-family-examples",
+    "title": "Iteration",
+    "section": "map family examples",
+    "text": "map family examples\n\nRead as: “use the mean function on every column in my_df and return result as type double”\nEasy to see what function is used, not so much indexes and other stuff as in the for-loop\n\n\n\n\nCode\nmap_dbl(my_df, mean)\n\n\n       x        y        z \n99.94209 58.29394 21.62561 \n\n\nCode\nmap_dbl(my_df, sum)\n\n\n       x        y        z \n999.4209 582.9394 216.2561 \n\n\nCode\n# returns the sums as type character\nmap_chr(my_df, sum)\n\n\n           x            y            z \n\"999.420909\" \"582.939427\" \"216.256051\""
+  },
+  {
+    "objectID": "program/iteration/iteration.html#map-family-examples-1",
+    "href": "program/iteration/iteration.html#map-family-examples-1",
+    "title": "Iteration",
+    "section": "map family examples",
+    "text": "map family examples\n\nmapfunctions works great in a pipe\n\n\n\n\nCode\nmy_df %>% \n  map_dbl(median)\n\n\n         x          y          z \n100.974637  49.807279   7.395592 \n\n\n\nmap functions are fast (important for large dataframes)\nargument 2 (.f) do not have to be a function name as above\n\ncan be formula\ninteger vector\n\nmap functions usees …, makes it possible to send argument to the function"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#map-family-examples-2",
+    "href": "program/iteration/iteration.html#map-family-examples-2",
+    "title": "Iteration",
+    "section": "map family examples",
+    "text": "map family examples\n\nmap preserves variable names from dataframe\n\n\n\n\nCode\n# trim 0.1 removes 10% of data each side\nmy_df %>%  map_dbl(mean, trim = 0.1, na.rm = TRUE)\n\n\n        x         y         z \n100.07337  53.87500  12.54248 \n\n\nCode\n# manual trim lowest and highest\nmean(sort(my_df$x)[2:9])\n\n\n[1] 100.0734"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#shortcut-for-anonymouse-functions-in-map-functions",
+    "href": "program/iteration/iteration.html#shortcut-for-anonymouse-functions-in-map-functions",
+    "title": "Iteration",
+    "section": "Shortcut for anonymouse functions in map functions",
+    "text": "Shortcut for anonymouse functions in map functions\n\nwith normal anonymous function\n\n\n\n\nCode\nmy_df <- my_df %>% mutate(w = c(rep(\"A\", 5), rep(\"B\", 5)))\nmy_df %>% \n  split(.$w) %>% \n  map(function(df) lm(x ~ y, data = df))\n\n\n$A\n\nCall:\nlm(formula = x ~ y, data = df)\n\nCoefficients:\n(Intercept)            y  \n   125.4851      -0.5299  \n\n\n$B\n\nCall:\nlm(formula = x ~ y, data = df)\n\nCoefficients:\n(Intercept)            y  \n   110.6841      -0.1254"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#shortcut-for-anonymouse-functions-in-map-functions-1",
+    "href": "program/iteration/iteration.html#shortcut-for-anonymouse-functions-in-map-functions-1",
+    "title": "Iteration",
+    "section": "Shortcut for anonymouse functions in map functions",
+    "text": "Shortcut for anonymouse functions in map functions\n\nwith short for anonymous function\n\n~ for the function(x) bit\n. for the data (current list element, “A” list then “B” list)\n\n\n\n\n\nCode\nmy_df <- my_df %>% mutate(w = c(rep(\"A\", 5), rep(\"B\", 5)))\nmy_models <- my_df %>% \n  split(.$w) %>% \n  map(~lm(x ~ y, data = .))"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#shortcut-for-anonymouse-functions-in-map-functions-2",
+    "href": "program/iteration/iteration.html#shortcut-for-anonymouse-functions-in-map-functions-2",
+    "title": "Iteration",
+    "section": "Shortcut for anonymouse functions in map functions",
+    "text": "Shortcut for anonymouse functions in map functions\n\nPicking info from summary (see ?summary.lm for the availabe statistics)\n\n\n\n\nCode\nmy_models %>% \n  map(summary) %>% \n  map_dbl(~.$adj.r.squared)\n\n\n         A          B \n0.12031860 0.02129301 \n\n\nCode\n#or\nmy_models %>% \n  map(summary) %>% \n  map_dbl(\"adj.r.squared\")\n\n\n         A          B \n0.12031860 0.02129301"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#errors",
+    "href": "program/iteration/iteration.html#errors",
+    "title": "Iteration",
+    "section": "Errors",
+    "text": "Errors\n\nsafely()\npossibly()\nquietly()"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#map-and-multiple-arguments-map2",
+    "href": "program/iteration/iteration.html#map-and-multiple-arguments-map2",
+    "title": "Iteration",
+    "section": "map and multiple arguments; map2()",
+    "text": "map and multiple arguments; map2()\n\nMore advanced, check r4ds 21.7 and 21.8 when you need this\nmap2(); `map2(arg_vary1,arg_vary2, function, args_not_vary)\npmap(); list of arguments (arguments should be named)\n\n\n\n\nCode\n# normal dist. with mu=0, sd=1, mu=0.5 sd=1.25 etc.\nmu <- c(0, 0.5, 1, 2, 3)\nsd <- c(1, 1.25, 2, 5, 2)\nnorm_df <- map2(mu, sd, rnorm, n = 10) %>%\n  set_names(., paste(\"rnorm_mu\", mu, \"_sd\", sd, sep = \"\")) %>% \n  as_tibble()\nhead(norm_df, n = 3)\n\n\n# A tibble: 3 × 5\n  rnorm_mu0_sd1 rnorm_mu0.5_sd1.25 rnorm_mu1_sd2 rnorm_mu2_sd5 rnorm_mu3_sd2\n          <dbl>              <dbl>         <dbl>         <dbl>         <dbl>\n1        -0.941             1.25           -1.78          3.88          1.89\n2         0.594            -0.0711          1.05          1.36          1.31\n3        -0.372            -2.12            3.52          7.52          4.29"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#map-and-multiple-arguments-pmap",
+    "href": "program/iteration/iteration.html#map-and-multiple-arguments-pmap",
+    "title": "Iteration",
+    "section": "map and multiple arguments; pmap()",
+    "text": "map and multiple arguments; pmap()\n\npmap(): also accepts a list of functions to apply\nPut arguments in a tribble\nnice to know about, but try to use easier structures for now\n\n\n\n\nCode\nmy_args <- tribble(\n  ~.f, ~params,\n  \"rnorm\", list(mean = 1, sd = 2),\n  \"runif\", list(min = -2, max = 2)\n)\n\ntmp <- my_args %>%\n  mutate(\n    # Note! invoke functions retired, use exec() from rlang package\n    my_data = invoke_map(.f, params, n = 10)\n  ) %>%\n  select(my_data)"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#map-and-multiple-arguments-pmap-1",
+    "href": "program/iteration/iteration.html#map-and-multiple-arguments-pmap-1",
+    "title": "Iteration",
+    "section": "map and multiple arguments; pmap()",
+    "text": "map and multiple arguments; pmap()\n\n\nCode\ntmp$my_data\n\n\n[[1]]\n [1]  2.63475545  2.72054909  1.75187884  3.11940302  0.74321328  4.72482813\n [7]  0.47298509  3.16592746  3.48321654 -0.05800049\n\n[[2]]\n [1] -1.6605264 -0.9716123  0.6122023  1.2556562 -1.4867764  1.3510246\n [7]  1.4653330  0.3058770 -1.5926457 -1.0924698\n\n\nCode\ntmp <- tibble(\n  rnorm_1_2 = tmp$my_data[[1]],\n  runif_m2_2 = tmp$my_data[[2]]\n)\nhead(tmp, n = 3)\n\n\n# A tibble: 3 × 2\n  rnorm_1_2 runif_m2_2\n      <dbl>      <dbl>\n1      2.63     -1.66 \n2      2.72     -0.972\n3      1.75      0.612"
+  },
+  {
+    "objectID": "program/iteration/iteration.html#references",
+    "href": "program/iteration/iteration.html#references",
+    "title": "Iteration",
+    "section": "References",
+    "text": "References\n\n\nMSB105\n\n\n\nBache, Stefan Milton, and Hadley Wickham. 2022. Magrittr: A Forward-Pipe Operator for r. https://CRAN.R-project.org/package=magrittr.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nMersmann, Olaf. 2021. Microbenchmark: Accurate Timing Functions. https://github.com/joshuaulrich/microbenchmark/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nWickham, Hadley. 2021. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   }
 ]

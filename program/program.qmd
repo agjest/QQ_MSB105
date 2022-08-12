@@ -12,3 +12,6 @@ editor: visual
 [Functions (r4ds chap. 19)](functions/functions.qmd)
 
 [Vectors (r4ds chap. 19)](vectors/vectors.qmd)
+
+[Iteration (r4ds chap. 19)](iteration/iteration.qmd)
+
