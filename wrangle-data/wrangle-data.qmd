@@ -12,7 +12,7 @@ editor: visual
     1 [no object] have a long, complicated dispute or argument: the bureaucrats continue wrangling over the fine print.
     2 [with object] North American round up, herd, or take charge of (livestock): the horses were wrangled early.
 
-## Presentations
+## Presentations 
 
 [Introduction (r4ds chap. 9)](intro-wrangle/intro-wrangle.qmd)
 
