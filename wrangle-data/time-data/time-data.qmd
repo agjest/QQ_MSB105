@@ -299,9 +299,9 @@ my_dates %>%
 ## Important option {.smaller}
 
 -   Sunday start of week:
-    -    `week_start = getOption("lubridate.week.start", 7)`
+    -   `week_start = getOption("lubridate.week.start", 7)`
 -   Monday start of week:
-    -    `week_start = getOption("lubridate.week.start", 1)`
+    -   `week_start = getOption("lubridate.week.start", 1)`
 
 . . .
 

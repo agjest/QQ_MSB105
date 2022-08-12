@@ -508,7 +508,7 @@
     "href": "wrangle-data/time-data/time-data.html#change-type",
     "title": "Time Data",
     "section": "Change type",
-    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2022-08-12\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2022-08-12 19:28:06 CEST\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2022-08-12\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2022-08-12 UTC\""
+    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2022-08-12\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2022-08-12 19:42:07 CEST\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2022-08-12\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2022-08-12 UTC\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#different-inputs",
@@ -1411,28 +1411,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\n\nTime difference of 3.404512 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\n\nTime difference of 3.146329 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\n\nTime difference of 3.737937 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\n\nTime difference of 3.463688 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n\nCode\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n\n[1] 9.79"
+    "text": "Speed Difference\n\n\nCode\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n\n[1] 10.09"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\n\nTime difference of 0.1116111 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 3249.07"
+    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\n\nTime difference of 0.1141441 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 2934.49"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#other-types-of-vectors-logical",
@@ -2062,28 +2062,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\nTime difference of 3.809263 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\nTime difference of 2.89973 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\nTime difference of 4.041292 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\nTime difference of 3.314398 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 6.09"
+    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 14.3"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\nTime difference of 0.103436 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 3807.05"
+    "text": "The R way\n\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\nTime difference of 0.1071949 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 2991.94"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#other-types-of-vectors-logical",
@@ -6227,7 +6227,7 @@
     "href": "program/program.html",
     "title": "Program",
     "section": "",
-    "text": "Introduction (r4ds chap. 9)\nMore on Pipes (r4ds chap. 18)\nFunctions (r4ds chap. 19)\nVectors (r4ds chap. 19)\nIteration (r4ds chap. 19)"
+    "text": "Introduction (r4ds chap. 9)\nMore on Pipes (r4ds chap. 18)\nFunctions (r4ds chap. 19)\nVectors (r4ds chap. 20)\nIteration (r4ds chap. 21)"
   },
   {
     "objectID": "program/functions/functions.html#load-tidyverse-and-magrittr",
@@ -6507,7 +6507,7 @@
     "href": "program/iteration/iteration.html#for-loop-tibble-2",
     "title": "Iteration",
     "section": "For loop, tibble",
-    "text": "For loop, tibble\n\ntesting\n\n\n\n\nCode\nmyT(my_df)\n\n\n# A tibble: 3 × 10\n    V_1   V_2   V_3   V_4   V_5   V_6   V_7    V_8    V_9   V_10\n  <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>  <dbl>  <dbl>\n1 99.2  119.  79.5  103.  84.7  97.3  112.  106.   104.    94.4 \n2 43.0   37.1 49.1   56.8 81.7  43.2   58.0  48.7   50.5  115.  \n3  9.22  15.3  8.23 114.   3.45  1.80  51.1   1.79   6.56   4.66\n\n\nCode\ntest <- matrix(sample(1:10, 10000, replace = TRUE), \n               nrow = 100, ncol = 100)\n# checking speed\nmicrobenchmark(myT(test), t(test))\n\n\nUnit: microseconds\n      expr      min        lq       mean   median        uq      max neval\n myT(test) 1701.533 1895.4285 2423.47628 2185.811 2745.0825 6714.163   100\n   t(test)   34.334   47.0785   75.61206   55.496   82.3965  569.849   100\n\n\n\nOur routine is about 40 times slower than Rs t(). Why so much slower? See Efficient R programming."
+    "text": "For loop, tibble\n\ntesting\n\n\n\n\nCode\nmyT(my_df)\n\n\n# A tibble: 3 × 10\n    V_1   V_2   V_3   V_4   V_5   V_6   V_7    V_8    V_9   V_10\n  <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>  <dbl>  <dbl>\n1 99.2  119.  79.5  103.  84.7  97.3  112.  106.   104.    94.4 \n2 43.0   37.1 49.1   56.8 81.7  43.2   58.0  48.7   50.5  115.  \n3  9.22  15.3  8.23 114.   3.45  1.80  51.1   1.79   6.56   4.66\n\n\nCode\ntest <- matrix(sample(1:10, 10000, replace = TRUE), \n               nrow = 100, ncol = 100)\n# checking speed\nmicrobenchmark(myT(test), t(test))\n\n\nUnit: microseconds\n      expr      min        lq       mean    median        uq      max neval\n myT(test) 1664.772 1717.0015 1821.27789 1738.9315 1802.7690 4477.264   100\n   t(test)   27.006   40.8895   50.45823   47.2615   51.7255  146.443   100\n\n\n\nOur routine is about 40 times slower than Rs t(). Why so much slower? See Efficient R programming."
   },
   {
     "objectID": "program/iteration/iteration.html#myt-with-other-input",
@@ -6549,7 +6549,7 @@
     "href": "program/iteration/iteration.html#testing",
     "title": "Iteration",
     "section": "Testing",
-    "text": "Testing\n\n\nCode\n# checking speed\nset.seed(444)\ntest_vec <- sample(1:10, 10000, replace = TRUE)\nmicrobenchmark::microbenchmark(decide_number_vec(test), decide_numvec(test))\n\n\nUnit: milliseconds\n                    expr       min        lq     mean    median       uq\n decide_number_vec(test) 39.926030 42.883319 51.07413 47.343553 52.88363\n     decide_numvec(test)  8.656392  9.038183 10.39523  9.559947 10.64254\n       max neval\n 151.56987   100\n  40.84672   100\n\n\n\nvector version about 7 times faster"
+    "text": "Testing\n\n\nCode\n# checking speed\nset.seed(444)\ntest_vec <- sample(1:10, 10000, replace = TRUE)\nmicrobenchmark::microbenchmark(decide_number_vec(test), decide_numvec(test))\n\n\nUnit: milliseconds\n                    expr       min        lq      mean    median       uq\n decide_number_vec(test) 39.481965 40.289022 43.983203 42.144383 45.91635\n     decide_numvec(test)  8.519408  8.757251  9.339666  8.868348  9.04009\n      max neval\n 78.04793   100\n 14.06647   100\n\n\n\nvector version about 7 times faster"
   },
   {
     "objectID": "program/iteration/iteration.html#for-loop-variations",

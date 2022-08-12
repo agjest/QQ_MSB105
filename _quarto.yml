@@ -15,6 +15,7 @@ website:
           - explore-data/explore-data.qmd
           - wrangle-data/wrangle-data.qmd
           - program/program.qmd
+          - model/model.qmd
 
 
 format:
