@@ -1,0 +1,75 @@
+---
+title: "Data Import cont."
+author: "ag"
+format:
+  revealjs:
+        theme: simple
+        footer: '[MSB105](/index.html)'
+        reveal_options:
+        code-fold: show
+        incremental: true
+        smaller: true
+        scrollable: true
+        slide-number: c/t
+editor: visual
+editor_options:
+  markdown:
+    wrap: 72
+    canonical: true
+    chunk_output_type: console
+echo: true
+eval: true
+---
+
+## Data Import
+
+-   We have covered some of this before
+-   Now we will concentrate on the `From Text (readr)…` menu-item from
+    the Import Dataset menu in the Environment pane
+
+. . .
+
+![Select readr import.](readr-import.png)
+
+## Data Import
+
+![Import Text Data dialogue box](readr-dialog.png)
+
+## Data Import
+
+-   Select the command in bottom left corner. Copy it and then click
+    `Cancel`. Then start a new code-chunk and paste the command into the
+    code- chunk. Then you maintain reproducibility.
+
+```{r}
+#| echo: true
+#| eval: false
+g_c <- read_csv("~/Dev/Assignment2/gap/
+            Data/ddf--gapminder--systema_globalis/
+            ddf--entities--geo--country.csv")
+```
+
+-   If you get into problems that can't be handled by the choices in the
+    dialogue box, check out the `parse_` functions in chapter 11.3 and
+    11.4.
+
+## Data Import other formats
+
+-   Package `haven`: reads SPSS, Stata and SAS files (package `foreign`
+    was used before `haven` became available)
+-   Package `readxl`: reads excel files. Others exists, but this is the
+    best and part of the extended Tidyverse.
+-   Package `DBI`: queries against databases
+
+## Data export
+
+-   Package `readr`: `write_csv()` (faster and better that classic
+    `write.csv()`).
+-   **Important note:** If you are going to read the .csv file into
+    Excel use `write_excel_csv()`.
+    -   Puts a special character at start of file so that Excel will use
+        UTF-8.
+
+    -   Can save you from a lot of hurt concerning character encoding.
+-   Package `writexl` writes Excel files, but for reproducibility we
+    should write `.csv` files.

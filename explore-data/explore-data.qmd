@@ -14,10 +14,10 @@ We will for the most part follow [R for Data Science](https://r4ds.had.co.nz).
 
 ## Presentations
 
--   [Our Workflow](wf/wf.qmd)
+-   [Our Workflow (chap. 4, 6 and 8 r4ds)](wf/wf.qmd)
 -   [Import and Export Data](import-export-data/import-export-data.qmd)
 -   [Using Graphics to Explore Data (chap. 3 r4ds)](intro-ggplot2/intro-ggplot2.qmd)
--   [Transforming Data (chap. 5 r4ds)](trans-data/trans-data.qmd)
+-   [Transforming Data (chap. 5 r4ds)](trans-data/trans-data.qmd) Essential chapter
 -   [Git/Github Braching and Merging](../../introduction/git-github/git-github.html#/git-in-rstudio-1) repetition from Introduction
 -   [Exploratory Data Analysis (chap. 7 r4ds)](eda/eda.qmd)
     -   [Exploratory Data Analysis (chap. 7 r4ds)](eda/eda-doc.qmd) as Document

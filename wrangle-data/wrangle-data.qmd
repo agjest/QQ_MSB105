@@ -1,5 +1,5 @@
 ---
-title: "Introduction Data Wrangling"
+title: "Data Wrangling"
 editor: visual
 ---
 
@@ -14,14 +14,18 @@ editor: visual
 
 ## Presentations
 
-[Introduction (r4ds chap. 9 and 10)](intro-wrangle/intro-wrangle)
+[Introduction (r4ds chap. 9)](intro-wrangle/intro-wrangle.qmd)
 
-[Tidy data (r4ds chap. 12](tidy-data/tidy-data.qmd))
+[Tibbles (r4ds chap. 10)](tibbles/tibbles.qmd)
+
+[Data Import cont. (r4ds chap. 11)](data-import-cont/data-import-cont.qmd)
+
+[Tidy data (r4ds chap. 12](tidy-data/tidy-data.qmd)) Essential chapter
 
 [Relational data (r4ds chap. 13)](relational-data/relational-data.qmd)
 
 [Strings (r4ds chap. 14)](string-data/string-data.qmd)
 
-[Factors (r4ds chap. 15)](factor-data/factor-data.qmd)
+[Factors (r4ds chap. 15)](factors/factors.qmd)
 
 [Dates and time (r4ds chap. 16)](time-data/time-data.qmd)

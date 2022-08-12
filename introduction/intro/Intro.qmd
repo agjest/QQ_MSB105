@@ -102,7 +102,7 @@ eval: true
         Guide](https://bookdown.org/yihui/rmarkdown/)
     -   [R Markdown
         Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/) (juli
-        2022)
+        2022) 
     -   [ModernDive](https://moderndive.com/index.html) (`infer` pakken
         og bootstrapping)
     -   [Pro Git](https://git-scm.com/book/en/v2)
@@ -267,3 +267,4 @@ knitr::include_graphics("knitr-meny.png")
 -   For en presentasjon ville vi hatt andre alternativer (som
     Powerpoint) og **revealjs**. Ønsket format blir angitt i YAML,
     f.eks. `format: revealjs`.
+

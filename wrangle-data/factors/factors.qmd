@@ -1,0 +1,341 @@
+---
+title: "Factors"
+author: "ag"
+format:
+  revealjs:
+        theme: simple
+        footer: '[MSB105](/index.html)'
+        reveal_options:
+        code-fold: show
+        incremental: true
+        smaller: true
+        scrollable: true
+        slide-number: c/t
+editor: visual
+editor_options:
+  markdown:
+    wrap: 72
+    canonical: true
+    chunk_output_type: console
+echo: true
+eval: true
+bibliography: ag_factors.bib
+nocite: '@*'
+---
+
+## Load *tidyverse*
+
+```{r setup}
+library(tidyverse)
+```
+
+```{r}
+# create a bib file for the R packages
+# used in this document
+# Note! Needs to do a touch(ag_factors.bib) in terminal before first run
+# else stops when bibliography: "ag_factors.bib" not found in YAML
+knitr::write_bib(
+  c(
+    "tidyverse",
+    "forcats"
+    ),
+  file = "ag_factors.bib"
+  )
+```
+
+## Factors
+
+-   We have already encountered factors
+-   Rs way of representing category variables
+-   Efficent alternative to making a lot of dummy variables
+-   R is perhaps a bit to eager, hence smart to remember the option
+    `stringsAsFactors` for many functions.
+    -   Set this option to FALSE, default is TRUE
+    -   Then convert the character vector manually to a factor with
+        `var <- factor(var)` or better with the *tidyverse* alternative
+        from *forcats* (`var <- parse_factor(var)`)
+-   The *tidyverse* functions will not convert to factor unless you ask
+    for it.
+
+## Factors
+
+-   If you end up with a factor and want a numeric vector see [R FAQ:
+    7.10 How do I convert factors to
+    numeric?](https://cran.r-project.org/doc/FAQ/R-FAQ.html#How-do-I-convert-factors-to-numeric_003f)
+-   To make a factor manually you do
+    `my_df$variable_name <- factor(my_df$variable_name)` or use
+    `parse_factor()` which is a safer alternative.
+
+## Factors in *tidyverse*; *forcats*
+
+-   Part of core *tidyverse* (i.e. `library(tidyverse)` will load
+    *forecats*)
+-   How to make a factor variable?
+
+## Factors in *tidyverse*; *forcats*
+
+-   Part of core *tidyverse* (i.e. `library(tidyverse)` will load
+    *forecats*)
+-   How to make a factor variable?
+
+. . .
+
+```{r}
+# Some alternatives Long Abbreviations for Days
+x <- c("Mon", "Tue", "Tues", "Wed", "Thu", "Thur", "Thurs", "Fri", "Sat", "Sun")
+set.seed(1234)
+df_days <- tibble(
+  days = sample(x, size = 100, replace = TRUE)
+  )
+df_days %>% table()
+```
+
+## How to fix this
+
+-   Change the values
+
+. . .
+
+```{r}
+df_days <- df_days %>% 
+  mutate(
+    days = case_when(
+      days %in% c("Tues") ~ "Tue",
+      days %in% c("Thur") ~ "Thu",
+      TRUE ~ days
+    )
+  )
+df_days %>% table()
+```
+
+## How to fix this, cont.
+
+```{r}
+# US standard; Sunday first day of the week
+day_levels <- c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
+df_days %>% 
+  mutate(
+    days_fixed = factor(days, levels = day_levels)
+  ) %>%
+  select(days_fixed) %>% 
+  table() %>% 
+  sum()
+```
+
+## How to fix this, cont.
+
+-   6 days have disappeared. What happend?
+    -   We forgot to change "Thurs" to "Thu", so 6 of the 100 days did
+        not match any level. Quietly ignored without any warning. This
+        is **dangerous**!
+-   Much better to use `parse_factor()`
+
+## How to fix this, cont. {.smaller}
+
+```{r}
+df_days <- df_days %>% 
+  mutate(
+    days_fixed = parse_factor(days, levels = day_levels)
+  )
+```
+
+## How to fix this, cont.
+
+-   `parse_factor()` gives us proper warnings.
+-   After the warnings we can table again with the option
+    `useNA = "always"`.
+
+## How to fix this, cont.
+
+-   `parse_factor()` gives us proper warnings.
+-   After the warnings we can table again with the option
+    `useNA = "always"`.
+
+. . .
+
+```{r}
+table(df_days$days_fixed, useNA = "always")
+```
+
+## How to fix this, cont
+
+-   Then we can fix our problem (add "Thurs")
+
+## How to fix this, cont
+
+-   Then we can fix our problem (add "Thurs")
+
+. . .
+
+```{r}
+df_days <- df_days %>%
+  mutate(
+    days_fixed = parse_factor(
+      case_when(
+        days %in% c("Tues") ~ "Tue",
+        days %in% c("Thur", "Thurs") ~ "Thu",
+        # the others just like days
+        TRUE ~ days
+      ),
+      levels = day_levels
+    )
+  )
+df_days %>%
+  select(days_fixed) %>%
+  table(useNA = "always")
+```
+
+## Automatic levels
+
+-   **Note!** The order of the levels is mainly of significance in
+    visualisations, i.e. when we present our results
+-   Above we specified the levels explicitly
+-   Automatic levels:
+    -   Alphabetic order
+    -   When they first occur `levels = unique(variable_name)`
+    -   Fix it after creation with `fct_inorder()` that gives the order
+        in wich they first occur or
+    -   `fct_infreq()` according to frequency or
+    -   `fct_inseq()` according to value (numeric values) in combination
+        with `fct_rev()` or
+    -   `fct_reorder()` for more general reorder, se *r4ds* 15.4 for
+        example.
+
+## Automatic levels
+
+```{r}
+head(df_days$days_fixed, n = 5)
+df_days <- df_days %>%
+  mutate(
+    day_of_the_week = as.numeric(days_fixed)
+  )
+head(df_days$day_of_the_week, n = 5)
+```
+
+## Automatic levels
+
+```{r}
+df_days <- df_days %>% 
+  mutate(
+    # convert day_of_the_week to character
+    day_of_the_week = as.character(day_of_the_week),
+    # convert day_of_the_week to factor
+    day_of_the_week = parse_factor(day_of_the_week)
+  )
+df_days[1:6,]
+```
+
+## Automatic levels
+
+```{r}
+levels(df_days$day_of_the_week)
+```
+
+-   The ordering of the levels is determined by when a value occurs.
+
+## Automatic levels
+
+```{r}
+df_days$day_of_the_week <- fct_inseq(df_days$day_of_the_week)
+levels(df_days$day_of_the_week)
+```
+
+```{r}
+df_days %>% 
+  filter(days_fixed == "Thu") %>% 
+  head(n=5)
+```
+
+-   Levels are ordered after number.
+
+## `fct_infreq()`
+
+```{r}
+df_days$day_of_the_week <- fct_infreq(df_days$day_of_the_week)
+levels(df_days$day_of_the_week)
+```
+
+-   Levels are ordered after how often they occur.
+
+## `fct_inorder()`
+
+-   same as `levels = unique(<factor_variable_name>)`
+
+. . .
+
+```{r}
+df_days$day_of_the_week <- fct_inorder(df_days$day_of_the_week)
+levels(df_days$day_of_the_week)
+```
+
+-   Levels are ordered by the order in which they first appear.
+
+## Recoding factors {.smaller}
+
+-   Perhaps we want to change the names of the different levels
+-   `fct_recode()` can help
+-   `fct_relevel()` change the ordering of the levels
+
+## Recoding factors {.smaller}
+
+-   Perhaps we want to change the names of the different levels
+-   `fct_recode()` can help
+-   `fct_relevel()` change the ordering of the levels
+
+. . .
+
+```{r}
+# Norwegian abbreviations 
+df_days <- df_days %>%
+  mutate(
+    days_nor = days_fixed,
+    days_nor = fct_recode(days_nor,
+      "søn" = "Sun",
+      "man" = "Mon",
+      "tir" = "Tue",
+      "ons" = "Wed",
+      "tor" = "Thu",
+      "fre" = "Fri",
+      "lør" = "Sat",
+    ),
+    # monday first day of week
+    days_nor = fct_relevel(days_nor, "søn", after = 6)
+  )
+levels(df_days$days_nor)
+```
+
+## day_of_the_week_nor
+
+```{r}
+# day of the week Norwegian standard, monday day 1
+df_days <- df_days %>%
+  mutate(
+    # get the numeric values of the nor days, mon = 1 etc
+    d_o_t_w_nor = as.numeric(days_nor),
+    # convert to character to make categories
+    d_o_t_w_nor = as.character(d_o_t_w_nor),
+    # make a factor of it
+    d_o_t_w_nor = parse_factor(d_o_t_w_nor),
+    # sort the levels, "1", "2" ... "7"
+    d_o_t_w_nor = fct_inseq(d_o_t_w_nor)
+  )
+levels(df_days$d_o_t_w_nor)
+```
+
+## Other functions
+
+-   `fct_rev()`: used together with `fct_infreq()`. Reverses the
+    ordering of the levels, i.e. "7", "6" ... "1"
+-   `fct_collapse()`: collapses levels, several old levels into a new
+    level (or into an old level)
+-   `fct_lump_min()`: lumps levels that appear fewer than min times.
+-   `fct_lump_prop()`: lumps levels that appear in fewer prop \* n
+    times, for instance less than 3%
+-   `fct_lump_n()`: lumps all levels except for the n most frequent (or
+    least frequent if n \< 0)
+-   `fct_lump_lowfreq()`: lumps together the least frequent levels,
+    ensuring that "other" is still the smallest level.
+-   see `?fct_lump` for examples
+-   `fct_other()`: keep some levls, put the rest in an "other" category.
+
+## References

@@ -1,0 +1,359 @@
+---
+title: "Joins"
+author: "ag"
+format:
+  revealjs:
+        theme: simple
+        footer: '[MSB105](/index.html)'
+        reveal_options:
+        code-fold: show
+        incremental: true
+        smaller: true
+        scrollable: true
+        slide-number: c/t
+editor: visual
+editor_options:
+  markdown:
+    wrap: 72
+    canonical: true
+    chunk_output_type: console
+echo: true
+eval: true
+bibliography: ag_joins.bib
+nocite: '@*'
+---
+
+```{r setup}
+library(tidyverse)
+library(nycflights13)
+```
+
+```{r bib, include=FALSE}
+# create a bib file for the R packages 
+# used in this document
+# Note! Needs to do a touch(ag_ds.bib) in terminal before first run
+# else stops when bibliography: "ag_ds.bib" not found in YAML
+knitr::write_bib(c(
+  "tidyverse",
+  "nycflights13"
+),
+file = "ag_joins.bib"
+)
+```
+
+## Relational data (chap. 13)
+
+-   Data spread over files/tables and some `key` existing, or possible
+    to generate, that we can use to tie them together
+
+-   **Mutating joins**: add new variable(s) to a tibble/dataframe taken
+    from other tibbles/dataframes
+
+-   **Filtering joins**: filter *observations*, hence affect
+    observations not variables.
+
+-   **Set observations**: Think Venn-diagrams, union, intersection, set
+    differences
+
+-   Package `dplyr`: "simplified" SQL
+
+## Example data
+
+-   package `nycflights13`
+
+    -   airlines
+
+    -   airports
+
+    -   weather
+
+    -   planes
+
+    -   flights
+
+-   `help(flights)` "On-time data for all flights that **departed** NYC"
+
+-   dep_time, arr_time: Actual departure and arrival times (format HHMM
+    or HMM), local tz.
+
+## Example data
+
+```{r}
+head(airlines, n = 3)
+```
+
+```{r}
+flights %>% 
+  select(year:day, carrier, everything()) %>% 
+  group_by(carrier) %>% 
+  summarise(first(dep_time)) %>% 
+  head(, n= 3)
+```
+
+-   **Carrier** possible key to get airlines names into the flights
+    dataframe.
+
+## Example data
+
+-   From `help(weather)`: Hourly meterological data for LGA, JFK and
+    EWR.
+
+. . .
+
+```{r}
+head(weather, n = 3)
+```
+
+-   **Origin** possible key to match airport and weather, but not
+    enough. We also have to match on year, month, day and hour.
+
+## Example data
+
+```{r}
+planes %>%
+  head(n = 3)
+```
+
+## Example data
+
+```{r}
+flights %>% 
+  select(tailnum, everything()) %>% 
+  head(n = 3)
+```
+
+-   Probably enough with `tailnum` as key.
+
+## Example data
+
+```{r}
+airports %>% 
+  filter(faa %in% c('JFK', 'LGA', 'EWR'))
+```
+
+-   faa seems to be the same code we have in `flights$origin`. Check the
+    variables or documentation.
+
+## Join flights and airline
+
+-   left_join(): includes all rows in x, see `help(left_join)` for
+    alternatives
+-   note that *key* is the same (*carrier*) in both tables.
+
+. . .
+
+```{r}
+my_flights <- flights 
+my_flights <- my_flights%>% 
+  left_join(airlines, by = "carrier")
+
+my_flights %>% 
+  select(carrier, name, everything()) %>% 
+  head(3)
+```
+
+## Join flights and planes
+
+-   check names
+
+. . .
+
+```{r}
+nmf <- names(my_flights)
+nmf[nmf %in% names(planes)]
+```
+
+-   "year" has two different meanings, year of the flight and the year
+    the plane was built. We have to keep them apart (suffix option).
+
+## Join flights and planes
+
+```{r}
+my_flights <- my_flights %>% 
+  left_join(planes, by = "tailnum", 
+            suffix = c("", "_plane"))
+
+my_flights %>% 
+  select(tailnum, model, 
+         year_plane, year, everything()) %>% 
+  head(n = 3)
+```
+
+## Join origin and dest with airport data
+
+-   `origin` is just the three NYC airports (faa code). Check with
+    (`unique(flights$origin)`)
+-   `dest` is the destination, about 100 different airports (faa code)
+-   `faa` airport code in airports tibble
+
+## Join origin and dest with airport data
+
+-   check names
+
+. . .
+
+```{r}
+nmf <- names(my_flights)
+nmf[nmf %in% names(airports)]
+```
+
+```{r}
+head(my_flights$name, n = 4)
+```
+
+```{r}
+head(airports$name, n = 4)
+```
+
+## Join origin with airport data
+
+```{r}
+my_flights <- my_flights %>% 
+  left_join(airports, 
+            by = c("origin" = "faa"), 
+            suffix = c("_airline", "_origin_airport"), 
+            keep = TRUE
+            ) %>% 
+  select(year:day, name_airline, name_origin_airport, everything())
+head(my_flights, n = 3)
+```
+
+## Join dest with airport data
+
+-   Now we have to be really careful with names.
+
+-   check names
+
+. . .
+
+```{r}
+nmf <- names(my_flights)
+nmf[nmf %in% names(airports)]
+```
+
+-   We are going to use `faa` as key and can set `keep = FALSE` to get
+    rid of the one in `airports`.
+-   The others we will suffix with "\_origin" and "\_dest".
+
+## Join dest with airport data
+
+```{r}
+#work with tmp until correct then 
+#change to my_flights
+my_flights <- my_flights %>% 
+  left_join(airports, 
+            by = c("dest" = "faa"),
+            suffix = c("_origin", "_dest"),
+            keep = FALSE
+            ) %>% 
+  rename(name_dest_airport = name) %>% 
+  select(faa, origin, dest, lat_origin, lat_dest, everything())
+#View(my_flights[1:50,])
+```
+
+-   we had to use a `rename` on the name variable since no variable
+    called name in my_flights, hence it didn't get any suffix.
+
+## Join origin airport and weather
+
+-   Luckily we only have weather data for the origin (NYC) airport ;-)
+-   We want to know the weather conditions on departure
+-   Weather has data for every date and every hour
+-   dep_time: Actual departure and arrival times (format HHMM or HMM),
+    local tz.
+-   We have to get the hour out of dep_time, ex. 513 should be 5 while
+    1309 should be 13
+-   Many solutions, convert to datetime object etc.
+-   We will pad with 0 in front to get 4 characters, then str_sub the
+    two first characters and convert to integer.
+
+## Join origin airport and weather, fix dep_time
+
+-   We first develop our solution with less data. No need to use
+    `r dim(my_flights)[1]` observations while we develop our solution.
+
+. . .
+
+```{r}
+set.seed(666)
+(x <- sample(my_flights$dep_time, size = 30))
+```
+
+-   Good mix, NA, 29, 826, 1156
+
+## Join origin airport and weather, fix dep_time
+
+```{r}
+x <- str_pad(x, width = 4, side = "left", pad = "0")
+x
+```
+
+## Join origin airport and weather, fix dep_time
+
+```{r}
+(x <- as.numeric(str_sub(x, start = 1, end = 2)))
+```
+
+## Join origin airport and weather; fix_dep_time
+
+```{r fix_dep_time}
+fix_dep_time <- function(x) {
+  x = str_pad(x, width = 4, side = "left", pad = "0")
+  x = str_sub(x, start = 1, end = 2)
+  x = as.integer(x)
+  return(x)
+  }
+```
+
+## Join origin airport and weather; dep_time_hour
+
+```{r}
+my_flights <- my_flights %>% 
+  mutate(
+    dep_time_hour = fix_dep_time(dep_time)
+  )
+```
+
+## Join origin airport and weather
+
+-   check names
+
+. . .
+
+```{r}
+nmf <- names(my_flights)
+nmf[nmf %in% names(weather)]
+```
+
+-   first 5 we use as key, drop "y version" with `keep = FALSE`. Change
+    name om time_hour to time_hour_weather with suffix.
+
+## Join origin airport and weather
+
+```{r}
+my_flights <- my_flights %>% 
+  left_join(weather, 
+            by = c("origin", "year", "month", "day", "dep_time_hour" = "hour"),
+            suffix = c("", "_weather"), 
+            keep = FALSE
+            )
+```
+
+-   We ought to group the variables a bit better with `select()`, but
+    not now.
+
+. . .
+
+```{r, eval = FALSE}
+View(my_flights)
+```
+
+## The other joins
+
+-   "The left join should be your default join
+    -   use it unless you have a strong reason to prefer one of the
+        others."
+-   If you *really* think you need them, you will find them all in Chap.
+    13
+
+## References

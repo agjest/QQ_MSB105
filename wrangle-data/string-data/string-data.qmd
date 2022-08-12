@@ -1,0 +1,442 @@
+---
+title: "Strings and regular expressions"
+author: "ag"
+format:
+  revealjs:
+        theme: simple
+        footer: '[MSB105](/index.html)'
+        reveal_options:
+        code-fold: show
+        incremental: true
+        smaller: true
+        scrollable: true
+        slide-number: c/t
+editor: visual
+editor_options:
+  markdown:
+    wrap: 72
+    canonical: true
+    chunk_output_type: console
+echo: true
+eval: true
+bibliography: ag_strings.bib
+nocite: '@*'
+---
+
+```{r setup}
+library(tidyverse)
+library(readtext)
+```
+
+```{r}
+# create a bib file for the R packages 
+# used in this document
+# Note! Needs to do a touch(ag_ds.bib) in terminal before first run
+# else stops when bibliography: "ag_ds.bib" not found in YAML
+knitr::write_bib(c(
+  "tidyverse",
+  "readtext"
+),
+file = "ag_strings.bib"
+)
+```
+
+## Strings; chapter 14
+
+-   package *stringr* part of core tidyverse
+-   "string" or 'string', but "This is a 'string'"
+-   Escape is your best friend!
+-   `\n` is newline and `\t` is tab
+
+. . .
+
+```{r}
+string1 <- "test1"
+string2 <- 'test2'
+string3 <- "\'test3\'"
+string4 <- "'test4'"
+string5 <- "first\nsecond"
+writeLines(string1)
+writeLines(string2)
+```
+
+## Strings
+
+```{r}
+writeLines(string3)
+writeLines(string4)
+writeLines(string5)
+```
+
+## String functions
+
+-   How to find them?
+    -   tidyverse `str_`
+-   Some important ones
+    -   str_length()
+    -   str_pad()
+    -   str_replace()
+    -   str_extract()
+    -   str_extract_all()
+    -   str_match()
+    -   str_match_all()
+    -   str_c(); combine strings
+
+## String functions cont.
+
+-   Some important ones cont.
+    -   str_sub()
+        -   ex. str_sub("string", 2, 4)
+
+            -   returns "tri",
+
+        -   str_sub("string", -4, -2)
+
+            -   returns "rin"
+    -   str_to_lower()
+    -   str_to_upper()
+    -   str_to_title()
+
+## Regular expressions
+
+-   Incredibly powerful
+-   Hard to master
+
+. . .
+
+```{r}
+x <- c("apple", "banana", "pear")
+str_view(x, "an")
+```
+
+## Regular expressions cont.
+
+```{r}
+str_view(x, "a")
+```
+
+## Regular expressions cont.
+
+```{r}
+# . matches everything except newline
+str_view(x, ".a.") # Why not apple?
+```
+
+## Regular expressions cont.
+
+```{r}
+x <- c("ap\\ple", "bana.na", "pe.ar")
+```
+
+## Regular expressions cont.
+
+```{r}
+# explicit .
+str_view(x, "a\\.")
+```
+
+## Regular expressions cont.
+
+```{r}
+# explicit \
+str_view(x, "\\\\")
+```
+
+## More regexp
+
+-   `.` match everything except newline (`\n`)
+-   Anchors:
+    -   `^` start of line
+    -   `$` end of line
+
+. . .
+
+```{r}
+x <- c("apple pie", "apple", "apple cake")
+str_view(x, "^a")
+```
+
+## More regexp cont.
+
+```{r}
+x <- c("apple pie", "apple", "apple cake")
+str_view(x, "e$")
+```
+
+## More regexp cont.
+
+```{r}
+x <- c("apple pie", "apple", "apple cake")
+str_view(x, "apple")
+
+```
+
+## More regexp cont.
+
+```{r}
+x <- c("apple pie", "apple", "apple cake")
+str_view(x, "^apple$")
+```
+
+## regexp; Character classes
+
+-   `\d`: matches any digit.
+-   `\s`: matches any whitespace (e.g. space, tab, newline).
+-   `\S`: matches any whitespace except newline
+-   `[abc]`: matches a, b, or c.
+-   `[^abc]`: matches anything except a, b, or c.
+
+. . .
+
+```{r}
+x <- c("apple pie", "apple tart", "apple cake")
+str_view(x, "\\s[cp]")
+```
+
+## regexp; Character classes cont.
+
+```{r}
+x <- c("apple pie", "apple tart", "apple cake")
+str_view(x, "\\s[^c]")
+```
+
+## regexp; repetition
+
+-   ?: 0 or 1
+-   +: 1 or more
+-   \*: 0 or more
+-   Handy tool: `devtools::install_github("gadenbuie/regexplain")`
+    -   To have it appear in the *Addins* menu you might have to close
+        your project and then open it again
+    -   Works best with not too long strings
+
+## Number of matches
+
+-   {n}: exactly n
+-   {n,}: n or more
+-   {,m}: at most m
+-   {n,m}: between n and m
+
+## Grouped matches
+
+-   () extracts part of a match
+-   It's possible to have multiple groups
+-   recall the groups by `\\1`, `\\2` etc.
+-   `str_match_all()` will report the different matched groups
+
+## Example
+
+-   Say you get a sudden urge to find out how many times Hamsun mentions
+    *sult* (eng. hunger) in his famous first novel *Sult*.
+-   What can you do to quell your *thirst* for knowledge?
+    -   Download the plain text version of the text from [Project
+        Guthenberg](http://www.gutenberg.org/cache/epub/30027/pg30027.txt)
+    -   Hastily learn some rudimentary *regexp*
+
+## Get hold of *Sult*
+
+See
+[www.gutenberg.org/ebooks/30027/](https://www.gutenberg.org/ebooks/30027/)
+for copyright information and license information.
+
+. . .
+
+```{r}
+url <- "https://www.gutenberg.org/files/30027/30027-0.txt"
+# read line by line
+#
+con <- file(url, encoding = "UTF-8")
+sult <- readLines(con)
+close(con)
+# get rid of header stuff and licence at end
+sult <- sult[63:(length(sult) - 354)]
+# combine to string, each line separated by \n
+sult <- str_c(sult, collapse = "\n")
+# save to file
+cat(sult, file = "sult.txt", sep = "")
+```
+
+## The beginning of *Sult*
+
+```{r}
+# number of characters
+nchar(sult)
+# the beginning of Sult
+str_sub(sult, start = 1, end = 250)
+```
+
+## Searching for *sult*
+
+We start simply by searching for the string "sult".
+
+. . .
+
+```{r}
+# ss short for search string
+ss <- "sult"
+```
+
+-   Then we count occurrences.
+
+. . .
+
+```{r}
+# how many times does "sult" occur *Sult*
+str_count(sult, ss)
+```
+
+## Refining match, first letter capital
+
+-   We realise that this approach was far to simplistic.
+-   For instance Hamsun might have started a sentence with *sult* and we
+    would then have a capital s.
+-   In addition at the time *Sult* was written Norwegian texts adhered
+    to the German tradition of capitalising nouns.
+-   Hence we have to allow for a capital s at the start of "sult".
+
+. . .
+
+```{r}
+# [sS]{1}, one of s or S, {1} not necessary
+ss <- "[sS]{1}ult"
+str_count(sult, ss)
+```
+
+## Result of simple match
+
+```{r}
+# what we found
+str_extract_all(sult, ss) %>% table()
+```
+
+-   We have 33 occurrences of "sult" and 21 of "Sult".
+
+## Refined match
+
+Then we realise that this is still too simplistic because *sult* might
+be part of a word and this word might have nothing to do with *sult*
+(hunger).
+
+## Refined match
+
+```{r}
+ss <- "\\s[^\\s]*[sS]ult[^\\s]*\\s"
+```
+
+-   Explanation:
+    -   "\\s\[\^\\\\s\]\*" before "\[sS\]ult":
+        -   we start with a whitespace and between this whitespace and
+            "\[sS\]ult" we can have whatever except whitespace 0 or more
+            times.
+    -   "\[\^\\\\s\]\*\\s" after "\[sS\]ult":
+        -   means whatever except whitespace up to first whitespace.
+
+. . .
+
+```{r}
+str_count(sult, ss)
+```
+
+## Result of refined match
+
+```{r}
+str_extract_all(sult, ss) %>% table()
+```
+
+-   We get one *Resultat* and one *Sultan* that we don't want.
+
+## Refining our match
+
+We might get rid of *Resultat* by demanding a whitespace before *sult*.
+*Sultan* we can get rid of by demanding that the first character after
+*sult* can't be an "a".
+
+. . .
+
+```{r}
+ss <- "\\s{1}([sS]ult[^a\\s.,;!]*)(\\s?|[^\\s.,;]*|[:punct:])?\\s"
+```
+
+. . .
+
+```{r}
+str_count(sult, ss)
+```
+
+-   Hamsun mentions some form of *sult* (hunger) 52 times in his novel.
+
+## What forms of "sult" occurce?
+
+```{r}
+#str_extract_all(sult, ss) %>% table()
+# just the word, not punctuation 
+str_match_all(sult, ss)[[1]][,2] %>% table()
+```
+
+-   In total 10 different "versions" of *sult*.
+
+## Where does "sult" occur
+
+-   If we are of the inquisitive sort me might wonder where exactly in
+    the text some form of *sult* occurs. The answers is:
+
+. . .
+
+```{r}
+# the first 5 occurrences 
+tmp <- str_locate_all(sult, ss)
+tmp
+```
+
+First mention of *sult* in some form start 53 characters into the file.
+
+## Making a new master piece
+
+-   change "sult" (hunger) to "tørst" (thirst)
+-   a whole new meaning ;-)
+
+. . .
+
+```{r}
+tørst <- sult %>% 
+  str_replace_all(
+    c(
+    "sulten" = "tørst",
+    "Sult" = "Tørst",
+    "sult" = "tørst",
+    "Sulten" = "Tørsten"
+    )
+    ) %>% 
+  str_replace_all(
+    c(
+      "Tørstan" = "Sultan",
+      "Restørstat" = "Resultat"
+      )
+    )
+
+cat(tørst, file = "tørst.txt", sep = "")
+```
+
+## The result
+
+-   Our new sentences
+    -   Sentence 2 is a false match ("største"), hence dropped.
+    -   Six first sentences
+
+. . .
+
+```{r}
+tt <- "(\\.|\\n)(.*[tT]ørst.*)(\\.|\\n)"
+str_match_all(tørst, tt)[[1]][c(1,3:7),3]
+```
+
+## A new master piece!
+
+-   A new master piece is born!
+-   Just a pity that someone has already taken our title.
+
+. . .
+
+![*Tørst* Jo Nesbø](torst-nesbo.png)
+
+## References

@@ -1,0 +1,182 @@
+---
+title: "Tibbles"
+author: "ag"
+format:
+  revealjs:
+        theme: simple
+        footer: '[MSB105](/index.html)'
+        reveal_options:
+        code-fold: show
+        incremental: true
+        smaller: true
+        scrollable: true
+        slide-number: c/t
+editor: visual
+editor_options:
+  markdown:
+    wrap: 72
+    canonical: true
+    chunk_output_type: console
+echo: true
+eval: true
+---
+
+```{r setup}
+library(tidyverse)
+```
+
+## Tibbles (chap. 10)
+
+-   `library(tidyverse)` or `library(tibble)` needed
+
+-   Make `tibble` from `dataframe`
+
+    -   `my_tibble <- as_tibble(my_dataframe)`
+
+-   Make `dataframe` from `tibble`
+
+    -   `my_dataframe <- as.data.frame(my_tibble)`
+    -   some older R functions don't like tibbles.
+
+-   A tibble will **never** automatically change character vector to
+    factor when you create it
+
+-   When you create dataframes this might happen and it can be a pain
+
+## Parts of a tibble
+
+-   Pick part of tibble (i.e. a variable) with `[[` or `$`.
+
+    -   `[[` can pick by position or by name. Remember to put name in
+        quotes, i.e. `[["var1"]]` or `[[c("var1", "var10"]]`
+    -   `$` can only pick by name, i.e. `$var1`
+
+-   **If used in a pipe** they must be preceded by a dot `.`, i.e.
+    `.[["var1"]]` or `.$var1`.
+
+## Creating a tibble
+
+```{r}
+tib <- tibble(
+  x = 1:5,
+  y = seq(from = 2.5, by = 0.12, length.out = 5),
+  z = x + y^0.5,
+  # What does the next one do?
+  d = LETTERS[seq_along(y) + 10]
+)
+```
+
+```{r}
+tib
+```
+
+## R rule: variable names can't start with a number
+
+-   The following will not work
+
+. . .
+
+```{r}
+#| eval: false
+df <- data.frame(
+  2002 = 23.22,
+  2003 = 12.02,
+  2004 = 27.61
+)
+```
+
+## R rule: variable names can't start with a number
+
+-   The following *will* work
+
+. . .
+
+```{r}
+#| eval: true
+df_1 <- data.frame(
+  x2002 = 23.22,
+  x2003 = 12.02,
+  x2004 = 27.61
+)
+df_1
+```
+
+## R rule: variable names can't start with a number
+
+-   The following *will* also work
+-   Note the automatic change of variable names
+
+. . .
+
+```{r}
+df_2 <- data.frame(
+  `2002` = 23.22,
+  `2003` = 12.02,
+  `2004` = 27.61
+)
+df_2
+```
+
+## Tibble and variable names that start with number
+
+```{r}
+tib_1 <- tibble(
+  `2002` = 23.22,
+  `2003` = 12.02,
+  `2004` = 27.61
+)
+tib_1
+```
+
+-   Try to avoid such variable names
+-   They only create problems
+
+## Difference between Dataframes and Tibbles
+
+-   Tibbles never changes type of input, ex. character/string to factor
+    variable
+-   Tibbles never changes variable names
+-   Tibbles never creates row names
+
+## Printing to console large tibbles
+
+```{r}
+class(mtcars)
+```
+
+```{r}
+as_tibble(mtcars)
+```
+
+## Picking values from tibble in a pipe
+
+```{r}
+names(mtcars)
+```
+
+```{r}
+mtcars %>%
+  .$cyl %>% 
+  table()
+```
+
+```{r}
+mtcars %>%
+  .[["cyl"]] %>% 
+  table()
+```
+
+-   Note the use of "."
+
+## Printing to console large tibbles
+
+-   Tibbles try to only print as much as will fit in console
+-   To many variables to fit:
+    -   Prints top of the variables that fit and list the rest and their
+        type
+-   We will find type under the variable names
+-   Tibbles are generally nicer to use than dataframes
+-   Easy to change from **data.frame** to **tibble** and back again
+    -   `as_tibble()` (from tibble package)
+
+    -   `as.data.frame()` (from base package)

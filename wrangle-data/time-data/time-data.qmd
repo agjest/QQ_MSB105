@@ -1,0 +1,518 @@
+---
+title: "Time Data"
+author: "ag"
+format:
+  revealjs:
+        theme: simple
+        footer: '[MSB105](/index.html)'
+        reveal_options:
+        code-fold: show
+        incremental: true
+        smaller: true
+        scrollable: true
+        slide-number: c/t
+editor: visual
+editor_options:
+  markdown:
+    wrap: 72
+    canonical: true
+    chunk_output_type: console
+echo: true
+eval: true
+bibliography: ag_date.bib
+nocite: '@*'
+---
+
+## Load `tidyverse` and `lubridate`
+
+```{r setup}
+library(tidyverse)
+library(lubridate)
+```
+
+```{r}
+# create a bib file for the R packages
+# used in this document
+# Note! Needs to do a touch ag_date.bib in terminal before first run
+# else stops when bibliography: "ag_date.bib" not found in YAML
+# first time run
+knitr::write_bib(
+  c(
+    "tidyverse",
+    "lubridate"
+    ),
+  file = "ag_date.bib"
+  )
+```
+
+## Introduction
+
+-   Date and Times in R are complex
+-   In the *tidyverse* the package *lubridate* support dates and time.
+-   *lubridate* is **not** part of core *tidyverse* so we have to load
+    it with `library(lubridate)`.
+-   Since time probably will be of less importance for the data that you
+    will handle we will concentrate on dates
+
+## Creating date/times
+
+Tibbles prints them as:
+
+-   Date: `<date>`
+
+-   Time within a day: `<time>`
+
+-   date-time: `<dttm>`
+
+    1.  unique instance of time (to nearest second)
+
+    2.  sometimes we need even more precision (micro data stock
+        trading).
+
+-   Use the **simplest possible** type,
+
+    -   reduces complexity
+
+-   *time* is complex because it must handle time zones
+
+## How to create a date/time object
+
+-   From a string
+-   By combining date-time components
+-   From an existing date/time object
+
+## Example
+
+```{r}
+# nine eleven
+us_date <- "9-11-2001"
+no_date <- "11/9/2001"
+typeof(us_date)
+typeof(no_date)
+```
+
+## To date object; us
+
+```{r}
+# us date
+us_date
+us_d <- mdy(us_date) # note mdy
+typeof(us_d)
+class(us_d)
+```
+
+## To date object; no
+
+```{r}
+# no date
+no_date
+no_d <- dmy(no_date) #note dmy
+typeof(no_d)
+class(no_d)
+```
+
+## Some important years
+
+```{r}
+# some important years 
+as.numeric(dmy("01-01-1970"))
+as.numeric(dmy("01-01-1971"))
+as.numeric(dmy("01-01-1900"))
+as.numeric(dmy("01-01-0001"))
+```
+
+## To date object
+
+```{r}
+str(no_d)
+str(us_d)
+as.numeric(no_d)
+as.numeric(us_d)
+```
+
+## To date object
+
+```{r}
+us_d - no_d
+month(us_d, abbr = TRUE)
+month(no_d, abbr = TRUE)
+```
+
+## Date object math
+
+```{r}
+no_d == us_d
+as.numeric(no_d) == as.numeric(us_d)
+
+```
+
+## date-time {.smaller}
+
+```{r}
+us_date_time <- 09112001202020
+no_date_time <- "11/9/2001 20:20:20"
+mdy_hms(us_date_time)
+dmy_hms(no_date_time)
+as.numeric(mdy_hms(us_date_time))
+as.numeric(dmy_hms(no_date_time))
+```
+
+## date-time cont. {.smaller}
+
+```{r}
+as.numeric(dmy_hms(01011970000001))
+```
+
+. . .
+
+-   "UTC" standard not a real time zone,
+-   successor to Greenwich Mean Time (GMT),
+-   time in different time zones determined from UTC.
+-   Never daylight saving time, leap seconds.
+
+## Date from combining elements
+
+```{r}
+set.seed(1234)
+my_dates <- tibble(
+  y = 1999:2008,
+  m = sample(1:12, size = 10, replace = TRUE),
+  # make it simple, seed 1234 gives no impossible date
+  d = sample(1:31, size = 10, replace = TRUE)
+)
+my_dates
+```
+
+## Date from combining elements {.smaller}
+
+```{r}
+my_dates <- my_dates %>% 
+  mutate(
+    date = make_date(year = y, month = m, day = d),
+    # order do not matter
+    rev_date = make_date(day = d,  month = m, year = y),
+    rev_date2 = format(date, "%d-%m-%y") # now <chr> not date
+    )
+my_dates
+#clean up
+my_dates <- my_dates %>% 
+  select(-rev_date, -rev_date2)
+```
+
+## Change type
+
+```{r}
+today() # date
+now() # date time
+# change type
+as_date(now())
+as_datetime(today())
+```
+
+## Different inputs
+
+-   You never know what you have to deal with
+-   dmy() and friends are quite smart
+
+## Different inputs
+
+-   You never know what you have to deal with
+-   dmy() and friends are quite smart
+
+. . .
+
+```{r}
+my_dato <- "11_9_01"
+dmy(my_dato)
+my_dato <- "11:9:01"
+dmy(my_dato)
+```
+
+## What *lubridate* can't help us with
+
+```{r}
+my_dates <- my_dates %>% 
+  mutate(
+    DMY_rubbish = paste(d, m, str_sub(y,3,4), sep = "")
+  )
+my_dates
+```
+
+## What *lubridate* can't help us with
+
+```{r}
+my_dates %>% select(DMY_rubbish) %>% dmy()
+```
+
+-   The dates in `my_dates` we could resolve with some reasoning, but
+    values like 11201 are impossible to convert to a date.
+-   It could be 1. Dec. 01 (d=1, m=12; y=01) or 11. Feb. 01 (d=11, m=2,
+    y=01).
+
+## Rounding dates
+
+-   Nice to have for plotting
+-   `floor_date()` rounds down, `ceiling_date()` rounds up
+    -   year: nearest year,
+
+    -   month: nearest_month
+-   The following does not work
+
+. . .
+
+```{r}
+#| eval: false
+my_dates[1:5,]
+my_dates %>% 
+  select(date) %>% 
+  floor_date("month")
+```
+
+-   Returns: Error in update.default(x, mdays = 1, hours = 0, minutes =
+    0, seconds = 0) : need an object with call component
+
+## `floor_date()`, `ceiling_date()` etc. {.smaller}
+
+-   The following works
+
+. . .
+
+```{r}
+my_dates %>%
+  mutate(
+    date_dt = as_datetime(date, tz = "UTC"),
+    date_dt_fl_y = floor_date(date_dt, "year"),
+    date_dt_fl_m = floor_date(date_dt, "month"),
+    date_dt_cl_m = ceiling_date(date_dt, "month")
+  ) %>% 
+  select(date_dt, date_dt_fl_y,
+         date_dt_fl_m, date_dt_cl_m) %>% 
+  glimpse()
+```
+
+## `floor_date()`, `ceiling_date()` etc. cont. {.smaller}
+
+-   *date_dt_fl_y* "rounded" to start of year
+-   *date_dt_fl_y* "rounded" to start of month
+-   *date_dt_fl_y* "rounded" to start of next month
+
+## Important option {.smaller}
+
+-   Sunday start of week:
+    -    `week_start = getOption("lubridate.week.start", 7)`
+-   Monday start of week:
+    -    `week_start = getOption("lubridate.week.start", 1)`
+
+. . .
+
+```{r}
+my_dates %>%
+  mutate(
+    date_dt = as_datetime(date, tz = "UTC"),
+    # round to start of week Sunday
+    date_dt_fl_w_s = floor_date(date_dt, "week", week_start = getOption("lubridate.week.start", 7)),
+    # round to start of week Monday
+    date_dt_fl_w_m = floor_date(date_dt, "week", week_start = getOption("lubridate.week.start", 1))
+  ) %>%
+  select(date_dt, date_dt_fl_w_s, date_dt_fl_w_m) %>%
+  head(n = 4)
+```
+
+-   **Note!** Not necessarily 1 day difference (se line 2)
+
+## Setting components
+
+-   We can set individual components of `datetime` objects (and `date`)
+    with `year()`, `month()` and `day()`.
+-   **Note!** We need `datetime` objects, `date` objects must be
+    converted to datetime.
+
+. . .
+
+```{r}
+#| eval: false
+# Does not work
+my_dates %>% 
+  select(date) %>%
+  update(year = year(my_dates$date) + 10, month = 11)
+```
+
+## Setting components
+
+```{r}
+# This does work
+my_dates <- my_dates %>% 
+  mutate(
+    date_dt = as_datetime(date, tz = "Europe/Oslo"),
+    date_dt_new = update(date_dt, year = 2015)
+  )
+
+my_dates %>% 
+  select(date, date_dt, date_dt_new) %>% 
+  head(n = 3)
+```
+
+-   Why 01:00:00 and 02:00:00 in third column?
+    -   Day light saving time
+
+## Summertime {.smalle}
+
+-   More examples of Day light saving time
+
+. . .
+
+```{r}
+my_dates %>% 
+  select(date, date_dt)
+```
+
+## Time spans
+
+-   Duration, number of seconds
+-   Periods, weeks, months etc.
+-   Intervals, starting and endpoints
+-   Subtract two dates and you get a **difftime** object
+-   For details about time zones see 16.5 in r4ds.
+
+## An example: my_life {.smaller}
+
+-   Playing with time and writing a function
+
+. . .
+
+```{r}
+my_life <- function(birthday = "25121964", unit = "weeks") {
+# find the difference between today and birthday measured in unit
+life = as.numeric(difftime(today(), dmy(birthday), units = unit))
+# one case for each unit
+case_when(
+ unit == "weeks" ~ paste("You are about", life, "weeks old."),
+ unit == "days" ~ paste("You are about", life , "days old."),
+ unit == "hours" ~ paste("You are about", life, "hours old."),
+ unit == "mins" ~ paste("You are about", life, "minutes old."),
+ unit == "secs" ~ paste("You are about", life, "seconds old.")
+  )
+}
+my_life() # with default values
+```
+
+## An example: my_life {.smaller}
+
+-   some are just too young to play with R
+
+. . .
+
+```{r}
+my_life <- function(birthday = "25121964", unit = "weeks") {
+# too young to play with R, week as unit
+if (as.numeric(difftime(today(), dmy(birthday), units = "weeks"))/52.25 < 5) {
+return("You are far too young to play with R!")
+}
+# find the difference between today and birthday measured in unit
+life = as.numeric(difftime(today(), dmy(birthday), units = unit))
+# one case for each unit
+case_when(
+ unit == "weeks" ~ paste("You are about", life, "weeks old."),
+ unit == "days" ~ paste("You are about", life , "days old."),
+ unit == "hours" ~ paste("You are about", life, "hours old."),
+ unit == "mins" ~ paste("You are about", life, "minutes old."),
+ unit == "secs" ~ paste("You are about", life, "seconds old.")
+  )
+}
+```
+
+```{r}
+my_life("25-12-1964", unit = "weeks")
+```
+
+## An example: my_life {.smaller}
+
+-   Perhaps we should round off our answer.
+
+. . .
+
+```{r}
+my_life <- function(birthday = "01012020", unit = "weeks") {
+  # find the difference between today and birthday with week as unit
+  life_w <- as.numeric(difftime(today(), dmy(birthday), units = "weeks"))
+  # too young to play with R, week as unit
+  if (life_w / 52.25 < 5) {
+    return("You are far too young to play with R!")
+  } else {
+    # find the difference between today and birthday measured in unit
+    life = round(as.numeric(difftime(today(), dmy(birthday), units = unit)), 0)
+    # one case for each unit
+    case_when(
+      unit == "weeks" ~ paste("You are about", life, "weeks old."),
+      unit == "days" ~ paste("You are about", life, "days old."),
+      unit == "hours" ~ paste("You are about", life, "hours old."),
+      unit == "mins" ~ paste("You are about", life, "minutes old."),
+      unit == "secs" ~ paste("You are about", life, "seconds old.")
+    )
+  }
+}
+my_life(01032016)
+```
+
+## Testing my_life()
+
+```{r}
+my_life("01032005", unit = "weeks")
+my_life("01032005", unit = "days")
+my_life("01032005", unit = "mins")
+my_life("01032005", unit = "secs")
+```
+
+## An example my_life {.smaller}
+
+-   What about years and months
+-   `difftime()` does not do months and years
+-   We can get an approximation
+
+## Full function
+
+```{r}
+my_life <- function(birthday = today(), unit = "years") {
+  stopifnot(unit %in% c("years", "months", "weeks", "days", "hours", "mins", "secs"))
+  life_w = difftime(today(), dmy(birthday), units = "weeks")
+if (as.numeric(life_w)/52.25 < 5) {
+return("You are far too young to learn R!")
+} else if (unit %in% c("years", "months")) {
+  case_when(
+ unit == "years" ~ paste("You are about", round(as.numeric(life_w)/52.25, 2), "years old."),
+ unit == "months" ~ paste("You are about", round(as.numeric(life_w)/(52.25/12), 2), "months old.")
+)
+} else {
+life = round(as.numeric(difftime(today(), dmy(birthday), units = unit)), 0)
+case_when(
+ unit == "weeks" ~ paste("You are about", life, "weeks old."),
+ unit == "days" ~ paste("You are about", life , "days old."),
+ unit == "hours" ~ paste("You are about", life, "hours old."),
+ unit == "mins" ~ paste(
+   "You are about", 
+   formatC(life, format = "f", big.mark = ".",
+           digits = 0, decimal.mark = ","),
+   "minutes old."),
+ unit == "secs" ~ paste(
+   "You are about",
+   formatC(life, format = "f", big.mark = ".",
+           digits = 0, decimal.mark = ","),
+   "seconds old.")
+  )
+}
+}
+```
+
+## Final testing {.smaller}
+
+```{r}
+my_life("25-12-1964", unit = "years")
+my_life("25-12-1964", unit = "months")
+my_life("25-12-1964", unit = "weeks")
+my_life("25-12-1964", unit = "days")
+my_life("25-12-1964", unit = "hours")
+my_life("25-12-1964", unit = "mins")
+my_life("25-12-1964", unit = "secs")
+```
+
+## References

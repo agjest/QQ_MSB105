@@ -1,0 +1,687 @@
+---
+title: "Tidy Data"
+author: "ag"
+format:
+  revealjs:
+        theme: simple
+        footer: '[MSB105](/index.html)'
+        reveal_options:
+        code-fold: show
+        incremental: true
+        smaller: true
+        scrollable: true
+        slide-number: c/t
+editor: visual
+editor_options:
+  markdown:
+    wrap: 72
+    canonical: true
+    chunk_output_type: console
+echo: true
+eval: true
+---
+
+## Load tidyverse
+
+```{r setup}
+#| messages: true
+library(tidyverse)
+```
+
+-   Note the 8 packages that are loaded by tidyverse (taken from
+    [tidyverse.tidyverse.org](https://tidyverse.tidyverse.org))
+
+    -   [ggplot2](https://ggplot2.tidyverse.org/), for data
+        visualisation.
+
+    -   [dplyr](https://dplyr.tidyverse.org/), for data manipulation.
+
+    -   [tidyr](https://tidyr.tidyverse.org/), for data tidying.
+
+    -   [readr](https://readr.tidyverse.org/), for data import.
+
+    -   [purrr](https://purrr.tidyverse.org/), for functional
+        programming.
+
+    -   [tibble](https://tibble.tidyverse.org/), for tibbles, a modern
+        re-imagining of data frames.
+
+    -   [stringr](https://github.com/tidyverse/stringr), for strings.
+
+    -   [forcats](https://github.com/tidyverse/forcats), for factors.
+
+## Load tidyverse cont.
+
+-   Note that dplyr mask the two functions filter() and lag().
+
+-   Hence calling filter() will give us the dplyr version.
+
+-   If we need the original
+
+. . .
+
+```{r}
+#| eval: false
+base::Filter
+```
+
+```{r}
+#| eval: false
+stats::lag
+```
+
+## Tidy data
+
+-   "Happy families are all alike; every unhappy family is unhappy in
+    its own way." (Leo Tolstoy)
+
+-   "Tidy datasets are all alike, but every messy dataset is messy in
+    its own way." (Hadley Wickham)
+
+-   Tidy Data
+
+    1.  Each variable must have its own column.
+
+    2.  Each observation must have its own row.
+
+    3.  Each value must have its own cell.
+
+-   If two of the conditions above are satisfied then the third will
+    also be satisfied
+
+-   Remember our definition from chapter 7 of an observation:
+
+-   **Observation:** a set of measurements of the underlying phenomenon
+
+    1.  at the same time
+
+    2.  of the same object
+
+## Tidy Data; examples
+
+The *tidyverse* package comes with four example tables already defined
+
+## Tidy Data; table3
+
+```{r}
+table3
+```
+
+-   Is table3 Tidy?
+    -   No!
+-   Why not?
+    -   Rate: two values in one cell
+
+## Tidy Data; table2
+
+```{r}
+table2
+```
+
+-   Is table2 Tidy?
+    -   No!
+-   Why not?
+    -   Each observation is spread over two rows
+
+## Tidy Data; table4
+
+```{r}
+table4a
+table4b
+```
+
+-   Is table4a and table4b Tidy?
+    -   No!
+-   Why not?
+    -   Two observations in one row.
+
+    -   The observations are also spread over two tables.
+
+## Tidy Data; table1
+
+```{r}
+table1
+```
+
+-   Is table1 Tidy?
+    -   Yes!
+-   Why?
+    -   Observation: **same time, same object**
+
+        1.  Each variable is in a column
+
+        2.  each observation is in a row
+
+        3.  each cell contains one value.
+-   The table is tidy
+
+## Are untidy data bad?
+
+-   Are untidy data bad?
+    -   They are bad if you are going to do some statistical analysis.
+-   Why?
+    -   Most statistical routines expect the data to be tidy.
+
+    -   Why?
+
+        -   My guess: historic reasons, easier to scroll vertically than
+            horizontally.
+
+        -   More observations than variables.
+-   For other purposes untidy data might be good.
+    -   Presentation
+
+    -   Data entering
+
+## Why tidy data?
+
+-   Wicham give the following two reasons:
+    1.  Advantage to have **one** consistent way of storing data. Easier
+        to learn new tools because they behave similar to the tools you
+        already know (hence: Embrace pipes and the tidyverse)
+
+    2.  The whole tidyverse is designed to work well with tidy data
+-   Variables in columns fits well with R ability to handle vectors.
+
+## Some ex. of working with tidy data; 1
+
+```{r}
+# cases per 100.000
+table1 <- table1 %>% 
+  mutate(
+    rate = round((cases/population) * 100000,
+                 digits = 3)
+    )
+```
+
+-   very easy to make a new variable
+
+## Some ex. of working with tidy data; 2
+
+```{r}
+table1 %>% 
+  count(year, wt = cases)
+```
+
+-   What is wt?
+    -   The answer is in help:
+
+        -   wt Frequency weights.
+        -   Can be NULL or a variable:
+            -   If NULL (the default), counts the number of rows in each
+                group.
+
+            -   If a variable, computes sum(wt) for each group.
+
+    -   Here cases is a variable and we get the total sum of cases in
+        the two years.
+
+## Some ex. of working with tidy data; 3 code
+
+```{r, eval = FALSE, echo = TRUE}
+# Some changes from Wicham
+# embrace the pipe!
+table1 %>% 
+ggplot(mapping = aes(
+  x = parse_date(
+    as.character(year),
+    format = "%Y"
+    ),
+  y = rate,
+  colour = country
+  )
+  ) + 
+  geom_line(mapping = aes(group = country)) + 
+  geom_point() + 
+  xlab("Time") +
+  ylab("Rate per 100000") +
+  theme(legend.position = "bottom")
+```
+
+## Some examples of working with tidy data; 3 plot
+
+```{r, echo = FALSE}
+# Some changes from Wicham
+# embrace the pipe!
+table1 %>% 
+ggplot(mapping = aes(
+  x = parse_date(
+    as.character(year),
+    format = "%Y"
+    ),
+  y = rate,
+  colour = country
+  )
+  ) + 
+  geom_line(mapping = aes(group = country)
+            ) + 
+  geom_point() + 
+  xlab("Time") +
+  ylab("Rate per 100000") +
+  theme(legend.position = "bottom")
+```
+
+## How to get tidy data?
+
+-   Most common problems
+    1.  One variable might be spread across multiple columns.
+
+    2.  One observation might be scattered across multiple rows.
+-   Four verbs
+    1.  **pivot_longer()** (previously gather())
+    2.  **pivot_wider()** (previously spread())
+    3.  **separate**
+    4.  **unite**
+
+## pivot_longer()
+
+-   Most important arguments:
+    -   data: A data frame to pivot.
+
+    -   cols: Columns to pivot into longer format.
+
+    -   names_to: A string specifying the name of the column to create
+        from the data stored in the column names of data.
+
+    -   values_to: A string specifying the name of the column to create
+        from the data stored in cell values.
+
+## pivot_longer() example; problem
+
+```{r}
+table4a
+```
+
+-   Problem: Each observation is spread out over two columns (two points
+    of time)
+-   Remember definition of *observation*
+-   **Observation:** a set of measurements of the underlying phenomenon
+    1.  at the same time
+
+    2.  of the same object
+
+## pivot_longer() example; how to fix it
+
+```{r}
+tidy4a <- table4a %>% 
+  pivot_longer(cols = -country,
+               names_to = "year", 
+               values_to = "cases")
+tidy4a
+```
+
+-   Note: col = c(`` `1999` ``, `` `2000` ``) would also work, or cols =
+    2:3. The important thing is that the variable country is not to be
+    included.
+-   The new variables year and cases do not yet exist, hence they must
+    be enclosed by quotes.
+
+## pivot_longer() example.fix table4b
+
+```{r}
+tidy4b <- table4b %>% 
+  pivot_longer(
+    cols = -country,
+    names_to = "year",
+    values_to = "pop"
+  )
+tidy4b
+```
+
+## Make tidy4 (join)
+
+```{r}
+tidy4 <- tidy4a %>% 
+  left_join(tidy4b, by = c("country", "year"))
+tidy4
+```
+
+## **pivot_wider()**
+
+-   We use **pivot_wider()** when one observation is spread over
+    multiple rows
+-   table2 is a table with this problem
+-   Important parameters
+    -   data: A data frame to pivot.
+
+    -   names_from: the name of the output column
+
+    -   names_sep: names_sep = "\_"
+
+    -   values_from: get the cell values
+
+## pivot_longer() example. Fix table2
+
+```{r, echo = TRUE}
+table2[1:3,]
+(tidy2 <- table2 %>% 
+  pivot_wider(names_from = type,
+              values_from = count))
+```
+
+## **separate()**
+
+-   We use **separate()** when one cell contains more than one value
+-   **separate()** pulls apart a column
+-   table3 is a table with this problem
+-   Important parameters
+    -   data: A data frame.
+
+    -   col: Column name or position.
+
+    -   into: Names of new variables to create as character vector. Use
+        NA to omit the variable in the output.
+
+    -   sep: Separator between columns.
+
+        -   If character, sep is interpreted as a regular expression.
+
+            -   The default value is a regular expression that matches
+                any sequence of non-alphanumeric values.
+
+        -   If numeric, sep is interpreted as character positions to
+            split at.
+
+            -   Positive values start at 1 at the far-left of the
+                string;
+
+            -   negative value start at -1 at the far-right of the
+                string.
+
+            -   The length of sep should be one less than into.
+
+## separate() example. Fix table3
+
+```{r}
+table3[1:3,] 
+tidy3 <- table3 %>% 
+  separate(col = rate,
+           into = c("cases", "pop"),
+           sep = "/"
+           )
+tidy3[1:5,]
+```
+
+## separate() example. Fix table3, convert = TRUE
+
+```{r}
+table3[1:3,] 
+tidy3 <- table3 %>% 
+  separate(col = rate,
+           into = c("cases", "pop"),
+           sep = "/",
+           convert = TRUE
+           )
+# cases and pop now int, not chr
+tidy3[1:3,]
+```
+
+## separate() example. Fix table3, sep number
+
+```{r}
+tidy3century <- tidy3 %>% 
+  separate(col = year,
+           into = c("century", "year"),
+           sep = 2
+           )
+tidy3century
+
+```
+
+-   sep = 2, separate after 2 char from left
+-   What would sep = -2 do?
+    -   separate before 2 char from right
+
+## **unite()**
+
+-   reverse of separate()
+-   combines multiple columns into a single column
+-   Important parameters
+    -   data: A data frame.
+
+    -   col: The name of the new column, as a string or symbol.
+
+        -   ...: We list the varaibles we want to unite. Separate the
+            names with comma.
+
+    -   sep: Separator to use between values.
+
+## unite() example. Fix tidy3century
+
+```{r}
+tidy3century[1:3,]
+tidy3century %>% 
+  unite(
+    col = "year",
+    century, year, # the columns we want to unite
+    sep = "" # what happens witout sep?
+  )
+```
+
+## Missing values
+
+-   Values can be missing in two ways
+    1.  **Explicitly**, i.e. flagged with NA
+
+    2.  **Implicitly**, i.e. simply not present in the data.
+
+## Missing values; example
+
+```{r}
+stocks <- tibble(
+  year   = c(2015, 2015, 2015, 
+             2015, 2016, 2016, 2016),
+  qtr    = c(   1,    2,    3,    
+                4,    2,    3,    4),
+  return = c(1.88, 0.59, 0.35,
+             NA, 0.92, 0.17, 2.66)
+)
+stocks
+```
+
+-   First quarter 2016 is missing
+
+## Implecitly missing becomes explicitly missing
+
+```{r}
+stocks_wider <- stocks %>% 
+  pivot_wider(
+    names_from = year,
+    values_from = return
+    )
+stocks_wider
+```
+
+-   Note that quarter 1 year 2016 now has become explicitly missing.
+
+## missing; `values_drop_na = TRUE`
+
+```{r}
+stocks_wider %>% 
+  pivot_longer(
+    cols = -qtr,
+    names_to = "year", # in quote since it does not exist yet
+    values_to = "return",
+    values_drop_na = TRUE
+  ) %>% 
+  arrange(year, qtr)
+```
+
+## missing; `complete()`
+
+```{r}
+stocks %>% 
+  complete(year, qtr)
+```
+
+-   complete() takes a set of columns, and finds all unique
+    combinations.
+-   It then ensures the original dataset contains all those values,
+    filling in explicit NAs where necessary.
+
+## missing; `fill()`
+
+```{r}
+treatment <- tribble(
+  ~ person,           ~ treatment, ~response,
+  "Derrick Whitmore", 1,           7,
+  NA,                 2,           10,
+  NA,                 3,           9,
+  "Katherine Burke",  1,           4
+)
+treatment
+```
+
+-   `fill()` can save one from a lot of work
+-   NA for person , should be the name of the person above
+-   important parameter:
+    -   ... Columns to fill.Nmaes separated by ","
+    -   .direction = c("down", "up", "downup", "updown"))
+
+## missing; fill() example
+
+```{r}
+treatment %>% 
+  fill(person, .direction = c("down"))
+```
+
+```{r}
+treatment %>% 
+  fill(person, .direction = c("up"))
+```
+
+## Case; who
+
+```{r}
+dim(who)
+```
+
+```{r}
+who[1:3, ]
+```
+
+## Case; who
+
+```{r}
+# find type of vector with a pipe
+typeof_who <- who %>% 
+  map(typeof) %>% 
+  unlist()
+# print typeof_who
+typeof_who
+# tabulate typeof_who
+table(typeof_who)
+```
+
+-   Three variables are of type character, 57 of type integer
+-   Variable names might be values
+
+## Where to start?
+
+-   Wicham: The best place to start is almost always to gather together
+    the columns that are not variables. (pivot_longer())
+
+. . .
+
+```{r}
+who[1:5, c("country", "iso2", "iso3")]
+```
+
+```{r}
+names(who)[1:10]
+```
+
+## Where to start?
+
+```{r}
+unique(who$new_sp_m014)[1:10]
+```
+
+-   Might be number of cases
+
+. . .
+
+```{r}
+names(who)[50:60]
+```
+
+-   "new_sp_m014" etc. probably values not variables
+
+## who, gather variables
+
+```{r}
+who1 <- who %>% 
+  pivot_longer(cols = new_sp_m014:newrel_f65,
+               names_to = "key",
+               values_to = "cases",
+               values_drop_na = TRUE
+               )
+who1
+```
+
+## Whats in a variable name?
+
+-   "new_sp_m014"
+    -   "new": new case
+
+    -   sp: Type of TB, alt. "rel", "ep", "sn", "sp"
+
+    -   m: male, alt. "m" and "f"
+
+    -   014: age 0-14, alt "014", "1524", "2534", "3544", "4554",
+        "5564", "65"
+
+## who1
+
+```{r}
+head(who1, n=5)
+```
+
+-   have to fix one inconsistency in key;
+    -   "newrel" should have been "new_rel"
+
+```{r}
+who2 <- who1 %>% 
+  mutate(
+    key = str_replace(key, "newrel", "new_rel")
+  )
+```
+
+## Separate out values from "key" variable
+
+```{r}
+who3 <- who2 %>% 
+  separate(col = key,
+           into = c("new", "type", "sexage"),
+           sep = "_"
+           )
+who3
+```
+
+## Drop variables and split sexage
+
+```{r}
+who5 <- who3 %>% 
+  select(-new, -iso2, -iso3) %>% 
+  separate(col = sexage,
+           into = c("sex", "age"),
+           sep = 1
+           )
+who5
+```
+
+## Split age into age_start and age_end
+
+```{r}
+who6 <- who5 %>% 
+  mutate(
+    age = str_pad(age, width = 4, side = "left", pad = "0"),
+    age = str_replace(age, "0065", "6599")
+  ) %>% 
+  separate(col = age,
+           into = c("age_start", "age_end"),
+           sep = 2
+           )
+who6[1:5,]
+dim(who6)
+```

@@ -149,3 +149,101 @@ problems.](rs-git-push-res.png)
 ## RStudio Close Project
 
 ![Close your Project.](rs-close-proj.png)
+
+## Work flow Projects chap. 8 r4ds
+
+## Workflow: projects (chap. 8)
+
+-   Not to much new, but some points
+-   Remember un-check these options
+
+![Do not restore .Rdata and never Save .Rdate. We'll create our R
+objects by code.](no-restore-Rdata.png)
+
+## Workflow: projects (chap. 8)
+
+-   Nice short-cuts to restart R
+-   Press Cmd/Ctrl + Shift + F10 to restart RStudio.
+-   Press Cmd/Ctrl + Shift + S to rerun the current script.
+-   Remember that 'working directory' for us is the directory where our
+    `.qmd` file is located. Everything is relative to current Quarto
+    Document.
+-   You should **never** have to set you working directory.
+
+## Workflow: projects (chap. 8)
+
+-   Working directory for Project.
+
+. . .
+
+![Working Directory for Project is top Directory where the .Rproj file
+is located.](working-directory.png)
+
+-   Working directory for current Quarto Document is the directory where
+    the Quarto Document is situated.
+
+. . .
+
+```{r}
+getwd()
+```
+
+-   In the sub-dir wf of the sub-dir explore-data in the project folder
+
+## Relative Paths
+
+-   ".." is one directory up in unix parlour.
+-   "." is current directory
+-   If I want to read the first 7 lines of a file intro.qmd in a sub-dir
+    intro in a directory called introduction at the to level of my
+    project I could do:
+
+. . .
+
+```{r}
+# relative part
+my_file <- "./../../introduction/intro/intro.qmd"
+my_text <- readLines(con = file(my_file, encoding = "UTF-8"), n = 7)
+#close(con)
+```
+
+```{r}
+cat(my_text, sep = "\n")
+```
+
+## Relative Paths cont.
+
+-   Relative paths work best for stuff located below the current
+    document.
+-   Ex. sample1.csv in Data directory in current directory.
+-   We can access with "./Data/sample1.csv".
+    -   "./" not really needed
+-   We can move current directory, with sub-directories, to a new
+    location and everything will still work.
+
+## Absolute Path
+
+-   **Do not use absolute paths in code you will share**
+    -   You should also try to avoid it in code you don't intend to
+        share
+
+    -   Remember: "Be kind to future self"
+-   Read from file with absolute path (this time only 4 lines read):
+
+. . .
+
+```{r}
+# Absolute path
+my_file <- "/Users/agwd/Dev/QQ_MSB105/introduction/intro/intro.qmd"
+my_text <- readLines(con = file(my_file, encoding = "UTF-8"), n = 4)
+#close(con)
+```
+
+```{r}
+cat(my_text, sep = "\n")
+```
+
+```{r}
+#| echo: false
+rm(my_text)
+```
