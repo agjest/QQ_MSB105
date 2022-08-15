@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.0.36">
 
   <meta name="author" content="ag">
-  <title>MSB105 - Data Wrangle Introduction</title>
+  <title>MSB105 - Install Software</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -320,26 +320,153 @@
     <div class="slides">
 
 <section id="title-slide" class="center">
-  <h1 class="title">Data Wrangle Introduction</h1>
+  <h1 class="title">Install Software</h1>
   <p class="author">ag</p>
 </section>
 
-<section class="slide level2">
+<section id="r-from-r-project.org" class="slide level2">
+<h2>R from r-project.org</h2>
+<ul>
+<li class="fragment">We need to install the latest version of R</li>
+<li class="fragment">Goto <a href="www.r-project.org">www.r-project.org</a>
+<ul>
+<li class="fragment"><p>Select CRAN from menu at the left</p></li>
+<li class="fragment"><p>Select Norway: uib from the list</p></li>
+<li class="fragment"><p>Download for your platform (macos, windows or linux)</p></li>
+<li class="fragment"><p>For mac select correct version</p>
+<ul>
+<li class="fragment"><p>R-4.2.1.pkg for Intel processor (macs older than 1,5 years)</p></li>
+<li class="fragment"><p>R-4.2.1-arm64.pkg for Apple Silicon processors (M1 or M2)</p></li>
+</ul></li>
+</ul></li>
+<li class="fragment">Install software as you normally would</li>
+</ul>
+</section>
+<section id="mac-installer" class="slide level2">
+<h2>Mac installer</h2>
+<ul>
+<li class="fragment">Select “Tilpass”</li>
+</ul>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="tilpass.png"></p>
+<p></p><figcaption>Tilpass</figcaption><p></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="mac-installer-cont." class="slide level2">
+<h2>Mac installer cont.</h2>
+<ul>
+<li class="fragment">deselect tcltk</li>
+</ul>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="deselect-tcltk.png"></p>
+<p></p><figcaption>Deselect tcl/pk</figcaption><p></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="install-rstudio" class="slide level2">
+<h2>Install RStudio</h2>
+<ul>
+<li class="fragment">We need to install latest version of RStudio</li>
+<li class="fragment">Goto <a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a></li>
+<li class="fragment">Download the <strong>free RStudio Desktop</strong> for your system</li>
+<li class="fragment">For mac drag the RStudio icon to the Applications folder alias next to the icon</li>
+<li class="fragment">For windows follow normal application installation procedure</li>
+</ul>
+</section>
+<section id="install-zotero" class="slide level2">
+<h2>Install Zotero</h2>
+<ul>
+<li class="fragment">We need to install the latest version of Zotero</li>
+<li class="fragment">Goto <a href="https://www.zotero.org/download/" class="uri">https://www.zotero.org/download/</a></li>
+<li class="fragment">After Zotero is installed and running return to www.zotero.org with your favourite web borwser.</li>
+<li class="fragment">Install Zotero Connector
+<ul>
+<li class="fragment">If you are using Safari on mac the connector is included, but you have to enable it under Safari &gt; Valg … &gt; Tillegg</li>
+</ul></li>
+</ul>
+</section>
+<section id="enable-zotero-connector-in-safari" class="slide level2">
+<h2>Enable Zotero Connector in Safari</h2>
 
-<div class="callout callout-note callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<img data-src="safari-enable-zotero-connector.png" class="r-stretch quarto-figure-center"><p class="caption">Enable Zotero Connector in Safari</p></section>
+<section id="installing-better-bibtex" class="slide level2">
+<h2>Installing Better BibTeX</h2>
+<ul>
+<li class="fragment">Goto <a href="https://retorque.re/zotero-better-bibtex/" class="uri">https://retorque.re/zotero-better-bibtex/</a></li>
+<li class="fragment">Click Download in menu at the left</li>
+<li class="fragment">Then click Installation in menu at the left to get installation instructions</li>
+</ul>
+</section>
+<section id="installing-git" class="slide level2">
+<h2>Installing git</h2>
+<ul>
+<li class="fragment">Goto <a href="https://git-scm.com/downloads" class="uri">https://git-scm.com/downloads</a></li>
+<li class="fragment">Download for your system</li>
+<li class="fragment">Choose <strong>binary installer (on mac)</strong>
+<ul>
+<li class="fragment">Click download on <code>https://sourceforge.net/projects/git-osx-installer/</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="for-mac" class="slide level2">
+<h2>For mac</h2>
+<ul>
+<li class="fragment">Open the Terminal program (ligger i Verktøy mappen i Programmer mappen)</li>
+<li class="fragment">Give the following command (in Terminal)
+<ul>
+<li class="fragment"><code>xcode-select --install</code></li>
+</ul></li>
+<li class="fragment">An apple ID might be required to be able to download</li>
+</ul>
+</section>
+<section id="final-configurations" class="slide level2">
+<h2>Final configurations</h2>
+<ul>
+<li class="fragment">Start RStudio</li>
+<li class="fragment">Check that you have a Git tab in upper right pane</li>
+<li class="fragment">Select the Terminal tab in lower right pane in RStudio</li>
+</ul>
+<div class="fragment">
+<p><code>git config --global user.name 'Jane Doe'</code></p>
+<p><code>git config --global user.email 'jane@example.com'</code></p>
+<p><code>git config --global --list</code></p>
 </div>
-<p><strong>WRITE WRANGLE INTRODUCTION</strong></p>
-</div>
-<div class="callout-content">
-
-</div>
-</div>
-</div>
-<p>assadad</p>
+</section>
+<section id="git-editor" class="slide level2">
+<h2>Git editor</h2>
+<ul>
+<li class="fragment">PC
+<ul>
+<li class="fragment"><code>git config --global core.editor C:\Program Files\RStudio\bin\rstudio.exe</code></li>
+</ul></li>
+<li class="fragment">mac
+<ul>
+<li class="fragment"><code>git config --global core.editor /Applications/RStudio.app</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="define-user-on-github" class="slide level2">
+<h2>Define user on Github</h2>
+<ul>
+<li class="fragment">hvl email og email you use</li>
+<li class="fragment">Use a serious name; you might be showing this to a future employer</li>
+<li class="fragment">Connect RStudio to Github
+<ul>
+<li class="fragment"><p>install packages</p>
+<ul>
+<li class="fragment"><p>usethis</p></li>
+<li class="fragment"><p>credentials</p></li>
+</ul></li>
+<li class="fragment"><p>Use Github.R</p></li>
+</ul></li>
+</ul>
 
 <div class="footer footer-default">
 <p><a href="../../index.html">MSB105</a></p>

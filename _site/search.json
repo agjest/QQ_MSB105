@@ -3658,7 +3658,7 @@
     "href": "introduction/introduction.html#presentations",
     "title": "Introduction",
     "section": "Presentations",
-    "text": "Presentations\n\nIntro\nUndervisningsplan\nStructured Dynamic Documents\n\nDocuments:\n\nPreferences RStudio\nInstall R packages\nIllustrate Markdown\nRegression Tables\n\n\nGit and Github\nVery Short Intro to R\n\nVery Short Intro to R (as document)"
+    "text": "Presentations\n\nIntro\nUndervisningsplan\nInstall Software\nStructured Dynamic Documents\n\nDocuments:\n\nPreferences RStudio\nInstall R packages\nIllustrate Markdown\nRegression Tables\n\n\nGit and Github\nVery Short Intro to R\n\nVery Short Intro to R (as document)"
   },
   {
     "objectID": "introduction/introduction.html#datasets",
@@ -7677,5 +7677,89 @@
     "title": "Vectors",
     "section": "Subsetting list with [[ and [ cont.",
     "text": "Subsetting list with [[ and [ cont.\n\n\nCode\nlist(1, 2, 3)\n\n\n[[1]]\n[1] 1\n\n[[2]]\n[1] 2\n\n[[3]]\n[1] 3\n\n\nCode\nlist(1:3)[[1]][[2]]\n\n\n[1] 2\n\n\nCode\nlist(1, 2, 3)[[2]]\n\n\n[1] 2\n\n\nCode\nunlist(my_list)\n\n\n    A1     A2     A3     A4     B1     B2     B3     C1     C2     C3 \n   \"a\"    \"b\"    \"c\"    \"d\"    \"1\"    \"2\"    \"3\"    \"a\" \"1.25\" \"TRUE\" \n\n\nCode\ntypeof(unlist(my_list))\n\n\n[1] \"character\""
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#r-from-r-project.org",
+    "href": "introduction/install-sw/install-sw.html#r-from-r-project.org",
+    "title": "Install Software",
+    "section": "R from r-project.org",
+    "text": "R from r-project.org\n\nWe need to install the latest version of R\nGoto www.r-project.org\n\nSelect CRAN from menu at the left\nSelect Norway: uib from the list\nDownload for your platform (macos, windows or linux)\nFor mac select correct version\n\nR-4.2.1.pkg for Intel processor (macs older than 1,5 years)\nR-4.2.1-arm64.pkg for Apple Silicon processors (M1 or M2)\n\n\nInstall software as you normally would"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#mac-installer",
+    "href": "introduction/install-sw/install-sw.html#mac-installer",
+    "title": "Install Software",
+    "section": "Mac installer",
+    "text": "Mac installer\n\nSelect “Tilpass”\n\n\n\n\n\nTilpass"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#mac-installer-cont.",
+    "href": "introduction/install-sw/install-sw.html#mac-installer-cont.",
+    "title": "Install Software",
+    "section": "Mac installer cont.",
+    "text": "Mac installer cont.\n\ndeselect tcltk\n\n\n\n\n\nDeselect tcl/pk"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#install-rstudio",
+    "href": "introduction/install-sw/install-sw.html#install-rstudio",
+    "title": "Install Software",
+    "section": "Install RStudio",
+    "text": "Install RStudio\n\nWe need to install latest version of RStudio\nGoto https://www.rstudio.com/products/rstudio/download/\nDownload the free RStudio Desktop for your system\nFor mac drag the RStudio icon to the Applications folder alias next to the icon\nFor windows follow normal application installation procedure"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#install-zotero",
+    "href": "introduction/install-sw/install-sw.html#install-zotero",
+    "title": "Install Software",
+    "section": "Install Zotero",
+    "text": "Install Zotero\n\nWe need to install the latest version of Zotero\nGoto https://www.zotero.org/download/\nAfter Zotero is installed and running return to www.zotero.org with your favourite web borwser.\nInstall Zotero Connector\n\nIf you are using Safari on mac the connector is included, but you have to enable it under Safari > Valg … > Tillegg"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#enable-zotero-connector-in-safari",
+    "href": "introduction/install-sw/install-sw.html#enable-zotero-connector-in-safari",
+    "title": "Install Software",
+    "section": "Enable Zotero Connector in Safari",
+    "text": "Enable Zotero Connector in Safari\n\nEnable Zotero Connector in Safari"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#installing-better-bibtex",
+    "href": "introduction/install-sw/install-sw.html#installing-better-bibtex",
+    "title": "Install Software",
+    "section": "Installing Better BibTeX",
+    "text": "Installing Better BibTeX\n\nGoto https://retorque.re/zotero-better-bibtex/\nClick Download in menu at the left\nThen click Installation in menu at the left to get installation instructions"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#installing-git",
+    "href": "introduction/install-sw/install-sw.html#installing-git",
+    "title": "Install Software",
+    "section": "Installing git",
+    "text": "Installing git\n\nGoto https://git-scm.com/downloads\nDownload for your system\nChoose binary installer (on mac)\n\nClick download on https://sourceforge.net/projects/git-osx-installer/"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#for-mac",
+    "href": "introduction/install-sw/install-sw.html#for-mac",
+    "title": "Install Software",
+    "section": "For mac",
+    "text": "For mac\n\nOpen the Terminal program (ligger i Verktøy mappen i Programmer mappen)\nGive the following command (in Terminal)\n\nxcode-select --install\n\nAn apple ID might be required to be able to download"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#final-configurations",
+    "href": "introduction/install-sw/install-sw.html#final-configurations",
+    "title": "Install Software",
+    "section": "Final configurations",
+    "text": "Final configurations\n\nStart RStudio\nCheck that you have a Git tab in upper right pane\nSelect the Terminal tab in lower right pane in RStudio\n\n\ngit config --global user.name 'Jane Doe'\ngit config --global user.email 'jane@example.com'\ngit config --global --list"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#git-editor",
+    "href": "introduction/install-sw/install-sw.html#git-editor",
+    "title": "Install Software",
+    "section": "Git editor",
+    "text": "Git editor\n\nPC\n\ngit config --global core.editor C:\\Program Files\\RStudio\\bin\\rstudio.exe\n\nmac\n\ngit config --global core.editor /Applications/RStudio.app"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#define-user-on-github",
+    "href": "introduction/install-sw/install-sw.html#define-user-on-github",
+    "title": "Install Software",
+    "section": "Define user on Github",
+    "text": "Define user on Github\n\nhvl email og email you use\nUse a serious name; you might be showing this to a future employer\nConnect RStudio to Github\n\ninstall packages\n\nusethis\ncredentials\n\nUse Github.R\n\n\n\n\nMSB105"
   }
 ]

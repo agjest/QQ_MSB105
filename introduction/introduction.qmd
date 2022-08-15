@@ -10,6 +10,7 @@ It will try to give you an idea of what Data Sciences is and also teach you some
 
 -   [Intro](intro/intro.qmd)
 -   [Undervisningsplan](undervisningsplan/undervisningsplan.qmd)
+-   [Install Software](install-sw/install-sw.qmd)
 -   [Structured Dynamic Documents](s-d-d/Structured-Dynamic-Documents.qmd)
     -   Documents:
         -   [Preferences RStudio](pref-setup-2022/ps2022.qmd)

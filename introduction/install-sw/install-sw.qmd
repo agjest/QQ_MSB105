@@ -1,0 +1,135 @@
+---
+title: "Install Software"
+author: "ag"
+format:
+  revealjs:
+        theme: simple
+        footer: '[MSB105](/index.html)'
+        reveal_options:
+        code-fold: show
+        incremental: true
+        smaller: true
+        scrollable: true
+        slide-number: c/t
+editor: visual
+editor_options:
+  markdown:
+    wrap: 72
+    canonical: true
+    chunk_output_type: console
+echo: true
+eval: true
+---
+
+## R from r-project.org
+
+-   We need to install the latest version of R
+-   Goto [www.r-project.org](www.r-project.org)
+    -   Select CRAN from menu at the left
+
+    -   Select Norway: uib from the list
+
+    -   Download for your platform (macos, windows or linux)
+
+    -   For mac select correct version
+
+        -   R-4.2.1.pkg for Intel processor (macs older than 1,5 years)
+
+        -   R-4.2.1-arm64.pkg for Apple Silicon processors (M1 or M2)
+-   Install software as you normally would
+
+## Mac installer
+
+-   Select "Tilpass"
+
+. . .
+
+![Tilpass](tilpass.png)
+
+## Mac installer cont.
+
+-   deselect tcltk
+
+. . .
+
+![Deselect tcl/pk](deselect-tcltk.png)
+
+## Install RStudio
+
+-   We need to install latest version of RStudio
+-   Goto <https://www.rstudio.com/products/rstudio/download/>
+-   Download the **free RStudio Desktop** for your system
+-   For mac drag the RStudio icon to the Applications folder alias next
+    to the icon
+-   For windows follow normal application installation procedure
+
+## Install Zotero
+
+-   We need to install the latest version of Zotero
+-   Goto <https://www.zotero.org/download/>
+-   After Zotero is installed and running return to www.zotero.org with
+    your favourite web borwser.
+-   Install Zotero Connector
+    -   If you are using Safari on mac the connector is included, but
+        you have to enable it under Safari \> Valg ... \> Tillegg
+
+## Enable Zotero Connector in Safari
+
+![Enable Zotero Connector in Safari](safari-enable-zotero-connector.png)
+
+## Installing Better BibTeX
+
+-   Goto <https://retorque.re/zotero-better-bibtex/>
+-   Click Download in menu at the left
+-   Then click Installation in menu at the left to get installation
+    instructions
+
+## Installing git
+
+-   Goto <https://git-scm.com/downloads>
+-   Download for your system
+-   Choose **binary installer (on mac)**
+    -   Click download on
+        `https://sourceforge.net/projects/git-osx-installer/`
+
+## For mac
+
+-   Open the Terminal program (ligger i Verktøy mappen i Programmer
+    mappen)
+-   Give the following command (in Terminal)
+    -   `xcode-select --install`
+-   An apple ID might be required to be able to download
+
+## Final configurations
+
+-   Start RStudio
+-   Check that you have a Git tab in upper right pane
+-   Select the Terminal tab in lower right pane in RStudio
+
+. . .
+
+`git config --global user.name 'Jane Doe'`
+
+`git config --global user.email 'jane@example.com'`
+
+`git config --global --list`
+
+## Git editor
+
+-   PC
+    -   `git config --global core.editor C:\Program Files\RStudio\bin\rstudio.exe`
+-   mac
+    -   `git config --global core.editor /Applications/RStudio.app`
+
+## Define user on Github
+
+-   hvl email og email you use
+-   Use a serious name; you might be showing this to a future employer
+-   Connect RStudio to Github
+    -   install packages
+
+        -   usethis
+
+        -   credentials
+
+    -   Use Github.R
