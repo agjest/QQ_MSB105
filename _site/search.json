@@ -6990,7 +6990,7 @@
     "href": "program/vectors/vectors.html#naming-elements-in-vector",
     "title": "Vectors",
     "section": "Naming elements in vector",
-    "text": "Naming elements in vector\n\nClassic R names()\nMore modern: purrr:set_names() (imported from rlang)\n\n\n\n\nCode\n(x <- 1:4)\n\n\n[1] 1 2 3 4\n\n\nCode\n# set names by nameing the element\nx <- c(a = 1, b = 2, c = 3, d = 4)\nx\n\n\na b c d \n1 2 3 4 \n\n\nCode\n# remove the names with set_names\nx <- purrr::set_names(x, nm = NULL)\nx\n\n\n[1] 1 2 3 4\n\n\nCode\n# set names again\nx <- purrr::set_names(x, nm = c(\"a\", \"b\", \"c\", \"d\"))\nx\n\n\na b c d \n1 2 3 4"
+    "text": "Naming elements in vector\n\nClassic R names()\nMore modern: purrr:set_names() (imported from rlang)\n\n\n\n\nCode\n(x <- 1:4)\n\n\n[1] 1 2 3 4\n\n\nCode\n# set names by naming the element\nx <- c(a = 1, b = 2, c = 3, d = 4)\nx\n\n\na b c d \n1 2 3 4 \n\n\nCode\n# remove the names with set_names\nx <- purrr::set_names(x, nm = NULL)\nx\n\n\n[1] 1 2 3 4\n\n\nCode\n# set names again\nx <- purrr::set_names(x, nm = c(\"a\", \"b\", \"c\", \"d\"))\nx\n\n\na b c d \n1 2 3 4"
   },
   {
     "objectID": "program/vectors/vectors.html#naming-elements-in-vector-1",

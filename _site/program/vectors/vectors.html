@@ -5,9 +5,9 @@
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.0.36">
+  <meta name="generator" content="quarto-0.9.613">
 
   <meta name="author" content="ag">
   <title>MSB105 - Vectors</title>
@@ -398,7 +398,7 @@
     }
   </style>
 </head>
-<body class="quarto-light">
+<body>
   <div class="reveal">
     <div class="slides">
 
@@ -605,7 +605,7 @@
 </div>
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># set names by nameing the element</span></span>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># set names by naming the element</span></span>
 <span id="cb20-2"><a href="#cb20-2"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">a =</span> <span class="dv">1</span>, <span class="at">b =</span> <span class="dv">2</span>, <span class="at">c =</span> <span class="dv">3</span>, <span class="at">d =</span> <span class="dv">4</span>)</span>
 <span id="cb20-3"><a href="#cb20-3"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -977,17 +977,6 @@
 </div>
 <ul>
 <li class="fragment">Error: Must extract column with a single valid subscript. x Subscript <code>1:3</code> has size 3 but must be size 1. Run <code>rlang::last_error()</code> to see where the error occurred.</li>
-</ul>
-</section>
-<section id="subsetting-dataframe-with-and-3" class="slide level2 smaller">
-<h2>Subsetting dataframe with <code>[[</code> and <code>[</code></h2>
-<ul>
-<li class="fragment">Note the difference between <code>[[</code> and <code>[</code>
-<ul>
-<li class="fragment"><code>[[</code> returns a single value</li>
-<li class="fragment"><code>[</code> also returns a single value, but inside a dataframe/tibble</li>
-</ul></li>
-<li class="fragment">Very important for lists</li>
 </ul>
 </section>
 <section id="subsetting-list-with-and" class="slide level2 smaller">
@@ -1538,24 +1527,6 @@ Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino 
 
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
       const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
       tabsets.forEach(function(tabset) {
         const tabby = new Tabby('#' + tabset.id);
