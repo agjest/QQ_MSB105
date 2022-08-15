@@ -7067,7 +7067,7 @@
     "href": "program/vectors/vectors.html#subsetting-list-with-and",
     "title": "Vectors",
     "section": "Subsetting list with [[ and [",
-    "text": "Subsetting list with [[ and [\n\nNote the difference between [[ and [\n\n[[ returns a single value\n[ also returns a single value, but inside a dataframe/tibble\n\nVery important for lists\n\n\n\n\nCode\nmy_list <- list(letters[1:4], 1:3, \"a\", 1.25, TRUE)\nstr(my_list)\n\n\nList of 5\n $ : chr [1:4] \"a\" \"b\" \"c\" \"d\"\n $ : int [1:3] 1 2 3\n $ : chr \"a\"\n $ : num 1.25\n $ : logi TRUE\n\n\nCode\nmy_list <- list(letters[1:4], list(1:3), list(\"a\", 1.25, TRUE))\nstr(my_list)\n\n\nList of 3\n $ : chr [1:4] \"a\" \"b\" \"c\" \"d\"\n $ :List of 1\n  ..$ : int [1:3] 1 2 3\n $ :List of 3\n  ..$ : chr \"a\"\n  ..$ : num 1.25\n  ..$ : logi TRUE"
+    "text": "Subsetting list with [[ and [\n\nNote the difference between [[ and [\n\n[[ returns a single value\n[ also returns a single value, but inside a dataframe/tibble\n\nVery important for lists\n\n\n\n\nCode\nmy_list <- list(letters[1:4], 1:3, \"a\", 1.25, TRUE)\nstr(my_list)\n\n\nList of 5\n $ : chr [1:4] \"a\" \"b\" \"c\" \"d\"\n $ : int [1:3] 1 2 3\n $ : chr \"a\"\n $ : num 1.25\n $ : logi TRUE\n\n\n\n\n\n\n\n\nNote\n\n\nBelow list() in second and third element.\n\n\n\n\n\nCode\nmy_list <- list(letters[1:4], list(1:3), list(\"a\", 1.25, TRUE))\nstr(my_list)\n\n\nList of 3\n $ : chr [1:4] \"a\" \"b\" \"c\" \"d\"\n $ :List of 1\n  ..$ : int [1:3] 1 2 3\n $ :List of 3\n  ..$ : chr \"a\"\n  ..$ : num 1.25\n  ..$ : logi TRUE"
   },
   {
     "objectID": "program/vectors/vectors.html#subsetting-list-with-and-1",
