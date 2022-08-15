@@ -7067,7 +7067,7 @@
     "href": "program/vectors/vectors.html#subsetting-list-with-and",
     "title": "Vectors",
     "section": "Subsetting list with [[ and [",
-    "text": "Subsetting list with [[ and [\n\nNote the difference between [[ and [\n\n[[ returns a single value\n[ also returns a single value, but inside a dataframe/tibble\n\nVery important for lists\n\n\n\n\nCode\nmy_list <- list(letters[1:4], 1:3, \"a\", 1.25, TRUE)\nstr(my_list)\n\n\nList of 5\n $ : chr [1:4] \"a\" \"b\" \"c\" \"d\"\n $ : int [1:3] 1 2 3\n $ : chr \"a\"\n $ : num 1.25\n $ : logi TRUE\n\n\n\n\n\n\n\n\nNote\n\n\nBelow list() in second and third element.\n\n\n\n\n\nCode\nmy_list <- list(letters[1:4], list(1:3), list(\"a\", 1.25, TRUE))\nstr(my_list)\n\n\nList of 3\n $ : chr [1:4] \"a\" \"b\" \"c\" \"d\"\n $ :List of 1\n  ..$ : int [1:3] 1 2 3\n $ :List of 3\n  ..$ : chr \"a\"\n  ..$ : num 1.25\n  ..$ : logi TRUE"
+    "text": "Subsetting list with [[ and [\n\nNote the difference between [[ and [\n\n[[ returns a single value\n[ also returns a single value, but inside a dataframe/tibble\n\nVery important for lists\n\n\n\n\nCode\nmy_list <- list(letters[1:4], 1:3, \"a\", 1.25, TRUE)\nstr(my_list)\n\n\nList of 5\n $ : chr [1:4] \"a\" \"b\" \"c\" \"d\"\n $ : int [1:3] 1 2 3\n $ : chr \"a\"\n $ : num 1.25\n $ : logi TRUE"
   },
   {
     "objectID": "program/vectors/vectors.html#subsetting-list-with-and-1",
@@ -7628,5 +7628,47 @@
     "title": "Iteration",
     "section": "References",
     "text": "References\n\n\nMSB105\n\n\n\nBache, Stefan Milton, and Hadley Wickham. 2022. Magrittr: A Forward-Pipe Operator for r. https://CRAN.R-project.org/package=magrittr.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nMersmann, Olaf. 2021. Microbenchmark: Accurate Timing Functions. https://github.com/joshuaulrich/microbenchmark/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nWickham, Hadley. 2021. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-cont.",
+    "href": "program/vectors/vectors.html#subsetting-list-with-and-cont.",
+    "title": "Vectors",
+    "section": "Subsetting list with [[ and [ cont.",
+    "text": "Subsetting list with [[ and [ cont.\n\n\n\n\n\n\nNote\n\n\nBelow list() in second and third element.\n\n\n\n\n\nCode\nmy_list <- list(letters[1:4], list(1:3), list(\"a\", 1.25, TRUE))\nstr(my_list)\n\n\nList of 3\n $ : chr [1:4] \"a\" \"b\" \"c\" \"d\"\n $ :List of 1\n  ..$ : int [1:3] 1 2 3\n $ :List of 3\n  ..$ : chr \"a\"\n  ..$ : num 1.25\n  ..$ : logi TRUE"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-cont.-1",
+    "href": "program/vectors/vectors.html#subsetting-list-with-and-cont.-1",
+    "title": "Vectors",
+    "section": "Subsetting list with [[ and [ cont.",
+    "text": "Subsetting list with [[ and [ cont.\n\n\nCode\nmy_list[2]\n\n\n[[1]]\n[[1]][[1]]\n[1] 1 2 3\n\n\nCode\nmy_list[[2]]\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nstr(my_list[2])\n\n\nList of 1\n $ :List of 1\n  ..$ : int [1:3] 1 2 3\n\n\nCode\nstr(my_list[[2]])\n\n\nList of 1\n $ : int [1:3] 1 2 3"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-cont.-2",
+    "href": "program/vectors/vectors.html#subsetting-list-with-and-cont.-2",
+    "title": "Vectors",
+    "section": "Subsetting list with [[ and [ cont.",
+    "text": "Subsetting list with [[ and [ cont.\n\nnamed components\n\n\n\n\nCode\nmy_list <- list(A = letters[1:4], B = list(1, 2, 3), C = list(\"a\", 1.25, TRUE))\nstr(my_list)\n\n\nList of 3\n $ A: chr [1:4] \"a\" \"b\" \"c\" \"d\"\n $ B:List of 3\n  ..$ : num 1\n  ..$ : num 2\n  ..$ : num 3\n $ C:List of 3\n  ..$ : chr \"a\"\n  ..$ : num 1.25\n  ..$ : logi TRUE\n\n\nCode\nl <- my_list[[\"C\"]]\nstr(l)\n\n\nList of 3\n $ : chr \"a\"\n $ : num 1.25\n $ : logi TRUE\n\n\nCode\nl[[1]]\n\n\n[1] \"a\""
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-cont.-3",
+    "href": "program/vectors/vectors.html#subsetting-list-with-and-cont.-3",
+    "title": "Vectors",
+    "section": "Subsetting list with [[ and [ cont.",
+    "text": "Subsetting list with [[ and [ cont.\n\n[[ trekker elementer opp av listen\n\n\n\n\nCode\nl <- my_list[[\"B\"]]\nstr(l)\n\n\nList of 3\n $ : num 1\n $ : num 2\n $ : num 3\n\n\nCode\n# The value\nl[[1]]\n\n\n[1] 1\n\n\nCode\n# The value\nmy_list[[\"C\"]][[2]]\n\n\n[1] 1.25\n\n\nCode\n# The value\nmy_list$C[[2]]\n\n\n[1] 1.25"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-cont.-4",
+    "href": "program/vectors/vectors.html#subsetting-list-with-and-cont.-4",
+    "title": "Vectors",
+    "section": "Subsetting list with [[ and [ cont.",
+    "text": "Subsetting list with [[ and [ cont.\n\nSee r4ds 20.5.3 Lists of condiments for a famous explanation of the difference between [[ and [.\n\n\n\n\nCode\n# notice the difference\nlist(1:3)\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nlist(c(1:3))\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nlist(c(1, 2, 3))\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nlist(c(1, 2, 3))[[1]]\n\n\n[1] 1 2 3\n\n\nCode\nlist(1, 2, 3)[[1]]\n\n\n[1] 1"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-cont.-5",
+    "href": "program/vectors/vectors.html#subsetting-list-with-and-cont.-5",
+    "title": "Vectors",
+    "section": "Subsetting list with [[ and [ cont.",
+    "text": "Subsetting list with [[ and [ cont.\n\n\nCode\nlist(1, 2, 3)\n\n\n[[1]]\n[1] 1\n\n[[2]]\n[1] 2\n\n[[3]]\n[1] 3\n\n\nCode\nlist(1:3)[[1]][[2]]\n\n\n[1] 2\n\n\nCode\nlist(1, 2, 3)[[2]]\n\n\n[1] 2\n\n\nCode\nunlist(my_list)\n\n\n    A1     A2     A3     A4     B1     B2     B3     C1     C2     C3 \n   \"a\"    \"b\"    \"c\"    \"d\"    \"1\"    \"2\"    \"3\"    \"a\" \"1.25\" \"TRUE\" \n\n\nCode\ntypeof(unlist(my_list))\n\n\n[1] \"character\""
   }
 ]

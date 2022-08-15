@@ -291,6 +291,8 @@ str(my_list)
 
 ```
 
+## Subsetting list with `[[` and `[` cont. {.smaller}
+
 ::: callout-note
 Below list() in second and third element.
 :::
@@ -300,7 +302,7 @@ my_list <- list(letters[1:4], list(1:3), list("a", 1.25, TRUE))
 str(my_list)
 ```
 
-## Subsetting list with `[[` and `[` {.smaller}
+## Subsetting list with `[[` and `[` cont. {.smaller}
 
 ```{r}
 my_list[2]
@@ -309,7 +311,7 @@ str(my_list[2])
 str(my_list[[2]])
 ```
 
-## Subsetting list with `[[` and `[` {.smaller}
+## Subsetting list with `[[` and `[` cont. {.smaller}
 
 -   named components
 
@@ -323,7 +325,7 @@ str(l)
 l[[1]]
 ```
 
-## Subsetting list with `[[` and `[` {.smaller}
+## Subsetting list with `[[` and `[` cont. {.smaller}
 
 -   `[[` trekker elementer opp av listen
 
@@ -340,7 +342,7 @@ my_list[["C"]][[2]]
 my_list$C[[2]]
 ```
 
-## Subsetting list with `[[` and `[` {.smaller}
+## Subsetting list with `[[` and `[` cont. {.smaller}
 
 -   See [r4ds 20.5.3 Lists of
     condiments](https://r4ds.had.co.nz/vectors.html#lists-of-condiments)
@@ -357,7 +359,7 @@ list(c(1, 2, 3))[[1]]
 list(1, 2, 3)[[1]]
 ```
 
-## Subsetting list with `[[` and `[` {.smaller}
+## Subsetting list with `[[` and `[` cont. {.smaller}
 
 ```{r}
 list(1, 2, 3)
