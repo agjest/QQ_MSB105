@@ -1084,6 +1084,19 @@
 <ul>
 <li class="fragment">named components</li>
 </ul>
+<div class="callout callout-note callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Below A is a vector, while B and C are lists.</p>
+</div>
+</div>
+</div>
 <div class="fragment">
 <div class="cell">
 <details open="">
@@ -1103,6 +1116,12 @@
   ..$ : num 1.25
   ..$ : logi TRUE</code></pre>
 </div>
+</div>
+</div>
+</section>
+<section id="subsetting-list-with-and-cont.-3" class="slide level2 smaller">
+<h2>Subsetting list with <code>[[</code> and <code>[</code> cont.</h2>
+<div class="cell">
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb108"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1"></a>l <span class="ot">&lt;-</span> my_list[[<span class="st">"C"</span>]]</span>
@@ -1114,17 +1133,19 @@
  $ : num 1.25
  $ : logi TRUE</code></pre>
 </div>
+</div>
+<div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1"></a>l[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1"></a><span class="co"># Pick first element of list l</span></span>
+<span id="cb110-2"><a href="#cb110-2"></a>l[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "a"</code></pre>
 </div>
 </div>
-</div>
 </section>
-<section id="subsetting-list-with-and-cont.-3" class="slide level2 smaller">
+<section id="subsetting-list-with-and-cont.-4" class="slide level2 smaller">
 <h2>Subsetting list with <code>[[</code> and <code>[</code> cont.</h2>
 <ul>
 <li class="fragment"><code>[[</code> trekker elementer opp av listen</li>
@@ -1169,7 +1190,7 @@
 </div>
 </div>
 </section>
-<section id="subsetting-list-with-and-cont.-4" class="slide level2 smaller">
+<section id="subsetting-list-with-and-cont.-5" class="slide level2 smaller">
 <h2>Subsetting list with <code>[[</code> and <code>[</code> cont.</h2>
 <ul>
 <li class="fragment">See <a href="https://r4ds.had.co.nz/vectors.html#lists-of-condiments">r4ds 20.5.3 Lists of condiments</a> for a famous explanation of the difference between <code>[[</code> and <code>[</code>.</li>
@@ -1218,7 +1239,7 @@
 </div>
 </div>
 </section>
-<section id="subsetting-list-with-and-cont.-5" class="slide level2 smaller">
+<section id="subsetting-list-with-and-cont.-6" class="slide level2 smaller">
 <h2>Subsetting list with <code>[[</code> and <code>[</code> cont.</h2>
 <div class="cell">
 <details open="">
