@@ -133,3 +133,19 @@ eval: true
         -   credentials
 
     -   Use Github.R
+-   See [git-github slides](../git-github/git-github.qmd) for
+    configuration
+
+## Install tinytex
+
+-   Under Packages in lower right pane select:
+    -   Install
+
+        -   Under packages write tinytex
+
+        -   Make sure that Install dependencies is checked
+
+        -   Click install
+-   When install check off tinytex in the lower left pane under tab
+    Packages
+-   Give the command `install_tinytex()` in Console in lower left pane.

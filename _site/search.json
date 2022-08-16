@@ -7760,6 +7760,13 @@
     "href": "introduction/install-sw/install-sw.html#define-user-on-github",
     "title": "Install Software",
     "section": "Define user on Github",
-    "text": "Define user on Github\n\nhvl email og email you use\nUse a serious name; you might be showing this to a future employer\nConnect RStudio to Github\n\ninstall packages\n\nusethis\ncredentials\n\nUse Github.R\n\n\n\n\nMSB105"
+    "text": "Define user on Github\n\nhvl email og email you use\nUse a serious name; you might be showing this to a future employer\nConnect RStudio to Github\n\ninstall packages\n\nusethis\ncredentials\n\nUse Github.R\n\nSee git-github slides for configuration"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#install-tinytex",
+    "href": "introduction/install-sw/install-sw.html#install-tinytex",
+    "title": "Install Software",
+    "section": "Install tinytex",
+    "text": "Install tinytex\n\nUnder Packages in lower right pane select:\n\nInstall\n\nUnder packages write tinytex\nMake sure that Install dependencies is checked\nClick install\n\n\nWhen install check off tinytex in the lower left pane under tab Packages\nGive the command install_tinytex() in Console in lower left pane.\n\n\n\nMSB105"
   }
 ]
