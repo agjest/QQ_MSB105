@@ -24,7 +24,7 @@ eval: true
 ## R from r-project.org
 
 -   We need to install the latest version of R
--   Goto [www.r-project.org](www.r-project.org)
+-   Goto [www.r-project.org](https://www.r-project.org)
     -   Select CRAN from menu at the left
 
     -   Select Norway: uib from the list
