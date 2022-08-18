@@ -3,8 +3,7 @@ title: "Introduction"
 editor: visual
 ---
 
-This section will introduce you to the tools we will be using, RStudio (with Quarto), R, git, github and Zotero.
-It will try to give you an idea of what Data Sciences is and also teach you some classic R, give you an introduction to git and github and show you who to manage your references with Zotero.
+This section will introduce you to the tools we will be using, RStudio (with Quarto), R, git, github and Zotero. It will try to give you an idea of what Data Sciences is and also teach you some classic R, give you an introduction to git and github and show you who to manage your references with Zotero.
 
 ## Presentations
 
@@ -17,13 +16,15 @@ It will try to give you an idea of what Data Sciences is and also teach you some
         -   [Install R packages](install-R-packages/install-R-packages.qmd)
         -   [Illustrate Markdown](illustrate-markdown/illustrate-markdown.qmd)
         -   [Regression Tables](reg-tables/reg-tables.qmd)
+    -   Other:
+        -   [Stuff from lecture "Innledning R"](div-doc/Innledende-R-notater.qmd)
+        -   [Connect RStudio to Github on mac](div-doc/rstudio-github.qmd)
 -   [Git and Github](git-github/git-github.qmd)
 -   [Very Short Intro to R](very-short-intro-r/very-short-intro-r.qmd)
     -   [Very Short Intro to R (as document)](very-short-intro-r/very-short-intro-r-document.qmd)
 
 ## Datasets
 
-R has a lot of available datasets to practise with.
-The following document explains how to find what's available.
+R has a lot of available datasets to practise with. The following document explains how to find what's available.
 
 -   [Available Datasets](available-datasets/available_datasets.qmd)

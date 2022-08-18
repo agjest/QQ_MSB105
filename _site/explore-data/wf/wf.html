@@ -570,7 +570,7 @@
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/Users/agwd/Dev/QQ_MSB105/explore-data/wf"</code></pre>
+<pre><code>[1] "/Users/ag/Dev/QQ_MSB105/explore-data/wf"</code></pre>
 </div>
 </div>
 <ul>
@@ -639,9 +639,10 @@ format:
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Absolute path</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>my_file <span class="ot">&lt;-</span> <span class="st">"/Users/agwd/Dev/QQ_MSB105/introduction/intro/intro.qmd"</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>my_text <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="at">con =</span> <span class="fu">file</span>(my_file, <span class="at">encoding =</span> <span class="st">"UTF-8"</span>), <span class="at">n =</span> <span class="dv">4</span>)</span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#close(con)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co"># Works just on one machine, hence eval: false</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>my_file <span class="ot">&lt;-</span> <span class="st">"/Users/agwd/Dev/QQ_MSB105/introduction/intro/intro.qmd"</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>my_text <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="at">con =</span> <span class="fu">file</span>(my_file, <span class="at">encoding =</span> <span class="st">"UTF-8"</span>), <span class="at">n =</span> <span class="dv">4</span>)</span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#close(con)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
@@ -649,12 +650,6 @@ format:
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">cat</span>(my_text, <span class="at">sep =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>---
-title: Introduksjon Data Science
-format:
-  revealjs:</code></pre>
-</div>
 </div>
 <div class="cell">
 

@@ -233,17 +233,20 @@ cat(my_text, sep = "\n")
 . . .
 
 ```{r}
+#| eval: false
 # Absolute path
+# Works just on one machine, hence eval: false
 my_file <- "/Users/agwd/Dev/QQ_MSB105/introduction/intro/intro.qmd"
 my_text <- readLines(con = file(my_file, encoding = "UTF-8"), n = 4)
 #close(con)
 ```
 
 ```{r}
+#| eval: false
 cat(my_text, sep = "\n")
 ```
 
 ```{r}
 #| echo: false
-rm(my_text)
+#rm(my_text)
 ```

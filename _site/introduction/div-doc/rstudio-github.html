@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="ag">
 
-<title>MSB105 - Illustrate Markdown</title>
+<title>MSB105 - Koble sammen RStudio og Github på mac</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -181,12 +182,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#the-resulting-markdown" id="toc-the-resulting-markdown" class="nav-link" data-scroll-target="#the-resulting-markdown">The resulting Markdown</a></li>
-  <li><a href="#the-md-file-converted-to-html" id="toc-the-md-file-converted-to-html" class="nav-link" data-scroll-target="#the-md-file-converted-to-html">The MD file converted to HTML</a></li>
-  <li><a href="#the-md-file-converted-to-latex" id="toc-the-md-file-converted-to-latex" class="nav-link" data-scroll-target="#the-md-file-converted-to-latex">The MD file converted to LaTeX</a></li>
-  <li><a href="#the-md-file-converted-to-pdf-format" id="toc-the-md-file-converted-to-pdf-format" class="nav-link" data-scroll-target="#the-md-file-converted-to-pdf-format">The MD file converted to PDF format</a></li>
-  <li><a href="#the-whole-process" id="toc-the-whole-process" class="nav-link" data-scroll-target="#the-whole-process">The whole process</a></li>
+  <li><a href="#innledning" id="toc-innledning" class="nav-link active" data-scroll-target="#innledning">Innledning</a></li>
   </ul>
 </nav>
     </div>
@@ -195,13 +191,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Illustrate Markdown</h1>
+<h1 class="title">Koble sammen RStudio og Github på mac</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>ag </p>
+          </div>
+  </div>
     
     
   </div>
@@ -209,123 +211,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>I have used <code>format: pdf, keep-md: true, keep-tex: true</code> in the YAML header to produce the images below.</p>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>A short document to illustrate RMarkdown and Markdown.</p>
-<p>We start with some simple R code in a chunk.</p>
+<section id="innledning" class="level2">
+<h2 class="anchored" data-anchor-id="innledning">Innledning</h2>
+<p>Det ser ut til at det har skjedd noen endringer så våre gamle besvergelser virker ikke lenger.</p>
+<p>Følgende skal virke, men krever at pakken <code>usethis</code> er installert. Så gjør dette først via <strong>Install</strong> under <strong>Packages</strong>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>cars[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  speed dist
-1     4    2
-2     4   10
-3     7    4</code></pre>
-</div>
-</div>
-<p>With <code>echo: true</code> only the code and not the code options are shown. The complete content of the chunk is:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="chunk-content.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">The complete content of the chunk above.</figcaption><p></p>
-</figure>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ditt navn og epost-adressen du ønsker å bruke</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_git_config</span>(<span class="at">user.name =</span> <span class="st">"YourName"</span>, <span class="at">user.email =</span> <span class="st">"your@mail.com"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="illustrate-markdown_files/figure-html/plot-of-cars-data-1.png" class="img-fluid" width="576"></p>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lager token (nøkkel) på Github side</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Sett varighet til Custom… ett år frem</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create token</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># kopier så token</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">create_github_token</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="chunk-content-1.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">The complete content of the plot chunk.</figcaption><p></p>
-</figure>
-</div>
+<ul>
+<li><p>Kopier den nye nøkkelen.</p></li>
+<li><p>Gå tilbake til RStudio og gi kommandoen</p></li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="illustrate-markdown_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="192"></p>
-<p></p><figcaption class="figure-caption">Plot with fig-width: 2 and echo: true</figcaption><p></p>
-</figure>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># citcreds_set() only works in interactive mode</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_set</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
+<p>I spørsmålet som kommer opp i Console (nederst til venstre) svarer du med å lime inn den nye nøkkelen (token) fra Github. Kommer det opp et Xaccess vindu fra macosx så limer du nøkkelen inn der også.</p>
+<p>Da skal nøkkelen være satt. Du kan eventuelt også legge den inn i <code>.Renviron</code> filen. Dette gjøres med kommandoen</p>
 <div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="illustrate-markdown_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="384"></p>
-<p></p><figcaption class="figure-caption">Plot with fig-width: 4 and echo: false</figcaption><p></p>
-</figure>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">edit_r_environ</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>• Edit '/Users/ag/.Renviron'
+• Restart R for changes to take effect</code></pre>
 </div>
 </div>
+<p>I filen som åpnes må du skrive <code>GITHUB_PAT='YourPAT'</code> der YourPAT byttes ut med nøkkelen (token) fra Github. Det er viktig at du legger inn et linjeskift til slutt, dvs. plasser cursoren etter avsluttende parentes og trykk return før du til slutt lagrer filen.</p>
+<p>Til slutt kan du sjekke at alt ser ok ut med kommandoen:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">git_sitrep</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Git config (global)
+• Name: 'Arnstein Gjestland'
+• Email: 'ag@hvl.no'
+• Global (user-level) gitignore file: &lt;unset&gt;
+• Vaccinated: FALSE
+ℹ See `?git_vaccinate` to learn more
+ℹ Defaulting to 'https' Git protocol
+• Default Git protocol: 'https'
+• Default initial branch name: &lt;unset&gt;
+GitHub
+• Default GitHub host: 'https://github.com'
+• Personal access token for 'https://github.com': '&lt;discovered&gt;'
+• GitHub user: 'agjest'
+• Token scopes: 'gist, repo, user, workflow'
+• Email(s): 'ag@hsh.no', 'ag@hvl.no (primary)', '3352070+agjest@users.noreply.github.com'
+Git repo for current project
+• Active usethis project: '/Users/ag/Dev/QQ_MSB105'
+• Default branch: 'master'
+• Current local branch -&gt; remote tracking branch:
+  'master' -&gt; 'origin/master'
+GitHub remote configuration
+• Type = 'ours'
+• Host = 'https://github.com'
+• Config supports a pull request = TRUE
+• origin = 'agjest/QQ_MSB105' (can push)
+• upstream = &lt;not configured&gt;
+• Desc = 'origin' is both the source and primary repo.
+  
+  Read more about the GitHub remote configurations that usethis supports at:
+  'https://happygitwithr.com/common-remote-setups.html'</code></pre>
 </div>
-</section>
-<section id="the-resulting-markdown" class="level2">
-<h2 class="anchored" data-anchor-id="the-resulting-markdown">The resulting Markdown</h2>
-<p>See <a href="https://bookdown.org/yihui/rmarkdown-cookbook/multi-column.html#multi-column">Rmarkdown Cookbook section 5.8</a> for an explanation of the colons.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="md-output1.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">First part of md file.</figcaption><p></p>
-</figure>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="md-output2.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Second part of md file.</figcaption><p></p>
-</figure>
-</div>
-</section>
-<section id="the-md-file-converted-to-html" class="level2">
-<h2 class="anchored" data-anchor-id="the-md-file-converted-to-html">The MD file converted to HTML</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="resulting-html-file.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">A segment of the md file converted into html. The html header is dropped.</figcaption><p></p>
-</figure>
-</div>
-</section>
-<section id="the-md-file-converted-to-latex" class="level2">
-<h2 class="anchored" data-anchor-id="the-md-file-converted-to-latex">The MD file converted to LaTeX</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="resulting-latex.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">A segment of the LaTeX file generated. This file is run through xelatex to generate the pdf file.</figcaption><p></p>
-</figure>
-</div>
-</section>
-<section id="the-md-file-converted-to-pdf-format" class="level2">
-<h2 class="anchored" data-anchor-id="the-md-file-converted-to-pdf-format">The MD file converted to PDF format</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="resulting-pdf-1.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">First page of PDF file.</figcaption><p></p>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="resulting-pdf-2.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Second page of PDF file.</figcaption><p></p>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="resulting-pdf-3.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Third page of PDF file.</figcaption><p></p>
-</figure>
-</div>
-</section>
-<section id="the-whole-process" class="level2">
-<h2 class="anchored" data-anchor-id="the-whole-process">The whole process</h2>
-<p>Quarto Document -&gt; MD file -&gt; HTML file with CSS styling</p>
-<p>Quarto Document -&gt; MD file -&gt; LaTeX file -&gt; PDF file</p>
-<p>We can also have:</p>
-<p>Quarto Document -&gt; MD file -&gt; .docx file</p>
-<p>.docx files are an XLM file that is kind of a generalisation of HTML</p>
 
 
 </section>
