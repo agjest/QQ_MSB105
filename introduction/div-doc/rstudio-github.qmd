@@ -48,5 +48,6 @@ I filen som åpnes må du skrive `GITHUB_PAT='YourPAT'` der YourPAT byttes ut me
 Til slutt kan du sjekke at alt ser ok ut med kommandoen:
 
 ```{r}
+#| eval: false
 usethis::git_sitrep()
 ```
