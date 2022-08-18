@@ -31,7 +31,7 @@ usethis::create_github_token()
 
 ```{r}
 #| eval: false
-# citcreds_set() only works in interactive mode
+# gitcreds_set() only works in interactive mode
 gitcreds::gitcreds_set()
 ```
 
