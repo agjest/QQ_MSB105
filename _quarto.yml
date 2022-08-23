@@ -6,17 +6,14 @@ website:
   navbar:
     background: primary
     left:
-      - href: index.qmd
-        text: "Home"
-      - about.qmd
-      - text: "Lectures"
-        menu:
-          - introduction/introduction.qmd
-          - explore-data/explore-data.qmd
-          - wrangle-data/wrangle-data.qmd
-          - program/program.qmd
-          - model/model.qmd
 
+      - href: index.qmd
+        text: "Home"      
+      - file: introduction/introduction.qmd
+      - file: explore-data/explore-data.qmd
+      - file: wrangle-data/wrangle-data.qmd
+      - file: program/program.qmd
+      - file: model/model.qmd
 
 format:
   html:

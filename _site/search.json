@@ -172,7 +172,7 @@
     "href": "wrangle-data/relational-data/relational-data.html#references",
     "title": "Joins",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nWickham, Hadley. 2021a. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2021b. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nWickham, Hadley. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2022. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "wrangle-data/data-import-cont/data-import-cont.html#data-import",
@@ -382,7 +382,7 @@
     "href": "wrangle-data/factors/factors.html#references",
     "title": "Factors",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nWickham, Hadley. 2021a. Forcats: Tools for Working with Categorical Variables (Factors). https://CRAN.R-project.org/package=forcats.\n\n\n———. 2021b. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nWickham, Hadley. 2021. Forcats: Tools for Working with Categorical Variables (Factors). https://CRAN.R-project.org/package=forcats.\n\n\n———. 2022. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "wrangle-data/wrangle-data.html",
@@ -508,7 +508,7 @@
     "href": "wrangle-data/time-data/time-data.html#change-type",
     "title": "Time Data",
     "section": "Change type",
-    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2022-08-12\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2022-08-12 21:26:13 CEST\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2022-08-12\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2022-08-12 UTC\""
+    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2022-08-23\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2022-08-23 11:40:50 CEST\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2022-08-23\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2022-08-23 UTC\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#different-inputs",
@@ -599,28 +599,28 @@
     "href": "wrangle-data/time-data/time-data.html#an-example-my_life",
     "title": "Time Data",
     "section": "An example: my_life",
-    "text": "An example: my_life\n\nPlaying with time and writing a function\n\n\n\n\nCode\nmy_life <- function(birthday = \"25121964\", unit = \"weeks\") {\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\nmy_life() # with default values\n\n\n[1] \"You are about 3007 weeks old.\""
+    "text": "An example: my_life\n\nPlaying with time and writing a function\n\n\n\n\nCode\nmy_life <- function(birthday = \"25121964\", unit = \"weeks\") {\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\nmy_life() # with default values\n\n\n[1] \"You are about 3008.57142857143 weeks old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#an-example-my_life-1",
     "href": "wrangle-data/time-data/time-data.html#an-example-my_life-1",
     "title": "Time Data",
     "section": "An example: my_life",
-    "text": "An example: my_life\n\nsome are just too young to play with R\n\n\n\n\nCode\nmy_life <- function(birthday = \"25121964\", unit = \"weeks\") {\n# too young to play with R, week as unit\nif (as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))/52.25 < 5) {\nreturn(\"You are far too young to play with R!\")\n}\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\n\n\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3007 weeks old.\""
+    "text": "An example: my_life\n\nsome are just too young to play with R\n\n\n\n\nCode\nmy_life <- function(birthday = \"25121964\", unit = \"weeks\") {\n# too young to play with R, week as unit\nif (as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))/52.25 < 5) {\nreturn(\"You are far too young to play with R!\")\n}\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\n\n\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3008.57142857143 weeks old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#an-example-my_life-2",
     "href": "wrangle-data/time-data/time-data.html#an-example-my_life-2",
     "title": "Time Data",
     "section": "An example: my_life",
-    "text": "An example: my_life\n\nPerhaps we should round off our answer.\n\n\n\n\nCode\nmy_life <- function(birthday = \"01012020\", unit = \"weeks\") {\n  # find the difference between today and birthday with week as unit\n  life_w <- as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))\n  # too young to play with R, week as unit\n  if (life_w / 52.25 < 5) {\n    return(\"You are far too young to play with R!\")\n  } else {\n    # find the difference between today and birthday measured in unit\n    life = round(as.numeric(difftime(today(), dmy(birthday), units = unit)), 0)\n    # one case for each unit\n    case_when(\n      unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n      unit == \"days\" ~ paste(\"You are about\", life, \"days old.\"),\n      unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n      unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n      unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n    )\n  }\n}\nmy_life(01032016)\n\n\n[1] \"You are about 336 weeks old.\""
+    "text": "An example: my_life\n\nPerhaps we should round off our answer.\n\n\n\n\nCode\nmy_life <- function(birthday = \"01012020\", unit = \"weeks\") {\n  # find the difference between today and birthday with week as unit\n  life_w <- as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))\n  # too young to play with R, week as unit\n  if (life_w / 52.25 < 5) {\n    return(\"You are far too young to play with R!\")\n  } else {\n    # find the difference between today and birthday measured in unit\n    life = round(as.numeric(difftime(today(), dmy(birthday), units = unit)), 0)\n    # one case for each unit\n    case_when(\n      unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n      unit == \"days\" ~ paste(\"You are about\", life, \"days old.\"),\n      unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n      unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n      unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n    )\n  }\n}\nmy_life(01032016)\n\n\n[1] \"You are about 338 weeks old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#testing-my_life",
     "href": "wrangle-data/time-data/time-data.html#testing-my_life",
     "title": "Time Data",
     "section": "Testing my_life()",
-    "text": "Testing my_life()\n\n\nCode\nmy_life(\"01032005\", unit = \"weeks\")\n\n\n[1] \"You are about 910 weeks old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"days\")\n\n\n[1] \"You are about 6373 days old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"mins\")\n\n\n[1] \"You are about 9177120 minutes old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"secs\")\n\n\n[1] \"You are about 550627200 seconds old.\""
+    "text": "Testing my_life()\n\n\nCode\nmy_life(\"01032005\", unit = \"weeks\")\n\n\n[1] \"You are about 912 weeks old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"days\")\n\n\n[1] \"You are about 6384 days old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"mins\")\n\n\n[1] \"You are about 9192960 minutes old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"secs\")\n\n\n[1] \"You are about 551577600 seconds old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#an-example-my_life-3",
@@ -641,14 +641,14 @@
     "href": "wrangle-data/time-data/time-data.html#final-testing",
     "title": "Time Data",
     "section": "Final testing",
-    "text": "Final testing\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"years\")\n\n\n[1] \"You are about 57.55 years old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"months\")\n\n\n[1] \"You are about 690.6 months old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3007 weeks old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"days\")\n\n\n[1] \"You are about 21049 days old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"hours\")\n\n\n[1] \"You are about 505176 hours old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"mins\")\n\n\n[1] \"You are about 30.310.560 minutes old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"secs\")\n\n\n[1] \"You are about 1.818.633.600 seconds old.\""
+    "text": "Final testing\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"years\")\n\n\n[1] \"You are about 57.58 years old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"months\")\n\n\n[1] \"You are about 690.96 months old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3009 weeks old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"days\")\n\n\n[1] \"You are about 21060 days old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"hours\")\n\n\n[1] \"You are about 505440 hours old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"mins\")\n\n\n[1] \"You are about 30.326.400 minutes old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"secs\")\n\n\n[1] \"You are about 1.819.584.000 seconds old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#references",
     "href": "wrangle-data/time-data/time-data.html#references",
     "title": "Time Data",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nWickham, Hadley. 2021. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nWickham, Hadley. 2022. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "wrangle-data/tibbles/tibbles.html#tibbles-chap.-10",
@@ -970,7 +970,7 @@
     "href": "wrangle-data/string-data/string-data.html#references",
     "title": "Strings and regular expressions",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nBenoit, Kenneth, and Adam Obeng. 2021. Readtext: Import and Handling for Plain and Formatted Text Files. https://github.com/quanteda/readtext.\n\n\nWickham, Hadley. 2021. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nBenoit, Kenneth, and Adam Obeng. 2021. Readtext: Import and Handling for Plain and Formatted Text Files. https://github.com/quanteda/readtext.\n\n\nWickham, Hadley. 2022. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#load-tidyverse",
@@ -1411,28 +1411,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\n\nTime difference of 2.94184 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\n\nTime difference of 1.131629 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\n\nTime difference of 3.348027 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\n\nTime difference of 1.306922 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n\nCode\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n\n[1] 13.81"
+    "text": "Speed Difference\n\n\nCode\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n\n[1] 15.49"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\n\nTime difference of 0.1101952 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 2938.27"
+    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\n\nTime difference of 0.02643108 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 4844.64"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#other-types-of-vectors-logical",
@@ -1677,7 +1677,7 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#matrices-cont.-5",
     "title": "Very Short Intro to R",
     "section": "Matrices cont.",
-    "text": "Matrices cont.\nMultiplying a matrix with its inverse will give the identity matrix I\n\n\nCode\n(t(X) %*% X) %*% XTX_inv\n\n\n             [,1] [,2]\n[1,] 1.000000e+00    0\n[2,] 1.110223e-16    1\n\n\nGenerate identity matrix I\n\n\nCode\n(I <- diag(2))\n\n\n     [,1] [,2]\n[1,]    1    0\n[2,]    0    1"
+    "text": "Matrices cont.\nMultiplying a matrix with its inverse will give the identity matrix I\n\n\nCode\n(t(X) %*% X) %*% XTX_inv\n\n\n             [,1] [,2]\n[1,] 1.000000e+00    0\n[2,] 9.367507e-17    1\n\n\nGenerate identity matrix I\n\n\nCode\n(I <- diag(2))\n\n\n     [,1] [,2]\n[1,]    1    0\n[2,]    0    1"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#matrices-cont.-6",
@@ -2062,28 +2062,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\nTime difference of 2.938598 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\nTime difference of 1.142661 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\nTime difference of 3.442384 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\nTime difference of 1.294489 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 17.14"
+    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 13.29"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\nTime difference of 0.120194 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 2764.02"
+    "text": "The R way\n\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\nTime difference of 0.02634811 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 4813.02"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#other-types-of-vectors-logical",
@@ -2328,7 +2328,7 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#matrices-cont.-5",
     "title": "Very Short Intro to R",
     "section": "Matrices cont.",
-    "text": "Matrices cont.\nMultiplying a matrix with its inverse will give the identity matrix I\n\n(t(X) %*% X) %*% XTX_inv\n\n             [,1] [,2]\n[1,] 1.000000e+00    0\n[2,] 1.110223e-16    1\n\n\nGenerate identity matrix I\n\n(I <- diag(2))\n\n     [,1] [,2]\n[1,]    1    0\n[2,]    0    1"
+    "text": "Matrices cont.\nMultiplying a matrix with its inverse will give the identity matrix I\n\n(t(X) %*% X) %*% XTX_inv\n\n             [,1] [,2]\n[1,] 1.000000e+00    0\n[2,] 9.367507e-17    1\n\n\nGenerate identity matrix I\n\n(I <- diag(2))\n\n     [,1] [,2]\n[1,]    1    0\n[2,]    0    1"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#matrices-cont.-6",
@@ -2790,7 +2790,7 @@
     "href": "introduction/s-d-d/Structured-Dynamic-Documents.html#spesielt-for-r-notebooksquarto-documentspresentations-fortsettelse",
     "title": "Structured Dynamic Documents",
     "section": "Spesielt for R Notebooks/Quarto documents/presentations fortsettelse",
-    "text": "Spesielt for R Notebooks/Quarto documents/presentations fortsettelse\n\n\nCode\n# Do not run this\n# Do not do this in R Notebooks you share with others. Rude!\nrm(list = ls())\n# ls() is OK\nls()\n\n\n\n\nCode\ngetwd()\n\n\n[1] \"/Users/agwd/Dev/QQ_MSB105/introduction/s-d-d\""
+    "text": "Spesielt for R Notebooks/Quarto documents/presentations fortsettelse\n\n\nCode\n# Do not run this\n# Do not do this in R Notebooks you share with others. Rude!\nrm(list = ls())\n# ls() is OK\nls()\n\n\n\n\nCode\ngetwd()\n\n\n[1] \"/Users/ag/Dev/QQ_MSB105/introduction/s-d-d\""
   },
   {
     "objectID": "introduction/s-d-d/Structured-Dynamic-Documents.html#spesielt-for-r-notebooksquarto-documentspresentations-fortsettelse-1",
@@ -2891,162 +2891,162 @@
     "text": "Exercise 1 cont.\n\nMake a new project\nWrite a short text in an R Notebook where you use both versions of citing, (i.e. with and without brackets). Use the 4 sources harvested above.\nUse at least 5 commits\nRemember to write nice commit messages ;-)\nRemember: commit, pull, push\n\n\n\nMSB105"
   },
   {
-    "objectID": "introduction/intro/intro.html#hvem-er-jeg",
-    "href": "introduction/intro/intro.html#hvem-er-jeg",
+    "objectID": "introduction/intro/Intro.html#hvem-er-jeg",
+    "href": "introduction/intro/Intro.html#hvem-er-jeg",
     "title": "Introduksjon Data Science",
     "section": "Hvem er jeg?",
     "text": "Hvem er jeg?\n\nArnstein Gjestland\nKontor: 4063 (4. etasje mot vest)\nEpost: ag@hvl.no\nGithub nick: agjest"
   },
   {
-    "objectID": "introduction/intro/intro.html#hovedpoeng",
-    "href": "introduction/intro/intro.html#hovedpoeng",
+    "objectID": "introduction/intro/Intro.html#hovedpoeng",
+    "href": "introduction/intro/Intro.html#hovedpoeng",
     "title": "Introduksjon Data Science",
     "section": "Hovedpoeng",
     "text": "Hovedpoeng\n\n«Det ingen fortalte oss» eller\n«Det ingen lærte oss»\n80/20 regelen"
   },
   {
-    "objectID": "introduction/intro/intro.html#start",
-    "href": "introduction/intro/intro.html#start",
+    "objectID": "introduction/intro/Intro.html#start",
+    "href": "introduction/intro/Intro.html#start",
     "title": "Introduksjon Data Science",
     "section": "Start",
     "text": "Start\n\nHvor mange disponerer en bærbar datamaskin?\n\nPC?\n\nWindows 10?\n\nMac?\n\neldre enn 2010?\n\nAndre?"
   },
   {
-    "objectID": "introduction/intro/intro.html#start-forts.",
-    "href": "introduction/intro/intro.html#start-forts.",
+    "objectID": "introduction/intro/Intro.html#start-forts.",
+    "href": "introduction/intro/Intro.html#start-forts.",
     "title": "Introduksjon Data Science",
     "section": "Start forts.",
     "text": "Start forts.\n\nVi kommer til å ta som utgangspunkt at dere disponerer en bærbar datamaskin som vi kan installere programvare på.\n\nAdministratorrettigheter\nOppdatert til siste gratis tilgjengelige systemversjon\n30 GB ledig diskkapasitet"
   },
   {
-    "objectID": "introduction/intro/intro.html#start-forts.-1",
-    "href": "introduction/intro/intro.html#start-forts.-1",
+    "objectID": "introduction/intro/Intro.html#start-forts.-1",
+    "href": "introduction/intro/Intro.html#start-forts.-1",
     "title": "Introduksjon Data Science",
     "section": "Start forts.",
     "text": "Start forts.\n\nNoen som har erfaring med programmering?\n\nR?\nAndre språk?\n\nNoen som har erfaring med versjonskontroll?\n\ngit?\nsvn?\n\nNoen som har erfaring med kommandolinje/terminal?\nNoen som har erfaring med unix/linux?"
   },
   {
-    "objectID": "introduction/intro/intro.html#pensum",
-    "href": "introduction/intro/intro.html#pensum",
+    "objectID": "introduction/intro/Intro.html#pensum",
+    "href": "introduction/intro/Intro.html#pensum",
     "title": "Introduksjon Data Science",
     "section": "Pensum",
     "text": "Pensum\n\nPensum\n\nPensumbok: R for Data Science Garrett Grolemund og Hadley Wickham.\n\nStøttelitteratur\n\nPapir\n\nR for everyone: Advanced Analytics and Graphics, 2nd Edition av Jared P. Lander"
   },
   {
-    "objectID": "introduction/intro/intro.html#pensum-forts.",
-    "href": "introduction/intro/intro.html#pensum-forts.",
+    "objectID": "introduction/intro/Intro.html#pensum-forts.",
+    "href": "introduction/intro/Intro.html#pensum-forts.",
     "title": "Introduksjon Data Science",
     "section": "Pensum forts.",
     "text": "Pensum forts.\n\nStøttelitteratur på nettet\n\nBeginner’s guide to R\nSTAT 545; Data wrangling, exploration, and analysis with R\nHappy Git and GitHub for the useR\nR Markdown: The Definitive Guide\nR Markdown Cookbook (juli\n\n\n\nModernDive (infer pakken og bootstrapping)\nPro Git\nBig Book of R"
   },
   {
-    "objectID": "introduction/intro/intro.html#temaer-i-kurset",
-    "href": "introduction/intro/intro.html#temaer-i-kurset",
+    "objectID": "introduction/intro/Intro.html#temaer-i-kurset",
+    "href": "introduction/intro/Intro.html#temaer-i-kurset",
     "title": "Introduksjon Data Science",
     "section": "Temaer i kurset",
     "text": "Temaer i kurset\n\nHovedtema\n\nReplikerbarhet/Reproduserbarhet\n\nQuarto Document\n\nTidligere: R Notebook, notebook med rmarkdown for reproduserbarhet\n\nFornøyd hvis vi klarer reproduserbarhet\nNødvendig betingelse for replikerbarhet\n\nKrangling med data («data wrangling»)\n\nFra rådata til ryddige («tidy») data.\nTidyverse"
   },
   {
-    "objectID": "introduction/intro/intro.html#temaer-i-kurset-1",
-    "href": "introduction/intro/intro.html#temaer-i-kurset-1",
+    "objectID": "introduction/intro/Intro.html#temaer-i-kurset-1",
+    "href": "introduction/intro/Intro.html#temaer-i-kurset-1",
     "title": "Introduksjon Data Science",
     "section": "Temaer i kurset",
     "text": "Temaer i kurset\nAndre tema:\n\nPresentasjon av data\n\nggplot2\n\nVersjonskontroll\n\ngit\nGithub\n\nMer kompliserte datastrukturer\n\nlist-columns in dataframe\n\nModeller til tidy data (broom)"
   },
   {
-    "objectID": "introduction/intro/intro.html#nærmere-om-rmarkdown",
-    "href": "introduction/intro/intro.html#nærmere-om-rmarkdown",
+    "objectID": "introduction/intro/Intro.html#nærmere-om-rmarkdown",
+    "href": "introduction/intro/Intro.html#nærmere-om-rmarkdown",
     "title": "Introduksjon Data Science",
     "section": "Nærmere om Rmarkdown",
     "text": "Nærmere om Rmarkdown\n\nTo foregående år:\n\nSøkte å oppnå reproduserbarhet vha. R Notebook (Rmarkdown Notebook).\nI versjon 1.4 har RStudio fått «Visual Rmarkdown» funksjonalitet\nKan skifte mellom nesten “WYSIWYG” og markup mode\n\nI år:\n\nFra versjon RStudio 2022.07.1+554 “Spotted Wakerobin” har vi tilgang til Quarto (neste vesjon av R Markdown dokumenter) som vi vil bruke.\nMer solid, også support for andre språk som python og julia\nQuarto Documents har endelsen .qmd"
   },
   {
-    "objectID": "introduction/intro/intro.html#r-notebooks-kildekode-r-markdown",
-    "href": "introduction/intro/intro.html#r-notebooks-kildekode-r-markdown",
+    "objectID": "introduction/intro/Intro.html#r-notebooks-kildekode-r-markdown",
+    "href": "introduction/intro/Intro.html#r-notebooks-kildekode-r-markdown",
     "title": "Introduksjon Data Science",
     "section": "R Notebooks (Kildekode R Markdown)",
     "text": "R Notebooks (Kildekode R Markdown)\n\n\nCode\nknitr::include_graphics(\"eks-rmd.png\")\n\n\n\n\n\n\n\n\necho true in R Notebook"
   },
   {
-    "objectID": "introduction/intro/intro.html#quarto-document-kildekode-r-markdown",
-    "href": "introduction/intro/intro.html#quarto-document-kildekode-r-markdown",
+    "objectID": "introduction/intro/Intro.html#quarto-document-kildekode-r-markdown",
+    "href": "introduction/intro/Intro.html#quarto-document-kildekode-r-markdown",
     "title": "Introduksjon Data Science",
     "section": "Quarto Document (Kildekode R Markdown)",
     "text": "Quarto Document (Kildekode R Markdown)\n\n\nCode\nknitr::include_graphics(\"eks-rmd.png\")\n\n\n\n\n\n\n\n\necho true in Quarto Document (R Notebook way still works)"
   },
   {
-    "objectID": "introduction/intro/intro.html#kildekode-r-markdown",
-    "href": "introduction/intro/intro.html#kildekode-r-markdown",
+    "objectID": "introduction/intro/Intro.html#kildekode-r-markdown",
+    "href": "introduction/intro/Intro.html#kildekode-r-markdown",
     "title": "Introduksjon Data Science",
     "section": "Kildekode R Markdown",
     "text": "Kildekode R Markdown\n\nR Markdown = markdown + R\nR Notebook = markdown + chunks med R kode som kan evalueres\nChunk-ene kan kjøres i vilkårlig rekkefølge\nKjenner bare objekter definert i dokumentet\nResultatet kommer i R Notebook"
   },
   {
-    "objectID": "introduction/intro/intro.html#resultat-html-1",
-    "href": "introduction/intro/intro.html#resultat-html-1",
+    "objectID": "introduction/intro/Intro.html#resultat-html-1",
+    "href": "introduction/intro/Intro.html#resultat-html-1",
     "title": "Introduksjon Data Science",
     "section": "Resultat, html 1",
     "text": "Resultat, html 1"
   },
   {
-    "objectID": "introduction/intro/intro.html#resultat-html-2",
-    "href": "introduction/intro/intro.html#resultat-html-2",
+    "objectID": "introduction/intro/Intro.html#resultat-html-2",
+    "href": "introduction/intro/Intro.html#resultat-html-2",
     "title": "Introduksjon Data Science",
     "section": "Resultat, html 2",
     "text": "Resultat, html 2"
   },
   {
-    "objectID": "introduction/intro/intro.html#konvertert-til-nb.html",
-    "href": "introduction/intro/intro.html#konvertert-til-nb.html",
+    "objectID": "introduction/intro/Intro.html#konvertert-til-nb.html",
+    "href": "introduction/intro/Intro.html#konvertert-til-nb.html",
     "title": "Introduksjon Data Science",
     "section": "Konvertert til nb.html",
     "text": "Konvertert til nb.html\n\n\n\n\n\n\nhtml dokument; kan åpnes i alle nettlesere\nSå vidt jeg kan se genererer ikke Quarto nb.html filer.\n\nBlitt litt overflødig nå når vi ha Visual mode for .qmd filer"
   },
   {
-    "objectID": "introduction/intro/intro.html#konvertert-til-nb.html-1",
-    "href": "introduction/intro/intro.html#konvertert-til-nb.html-1",
+    "objectID": "introduction/intro/Intro.html#konvertert-til-nb.html-1",
+    "href": "introduction/intro/Intro.html#konvertert-til-nb.html-1",
     "title": "Introduksjon Data Science",
     "section": "Konvertert til nb.html",
     "text": "Konvertert til nb.html\n\nnb.html er ikke bare html. Inneholder ekstra opplysninger\nKan sende nb.html filen til andre og når de åpner denne i Rstudio vil de ha samme notebook som oss.\n\nNå vil vi heller bare legge ved link til .qmd filen, eventuelt med editor: visual angitt i YAML."
   },
   {
-    "objectID": "introduction/intro/intro.html#konvertert-til-pdf",
-    "href": "introduction/intro/intro.html#konvertert-til-pdf",
+    "objectID": "introduction/intro/Intro.html#konvertert-til-pdf",
+    "href": "introduction/intro/Intro.html#konvertert-til-pdf",
     "title": "Introduksjon Data Science",
     "section": "Konvertert til pdf",
     "text": "Konvertert til pdf\n\n\n\n\n\n\nKonverterer først til LaTeX"
   },
   {
-    "objectID": "introduction/intro/intro.html#konvertert-til-pdf-1",
-    "href": "introduction/intro/intro.html#konvertert-til-pdf-1",
+    "objectID": "introduction/intro/Intro.html#konvertert-til-pdf-1",
+    "href": "introduction/intro/Intro.html#konvertert-til-pdf-1",
     "title": "Introduksjon Data Science",
     "section": "Konvertert til pdf",
     "text": "Konvertert til pdf\n\nLaTeX filen blir så kjørt gjennom pdflatex eller xelatex\npdf-filen er altså utdata fra LaTeX\nLaTeX er et typografisk system populært for akademiske arbeider; særlig de som inneholder mye matematikk"
   },
   {
-    "objectID": "introduction/intro/intro.html#konvertert-til-docx-word",
-    "href": "introduction/intro/intro.html#konvertert-til-docx-word",
+    "objectID": "introduction/intro/Intro.html#konvertert-til-docx-word",
+    "href": "introduction/intro/Intro.html#konvertert-til-docx-word",
     "title": "Introduksjon Data Science",
     "section": "Konvertert til docx (Word)",
     "text": "Konvertert til docx (Word)\n\n\n\n\n\n\nPopulært blant dem som ikke vet bedre ;-)"
   },
   {
-    "objectID": "introduction/intro/intro.html#konvertert-til-docx-word-1",
-    "href": "introduction/intro/intro.html#konvertert-til-docx-word-1",
+    "objectID": "introduction/intro/Intro.html#konvertert-til-docx-word-1",
+    "href": "introduction/intro/Intro.html#konvertert-til-docx-word-1",
     "title": "Introduksjon Data Science",
     "section": "Konvertert til docx (Word)",
     "text": "Konvertert til docx (Word)\n\nModerne versjoner av Word er blitt mye bedre\nMatematikk blir konvertert til formler som er editerbare i Word (ikke bilder)"
   },
   {
-    "objectID": "introduction/intro/intro.html#ønsket-format",
-    "href": "introduction/intro/intro.html#ønsket-format",
+    "objectID": "introduction/intro/Intro.html#ønsket-format",
+    "href": "introduction/intro/Intro.html#ønsket-format",
     "title": "Introduksjon Data Science",
     "section": "Ønsket format",
     "text": "Ønsket format\n\n\n\n\n\n\nVi velger ønsket format vha. knitr menyen.\nMed Quarto velger vi Render fra ikon-linjen øverst i editoren (øvre venstre «pane»)."
   },
   {
-    "objectID": "introduction/intro/intro.html#ønsket-format-1",
-    "href": "introduction/intro/intro.html#ønsket-format-1",
+    "objectID": "introduction/intro/Intro.html#ønsket-format-1",
+    "href": "introduction/intro/Intro.html#ønsket-format-1",
     "title": "Introduksjon Data Science",
     "section": "Ønsket format",
     "text": "Ønsket format\n\nDokumentformatene .pdf, .html og .docx er de mest relevante alternativene\nDet er også mulighet for å generere rapporter vha. en mal og parametre.\nFor en presentasjon ville vi hatt andre alternativer (som Powerpoint) og revealjs. Ønsket format blir angitt i YAML, f.eks. format: revealjs.\n\n\n\nMSB105"
@@ -3190,6 +3190,20 @@
     "title": "Undervisningsplan",
     "section": "Undervisningsplan fortsettelse",
     "text": "Undervisningsplan fortsettelse\n\n(lineære) modeller (r4ds: 23 Model basics)\nutvikling av modeller (r4ds: 24 Model building)\nmange modeller (r4ds: 25 Many models)\n\nbroom pakken\nutrolig effektiv teknikk, men også krevende datastrukturer\n\n\n\n\n\n\n\nMSB105"
+  },
+  {
+    "objectID": "introduction/div-doc/rstudio-github.html",
+    "href": "introduction/div-doc/rstudio-github.html",
+    "title": "Koble sammen RStudio og Github på mac",
+    "section": "",
+    "text": "Det ser ut til at det har skjedd noen endringer så våre gamle besvergelser virker ikke lenger.\nFølgende skal virke, men krever at pakken usethis er installert. Så gjør dette først via Install under Packages.\n\n# Ditt navn og epost-adressen du ønsker å bruke\nusethis::use_git_config(user.name = \"YourName\", user.email = \"your@mail.com\")\n\n\n# lager token (nøkkel) på Github side\n# Sett varighet til Custom… ett år frem\n# create token\n# kopier så token\nusethis::create_github_token()\n\n\nKopier den nye nøkkelen.\nGå tilbake til RStudio og gi kommandoen\n\n\n# gitcreds_set() only works in interactive mode\ngitcreds::gitcreds_set()\n\nI spørsmålet som kommer opp i Console (nederst til venstre) svarer du med å lime inn den nye nøkkelen (token) fra Github. Kommer det opp et Xaccess vindu fra macosx så limer du nøkkelen inn der også.\nDa skal nøkkelen være satt. Du kan eventuelt også legge den inn i .Renviron filen. Dette gjøres med kommandoen\n\nusethis::edit_r_environ()\n\n• Edit '/Users/ag/.Renviron'\n• Restart R for changes to take effect\n\n\nI filen som åpnes må du skrive GITHUB_PAT='YourPAT' der YourPAT byttes ut med nøkkelen (token) fra Github. Det er viktig at du legger inn et linjeskift til slutt, dvs. plasser cursoren etter avsluttende parentes og trykk return før du til slutt lagrer filen.\nTil slutt kan du sjekke at alt ser ok ut med kommandoen:\n\nusethis::git_sitrep()"
+  },
+  {
+    "objectID": "introduction/div-doc/Innledende-R-notater.html",
+    "href": "introduction/div-doc/Innledende-R-notater.html",
+    "title": "Innledende R notater",
+    "section": "",
+    "text": "Her er min aller første R kode.\n\nx <- 3 + 3\nx\n\n[1] 6\n\n\n\n# eller begge samtidig\n(x <- 3 + 3)\n\n[1] 6\n\n\n\n(x <- 13)\n\n[1] 13\n\n\nDe fire regneartene\n\n(2/15)^0.25*exp(4) - 200\n\n[1] -167.0077\n\n\n\nx <- 2\n(y <- 5)\n\n[1] 5\n\n\n\nx + y\n\n[1] 7\n\n\n\nx^y\n\n[1] 32\n\n\n\nz <- x^y\n\n\n(z <- x + y)\n\n[1] 7\n\n\n\n(x <- 13)\n\n[1] 13\n\n\n\nz\n\n[1] 7\n\n\n\n# definerer z på ny\n# får nå oppdatert verdi der ny x verdi (13) er brukt\n(z <- x + y)\n\n[1] 18\n\n\n\ntypeof(z)\n\n[1] \"double\"\n\n\n\nx <- 13L\ny <- 5L\n\n\nz <- x + y\n\n\ntypeof(z)\n\n[1] \"integer\"\n\n\n\n#double\ny <- 5\n\n\n# z double\nz <- x + y\n\n\n# selv et enkelt tall er en vektor\nis.vector(z)\n\n[1] TRUE\n\n\n\n# vektor av heltall\n(x <- c(2L, 8L, 9L, 21L:29L, 17L:12L))\n\n [1]  2  8  9 21 22 23 24 25 26 27 28 29 17 16 15 14 13 12\n\n\n\ntypeof(x)\n\n[1] \"integer\"\n\n\n\n# 21 to 29 by 2\n(x <- c(2L, 8L, 9L, seq(from = 21L, to = 29L, by = 2L), 17L:12L))\n\n [1]  2  8  9 21 23 25 27 29 17 16 15 14 13 12\n\n\n\n(x <- c(2L, 8L, 9L, seq(from = 21L, to = 29L, by = 3L), 17L:12L))\n\n [1]  2  8  9 21 24 27 17 16 15 14 13 12\n\n\n\n# from 29L to 21L by -3 L\n(x <- c(2L, 8L, 9L, seq(from = 29L, to = 21L, by = -3L), 17L:12L))\n\n [1]  2  8  9 29 26 23 17 16 15 14 13 12\n\n\n\n# vår x forskjellig fra den i slides\n(y <- 6:(5 + length(x)))\n\n [1]  6  7  8  9 10 11 12 13 14 15 16 17\n\n\n\nz <- x + y\n\n\ny <- c(y, 0.5 * x)\ny\n\n [1]  6.0  7.0  8.0  9.0 10.0 11.0 12.0 13.0 14.0 15.0 16.0 17.0  1.0  4.0  4.5\n[16] 14.5 13.0 11.5  8.5  8.0  7.5  7.0  6.5  6.0\n\n\n\nx + y\n\n [1]  8.0 15.0 17.0 38.0 36.0 34.0 29.0 29.0 29.0 29.0 29.0 29.0  3.0 12.0 13.5\n[16] 43.5 39.0 34.5 25.5 24.0 22.5 21.0 19.5 18.0\n\n\n\nx <- c(x, 10)\n\n\nx + y\n\nWarning in x + y: longer object length is not a multiple of shorter object\nlength\n\n\n [1]  8.0 15.0 17.0 38.0 36.0 34.0 29.0 29.0 29.0 29.0 29.0 29.0 11.0  6.0 12.5\n[16] 23.5 42.0 37.5 31.5 25.0 23.5 22.0 20.5 19.0\n\n\nEt enklere eksempel\n\n(x <- 2:4)\n\n[1] 2 3 4\n\n\n\n(y <- 10:12)\n\n[1] 10 11 12\n\n\n\n(x + y)\n\n[1] 12 14 16\n\n\n\n(y <- c(y, y + 0.5 * x))\n\n[1] 10.0 11.0 12.0 11.0 12.5 14.0\n\n\n\n# automatisk replikering av korteste\n# ingen warning\n(x + y)\n\n[1] 12.0 14.0 16.0 13.0 15.5 18.0\n\n\n\ny\n\n[1] 10.0 11.0 12.0 11.0 12.5 14.0\n\n\n\nrep(x, 2)\n\n[1] 2 3 4 2 3 4\n\n\nVi ser at x + y nå er x + y der x er replikert 2 ganger. Merk at R gjøre dette UTEN noen form for asvarsel.\n\n# legger til et tall (4) i fronten på x\n(x <- c(4, x))\n\n[1] 4 2 3 4\n\n\n\n# Nå er elngen av x 4 og lengden av y er 6. Tar vi nå x + y vil vi få en advarsel om at lengden av x ikke går opp i lengden av y\n(x + y)\n\nWarning in x + y: longer object length is not a multiple of shorter object\nlength\n\n\n[1] 14.0 13.0 15.0 15.0 16.5 16.0\n\n# men vi får svaret, x + y der den korteste x er replikert og man bruker de \n# verdiene som trengs for å matche y"
   },
   {
     "objectID": "introduction/install-r-packages/install-R-packages.html",
@@ -3343,7 +3357,7 @@
     "href": "introduction/Zotero_demo/Zotero_demo.html#get-citation-information-with-a-pipe",
     "title": "Zotero demo",
     "section": "Get citation information with a pipe",
-    "text": "Get citation information with a pipe\nThe following code that uses a pipe is probably far easier to follow.\n\n\nCode\n# Easier to understand with a pipe\nc(\"knitr\", \"rmarkdown\", \"tidyverse\") %>% \n  # use the R citation function on the package list\n  map(citation) %>% \n  # convert the reference info to bibtex format by using the toBibtex\n  # function on each member of the reference list\n  map(toBibtex) %>%\n  # print the list\n  map(print) %>% \n  # only want the list elements combined, not each list item\n  # in addition, hence max.level=0 \n  str(max.level=0)\n\n\n@Manual{,\n  title = {knitr: A General-Purpose Package for Dynamic Report Generation in R},\n  author = {Yihui Xie},\n  year = {2022},\n  note = {R package version 1.39},\n  url = {https://yihui.org/knitr/},\n}\n\n@Book{,\n  title = {Dynamic Documents with {R} and knitr},\n  author = {Yihui Xie},\n  publisher = {Chapman and Hall/CRC},\n  address = {Boca Raton, Florida},\n  year = {2015},\n  edition = {2nd},\n  note = {ISBN 978-1498716963},\n  url = {https://yihui.org/knitr/},\n}\n\n@InCollection{,\n  booktitle = {Implementing Reproducible Computational Research},\n  editor = {Victoria Stodden and Friedrich Leisch and Roger D. Peng},\n  title = {knitr: A Comprehensive Tool for Reproducible Research in {R}},\n  author = {Yihui Xie},\n  publisher = {Chapman and Hall/CRC},\n  year = {2014},\n  note = {ISBN 978-1466561595},\n  url = {http://www.crcpress.com/product/isbn/9781466561595},\n}\n@Manual{,\n  title = {rmarkdown: Dynamic Documents for R},\n  author = {JJ Allaire and Yihui Xie and Jonathan McPherson and Javier Luraschi and Kevin Ushey and Aron Atkins and Hadley Wickham and Joe Cheng and Winston Chang and Richard Iannone},\n  year = {2022},\n  note = {R package version 2.14},\n  url = {https://github.com/rstudio/rmarkdown},\n}\n\n@Book{,\n  title = {R Markdown: The Definitive Guide},\n  author = {Yihui Xie and J.J. Allaire and Garrett Grolemund},\n  publisher = {Chapman and Hall/CRC},\n  address = {Boca Raton, Florida},\n  year = {2018},\n  note = {ISBN 9781138359338},\n  url = {https://bookdown.org/yihui/rmarkdown},\n}\n\n@Book{,\n  title = {R Markdown Cookbook},\n  author = {Yihui Xie and Christophe Dervieux and Emily Riederer},\n  publisher = {Chapman and Hall/CRC},\n  address = {Boca Raton, Florida},\n  year = {2020},\n  note = {ISBN 9780367563837},\n  url = {https://bookdown.org/yihui/rmarkdown-cookbook},\n}\n@Article{,\n  title = {Welcome to the {tidyverse}},\n  author = {Hadley Wickham and Mara Averick and Jennifer Bryan and Winston Chang and Lucy D'Agostino McGowan and Romain François and Garrett Grolemund and Alex Hayes and Lionel Henry and Jim Hester and Max Kuhn and Thomas Lin Pedersen and Evan Miller and Stephan Milton Bache and Kirill Müller and Jeroen Ooms and David Robinson and Dana Paige Seidel and Vitalie Spinu and Kohske Takahashi and Davis Vaughan and Claus Wilke and Kara Woo and Hiroaki Yutani},\n  year = {2019},\n  journal = {Journal of Open Source Software},\n  volume = {4},\n  number = {43},\n  pages = {1686},\n  doi = {10.21105/joss.01686},\n}\nList of 3"
+    "text": "Get citation information with a pipe\nThe following code that uses a pipe is probably far easier to follow.\n\n\nCode\n# Easier to understand with a pipe\nc(\"knitr\", \"rmarkdown\", \"tidyverse\") %>% \n  # use the R citation function on the package list\n  map(citation) %>% \n  # convert the reference info to bibtex format by using the toBibtex\n  # function on each member of the reference list\n  map(toBibtex) %>%\n  # print the list\n  map(print) %>% \n  # only want the list elements combined, not each list item\n  # in addition, hence max.level=0 \n  str(max.level=0)\n\n\n@Manual{,\n  title = {knitr: A General-Purpose Package for Dynamic Report Generation in R},\n  author = {Yihui Xie},\n  year = {2022},\n  note = {R package version 1.39},\n  url = {https://yihui.org/knitr/},\n}\n\n@Book{,\n  title = {Dynamic Documents with {R} and knitr},\n  author = {Yihui Xie},\n  publisher = {Chapman and Hall/CRC},\n  address = {Boca Raton, Florida},\n  year = {2015},\n  edition = {2nd},\n  note = {ISBN 978-1498716963},\n  url = {https://yihui.org/knitr/},\n}\n\n@InCollection{,\n  booktitle = {Implementing Reproducible Computational Research},\n  editor = {Victoria Stodden and Friedrich Leisch and Roger D. Peng},\n  title = {knitr: A Comprehensive Tool for Reproducible Research in {R}},\n  author = {Yihui Xie},\n  publisher = {Chapman and Hall/CRC},\n  year = {2014},\n  note = {ISBN 978-1466561595},\n  url = {http://www.crcpress.com/product/isbn/9781466561595},\n}\n@Manual{,\n  title = {rmarkdown: Dynamic Documents for R},\n  author = {JJ Allaire and Yihui Xie and Jonathan McPherson and Javier Luraschi and Kevin Ushey and Aron Atkins and Hadley Wickham and Joe Cheng and Winston Chang and Richard Iannone},\n  year = {2022},\n  note = {R package version 2.15},\n  url = {https://github.com/rstudio/rmarkdown},\n}\n\n@Book{,\n  title = {R Markdown: The Definitive Guide},\n  author = {Yihui Xie and J.J. Allaire and Garrett Grolemund},\n  publisher = {Chapman and Hall/CRC},\n  address = {Boca Raton, Florida},\n  year = {2018},\n  note = {ISBN 9781138359338},\n  url = {https://bookdown.org/yihui/rmarkdown},\n}\n\n@Book{,\n  title = {R Markdown Cookbook},\n  author = {Yihui Xie and Christophe Dervieux and Emily Riederer},\n  publisher = {Chapman and Hall/CRC},\n  address = {Boca Raton, Florida},\n  year = {2020},\n  note = {ISBN 9780367563837},\n  url = {https://bookdown.org/yihui/rmarkdown-cookbook},\n}\n@Article{,\n  title = {Welcome to the {tidyverse}},\n  author = {Hadley Wickham and Mara Averick and Jennifer Bryan and Winston Chang and Lucy D'Agostino McGowan and Romain François and Garrett Grolemund and Alex Hayes and Lionel Henry and Jim Hester and Max Kuhn and Thomas Lin Pedersen and Evan Miller and Stephan Milton Bache and Kirill Müller and Jeroen Ooms and David Robinson and Dana Paige Seidel and Vitalie Spinu and Kohske Takahashi and Davis Vaughan and Claus Wilke and Kara Woo and Hiroaki Yutani},\n  year = {2019},\n  journal = {Journal of Open Source Software},\n  volume = {4},\n  number = {43},\n  pages = {1686},\n  doi = {10.21105/joss.01686},\n}\nList of 3"
   },
   {
     "objectID": "introduction/Zotero_demo/Zotero_demo.html#copy-package-references",
@@ -3567,7 +3581,7 @@
     "href": "introduction/available-datasets/available_datasets.html#we-will-need-tidyverse",
     "title": "Available datasets",
     "section": "We will need tidyverse",
-    "text": "We will need tidyverse\n\nlibrary(tidyverse)# 8 packages\n\n── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──\n\n\n✔ ggplot2 3.3.6     ✔ purrr   0.3.4\n✔ tibble  3.1.8     ✔ dplyr   1.0.9\n✔ tidyr   1.2.0     ✔ stringr 1.4.0\n✔ readr   2.1.2     ✔ forcats 0.5.1\n\n\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()"
+    "text": "We will need tidyverse\n\nlibrary(tidyverse)# 8 packages\n\n── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──\n✔ ggplot2 3.3.6     ✔ purrr   0.3.4\n✔ tibble  3.1.8     ✔ dplyr   1.0.9\n✔ tidyr   1.2.0     ✔ stringr 1.4.0\n✔ readr   2.1.2     ✔ forcats 0.5.1\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()"
   },
   {
     "objectID": "introduction/available-datasets/available_datasets.html#what-is-loaded-now",
@@ -3591,6 +3605,97 @@
     "text": "new data sets\nData sets in the packages loaded above (the 9 in tidyverse).\n\nd3 <- as.list(data(package = s3))\nd3 <- as.data.frame(d3[3]$results[,c(3, 4)])\nd3\n\n                Item\n1            gss_cat\n2              fruit\n3          sentences\n4              words\n5   band_instruments\n6  band_instruments2\n7       band_members\n8           starwars\n9             storms\n10         billboard\n11      construction\n12   fish_encounters\n13        population\n14      relig_income\n15            smiths\n16            table1\n17            table2\n18            table3\n19           table4a\n20           table4b\n21            table5\n22    us_rent_income\n23               who\n24    world_bank_pop\n25          diamonds\n26         economics\n27    economics_long\n28         faithfuld\n29       luv_colours\n30           midwest\n31               mpg\n32            msleep\n33      presidential\n34             seals\n35         txhousing\n                                                               Title\n1   A sample of categorical variables from the General Social survey\n2      Sample character vectors for practicing string manipulations.\n3      Sample character vectors for practicing string manipulations.\n4      Sample character vectors for practicing string manipulations.\n5                                                    Band membership\n6                                                    Band membership\n7                                                    Band membership\n8                                                Starwars characters\n9                                                  Storm tracks data\n10              Song rankings for Billboard top 100 in the year 2000\n11                          Completed construction in the US in 2018\n12                                                   Fish encounters\n13                                 World Health Organization TB data\n14                                    Pew religion and income survey\n15                                  Some data about the Smith family\n16                                   Example tabular representations\n17                                   Example tabular representations\n18                                   Example tabular representations\n19                                   Example tabular representations\n20                                   Example tabular representations\n21                                   Example tabular representations\n22                                           US rent and income data\n23                                 World Health Organization TB data\n24                               Population data from the world bank\n25                          Prices of over 50,000 round cut diamonds\n26                                           US economic time series\n27                                           US economic time series\n28                          2d density estimate of Old Faithful data\n29                                           'colors()' in Luv space\n30                                              Midwest demographics\n31 Fuel economy data from 1999 to 2008 for 38 popular models of cars\n32      An updated and expanded version of the mammals sleep dataset\n33                   Terms of 11 presidents from Eisenhower to Obama\n34                                    Vector field of seal movements\n35                                               Housing sales in TX\n\n\nR for data science uses the mpg dataset for many of the examples in chapter 3. The first one ggplot() command is\n\nggplot(data = mpg) + \n  geom_point(mapping = aes(x = displ, y = hwy))\n\n\n\n\nand as you will see the dataset is mpg. You should work through the examples in chapter 3. It´s easy to copy the code into R.\n\n\n\nEx. ggplot2.\n\n\nJust click the icon in the upper right corner and then paste the code into an R Notebook. (remember alt + ctrl + i (pc) or alt + cmb + i (on mac) before you paste in the copied code)\nI will use another classic dataset called mtcars. It´s one of the classics and is allways available in R. We can read about it by entering mtcars in the search field in help.\n\n\n\nDocumentation of Dataset mtcars.\n\n\nWe can start by viewing the data. Note there is a big difference between view and View. It´s the one with capital v we want here.\n\n#View(mtcars)\n\n\n\n\nUsing View() function to inspect data.\n\n\nThis gives us a nice spreadsheet view of the dataset. We can return to our document either by clicking its tab, clicking the white arrow pointing left or by closing the mtcars tab by clicking the little x to the right of the tab name.\nAnother way to take a swift look at the data is by\n\nhead(mtcars)\n\n                   mpg cyl disp  hp drat    wt  qsec vs am gear carb\nMazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\nMazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\nDatsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\nHornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1\nHornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2\nValiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1\n\n\n(note that this is displayed as a nice table because we have df_print: paged up in the YAML header). In the console the same command would have given us\n\n\n\nmtcars Dataset in Console."
   },
   {
+    "objectID": "introduction/install-sw/install-sw.html#r-from-r-project.org",
+    "href": "introduction/install-sw/install-sw.html#r-from-r-project.org",
+    "title": "Install Software",
+    "section": "R from r-project.org",
+    "text": "R from r-project.org\n\nWe need to install the latest version of R\nGoto www.r-project.org\n\nSelect CRAN from menu at the left\nSelect Norway: uib from the list\nDownload for your platform (macos, windows or linux)\nFor mac select correct version\n\nR-4.2.1.pkg for Intel processor (macs older than 1,5 years)\nR-4.2.1-arm64.pkg for Apple Silicon processors (M1 or M2)\n\n\nInstall software as you normally would"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#mac-installer",
+    "href": "introduction/install-sw/install-sw.html#mac-installer",
+    "title": "Install Software",
+    "section": "Mac installer",
+    "text": "Mac installer\n\nSelect “Tilpass”\n\n\n\n\n\nTilpass"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#mac-installer-cont.",
+    "href": "introduction/install-sw/install-sw.html#mac-installer-cont.",
+    "title": "Install Software",
+    "section": "Mac installer cont.",
+    "text": "Mac installer cont.\n\ndeselect tcltk\n\n\n\n\n\nDeselect tcl/pk"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#install-rstudio",
+    "href": "introduction/install-sw/install-sw.html#install-rstudio",
+    "title": "Install Software",
+    "section": "Install RStudio",
+    "text": "Install RStudio\n\nWe need to install latest version of RStudio\nGoto https://www.rstudio.com/products/rstudio/download/\nDownload the free RStudio Desktop for your system\nFor mac drag the RStudio icon to the Applications folder alias next to the icon\nFor windows follow normal application installation procedure"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#install-zotero",
+    "href": "introduction/install-sw/install-sw.html#install-zotero",
+    "title": "Install Software",
+    "section": "Install Zotero",
+    "text": "Install Zotero\n\nWe need to install the latest version of Zotero\nGoto https://www.zotero.org/download/\nAfter Zotero is installed and running return to www.zotero.org with your favourite web borwser.\nInstall Zotero Connector\n\nIf you are using Safari on mac the connector is included, but you have to enable it under Safari > Valg … > Tillegg"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#enable-zotero-connector-in-safari",
+    "href": "introduction/install-sw/install-sw.html#enable-zotero-connector-in-safari",
+    "title": "Install Software",
+    "section": "Enable Zotero Connector in Safari",
+    "text": "Enable Zotero Connector in Safari\n\nEnable Zotero Connector in Safari"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#installing-better-bibtex",
+    "href": "introduction/install-sw/install-sw.html#installing-better-bibtex",
+    "title": "Install Software",
+    "section": "Installing Better BibTeX",
+    "text": "Installing Better BibTeX\n\nGoto https://retorque.re/zotero-better-bibtex/\nClick Download in menu at the left\nThen click Installation in menu at the left to get installation instructions"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#installing-git",
+    "href": "introduction/install-sw/install-sw.html#installing-git",
+    "title": "Install Software",
+    "section": "Installing git",
+    "text": "Installing git\n\nGoto https://git-scm.com/downloads\nDownload for your system\nChoose binary installer (on mac)\n\nClick download on https://sourceforge.net/projects/git-osx-installer/"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#for-mac",
+    "href": "introduction/install-sw/install-sw.html#for-mac",
+    "title": "Install Software",
+    "section": "For mac",
+    "text": "For mac\n\nOpen the Terminal program (ligger i Verktøy mappen i Programmer mappen)\nGive the following command (in Terminal)\n\nxcode-select --install\n\nAn apple ID might be required to be able to download"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#final-configurations",
+    "href": "introduction/install-sw/install-sw.html#final-configurations",
+    "title": "Install Software",
+    "section": "Final configurations",
+    "text": "Final configurations\n\nStart RStudio\nCheck that you have a Git tab in upper right pane\nSelect the Terminal tab in lower right pane in RStudio\n\n\ngit config --global user.name 'Jane Doe'\ngit config --global user.email 'jane@example.com'\ngit config --global --list"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#git-editor",
+    "href": "introduction/install-sw/install-sw.html#git-editor",
+    "title": "Install Software",
+    "section": "Git editor",
+    "text": "Git editor\n\nPC\n\ngit config --global core.editor C:\\Program Files\\RStudio\\bin\\rstudio.exe\n\nmac\n\ngit config --global core.editor /Applications/RStudio.app"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#define-user-on-github",
+    "href": "introduction/install-sw/install-sw.html#define-user-on-github",
+    "title": "Install Software",
+    "section": "Define user on Github",
+    "text": "Define user on Github\n\nhvl email og email you use\nUse a serious name; you might be showing this to a future employer\nConnect RStudio to Github\n\ninstall packages\n\nusethis\ncredentials\n\nUse Github.R\n\nSee git-github slides for configuration"
+  },
+  {
+    "objectID": "introduction/install-sw/install-sw.html#install-tinytex",
+    "href": "introduction/install-sw/install-sw.html#install-tinytex",
+    "title": "Install Software",
+    "section": "Install tinytex",
+    "text": "Install tinytex\n\nUnder Packages in lower right pane select:\n\nInstall\n\nUnder packages write tinytex\nMake sure that Install dependencies is checked\nClick install\n\n\nWhen install check off tinytex in the lower left pane under tab Packages\nGive the command install_tinytex() in Console in lower left pane.\n\n\n\nMSB105"
+  },
+  {
     "objectID": "introduction/pref-setup-2022/ps2022.html",
     "href": "introduction/pref-setup-2022/ps2022.html",
     "title": "RStudio preference setup 2022",
@@ -3609,7 +3714,7 @@
     "href": "introduction/illustrate-markdown/illustrate-markdown.html#introduction",
     "title": "Illustrate Markdown",
     "section": "Introduction",
-    "text": "Introduction\nA short document to illustrate RMarkdown and Markdown.\nWe start with some simple R code in a chunk.\n\ncars[1:3, ]\n\n  speed dist\n1     4    2\n2     4   10\n3     7    4\n\n\nWith echo: true only the code and not the code options are shown. The complete content of the chunk is:\n\n\n\nThe complete content of the chunk above.\n\n\n\nplot(cars)\n\n\n\n\n\n\n\nThe complete content of the plot chunk.\n\n\n\nplot(cars)\n\n\n\n\nPlot with fig-width: 2 and echo: true\n\n\n\n\n\n\n\n\n\nPlot with fig-width: 4 and echo: false"
+    "text": "Introduction\nA short document to illustrate RMarkdown and Markdown.\nWe start with some simple R code in a chunk.\n\ncars[1:3,]\n\n  speed dist\n1     4    2\n2     4   10\n3     7    4\n\n\nWith echo: true only the code and not the code options are shown. The complete content of the chunk is:\n\n\n\nThe complete content of the chunk above.\n\n\n\nplot(cars)\n\n\n\n\n\n\n\nThe complete content of the plot chunk.\n\n\n\nplot(cars)\n\n\n\n\nPlot with fig-width: 2 and echo: true\n\n\n\n\n\n\n\n\n\nPlot with fig-width: 4 and echo: false"
   },
   {
     "objectID": "introduction/illustrate-markdown/illustrate-markdown.html#the-resulting-markdown",
@@ -3966,7 +4071,7 @@
     "href": "explore-data/import-export-data/import-export-data.html#references",
     "title": "Import/Export Data",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nAllaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, Winston Chang, and Richard Iannone. 2022. Rmarkdown: Dynamic Documents for r. https://CRAN.R-project.org/package=rmarkdown.\n\n\nLangsrud, Øyvind, and Jan Bruusgaard. 2021. PxWebApiData: PX-Web Data by API. https://github.com/statisticsnorway/PxWebApiData.\n\n\nR Core Team. 2022. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. https://www.R-project.org/.\n\n\nWickham, Hadley. 2021a. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2021b. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686.\n\n\nWickham, Hadley, and Jennifer Bryan. 2022. Readxl: Read Excel Files. https://CRAN.R-project.org/package=readxl.\n\n\nWickham, Hadley, Jim Hester, and Jennifer Bryan. 2022. Readr: Read Rectangular Text Data. https://CRAN.R-project.org/package=readr.\n\n\nXie, Yihui, J. J. Allaire, and Garrett Grolemund. 2018. R Markdown: The Definitive Guide. Boca Raton, Florida: Chapman; Hall/CRC. https://bookdown.org/yihui/rmarkdown.\n\n\nXie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. R Markdown Cookbook. Boca Raton, Florida: Chapman; Hall/CRC. https://bookdown.org/yihui/rmarkdown-cookbook."
+    "text": "References\n\n\nMSB105\n\n\n\nAllaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, Winston Chang, and Richard Iannone. 2022. Rmarkdown: Dynamic Documents for r. https://CRAN.R-project.org/package=rmarkdown.\n\n\nLangsrud, Øyvind, and Jan Bruusgaard. 2021. PxWebApiData: PX-Web Data by API. https://github.com/statisticsnorway/PxWebApiData.\n\n\nR Core Team. 2022. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. https://www.R-project.org/.\n\n\nWickham, Hadley. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2022. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686.\n\n\nWickham, Hadley, and Jennifer Bryan. 2022. Readxl: Read Excel Files. https://CRAN.R-project.org/package=readxl.\n\n\nWickham, Hadley, Jim Hester, and Jennifer Bryan. 2022. Readr: Read Rectangular Text Data. https://CRAN.R-project.org/package=readr.\n\n\nXie, Yihui, J. J. Allaire, and Garrett Grolemund. 2018. R Markdown: The Definitive Guide. Boca Raton, Florida: Chapman; Hall/CRC. https://bookdown.org/yihui/rmarkdown.\n\n\nXie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. R Markdown Cookbook. Boca Raton, Florida: Chapman; Hall/CRC. https://bookdown.org/yihui/rmarkdown-cookbook."
   },
   {
     "objectID": "explore-data/trans-data/trans-data.html#introduction-to-transforming-data-chp.-5",
@@ -5128,7 +5233,7 @@
     "href": "explore-data/eda/eda.html#references",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nAuguie, Baptiste. 2017. gridExtra: Miscellaneous Functions for \"Grid\" Graphics. https://CRAN.R-project.org/package=gridExtra.\n\n\nHenry, Lionel, and Hadley Wickham. 2020. Purrr: Functional Programming Tools. https://CRAN.R-project.org/package=purrr.\n\n\nHuntington-Klein, Nick. 2022. Vtable: Variable Table for Variable Documentation. https://nickch-k.github.io/vtable/.\n\n\nMüller, Kirill, and Hadley Wickham. 2022. Tibble: Simple Data Frames. https://CRAN.R-project.org/package=tibble.\n\n\nR Core Team. 2022. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. https://www.R-project.org/.\n\n\nWickham, Hadley. 2016. Ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. https://ggplot2.tidyverse.org.\n\n\n———. 2019. Stringr: Simple, Consistent Wrappers for Common String Operations. https://CRAN.R-project.org/package=stringr.\n\n\n———. 2020. Modelr: Modelling Functions That Work with the Pipe. https://CRAN.R-project.org/package=modelr.\n\n\n———. 2021a. Forcats: Tools for Working with Categorical Variables (Factors). https://CRAN.R-project.org/package=forcats.\n\n\n———. 2021b. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2021c. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686.\n\n\nWickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, Hiroaki Yutani, and Dewey Dunnington. 2022. Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics. https://CRAN.R-project.org/package=ggplot2.\n\n\nWickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2022. Dplyr: A Grammar of Data Manipulation. https://CRAN.R-project.org/package=dplyr.\n\n\nWickham, Hadley, and Maximilian Girlich. 2022. Tidyr: Tidy Messy Data. https://CRAN.R-project.org/package=tidyr.\n\n\nWickham, Hadley, Jim Hester, and Jennifer Bryan. 2022. Readr: Read Rectangular Text Data. https://CRAN.R-project.org/package=readr.\n\n\nYu, Guangchuang. 2021. Ggplotify: Convert Plot to Grob or Ggplot Object. https://github.com/GuangchuangYu/ggplotify.\n\n\nZhu, Hao. 2021. kableExtra: Construct Complex Table with Kable and Pipe Syntax. https://CRAN.R-project.org/package=kableExtra."
+    "text": "References\n\n\nMSB105\n\n\n\nAuguie, Baptiste. 2017. gridExtra: Miscellaneous Functions for \"Grid\" Graphics. https://CRAN.R-project.org/package=gridExtra.\n\n\nHenry, Lionel, and Hadley Wickham. 2020. Purrr: Functional Programming Tools. https://CRAN.R-project.org/package=purrr.\n\n\nHuntington-Klein, Nick. 2022. Vtable: Variable Table for Variable Documentation. https://nickch-k.github.io/vtable/.\n\n\nMüller, Kirill, and Hadley Wickham. 2022. Tibble: Simple Data Frames. https://CRAN.R-project.org/package=tibble.\n\n\nR Core Team. 2022. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. https://www.R-project.org/.\n\n\nWickham, Hadley. 2016. Ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. https://ggplot2.tidyverse.org.\n\n\n———. 2019. Stringr: Simple, Consistent Wrappers for Common String Operations. https://CRAN.R-project.org/package=stringr.\n\n\n———. 2020. Modelr: Modelling Functions That Work with the Pipe. https://CRAN.R-project.org/package=modelr.\n\n\n———. 2021a. Forcats: Tools for Working with Categorical Variables (Factors). https://CRAN.R-project.org/package=forcats.\n\n\n———. 2021b. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2022. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686.\n\n\nWickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, Hiroaki Yutani, and Dewey Dunnington. 2022. Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics. https://CRAN.R-project.org/package=ggplot2.\n\n\nWickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2022. Dplyr: A Grammar of Data Manipulation. https://CRAN.R-project.org/package=dplyr.\n\n\nWickham, Hadley, and Maximilian Girlich. 2022. Tidyr: Tidy Messy Data. https://CRAN.R-project.org/package=tidyr.\n\n\nWickham, Hadley, Jim Hester, and Jennifer Bryan. 2022. Readr: Read Rectangular Text Data. https://CRAN.R-project.org/package=readr.\n\n\nYu, Guangchuang. 2021. Ggplotify: Convert Plot to Grob or Ggplot Object. https://github.com/GuangchuangYu/ggplotify.\n\n\nZhu, Hao. 2021. kableExtra: Construct Complex Table with Kable and Pipe Syntax. https://CRAN.R-project.org/package=kableExtra."
   },
   {
     "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#load-packages",
@@ -5569,7 +5674,7 @@
     "href": "explore-data/wf/wf.html#workflow-projects-chap.-8-2",
     "title": "Our Workflow",
     "section": "Workflow: projects (chap. 8)",
-    "text": "Workflow: projects (chap. 8)\n\nWorking directory for Project.\n\n\n\n\n\nWorking Directory for Project is top Directory where the .Rproj file is located.\n\n\n\nWorking directory for current Quarto Document is the directory where the Quarto Document is situated.\n\n\n\n\n\nCode\ngetwd()\n\n\n[1] \"/Users/agwd/Dev/QQ_MSB105/explore-data/wf\"\n\n\n\nIn the sub-dir wf of the sub-dir explore-data in the project folder"
+    "text": "Workflow: projects (chap. 8)\n\nWorking directory for Project.\n\n\n\n\n\nWorking Directory for Project is top Directory where the .Rproj file is located.\n\n\n\nWorking directory for current Quarto Document is the directory where the Quarto Document is situated.\n\n\n\n\n\nCode\ngetwd()\n\n\n[1] \"/Users/ag/Dev/QQ_MSB105/explore-data/wf\"\n\n\n\nIn the sub-dir wf of the sub-dir explore-data in the project folder"
   },
   {
     "objectID": "explore-data/wf/wf.html#relative-paths",
@@ -5590,7 +5695,7 @@
     "href": "explore-data/wf/wf.html#absolute-path",
     "title": "Our Workflow",
     "section": "Absolute Path",
-    "text": "Absolute Path\n\nDo not use absolute paths in code you will share\n\nYou should also try to avoid it in code you don’t intend to share\nRemember: “Be kind to future self”\n\nRead from file with absolute path (this time only 4 lines read):\n\n\n\n\nCode\n# Absolute path\nmy_file <- \"/Users/agwd/Dev/QQ_MSB105/introduction/intro/intro.qmd\"\nmy_text <- readLines(con = file(my_file, encoding = \"UTF-8\"), n = 4)\n#close(con)\n\n\n\n\nCode\ncat(my_text, sep = \"\\n\")\n\n\n---\ntitle: Introduksjon Data Science\nformat:\n  revealjs:\n\n\n\n\n\n\n\nMSB105"
+    "text": "Absolute Path\n\nDo not use absolute paths in code you will share\n\nYou should also try to avoid it in code you don’t intend to share\nRemember: “Be kind to future self”\n\nRead from file with absolute path (this time only 4 lines read):\n\n\n\n\nCode\n# Absolute path\n# Works just on one machine, hence eval: false\nmy_file <- \"/Users/agwd/Dev/QQ_MSB105/introduction/intro/intro.qmd\"\nmy_text <- readLines(con = file(my_file, encoding = \"UTF-8\"), n = 4)\n#close(con)\n\n\n\n\nCode\ncat(my_text, sep = \"\\n\")\n\n\n\n\n\n\n\nMSB105"
   },
   {
     "objectID": "index.html",
@@ -5849,7 +5954,7 @@
     "href": "model/model-basics/model-basics.html#small-dataset-near-multicolinearity-case-1-1",
     "title": "Model basics",
     "section": "Small dataset, near multicolinearity, case 1",
-    "text": "Small dataset, near multicolinearity, case 1\n\n\nCode\nsolve(t(X) %*% X)\n\n\n            (Intercept)          x_1           x_3\n(Intercept)    1.076134     1080.807     -480.4311\nx_1         1080.806517  2296162.329 -1020602.2147\nx_3         -480.431138 -1020602.215   453639.0453\n\n\n\n\nCode\nround(solve(t(X) %*% X) %*% t(X) %*% y, 4)\n\n\n                  [,1]\n(Intercept)     4.6093\nx_1          2278.6098\nx_3         -1011.8724"
+    "text": "Small dataset, near multicolinearity, case 1\n\n\nCode\nsolve(t(X) %*% X)\n\n\n            (Intercept)          x_1           x_3\n(Intercept)    1.076135     1080.807     -480.4311\nx_1         1080.806542  2296162.380 -1020602.2377\nx_3         -480.431149 -1020602.238   453639.0556\n\n\n\n\nCode\nround(solve(t(X) %*% X) %*% t(X) %*% y, 4)\n\n\n                  [,1]\n(Intercept)     4.6093\nx_1          2278.6099\nx_3         -1011.8724"
   },
   {
     "objectID": "model/model-basics/model-basics.html#small-dataset-near-multicolinearity-case-2",
@@ -5863,7 +5968,7 @@
     "href": "model/model-basics/model-basics.html#small-dataset-near-multicolinearity-case-2-1",
     "title": "Model basics",
     "section": "Small dataset, near multicolinearity, case 2",
-    "text": "Small dataset, near multicolinearity, case 2\n\n\nCode\nsolve(t(X) %*% X)\n\n\n            (Intercept)          x_1           x_3\n(Intercept)    0.661639     -464.577      206.4392\nx_1         -464.576957  2287815.609 -1016771.9862\nx_3          206.439176 -1016771.986   451883.1297\n\n\n\n\nCode\nround(solve(t(X) %*% X) %*% t(X) %*% y, 4)\n\n\n                  [,1]\n(Intercept)     4.6397\nx_1         -5425.5198\nx_3          2412.1872"
+    "text": "Small dataset, near multicolinearity, case 2\n\n\nCode\nsolve(t(X) %*% X)\n\n\n            (Intercept)           x_1           x_3\n(Intercept)    0.661639     -464.5769      206.4392\nx_1         -464.576937  2287815.5109 -1016771.9424\nx_3          206.439167 -1016771.9424   451883.1103\n\n\n\n\nCode\nround(solve(t(X) %*% X) %*% t(X) %*% y, 4)\n\n\n                  [,1]\n(Intercept)     4.6397\nx_1         -5425.5196\nx_3          2412.1871"
   },
   {
     "objectID": "model/model-basics/model-basics.html#conclusion-case-1-and-2",
@@ -5961,7 +6066,7 @@
     "href": "model/model-basics/model-basics.html#references",
     "title": "Model basics",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nWickham, Hadley. 2020. Modelr: Modelling Functions That Work with the Pipe. https://CRAN.R-project.org/package=modelr.\n\n\n———. 2021. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nWickham, Hadley. 2020. Modelr: Modelling Functions That Work with the Pipe. https://CRAN.R-project.org/package=modelr.\n\n\n———. 2022. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "model/many-models/many-models.html#introduction",
@@ -6395,7 +6500,7 @@
     "href": "model/many-models/many-models.html#references",
     "title": "Many models",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nCarr, Dan, Nicholas Lewin-Koh, and Martin Maechler. 2021. Hexbin: Hexagonal Binning Routines. https://github.com/edzer/hexbin.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nPedersen, Thomas Lin. 2020. Patchwork: The Composer of Plots. https://CRAN.R-project.org/package=patchwork.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nTrapletti, Adrian, and Kurt Hornik. 2022. Tseries: Time Series Analysis and Computational Finance. https://CRAN.R-project.org/package=tseries.\n\n\nWickham, Hadley. 2020. Modelr: Modelling Functions That Work with the Pipe. https://CRAN.R-project.org/package=modelr.\n\n\n———. 2021a. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2021b. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nCarr, Dan, Nicholas Lewin-Koh, and Martin Maechler. 2021. Hexbin: Hexagonal Binning Routines. https://github.com/edzer/hexbin.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nPedersen, Thomas Lin. 2020. Patchwork: The Composer of Plots. https://CRAN.R-project.org/package=patchwork.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nTrapletti, Adrian, and Kurt Hornik. 2022. Tseries: Time Series Analysis and Computational Finance. https://CRAN.R-project.org/package=tseries.\n\n\nWickham, Hadley. 2020. Modelr: Modelling Functions That Work with the Pipe. https://CRAN.R-project.org/package=modelr.\n\n\n———. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2022. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "model/model-building/model-building.html#introduction",
@@ -6745,7 +6850,7 @@
     "href": "model/model-building/model-building.html#simple-model",
     "title": "Model building",
     "section": "Simple model",
-    "text": "Simple model\n\nSimple model with wday as a category variable\n\n\n\n\nCode\nmod <- lm(n ~ wday, data = daily)\ndaily %>% \n  model_matrix(n ~ wday) %>% \n  .[1:3, ] # 3 first rows\n\n\n# A tibble: 3 × 7\n  `(Intercept)`    wday.L wday.Q    wday.C `wday^4`  `wday^5` `wday^6`\n          <dbl>     <dbl>  <dbl>     <dbl>    <dbl>     <dbl>    <dbl>\n1             1 -1.89e- 1 -0.327  4.08e- 1   0.0806 -5.46e- 1    0.493\n2             1  2.10e-17 -0.436  3.02e-17   0.483  -9.75e-16   -0.658\n3             1  1.89e- 1 -0.327 -4.08e- 1   0.0806  5.46e- 1    0.493"
+    "text": "Simple model\n\nSimple model with wday as a category variable\n\n\n\n\nCode\nmod <- lm(n ~ wday, data = daily)\ndaily %>% \n  model_matrix(n ~ wday) %>% \n  .[1:3, ] # 3 first rows\n\n\n# A tibble: 3 × 7\n  `(Intercept)`    wday.L wday.Q    wday.C `wday^4`  `wday^5` `wday^6`\n          <dbl>     <dbl>  <dbl>     <dbl>    <dbl>     <dbl>    <dbl>\n1             1 -1.89e- 1 -0.327  4.08e- 1   0.0806 -5.46e- 1    0.493\n2             1  2.86e-17 -0.436 -1.77e-17   0.483  -1.14e-15   -0.658\n3             1  1.89e- 1 -0.327 -4.08e- 1   0.0806  5.46e- 1    0.493"
   },
   {
     "objectID": "model/model-building/model-building.html#simple-model-grid",
@@ -6850,7 +6955,7 @@
     "href": "model/model-building/model-building.html#references",
     "title": "Model building",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nCarr, Dan, Nicholas Lewin-Koh, and Martin Maechler. 2021. Hexbin: Hexagonal Binning Routines. https://github.com/edzer/hexbin.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nPedersen, Thomas Lin. 2020. Patchwork: The Composer of Plots. https://CRAN.R-project.org/package=patchwork.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nTrapletti, Adrian, and Kurt Hornik. 2022. Tseries: Time Series Analysis and Computational Finance. https://CRAN.R-project.org/package=tseries.\n\n\nWickham, Hadley. 2020. Modelr: Modelling Functions That Work with the Pipe. https://CRAN.R-project.org/package=modelr.\n\n\n———. 2021a. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2021b. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nCarr, Dan, Nicholas Lewin-Koh, and Martin Maechler. 2021. Hexbin: Hexagonal Binning Routines. https://github.com/edzer/hexbin.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nPedersen, Thomas Lin. 2020. Patchwork: The Composer of Plots. https://CRAN.R-project.org/package=patchwork.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nTrapletti, Adrian, and Kurt Hornik. 2022. Tseries: Time Series Analysis and Computational Finance. https://CRAN.R-project.org/package=tseries.\n\n\nWickham, Hadley. 2020. Modelr: Modelling Functions That Work with the Pipe. https://CRAN.R-project.org/package=modelr.\n\n\n———. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2022. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "program/pipes-cont/pipes-cont.html#load-tidyverse-and-magrittr",
@@ -6934,7 +7039,7 @@
     "href": "program/pipes-cont/pipes-cont.html#references",
     "title": "Pipes",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nBache, Stefan Milton, and Hadley Wickham. 2022. Magrittr: A Forward-Pipe Operator for r. https://CRAN.R-project.org/package=magrittr.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nWickham, Hadley. 2021. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nBache, Stefan Milton, and Hadley Wickham. 2022. Magrittr: A Forward-Pipe Operator for r. https://CRAN.R-project.org/package=magrittr.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nWickham, Hadley. 2022. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "program/vectors/vectors.html#load-tidyverse",
@@ -7056,13 +7161,6 @@
     "text": "Subsetting dataframe with [[ and [\n\n\nCode\ntypeof(my_df1[[3,3]])\n\n\n[1] \"double\"\n\n\n\n\nCode\n# multiple elements [[]] gives an error\nmy_df1[[3,1:3]]\n\n\n\nError: Must extract column with a single valid subscript. x Subscript 1:3 has size 3 but must be size 1. Run rlang::last_error() to see where the error occurred."
   },
   {
-    "objectID": "program/vectors/vectors.html#subsetting-dataframe-with-and-3",
-    "href": "program/vectors/vectors.html#subsetting-dataframe-with-and-3",
-    "title": "Vectors",
-    "section": "Subsetting dataframe with [[ and [",
-    "text": "Subsetting dataframe with [[ and [\n\nNote the difference between [[ and [\n\n[[ returns a single value\n[ also returns a single value, but inside a dataframe/tibble\n\nVery important for lists"
-  },
-  {
     "objectID": "program/vectors/vectors.html#subsetting-list-with-and",
     "href": "program/vectors/vectors.html#subsetting-list-with-and",
     "title": "Vectors",
@@ -7070,46 +7168,60 @@
     "text": "Subsetting list with [[ and [\n\nNote the difference between [[ and [\n\n[[ returns a single value\n[ also returns a single value, but inside a dataframe/tibble\n\nVery important for lists\n\n\n\n\nCode\nmy_list <- list(letters[1:4], 1:3, \"a\", 1.25, TRUE)\nstr(my_list)\n\n\nList of 5\n $ : chr [1:4] \"a\" \"b\" \"c\" \"d\"\n $ : int [1:3] 1 2 3\n $ : chr \"a\"\n $ : num 1.25\n $ : logi TRUE"
   },
   {
-    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-1",
-    "href": "program/vectors/vectors.html#subsetting-list-with-and-1",
+    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-cont.",
+    "href": "program/vectors/vectors.html#subsetting-list-with-and-cont.",
     "title": "Vectors",
-    "section": "Subsetting list with [[ and [",
-    "text": "Subsetting list with [[ and [\n\n\nCode\nmy_list[2]\n\n\n[[1]]\n[[1]][[1]]\n[1] 1 2 3\n\n\nCode\nmy_list[[2]]\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nstr(my_list[2])\n\n\nList of 1\n $ :List of 1\n  ..$ : int [1:3] 1 2 3\n\n\nCode\nstr(my_list[[2]])\n\n\nList of 1\n $ : int [1:3] 1 2 3"
+    "section": "Subsetting list with [[ and [ cont.",
+    "text": "Subsetting list with [[ and [ cont.\n\n\n\n\n\n\nNote\n\n\nBelow list() in second and third element.\n\n\n\n\n\nCode\nmy_list <- list(letters[1:4], list(1:3), list(\"a\", 1.25, TRUE))\nstr(my_list)\n\n\nList of 3\n $ : chr [1:4] \"a\" \"b\" \"c\" \"d\"\n $ :List of 1\n  ..$ : int [1:3] 1 2 3\n $ :List of 3\n  ..$ : chr \"a\"\n  ..$ : num 1.25\n  ..$ : logi TRUE"
   },
   {
-    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-2",
-    "href": "program/vectors/vectors.html#subsetting-list-with-and-2",
+    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-cont.-1",
+    "href": "program/vectors/vectors.html#subsetting-list-with-and-cont.-1",
     "title": "Vectors",
-    "section": "Subsetting list with [[ and [",
-    "text": "Subsetting list with [[ and [\n\nnamed components\n\n\n\n\nCode\nmy_list <- list(A = letters[1:4], B = list(1, 2, 3), C = list(\"a\", 1.25, TRUE))\nstr(my_list)\n\n\nList of 3\n $ A: chr [1:4] \"a\" \"b\" \"c\" \"d\"\n $ B:List of 3\n  ..$ : num 1\n  ..$ : num 2\n  ..$ : num 3\n $ C:List of 3\n  ..$ : chr \"a\"\n  ..$ : num 1.25\n  ..$ : logi TRUE\n\n\nCode\nl <- my_list[[\"C\"]]\nstr(l)\n\n\nList of 3\n $ : chr \"a\"\n $ : num 1.25\n $ : logi TRUE\n\n\nCode\nl[[1]]\n\n\n[1] \"a\""
+    "section": "Subsetting list with [[ and [ cont.",
+    "text": "Subsetting list with [[ and [ cont.\n\n\nCode\nmy_list[2]\n\n\n[[1]]\n[[1]][[1]]\n[1] 1 2 3\n\n\nCode\nmy_list[[2]]\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nstr(my_list[2])\n\n\nList of 1\n $ :List of 1\n  ..$ : int [1:3] 1 2 3\n\n\nCode\nstr(my_list[[2]])\n\n\nList of 1\n $ : int [1:3] 1 2 3"
   },
   {
-    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-3",
-    "href": "program/vectors/vectors.html#subsetting-list-with-and-3",
+    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-cont.-2",
+    "href": "program/vectors/vectors.html#subsetting-list-with-and-cont.-2",
     "title": "Vectors",
-    "section": "Subsetting list with [[ and [",
-    "text": "Subsetting list with [[ and [\n\n[[ trekker elementer opp av listen\n\n\n\n\nCode\nl <- my_list[[\"B\"]]\nstr(l)\n\n\nList of 3\n $ : num 1\n $ : num 2\n $ : num 3\n\n\nCode\n# The value\nl[[1]]\n\n\n[1] 1\n\n\nCode\n# The value\nmy_list[[\"C\"]][[2]]\n\n\n[1] 1.25\n\n\nCode\n# The value\nmy_list$C[[2]]\n\n\n[1] 1.25"
+    "section": "Subsetting list with [[ and [ cont.",
+    "text": "Subsetting list with [[ and [ cont.\n\nnamed components\n\n\n\n\n\n\n\nNote\n\n\nBelow A is a vector, while B and C are lists.\n\n\n\n\n\n\nCode\nmy_list <- list(A = letters[1:4], B = list(1, 2, 3), C = list(\"a\", 1.25, TRUE))\nstr(my_list)\n\n\nList of 3\n $ A: chr [1:4] \"a\" \"b\" \"c\" \"d\"\n $ B:List of 3\n  ..$ : num 1\n  ..$ : num 2\n  ..$ : num 3\n $ C:List of 3\n  ..$ : chr \"a\"\n  ..$ : num 1.25\n  ..$ : logi TRUE"
   },
   {
-    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-4",
-    "href": "program/vectors/vectors.html#subsetting-list-with-and-4",
+    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-cont.-3",
+    "href": "program/vectors/vectors.html#subsetting-list-with-and-cont.-3",
     "title": "Vectors",
-    "section": "Subsetting list with [[ and [",
-    "text": "Subsetting list with [[ and [\n\nSee r4ds 20.5.3 Lists of condiments for a famous explanation of the difference between [[ and [.\n\n\n\n\nCode\n# notice the difference\nlist(1:3)\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nlist(c(1:3))\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nlist(c(1, 2, 3))\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nlist(c(1, 2, 3))[[1]]\n\n\n[1] 1 2 3\n\n\nCode\nlist(1, 2, 3)[[1]]\n\n\n[1] 1"
+    "section": "Subsetting list with [[ and [ cont.",
+    "text": "Subsetting list with [[ and [ cont.\n\n\nCode\nl <- my_list[[\"C\"]]\nstr(l)\n\n\nList of 3\n $ : chr \"a\"\n $ : num 1.25\n $ : logi TRUE\n\n\n\n\nCode\n# Pick first element of list l\nl[[1]]\n\n\n[1] \"a\""
   },
   {
-    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-5",
-    "href": "program/vectors/vectors.html#subsetting-list-with-and-5",
+    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-cont.-4",
+    "href": "program/vectors/vectors.html#subsetting-list-with-and-cont.-4",
     "title": "Vectors",
-    "section": "Subsetting list with [[ and [",
-    "text": "Subsetting list with [[ and [\n\n\nCode\nlist(1, 2, 3)\n\n\n[[1]]\n[1] 1\n\n[[2]]\n[1] 2\n\n[[3]]\n[1] 3\n\n\nCode\nlist(1:3)[[1]][[2]]\n\n\n[1] 2\n\n\nCode\nlist(1, 2, 3)[[2]]\n\n\n[1] 2\n\n\nCode\nunlist(my_list)\n\n\n    A1     A2     A3     A4     B1     B2     B3     C1     C2     C3 \n   \"a\"    \"b\"    \"c\"    \"d\"    \"1\"    \"2\"    \"3\"    \"a\" \"1.25\" \"TRUE\" \n\n\nCode\ntypeof(unlist(my_list))\n\n\n[1] \"character\""
+    "section": "Subsetting list with [[ and [ cont.",
+    "text": "Subsetting list with [[ and [ cont.\n\n[[ trekker elementer opp av listen\n\n\n\n\nCode\nl <- my_list[[\"B\"]]\nstr(l)\n\n\nList of 3\n $ : num 1\n $ : num 2\n $ : num 3\n\n\nCode\n# The value\nl[[1]]\n\n\n[1] 1\n\n\nCode\n# The value\nmy_list[[\"C\"]][[2]]\n\n\n[1] 1.25\n\n\nCode\n# The value\nmy_list$C[[2]]\n\n\n[1] 1.25"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-cont.-5",
+    "href": "program/vectors/vectors.html#subsetting-list-with-and-cont.-5",
+    "title": "Vectors",
+    "section": "Subsetting list with [[ and [ cont.",
+    "text": "Subsetting list with [[ and [ cont.\n\nSee r4ds 20.5.3 Lists of condiments for a famous explanation of the difference between [[ and [.\n\n\n\n\nCode\n# notice the difference\nlist(1:3)\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nlist(c(1:3))\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nlist(c(1, 2, 3))\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nlist(c(1, 2, 3))[[1]]\n\n\n[1] 1 2 3\n\n\nCode\nlist(1, 2, 3)[[1]]\n\n\n[1] 1"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-cont.-6",
+    "href": "program/vectors/vectors.html#subsetting-list-with-and-cont.-6",
+    "title": "Vectors",
+    "section": "Subsetting list with [[ and [ cont.",
+    "text": "Subsetting list with [[ and [ cont.\n\n\nCode\nlist(1, 2, 3)\n\n\n[[1]]\n[1] 1\n\n[[2]]\n[1] 2\n\n[[3]]\n[1] 3\n\n\nCode\nlist(1:3)[[1]][[2]]\n\n\n[1] 2\n\n\nCode\nlist(1, 2, 3)[[2]]\n\n\n[1] 2\n\n\nCode\nunlist(my_list)\n\n\n    A1     A2     A3     A4     B1     B2     B3     C1     C2     C3 \n   \"a\"    \"b\"    \"c\"    \"d\"    \"1\"    \"2\"    \"3\"    \"a\" \"1.25\" \"TRUE\" \n\n\nCode\ntypeof(unlist(my_list))\n\n\n[1] \"character\""
   },
   {
     "objectID": "program/vectors/vectors.html#references",
     "href": "program/vectors/vectors.html#references",
     "title": "Vectors",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nBache, Stefan Milton, and Hadley Wickham. 2022. Magrittr: A Forward-Pipe Operator for r. https://CRAN.R-project.org/package=magrittr.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nWickham, Hadley. 2021. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nBache, Stefan Milton, and Hadley Wickham. 2022. Magrittr: A Forward-Pipe Operator for r. https://CRAN.R-project.org/package=magrittr.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nWickham, Hadley. 2022. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "program/program.html",
@@ -7340,7 +7452,7 @@
     "href": "program/functions/functions.html#references",
     "title": "Functions",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nWickham, Hadley. 2021. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nWickham, Hadley. 2022. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "program/iteration/iteration.html#define-my_df",
@@ -7396,7 +7508,7 @@
     "href": "program/iteration/iteration.html#for-loop-tibble-2",
     "title": "Iteration",
     "section": "For loop, tibble",
-    "text": "For loop, tibble\n\ntesting\n\n\n\n\nCode\nmyT(my_df)\n\n\n# A tibble: 3 × 10\n    V_1   V_2   V_3   V_4   V_5   V_6   V_7    V_8    V_9   V_10\n  <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>  <dbl>  <dbl>\n1 99.2  119.  79.5  103.  84.7  97.3  112.  106.   104.    94.4 \n2 43.0   37.1 49.1   56.8 81.7  43.2   58.0  48.7   50.5  115.  \n3  9.22  15.3  8.23 114.   3.45  1.80  51.1   1.79   6.56   4.66\n\n\nCode\ntest <- matrix(sample(1:10, 10000, replace = TRUE), \n               nrow = 100, ncol = 100)\n# checking speed\nmicrobenchmark(myT(test), t(test))\n\n\nUnit: microseconds\n      expr     min       lq      mean   median       uq     max neval\n myT(test) 584.701 589.8055 603.91401 594.7460 602.8230 786.175   100\n   t(test)  13.079  15.9695  16.81779  16.4205  16.9535  43.665   100\n\n\n\nOur routine is about 40 times slower than Rs t(). Why so much slower? See Efficient R programming."
+    "text": "For loop, tibble\n\ntesting\n\n\n\n\nCode\nmyT(my_df)\n\n\n# A tibble: 3 × 10\n    V_1   V_2   V_3   V_4   V_5   V_6   V_7    V_8    V_9   V_10\n  <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>  <dbl>  <dbl>\n1 99.2  119.  79.5  103.  84.7  97.3  112.  106.   104.    94.4 \n2 43.0   37.1 49.1   56.8 81.7  43.2   58.0  48.7   50.5  115.  \n3  9.22  15.3  8.23 114.   3.45  1.80  51.1   1.79   6.56   4.66\n\n\nCode\ntest <- matrix(sample(1:10, 10000, replace = TRUE), \n               nrow = 100, ncol = 100)\n# checking speed\nmicrobenchmark(myT(test), t(test))\n\n\nUnit: microseconds\n      expr     min       lq      mean  median       uq     max neval\n myT(test) 584.947 592.9420 611.61832 598.477 613.8315 777.975   100\n   t(test)  12.956  15.1905  17.19253  16.236  17.0355  70.807   100\n\n\n\nOur routine is about 40 times slower than Rs t(). Why so much slower? See Efficient R programming."
   },
   {
     "objectID": "program/iteration/iteration.html#myt-with-other-input",
@@ -7438,7 +7550,7 @@
     "href": "program/iteration/iteration.html#testing",
     "title": "Iteration",
     "section": "Testing",
-    "text": "Testing\n\n\nCode\n# checking speed\nset.seed(444)\ntest_vec <- sample(1:10, 10000, replace = TRUE)\nmicrobenchmark::microbenchmark(decide_number_vec(test), decide_numvec(test))\n\n\nUnit: milliseconds\n                    expr       min        lq      mean    median        uq\n decide_number_vec(test) 15.457410 15.695927 16.384958 15.773438 17.280085\n     decide_numvec(test)  3.069916  3.179878  3.268888  3.233608  3.295027\n       max neval\n 19.887952   100\n  4.997572   100\n\n\n\nvector version about 7 times faster"
+    "text": "Testing\n\n\nCode\n# checking speed\nset.seed(444)\ntest_vec <- sample(1:10, 10000, replace = TRUE)\nmicrobenchmark::microbenchmark(decide_number_vec(test), decide_numvec(test))\n\n\nUnit: milliseconds\n                    expr       min        lq      mean    median       uq\n decide_number_vec(test) 15.439698 15.667904 16.396597 15.746829 17.37371\n     decide_numvec(test)  3.121494  3.209542  3.280519  3.257655  3.29476\n       max neval\n 20.285816   100\n  4.974653   100\n\n\n\nvector version about 7 times faster"
   },
   {
     "objectID": "program/iteration/iteration.html#for-loop-variations",
@@ -7628,159 +7740,5 @@
     "title": "Iteration",
     "section": "References",
     "text": "References\n\n\nMSB105\n\n\n\nBache, Stefan Milton, and Hadley Wickham. 2022. Magrittr: A Forward-Pipe Operator for r. https://CRAN.R-project.org/package=magrittr.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nMersmann, Olaf. 2021. Microbenchmark: Accurate Timing Functions. https://github.com/joshuaulrich/microbenchmark/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nWickham, Hadley. 2022. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
-  },
-  {
-    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-cont.",
-    "href": "program/vectors/vectors.html#subsetting-list-with-and-cont.",
-    "title": "Vectors",
-    "section": "Subsetting list with [[ and [ cont.",
-    "text": "Subsetting list with [[ and [ cont.\n\n\n\n\n\n\nNote\n\n\nBelow list() in second and third element.\n\n\n\n\n\nCode\nmy_list <- list(letters[1:4], list(1:3), list(\"a\", 1.25, TRUE))\nstr(my_list)\n\n\nList of 3\n $ : chr [1:4] \"a\" \"b\" \"c\" \"d\"\n $ :List of 1\n  ..$ : int [1:3] 1 2 3\n $ :List of 3\n  ..$ : chr \"a\"\n  ..$ : num 1.25\n  ..$ : logi TRUE"
-  },
-  {
-    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-cont.-1",
-    "href": "program/vectors/vectors.html#subsetting-list-with-and-cont.-1",
-    "title": "Vectors",
-    "section": "Subsetting list with [[ and [ cont.",
-    "text": "Subsetting list with [[ and [ cont.\n\n\nCode\nmy_list[2]\n\n\n[[1]]\n[[1]][[1]]\n[1] 1 2 3\n\n\nCode\nmy_list[[2]]\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nstr(my_list[2])\n\n\nList of 1\n $ :List of 1\n  ..$ : int [1:3] 1 2 3\n\n\nCode\nstr(my_list[[2]])\n\n\nList of 1\n $ : int [1:3] 1 2 3"
-  },
-  {
-    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-cont.-2",
-    "href": "program/vectors/vectors.html#subsetting-list-with-and-cont.-2",
-    "title": "Vectors",
-    "section": "Subsetting list with [[ and [ cont.",
-    "text": "Subsetting list with [[ and [ cont.\n\nnamed components\n\n\n\n\n\n\n\nNote\n\n\nBelow A is a vector, while B and C are lists.\n\n\n\n\n\n\nCode\nmy_list <- list(A = letters[1:4], B = list(1, 2, 3), C = list(\"a\", 1.25, TRUE))\nstr(my_list)\n\n\nList of 3\n $ A: chr [1:4] \"a\" \"b\" \"c\" \"d\"\n $ B:List of 3\n  ..$ : num 1\n  ..$ : num 2\n  ..$ : num 3\n $ C:List of 3\n  ..$ : chr \"a\"\n  ..$ : num 1.25\n  ..$ : logi TRUE"
-  },
-  {
-    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-cont.-3",
-    "href": "program/vectors/vectors.html#subsetting-list-with-and-cont.-3",
-    "title": "Vectors",
-    "section": "Subsetting list with [[ and [ cont.",
-    "text": "Subsetting list with [[ and [ cont.\n\n\nCode\nl <- my_list[[\"C\"]]\nstr(l)\n\n\nList of 3\n $ : chr \"a\"\n $ : num 1.25\n $ : logi TRUE\n\n\n\n\nCode\n# Pick first element of list l\nl[[1]]\n\n\n[1] \"a\""
-  },
-  {
-    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-cont.-4",
-    "href": "program/vectors/vectors.html#subsetting-list-with-and-cont.-4",
-    "title": "Vectors",
-    "section": "Subsetting list with [[ and [ cont.",
-    "text": "Subsetting list with [[ and [ cont.\n\n[[ trekker elementer opp av listen\n\n\n\n\nCode\nl <- my_list[[\"B\"]]\nstr(l)\n\n\nList of 3\n $ : num 1\n $ : num 2\n $ : num 3\n\n\nCode\n# The value\nl[[1]]\n\n\n[1] 1\n\n\nCode\n# The value\nmy_list[[\"C\"]][[2]]\n\n\n[1] 1.25\n\n\nCode\n# The value\nmy_list$C[[2]]\n\n\n[1] 1.25"
-  },
-  {
-    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-cont.-5",
-    "href": "program/vectors/vectors.html#subsetting-list-with-and-cont.-5",
-    "title": "Vectors",
-    "section": "Subsetting list with [[ and [ cont.",
-    "text": "Subsetting list with [[ and [ cont.\n\nSee r4ds 20.5.3 Lists of condiments for a famous explanation of the difference between [[ and [.\n\n\n\n\nCode\n# notice the difference\nlist(1:3)\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nlist(c(1:3))\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nlist(c(1, 2, 3))\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nlist(c(1, 2, 3))[[1]]\n\n\n[1] 1 2 3\n\n\nCode\nlist(1, 2, 3)[[1]]\n\n\n[1] 1"
-  },
-  {
-    "objectID": "program/vectors/vectors.html#subsetting-list-with-and-cont.-6",
-    "href": "program/vectors/vectors.html#subsetting-list-with-and-cont.-6",
-    "title": "Vectors",
-    "section": "Subsetting list with [[ and [ cont.",
-    "text": "Subsetting list with [[ and [ cont.\n\n\nCode\nlist(1, 2, 3)\n\n\n[[1]]\n[1] 1\n\n[[2]]\n[1] 2\n\n[[3]]\n[1] 3\n\n\nCode\nlist(1:3)[[1]][[2]]\n\n\n[1] 2\n\n\nCode\nlist(1, 2, 3)[[2]]\n\n\n[1] 2\n\n\nCode\nunlist(my_list)\n\n\n    A1     A2     A3     A4     B1     B2     B3     C1     C2     C3 \n   \"a\"    \"b\"    \"c\"    \"d\"    \"1\"    \"2\"    \"3\"    \"a\" \"1.25\" \"TRUE\" \n\n\nCode\ntypeof(unlist(my_list))\n\n\n[1] \"character\""
-  },
-  {
-    "objectID": "introduction/install-sw/install-sw.html#r-from-r-project.org",
-    "href": "introduction/install-sw/install-sw.html#r-from-r-project.org",
-    "title": "Install Software",
-    "section": "R from r-project.org",
-    "text": "R from r-project.org\n\nWe need to install the latest version of R\nGoto www.r-project.org\n\nSelect CRAN from menu at the left\nSelect Norway: uib from the list\nDownload for your platform (macos, windows or linux)\nFor mac select correct version\n\nR-4.2.1.pkg for Intel processor (macs older than 1,5 years)\nR-4.2.1-arm64.pkg for Apple Silicon processors (M1 or M2)\n\n\nInstall software as you normally would"
-  },
-  {
-    "objectID": "introduction/install-sw/install-sw.html#mac-installer",
-    "href": "introduction/install-sw/install-sw.html#mac-installer",
-    "title": "Install Software",
-    "section": "Mac installer",
-    "text": "Mac installer\n\nSelect “Tilpass”\n\n\n\n\n\nTilpass"
-  },
-  {
-    "objectID": "introduction/install-sw/install-sw.html#mac-installer-cont.",
-    "href": "introduction/install-sw/install-sw.html#mac-installer-cont.",
-    "title": "Install Software",
-    "section": "Mac installer cont.",
-    "text": "Mac installer cont.\n\ndeselect tcltk\n\n\n\n\n\nDeselect tcl/pk"
-  },
-  {
-    "objectID": "introduction/install-sw/install-sw.html#install-rstudio",
-    "href": "introduction/install-sw/install-sw.html#install-rstudio",
-    "title": "Install Software",
-    "section": "Install RStudio",
-    "text": "Install RStudio\n\nWe need to install latest version of RStudio\nGoto https://www.rstudio.com/products/rstudio/download/\nDownload the free RStudio Desktop for your system\nFor mac drag the RStudio icon to the Applications folder alias next to the icon\nFor windows follow normal application installation procedure"
-  },
-  {
-    "objectID": "introduction/install-sw/install-sw.html#install-zotero",
-    "href": "introduction/install-sw/install-sw.html#install-zotero",
-    "title": "Install Software",
-    "section": "Install Zotero",
-    "text": "Install Zotero\n\nWe need to install the latest version of Zotero\nGoto https://www.zotero.org/download/\nAfter Zotero is installed and running return to www.zotero.org with your favourite web borwser.\nInstall Zotero Connector\n\nIf you are using Safari on mac the connector is included, but you have to enable it under Safari > Valg … > Tillegg"
-  },
-  {
-    "objectID": "introduction/install-sw/install-sw.html#enable-zotero-connector-in-safari",
-    "href": "introduction/install-sw/install-sw.html#enable-zotero-connector-in-safari",
-    "title": "Install Software",
-    "section": "Enable Zotero Connector in Safari",
-    "text": "Enable Zotero Connector in Safari\n\nEnable Zotero Connector in Safari"
-  },
-  {
-    "objectID": "introduction/install-sw/install-sw.html#installing-better-bibtex",
-    "href": "introduction/install-sw/install-sw.html#installing-better-bibtex",
-    "title": "Install Software",
-    "section": "Installing Better BibTeX",
-    "text": "Installing Better BibTeX\n\nGoto https://retorque.re/zotero-better-bibtex/\nClick Download in menu at the left\nThen click Installation in menu at the left to get installation instructions"
-  },
-  {
-    "objectID": "introduction/install-sw/install-sw.html#installing-git",
-    "href": "introduction/install-sw/install-sw.html#installing-git",
-    "title": "Install Software",
-    "section": "Installing git",
-    "text": "Installing git\n\nGoto https://git-scm.com/downloads\nDownload for your system\nChoose binary installer (on mac)\n\nClick download on https://sourceforge.net/projects/git-osx-installer/"
-  },
-  {
-    "objectID": "introduction/install-sw/install-sw.html#for-mac",
-    "href": "introduction/install-sw/install-sw.html#for-mac",
-    "title": "Install Software",
-    "section": "For mac",
-    "text": "For mac\n\nOpen the Terminal program (ligger i Verktøy mappen i Programmer mappen)\nGive the following command (in Terminal)\n\nxcode-select --install\n\nAn apple ID might be required to be able to download"
-  },
-  {
-    "objectID": "introduction/install-sw/install-sw.html#final-configurations",
-    "href": "introduction/install-sw/install-sw.html#final-configurations",
-    "title": "Install Software",
-    "section": "Final configurations",
-    "text": "Final configurations\n\nStart RStudio\nCheck that you have a Git tab in upper right pane\nSelect the Terminal tab in lower right pane in RStudio\n\n\ngit config --global user.name 'Jane Doe'\ngit config --global user.email 'jane@example.com'\ngit config --global --list"
-  },
-  {
-    "objectID": "introduction/install-sw/install-sw.html#git-editor",
-    "href": "introduction/install-sw/install-sw.html#git-editor",
-    "title": "Install Software",
-    "section": "Git editor",
-    "text": "Git editor\n\nPC\n\ngit config --global core.editor C:\\Program Files\\RStudio\\bin\\rstudio.exe\n\nmac\n\ngit config --global core.editor /Applications/RStudio.app"
-  },
-  {
-    "objectID": "introduction/install-sw/install-sw.html#define-user-on-github",
-    "href": "introduction/install-sw/install-sw.html#define-user-on-github",
-    "title": "Install Software",
-    "section": "Define user on Github",
-    "text": "Define user on Github\n\nhvl email og email you use\nUse a serious name; you might be showing this to a future employer\nConnect RStudio to Github\n\ninstall packages\n\nusethis\ncredentials\n\nUse Github.R\n\nSee git-github slides for configuration"
-  },
-  {
-    "objectID": "introduction/install-sw/install-sw.html#install-tinytex",
-    "href": "introduction/install-sw/install-sw.html#install-tinytex",
-    "title": "Install Software",
-    "section": "Install tinytex",
-    "text": "Install tinytex\n\nUnder Packages in lower right pane select:\n\nInstall\n\nUnder packages write tinytex\nMake sure that Install dependencies is checked\nClick install\n\n\nWhen install check off tinytex in the lower left pane under tab Packages\nGive the command install_tinytex() in Console in lower left pane.\n\n\n\nMSB105"
-  },
-  {
-    "objectID": "introduction/div-doc/Innledende-R-notater.html",
-    "href": "introduction/div-doc/Innledende-R-notater.html",
-    "title": "Innledende R notater",
-    "section": "",
-    "text": "Her er min aller første R kode.\n\nx <- 3 + 3\nx\n\n[1] 6\n\n\n\n# eller begge samtidig\n(x <- 3 + 3)\n\n[1] 6\n\n\n\n(x <- 13)\n\n[1] 13\n\n\nDe fire regneartene\n\n(2/15)^0.25*exp(4) - 200\n\n[1] -167.0077\n\n\n\nx <- 2\n(y <- 5)\n\n[1] 5\n\n\n\nx + y\n\n[1] 7\n\n\n\nx^y\n\n[1] 32\n\n\n\nz <- x^y\n\n\n(z <- x + y)\n\n[1] 7\n\n\n\n(x <- 13)\n\n[1] 13\n\n\n\nz\n\n[1] 7\n\n\n\n# definerer z på ny\n# får nå oppdatert verdi der ny x verdi (13) er brukt\n(z <- x + y)\n\n[1] 18\n\n\n\ntypeof(z)\n\n[1] \"double\"\n\n\n\nx <- 13L\ny <- 5L\n\n\nz <- x + y\n\n\ntypeof(z)\n\n[1] \"integer\"\n\n\n\n#double\ny <- 5\n\n\n# z double\nz <- x + y\n\n\n# selv et enkelt tall er en vektor\nis.vector(z)\n\n[1] TRUE\n\n\n\n# vektor av heltall\n(x <- c(2L, 8L, 9L, 21L:29L, 17L:12L))\n\n [1]  2  8  9 21 22 23 24 25 26 27 28 29 17 16 15 14 13 12\n\n\n\ntypeof(x)\n\n[1] \"integer\"\n\n\n\n# 21 to 29 by 2\n(x <- c(2L, 8L, 9L, seq(from = 21L, to = 29L, by = 2L), 17L:12L))\n\n [1]  2  8  9 21 23 25 27 29 17 16 15 14 13 12\n\n\n\n(x <- c(2L, 8L, 9L, seq(from = 21L, to = 29L, by = 3L), 17L:12L))\n\n [1]  2  8  9 21 24 27 17 16 15 14 13 12\n\n\n\n# from 29L to 21L by -3 L\n(x <- c(2L, 8L, 9L, seq(from = 29L, to = 21L, by = -3L), 17L:12L))\n\n [1]  2  8  9 29 26 23 17 16 15 14 13 12\n\n\n\n# vår x forskjellig fra den i slides\n(y <- 6:(5 + length(x)))\n\n [1]  6  7  8  9 10 11 12 13 14 15 16 17\n\n\n\nz <- x + y\n\n\ny <- c(y, 0.5 * x)\ny\n\n [1]  6.0  7.0  8.0  9.0 10.0 11.0 12.0 13.0 14.0 15.0 16.0 17.0  1.0  4.0  4.5\n[16] 14.5 13.0 11.5  8.5  8.0  7.5  7.0  6.5  6.0\n\n\n\nx + y\n\n [1]  8.0 15.0 17.0 38.0 36.0 34.0 29.0 29.0 29.0 29.0 29.0 29.0  3.0 12.0 13.5\n[16] 43.5 39.0 34.5 25.5 24.0 22.5 21.0 19.5 18.0\n\n\n\nx <- c(x, 10)\n\n\nx + y\n\nWarning in x + y: longer object length is not a multiple of shorter object\nlength\n\n\n [1]  8.0 15.0 17.0 38.0 36.0 34.0 29.0 29.0 29.0 29.0 29.0 29.0 11.0  6.0 12.5\n[16] 23.5 42.0 37.5 31.5 25.0 23.5 22.0 20.5 19.0\n\n\nEt enklere eksempel\n\n(x <- 2:4)\n\n[1] 2 3 4\n\n\n\n(y <- 10:12)\n\n[1] 10 11 12\n\n\n\n(x + y)\n\n[1] 12 14 16\n\n\n\n(y <- c(y, y + 0.5 * x))\n\n[1] 10.0 11.0 12.0 11.0 12.5 14.0\n\n\n\n# automatisk replikering av korteste\n# ingen warning\n(x + y)\n\n[1] 12.0 14.0 16.0 13.0 15.5 18.0\n\n\n\ny\n\n[1] 10.0 11.0 12.0 11.0 12.5 14.0\n\n\n\nrep(x, 2)\n\n[1] 2 3 4 2 3 4\n\n\nVi ser at x + y nå er x + y der x er replikert 2 ganger. Merk at R gjøre dette UTEN noen form for asvarsel.\n\n# legger til et tall (4) i fronten på x\n(x <- c(4, x))\n\n[1] 4 2 3 4\n\n\n\n# Nå er elngen av x 4 og lengden av y er 6. Tar vi nå x + y vil vi få en advarsel om at lengden av x ikke går opp i lengden av y\n(x + y)\n\nWarning in x + y: longer object length is not a multiple of shorter object\nlength\n\n\n[1] 14.0 13.0 15.0 15.0 16.5 16.0\n\n# men vi får svaret, x + y der den korteste x er replikert og man bruker de \n# verdiene som trengs for å matche y"
-  },
-  {
-    "objectID": "introduction/div-doc/rstudio-github.html",
-    "href": "introduction/div-doc/rstudio-github.html",
-    "title": "Koble sammen RStudio og Github på mac",
-    "section": "",
-    "text": "Det ser ut til at det har skjedd noen endringer så våre gamle besvergelser virker ikke lenger.\nFølgende skal virke, men krever at pakken usethis er installert. Så gjør dette først via Install under Packages.\n\n# Ditt navn og epost-adressen du ønsker å bruke\nusethis::use_git_config(user.name = \"YourName\", user.email = \"your@mail.com\")\n\n\n# lager token (nøkkel) på Github side\n# Sett varighet til Custom… ett år frem\n# create token\n# kopier så token\nusethis::create_github_token()\n\n\nKopier den nye nøkkelen.\nGå tilbake til RStudio og gi kommandoen\n\n\n# gitcreds_set() only works in interactive mode\ngitcreds::gitcreds_set()\n\nI spørsmålet som kommer opp i Console (nederst til venstre) svarer du med å lime inn den nye nøkkelen (token) fra Github. Kommer det opp et Xaccess vindu fra macosx så limer du nøkkelen inn der også.\nDa skal nøkkelen være satt. Du kan eventuelt også legge den inn i .Renviron filen. Dette gjøres med kommandoen\n\nusethis::edit_r_environ()\n\n• Edit '/Users/ag/.Renviron'\n• Restart R for changes to take effect\n\n\nI filen som åpnes må du skrive GITHUB_PAT='YourPAT' der YourPAT byttes ut med nøkkelen (token) fra Github. Det er viktig at du legger inn et linjeskift til slutt, dvs. plasser cursoren etter avsluttende parentes og trykk return før du til slutt lagrer filen.\nTil slutt kan du sjekke at alt ser ok ut med kommandoen:\n\nusethis::git_sitrep()"
   }
 ]

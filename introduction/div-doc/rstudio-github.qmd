@@ -35,7 +35,7 @@ usethis::create_github_token()
 gitcreds::gitcreds_set()
 ```
 
-I spørsmålet som kommer opp i Console (nederst til venstre) svarer du med å lime inn den nye nøkkelen (token) fra Github. Kommer det opp et Xaccess vindu fra macosx så limer du nøkkelen inn der også.
+I spørsmålet som kommer opp i **Console** (nederst til venstre) svarer du med å lime inn den nye nøkkelen (token) fra Github. Kommer det opp et Xaccess vindu fra macosx så limer du nøkkelen inn der også.
 
 Da skal nøkkelen være satt. Du kan eventuelt også legge den inn i `.Renviron` filen. Dette gjøres med kommandoen
 
