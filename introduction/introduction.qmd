@@ -22,6 +22,7 @@ This section will introduce you to the tools we will be using, RStudio (with Qua
 -   [Git and Github](git-github/git-github.qmd)
 -   [Very Short Intro to R](very-short-intro-r/very-short-intro-r.qmd)
     -   [Very Short Intro to R (as document)](very-short-intro-r/very-short-intro-r-document.qmd)
+    -   [Notater fra forelesning (in Norwegian)](very-short-intro-r/innledende-R-notater-forelesning.qmd)
 
 ## Datasets
 

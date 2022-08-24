@@ -1,0 +1,548 @@
+---
+title: "Innledende R notater forelesning"
+format: html
+lang: nb
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+```
+
+## Innledning
+
+Her er min aller første R kode.
+
+```{r}
+x <- 3 + 3
+x
+```
+
+```{r}
+# eller begge samtidig
+(x <- 3 + 3)
+```
+
+```{r}
+(x <- 13)
+```
+
+De fire regneartene
+
+```{r}
+(2/15)^0.25*exp(4) - 200
+```
+
+```{r}
+x <- 2
+(y <- 5)
+```
+
+```{r}
+x + y
+```
+
+```{r}
+x^y
+```
+
+```{r}
+z <- x^y
+```
+
+```{r}
+(z <- x + y)
+```
+
+```{r}
+(x <- 13)
+```
+
+```{r}
+z
+```
+
+```{r}
+# definerer z på ny
+# får nå oppdatert verdi der ny x verdi (13) er brukt
+(z <- x + y)
+```
+
+```{r}
+typeof(z)
+```
+
+```{r}
+x <- 13L
+y <- 5L
+```
+
+```{r}
+z <- x + y
+```
+
+```{r}
+typeof(z)
+```
+
+```{r}
+#double
+y <- 5
+```
+
+```{r}
+# z double
+z <- x + y
+```
+
+```{r}
+# selv et enkelt tall er en vektor
+is.vector(z)
+```
+
+```{r}
+# vektor av heltall
+(x <- c(2L, 8L, 9L, 21L:29L, 17L:12L))
+```
+
+```{r}
+typeof(x)
+```
+
+```{r}
+# 21 to 29 by 2
+(x <- c(2L, 8L, 9L, seq(from = 21L, to = 29L, by = 2L), 17L:12L))
+```
+
+```{r}
+(x <- c(2L, 8L, 9L, seq(from = 21L, to = 29L, by = 3L), 17L:12L))
+```
+
+```{r}
+# from 29L to 21L by -3 L
+(x <- c(2L, 8L, 9L, seq(from = 29L, to = 21L, by = -3L), 17L:12L))
+```
+
+```{r}
+# vår x forskjellig fra den i slides
+(y <- 6:(5 + length(x)))
+```
+
+```{r}
+z <- x + y
+```
+
+```{r}
+y <- c(y, 0.5 * x)
+y
+```
+
+```{r}
+x + y
+```
+
+```{r}
+x <- c(x, 10)
+```
+
+```{r}
+x + y
+```
+
+Et enklere eksempel
+
+```{r}
+(x <- 2:4)
+```
+
+```{r}
+(y <- 10:12)
+```
+
+```{r}
+(x + y)
+```
+
+```{r}
+(y <- c(y, y + 0.5 * x))
+```
+
+```{r}
+# automatisk replikering av korteste
+# ingen warning
+(x + y)
+```
+
+```{r}
+y
+```
+
+```{r}
+rep(x, 2)
+```
+
+Vi ser at x + y nå er x + y der x er replikert 2 ganger. Merk at R gjøre dette **UTEN** noen form for asvarsel.
+
+```{r}
+# legger til et tall (4) i fronten på x
+(x <- c(4, x))
+```
+
+```{r}
+# Nå er lengen av x 4 og lengden av y er 6. Tar vi nå x + y vil vi få en advarsel om at lengden av x ikke går opp i lengden av y
+(x + y)
+# men vi får svaret, x + y der den korteste, dvs x, 
+# er replikert og man bruker de verdiene som trengs for å matche y
+```
+
+## Sjekke likhet
+
+Merk!
+
+```{r}
+(1/7) * 7 == 1L
+```
+
+men
+
+```{r}
+(1/49) * 49 == 1L
+```
+
+Hvor ofte skjer dette?
+
+```{r}
+x <- 1:10000
+typeof(x)
+```
+
+```{r}
+x_inv <- 1/x
+table(x_inv * x == 1L)
+```
+
+De første 30 som er FALSE
+
+```{r}
+head(x[!(x_inv * x == 1L)], n = 30)
+```
+
+Løsning: bruk `near`
+
+```{r}
+table(dplyr::near(x_inv * x, 1L))
+```
+
+```{r}
+z <- c(3, 5, 1, 9)
+```
+
+```{r}
+z[-1]
+```
+
+```{r}
+z[-c(2, 3)]
+```
+
+```{r}
+head(z, n = -1)
+```
+
+```{r}
+head(z, n = -2)
+```
+
+```{r}
+head(z, n = -3)
+```
+
+```{r}
+length(z)
+```
+
+```{r}
+z[1:(length(z)-1)]
+```
+
+```{r}
+1:(length(z)-1)
+```
+
+```{r}
+x <- numeric(10)
+```
+
+```{r}
+x <- as.numeric(c(0:10, 1.3))
+```
+
+```{r}
+typeof(x)
+```
+
+```{r}
+x
+```
+
+```{r}
+round(1/3, digits = 2)
+```
+
+```{r}
+set.seed(666)
+x <- rnorm(10)
+```
+
+```{r}
+x
+```
+
+```{r}
+x < 0
+```
+
+```{r}
+q <- x < 0
+```
+
+```{r}
+typeof(q)
+```
+
+```{r}
+q
+```
+
+```{r}
+sum(q)
+```
+
+```{r}
+table(q)
+```
+
+## Vektorer, automatisk endring av type
+
+Regelen er altså at alle element i en vektor må være av samme type. Hva skjer hvis vi legger til et element av en annen type? Vår venn R hjelper oss og skifter automatisk de eksisterende elementene i vektoren til en ny type som er forenlig med det nye elementet.
+
+```{r}
+# Integer vector add floating point number
+x <- c(3L, 7L)
+typeof(x)
+```
+
+```{r}
+# add floating point number to x
+x <- c(x, 3.13)
+x
+```
+
+```{r}
+# x now double (floating point numbers)
+typeof(x)
+```
+
+```{r}
+# add character to x
+x <- c("h", x)
+x
+```
+
+```{r}
+# x is now a character vector
+typeof(x)
+```
+
+A special case, add integer to logical
+
+```{r}
+# logical
+x <- c(TRUE, TRUE, FALSE)
+typeof(x)
+```
+
+```{r}
+# add integer
+x <- c(x, 9L)
+x
+```
+
+TRUE and FALSE now has gotten their integer values, respectively 1 and 0.
+
+What happens if we add a double to a logical vector?
+
+```{r}
+x <- c(TRUE, TRUE, FALSE)
+x <- c(x, 3.13)
+x
+```
+
+```{r}
+typeof(x)
+```
+
+What if we add a character?
+
+```{r}
+x <- c(TRUE, TRUE, FALSE)
+x <- c(x, "b")
+```
+
+```{r}
+x
+```
+
+If we add integer and character we get:
+
+```{r}
+x <- c(TRUE, TRUE, FALSE)
+x <- c(x, 3L, "b")
+x
+```
+
+But if we first add integer and then character we end up with:
+
+```{r}
+x <- c(TRUE, TRUE, FALSE)
+x <- c(x, 3L)
+x <- c (x, "b")
+x
+```
+
+## Dataframes
+
+```{r}
+df <- data.frame(x = 1:3, y = letters[1:3], z = LETTERS[1:3])
+```
+
+```{r}
+df[,c(1,3)]
+```
+
+```{r}
+df[2,]
+```
+
+```{r}
+df[c(1,3),]
+```
+
+```{r}
+df[c(1,3),2]
+```
+
+```{r}
+df[c(1,3), c(1,3)]
+```
+
+Kolonner vha. navn
+
+```{r}
+df[c(1,3), c("x","z")]
+```
+
+```{r}
+df[3, 3]
+```
+
+```{r}
+df[3, c("z")]
+```
+
+```{r}
+df[3, "z"]
+```
+
+```{r}
+df$z
+```
+
+```{r}
+df$z[3]
+```
+
+```{r}
+dim(df)
+```
+
+```{r}
+dim(df[1:2, 1:2])
+```
+
+```{r}
+dim(df[1:2, 2])
+```
+
+```{r}
+class(df[1:2, 1:2])
+```
+
+```{r}
+length(df[1:2, 2])
+```
+
+## Tibbles
+
+Selv en enkelt verdi valgt fra en tibble forblir en tibble med dimensjon 1x1 (ikke noe vektor tull som for klassiske dataframes).
+
+```{r}
+tib <- as_tibble(df)
+dim(tib[2,3])
+```
+
+```{r}
+class(tib)
+```
+
+```{r}
+typeof(tib)
+```
+
+Siden tibbles er en utvidelse av dataframes og dataframes er en **liste** av vektorer og lister av **samme lengde**.
+
+## Matriser
+
+```{r}
+# define a matirc in R
+X <- matrix(
+  c(2, 2, -1, 5, 2, 6), 
+  nrow = 3, 
+  byrow = FALSE
+  )
+```
+
+```{r}
+X
+```
+
+```{r}
+X_t <- t(X)
+X_t
+```
+
+Matrise multiplikasjon i R. Definert hvis antall kolonner i første matrise er lik antall rekker i andre matrise. Resultatet vil ha en dimensjon lik antall rekker i første matrise x antall kolonner i andre matrise.
+
+```{r}
+X_t %*% X
+```
+
+Inverse matrise i R
+
+```{r}
+(XTX_inv <- solve(X_t %*% X))
+```
+
+Identitestsmatrise
+
+```{r}
+(I <- diag(2))
+```
+
+```{r}
+(X_t %*% X) %*% XTX_inv 
+```
+
+```{r}
+XTX_inv %*% (X_t %*% X)
+```
