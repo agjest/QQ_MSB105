@@ -135,7 +135,10 @@ ggplot() +
 
 ## Adding a `geom_smooth()` layer
 
+::: columns
+::: {.column width="40%"}
 ```{r}
+#| eval: false
 ggplot() +
   geom_point(
     data = mtcars, 
@@ -156,6 +159,33 @@ mapping = aes(x = disp,
     mapping = aes(x = disp, y = mpg)
     )
 ```
+:::
+
+::: {.column width="60%"}
+```{r}
+#| echo: false
+ggplot() +
+  geom_point(
+    data = mtcars, 
+mapping = aes(x = disp,
+              y = mpg, 
+              colour = factor(cyl), 
+              size = 3.6*(0.25*1609.347)/qsec, 
+              shape = factor(ifelse(am, "Aut", "Man"))
+              )
+) +
+  labs(
+    colour = "cyl", 
+    size = "speed\n(km/h)", 
+    shape = "trans-\nmission"
+    ) +
+  geom_smooth(
+    data = mtcars, 
+    mapping = aes(x = disp, y = mpg)
+    )
+```
+:::
+:::
 
 ## Exercise:
 

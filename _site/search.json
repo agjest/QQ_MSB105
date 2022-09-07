@@ -5310,7 +5310,7 @@
     "href": "explore-data/intro-ggplot2/intro-ggplot2.html#adding-a-geom_smooth-layer",
     "title": "Introduction to ggplot",
     "section": "Adding a geom_smooth() layer",
-    "text": "Adding a geom_smooth() layer\n\n\nCode\nggplot() +\n  geom_point(\n    data = mtcars, \nmapping = aes(x = disp,\n              y = mpg, \n              colour = factor(cyl), \n              size = 3.6*(0.25*1609.347)/qsec, \n              shape = factor(ifelse(am, \"Aut\", \"Man\"))\n              )\n) +\n  labs(\n    colour = \"cyl\", \n    size = \"speed\\n(km/h)\", \n    shape = \"trans-\\nmission\"\n    ) +\n  geom_smooth(\n    data = mtcars, \n    mapping = aes(x = disp, y = mpg)\n    )"
+    "text": "Adding a geom_smooth() layer\n\n\n\n\nCode\nggplot() +\n  geom_point(\n    data = mtcars, \nmapping = aes(x = disp,\n              y = mpg, \n              colour = factor(cyl), \n              size = 3.6*(0.25*1609.347)/qsec, \n              shape = factor(ifelse(am, \"Aut\", \"Man\"))\n              )\n) +\n  labs(\n    colour = \"cyl\", \n    size = \"speed\\n(km/h)\", \n    shape = \"trans-\\nmission\"\n    ) +\n  geom_smooth(\n    data = mtcars, \n    mapping = aes(x = disp, y = mpg)\n    )"
   },
   {
     "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#exercise-2",
