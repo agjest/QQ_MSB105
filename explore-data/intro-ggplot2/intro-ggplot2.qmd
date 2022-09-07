@@ -59,7 +59,7 @@ ggarrange(gg1, gg2, labels = c("mapping = aes in ggplot", "mapping = aes in geom
           nrow = 1)
 ```
 
-## `ggplot(data, mapping, …)` and `geom_point(mapping, data, …)`
+## ggplot(data, mapping, ...) and geom_point(mapping, data, ...)
 
 ```{r}
 ggplot() +
