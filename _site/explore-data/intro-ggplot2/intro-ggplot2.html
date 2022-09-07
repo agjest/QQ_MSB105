@@ -539,18 +539,26 @@
 <span id="cb10-6"><a href="#cb10-6"></a>      <span class="at">y =</span> mpg, </span>
 <span id="cb10-7"><a href="#cb10-7"></a>      <span class="at">colour =</span> <span class="fu">factor</span>(cyl), </span>
 <span id="cb10-8"><a href="#cb10-8"></a>      <span class="at">size =</span> <span class="fl">3.6</span><span class="sc">*</span>(<span class="fl">0.25</span><span class="sc">*</span><span class="fl">1609.347</span>)<span class="sc">/</span>qsec, </span>
-<span id="cb10-9"><a href="#cb10-9"></a>      <span class="at">shape =</span> <span class="fu">factor</span>(<span class="fu">ifelse</span>(am, <span class="st">"Aut"</span>, <span class="st">"Man"</span>))</span>
-<span id="cb10-10"><a href="#cb10-10"></a>      )</span>
-<span id="cb10-11"><a href="#cb10-11"></a>    ) <span class="sc">+</span></span>
-<span id="cb10-12"><a href="#cb10-12"></a>  <span class="fu">labs</span>(</span>
-<span id="cb10-13"><a href="#cb10-13"></a>    <span class="at">colour =</span> <span class="st">"cyl"</span>, </span>
-<span id="cb10-14"><a href="#cb10-14"></a>    <span class="at">size =</span> <span class="st">"speed</span><span class="sc">\n</span><span class="st">(km/h)"</span>, </span>
-<span id="cb10-15"><a href="#cb10-15"></a>    <span class="at">shape =</span> <span class="st">"trans-</span><span class="sc">\n</span><span class="st">mission"</span></span>
-<span id="cb10-16"><a href="#cb10-16"></a>    ) <span class="sc">+</span></span>
-<span id="cb10-17"><a href="#cb10-17"></a>  <span class="fu">geom_smooth</span>(</span>
-<span id="cb10-18"><a href="#cb10-18"></a>    <span class="at">data =</span> mtcars, </span>
-<span id="cb10-19"><a href="#cb10-19"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> disp, <span class="at">y =</span> mpg)</span>
-<span id="cb10-20"><a href="#cb10-20"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-9"><a href="#cb10-9"></a>      <span class="at">shape =</span> <span class="fu">factor</span>(</span>
+<span id="cb10-10"><a href="#cb10-10"></a>        <span class="co"># Note codeing am</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a>        <span class="co"># 0 automatic, 1 manual</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a>        <span class="fu">ifelse</span>(</span>
+<span id="cb10-13"><a href="#cb10-13"></a>          am, </span>
+<span id="cb10-14"><a href="#cb10-14"></a>          <span class="st">"Aut"</span>, </span>
+<span id="cb10-15"><a href="#cb10-15"></a>          <span class="st">"Man"</span></span>
+<span id="cb10-16"><a href="#cb10-16"></a>          )</span>
+<span id="cb10-17"><a href="#cb10-17"></a>        )</span>
+<span id="cb10-18"><a href="#cb10-18"></a>      )</span>
+<span id="cb10-19"><a href="#cb10-19"></a>    ) <span class="sc">+</span></span>
+<span id="cb10-20"><a href="#cb10-20"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-21"><a href="#cb10-21"></a>    <span class="at">colour =</span> <span class="st">"cyl"</span>, </span>
+<span id="cb10-22"><a href="#cb10-22"></a>    <span class="at">size =</span> <span class="st">"speed</span><span class="sc">\n</span><span class="st">(km/h)"</span>, </span>
+<span id="cb10-23"><a href="#cb10-23"></a>    <span class="at">shape =</span> <span class="st">"trans-</span><span class="sc">\n</span><span class="st">mission"</span></span>
+<span id="cb10-24"><a href="#cb10-24"></a>    ) <span class="sc">+</span></span>
+<span id="cb10-25"><a href="#cb10-25"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb10-26"><a href="#cb10-26"></a>    <span class="at">data =</span> mtcars, </span>
+<span id="cb10-27"><a href="#cb10-27"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> disp, <span class="at">y =</span> mpg)</span>
+<span id="cb10-28"><a href="#cb10-28"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div><div class="column" style="width:60%;">

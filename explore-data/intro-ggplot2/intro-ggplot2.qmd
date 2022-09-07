@@ -147,7 +147,15 @@ ggplot() +
       y = mpg, 
       colour = factor(cyl), 
       size = 3.6*(0.25*1609.347)/qsec, 
-      shape = factor(ifelse(am, "Aut", "Man"))
+      shape = factor(
+        # Note codeing am
+        # 0 automatic, 1 manual
+        ifelse(
+          am, 
+          "Aut", 
+          "Man"
+          )
+        )
       )
     ) +
   labs(
