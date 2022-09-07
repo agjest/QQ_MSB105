@@ -47,33 +47,6 @@ file = "ag_ds.bib"
 )
 ```
 
-## Workflow (chap. 4)
-
-[Chap. 4 Workflow: basics](https://r4ds.had.co.nz/workflow-basics.html)
-
--   I think we have covered most of this already
--   A quick skim of the chapter is recommended.
--   One noteworthy point is "fast printing"
-
-. . .
-
-```{r slow-printing}
-#| code-fold: true
-# cumbersome
-x <- c(1, 2, 3)
-x
-
-```
-
-. . .
-
-```{r fast-printing}
-#| code-fold: true
-# Fast, to assign and print on one line enclose 
-# in parentheses
-(x <- c(1, 2, 3))
-```
-
 ## Getting data from external source. (chap. 11)
 
 -   We will download some data from SSB.
@@ -128,7 +101,7 @@ Note that:
     -   `read.csv2` is a form of `read.table()` that already uses these
         options.
 
-    -   The modern ones uses `locale()`, by I could not get it to work
+    -   The modern ones uses `locale()`, but I could not get it to work
         properly.
 
 ## SSB web-app cont.
@@ -185,9 +158,11 @@ print(RegHeltLedige[c(1:5, 45:55),], n = 20)
 
 ## Read Excel file cont.
 
-We must fix variable names
+-   We must fix variable names
 
-We must fill in for NAs in municipality names and age group
+-   We must fill in for NAs in municipality names and age group
+
+    . . .
 
 ```{r}
 names(RegHeltLedige) <- c("knr_kname", "age_group", "year_month", "unempl")
@@ -215,8 +190,6 @@ RegHeltLedige <- fill(
 ```{r}
 print(RegHeltLedige[c(1:5, 45:55),], n = 20)
 ```
-
-. . .
 
 -   Ok, NAs filled in
 
@@ -255,7 +228,7 @@ head(as.data.frame(RegHeltLedige), n =200)
 
 -   Select readr from the Import Dataset drop-down menu in the
     Environment pane in the upper right corner.
--   This menu selection uses the @R-readr.
+-   This menu selection uses the **readr** package [@R-readr].
 
 . . .
 

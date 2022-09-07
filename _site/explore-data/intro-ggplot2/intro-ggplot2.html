@@ -393,6 +393,7 @@
 <ul>
 <li class="fragment">We start by loading some packages</li>
 </ul>
+<div class="fragment">
 <div class="cell">
 <details open="">
 <summary>Code</summary>
@@ -401,6 +402,7 @@
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(ggpubr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
 </div>
 </section>
 <section id="empty-plot" class="slide level2">
@@ -412,7 +414,7 @@
 </details>
 
 </div>
-<img data-src="intro-ggplot2_files/figure-revealjs/unnamed-chunk-2-1.png" width="1248" class="r-stretch"></section>
+<img data-src="intro-ggplot2_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
 <section id="data-and-mapping" class="slide level2">
 <h2>Data and mapping</h2>
 <div class="cell">
@@ -422,7 +424,7 @@
 </details>
 
 </div>
-<img data-src="intro-ggplot2_files/figure-revealjs/unnamed-chunk-3-1.png" width="1248" class="r-stretch"></section>
+<img data-src="intro-ggplot2_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
 <section id="mapping-in-geom_point" class="slide level2">
 <h2><code>mapping</code> in geom_point</h2>
 <div class="cell">
@@ -430,15 +432,16 @@
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>gg1 <span class="ot">&lt;-</span>   <span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> disp, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb4-3"><a href="#cb4-3"></a>gg2 <span class="ot">&lt;-</span>   <span class="fu">ggplot</span>(<span class="at">data =</span> mtcars) <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> disp, <span class="at">y =</span> mpg))</span>
-<span id="cb4-5"><a href="#cb4-5"></a></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="fu">ggarrange</span>(gg1, gg2, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"mapping = aes in ggplot"</span>, <span class="st">"mapping = aes in geom_*"</span>),</span>
-<span id="cb4-7"><a href="#cb4-7"></a>          <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a>gg2 <span class="ot">&lt;-</span>   <span class="fu">ggplot</span>(<span class="at">data =</span> mtcars) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> disp, <span class="at">y =</span> mpg))</span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="fu">ggarrange</span>(gg1, gg2, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"mapping = aes in ggplot"</span>, <span class="st">"mapping = aes in geom_*"</span>),</span>
+<span id="cb4-8"><a href="#cb4-8"></a>          <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="intro-ggplot2_files/figure-revealjs/unnamed-chunk-4-1.png" width="2400" class="r-stretch"></section>
+<img data-src="intro-ggplot2_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
 <section id="ggplotdata-mapping-and-geom_pointmapping-data" class="slide level2">
 <h2><code>ggplot(data, mapping, …)</code> and <code>geom_point(mapping, data, …)</code></h2>
 <div class="cell">
@@ -451,7 +454,7 @@
 </details>
 
 </div>
-<img data-src="intro-ggplot2_files/figure-revealjs/unnamed-chunk-5-1.png" width="1248" class="r-stretch"></section>
+<img data-src="intro-ggplot2_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
 <section id="what-happens-if-we-use-both" class="slide level2">
 <h2>What happens if we use both?</h2>
 <div class="cell">
@@ -483,7 +486,7 @@
 </details>
 
 </div>
-<img data-src="intro-ggplot2_files/figure-revealjs/unnamed-chunk-7-1.png" width="2400" class="r-stretch"></section>
+<img data-src="intro-ggplot2_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
 <section id="playing-with-aes" class="slide level2">
 <h2>Playing with aes()</h2>
 <div class="cell">
@@ -527,9 +530,24 @@
 <details open="">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> disp, <span class="at">y =</span> mpg, <span class="at">colour =</span> <span class="fu">factor</span>(cyl), <span class="at">size =</span> <span class="fl">3.6</span><span class="sc">*</span>(<span class="fl">0.25</span><span class="sc">*</span><span class="fl">1609.347</span>)<span class="sc">/</span>qsec, <span class="at">shape =</span> <span class="fu">factor</span>(<span class="fu">ifelse</span>(am, <span class="st">"Aut"</span>, <span class="st">"Man"</span>)))) <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">"cyl"</span>, <span class="at">size =</span> <span class="st">"speed</span><span class="sc">\n</span><span class="st">(km/h)"</span>, <span class="at">shape =</span> <span class="st">"trans-</span><span class="sc">\n</span><span class="st">mission"</span>) <span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> disp, <span class="at">y =</span> mpg))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb10-3"><a href="#cb10-3"></a>    <span class="at">data =</span> mtcars, </span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> disp,</span>
+<span id="cb10-5"><a href="#cb10-5"></a>              <span class="at">y =</span> mpg, </span>
+<span id="cb10-6"><a href="#cb10-6"></a>              <span class="at">colour =</span> <span class="fu">factor</span>(cyl), </span>
+<span id="cb10-7"><a href="#cb10-7"></a>              <span class="at">size =</span> <span class="fl">3.6</span><span class="sc">*</span>(<span class="fl">0.25</span><span class="sc">*</span><span class="fl">1609.347</span>)<span class="sc">/</span>qsec, </span>
+<span id="cb10-8"><a href="#cb10-8"></a>              <span class="at">shape =</span> <span class="fu">factor</span>(<span class="fu">ifelse</span>(am, <span class="st">"Aut"</span>, <span class="st">"Man"</span>))</span>
+<span id="cb10-9"><a href="#cb10-9"></a>              )</span>
+<span id="cb10-10"><a href="#cb10-10"></a>) <span class="sc">+</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-12"><a href="#cb10-12"></a>    <span class="at">colour =</span> <span class="st">"cyl"</span>, </span>
+<span id="cb10-13"><a href="#cb10-13"></a>    <span class="at">size =</span> <span class="st">"speed</span><span class="sc">\n</span><span class="st">(km/h)"</span>, </span>
+<span id="cb10-14"><a href="#cb10-14"></a>    <span class="at">shape =</span> <span class="st">"trans-</span><span class="sc">\n</span><span class="st">mission"</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a>    ) <span class="sc">+</span></span>
+<span id="cb10-16"><a href="#cb10-16"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb10-17"><a href="#cb10-17"></a>    <span class="at">data =</span> mtcars, </span>
+<span id="cb10-18"><a href="#cb10-18"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> disp, <span class="at">y =</span> mpg)</span>
+<span id="cb10-19"><a href="#cb10-19"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>

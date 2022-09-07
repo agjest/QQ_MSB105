@@ -3819,7 +3819,7 @@
     "href": "explore-data/import-export-data/import-export-data.html#ssb-web-app-cont.-1",
     "title": "Import/Export Data",
     "section": "SSB web-app cont.",
-    "text": "SSB web-app cont.\nNote that:\n\ndecimal point is ‘,’ and not ‘.’ in “Norwegian .csv files”\n\ndecimal point in SSB semicolon separated files seems to be ‘.’\n\n‘;’, not ‘,’, is used to separate values in “Norwegian .csv files”\nTo read the data into R we will use the classic functions from the util package read.table() and read.csv2().\n\nThe read_table() and read_csv2() functions are “modern” equivalents of these classics.\n\nWe use read.table since it’s possible to specify dec = \"\" and sep = \"\".\n\nread.csv2 is a form of read.table() that already uses these options.\nThe modern ones uses locale(), by I could not get it to work properly."
+    "text": "SSB web-app cont.\nNote that:\n\ndecimal point is ‘,’ and not ‘.’ in “Norwegian .csv files”\n\ndecimal point in SSB semicolon separated files seems to be ‘.’\n\n‘;’, not ‘,’, is used to separate values in “Norwegian .csv files”\nTo read the data into R we will use the classic functions from the util package read.table() and read.csv2().\n\nThe read_table() and read_csv2() functions are “modern” equivalents of these classics.\n\nWe use read.table since it’s possible to specify dec = \"\" and sep = \"\".\n\nread.csv2 is a form of read.table() that already uses these options.\nThe modern ones uses locale(), but I could not get it to work properly."
   },
   {
     "objectID": "explore-data/import-export-data/import-export-data.html#ssb-web-app-cont.-2",
@@ -3861,7 +3861,7 @@
     "href": "explore-data/import-export-data/import-export-data.html#read-excel-file-cont.-3",
     "title": "Import/Export Data",
     "section": "Read Excel file cont.",
-    "text": "Read Excel file cont.\nWe must fix variable names\nWe must fill in for NAs in municipality names and age group\n\n\nCode\nnames(RegHeltLedige) <- c(\"knr_kname\", \"age_group\", \"year_month\", \"unempl\")\nhead(RegHeltLedige, n = 3)\n\n\n# A tibble: 3 × 4\n  knr_kname      age_group year_month unempl\n  <chr>          <chr>     <chr>      <chr> \n1 1101 Eigersund 15-74 år  1999M01    1.5   \n2 <NA>           <NA>      1999M02    1.5   \n3 <NA>           <NA>      1999M03    1.3"
+    "text": "Read Excel file cont.\n\nWe must fix variable names\nWe must fill in for NAs in municipality names and age group\n. . .\n\n\n\nCode\nnames(RegHeltLedige) <- c(\"knr_kname\", \"age_group\", \"year_month\", \"unempl\")\nhead(RegHeltLedige, n = 3)\n\n\n# A tibble: 3 × 4\n  knr_kname      age_group year_month unempl\n  <chr>          <chr>     <chr>      <chr> \n1 1101 Eigersund 15-74 år  1999M01    1.5   \n2 <NA>           <NA>      1999M02    1.5   \n3 <NA>           <NA>      1999M03    1.3"
   },
   {
     "objectID": "explore-data/import-export-data/import-export-data.html#read-excel-file-cont.-4",
@@ -3875,7 +3875,7 @@
     "href": "explore-data/import-export-data/import-export-data.html#read-excel-file-cont.-5",
     "title": "Import/Export Data",
     "section": "Read Excel file cont.",
-    "text": "Read Excel file cont.\n\nRe-check head of file\n\n\n\n\nCode\nprint(RegHeltLedige[c(1:5, 45:55),], n = 20)\n\n\n# A tibble: 16 × 4\n   knr_kname      age_group year_month unempl\n   <chr>          <chr>     <chr>      <chr> \n 1 1101 Eigersund 15-74 år  1999M01    1.5   \n 2 1101 Eigersund 15-74 år  1999M02    1.5   \n 3 1101 Eigersund 15-74 år  1999M03    1.3   \n 4 1101 Eigersund 15-74 år  1999M04    1.8   \n 5 1101 Eigersund 15-74 år  1999M05    1.3   \n 6 1101 Eigersund 15-74 år  2002M09    2.1   \n 7 1101 Eigersund 15-74 år  2002M10    2.1   \n 8 1101 Eigersund 15-74 år  2002M11    3     \n 9 1101 Eigersund 15-74 år  2002M12    2.9   \n10 1101 Eigersund 15-29 år  1999M01    2     \n11 1101 Eigersund 15-29 år  1999M02    1.8   \n12 1101 Eigersund 15-29 år  1999M03    1.7   \n13 1101 Eigersund 15-29 år  1999M04    2.5   \n14 1101 Eigersund 15-29 år  1999M05    1.7   \n15 1101 Eigersund 15-29 år  1999M06    1.9   \n16 1101 Eigersund 15-29 år  1999M07    2.6   \n\n\n\n\n\nOk, NAs filled in"
+    "text": "Read Excel file cont.\n\nRe-check head of file\n\n\n\n\nCode\nprint(RegHeltLedige[c(1:5, 45:55),], n = 20)\n\n\n# A tibble: 16 × 4\n   knr_kname      age_group year_month unempl\n   <chr>          <chr>     <chr>      <chr> \n 1 1101 Eigersund 15-74 år  1999M01    1.5   \n 2 1101 Eigersund 15-74 år  1999M02    1.5   \n 3 1101 Eigersund 15-74 år  1999M03    1.3   \n 4 1101 Eigersund 15-74 år  1999M04    1.8   \n 5 1101 Eigersund 15-74 år  1999M05    1.3   \n 6 1101 Eigersund 15-74 år  2002M09    2.1   \n 7 1101 Eigersund 15-74 år  2002M10    2.1   \n 8 1101 Eigersund 15-74 år  2002M11    3     \n 9 1101 Eigersund 15-74 år  2002M12    2.9   \n10 1101 Eigersund 15-29 år  1999M01    2     \n11 1101 Eigersund 15-29 år  1999M02    1.8   \n12 1101 Eigersund 15-29 år  1999M03    1.7   \n13 1101 Eigersund 15-29 år  1999M04    2.5   \n14 1101 Eigersund 15-29 år  1999M05    1.7   \n15 1101 Eigersund 15-29 år  1999M06    1.9   \n16 1101 Eigersund 15-29 år  1999M07    2.6   \n\n\n\nOk, NAs filled in"
   },
   {
     "objectID": "explore-data/import-export-data/import-export-data.html#read-excel-file-cont.-6",
@@ -3903,7 +3903,7 @@
     "href": "explore-data/import-export-data/import-export-data.html#read-csv-file-with-encoding",
     "title": "Import/Export Data",
     "section": "Read csv file with encoding",
-    "text": "Read csv file with encoding\n\nSelect readr from the Import Dataset drop-down menu in the Environment pane in the upper right corner.\nThis menu selection uses the Wickham, Hester, and Bryan (2022).\n\n\n\n\n\nImport Dataset from Environment Pane."
+    "text": "Read csv file with encoding\n\nSelect readr from the Import Dataset drop-down menu in the Environment pane in the upper right corner.\nThis menu selection uses the readr package (Wickham, Hester, and Bryan 2022).\n\n\n\n\n\nImport Dataset from Environment Pane."
   },
   {
     "objectID": "explore-data/import-export-data/import-export-data.html#read-csv-file-with-encoding-cont.",
@@ -5240,7 +5240,7 @@
     "href": "explore-data/intro-ggplot2/intro-ggplot2.html#load-packages",
     "title": "Introduction to ggplot",
     "section": "Load packages",
-    "text": "Load packages\n\nWe start by loading some packages\n\n\n\nCode\nlibrary(ggplot2)\nlibrary(tinytex)\nlibrary(tidyverse)\nlibrary(ggpubr)"
+    "text": "Load packages\n\nWe start by loading some packages\n\n\n\n\nCode\nlibrary(ggplot2)\nlibrary(tinytex)\nlibrary(tidyverse)\nlibrary(ggpubr)"
   },
   {
     "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#empty-plot",
@@ -5261,7 +5261,7 @@
     "href": "explore-data/intro-ggplot2/intro-ggplot2.html#mapping-in-geom_point",
     "title": "Introduction to ggplot",
     "section": "mapping in geom_point",
-    "text": "mapping in geom_point\n\n\nCode\ngg1 <-   ggplot(data = mtcars, mapping = aes(x = disp, y = mpg)) +\n  geom_point()\ngg2 <-   ggplot(data = mtcars) +\n  geom_point(mapping = aes(x = disp, y = mpg))\n\nggarrange(gg1, gg2, labels = c(\"mapping = aes in ggplot\", \"mapping = aes in geom_*\"),\n          nrow = 1)"
+    "text": "mapping in geom_point\n\n\nCode\ngg1 <-   ggplot(data = mtcars, mapping = aes(x = disp, y = mpg)) +\n  geom_point()\n\ngg2 <-   ggplot(data = mtcars) +\n  geom_point(mapping = aes(x = disp, y = mpg))\n\nggarrange(gg1, gg2, labels = c(\"mapping = aes in ggplot\", \"mapping = aes in geom_*\"),\n          nrow = 1)"
   },
   {
     "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#ggplotdata-mapping-and-geom_pointmapping-data",
@@ -5310,7 +5310,7 @@
     "href": "explore-data/intro-ggplot2/intro-ggplot2.html#adding-a-geom_smooth-layer",
     "title": "Introduction to ggplot",
     "section": "Adding a geom_smooth() layer",
-    "text": "Adding a geom_smooth() layer\n\n\nCode\nggplot() +\n  geom_point(data = mtcars, mapping = aes(x = disp, y = mpg, colour = factor(cyl), size = 3.6*(0.25*1609.347)/qsec, shape = factor(ifelse(am, \"Aut\", \"Man\")))) +\n  labs(colour = \"cyl\", size = \"speed\\n(km/h)\", shape = \"trans-\\nmission\") +\n  geom_smooth(data = mtcars, mapping = aes(x = disp, y = mpg))"
+    "text": "Adding a geom_smooth() layer\n\n\nCode\nggplot() +\n  geom_point(\n    data = mtcars, \nmapping = aes(x = disp,\n              y = mpg, \n              colour = factor(cyl), \n              size = 3.6*(0.25*1609.347)/qsec, \n              shape = factor(ifelse(am, \"Aut\", \"Man\"))\n              )\n) +\n  labs(\n    colour = \"cyl\", \n    size = \"speed\\n(km/h)\", \n    shape = \"trans-\\nmission\"\n    ) +\n  geom_smooth(\n    data = mtcars, \n    mapping = aes(x = disp, y = mpg)\n    )"
   },
   {
     "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#exercise-2",
@@ -7774,20 +7774,20 @@
     "href": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#dataframes",
     "title": "Innledende R notater forelesning",
     "section": "Dataframes",
-    "text": "Dataframes\n\ndf <- data.frame(x = 1:3, y = letters[1:3], z = LETTERS[1:3])\n\n\ndf[,c(1,3)]\n\n  x z\n1 1 A\n2 2 B\n3 3 C\n\n\n\ndf[2,]\n\n  x y z\n2 2 b B\n\n\n\ndf[c(1,3),]\n\n  x y z\n1 1 a A\n3 3 c C\n\n\n\ndf[c(1,3),2]\n\n[1] \"a\" \"c\"\n\n\n\ndf[c(1,3), c(1,3)]\n\n  x z\n1 1 A\n3 3 C\n\n\nKolonner vha. navn\n\ndf[c(1,3), c(\"x\",\"z\")]\n\n  x z\n1 1 A\n3 3 C\n\n\n\ndf[3, 3]\n\n[1] \"C\"\n\n\n\ndf[3, c(\"z\")]\n\n[1] \"C\"\n\n\n\ndf[3, \"z\"]\n\n[1] \"C\"\n\n\n\ndf$z\n\n[1] \"A\" \"B\" \"C\"\n\n\n\ndf$z[3]\n\n[1] \"C\"\n\n\n\ndim(df)\n\n[1] 3 3\n\n\n\ndim(df[1:2, 1:2])\n\n[1] 2 2\n\n\n\ndim(df[1:2, 2])\n\nNULL\n\n\n\nclass(df[1:2, 1:2])\n\n[1] \"data.frame\"\n\n\n\nlength(df[1:2, 2])\n\n[1] 2"
+    "text": "Dataframes\n\ndf <- data.frame(x = 1:3, y = letters[1:3], z = LETTERS[1:3])\n\n\ndf[,c(1,3)]\n\n  x z\n1 1 A\n2 2 B\n3 3 C\n\n\n\ndf[2,]\n\n  x y z\n2 2 b B\n\n\n\ndf[c(1,3),]\n\n  x y z\n1 1 a A\n3 3 c C\n\n\n\ndf[c(1,3),2]\n\n[1] \"a\" \"c\"\n\n\n\ndf[c(1,3), c(1,3)]\n\n  x z\n1 1 A\n3 3 C\n\n\nKolonner vha. navn\n\ndf[c(1,3), c(\"x\",\"z\")]\n\n  x z\n1 1 A\n3 3 C\n\n\n\ndf[3, 3]\n\n[1] \"C\"\n\n\n\ndf[3, c(\"z\")]\n\n[1] \"C\"\n\n\n\ndf[3, \"z\"]\n\n[1] \"C\"\n\n\n\ndf$z\n\n[1] \"A\" \"B\" \"C\"\n\n\n\ndf$y[3]\n\n[1] \"c\"\n\n\n\ndim(df)\n\n[1] 3 3\n\n\n\ndim(df[1:2, 1:2])\n\n[1] 2 2\n\n\n\ndim(df[1:2, 2])\n\nNULL\n\n\n\nclass(df[1:2, 1:2])\n\n[1] \"data.frame\"\n\n\n\nlength(df[1:2, 2])\n\n[1] 2"
   },
   {
     "objectID": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#tibbles",
     "href": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#tibbles",
     "title": "Innledende R notater forelesning",
     "section": "Tibbles",
-    "text": "Tibbles\nSelv en enkelt verdi valgt fra en tibble forblir en tibble med dimensjon 1x1 (ikke noe vektor tull som for klassiske dataframes).\n\ntib <- as_tibble(df)\ndim(tib[2,3])\n\n[1] 1 1\n\n\n\nclass(tib)\n\n[1] \"tbl_df\"     \"tbl\"        \"data.frame\"\n\n\n\ntypeof(tib)\n\n[1] \"list\"\n\n\nSiden tibbles er en utvidelse av dataframes og dataframes er en liste av vektorer og lister av samme lengde."
+    "text": "Tibbles\nSelv en enkelt verdi valgt fra en tibble forblir en tibble med dimensjon 1x1 (ikke noe vektor tull som for klassiske dataframes).\n\ntib <- tibble(df)\ndim(tib[2,3])\n\n[1] 1 1\n\n\n\nclass(tib)\n\n[1] \"tbl_df\"     \"tbl\"        \"data.frame\"\n\n\n\ntypeof(tib)\n\n[1] \"list\"\n\n\nSiden tibbles er en utvidelse av dataframes og dataframes er en liste av vektorer og lister av samme lengde."
   },
   {
     "objectID": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#matriser",
     "href": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#matriser",
     "title": "Innledende R notater forelesning",
     "section": "Matriser",
-    "text": "Matriser\n\n# define a matirc in R\nX <- matrix(\n  c(2, 2, -1, 5, 2, 6), \n  nrow = 3, \n  byrow = FALSE\n  )\n\n\nX\n\n     [,1] [,2]\n[1,]    2    5\n[2,]    2    2\n[3,]   -1    6\n\n\n\nX_t <- t(X)\nX_t\n\n     [,1] [,2] [,3]\n[1,]    2    2   -1\n[2,]    5    2    6\n\n\nMatrise multiplikasjon i R. Definert hvis antall kolonner i første matrise er lik antall rekker i andre matrise. Resultatet vil ha en dimensjon lik antall rekker i første matrise x antall kolonner i andre matrise.\n\nX_t %*% X\n\n     [,1] [,2]\n[1,]    9    8\n[2,]    8   65\n\n\nInverse matrise i R\n\n(XTX_inv <- solve(X_t %*% X))\n\n            [,1]        [,2]\n[1,]  0.12476008 -0.01535509\n[2,] -0.01535509  0.01727447\n\n\nIdentitestsmatrise\n\n(I <- diag(2))\n\n     [,1] [,2]\n[1,]    1    0\n[2,]    0    1\n\n\n\n(X_t %*% X) %*% XTX_inv \n\n             [,1] [,2]\n[1,] 1.000000e+00    0\n[2,] 9.367507e-17    1\n\n\n\nXTX_inv %*% (X_t %*% X)\n\n     [,1]          [,2]\n[1,]    1 -1.908196e-17\n[2,]    0  1.000000e+00"
+    "text": "Matriser\n\n# define a matirc in R\nX <- matrix(\n  c(2, 2, -1, 5, 2, 6), \n  nrow = 3, \n  byrow = FALSE\n  )\n\n\nX\n\n     [,1] [,2]\n[1,]    2    5\n[2,]    2    2\n[3,]   -1    6\n\n\n\nY <- matrix(c(-3, 2, 2.5, 6, -4, 4), nrow = 2, byrow = FALSE)\n\n\nY\n\n     [,1] [,2] [,3]\n[1,]   -3  2.5   -4\n[2,]    2  6.0    4\n\n\n\nY %*% X\n\n     [,1] [,2]\n[1,]    3  -34\n[2,]   12   46\n\n\n\nX_t <- t(X)\nX_t\n\n     [,1] [,2] [,3]\n[1,]    2    2   -1\n[2,]    5    2    6\n\n\nMatrise multiplikasjon i R. Definert hvis antall kolonner i første matrise er lik antall rekker i andre matrise. Resultatet vil ha en dimensjon lik antall rekker i første matrise x antall kolonner i andre matrise.\n\nX_t %*% X\n\n     [,1] [,2]\n[1,]    9    8\n[2,]    8   65\n\n\nInverse matrise i R\n\n(XTX_inv <- solve(X_t %*% X))\n\n            [,1]        [,2]\n[1,]  0.12476008 -0.01535509\n[2,] -0.01535509  0.01727447\n\n\nIdentitestsmatrise\n\n(I <- diag(5))\n\n     [,1] [,2] [,3] [,4] [,5]\n[1,]    1    0    0    0    0\n[2,]    0    1    0    0    0\n[3,]    0    0    1    0    0\n[4,]    0    0    0    1    0\n[5,]    0    0    0    0    1\n\n\n\n(X_t %*% X) %*% XTX_inv \n\n             [,1] [,2]\n[1,] 1.000000e+00    0\n[2,] 9.367507e-17    1\n\n\n\nXTX_inv %*% (X_t %*% X)\n\n     [,1]          [,2]\n[1,]    1 -1.908196e-17\n[2,]    0  1.000000e+00\n\n\ngagasgasg"
   }
 ]

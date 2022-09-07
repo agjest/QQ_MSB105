@@ -5,7 +5,7 @@ lang: nb
 editor: visual
 ---
 
-```{r}
+```{r setup}
 library(tidyverse)
 ```
 
@@ -459,7 +459,7 @@ df$z
 ```
 
 ```{r}
-df$z[3]
+df$y[3]
 ```
 
 ```{r}
@@ -487,7 +487,7 @@ length(df[1:2, 2])
 Selv en enkelt verdi valgt fra en tibble forblir en tibble med dimensjon 1x1 (ikke noe vektor tull som for klassiske dataframes).
 
 ```{r}
-tib <- as_tibble(df)
+tib <- tibble(df)
 dim(tib[2,3])
 ```
 
@@ -517,6 +517,18 @@ X
 ```
 
 ```{r}
+Y <- matrix(c(-3, 2, 2.5, 6, -4, 4), nrow = 2, byrow = FALSE)
+```
+
+```{r}
+Y
+```
+
+```{r}
+Y %*% X
+```
+
+```{r}
 X_t <- t(X)
 X_t
 ```
@@ -536,7 +548,7 @@ Inverse matrise i R
 Identitestsmatrise
 
 ```{r}
-(I <- diag(2))
+(I <- diag(5))
 ```
 
 ```{r}
@@ -546,3 +558,5 @@ Identitestsmatrise
 ```{r}
 XTX_inv %*% (X_t %*% X)
 ```
+
+gagasgasg
