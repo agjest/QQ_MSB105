@@ -210,9 +210,9 @@ mens den til høyre er mer sentrert om hele prosjektet.
 -   When finished:
     -   Select **Terminal** in lower left paneGit branches in RStudio
 
-![Terminal Tab in Lowe Left Pane](Terminal.png)
+![Terminal tab in lower left pane](Terminal.png)
 
--   Then give the commands
+-   Then give the commandl
 
     -   `git checkout master` or `git checkout main`
         -   this command switch back to the branch `master` or `main`

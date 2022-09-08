@@ -508,7 +508,7 @@
     "href": "wrangle-data/time-data/time-data.html#change-type",
     "title": "Time Data",
     "section": "Change type",
-    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2022-08-23\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2022-08-23 11:40:50 CEST\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2022-08-23\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2022-08-23 UTC\""
+    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2022-09-08\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2022-09-08 09:09:57 CEST\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2022-09-08\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2022-09-08 UTC\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#different-inputs",
@@ -599,28 +599,28 @@
     "href": "wrangle-data/time-data/time-data.html#an-example-my_life",
     "title": "Time Data",
     "section": "An example: my_life",
-    "text": "An example: my_life\n\nPlaying with time and writing a function\n\n\n\n\nCode\nmy_life <- function(birthday = \"25121964\", unit = \"weeks\") {\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\nmy_life() # with default values\n\n\n[1] \"You are about 3008.57142857143 weeks old.\""
+    "text": "An example: my_life\n\nPlaying with time and writing a function\n\n\n\n\nCode\nmy_life <- function(birthday = \"25121964\", unit = \"weeks\") {\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\nmy_life() # with default values\n\n\n[1] \"You are about 3010.85714285714 weeks old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#an-example-my_life-1",
     "href": "wrangle-data/time-data/time-data.html#an-example-my_life-1",
     "title": "Time Data",
     "section": "An example: my_life",
-    "text": "An example: my_life\n\nsome are just too young to play with R\n\n\n\n\nCode\nmy_life <- function(birthday = \"25121964\", unit = \"weeks\") {\n# too young to play with R, week as unit\nif (as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))/52.25 < 5) {\nreturn(\"You are far too young to play with R!\")\n}\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\n\n\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3008.57142857143 weeks old.\""
+    "text": "An example: my_life\n\nsome are just too young to play with R\n\n\n\n\nCode\nmy_life <- function(birthday = \"25121964\", unit = \"weeks\") {\n# too young to play with R, week as unit\nif (as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))/52.25 < 5) {\nreturn(\"You are far too young to play with R!\")\n}\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\n\n\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3010.85714285714 weeks old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#an-example-my_life-2",
     "href": "wrangle-data/time-data/time-data.html#an-example-my_life-2",
     "title": "Time Data",
     "section": "An example: my_life",
-    "text": "An example: my_life\n\nPerhaps we should round off our answer.\n\n\n\n\nCode\nmy_life <- function(birthday = \"01012020\", unit = \"weeks\") {\n  # find the difference between today and birthday with week as unit\n  life_w <- as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))\n  # too young to play with R, week as unit\n  if (life_w / 52.25 < 5) {\n    return(\"You are far too young to play with R!\")\n  } else {\n    # find the difference between today and birthday measured in unit\n    life = round(as.numeric(difftime(today(), dmy(birthday), units = unit)), 0)\n    # one case for each unit\n    case_when(\n      unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n      unit == \"days\" ~ paste(\"You are about\", life, \"days old.\"),\n      unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n      unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n      unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n    )\n  }\n}\nmy_life(01032016)\n\n\n[1] \"You are about 338 weeks old.\""
+    "text": "An example: my_life\n\nPerhaps we should round off our answer.\n\n\n\n\nCode\nmy_life <- function(birthday = \"01012020\", unit = \"weeks\") {\n  # find the difference between today and birthday with week as unit\n  life_w <- as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))\n  # too young to play with R, week as unit\n  if (life_w / 52.25 < 5) {\n    return(\"You are far too young to play with R!\")\n  } else {\n    # find the difference between today and birthday measured in unit\n    life = round(as.numeric(difftime(today(), dmy(birthday), units = unit)), 0)\n    # one case for each unit\n    case_when(\n      unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n      unit == \"days\" ~ paste(\"You are about\", life, \"days old.\"),\n      unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n      unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n      unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n    )\n  }\n}\nmy_life(01032016)\n\n\n[1] \"You are about 340 weeks old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#testing-my_life",
     "href": "wrangle-data/time-data/time-data.html#testing-my_life",
     "title": "Time Data",
     "section": "Testing my_life()",
-    "text": "Testing my_life()\n\n\nCode\nmy_life(\"01032005\", unit = \"weeks\")\n\n\n[1] \"You are about 912 weeks old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"days\")\n\n\n[1] \"You are about 6384 days old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"mins\")\n\n\n[1] \"You are about 9192960 minutes old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"secs\")\n\n\n[1] \"You are about 551577600 seconds old.\""
+    "text": "Testing my_life()\n\n\nCode\nmy_life(\"01032005\", unit = \"weeks\")\n\n\n[1] \"You are about 914 weeks old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"days\")\n\n\n[1] \"You are about 6400 days old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"mins\")\n\n\n[1] \"You are about 9216000 minutes old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"secs\")\n\n\n[1] \"You are about 552960000 seconds old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#an-example-my_life-3",
@@ -641,7 +641,7 @@
     "href": "wrangle-data/time-data/time-data.html#final-testing",
     "title": "Time Data",
     "section": "Final testing",
-    "text": "Final testing\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"years\")\n\n\n[1] \"You are about 57.58 years old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"months\")\n\n\n[1] \"You are about 690.96 months old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3009 weeks old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"days\")\n\n\n[1] \"You are about 21060 days old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"hours\")\n\n\n[1] \"You are about 505440 hours old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"mins\")\n\n\n[1] \"You are about 30.326.400 minutes old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"secs\")\n\n\n[1] \"You are about 1.819.584.000 seconds old.\""
+    "text": "Final testing\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"years\")\n\n\n[1] \"You are about 57.62 years old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"months\")\n\n\n[1] \"You are about 691.49 months old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3011 weeks old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"days\")\n\n\n[1] \"You are about 21076 days old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"hours\")\n\n\n[1] \"You are about 505824 hours old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"mins\")\n\n\n[1] \"You are about 30.349.440 minutes old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"secs\")\n\n\n[1] \"You are about 1.820.966.400 seconds old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#references",
@@ -1288,6 +1288,55 @@
     "text": "Split age into age_start and age_end\n\n\nCode\nwho6 <- who5 %>% \n  mutate(\n    age = str_pad(age, width = 4, side = \"left\", pad = \"0\"),\n    age = str_replace(age, \"0065\", \"6599\")\n  ) %>% \n  separate(col = age,\n           into = c(\"age_start\", \"age_end\"),\n           sep = 2\n           )\nwho6[1:5,]\n\n\n# A tibble: 5 × 7\n  country      year type  sex   age_start age_end cases\n  <chr>       <int> <chr> <chr> <chr>     <chr>   <int>\n1 Afghanistan  1997 sp    m     00        14          0\n2 Afghanistan  1997 sp    m     15        24         10\n3 Afghanistan  1997 sp    m     25        34          6\n4 Afghanistan  1997 sp    m     35        44          3\n5 Afghanistan  1997 sp    m     45        54          5\n\n\nCode\ndim(who6)\n\n\n[1] 76046     7\n\n\n\n\nMSB105"
   },
   {
+    "objectID": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html",
+    "href": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html",
+    "title": "Innledende R notater forelesning",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──\n✔ ggplot2 3.3.6     ✔ purrr   0.3.4\n✔ tibble  3.1.8     ✔ dplyr   1.0.9\n✔ tidyr   1.2.0     ✔ stringr 1.4.0\n✔ readr   2.1.2     ✔ forcats 0.5.1\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()"
+  },
+  {
+    "objectID": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#innledning",
+    "href": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#innledning",
+    "title": "Innledende R notater forelesning",
+    "section": "Innledning",
+    "text": "Innledning\nHer er min aller første R kode.\n\nx <- 3 + 3\nx\n\n[1] 6\n\n\n\n# eller begge samtidig\n(x <- 3 + 3)\n\n[1] 6\n\n\n\n(x <- 13)\n\n[1] 13\n\n\nDe fire regneartene\n\n(2/15)^0.25*exp(4) - 200\n\n[1] -167.0077\n\n\n\nx <- 2\n(y <- 5)\n\n[1] 5\n\n\n\nx + y\n\n[1] 7\n\n\n\nx^y\n\n[1] 32\n\n\n\nz <- x^y\n\n\n(z <- x + y)\n\n[1] 7\n\n\n\n(x <- 13)\n\n[1] 13\n\n\n\nz\n\n[1] 7\n\n\n\n# definerer z på ny\n# får nå oppdatert verdi der ny x verdi (13) er brukt\n(z <- x + y)\n\n[1] 18\n\n\n\ntypeof(z)\n\n[1] \"double\"\n\n\n\nx <- 13L\ny <- 5L\n\n\nz <- x + y\n\n\ntypeof(z)\n\n[1] \"integer\"\n\n\n\n#double\ny <- 5\n\n\n# z double\nz <- x + y\n\n\n# selv et enkelt tall er en vektor\nis.vector(z)\n\n[1] TRUE\n\n\n\n# vektor av heltall\n(x <- c(2L, 8L, 9L, 21L:29L, 17L:12L))\n\n [1]  2  8  9 21 22 23 24 25 26 27 28 29 17 16 15 14 13 12\n\n\n\ntypeof(x)\n\n[1] \"integer\"\n\n\n\n# 21 to 29 by 2\n(x <- c(2L, 8L, 9L, seq(from = 21L, to = 29L, by = 2L), 17L:12L))\n\n [1]  2  8  9 21 23 25 27 29 17 16 15 14 13 12\n\n\n\n(x <- c(2L, 8L, 9L, seq(from = 21L, to = 29L, by = 3L), 17L:12L))\n\n [1]  2  8  9 21 24 27 17 16 15 14 13 12\n\n\n\n# from 29L to 21L by -3 L\n(x <- c(2L, 8L, 9L, seq(from = 29L, to = 21L, by = -3L), 17L:12L))\n\n [1]  2  8  9 29 26 23 17 16 15 14 13 12\n\n\n\n# vår x forskjellig fra den i slides\n(y <- 6:(5 + length(x)))\n\n [1]  6  7  8  9 10 11 12 13 14 15 16 17\n\n\n\nz <- x + y\n\n\ny <- c(y, 0.5 * x)\ny\n\n [1]  6.0  7.0  8.0  9.0 10.0 11.0 12.0 13.0 14.0 15.0 16.0 17.0  1.0  4.0  4.5\n[16] 14.5 13.0 11.5  8.5  8.0  7.5  7.0  6.5  6.0\n\n\n\nx + y\n\n [1]  8.0 15.0 17.0 38.0 36.0 34.0 29.0 29.0 29.0 29.0 29.0 29.0  3.0 12.0 13.5\n[16] 43.5 39.0 34.5 25.5 24.0 22.5 21.0 19.5 18.0\n\n\n\nx <- c(x, 10)\n\n\nx + y\n\nWarning in x + y: longer object length is not a multiple of shorter object\nlength\n\n\n [1]  8.0 15.0 17.0 38.0 36.0 34.0 29.0 29.0 29.0 29.0 29.0 29.0 11.0  6.0 12.5\n[16] 23.5 42.0 37.5 31.5 25.0 23.5 22.0 20.5 19.0\n\n\nEt enklere eksempel\n\n(x <- 2:4)\n\n[1] 2 3 4\n\n\n\n(y <- 10:12)\n\n[1] 10 11 12\n\n\n\n(x + y)\n\n[1] 12 14 16\n\n\n\n(y <- c(y, y + 0.5 * x))\n\n[1] 10.0 11.0 12.0 11.0 12.5 14.0\n\n\n\n# automatisk replikering av korteste\n# ingen warning\n(x + y)\n\n[1] 12.0 14.0 16.0 13.0 15.5 18.0\n\n\n\ny\n\n[1] 10.0 11.0 12.0 11.0 12.5 14.0\n\n\n\nrep(x, 2)\n\n[1] 2 3 4 2 3 4\n\n\nVi ser at x + y nå er x + y der x er replikert 2 ganger. Merk at R gjøre dette UTEN noen form for asvarsel.\n\n# legger til et tall (4) i fronten på x\n(x <- c(4, x))\n\n[1] 4 2 3 4\n\n\n\n# Nå er lengen av x 4 og lengden av y er 6. Tar vi nå x + y vil vi få en advarsel om at lengden av x ikke går opp i lengden av y\n(x + y)\n\nWarning in x + y: longer object length is not a multiple of shorter object\nlength\n\n\n[1] 14.0 13.0 15.0 15.0 16.5 16.0\n\n# men vi får svaret, x + y der den korteste, dvs x, \n# er replikert og man bruker de verdiene som trengs for å matche y"
+  },
+  {
+    "objectID": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#sjekke-likhet",
+    "href": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#sjekke-likhet",
+    "title": "Innledende R notater forelesning",
+    "section": "Sjekke likhet",
+    "text": "Sjekke likhet\nMerk!\n\n(1/7) * 7 == 1L\n\n[1] TRUE\n\n\nmen\n\n(1/49) * 49 == 1L\n\n[1] FALSE\n\n\nHvor ofte skjer dette?\n\nx <- 1:10000\ntypeof(x)\n\n[1] \"integer\"\n\n\n\nx_inv <- 1/x\ntable(x_inv * x == 1L)\n\n\nFALSE  TRUE \n 1178  8822 \n\n\nDe første 30 som er FALSE\n\nhead(x[!(x_inv * x == 1L)], n = 30)\n\n [1]  49  98 103 107 161 187 196 197 206 214 237 239 249 253 322 347 374 389 392\n[20] 394 412 417 425 428 443 474 478 479 491 498\n\n\nLøsning: bruk near\n\ntable(dplyr::near(x_inv * x, 1L))\n\n\n TRUE \n10000 \n\n\n\nz <- c(3, 5, 1, 9)\n\n\nz[-1]\n\n[1] 5 1 9\n\n\n\nz[-c(2, 3)]\n\n[1] 3 9\n\n\n\nhead(z, n = -1)\n\n[1] 3 5 1\n\n\n\nhead(z, n = -2)\n\n[1] 3 5\n\n\n\nhead(z, n = -3)\n\n[1] 3\n\n\n\nlength(z)\n\n[1] 4\n\n\n\nz[1:(length(z)-1)]\n\n[1] 3 5 1\n\n\n\n1:(length(z)-1)\n\n[1] 1 2 3\n\n\n\nx <- numeric(10)\n\n\nx <- as.numeric(c(0:10, 1.3))\n\n\ntypeof(x)\n\n[1] \"double\"\n\n\n\nx\n\n [1]  0.0  1.0  2.0  3.0  4.0  5.0  6.0  7.0  8.0  9.0 10.0  1.3\n\n\n\nround(1/3, digits = 2)\n\n[1] 0.33\n\n\n\nset.seed(666)\nx <- rnorm(10)\n\n\nx\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\nx < 0\n\n [1] FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE\n\n\n\nq <- x < 0\n\n\ntypeof(q)\n\n[1] \"logical\"\n\n\n\nq\n\n [1] FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE\n\n\n\nsum(q)\n\n[1] 6\n\n\n\ntable(q)\n\nq\nFALSE  TRUE \n    4     6"
+  },
+  {
+    "objectID": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#vektorer-automatisk-endring-av-type",
+    "href": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#vektorer-automatisk-endring-av-type",
+    "title": "Innledende R notater forelesning",
+    "section": "Vektorer, automatisk endring av type",
+    "text": "Vektorer, automatisk endring av type\nRegelen er altså at alle element i en vektor må være av samme type. Hva skjer hvis vi legger til et element av en annen type? Vår venn R hjelper oss og skifter automatisk de eksisterende elementene i vektoren til en ny type som er forenlig med det nye elementet.\n\n# Integer vector add floating point number\nx <- c(3L, 7L)\ntypeof(x)\n\n[1] \"integer\"\n\n\n\n# add floating point number to x\nx <- c(x, 3.13)\nx\n\n[1] 3.00 7.00 3.13\n\n\n\n# x now double (floating point numbers)\ntypeof(x)\n\n[1] \"double\"\n\n\n\n# add character to x\nx <- c(\"h\", x)\nx\n\n[1] \"h\"    \"3\"    \"7\"    \"3.13\"\n\n\n\n# x is now a character vector\ntypeof(x)\n\n[1] \"character\"\n\n\nA special case, add integer to logical\n\n# logical\nx <- c(TRUE, TRUE, FALSE)\ntypeof(x)\n\n[1] \"logical\"\n\n\n\n# add integer\nx <- c(x, 9L)\nx\n\n[1] 1 1 0 9\n\n\nTRUE and FALSE now has gotten their integer values, respectively 1 and 0.\nWhat happens if we add a double to a logical vector?\n\nx <- c(TRUE, TRUE, FALSE)\nx <- c(x, 3.13)\nx\n\n[1] 1.00 1.00 0.00 3.13\n\n\n\ntypeof(x)\n\n[1] \"double\"\n\n\nWhat if we add a character?\n\nx <- c(TRUE, TRUE, FALSE)\nx <- c(x, \"b\")\n\n\nx\n\n[1] \"TRUE\"  \"TRUE\"  \"FALSE\" \"b\"    \n\n\nIf we add integer and character we get:\n\nx <- c(TRUE, TRUE, FALSE)\nx <- c(x, 3L, \"b\")\nx\n\n[1] \"TRUE\"  \"TRUE\"  \"FALSE\" \"3\"     \"b\"    \n\n\nBut if we first add integer and then character we end up with:\n\nx <- c(TRUE, TRUE, FALSE)\nx <- c(x, 3L)\nx <- c (x, \"b\")\nx\n\n[1] \"1\" \"1\" \"0\" \"3\" \"b\""
+  },
+  {
+    "objectID": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#dataframes",
+    "href": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#dataframes",
+    "title": "Innledende R notater forelesning",
+    "section": "Dataframes",
+    "text": "Dataframes\n\ndf <- data.frame(x = 1:3, y = letters[1:3], z = LETTERS[1:3])\n\n\ndf[,c(1,3)]\n\n  x z\n1 1 A\n2 2 B\n3 3 C\n\n\n\ndf[2,]\n\n  x y z\n2 2 b B\n\n\n\ndf[c(1,3),]\n\n  x y z\n1 1 a A\n3 3 c C\n\n\n\ndf[c(1,3),2]\n\n[1] \"a\" \"c\"\n\n\n\ndf[c(1,3), c(1,3)]\n\n  x z\n1 1 A\n3 3 C\n\n\nKolonner vha. navn\n\ndf[c(1,3), c(\"x\",\"z\")]\n\n  x z\n1 1 A\n3 3 C\n\n\n\ndf[3, 3]\n\n[1] \"C\"\n\n\n\ndf[3, c(\"z\")]\n\n[1] \"C\"\n\n\n\ndf[3, \"z\"]\n\n[1] \"C\"\n\n\n\ndf$z\n\n[1] \"A\" \"B\" \"C\"\n\n\n\ndf$y[3]\n\n[1] \"c\"\n\n\n\ndim(df)\n\n[1] 3 3\n\n\n\ndim(df[1:2, 1:2])\n\n[1] 2 2\n\n\n\ndim(df[1:2, 2])\n\nNULL\n\n\n\nclass(df[1:2, 1:2])\n\n[1] \"data.frame\"\n\n\n\nlength(df[1:2, 2])\n\n[1] 2"
+  },
+  {
+    "objectID": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#tibbles",
+    "href": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#tibbles",
+    "title": "Innledende R notater forelesning",
+    "section": "Tibbles",
+    "text": "Tibbles\nSelv en enkelt verdi valgt fra en tibble forblir en tibble med dimensjon 1x1 (ikke noe vektor tull som for klassiske dataframes).\n\ntib <- tibble(df)\ndim(tib[2,3])\n\n[1] 1 1\n\n\n\nclass(tib)\n\n[1] \"tbl_df\"     \"tbl\"        \"data.frame\"\n\n\n\ntypeof(tib)\n\n[1] \"list\"\n\n\nSiden tibbles er en utvidelse av dataframes og dataframes er en liste av vektorer og lister av samme lengde."
+  },
+  {
+    "objectID": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#matriser",
+    "href": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#matriser",
+    "title": "Innledende R notater forelesning",
+    "section": "Matriser",
+    "text": "Matriser\n\n# define a matirc in R\nX <- matrix(\n  c(2, 2, -1, 5, 2, 6), \n  nrow = 3, \n  byrow = FALSE\n  )\n\n\nX\n\n     [,1] [,2]\n[1,]    2    5\n[2,]    2    2\n[3,]   -1    6\n\n\n\nY <- matrix(c(-3, 2, 2.5, 6, -4, 4), nrow = 2, byrow = FALSE)\n\n\nY\n\n     [,1] [,2] [,3]\n[1,]   -3  2.5   -4\n[2,]    2  6.0    4\n\n\n\nY %*% X\n\n     [,1] [,2]\n[1,]    3  -34\n[2,]   12   46\n\n\n\nX_t <- t(X)\nX_t\n\n     [,1] [,2] [,3]\n[1,]    2    2   -1\n[2,]    5    2    6\n\n\nMatrise multiplikasjon i R. Definert hvis antall kolonner i første matrise er lik antall rekker i andre matrise. Resultatet vil ha en dimensjon lik antall rekker i første matrise x antall kolonner i andre matrise.\n\nX_t %*% X\n\n     [,1] [,2]\n[1,]    9    8\n[2,]    8   65\n\n\nInverse matrise i R\n\n(XTX_inv <- solve(X_t %*% X))\n\n            [,1]        [,2]\n[1,]  0.12476008 -0.01535509\n[2,] -0.01535509  0.01727447\n\n\nIdentitestsmatrise\n\n(I <- diag(5))\n\n     [,1] [,2] [,3] [,4] [,5]\n[1,]    1    0    0    0    0\n[2,]    0    1    0    0    0\n[3,]    0    0    1    0    0\n[4,]    0    0    0    1    0\n[5,]    0    0    0    0    1\n\n\n\n(X_t %*% X) %*% XTX_inv \n\n             [,1] [,2]\n[1,] 1.000000e+00    0\n[2,] 9.367507e-17    1\n\n\n\nXTX_inv %*% (X_t %*% X)\n\n     [,1]          [,2]\n[1,]    1 -1.908196e-17\n[2,]    0  1.000000e+00\n\n\ngagasgasg"
+  },
+  {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#calculator",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#calculator",
     "title": "Very Short Intro to R",
@@ -1411,28 +1460,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\n\nTime difference of 1.131629 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\n\nTime difference of 1.244331 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\n\nTime difference of 1.306922 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\n\nTime difference of 1.409415 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n\nCode\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n\n[1] 15.49"
+    "text": "Speed Difference\n\n\nCode\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n\n[1] 13.27"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\n\nTime difference of 0.02643108 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 4844.64"
+    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\n\nTime difference of 0.02718687 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 5084.18"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#other-types-of-vectors-logical",
@@ -2062,28 +2111,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\nTime difference of 1.142661 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\nTime difference of 1.260258 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\nTime difference of 1.294489 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\nTime difference of 1.392098 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 13.29"
+    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 10.46"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\nTime difference of 0.02634811 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 4813.02"
+    "text": "The R way\n\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\nTime difference of 0.026335 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 5186.11"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#other-types-of-vectors-logical",
@@ -3525,7 +3574,7 @@
     "href": "introduction/git-github/git-github.html#git-branches-in-rstudio-2",
     "title": "Git and Github",
     "section": "Git branches in RStudio",
-    "text": "Git branches in RStudio\n\nWork and commit on branch Update-Introduction\nWhen finished:\n\nSelect Terminal in lower left paneGit branches in RStudio\n\n\n\nTerminal Tab in Lowe Left Pane\nThen give the commands\n\ngit checkout master or git checkout main\n\nthis command switch back to the branch master or main (local)\n\ngit merge Update-Introduction\n\nmerge the branch Update-Introduction into master or main branch"
+    "text": "Git branches in RStudio\n\nWork and commit on branch Update-Introduction\nWhen finished:\n\nSelect Terminal in lower left paneGit branches in RStudio\n\n\n\nTerminal tab in lower left pane\nThen give the commandl\n\ngit checkout master or git checkout main\n\nthis command switch back to the branch master or main (local)\n\ngit merge Update-Introduction\n\nmerge the branch Update-Introduction into master or main branch"
   },
   {
     "objectID": "introduction/git-github/git-github.html#git-branches-in-rstudio-3",
@@ -3771,13 +3820,6 @@
     "title": "Introduction",
     "section": "Datasets",
     "text": "Datasets\nR has a lot of available datasets to practise with. The following document explains how to find what’s available.\n\nAvailable Datasets"
-  },
-  {
-    "objectID": "explore-data/import-export-data/import-export-data.html#workflow-chap.-4",
-    "href": "explore-data/import-export-data/import-export-data.html#workflow-chap.-4",
-    "title": "Import/Export Data",
-    "section": "Workflow (chap. 4)",
-    "text": "Workflow (chap. 4)\nChap. 4 Workflow: basics\n\nI think we have covered most of this already\nA quick skim of the chapter is recommended.\nOne noteworthy point is “fast printing”\n\n\n\n\nCode\n# cumbersome\nx <- c(1, 2, 3)\nx\n\n\n[1] 1 2 3\n\n\n\n\n\n\nCode\n# Fast, to assign and print on one line enclose \n# in parentheses\n(x <- c(1, 2, 3))\n\n\n[1] 1 2 3"
   },
   {
     "objectID": "explore-data/import-export-data/import-export-data.html#getting-data-from-external-source.-chap.-11",
@@ -5236,211 +5278,477 @@
     "text": "References\n\n\nMSB105\n\n\n\nAuguie, Baptiste. 2017. gridExtra: Miscellaneous Functions for \"Grid\" Graphics. https://CRAN.R-project.org/package=gridExtra.\n\n\nHenry, Lionel, and Hadley Wickham. 2020. Purrr: Functional Programming Tools. https://CRAN.R-project.org/package=purrr.\n\n\nHuntington-Klein, Nick. 2022. Vtable: Variable Table for Variable Documentation. https://nickch-k.github.io/vtable/.\n\n\nMüller, Kirill, and Hadley Wickham. 2022. Tibble: Simple Data Frames. https://CRAN.R-project.org/package=tibble.\n\n\nR Core Team. 2022. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. https://www.R-project.org/.\n\n\nWickham, Hadley. 2016. Ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. https://ggplot2.tidyverse.org.\n\n\n———. 2019. Stringr: Simple, Consistent Wrappers for Common String Operations. https://CRAN.R-project.org/package=stringr.\n\n\n———. 2020. Modelr: Modelling Functions That Work with the Pipe. https://CRAN.R-project.org/package=modelr.\n\n\n———. 2021a. Forcats: Tools for Working with Categorical Variables (Factors). https://CRAN.R-project.org/package=forcats.\n\n\n———. 2021b. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2022. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686.\n\n\nWickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, Hiroaki Yutani, and Dewey Dunnington. 2022. Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics. https://CRAN.R-project.org/package=ggplot2.\n\n\nWickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2022. Dplyr: A Grammar of Data Manipulation. https://CRAN.R-project.org/package=dplyr.\n\n\nWickham, Hadley, and Maximilian Girlich. 2022. Tidyr: Tidy Messy Data. https://CRAN.R-project.org/package=tidyr.\n\n\nWickham, Hadley, Jim Hester, and Jennifer Bryan. 2022. Readr: Read Rectangular Text Data. https://CRAN.R-project.org/package=readr.\n\n\nYu, Guangchuang. 2021. Ggplotify: Convert Plot to Grob or Ggplot Object. https://github.com/GuangchuangYu/ggplotify.\n\n\nZhu, Hao. 2021. kableExtra: Construct Complex Table with Kable and Pipe Syntax. https://CRAN.R-project.org/package=kableExtra."
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#load-packages",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#load-packages",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html",
     "title": "Introduction to ggplot",
-    "section": "Load packages",
-    "text": "Load packages\n\nWe start by loading some packages\n\n\n\n\nCode\nlibrary(ggplot2)\nlibrary(tinytex)\nlibrary(tidyverse)\nlibrary(ggpubr)"
+    "section": "",
+    "text": "We start by loading some packages\n\n\n\nlibrary(ggplot2)\nlibrary(tinytex)\nlibrary(tidyverse)\n\n── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──\n✔ tibble  3.1.8     ✔ dplyr   1.0.9\n✔ tidyr   1.2.0     ✔ stringr 1.4.0\n✔ readr   2.1.2     ✔ forcats 0.5.1\n✔ purrr   0.3.4     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\n\nlibrary(ggpubr)"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#empty-plot",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#empty-plot",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#empty-plot",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#empty-plot",
     "title": "Introduction to ggplot",
     "section": "Empty plot",
-    "text": "Empty plot\n\n\nCode\nggplot(data = mtcars)"
+    "text": "Empty plot\n\nggplot(data = mtcars)"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#data-and-mapping",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#data-and-mapping",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#data-and-mapping",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#data-and-mapping",
     "title": "Introduction to ggplot",
     "section": "Data and mapping",
-    "text": "Data and mapping\n\n\nCode\nggplot(data = mtcars, mapping = aes(x = disp, y = mpg))"
+    "text": "Data and mapping\n\nggplot(data = mtcars, mapping = aes(x = disp, y = mpg))"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#mapping-in-geom_point",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#mapping-in-geom_point",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#mapping-in-geom_point",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#mapping-in-geom_point",
     "title": "Introduction to ggplot",
     "section": "mapping in geom_point",
-    "text": "mapping in geom_point\n\n\nCode\ngg1 <-   ggplot(data = mtcars, mapping = aes(x = disp, y = mpg)) +\n  geom_point()\n\ngg2 <-   ggplot(data = mtcars) +\n  geom_point(mapping = aes(x = disp, y = mpg))\n\nggarrange(gg1, gg2, labels = c(\"mapping = aes in ggplot\", \"mapping = aes in geom_*\"),\n          nrow = 1)"
+    "text": "mapping in geom_point\n\ngg1 <-   ggplot(data = mtcars, mapping = aes(x = disp, y = mpg)) +\n  geom_point()\n\ngg2 <-   ggplot(data = mtcars) +\n  geom_point(mapping = aes(x = disp, y = mpg))\n\nggarrange(gg1, gg2, labels = c(\"mapping = aes in ggplot\", \"mapping = aes in geom_*\"),\n          nrow = 1)"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#ggplotdata-mapping-and-geom_pointmapping-data",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#ggplotdata-mapping-and-geom_pointmapping-data",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#ggplotdata-mapping-and-geom_pointmapping-data",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#ggplotdata-mapping-and-geom_pointmapping-data",
     "title": "Introduction to ggplot",
     "section": "ggplot(data, mapping, …) and geom_point(mapping, data, …)",
-    "text": "ggplot(data, mapping, …) and geom_point(mapping, data, …)\n\n\nCode\nggplot() +\n  #geom_point has mapping as first argument. We have to use named arguments\n  #or switch their order\n  geom_point(data = mtcars, mapping = aes(x = disp, y = mpg))"
+    "text": "ggplot(data, mapping, …) and geom_point(mapping, data, …)\n\nggplot() +\n  #geom_point has mapping as first argument. We have to use named arguments\n  #or switch their order\n  geom_point(data = mtcars, mapping = aes(x = disp, y = mpg))"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#what-happens-if-we-use-both",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#what-happens-if-we-use-both",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#what-happens-if-we-use-both",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#what-happens-if-we-use-both",
     "title": "Introduction to ggplot",
     "section": "What happens if we use both?",
-    "text": "What happens if we use both?\n\n\nCode\n## combine aes\ngg3 <-   ggplot(data = mtcars, mapping = aes(x = disp, colour = factor(cyl))) +\n##  geom_point(data = mtcars, mapping = aes(y = mpg), col = 'blue')\n  geom_point(data = mtcars, mapping = aes(y = mpg))\n#inherit.aes    = FALSE, overrides the default aesthetics, rather than combining with them.\ngg4 <-   ggplot(data =  mtcars, mapping = aes(x = disp, colour = factor(cyl))) +\n##  geom_point(data = mtcars, mapping = aes(y = mpg), col = 'blue')\n  geom_point(data = mtcars, mapping = aes(x = qsec, y = mpg), show.legend = TRUE, inherit.aes = FALSE)"
+    "text": "What happens if we use both?\n\n## combine aes\ngg3 <-   ggplot(data = mtcars, mapping = aes(x = disp, colour = factor(cyl))) +\n##  geom_point(data = mtcars, mapping = aes(y = mpg), col = 'blue')\n  geom_point(data = mtcars, mapping = aes(y = mpg))\n#inherit.aes    = FALSE, overrides the default aesthetics, rather than combining with them.\ngg4 <-   ggplot(data =  mtcars, mapping = aes(x = disp, colour = factor(cyl))) +\n##  geom_point(data = mtcars, mapping = aes(y = mpg), col = 'blue')\n  geom_point(data = mtcars, mapping = aes(x = qsec, y = mpg), show.legend = TRUE, inherit.aes = FALSE)\n\n\n\n## x = disp removed from ggplot\ngg5 <-   ggplot(data = mtcars, mapping = aes(colour = factor(cyl))) +\n##  geom_point(data = mtcars, mapping = aes(y = mpg), col = 'blue')\n  geom_point(mapping = aes(x = qsec, y = mpg), show.legend = TRUE, inherit.aes = FALSE)\n\nggarrange(gg3, gg4, gg5, labels = c(\"inherit.aes = TRUE\\n(default)\", \"inherit.aes = FALSE\", \"no x = disp\\nin ggplot\"),\n          nrow = 1)"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#playing-with-aes",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#playing-with-aes",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#playing-with-aes",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#playing-with-aes",
     "title": "Introduction to ggplot",
     "section": "Playing with aes()",
-    "text": "Playing with aes()\n\n\nCode\nggplot() +\n  geom_point(data = mtcars, mapping = aes(x = disp, y = mpg, colour = factor(cyl), size = qsec))"
+    "text": "Playing with aes()\n\nggplot() +\n  geom_point(data = mtcars, mapping = aes(x = disp, y = mpg, colour = factor(cyl), size = qsec))"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#playing-with-aes-1",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#playing-with-aes-1",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#playing-with-aes-1",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#playing-with-aes-1",
     "title": "Introduction to ggplot",
     "section": "Playing with aes()",
-    "text": "Playing with aes()\n\n\nCode\nggplot() +\n  geom_point(data = mtcars,\n             mapping = aes(x = disp, y = mpg, colour = factor(cyl), alpha = 3.6*(0.25*1609.347)/qsec,\n                           shape = factor(ifelse(am, \"Man\", \"Aut\"))), size=4) +\n  labs(colour = \"cyl\", alpha = \"speed\\n(km/h)\", shape = \"trans-\\nmission\")"
+    "text": "Playing with aes()\n\nggplot() +\n  geom_point(data = mtcars,\n             mapping = aes(x = disp, y = mpg, colour = factor(cyl), alpha = 3.6*(0.25*1609.347)/qsec,\n                           shape = factor(ifelse(am, \"Man\", \"Aut\"))), size=4) +\n  labs(colour = \"cyl\", alpha = \"speed\\n(km/h)\", shape = \"trans-\\nmission\")"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#exercise",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#exercise",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#exercise",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#exercise",
     "title": "Introduction to ggplot",
     "section": "Exercise:",
     "text": "Exercise:\nExamine if one of the available aesthetics might do a better job at showing differences in speed."
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#exercise-1",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#exercise-1",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#exercise-1",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#exercise-1",
     "title": "Introduction to ggplot",
     "section": "Exercise:",
     "text": "Exercise:\nHow do you think the plot below is made?"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#adding-a-geom_smooth-layer",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#adding-a-geom_smooth-layer",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#adding-a-geom_smooth-layer",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#adding-a-geom_smooth-layer",
     "title": "Introduction to ggplot",
     "section": "Adding a geom_smooth() layer",
-    "text": "Adding a geom_smooth() layer\n\n\n\n\nCode\nggplot() +\n  geom_point(\n    data = mtcars,\n    mapping = aes(\n      x = disp,\n      y = mpg, \n      colour = factor(cyl), \n      size = 3.6*(0.25*1609.347)/qsec, \n      shape = factor(\n        # Note codeing am\n        # 0 automatic, 1 manual\n        ifelse(\n          am, \n          \"Aut\", \n          \"Man\"\n          )\n        )\n      )\n    ) +\n  labs(\n    colour = \"cyl\", \n    size = \"speed\\n(km/h)\", \n    shape = \"trans-\\nmission\"\n    ) +\n  geom_smooth(\n    data = mtcars, \n    mapping = aes(x = disp, y = mpg)\n    )"
+    "text": "Adding a geom_smooth() layer\n\n\n\nggplot() +\n  geom_point(\n    data = mtcars,\n    mapping = aes(\n      x = disp,\n      y = mpg, \n      colour = factor(cyl), \n      size = 3.6*(0.25*1609.347)/qsec, \n      shape = factor(\n        # Note codeing am\n        # 0 automatic, 1 manual\n        ifelse(\n          am, \n          \"Aut\", \n          \"Man\"\n          )\n        )\n      )\n    ) +\n  labs(\n    colour = \"cyl\", \n    size = \"speed\\n(km/h)\", \n    shape = \"trans-\\nmission\"\n    ) +\n  geom_smooth(\n    data = mtcars, \n    mapping = aes(x = disp, y = mpg)\n    )\n\n\n\n\n`geom_smooth()` using method = 'loess' and formula 'y ~ x'"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#exercise-2",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#exercise-2",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#exercise-2",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#exercise-2",
     "title": "Introduction to ggplot",
     "section": "Exercise:",
     "text": "Exercise:\nWhich parameter control the smoothness? Plot again with “half the smoothness”."
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#exercise-3",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#exercise-3",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#exercise-3",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#exercise-3",
     "title": "Introduction to ggplot",
     "section": "Exercise:",
     "text": "Exercise:\nChange the confidence interval from 95% to 99%. Will it become narrower or broader? Then draw both the 95% and 99% confidence interval. How can we distinguish them?"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#linear-model-lm",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#linear-model-lm",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#linear-model-lm",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#linear-model-lm",
     "title": "Introduction to ggplot",
     "section": "Linear model, lm",
     "text": "Linear model, lm\nPractice exercise: How can we get ggplot2 to draw the regression line? (hint! see help for geom_smooth()). Generate the new plot (concentrate on the plain points and the regression line)."
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#linear-model-rlm",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#linear-model-rlm",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#linear-model-rlm",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#linear-model-rlm",
     "title": "Introduction to ggplot",
     "section": "Linear model, rlm",
-    "text": "Linear model, rlm\n\n\n\n\nCode\nggplot(\n  data = mtcars, \n  mapping = aes(\n    x = disp, \n    y = mpg\n    )\n  ) +\n  geom_point() +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    ) +\n  # robust lm\n  geom_smooth(\n    method = MASS::rlm, \n    colour = 'Red', \n    se = FALSE\n    )"
+    "text": "Linear model, rlm\n\n\n\nggplot(\n  data = mtcars, \n  mapping = aes(\n    x = disp, \n    y = mpg\n    )\n  ) +\n  geom_point() +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    ) +\n  # robust lm\n  geom_smooth(\n    method = MASS::rlm, \n    colour = 'Red', \n    se = FALSE\n    )"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#other-data-in-the-plot",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#other-data-in-the-plot",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#other-data-in-the-plot",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#other-data-in-the-plot",
     "title": "Introduction to ggplot",
     "section": "Other data in the plot",
-    "text": "Other data in the plot\n\n\nCode\n## create tibble from scratch\ndf_mean <-   tibble(\n  cyl = c(\"avg. car 4 cyl.\", \"avg. car 6 cyl.\", \"avg. car 8 cyl.\"), \n  mpg = c(22.66, 17.74, 15.10), \n  disp = c(105.14, 183.31, 353.10)\n  )\n\n\n\n\nCode\ndf_mean\n\n\n# A tibble: 3 × 3\n  cyl               mpg  disp\n  <chr>           <dbl> <dbl>\n1 avg. car 4 cyl.  22.7  105.\n2 avg. car 6 cyl.  17.7  183.\n3 avg. car 8 cyl.  15.1  353."
+    "text": "Other data in the plot\n\n## create tibble from scratch\ndf_mean <-   tibble(\n  cyl = c(\"avg. car 4 cyl.\", \"avg. car 6 cyl.\", \"avg. car 8 cyl.\"), \n  mpg = c(22.66, 17.74, 15.10), \n  disp = c(105.14, 183.31, 353.10)\n  )\n\n\ndf_mean\n\n# A tibble: 3 × 3\n  cyl               mpg  disp\n  <chr>           <dbl> <dbl>\n1 avg. car 4 cyl.  22.7  105.\n2 avg. car 6 cyl.  17.7  183.\n3 avg. car 8 cyl.  15.1  353."
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#exercise-4",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#exercise-4",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#exercise-4",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#exercise-4",
     "title": "Introduction to ggplot",
     "section": "Exercise:",
-    "text": "Exercise:\nThe first column involved some typing. How can we reduce the required typing? (hint! see paste() and seq())\n\n\n\n\n\nCode\ndf_mean\n\n\n# A tibble: 3 × 3\n  cyl               mpg  disp\n  <chr>           <dbl> <dbl>\n1 avg. car 4 cyl.  22.7  105.\n2 avg. car 6 cyl.  17.7  183.\n3 avg. car 8 cyl.  15.1  353."
+    "text": "Exercise:\nThe first column involved some typing. How can we reduce the required typing? (hint! see paste() and seq())\n\n\n\n\ndf_mean\n\n# A tibble: 3 × 3\n  cyl               mpg  disp\n  <chr>           <dbl> <dbl>\n1 avg. car 4 cyl.  22.7  105.\n2 avg. car 6 cyl.  17.7  183.\n3 avg. car 8 cyl.  15.1  353."
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#two-different-datasets",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#two-different-datasets",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#two-different-datasets",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#two-different-datasets",
     "title": "Introduction to ggplot",
     "section": "Two different datasets",
-    "text": "Two different datasets\n\n\n\n\nCode\nggplot(\n  data = mtcars, \n  mapping = aes(x = disp, y = mpg)\n  ) +\n  geom_point(\n    mapping = aes(colour = factor(cyl))\n    ) +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    ) +\n  geom_smooth(\n    method = MASS::rlm, \n    colour = 'Red', \n    se = FALSE\n    ) +\n  geom_point(\n    data = df_mean, \n    mapping = aes(x = disp, y = mpg), \n    colour = \"black\", \n    size = 3\n    ) +\n  geom_text(\n    data = df_mean, \n    mapping = aes(x = disp, y = mpg, label = cyl), \n    colour = \"black\", \n    vjust = 1.5\n    )\n\n\n\n\n\n\n\n\n\nNote data = df_mean in last geom_point() in the code."
+    "text": "Two different datasets\n\n\n\nggplot(\n  data = mtcars, \n  mapping = aes(x = disp, y = mpg)\n  ) +\n  geom_point(\n    mapping = aes(colour = factor(cyl))\n    ) +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    ) +\n  geom_smooth(\n    method = MASS::rlm, \n    colour = 'Red', \n    se = FALSE\n    ) +\n  geom_point(\n    data = df_mean, \n    mapping = aes(x = disp, y = mpg), \n    colour = \"black\", \n    size = 3\n    ) +\n  geom_text(\n    data = df_mean, \n    mapping = aes(x = disp, y = mpg, label = cyl), \n    colour = \"black\", \n    vjust = 1.5\n    )\n\n\n\n\n`geom_smooth()` using formula 'y ~ x'\n`geom_smooth()` using formula 'y ~ x'\n\n\n\n\n\n\nNote data = df_mean in last geom_point() in the code."
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#labels",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#labels",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#two-different-datasets-cont.",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#two-different-datasets-cont.",
     "title": "Introduction to ggplot",
-    "section": "Labels",
-    "text": "Labels\n\n\nCode\n#ggpubr makes it easy to arrange multiple plots in one figure\np1 <- ggplot(\n  data = mtcars, \n  mapping = aes(x = disp, y = mpg)\n  ) +\n  geom_point(\n    aes(colour = factor(cyl))\n    ) +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    ) +\n  geom_smooth(\n    method = MASS::rlm, \n    colour = 'Red', \n    se = FALSE\n    ) +\n  geom_point(\n    data = df_mean, \n    mapping = aes(x = disp, y = mpg), \n    colour = \"black\", \n    size = 3\n    ) +\n  geom_text(\n    data = df_mean, \n    mapping = aes(x = disp, y = mpg, label = cyl),\n    colour = \"black\", \n    vjust = 1.5, \n    hjust = 0.2\n    ) +\n  labs(colour = \"cyl\") +\n  theme(legend.position = \"bottom\")"
+    "section": "Two different datasets cont.",
+    "text": "Two different datasets cont.\n\n\n\np_common <- ggplot(\n  data = mtcars, \n  mapping = aes(x = disp, y = mpg)\n  ) +\n  geom_point(\n    aes(colour = factor(cyl))\n    ) +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    ) +\n  geom_smooth(\n    method = MASS::rlm, \n    colour = 'Red', \n    se = FALSE\n    ) +\n  geom_point(\n    data = df_mean, \n    mapping = aes(x = disp, y = mpg), \n    colour = \"black\", \n    size = 3\n    ) +\n  labs(colour = \"cyl\") +\n  theme(legend.position = \"bottom\")\n\n\n\n# update a ggplot object\n\n# add text labels by geom_text\np1 <- p_common +  \n  geom_text(\n    data = df_mean, \n    mapping = aes(x = disp, y = mpg, label = cyl),\n    colour = \"black\", \n    vjust = 1.5, \n    hjust = 0.2\n    )\n# add text labels by geom_label\np2 <-   p_common +  \n  geom_label(\n    data = df_mean, \n    mapping = aes(x = disp, y = mpg, label = cyl), \n    colour = \"black\", \n    vjust = 1.5, \n    hjust = 0.2, \n    alpha = 0.25\n    ) +\n  theme(legend.position = \"bottom\") +  \n  labs(colour = \"cyl\")"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#labels-1",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#labels-1",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#plot-two-ggplot-objects-p1-and-p2",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#plot-two-ggplot-objects-p1-and-p2",
     "title": "Introduction to ggplot",
-    "section": "Labels",
-    "text": "Labels\n\n\nCode\np2 <- ggplot(\n  data = mtcars, \n  mapping = aes(x = disp, y = mpg)\n  ) +\n  geom_point(\n    mapping = aes(colour = factor(cyl))\n    ) +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    ) +\n  geom_smooth(\n    method = MASS::rlm, \n    colour = 'Red', \n    se = FALSE\n    ) +\n  geom_point(\n    data = df_mean, \n    mapping = aes(x = disp, y = mpg), \n    colour = \"black\", \n    size = 3\n    ) +\n  geom_label(\n    data = df_mean, \n    mapping = aes(x = disp, y = mpg, label = cyl), \n    colour = \"black\", \n    vjust = 1.5, \n    hjust = 0.2, \n    alpha = 0.25)\n\n\n\n\nCode\n#update an object\np2 <-   p2 +  \n  theme(legend.position = \"bottom\") +  \n  labs(colour = \"cyl\")"
+    "section": "Plot two ggplot objects p1 and p2",
+    "text": "Plot two ggplot objects p1 and p2\n\n# ggpubr makes it easy to place \n# two objects side by side\nggarrange(\n  p1, \n  p2, \n  ncol = 2, \n  nrow = 1, \n  labels = c(\n    \"geom_text()\",\n    \"geom_label()\"\n    )\n  )"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#labels-2",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#labels-2",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#plot-two-ggplot-objects-p1-and-p2-cont.",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#plot-two-ggplot-objects-p1-and-p2-cont.",
     "title": "Introduction to ggplot",
-    "section": "Labels",
-    "text": "Labels\n\n\nCode\nggarrange(\n  p1, \n  p2, \n  ncol = 2, \n  nrow = 1, \n  labels = c(\n    \"geom_text()\",\n    \"geom_label()\"\n    )\n  )"
+    "section": "Plot two ggplot objects p1 and p2 cont.",
+    "text": "Plot two ggplot objects p1 and p2 cont.\n\n\n`geom_smooth()` using formula 'y ~ x'\n`geom_smooth()` using formula 'y ~ x'\n`geom_smooth()` using formula 'y ~ x'\n`geom_smooth()` using formula 'y ~ x'"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#three-variables",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#three-variables",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#three-variables",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#three-variables",
     "title": "Introduction to ggplot",
     "section": "Three variables",
     "text": "Three variables\n\npseudo 3-d plot (not to usefull)\n2-d + aesthetics"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#three-variables-1",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#three-variables-1",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#three-variables-cont.",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#three-variables-cont.",
     "title": "Introduction to ggplot",
-    "section": "Three variables",
-    "text": "Three variables\n\n\n\n\nCode\nbp1 <- ggplot() +\n  geom_point(\n    data = mtcars, \n    mapping = aes(x = hp, y = wt, size = 1609.347/(2*qsec^2)), \n    colour = \"blue\", \n    alpha = 0.25\n    ) +\n  geom_text(\n    data = mtcars, \n    mapping = aes(x = hp, y = wt, label = rownames(mtcars)),\n    colour = \"black\", \n    size = 2, \n    hjust = 0.5, \n    vjust = 3\n    ) +\n  labs(size = \"Average\\nacceleration\") +\n  scale_size_continuous(\n    range = c(1, 10),\n    breaks = seq(1, 5, by = 0.25)\n    ) +\n  theme_classic()"
+    "section": "Three variables cont.",
+    "text": "Three variables cont.\n\n\n\ncp1 <-   ggplot() +\n  geom_point(\n    data = mtcars, \n    mapping = aes(\n      x = hp, \n      y = wt,\n      colour = 1609.347/(2*qsec^2)\n      ),\n    size = 4) +\n  geom_text(\n    data = mtcars, \n    mapping = aes(x = hp, y = wt, label = rownames(mtcars)),\n    colour = \"black\", \n    size = 2, \n    hjust = 0.7, \n    vjust = 3\n    ) +\n  labs(\n    size = \"Average\\nacceleration\", \n    colour = \"Average\\nacceleration\"\n    ) +\n  geom_smooth(\n    data = mtcars, \n    mapping = aes(x = hp, y = wt), \n    method = \"lm\", \n    se = FALSE\n    ) +\n  theme_classic()\n#  scale_size_continuous(range = c(3, 12), \n#  breaks = seq(1, 5, by=0.25)) +\n\n\n\n\n`geom_smooth()` using formula 'y ~ x'"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#another-strategy-facets",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#another-strategy-facets",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#three-variables-cont.-1",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#three-variables-cont.-1",
+    "title": "Introduction to ggplot",
+    "section": "Three variables cont.",
+    "text": "Three variables cont.\n\n\n\nbp1 <- ggplot() +\n  geom_point(\n    data = mtcars, \n    mapping = aes(x = hp, y = wt, size = 1609.347/(2*qsec^2)), \n    colour = \"blue\", \n    alpha = 0.25\n    ) +\n  geom_text(\n    data = mtcars, \n    mapping = aes(x = hp, y = wt, label = rownames(mtcars)),\n    colour = \"black\", \n    size = 2, \n    hjust = 0.5, \n    vjust = 3\n    ) +\n  labs(size = \"Average\\nacceleration\") +\n  scale_size_continuous(\n    range = c(1, 10),\n    breaks = seq(1, 5, by = 0.25)\n    ) +\n  theme_classic()"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#another-strategy-facets",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#another-strategy-facets",
     "title": "Introduction to ggplot",
     "section": "Another strategy; facets",
-    "text": "Another strategy; facets\n\n\n\n\nCode\nggplot(\n  data = mtcars, \n  mapping = aes(\n    x = hp, \n    y = 1609.347/(2*qsec^2)\n    )\n  ) +\n  facet_wrap(~cut_number(wt, n =3)) +\n  geom_point(\n    aes(colour = cut_number(\n      wt, \n      n = 3)\n      )\n    ) +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    )"
+    "text": "Another strategy; facets\n\n\n\nggplot(\n  data = mtcars, \n  mapping = aes(\n    x = hp, \n    y = 1609.347/(2*qsec^2)\n    )\n  ) +\n  facet_wrap(~cut_number(wt, n =3)) +\n  geom_point(\n    aes(colour = cut_number(\n      wt, \n      n = 3)\n      )\n    ) +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    )\n\n\n\n\n`geom_smooth()` using formula 'y ~ x'"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#facets-whole-dataset-in-background",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#facets-whole-dataset-in-background",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#facets-whole-dataset-in-background",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#facets-whole-dataset-in-background",
     "title": "Introduction to ggplot",
     "section": "Facets, whole dataset in background",
-    "text": "Facets, whole dataset in background\n\n\nCode\n#new dataframe to use for the grey points\nhp_acc <- data.frame(\n  hp = mtcars$hp, \n  acc = 1609.347/(2*mtcars$qsec^2)\n  )\n\nggplot(\n  data = mtcars, \n  mapping = aes(x = hp, y = 1609.347/(2*qsec^2))\n  ) +\n  geom_point(\n    data = hp_acc, \n    mapping = aes(x = hp, y = acc), colour = \"grey80\"\n    ) +\n  facet_wrap(\n    ~cut_number(\n      wt, \n      n =3 , \n      labels = c(\"Light\", \"Medium\", \"Heavy\")\n      )\n    ) +\n  geom_point(\n    mapping = aes(colour = cut_number(\n      wt, \n      n = 3, \n      labels = c(\"Light\", \"Medium\", \"Heavy\")\n      )\n      ),\n    show.legend = FALSE\n    ) +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    ) +\n  labs(\n    y = \"Mean acceleration (m/s^2)\", \n    colour = \"Weight\"\n    )"
+    "text": "Facets, whole dataset in background\n\n#new dataframe to use for the grey points\nhp_acc <- data.frame(\n  hp = mtcars$hp, \n  acc = 1609.347/(2*mtcars$qsec^2)\n  )\n\nggplot(\n  data = mtcars, \n  mapping = aes(x = hp, y = 1609.347/(2*qsec^2))\n  ) +\n  geom_point(\n    data = hp_acc, \n    mapping = aes(x = hp, y = acc), colour = \"grey80\"\n    ) +\n  facet_wrap(\n    ~cut_number(\n      wt, \n      n =3 , \n      labels = c(\"Light\", \"Medium\", \"Heavy\")\n      )\n    ) +\n  geom_point(\n    mapping = aes(colour = cut_number(\n      wt, \n      n = 3, \n      labels = c(\"Light\", \"Medium\", \"Heavy\")\n      )\n      ),\n    show.legend = FALSE\n    ) +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    ) +\n  labs(\n    y = \"Mean acceleration (m/s^2)\", \n    colour = \"Weight\"\n    )"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#two-facet-variables",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#two-facet-variables",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#facets-whole-dataset-in-background-1",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#facets-whole-dataset-in-background-1",
+    "title": "Introduction to ggplot",
+    "section": "Facets, whole dataset in background",
+    "text": "Facets, whole dataset in background\n\n\n`geom_smooth()` using formula 'y ~ x'"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#two-facet-variables",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#two-facet-variables",
     "title": "Introduction to ggplot",
     "section": "Two facet variables",
-    "text": "Two facet variables\n\n\nCode\nggplot(\n  data = mtcars, \n  mapping = aes(x = hp, y = 1609.347/(2*qsec^2))\n  ) +\n  geom_point(\n    data = hp_acc, \n    mapping = aes(x = hp, y = acc), \n    colour = \"grey80\"\n    ) +\n  facet_grid(\n    factor(cyl)~cut_number(\n      wt, \n      n =3 , \n      labels = c(\"Light\", \"Medium\", \"Heavy\"))\n    ) +\n  geom_point(\n    mapping = aes(\n      colour = cut_number(\n        wt, \n        n = 3, \n        labels = c(\"Light\", \"Medium\", \"Heavy\")\n        )\n      ),\n    show.legend = FALSE\n    ) +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    ) +\n  labs(\n    y = \"Mean acceleration\", \n    colour = \"Weight\"\n    )"
+    "text": "Two facet variables\n\nggplot(\n  data = mtcars, \n  mapping = aes(x = hp, y = 1609.347/(2*qsec^2))\n  ) +\n  geom_point(\n    data = hp_acc, \n    mapping = aes(x = hp, y = acc), \n    colour = \"grey80\"\n    ) +\n  facet_grid(\n    factor(cyl)~cut_number(\n      wt, \n      n =3 , \n      labels = c(\"Light\", \"Medium\", \"Heavy\"))\n    ) +\n  geom_point(\n    mapping = aes(\n      colour = cut_number(\n        wt, \n        n = 3, \n        labels = c(\"Light\", \"Medium\", \"Heavy\")\n        )\n      ),\n    show.legend = FALSE\n    ) +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    ) +\n  labs(\n    y = \"Mean acceleration\", \n    colour = \"Weight\"\n    )"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#other-graphical-systems-in-r",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#other-graphical-systems-in-r",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#two-facet-variables-1",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#two-facet-variables-1",
+    "title": "Introduction to ggplot",
+    "section": "Two facet variables",
+    "text": "Two facet variables\n\n\n`geom_smooth()` using formula 'y ~ x'"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#other-graphical-systems-in-r",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#other-graphical-systems-in-r",
     "title": "Introduction to ggplot",
     "section": "Other graphical systems in R",
     "text": "Other graphical systems in R\n\nClassic (plot())\nLattice package\nmany more"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#lattice",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#lattice",
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#lattice",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#lattice",
+    "title": "Introduction to ggplot",
+    "section": "Lattice",
+    "text": "Lattice\n\nlibrary(lattice)\nhistogram(\n  x = ~mpg | factor(cyl),  \n  type = \"density\", \n  data = mtcars\n  )"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#classic",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#classic",
+    "title": "Introduction to ggplot",
+    "section": "Classic",
+    "text": "Classic\n\n\n\n#save old par values\nold.par <-   par(no.readonly = TRUE)\n#set par\nlayout(\n  matrix(\n    c(1,2,3), \n    nrow = 1, \n    ncol = 3, \n    byrow = TRUE\n    )\n  )\nwith(\n  subset(\n    mtcars, \n    cyl == 4), \n  hist(\n    mpg, \n    breaks = c(7, 12, 17, 22, 27, 32, 37), \n    freq = FALSE\n    )\n  )\nwith(\n  subset(mtcars, cyl == 6), \n  hist(\n    mpg, \n    breaks = c(7, 12, 18, 23, 27, 32, 37), \n    freq = FALSE\n    )\n  )\nwith(\n  subset(\n    mtcars, \n    cyl == 8\n    ), \n  hist(\n    mpg, \n    breaks = c(9, 14, 19, 24, 27, 32, 37), \n    freq = FALSE\n    )\n  )"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#classic-cont.",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#classic-cont.",
+    "title": "Introduction to ggplot",
+    "section": "Classic cont.",
+    "text": "Classic cont.\n\n# reset pat to old values\npar(old.par)"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#one-variable",
+    "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#one-variable",
+    "title": "Introduction to ggplot",
+    "section": "One variable",
+    "text": "One variable\n\nHistogram\nBoxplot\nDensity plot\nViolin plot\nand more"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#load-packages",
+    "href": "explore-data/intro-ggplot2/index.html#load-packages",
+    "title": "Introduction to ggplot",
+    "section": "Load packages",
+    "text": "Load packages\n\nWe start by loading some packages\n\n\n\n\nCode\nlibrary(ggplot2)\nlibrary(tinytex)\nlibrary(tidyverse)\nlibrary(ggpubr)"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#empty-plot",
+    "href": "explore-data/intro-ggplot2/index.html#empty-plot",
+    "title": "Introduction to ggplot",
+    "section": "Empty plot",
+    "text": "Empty plot\n\n\nCode\nggplot(data = mtcars)"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#data-and-mapping",
+    "href": "explore-data/intro-ggplot2/index.html#data-and-mapping",
+    "title": "Introduction to ggplot",
+    "section": "Data and mapping",
+    "text": "Data and mapping\n\n\nCode\nggplot(data = mtcars, mapping = aes(x = disp, y = mpg))"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#mapping-in-geom_point",
+    "href": "explore-data/intro-ggplot2/index.html#mapping-in-geom_point",
+    "title": "Introduction to ggplot",
+    "section": "mapping in geom_point",
+    "text": "mapping in geom_point\n\n\nCode\ngg1 <-   ggplot(data = mtcars, mapping = aes(x = disp, y = mpg)) +\n  geom_point()\n\ngg2 <-   ggplot(data = mtcars) +\n  geom_point(mapping = aes(x = disp, y = mpg))\n\nggarrange(gg1, gg2, labels = c(\"mapping = aes in ggplot\", \"mapping = aes in geom_*\"),\n          nrow = 1)"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#ggplotdata-mapping-and-geom_pointmapping-data",
+    "href": "explore-data/intro-ggplot2/index.html#ggplotdata-mapping-and-geom_pointmapping-data",
+    "title": "Introduction to ggplot",
+    "section": "ggplot(data, mapping, …) and geom_point(mapping, data, …)",
+    "text": "ggplot(data, mapping, …) and geom_point(mapping, data, …)\n\n\nCode\nggplot() +\n  #geom_point has mapping as first argument. We have to use named arguments\n  #or switch their order\n  geom_point(data = mtcars, mapping = aes(x = disp, y = mpg))"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#what-happens-if-we-use-both",
+    "href": "explore-data/intro-ggplot2/index.html#what-happens-if-we-use-both",
+    "title": "Introduction to ggplot",
+    "section": "What happens if we use both?",
+    "text": "What happens if we use both?\n\n\nCode\n## combine aes\ngg3 <-   ggplot(data = mtcars, mapping = aes(x = disp, colour = factor(cyl))) +\n##  geom_point(data = mtcars, mapping = aes(y = mpg), col = 'blue')\n  geom_point(data = mtcars, mapping = aes(y = mpg))\n#inherit.aes    = FALSE, overrides the default aesthetics, rather than combining with them.\ngg4 <-   ggplot(data =  mtcars, mapping = aes(x = disp, colour = factor(cyl))) +\n##  geom_point(data = mtcars, mapping = aes(y = mpg), col = 'blue')\n  geom_point(data = mtcars, mapping = aes(x = qsec, y = mpg), show.legend = TRUE, inherit.aes = FALSE)"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#playing-with-aes",
+    "href": "explore-data/intro-ggplot2/index.html#playing-with-aes",
+    "title": "Introduction to ggplot",
+    "section": "Playing with aes()",
+    "text": "Playing with aes()\n\n\nCode\nggplot() +\n  geom_point(data = mtcars, mapping = aes(x = disp, y = mpg, colour = factor(cyl), size = qsec))"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#playing-with-aes-1",
+    "href": "explore-data/intro-ggplot2/index.html#playing-with-aes-1",
+    "title": "Introduction to ggplot",
+    "section": "Playing with aes()",
+    "text": "Playing with aes()\n\n\nCode\nggplot() +\n  geom_point(data = mtcars,\n             mapping = aes(x = disp, y = mpg, colour = factor(cyl), alpha = 3.6*(0.25*1609.347)/qsec,\n                           shape = factor(ifelse(am, \"Man\", \"Aut\"))), size=4) +\n  labs(colour = \"cyl\", alpha = \"speed\\n(km/h)\", shape = \"trans-\\nmission\")"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#exercise",
+    "href": "explore-data/intro-ggplot2/index.html#exercise",
+    "title": "Introduction to ggplot",
+    "section": "Exercise:",
+    "text": "Exercise:\nExamine if one of the available aesthetics might do a better job at showing differences in speed."
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#exercise-1",
+    "href": "explore-data/intro-ggplot2/index.html#exercise-1",
+    "title": "Introduction to ggplot",
+    "section": "Exercise:",
+    "text": "Exercise:\nHow do you think the plot below is made?"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#adding-a-geom_smooth-layer",
+    "href": "explore-data/intro-ggplot2/index.html#adding-a-geom_smooth-layer",
+    "title": "Introduction to ggplot",
+    "section": "Adding a geom_smooth() layer",
+    "text": "Adding a geom_smooth() layer\n\n\n\n\nCode\nggplot() +\n  geom_point(\n    data = mtcars,\n    mapping = aes(\n      x = disp,\n      y = mpg, \n      colour = factor(cyl), \n      size = 3.6*(0.25*1609.347)/qsec, \n      shape = factor(\n        # Note codeing am\n        # 0 automatic, 1 manual\n        ifelse(\n          am, \n          \"Aut\", \n          \"Man\"\n          )\n        )\n      )\n    ) +\n  labs(\n    colour = \"cyl\", \n    size = \"speed\\n(km/h)\", \n    shape = \"trans-\\nmission\"\n    ) +\n  geom_smooth(\n    data = mtcars, \n    mapping = aes(x = disp, y = mpg)\n    )"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#exercise-2",
+    "href": "explore-data/intro-ggplot2/index.html#exercise-2",
+    "title": "Introduction to ggplot",
+    "section": "Exercise:",
+    "text": "Exercise:\nWhich parameter control the smoothness? Plot again with “half the smoothness”."
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#exercise-3",
+    "href": "explore-data/intro-ggplot2/index.html#exercise-3",
+    "title": "Introduction to ggplot",
+    "section": "Exercise:",
+    "text": "Exercise:\nChange the confidence interval from 95% to 99%. Will it become narrower or broader? Then draw both the 95% and 99% confidence interval. How can we distinguish them?"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#linear-model-lm",
+    "href": "explore-data/intro-ggplot2/index.html#linear-model-lm",
+    "title": "Introduction to ggplot",
+    "section": "Linear model, lm",
+    "text": "Linear model, lm\nPractice exercise: How can we get ggplot2 to draw the regression line? (hint! see help for geom_smooth()). Generate the new plot (concentrate on the plain points and the regression line)."
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#linear-model-rlm",
+    "href": "explore-data/intro-ggplot2/index.html#linear-model-rlm",
+    "title": "Introduction to ggplot",
+    "section": "Linear model, rlm",
+    "text": "Linear model, rlm\n\n\n\n\nCode\nggplot(\n  data = mtcars, \n  mapping = aes(\n    x = disp, \n    y = mpg\n    )\n  ) +\n  geom_point() +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    ) +\n  # robust lm\n  geom_smooth(\n    method = MASS::rlm, \n    colour = 'Red', \n    se = FALSE\n    )"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#other-data-in-the-plot",
+    "href": "explore-data/intro-ggplot2/index.html#other-data-in-the-plot",
+    "title": "Introduction to ggplot",
+    "section": "Other data in the plot",
+    "text": "Other data in the plot\n\n\nCode\n## create tibble from scratch\ndf_mean <-   tibble(\n  cyl = c(\"avg. car 4 cyl.\", \"avg. car 6 cyl.\", \"avg. car 8 cyl.\"), \n  mpg = c(22.66, 17.74, 15.10), \n  disp = c(105.14, 183.31, 353.10)\n  )\n\n\n\n\nCode\ndf_mean\n\n\n# A tibble: 3 × 3\n  cyl               mpg  disp\n  <chr>           <dbl> <dbl>\n1 avg. car 4 cyl.  22.7  105.\n2 avg. car 6 cyl.  17.7  183.\n3 avg. car 8 cyl.  15.1  353."
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#exercise-4",
+    "href": "explore-data/intro-ggplot2/index.html#exercise-4",
+    "title": "Introduction to ggplot",
+    "section": "Exercise:",
+    "text": "Exercise:\nThe first column involved some typing. How can we reduce the required typing? (hint! see paste() and seq())\n\n\n\n\n\nCode\ndf_mean\n\n\n# A tibble: 3 × 3\n  cyl               mpg  disp\n  <chr>           <dbl> <dbl>\n1 avg. car 4 cyl.  22.7  105.\n2 avg. car 6 cyl.  17.7  183.\n3 avg. car 8 cyl.  15.1  353."
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#two-different-datasets",
+    "href": "explore-data/intro-ggplot2/index.html#two-different-datasets",
+    "title": "Introduction to ggplot",
+    "section": "Two different datasets",
+    "text": "Two different datasets\n\n\n\n\nCode\nggplot(\n  data = mtcars, \n  mapping = aes(x = disp, y = mpg)\n  ) +\n  geom_point(\n    mapping = aes(colour = factor(cyl))\n    ) +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    ) +\n  geom_smooth(\n    method = MASS::rlm, \n    colour = 'Red', \n    se = FALSE\n    ) +\n  geom_point(\n    data = df_mean, \n    mapping = aes(x = disp, y = mpg), \n    colour = \"black\", \n    size = 3\n    ) +\n  geom_text(\n    data = df_mean, \n    mapping = aes(x = disp, y = mpg, label = cyl), \n    colour = \"black\", \n    vjust = 1.5\n    )\n\n\n\n\n\n\n\n\n\nNote data = df_mean in last geom_point() in the code."
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#two-different-datasets-cont.",
+    "href": "explore-data/intro-ggplot2/index.html#two-different-datasets-cont.",
+    "title": "Introduction to ggplot",
+    "section": "Two different datasets cont.",
+    "text": "Two different datasets cont.\n\n\n\n\nCode\np_common <- ggplot(\n  data = mtcars, \n  mapping = aes(x = disp, y = mpg)\n  ) +\n  geom_point(\n    aes(colour = factor(cyl))\n    ) +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    ) +\n  geom_smooth(\n    method = MASS::rlm, \n    colour = 'Red', \n    se = FALSE\n    ) +\n  geom_point(\n    data = df_mean, \n    mapping = aes(x = disp, y = mpg), \n    colour = \"black\", \n    size = 3\n    ) +\n  labs(colour = \"cyl\") +\n  theme(legend.position = \"bottom\")\n\n\n\n\n\nCode\n# update a ggplot object\n\n# add text labels by geom_text\np1 <- p_common +  \n  geom_text(\n    data = df_mean, \n    mapping = aes(x = disp, y = mpg, label = cyl),\n    colour = \"black\", \n    vjust = 1.5, \n    hjust = 0.2\n    )\n# add text labels by geom_label\np2 <-   p_common +  \n  geom_label(\n    data = df_mean, \n    mapping = aes(x = disp, y = mpg, label = cyl), \n    colour = \"black\", \n    vjust = 1.5, \n    hjust = 0.2, \n    alpha = 0.25\n    ) +\n  theme(legend.position = \"bottom\") +  \n  labs(colour = \"cyl\")"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#plot-two-ggplot-objects-p1-and-p2",
+    "href": "explore-data/intro-ggplot2/index.html#plot-two-ggplot-objects-p1-and-p2",
+    "title": "Introduction to ggplot",
+    "section": "Plot two ggplot objects p1 and p2",
+    "text": "Plot two ggplot objects p1 and p2\n\n\nCode\n# ggpubr makes it easy to place \n# two objects side by side\nggarrange(\n  p1, \n  p2, \n  ncol = 2, \n  nrow = 1, \n  labels = c(\n    \"geom_text()\",\n    \"geom_label()\"\n    )\n  )"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#plot-two-ggplot-objects-p1-and-p2-cont.",
+    "href": "explore-data/intro-ggplot2/index.html#plot-two-ggplot-objects-p1-and-p2-cont.",
+    "title": "Introduction to ggplot",
+    "section": "Plot two ggplot objects p1 and p2 cont.",
+    "text": "Plot two ggplot objects p1 and p2 cont."
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#three-variables",
+    "href": "explore-data/intro-ggplot2/index.html#three-variables",
+    "title": "Introduction to ggplot",
+    "section": "Three variables",
+    "text": "Three variables\n\npseudo 3-d plot (not to usefull)\n2-d + aesthetics"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#three-variables-cont.",
+    "href": "explore-data/intro-ggplot2/index.html#three-variables-cont.",
+    "title": "Introduction to ggplot",
+    "section": "Three variables cont.",
+    "text": "Three variables cont.\n\n\n\n\nCode\ncp1 <-   ggplot() +\n  geom_point(\n    data = mtcars, \n    mapping = aes(\n      x = hp, \n      y = wt,\n      colour = 1609.347/(2*qsec^2)\n      ),\n    size = 4) +\n  geom_text(\n    data = mtcars, \n    mapping = aes(x = hp, y = wt, label = rownames(mtcars)),\n    colour = \"black\", \n    size = 2, \n    hjust = 0.7, \n    vjust = 3\n    ) +\n  labs(\n    size = \"Average\\nacceleration\", \n    colour = \"Average\\nacceleration\"\n    ) +\n  geom_smooth(\n    data = mtcars, \n    mapping = aes(x = hp, y = wt), \n    method = \"lm\", \n    se = FALSE\n    ) +\n  theme_classic()\n#  scale_size_continuous(range = c(3, 12), \n#  breaks = seq(1, 5, by=0.25)) +"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#three-variables-cont.-1",
+    "href": "explore-data/intro-ggplot2/index.html#three-variables-cont.-1",
+    "title": "Introduction to ggplot",
+    "section": "Three variables cont.",
+    "text": "Three variables cont.\n\n\n\n\nCode\nbp1 <- ggplot() +\n  geom_point(\n    data = mtcars, \n    mapping = aes(x = hp, y = wt, size = 1609.347/(2*qsec^2)), \n    colour = \"blue\", \n    alpha = 0.25\n    ) +\n  geom_text(\n    data = mtcars, \n    mapping = aes(x = hp, y = wt, label = rownames(mtcars)),\n    colour = \"black\", \n    size = 2, \n    hjust = 0.5, \n    vjust = 3\n    ) +\n  labs(size = \"Average\\nacceleration\") +\n  scale_size_continuous(\n    range = c(1, 10),\n    breaks = seq(1, 5, by = 0.25)\n    ) +\n  theme_classic()"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#another-strategy-facets",
+    "href": "explore-data/intro-ggplot2/index.html#another-strategy-facets",
+    "title": "Introduction to ggplot",
+    "section": "Another strategy; facets",
+    "text": "Another strategy; facets\n\n\n\n\nCode\nggplot(\n  data = mtcars, \n  mapping = aes(\n    x = hp, \n    y = 1609.347/(2*qsec^2)\n    )\n  ) +\n  facet_wrap(~cut_number(wt, n =3)) +\n  geom_point(\n    aes(colour = cut_number(\n      wt, \n      n = 3)\n      )\n    ) +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    )"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#facets-whole-dataset-in-background",
+    "href": "explore-data/intro-ggplot2/index.html#facets-whole-dataset-in-background",
+    "title": "Introduction to ggplot",
+    "section": "Facets, whole dataset in background",
+    "text": "Facets, whole dataset in background\n\n\nCode\n#new dataframe to use for the grey points\nhp_acc <- data.frame(\n  hp = mtcars$hp, \n  acc = 1609.347/(2*mtcars$qsec^2)\n  )\n\nggplot(\n  data = mtcars, \n  mapping = aes(x = hp, y = 1609.347/(2*qsec^2))\n  ) +\n  geom_point(\n    data = hp_acc, \n    mapping = aes(x = hp, y = acc), colour = \"grey80\"\n    ) +\n  facet_wrap(\n    ~cut_number(\n      wt, \n      n =3 , \n      labels = c(\"Light\", \"Medium\", \"Heavy\")\n      )\n    ) +\n  geom_point(\n    mapping = aes(colour = cut_number(\n      wt, \n      n = 3, \n      labels = c(\"Light\", \"Medium\", \"Heavy\")\n      )\n      ),\n    show.legend = FALSE\n    ) +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    ) +\n  labs(\n    y = \"Mean acceleration (m/s^2)\", \n    colour = \"Weight\"\n    )"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#facets-whole-dataset-in-background-1",
+    "href": "explore-data/intro-ggplot2/index.html#facets-whole-dataset-in-background-1",
+    "title": "Introduction to ggplot",
+    "section": "Facets, whole dataset in background",
+    "text": "Facets, whole dataset in background"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#two-facet-variables",
+    "href": "explore-data/intro-ggplot2/index.html#two-facet-variables",
+    "title": "Introduction to ggplot",
+    "section": "Two facet variables",
+    "text": "Two facet variables\n\n\nCode\nggplot(\n  data = mtcars, \n  mapping = aes(x = hp, y = 1609.347/(2*qsec^2))\n  ) +\n  geom_point(\n    data = hp_acc, \n    mapping = aes(x = hp, y = acc), \n    colour = \"grey80\"\n    ) +\n  facet_grid(\n    factor(cyl)~cut_number(\n      wt, \n      n =3 , \n      labels = c(\"Light\", \"Medium\", \"Heavy\"))\n    ) +\n  geom_point(\n    mapping = aes(\n      colour = cut_number(\n        wt, \n        n = 3, \n        labels = c(\"Light\", \"Medium\", \"Heavy\")\n        )\n      ),\n    show.legend = FALSE\n    ) +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    ) +\n  labs(\n    y = \"Mean acceleration\", \n    colour = \"Weight\"\n    )"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#two-facet-variables-1",
+    "href": "explore-data/intro-ggplot2/index.html#two-facet-variables-1",
+    "title": "Introduction to ggplot",
+    "section": "Two facet variables",
+    "text": "Two facet variables"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#other-graphical-systems-in-r",
+    "href": "explore-data/intro-ggplot2/index.html#other-graphical-systems-in-r",
+    "title": "Introduction to ggplot",
+    "section": "Other graphical systems in R",
+    "text": "Other graphical systems in R\n\nClassic (plot())\nLattice package\nmany more"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#lattice",
+    "href": "explore-data/intro-ggplot2/index.html#lattice",
     "title": "Introduction to ggplot",
     "section": "Lattice",
     "text": "Lattice\n\n\nCode\nlibrary(lattice)\nhistogram(\n  x = ~mpg | factor(cyl),  \n  type = \"density\", \n  data = mtcars\n  )"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#classic",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#classic",
+    "objectID": "explore-data/intro-ggplot2/index.html#classic",
+    "href": "explore-data/intro-ggplot2/index.html#classic",
     "title": "Introduction to ggplot",
     "section": "Classic",
     "text": "Classic\n\n\n\n\nCode\n#save old par values\nold.par <-   par(no.readonly = TRUE)\n#set par\nlayout(\n  matrix(\n    c(1,2,3), \n    nrow = 1, \n    ncol = 3, \n    byrow = TRUE\n    )\n  )\nwith(\n  subset(\n    mtcars, \n    cyl == 4), \n  hist(\n    mpg, \n    breaks = c(7, 12, 17, 22, 27, 32, 37), \n    freq = FALSE\n    )\n  )\nwith(\n  subset(mtcars, cyl == 6), \n  hist(\n    mpg, \n    breaks = c(7, 12, 18, 23, 27, 32, 37), \n    freq = FALSE\n    )\n  )\nwith(\n  subset(\n    mtcars, \n    cyl == 8\n    ), \n  hist(\n    mpg, \n    breaks = c(9, 14, 19, 24, 27, 32, 37), \n    freq = FALSE\n    )\n  )"
   },
   {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#one-variable",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#one-variable",
+    "objectID": "explore-data/intro-ggplot2/index.html#classic-cont.",
+    "href": "explore-data/intro-ggplot2/index.html#classic-cont.",
+    "title": "Introduction to ggplot",
+    "section": "Classic cont.",
+    "text": "Classic cont.\n\n\nCode\n# reset pat to old values\npar(old.par)"
+  },
+  {
+    "objectID": "explore-data/intro-ggplot2/index.html#one-variable",
+    "href": "explore-data/intro-ggplot2/index.html#one-variable",
     "title": "Introduction to ggplot",
     "section": "One variable",
     "text": "One variable\n\nHistogram\nBoxplot\nDensity plot\nViolin plot\nand more\n\n\n\n\n\n\nMSB105"
@@ -5464,7 +5772,7 @@
     "href": "explore-data/explore-data.html#presentations",
     "title": "Explore Data",
     "section": "Presentations",
-    "text": "Presentations\n\nOur Workflow (chap. 4, 6 and 8 r4ds)\nImport and Export Data\nUsing Graphics to Explore Data (chap. 3 r4ds)\nTransforming Data (chap. 5 r4ds) Essential chapter\nGit/Github Braching and Merging repetition from Introduction\nExploratory Data Analysis (chap. 7 r4ds)\n\nExploratory Data Analysis (chap. 7 r4ds) as Document"
+    "text": "Presentations\n\nOur Workflow (chap. 4, 6 and 8 r4ds)\nImport and Export Data\nUsing Graphics to Explore Data (chap. 3 r4ds)\n\nUsing Graphics to Explore Data (chap. 3 r4ds) as document\n\nTransforming Data (chap. 5 r4ds) Essential chapter\nGit/Github Braching and Merging repetition from Introduction\nExploratory Data Analysis (chap. 7 r4ds)\n\nExploratory Data Analysis (chap. 7 r4ds) as Document"
   },
   {
     "objectID": "explore-data/explore-data.html#other-resources",
@@ -7508,7 +7816,7 @@
     "href": "program/iteration/iteration.html#for-loop-tibble-2",
     "title": "Iteration",
     "section": "For loop, tibble",
-    "text": "For loop, tibble\n\ntesting\n\n\n\n\nCode\nmyT(my_df)\n\n\n# A tibble: 3 × 10\n    V_1   V_2   V_3   V_4   V_5   V_6   V_7    V_8    V_9   V_10\n  <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>  <dbl>  <dbl>\n1 99.2  119.  79.5  103.  84.7  97.3  112.  106.   104.    94.4 \n2 43.0   37.1 49.1   56.8 81.7  43.2   58.0  48.7   50.5  115.  \n3  9.22  15.3  8.23 114.   3.45  1.80  51.1   1.79   6.56   4.66\n\n\nCode\ntest <- matrix(sample(1:10, 10000, replace = TRUE), \n               nrow = 100, ncol = 100)\n# checking speed\nmicrobenchmark(myT(test), t(test))\n\n\nUnit: microseconds\n      expr     min       lq      mean  median       uq     max neval\n myT(test) 584.947 592.9420 611.61832 598.477 613.8315 777.975   100\n   t(test)  12.956  15.1905  17.19253  16.236  17.0355  70.807   100\n\n\n\nOur routine is about 40 times slower than Rs t(). Why so much slower? See Efficient R programming."
+    "text": "For loop, tibble\n\ntesting\n\n\n\n\nCode\nmyT(my_df)\n\n\n# A tibble: 3 × 10\n    V_1   V_2   V_3   V_4   V_5   V_6   V_7    V_8    V_9   V_10\n  <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>  <dbl>  <dbl>\n1 99.2  119.  79.5  103.  84.7  97.3  112.  106.   104.    94.4 \n2 43.0   37.1 49.1   56.8 81.7  43.2   58.0  48.7   50.5  115.  \n3  9.22  15.3  8.23 114.   3.45  1.80  51.1   1.79   6.56   4.66\n\n\nCode\ntest <- matrix(sample(1:10, 10000, replace = TRUE), \n               nrow = 100, ncol = 100)\n# checking speed\nmicrobenchmark(myT(test), t(test))\n\n\nUnit: microseconds\n      expr     min       lq      mean  median       uq     max neval\n myT(test) 586.382 589.3135 602.51673 592.614 603.2125 748.004   100\n   t(test)  15.170  16.0310  17.08306  16.400  16.9945  45.182   100\n\n\n\nOur routine is about 40 times slower than Rs t(). Why so much slower? See Efficient R programming."
   },
   {
     "objectID": "program/iteration/iteration.html#myt-with-other-input",
@@ -7550,7 +7858,7 @@
     "href": "program/iteration/iteration.html#testing",
     "title": "Iteration",
     "section": "Testing",
-    "text": "Testing\n\n\nCode\n# checking speed\nset.seed(444)\ntest_vec <- sample(1:10, 10000, replace = TRUE)\nmicrobenchmark::microbenchmark(decide_number_vec(test), decide_numvec(test))\n\n\nUnit: milliseconds\n                    expr       min        lq      mean    median       uq\n decide_number_vec(test) 15.439698 15.667904 16.396597 15.746829 17.37371\n     decide_numvec(test)  3.121494  3.209542  3.280519  3.257655  3.29476\n       max neval\n 20.285816   100\n  4.974653   100\n\n\n\nvector version about 7 times faster"
+    "text": "Testing\n\n\nCode\n# checking speed\nset.seed(444)\ntest_vec <- sample(1:10, 10000, replace = TRUE)\nmicrobenchmark::microbenchmark(decide_number_vec(test), decide_numvec(test))\n\n\nUnit: milliseconds\n                    expr       min        lq      mean    median        uq\n decide_number_vec(test) 15.489144 15.680020 16.398832 15.823888 17.457082\n     decide_numvec(test)  3.180083  3.216306  3.295587  3.266614  3.318643\n       max neval\n 19.587299   100\n  4.983632   100\n\n\n\nvector version about 7 times faster"
   },
   {
     "objectID": "program/iteration/iteration.html#for-loop-variations",
@@ -7740,138 +8048,5 @@
     "title": "Iteration",
     "section": "References",
     "text": "References\n\n\nMSB105\n\n\n\nBache, Stefan Milton, and Hadley Wickham. 2022. Magrittr: A Forward-Pipe Operator for r. https://CRAN.R-project.org/package=magrittr.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nMersmann, Olaf. 2021. Microbenchmark: Accurate Timing Functions. https://github.com/joshuaulrich/microbenchmark/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nWickham, Hadley. 2022. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
-  },
-  {
-    "objectID": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html",
-    "href": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html",
-    "title": "Innledende R notater forelesning",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──\n✔ ggplot2 3.3.6     ✔ purrr   0.3.4\n✔ tibble  3.1.8     ✔ dplyr   1.0.9\n✔ tidyr   1.2.0     ✔ stringr 1.4.0\n✔ readr   2.1.2     ✔ forcats 0.5.1\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()"
-  },
-  {
-    "objectID": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#innledning",
-    "href": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#innledning",
-    "title": "Innledende R notater forelesning",
-    "section": "Innledning",
-    "text": "Innledning\nHer er min aller første R kode.\n\nx <- 3 + 3\nx\n\n[1] 6\n\n\n\n# eller begge samtidig\n(x <- 3 + 3)\n\n[1] 6\n\n\n\n(x <- 13)\n\n[1] 13\n\n\nDe fire regneartene\n\n(2/15)^0.25*exp(4) - 200\n\n[1] -167.0077\n\n\n\nx <- 2\n(y <- 5)\n\n[1] 5\n\n\n\nx + y\n\n[1] 7\n\n\n\nx^y\n\n[1] 32\n\n\n\nz <- x^y\n\n\n(z <- x + y)\n\n[1] 7\n\n\n\n(x <- 13)\n\n[1] 13\n\n\n\nz\n\n[1] 7\n\n\n\n# definerer z på ny\n# får nå oppdatert verdi der ny x verdi (13) er brukt\n(z <- x + y)\n\n[1] 18\n\n\n\ntypeof(z)\n\n[1] \"double\"\n\n\n\nx <- 13L\ny <- 5L\n\n\nz <- x + y\n\n\ntypeof(z)\n\n[1] \"integer\"\n\n\n\n#double\ny <- 5\n\n\n# z double\nz <- x + y\n\n\n# selv et enkelt tall er en vektor\nis.vector(z)\n\n[1] TRUE\n\n\n\n# vektor av heltall\n(x <- c(2L, 8L, 9L, 21L:29L, 17L:12L))\n\n [1]  2  8  9 21 22 23 24 25 26 27 28 29 17 16 15 14 13 12\n\n\n\ntypeof(x)\n\n[1] \"integer\"\n\n\n\n# 21 to 29 by 2\n(x <- c(2L, 8L, 9L, seq(from = 21L, to = 29L, by = 2L), 17L:12L))\n\n [1]  2  8  9 21 23 25 27 29 17 16 15 14 13 12\n\n\n\n(x <- c(2L, 8L, 9L, seq(from = 21L, to = 29L, by = 3L), 17L:12L))\n\n [1]  2  8  9 21 24 27 17 16 15 14 13 12\n\n\n\n# from 29L to 21L by -3 L\n(x <- c(2L, 8L, 9L, seq(from = 29L, to = 21L, by = -3L), 17L:12L))\n\n [1]  2  8  9 29 26 23 17 16 15 14 13 12\n\n\n\n# vår x forskjellig fra den i slides\n(y <- 6:(5 + length(x)))\n\n [1]  6  7  8  9 10 11 12 13 14 15 16 17\n\n\n\nz <- x + y\n\n\ny <- c(y, 0.5 * x)\ny\n\n [1]  6.0  7.0  8.0  9.0 10.0 11.0 12.0 13.0 14.0 15.0 16.0 17.0  1.0  4.0  4.5\n[16] 14.5 13.0 11.5  8.5  8.0  7.5  7.0  6.5  6.0\n\n\n\nx + y\n\n [1]  8.0 15.0 17.0 38.0 36.0 34.0 29.0 29.0 29.0 29.0 29.0 29.0  3.0 12.0 13.5\n[16] 43.5 39.0 34.5 25.5 24.0 22.5 21.0 19.5 18.0\n\n\n\nx <- c(x, 10)\n\n\nx + y\n\nWarning in x + y: longer object length is not a multiple of shorter object\nlength\n\n\n [1]  8.0 15.0 17.0 38.0 36.0 34.0 29.0 29.0 29.0 29.0 29.0 29.0 11.0  6.0 12.5\n[16] 23.5 42.0 37.5 31.5 25.0 23.5 22.0 20.5 19.0\n\n\nEt enklere eksempel\n\n(x <- 2:4)\n\n[1] 2 3 4\n\n\n\n(y <- 10:12)\n\n[1] 10 11 12\n\n\n\n(x + y)\n\n[1] 12 14 16\n\n\n\n(y <- c(y, y + 0.5 * x))\n\n[1] 10.0 11.0 12.0 11.0 12.5 14.0\n\n\n\n# automatisk replikering av korteste\n# ingen warning\n(x + y)\n\n[1] 12.0 14.0 16.0 13.0 15.5 18.0\n\n\n\ny\n\n[1] 10.0 11.0 12.0 11.0 12.5 14.0\n\n\n\nrep(x, 2)\n\n[1] 2 3 4 2 3 4\n\n\nVi ser at x + y nå er x + y der x er replikert 2 ganger. Merk at R gjøre dette UTEN noen form for asvarsel.\n\n# legger til et tall (4) i fronten på x\n(x <- c(4, x))\n\n[1] 4 2 3 4\n\n\n\n# Nå er lengen av x 4 og lengden av y er 6. Tar vi nå x + y vil vi få en advarsel om at lengden av x ikke går opp i lengden av y\n(x + y)\n\nWarning in x + y: longer object length is not a multiple of shorter object\nlength\n\n\n[1] 14.0 13.0 15.0 15.0 16.5 16.0\n\n# men vi får svaret, x + y der den korteste, dvs x, \n# er replikert og man bruker de verdiene som trengs for å matche y"
-  },
-  {
-    "objectID": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#sjekke-likhet",
-    "href": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#sjekke-likhet",
-    "title": "Innledende R notater forelesning",
-    "section": "Sjekke likhet",
-    "text": "Sjekke likhet\nMerk!\n\n(1/7) * 7 == 1L\n\n[1] TRUE\n\n\nmen\n\n(1/49) * 49 == 1L\n\n[1] FALSE\n\n\nHvor ofte skjer dette?\n\nx <- 1:10000\ntypeof(x)\n\n[1] \"integer\"\n\n\n\nx_inv <- 1/x\ntable(x_inv * x == 1L)\n\n\nFALSE  TRUE \n 1178  8822 \n\n\nDe første 30 som er FALSE\n\nhead(x[!(x_inv * x == 1L)], n = 30)\n\n [1]  49  98 103 107 161 187 196 197 206 214 237 239 249 253 322 347 374 389 392\n[20] 394 412 417 425 428 443 474 478 479 491 498\n\n\nLøsning: bruk near\n\ntable(dplyr::near(x_inv * x, 1L))\n\n\n TRUE \n10000 \n\n\n\nz <- c(3, 5, 1, 9)\n\n\nz[-1]\n\n[1] 5 1 9\n\n\n\nz[-c(2, 3)]\n\n[1] 3 9\n\n\n\nhead(z, n = -1)\n\n[1] 3 5 1\n\n\n\nhead(z, n = -2)\n\n[1] 3 5\n\n\n\nhead(z, n = -3)\n\n[1] 3\n\n\n\nlength(z)\n\n[1] 4\n\n\n\nz[1:(length(z)-1)]\n\n[1] 3 5 1\n\n\n\n1:(length(z)-1)\n\n[1] 1 2 3\n\n\n\nx <- numeric(10)\n\n\nx <- as.numeric(c(0:10, 1.3))\n\n\ntypeof(x)\n\n[1] \"double\"\n\n\n\nx\n\n [1]  0.0  1.0  2.0  3.0  4.0  5.0  6.0  7.0  8.0  9.0 10.0  1.3\n\n\n\nround(1/3, digits = 2)\n\n[1] 0.33\n\n\n\nset.seed(666)\nx <- rnorm(10)\n\n\nx\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\nx < 0\n\n [1] FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE\n\n\n\nq <- x < 0\n\n\ntypeof(q)\n\n[1] \"logical\"\n\n\n\nq\n\n [1] FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE\n\n\n\nsum(q)\n\n[1] 6\n\n\n\ntable(q)\n\nq\nFALSE  TRUE \n    4     6"
-  },
-  {
-    "objectID": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#vektorer-automatisk-endring-av-type",
-    "href": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#vektorer-automatisk-endring-av-type",
-    "title": "Innledende R notater forelesning",
-    "section": "Vektorer, automatisk endring av type",
-    "text": "Vektorer, automatisk endring av type\nRegelen er altså at alle element i en vektor må være av samme type. Hva skjer hvis vi legger til et element av en annen type? Vår venn R hjelper oss og skifter automatisk de eksisterende elementene i vektoren til en ny type som er forenlig med det nye elementet.\n\n# Integer vector add floating point number\nx <- c(3L, 7L)\ntypeof(x)\n\n[1] \"integer\"\n\n\n\n# add floating point number to x\nx <- c(x, 3.13)\nx\n\n[1] 3.00 7.00 3.13\n\n\n\n# x now double (floating point numbers)\ntypeof(x)\n\n[1] \"double\"\n\n\n\n# add character to x\nx <- c(\"h\", x)\nx\n\n[1] \"h\"    \"3\"    \"7\"    \"3.13\"\n\n\n\n# x is now a character vector\ntypeof(x)\n\n[1] \"character\"\n\n\nA special case, add integer to logical\n\n# logical\nx <- c(TRUE, TRUE, FALSE)\ntypeof(x)\n\n[1] \"logical\"\n\n\n\n# add integer\nx <- c(x, 9L)\nx\n\n[1] 1 1 0 9\n\n\nTRUE and FALSE now has gotten their integer values, respectively 1 and 0.\nWhat happens if we add a double to a logical vector?\n\nx <- c(TRUE, TRUE, FALSE)\nx <- c(x, 3.13)\nx\n\n[1] 1.00 1.00 0.00 3.13\n\n\n\ntypeof(x)\n\n[1] \"double\"\n\n\nWhat if we add a character?\n\nx <- c(TRUE, TRUE, FALSE)\nx <- c(x, \"b\")\n\n\nx\n\n[1] \"TRUE\"  \"TRUE\"  \"FALSE\" \"b\"    \n\n\nIf we add integer and character we get:\n\nx <- c(TRUE, TRUE, FALSE)\nx <- c(x, 3L, \"b\")\nx\n\n[1] \"TRUE\"  \"TRUE\"  \"FALSE\" \"3\"     \"b\"    \n\n\nBut if we first add integer and then character we end up with:\n\nx <- c(TRUE, TRUE, FALSE)\nx <- c(x, 3L)\nx <- c (x, \"b\")\nx\n\n[1] \"1\" \"1\" \"0\" \"3\" \"b\""
-  },
-  {
-    "objectID": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#dataframes",
-    "href": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#dataframes",
-    "title": "Innledende R notater forelesning",
-    "section": "Dataframes",
-    "text": "Dataframes\n\ndf <- data.frame(x = 1:3, y = letters[1:3], z = LETTERS[1:3])\n\n\ndf[,c(1,3)]\n\n  x z\n1 1 A\n2 2 B\n3 3 C\n\n\n\ndf[2,]\n\n  x y z\n2 2 b B\n\n\n\ndf[c(1,3),]\n\n  x y z\n1 1 a A\n3 3 c C\n\n\n\ndf[c(1,3),2]\n\n[1] \"a\" \"c\"\n\n\n\ndf[c(1,3), c(1,3)]\n\n  x z\n1 1 A\n3 3 C\n\n\nKolonner vha. navn\n\ndf[c(1,3), c(\"x\",\"z\")]\n\n  x z\n1 1 A\n3 3 C\n\n\n\ndf[3, 3]\n\n[1] \"C\"\n\n\n\ndf[3, c(\"z\")]\n\n[1] \"C\"\n\n\n\ndf[3, \"z\"]\n\n[1] \"C\"\n\n\n\ndf$z\n\n[1] \"A\" \"B\" \"C\"\n\n\n\ndf$y[3]\n\n[1] \"c\"\n\n\n\ndim(df)\n\n[1] 3 3\n\n\n\ndim(df[1:2, 1:2])\n\n[1] 2 2\n\n\n\ndim(df[1:2, 2])\n\nNULL\n\n\n\nclass(df[1:2, 1:2])\n\n[1] \"data.frame\"\n\n\n\nlength(df[1:2, 2])\n\n[1] 2"
-  },
-  {
-    "objectID": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#tibbles",
-    "href": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#tibbles",
-    "title": "Innledende R notater forelesning",
-    "section": "Tibbles",
-    "text": "Tibbles\nSelv en enkelt verdi valgt fra en tibble forblir en tibble med dimensjon 1x1 (ikke noe vektor tull som for klassiske dataframes).\n\ntib <- tibble(df)\ndim(tib[2,3])\n\n[1] 1 1\n\n\n\nclass(tib)\n\n[1] \"tbl_df\"     \"tbl\"        \"data.frame\"\n\n\n\ntypeof(tib)\n\n[1] \"list\"\n\n\nSiden tibbles er en utvidelse av dataframes og dataframes er en liste av vektorer og lister av samme lengde."
-  },
-  {
-    "objectID": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#matriser",
-    "href": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html#matriser",
-    "title": "Innledende R notater forelesning",
-    "section": "Matriser",
-    "text": "Matriser\n\n# define a matirc in R\nX <- matrix(\n  c(2, 2, -1, 5, 2, 6), \n  nrow = 3, \n  byrow = FALSE\n  )\n\n\nX\n\n     [,1] [,2]\n[1,]    2    5\n[2,]    2    2\n[3,]   -1    6\n\n\n\nY <- matrix(c(-3, 2, 2.5, 6, -4, 4), nrow = 2, byrow = FALSE)\n\n\nY\n\n     [,1] [,2] [,3]\n[1,]   -3  2.5   -4\n[2,]    2  6.0    4\n\n\n\nY %*% X\n\n     [,1] [,2]\n[1,]    3  -34\n[2,]   12   46\n\n\n\nX_t <- t(X)\nX_t\n\n     [,1] [,2] [,3]\n[1,]    2    2   -1\n[2,]    5    2    6\n\n\nMatrise multiplikasjon i R. Definert hvis antall kolonner i første matrise er lik antall rekker i andre matrise. Resultatet vil ha en dimensjon lik antall rekker i første matrise x antall kolonner i andre matrise.\n\nX_t %*% X\n\n     [,1] [,2]\n[1,]    9    8\n[2,]    8   65\n\n\nInverse matrise i R\n\n(XTX_inv <- solve(X_t %*% X))\n\n            [,1]        [,2]\n[1,]  0.12476008 -0.01535509\n[2,] -0.01535509  0.01727447\n\n\nIdentitestsmatrise\n\n(I <- diag(5))\n\n     [,1] [,2] [,3] [,4] [,5]\n[1,]    1    0    0    0    0\n[2,]    0    1    0    0    0\n[3,]    0    0    1    0    0\n[4,]    0    0    0    1    0\n[5,]    0    0    0    0    1\n\n\n\n(X_t %*% X) %*% XTX_inv \n\n             [,1] [,2]\n[1,] 1.000000e+00    0\n[2,] 9.367507e-17    1\n\n\n\nXTX_inv %*% (X_t %*% X)\n\n     [,1]          [,2]\n[1,]    1 -1.908196e-17\n[2,]    0  1.000000e+00\n\n\ngagasgasg"
-  },
-  {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#plot-2-p2",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#plot-2-p2",
-    "title": "Introduction to ggplot",
-    "section": "Plot 2, p2",
-    "text": "Plot 2, p2\n\n\n\n\nCode\np2 <- ggplot(\n  data = mtcars, \n  mapping = aes(x = disp, y = mpg)\n  ) +\n  geom_point(\n    mapping = aes(colour = factor(cyl))\n    ) +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    ) +\n  geom_smooth(\n    method = MASS::rlm, \n    colour = 'Red', \n    se = FALSE\n    ) +\n  geom_point(\n    data = df_mean, \n    mapping = aes(x = disp, y = mpg), \n    colour = \"black\", \n    size = 3\n    ) +\n  geom_label(\n    data = df_mean, \n    mapping = aes(x = disp, y = mpg, label = cyl), \n    colour = \"black\", \n    vjust = 1.5, \n    hjust = 0.2, \n    alpha = 0.25)\n\n\n\n\nCode\n#update an object\np2 <-   p2 +  \n  theme(legend.position = \"bottom\") +  \n  labs(colour = \"cyl\")\n\n\n\n\n\nCode\n# ggpubr makes it easy to place \n# two objects side by side\nggarrange(\n  p1, \n  p2, \n  ncol = 2, \n  nrow = 1, \n  labels = c(\n    \"geom_text()\",\n    \"geom_label()\"\n    )\n  )"
-  },
-  {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#resulting-plots",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#resulting-plots",
-    "title": "Introduction to ggplot",
-    "section": "Resulting plots",
-    "text": "Resulting plots"
-  },
-  {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#two-different-datasets-cont.",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#two-different-datasets-cont.",
-    "title": "Introduction to ggplot",
-    "section": "Two different datasets cont.",
-    "text": "Two different datasets cont.\n\n\n\n\nCode\np_common <- ggplot(\n  data = mtcars, \n  mapping = aes(x = disp, y = mpg)\n  ) +\n  geom_point(\n    aes(colour = factor(cyl))\n    ) +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    ) +\n  geom_smooth(\n    method = MASS::rlm, \n    colour = 'Red', \n    se = FALSE\n    ) +\n  geom_point(\n    data = df_mean, \n    mapping = aes(x = disp, y = mpg), \n    colour = \"black\", \n    size = 3\n    ) +\n  labs(colour = \"cyl\") +\n  theme(legend.position = \"bottom\")\n\n\n\n\n\nCode\n# update a ggplot object\n\n# add text labels by geom_text\np1 <- p_common +  \n  geom_text(\n    data = df_mean, \n    mapping = aes(x = disp, y = mpg, label = cyl),\n    colour = \"black\", \n    vjust = 1.5, \n    hjust = 0.2\n    )\n# add text labels by geom_label\np2 <-   p_common +  \n  geom_label(\n    data = df_mean, \n    mapping = aes(x = disp, y = mpg, label = cyl), \n    colour = \"black\", \n    vjust = 1.5, \n    hjust = 0.2, \n    alpha = 0.25\n    ) +\n  theme(legend.position = \"bottom\") +  \n  labs(colour = \"cyl\")"
-  },
-  {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#update-a-ggplot-object",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#update-a-ggplot-object",
-    "title": "Introduction to ggplot",
-    "section": "Update a ggplot object",
-    "text": "Update a ggplot object\n\n\nCode\n# update a ggplot object\np2 <-   p2 +  \n  theme(legend.position = \"bottom\") +  \n  labs(colour = \"cyl\")\n\n\n\n\nCode\n# ggpubr makes it easy to place \n# two objects side by side\nggarrange(\n  p1, \n  p2, \n  ncol = 2, \n  nrow = 1, \n  labels = c(\n    \"geom_text()\",\n    \"geom_label()\"\n    )\n  )"
-  },
-  {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#plot-of-p1-and-p2",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#plot-of-p1-and-p2",
-    "title": "Introduction to ggplot",
-    "section": "Plot of p1 and p2",
-    "text": "Plot of p1 and p2"
-  },
-  {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#facets-whole-dataset-in-background-1",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#facets-whole-dataset-in-background-1",
-    "title": "Introduction to ggplot",
-    "section": "Facets, whole dataset in background",
-    "text": "Facets, whole dataset in background"
-  },
-  {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#two-facet-variables-1",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#two-facet-variables-1",
-    "title": "Introduction to ggplot",
-    "section": "Two facet variables",
-    "text": "Two facet variables"
-  },
-  {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#plot-two-ggplot-objects-p1-and-p2",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#plot-two-ggplot-objects-p1-and-p2",
-    "title": "Introduction to ggplot",
-    "section": "Plot two ggplot objects p1 and p2",
-    "text": "Plot two ggplot objects p1 and p2\n\n\nCode\n# ggpubr makes it easy to place \n# two objects side by side\nggarrange(\n  p1, \n  p2, \n  ncol = 2, \n  nrow = 1, \n  labels = c(\n    \"geom_text()\",\n    \"geom_label()\"\n    )\n  )"
-  },
-  {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#plot-two-ggplot-objects-p1-and-p2-cont.",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#plot-two-ggplot-objects-p1-and-p2-cont.",
-    "title": "Introduction to ggplot",
-    "section": "Plot two ggplot objects p1 and p2 cont.",
-    "text": "Plot two ggplot objects p1 and p2 cont."
-  },
-  {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#three-variables-cont.",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#three-variables-cont.",
-    "title": "Introduction to ggplot",
-    "section": "Three variables cont.",
-    "text": "Three variables cont.\n\n\n\n\nCode\ncp1 <-   ggplot() +\n  geom_point(\n    data = mtcars, \n    mapping = aes(\n      x = hp, \n      y = wt,\n      colour = 1609.347/(2*qsec^2)\n      ),\n    size = 4) +\n  geom_text(\n    data = mtcars, \n    mapping = aes(x = hp, y = wt, label = rownames(mtcars)),\n    colour = \"black\", \n    size = 2, \n    hjust = 0.7, \n    vjust = 3\n    ) +\n  labs(\n    size = \"Average\\nacceleration\", \n    colour = \"Average\\nacceleration\"\n    ) +\n  geom_smooth(\n    data = mtcars, \n    mapping = aes(x = hp, y = wt), \n    method = \"lm\", \n    se = FALSE\n    ) +\n  theme_classic()\n#  scale_size_continuous(range = c(3, 12), \n#  breaks = seq(1, 5, by=0.25)) +"
-  },
-  {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#three-variables-cont.-1",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#three-variables-cont.-1",
-    "title": "Introduction to ggplot",
-    "section": "Three variables cont.",
-    "text": "Three variables cont.\n\n\n\n\nCode\nbp1 <- ggplot() +\n  geom_point(\n    data = mtcars, \n    mapping = aes(x = hp, y = wt, size = 1609.347/(2*qsec^2)), \n    colour = \"blue\", \n    alpha = 0.25\n    ) +\n  geom_text(\n    data = mtcars, \n    mapping = aes(x = hp, y = wt, label = rownames(mtcars)),\n    colour = \"black\", \n    size = 2, \n    hjust = 0.5, \n    vjust = 3\n    ) +\n  labs(size = \"Average\\nacceleration\") +\n  scale_size_continuous(\n    range = c(1, 10),\n    breaks = seq(1, 5, by = 0.25)\n    ) +\n  theme_classic()"
-  },
-  {
-    "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#classic-cont.",
-    "href": "explore-data/intro-ggplot2/intro-ggplot2.html#classic-cont.",
-    "title": "Introduction to ggplot",
-    "section": "Classic cont.",
-    "text": "Classic cont.\n\n\nCode\n# reset pat to old values\npar(old.par)"
   }
 ]
