@@ -5436,7 +5436,7 @@
     "href": "explore-data/intro-ggplot2/intro-ggplot2.html#classic",
     "title": "Introduction to ggplot",
     "section": "Classic",
-    "text": "Classic\n\n\nCode\n#save old par values\nold.par <-   par(no.readonly = TRUE)\n#set par\nlayout(\n  matrix(\n    c(1,2,3), \n    nrow = 1, \n    ncol = 3, \n    byrow = TRUE\n    )\n  )\nwith(\n  subset(\n    mtcars, \n    cyl == 4), \n  hist(\n    mpg, \n    breaks = c(7, 12, 17, 22, 27, 32, 37), \n    freq = FALSE\n    )\n  )\nwith(\n  subset(mtcars, cyl == 6), \n  hist(\n    mpg, \n    breaks = c(7, 12, 18, 23, 27, 32, 37), \n    freq = FALSE\n    )\n  )\nwith(\n  subset(\n    mtcars, \n    cyl == 8\n    ), \n  hist(\n    mpg, \n    breaks = c(9, 14, 19, 24, 27, 32, 37), \n    freq = FALSE\n    )\n  )"
+    "text": "Classic\n\n\n\n\nCode\n#save old par values\nold.par <-   par(no.readonly = TRUE)\n#set par\nlayout(\n  matrix(\n    c(1,2,3), \n    nrow = 1, \n    ncol = 3, \n    byrow = TRUE\n    )\n  )\nwith(\n  subset(\n    mtcars, \n    cyl == 4), \n  hist(\n    mpg, \n    breaks = c(7, 12, 17, 22, 27, 32, 37), \n    freq = FALSE\n    )\n  )\nwith(\n  subset(mtcars, cyl == 6), \n  hist(\n    mpg, \n    breaks = c(7, 12, 18, 23, 27, 32, 37), \n    freq = FALSE\n    )\n  )\nwith(\n  subset(\n    mtcars, \n    cyl == 8\n    ), \n  hist(\n    mpg, \n    breaks = c(9, 14, 19, 24, 27, 32, 37), \n    freq = FALSE\n    )\n  )"
   },
   {
     "objectID": "explore-data/intro-ggplot2/intro-ggplot2.html#one-variable",

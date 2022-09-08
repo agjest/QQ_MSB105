@@ -867,7 +867,10 @@ histogram(
 
 ## Classic
 
+::: columns
+::: {.column width="50%"}
 ```{r}
+#| eval: false
 #save old par values
 old.par <-   par(no.readonly = TRUE)
 #set par
@@ -909,6 +912,54 @@ with(
     )
   )
 ```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#save old par values
+old.par <-   par(no.readonly = TRUE)
+#set par
+layout(
+  matrix(
+    c(1,2,3), 
+    nrow = 1, 
+    ncol = 3, 
+    byrow = TRUE
+    )
+  )
+with(
+  subset(
+    mtcars, 
+    cyl == 4), 
+  hist(
+    mpg, 
+    breaks = c(7, 12, 17, 22, 27, 32, 37), 
+    freq = FALSE
+    )
+  )
+with(
+  subset(mtcars, cyl == 6), 
+  hist(
+    mpg, 
+    breaks = c(7, 12, 18, 23, 27, 32, 37), 
+    freq = FALSE
+    )
+  )
+with(
+  subset(
+    mtcars, 
+    cyl == 8
+    ), 
+  hist(
+    mpg, 
+    breaks = c(9, 14, 19, 24, 27, 32, 37), 
+    freq = FALSE
+    )
+  )
+```
+:::
+:::
 
 ## Classic cont.
 
