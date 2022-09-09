@@ -418,7 +418,8 @@ greater than or equal to 15 min., but less than 30 min.?
 . . .
 
 ```{r}
-#| eval: true
+#| eval: false
+#| echo: false
 filter(flights, month %in% c(4,9)) %>%
   nrow()
 ```
@@ -426,6 +427,8 @@ filter(flights, month %in% c(4,9)) %>%
 . . .
 
 ```{r}
+#| eval: false
+#| echo: false
 # or
 filter(flights, month %in% c(4,9)) %>%
   dim() %>% 
@@ -438,13 +441,15 @@ filter(flights, month %in% c(4,9)) %>%
 2\) How many flights were there in total the first two days of a month?
 
 ```{r}
-#| eval: true
+#| eval: false
+#| echo: false
 filter(flights, day %in% c(1:2)) %>%
   nrow()
 ```
 
 ```{r}
-#| eval: true
+#| eval: false
+#| echo: false
 filter(flights, day %in% c(1:2)) %>%
   dim() %>% 
   .[1]
@@ -456,7 +461,8 @@ filter(flights, day %in% c(1:2)) %>%
 greater than or equal to 15 min., but less than 30 min.?
 
 ```{r}
-#| eval: true
+#| eval: false
+#| echo: false
 filter(flights, arr_delay >= 15 & arr_delay < 30) %>%
   nrow()
 ```
@@ -464,6 +470,8 @@ filter(flights, arr_delay >= 15 & arr_delay < 30) %>%
 . . .
 
 ```{r}
+#| eval: false
+#| echo: false
 # or
 filter(flights, arr_delay >= 15, arr_delay < 30) %>%
   dim() %>%
@@ -479,7 +487,7 @@ filter(flights, arr_delay >= 15, arr_delay < 30) %>%
 -   General rule: If one is NA, whole result will be NA,
     -   ex. `sum(c(1, 2, NA, 4, 5))` will return
 
-    -    `r sum(c(1, 2, NA, 4, 5))`.
+    -   `r sum(c(1, 2, NA, 4, 5))`.
 -   Check for NA with `is.na()`
     -   **NOT** `x == NA`
 -   `is.na()` returns TRUE if NA
