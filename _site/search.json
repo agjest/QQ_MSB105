@@ -4897,7 +4897,7 @@
     "href": "explore-data/eda/eda.html#single-variable-load-data",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Single variable, load data",
-    "text": "Single variable, load data\n\nLoad the data\n\n\n\n\nCode\nmy_heights <- modelr::heights\n\n\n\n\nAny NAs?\n\n\nCode\n# NAs in my_heights?\nmy_heights %>% \n  apply(MARGIN = 2, FUN = is.na) %>% \n  apply(MARGIN = 2, FUN = sum) \n\n\n   income    height    weight       age   marital       sex education      afqt \n        0         0        95         0         0         0        10       262"
+    "text": "Single variable, load data\n\nLoad the data\n\n\n\n\nCode\nmy_heights <- modelr::heights\n\n\n\nAny NAs?\n\n\n\n\n\nCode\n# NAs in my_heights?\nmy_heights %>% \n  apply(MARGIN = 2, FUN = is.na) %>% \n  apply(MARGIN = 2, FUN = sum) \n\n\n   income    height    weight       age   marital       sex education      afqt \n        0         0        95         0         0         0        10       262 \n\n\n\nNicer solution\n\n\n\n\n\nCode\n# number of NAs in each variable\n# drop variables with no NA\nmy_heights %>% \n  is.na() %>% \n  colSums() %>% \n  .[. > 0]\n\n\n   weight education      afqt \n       95        10       262"
   },
   {
     "objectID": "explore-data/eda/eda.html#descriptive-statistics",

@@ -105,15 +105,28 @@ r4ds](https://r4ds.had.co.nz/exploratory-data-analysis.html).
 my_heights <- modelr::heights
 ```
 
-. . .
+-   Any NAs?
 
-Any NAs?
+. . .
 
 ```{r}
 # NAs in my_heights?
 my_heights %>% 
   apply(MARGIN = 2, FUN = is.na) %>% 
   apply(MARGIN = 2, FUN = sum) 
+```
+
+-   Nicer solution
+
+. . .
+
+```{r}
+# number of NAs in each variable
+# drop variables with no NA
+my_heights %>% 
+  is.na() %>% 
+  colSums() %>% 
+  .[. > 0]
 ```
 
 ## Descriptive Statistics
