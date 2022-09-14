@@ -116,6 +116,17 @@ my_heights %>%
   apply(MARGIN = 2, FUN = sum) 
 ```
 
+-   or
+
+. . .
+
+```{r}
+# NAs in my_heights?
+my_heights %>% 
+  is.na() %>% 
+  apply(MARGIN = 2, FUN = sum) 
+```
+
 ## Single variable, load data cont.
 
 -   Nicer solution

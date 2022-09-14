@@ -534,6 +534,24 @@
         0         0        95         0         0         0        10       262 </code></pre>
 </div>
 </div>
+<ul>
+<li class="fragment">or</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># NAs in my_heights?</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">is.na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">apply</span>(<span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> sum) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   income    height    weight       age   marital       sex education      afqt 
+        0         0        95         0         0         0        10       262 </code></pre>
+</div>
+</div>
 </div>
 </section>
 <section id="single-variable-load-data-cont." class="slide level2">
@@ -545,11 +563,11 @@
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># number of NAs in each variable</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="co"># drop variables with no NA</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>my_heights <span class="sc">%&gt;%</span> </span>
-<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">is.na</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">colSums</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># number of NAs in each variable</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="co"># drop variables with no NA</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">is.na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb10-5"><a href="#cb10-5"></a>  <span class="fu">colSums</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   income    height    weight       age   marital       sex education      afqt 
@@ -564,12 +582,12 @@
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># number of NAs in each variable</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="co"># drop variables with no NA</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>my_heights <span class="sc">%&gt;%</span> </span>
-<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">is.na</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb10-5"><a href="#cb10-5"></a>  <span class="fu">colSums</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb10-6"><a href="#cb10-6"></a>  .[. <span class="sc">&gt;</span> <span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># number of NAs in each variable</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co"># drop variables with no NA</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">is.na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb12-5"><a href="#cb12-5"></a>  <span class="fu">colSums</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb12-6"><a href="#cb12-6"></a>  .[. <span class="sc">&gt;</span> <span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   weight education      afqt 
@@ -607,11 +625,11 @@
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># package vtable must be installed</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>my_heights <span class="sc">%&gt;%</span> </span>
-<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">select</span>(<span class="sc">-</span>marital, <span class="sc">-</span>sex) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-4"><a href="#cb12-4"></a>  <span class="co"># . to stop RStudio complaining about no data</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a>  vtable<span class="sc">::</span><span class="fu">st</span>(.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># package vtable must be installed</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">select</span>(<span class="sc">-</span>marital, <span class="sc">-</span>sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-4"><a href="#cb14-4"></a>  <span class="co"># . to stop RStudio complaining about no data</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>  vtable<span class="sc">::</span><span class="fu">st</span>(.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
@@ -702,10 +720,10 @@
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># package vtable must be installed</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>my_heights <span class="sc">%&gt;%</span> </span>
-<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">select</span>(marital, sex) <span class="sc">%&gt;%</span> </span>
-<span id="cb13-4"><a href="#cb13-4"></a>  vtable<span class="sc">::</span><span class="fu">st</span>(.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># package vtable must be installed</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">select</span>(marital, sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-4"><a href="#cb15-4"></a>  vtable<span class="sc">::</span><span class="fu">st</span>(.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -780,9 +798,9 @@
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
-<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>marital) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-3"><a href="#cb14-3"></a>  vtable<span class="sc">::</span><span class="fu">st</span>(<span class="at">group =</span> <span class="st">'sex'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>marital) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3"></a>  vtable<span class="sc">::</span><span class="fu">st</span>(<span class="at">group =</span> <span class="st">'sex'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
@@ -870,12 +888,12 @@
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># package vtable must be installed</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>my_heights <span class="sc">%&gt;%</span> </span>
-<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">mutate</span>(<span class="at">married =</span> <span class="fu">if_else</span>(marital <span class="sc">==</span> <span class="st">'married'</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">'female'</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">select</span>(<span class="sc">-</span>sex, <span class="sc">-</span>marital) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-6"><a href="#cb15-6"></a>  vtable<span class="sc">::</span><span class="fu">st</span>(<span class="at">group =</span> <span class="st">'married'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># package vtable must be installed</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">mutate</span>(<span class="at">married =</span> <span class="fu">if_else</span>(marital <span class="sc">==</span> <span class="st">'married'</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-4"><a href="#cb17-4"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">'female'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-5"><a href="#cb17-5"></a>  <span class="fu">select</span>(<span class="sc">-</span>sex, <span class="sc">-</span>marital) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-6"><a href="#cb17-6"></a>  vtable<span class="sc">::</span><span class="fu">st</span>(<span class="at">group =</span> <span class="st">'married'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
@@ -963,12 +981,12 @@
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># package vtable must be installed</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>my_heights <span class="sc">%&gt;%</span> </span>
-<span id="cb16-3"><a href="#cb16-3"></a>  <span class="fu">mutate</span>(<span class="at">married =</span> <span class="fu">if_else</span>(marital <span class="sc">==</span> <span class="st">'married'</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-4"><a href="#cb16-4"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">'male'</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-5"><a href="#cb16-5"></a>  <span class="fu">select</span>(<span class="sc">-</span>sex, <span class="sc">-</span>marital) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-6"><a href="#cb16-6"></a>  vtable<span class="sc">::</span><span class="fu">st</span>(<span class="at">group =</span> <span class="st">'married'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># package vtable must be installed</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb18-3"><a href="#cb18-3"></a>  <span class="fu">mutate</span>(<span class="at">married =</span> <span class="fu">if_else</span>(marital <span class="sc">==</span> <span class="st">'married'</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-4"><a href="#cb18-4"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">'male'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-5"><a href="#cb18-5"></a>  <span class="fu">select</span>(<span class="sc">-</span>sex, <span class="sc">-</span>marital) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-6"><a href="#cb18-6"></a>  vtable<span class="sc">::</span><span class="fu">st</span>(<span class="at">group =</span> <span class="st">'married'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
@@ -1060,8 +1078,8 @@
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_heights) <span class="sc">+</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> education), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_heights) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> education), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -1069,7 +1087,7 @@
 <section id="single-variable-graphical-description-bar-chart-1" class="slide level2">
 <h2>Single variable graphical description, bar chart</h2>
 
-<img data-src="eda_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
+<img data-src="eda_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
 <section id="the-peaks" class="slide level2">
 <h2>The peaks?</h2>
 <ul>
@@ -1106,11 +1124,11 @@
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>hist1 <span class="ot">&lt;-</span> ggplotify<span class="sc">::</span><span class="fu">as.ggplot</span>(<span class="sc">~</span><span class="fu">hist</span>(my_heights<span class="sc">$</span>income, <span class="at">breaks =</span> <span class="dv">20</span>))</span>
-<span id="cb18-2"><a href="#cb18-2"></a>hist2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_heights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> income)) <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>)</span>
-<span id="cb18-4"><a href="#cb18-4"></a></span>
-<span id="cb18-5"><a href="#cb18-5"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(hist1, hist2, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>hist1 <span class="ot">&lt;-</span> ggplotify<span class="sc">::</span><span class="fu">as.ggplot</span>(<span class="sc">~</span><span class="fu">hist</span>(my_heights<span class="sc">$</span>income, <span class="at">breaks =</span> <span class="dv">20</span>))</span>
+<span id="cb20-2"><a href="#cb20-2"></a>hist2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_heights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> income)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>)</span>
+<span id="cb20-4"><a href="#cb20-4"></a></span>
+<span id="cb20-5"><a href="#cb20-5"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(hist1, hist2, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
@@ -1120,39 +1138,39 @@
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>hist3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_heights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> income)) <span class="sc">+</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb19-3"><a href="#cb19-3"></a>hist4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_heights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height)) <span class="sc">+</span></span>
-<span id="cb19-4"><a href="#cb19-4"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb19-5"><a href="#cb19-5"></a>hist5 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_heights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> weight)) <span class="sc">+</span></span>
-<span id="cb19-6"><a href="#cb19-6"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb19-7"><a href="#cb19-7"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(hist3, hist4, hist5, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>hist3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_heights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> income)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-3"><a href="#cb21-3"></a>hist4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_heights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height)) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-5"><a href="#cb21-5"></a>hist5 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_heights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> weight)) <span class="sc">+</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-7"><a href="#cb21-7"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(hist3, hist4, hist5, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="geom_histogram-other-variables-1" class="slide level2">
 <h2><code>geom_histogram()</code> other variables</h2>
 
-<img data-src="eda_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
+<img data-src="eda_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
 <section id="geom_histogram-other-variables-2" class="slide level2">
 <h2><code>geom_histogram()</code> other variables</h2>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>hist6 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_heights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb20-3"><a href="#cb20-3"></a>hist7 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_heights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> education)) <span class="sc">+</span></span>
-<span id="cb20-4"><a href="#cb20-4"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb20-5"><a href="#cb20-5"></a>hist8 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_heights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> afqt)) <span class="sc">+</span></span>
-<span id="cb20-6"><a href="#cb20-6"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb20-7"><a href="#cb20-7"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(hist6, hist7, hist8, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>hist6 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_heights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> age)) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-3"><a href="#cb22-3"></a>hist7 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_heights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> education)) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-5"><a href="#cb22-5"></a>hist8 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_heights, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> afqt)) <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-7"><a href="#cb22-7"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(hist6, hist7, hist8, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="geom_histogram-other-variables-3" class="slide level2">
 <h2><code>geom_histogram()</code> other variables</h2>
 
-<img data-src="eda_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
+<img data-src="eda_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
 <section id="variation-in-a-variable-given-another-variable" class="slide level2">
 <h2>Variation in a variable, given another variable</h2>
 <ul>
@@ -1176,17 +1194,17 @@
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb21-3"><a href="#cb21-3"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(education, </span>
-<span id="cb21-4"><a href="#cb21-4"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>), </span>
-<span id="cb21-5"><a href="#cb21-5"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NotHS"</span>, <span class="st">"NotTC"</span>, <span class="st">"NotC"</span>, <span class="st">"C+"</span>),</span>
-<span id="cb21-6"><a href="#cb21-6"></a>                  <span class="at">right =</span> <span class="cn">FALSE</span>) </span>
-<span id="cb21-7"><a href="#cb21-7"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb21-8"><a href="#cb21-8"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(edu_fac) <span class="sc">&amp;</span> income <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb21-9"><a href="#cb21-9"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">fill =</span> edu_fac, <span class="at">colour =</span> edu_fac)) <span class="sc">+</span></span>
-<span id="cb21-10"><a href="#cb21-10"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
-<span id="cb21-11"><a href="#cb21-11"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-3"><a href="#cb23-3"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(education, </span>
+<span id="cb23-4"><a href="#cb23-4"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>), </span>
+<span id="cb23-5"><a href="#cb23-5"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NotHS"</span>, <span class="st">"NotTC"</span>, <span class="st">"NotC"</span>, <span class="st">"C+"</span>),</span>
+<span id="cb23-6"><a href="#cb23-6"></a>                  <span class="at">right =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb23-7"><a href="#cb23-7"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-8"><a href="#cb23-8"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(edu_fac) <span class="sc">&amp;</span> income <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-9"><a href="#cb23-9"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">fill =</span> edu_fac, <span class="at">colour =</span> edu_fac)) <span class="sc">+</span></span>
+<span id="cb23-10"><a href="#cb23-10"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb23-11"><a href="#cb23-11"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -1203,17 +1221,17 @@
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
-<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-3"><a href="#cb22-3"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(education, </span>
-<span id="cb22-4"><a href="#cb22-4"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>), </span>
-<span id="cb22-5"><a href="#cb22-5"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NotHS"</span>, <span class="st">"NotTC"</span>, <span class="st">"NotC"</span>, <span class="st">"C+"</span>),</span>
-<span id="cb22-6"><a href="#cb22-6"></a>                  <span class="at">right =</span> <span class="cn">FALSE</span>) </span>
-<span id="cb22-7"><a href="#cb22-7"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-8"><a href="#cb22-8"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(edu_fac) <span class="sc">&amp;</span> income <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb22-9"><a href="#cb22-9"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">fill =</span> sex, <span class="at">colour =</span> sex)) <span class="sc">+</span></span>
-<span id="cb22-10"><a href="#cb22-10"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
-<span id="cb22-11"><a href="#cb22-11"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>edu_fac)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb24-3"><a href="#cb24-3"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(education, </span>
+<span id="cb24-4"><a href="#cb24-4"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>), </span>
+<span id="cb24-5"><a href="#cb24-5"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NotHS"</span>, <span class="st">"NotTC"</span>, <span class="st">"NotC"</span>, <span class="st">"C+"</span>),</span>
+<span id="cb24-6"><a href="#cb24-6"></a>                  <span class="at">right =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb24-7"><a href="#cb24-7"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-8"><a href="#cb24-8"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(edu_fac) <span class="sc">&amp;</span> income <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-9"><a href="#cb24-9"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">fill =</span> sex, <span class="at">colour =</span> sex)) <span class="sc">+</span></span>
+<span id="cb24-10"><a href="#cb24-10"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb24-11"><a href="#cb24-11"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>edu_fac)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -1227,8 +1245,8 @@
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
-<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">dim</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">dim</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7006    8</code></pre>
@@ -1238,9 +1256,9 @@
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
-<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">filter</span>(income <span class="sc">&lt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb25-3"><a href="#cb25-3"></a>  <span class="fu">dim</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">filter</span>(income <span class="sc">&lt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">dim</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1740    8</code></pre>
@@ -1253,11 +1271,11 @@
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
-<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">filter</span>(income <span class="sc">&lt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">select</span>(sex) <span class="sc">%&gt;%</span></span>
-<span id="cb27-4"><a href="#cb27-4"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
-<span id="cb27-5"><a href="#cb27-5"></a>  <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">filter</span>(income <span class="sc">&lt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a>  <span class="fu">select</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb29-5"><a href="#cb29-5"></a>  <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>sex
@@ -1275,17 +1293,17 @@
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
-<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb29-3"><a href="#cb29-3"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(education, </span>
-<span id="cb29-4"><a href="#cb29-4"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>), </span>
-<span id="cb29-5"><a href="#cb29-5"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NotHS"</span>, <span class="st">"NotTC"</span>, <span class="st">"NotC"</span>, <span class="st">"C+"</span>),</span>
-<span id="cb29-6"><a href="#cb29-6"></a>                  <span class="at">right =</span> <span class="cn">FALSE</span>) </span>
-<span id="cb29-7"><a href="#cb29-7"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb29-8"><a href="#cb29-8"></a>  <span class="fu">filter</span>(income <span class="sc">&lt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb29-9"><a href="#cb29-9"></a>  <span class="fu">select</span>(sex, edu_fac) <span class="sc">%&gt;%</span></span>
-<span id="cb29-10"><a href="#cb29-10"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
-<span id="cb29-11"><a href="#cb29-11"></a>  <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb31-3"><a href="#cb31-3"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(education, </span>
+<span id="cb31-4"><a href="#cb31-4"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>), </span>
+<span id="cb31-5"><a href="#cb31-5"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NotHS"</span>, <span class="st">"NotTC"</span>, <span class="st">"NotC"</span>, <span class="st">"C+"</span>),</span>
+<span id="cb31-6"><a href="#cb31-6"></a>                  <span class="at">right =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb31-7"><a href="#cb31-7"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-8"><a href="#cb31-8"></a>  <span class="fu">filter</span>(income <span class="sc">&lt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb31-9"><a href="#cb31-9"></a>  <span class="fu">select</span>(sex, edu_fac) <span class="sc">%&gt;%</span></span>
+<span id="cb31-10"><a href="#cb31-10"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb31-11"><a href="#cb31-11"></a>  <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>        edu_fac
@@ -1301,17 +1319,17 @@ sex      NotHS NotTC NotC  C+
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
-<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb31-3"><a href="#cb31-3"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(education, </span>
-<span id="cb31-4"><a href="#cb31-4"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>), </span>
-<span id="cb31-5"><a href="#cb31-5"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NotHS"</span>, <span class="st">"NotTC"</span>, <span class="st">"NotC"</span>, <span class="st">"C+"</span>),</span>
-<span id="cb31-6"><a href="#cb31-6"></a>                  <span class="at">right =</span> <span class="cn">FALSE</span>) </span>
-<span id="cb31-7"><a href="#cb31-7"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb31-8"><a href="#cb31-8"></a>  <span class="fu">filter</span>(income <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb31-9"><a href="#cb31-9"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> edu_fac, <span class="at">y =</span> income)) <span class="sc">+</span></span>
-<span id="cb31-10"><a href="#cb31-10"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sex) <span class="sc">+</span> </span>
-<span id="cb31-11"><a href="#cb31-11"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb33-3"><a href="#cb33-3"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(education, </span>
+<span id="cb33-4"><a href="#cb33-4"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>), </span>
+<span id="cb33-5"><a href="#cb33-5"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NotHS"</span>, <span class="st">"NotTC"</span>, <span class="st">"NotC"</span>, <span class="st">"C+"</span>),</span>
+<span id="cb33-6"><a href="#cb33-6"></a>                  <span class="at">right =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb33-7"><a href="#cb33-7"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-8"><a href="#cb33-8"></a>  <span class="fu">filter</span>(income <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-9"><a href="#cb33-9"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> edu_fac, <span class="at">y =</span> income)) <span class="sc">+</span></span>
+<span id="cb33-10"><a href="#cb33-10"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sex) <span class="sc">+</span> </span>
+<span id="cb33-11"><a href="#cb33-11"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -1324,18 +1342,18 @@ sex      NotHS NotTC NotC  C+
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
-<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb32-3"><a href="#cb32-3"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(education, </span>
-<span id="cb32-4"><a href="#cb32-4"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>), </span>
-<span id="cb32-5"><a href="#cb32-5"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NotHS"</span>, <span class="st">"NotTC"</span>, <span class="st">"NotC"</span>, <span class="st">"C+"</span>),</span>
-<span id="cb32-6"><a href="#cb32-6"></a>                  <span class="at">right =</span> <span class="cn">FALSE</span>) </span>
-<span id="cb32-7"><a href="#cb32-7"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb32-8"><a href="#cb32-8"></a>  <span class="fu">filter</span>(income <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb32-9"><a href="#cb32-9"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> edu_fac, <span class="at">y =</span> income)) <span class="sc">+</span></span>
-<span id="cb32-10"><a href="#cb32-10"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sex) <span class="sc">+</span> </span>
-<span id="cb32-11"><a href="#cb32-11"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb32-12"><a href="#cb32-12"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb34-2"><a href="#cb34-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb34-3"><a href="#cb34-3"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(education, </span>
+<span id="cb34-4"><a href="#cb34-4"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>), </span>
+<span id="cb34-5"><a href="#cb34-5"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NotHS"</span>, <span class="st">"NotTC"</span>, <span class="st">"NotC"</span>, <span class="st">"C+"</span>),</span>
+<span id="cb34-6"><a href="#cb34-6"></a>                  <span class="at">right =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb34-7"><a href="#cb34-7"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-8"><a href="#cb34-8"></a>  <span class="fu">filter</span>(income <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-9"><a href="#cb34-9"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> edu_fac, <span class="at">y =</span> income)) <span class="sc">+</span></span>
+<span id="cb34-10"><a href="#cb34-10"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sex) <span class="sc">+</span> </span>
+<span id="cb34-11"><a href="#cb34-11"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb34-12"><a href="#cb34-12"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -1404,28 +1422,28 @@ sex      NotHS NotTC NotC  C+
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
-<span id="cb33-2"><a href="#cb33-2"></a>my_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">val =</span> <span class="fu">c</span>(<span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">97</span>, <span class="dv">1</span>, <span class="dv">10</span>), <span class="dv">0</span>), <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">3</span>)))</span>
-<span id="cb33-3"><a href="#cb33-3"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> val)) </span>
-<span id="cb33-4"><a href="#cb33-4"></a>g1 <span class="ot">&lt;-</span> g <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span>
-<span id="cb33-5"><a href="#cb33-5"></a>g2 <span class="ot">&lt;-</span> g <span class="sc">+</span> <span class="fu">geom_bar</span>()</span>
-<span id="cb33-6"><a href="#cb33-6"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(g1, g2, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb33-7"><a href="#cb33-7"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val); <span class="fu">mean</span>(my_data<span class="sc">$</span>val)</span>
-<span id="cb33-8"><a href="#cb33-8"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>); <span class="fu">mean</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
+<span id="cb35-2"><a href="#cb35-2"></a>my_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">val =</span> <span class="fu">c</span>(<span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">97</span>, <span class="dv">1</span>, <span class="dv">10</span>), <span class="dv">0</span>), <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">3</span>)))</span>
+<span id="cb35-3"><a href="#cb35-3"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> val)) </span>
+<span id="cb35-4"><a href="#cb35-4"></a>g1 <span class="ot">&lt;-</span> g <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span>
+<span id="cb35-5"><a href="#cb35-5"></a>g2 <span class="ot">&lt;-</span> g <span class="sc">+</span> <span class="fu">geom_bar</span>()</span>
+<span id="cb35-6"><a href="#cb35-6"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(g1, g2, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb35-7"><a href="#cb35-7"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val); <span class="fu">mean</span>(my_data<span class="sc">$</span>val)</span>
+<span id="cb35-8"><a href="#cb35-8"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>); <span class="fu">mean</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="answer-quiz-1" class="slide level2">
 <h2>Answer Quiz</h2>
 
-<img data-src="eda_files/figure-revealjs/unnamed-chunk-21-1.png" width="960" class="r-stretch"></section>
+<img data-src="eda_files/figure-revealjs/unnamed-chunk-22-1.png" width="960" class="r-stretch"></section>
 <section id="answer-quiz-2" class="slide level2">
 <h2>Answer Quiz</h2>
 
 <img data-src="warnings-NA.png" class="r-stretch quarto-figure-center"><p class="caption">Warnings about NAs from ggplot.</p><div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val); <span class="fu">mean</span>(my_data<span class="sc">$</span>val)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val); <span class="fu">mean</span>(my_data<span class="sc">$</span>val)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA</code></pre>
@@ -1435,7 +1453,7 @@ sex      NotHS NotTC NotC  C+
 </div>
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>); <span class="fu">mean</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>); <span class="fu">mean</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 519</code></pre>
@@ -1454,14 +1472,14 @@ sex      NotHS NotTC NotC  C+
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
-<span id="cb40-2"><a href="#cb40-2"></a>my_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">val =</span> <span class="fu">c</span>(<span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">97</span>, <span class="dv">1</span>, <span class="dv">10</span>), <span class="dv">0</span>), <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">3</span>)))</span>
-<span id="cb40-3"><a href="#cb40-3"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> val)) </span>
-<span id="cb40-4"><a href="#cb40-4"></a>g1 <span class="ot">&lt;-</span> g <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb40-5"><a href="#cb40-5"></a>g2 <span class="ot">&lt;-</span> g <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb40-6"><a href="#cb40-6"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(g1, g2, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb40-7"><a href="#cb40-7"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val); <span class="fu">mean</span>(my_data<span class="sc">$</span>val)</span>
-<span id="cb40-8"><a href="#cb40-8"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>); <span class="fu">mean</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
+<span id="cb42-2"><a href="#cb42-2"></a>my_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">val =</span> <span class="fu">c</span>(<span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">97</span>, <span class="dv">1</span>, <span class="dv">10</span>), <span class="dv">0</span>), <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">3</span>)))</span>
+<span id="cb42-3"><a href="#cb42-3"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(my_data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> val)) </span>
+<span id="cb42-4"><a href="#cb42-4"></a>g1 <span class="ot">&lt;-</span> g <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb42-5"><a href="#cb42-5"></a>g2 <span class="ot">&lt;-</span> g <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb42-6"><a href="#cb42-6"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(g1, g2, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb42-7"><a href="#cb42-7"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val); <span class="fu">mean</span>(my_data<span class="sc">$</span>val)</span>
+<span id="cb42-8"><a href="#cb42-8"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>); <span class="fu">mean</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -1469,10 +1487,10 @@ sex      NotHS NotTC NotC  C+
 <section id="answer-quiz-4" class="slide level2">
 <h2>Answer Quiz</h2>
 
-<img data-src="eda_files/figure-revealjs/unnamed-chunk-24-1.png" width="960" class="r-stretch"><div class="cell">
+<img data-src="eda_files/figure-revealjs/unnamed-chunk-25-1.png" width="960" class="r-stretch"><div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val); <span class="fu">mean</span>(my_data<span class="sc">$</span>val)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val); <span class="fu">mean</span>(my_data<span class="sc">$</span>val)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA</code></pre>
@@ -1482,7 +1500,7 @@ sex      NotHS NotTC NotC  C+
 </div>
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>); <span class="fu">mean</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">sum</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>); <span class="fu">mean</span>(my_data<span class="sc">$</span>val, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 519</code></pre>
@@ -1527,16 +1545,16 @@ sex      NotHS NotTC NotC  C+
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
-<span id="cb47-2"><a href="#cb47-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb47-3"><a href="#cb47-3"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(education, </span>
-<span id="cb47-4"><a href="#cb47-4"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>), </span>
-<span id="cb47-5"><a href="#cb47-5"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NotHS"</span>, <span class="st">"NotTC"</span>, <span class="st">"NotC"</span>, <span class="st">"C+"</span>),</span>
-<span id="cb47-6"><a href="#cb47-6"></a>                  <span class="at">right =</span> <span class="cn">FALSE</span>) </span>
-<span id="cb47-7"><a href="#cb47-7"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb47-8"><a href="#cb47-8"></a>  <span class="fu">filter</span>(income <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(weight) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(afqt) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(edu_fac)) <span class="sc">%&gt;%</span></span>
-<span id="cb47-9"><a href="#cb47-9"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> ..density..)) <span class="sc">+</span></span>
-<span id="cb47-10"><a href="#cb47-10"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">colour =</span> edu_fac), <span class="at">binwidth =</span> <span class="dv">10000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb49-2"><a href="#cb49-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb49-3"><a href="#cb49-3"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(education, </span>
+<span id="cb49-4"><a href="#cb49-4"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>), </span>
+<span id="cb49-5"><a href="#cb49-5"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NotHS"</span>, <span class="st">"NotTC"</span>, <span class="st">"NotC"</span>, <span class="st">"C+"</span>),</span>
+<span id="cb49-6"><a href="#cb49-6"></a>                  <span class="at">right =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb49-7"><a href="#cb49-7"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb49-8"><a href="#cb49-8"></a>  <span class="fu">filter</span>(income <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(weight) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(afqt) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(edu_fac)) <span class="sc">%&gt;%</span></span>
+<span id="cb49-9"><a href="#cb49-9"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> ..density..)) <span class="sc">+</span></span>
+<span id="cb49-10"><a href="#cb49-10"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">colour =</span> edu_fac), <span class="at">binwidth =</span> <span class="dv">10000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ul>
@@ -1552,16 +1570,16 @@ sex      NotHS NotTC NotC  C+
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
-<span id="cb48-2"><a href="#cb48-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb48-3"><a href="#cb48-3"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(education, </span>
-<span id="cb48-4"><a href="#cb48-4"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>), </span>
-<span id="cb48-5"><a href="#cb48-5"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NotHS"</span>, <span class="st">"NotTC"</span>, <span class="st">"NotC"</span>, <span class="st">"C+"</span>),</span>
-<span id="cb48-6"><a href="#cb48-6"></a>                  <span class="at">right =</span> <span class="cn">FALSE</span>) </span>
-<span id="cb48-7"><a href="#cb48-7"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb48-8"><a href="#cb48-8"></a>  <span class="fu">filter</span>(income <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(weight) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(afqt) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(edu_fac)) <span class="sc">%&gt;%</span></span>
-<span id="cb48-9"><a href="#cb48-9"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb48-10"><a href="#cb48-10"></a>  <span class="fu">geom_count</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> marital, <span class="at">y =</span> edu_fac))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb50-2"><a href="#cb50-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb50-3"><a href="#cb50-3"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(education, </span>
+<span id="cb50-4"><a href="#cb50-4"></a>                  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>), </span>
+<span id="cb50-5"><a href="#cb50-5"></a>                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"NotHS"</span>, <span class="st">"NotTC"</span>, <span class="st">"NotC"</span>, <span class="st">"C+"</span>),</span>
+<span id="cb50-6"><a href="#cb50-6"></a>                  <span class="at">right =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb50-7"><a href="#cb50-7"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb50-8"><a href="#cb50-8"></a>  <span class="fu">filter</span>(income <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(weight) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(afqt) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(edu_fac)) <span class="sc">%&gt;%</span></span>
+<span id="cb50-9"><a href="#cb50-9"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb50-10"><a href="#cb50-10"></a>  <span class="fu">geom_count</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> marital, <span class="at">y =</span> edu_fac))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -1574,17 +1592,17 @@ sex      NotHS NotTC NotC  C+
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
-<span id="cb49-2"><a href="#cb49-2"></a>  <span class="fu">filter</span>(income <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(weight) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(afqt) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(education)) <span class="sc">%&gt;%</span></span>
-<span id="cb49-3"><a href="#cb49-3"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb49-4"><a href="#cb49-4"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> education, <span class="at">y =</span> income), <span class="at">alpha =</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>my_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb51-2"><a href="#cb51-2"></a>  <span class="fu">filter</span>(income <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(weight) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(afqt) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(education)) <span class="sc">%&gt;%</span></span>
+<span id="cb51-3"><a href="#cb51-3"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb51-4"><a href="#cb51-4"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> education, <span class="at">y =</span> income), <span class="at">alpha =</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="one-continuouse-variable-one-with-many-categories-1" class="slide level2">
 <h2>One continuouse variable, one with many categories</h2>
 
-<img data-src="eda_files/figure-revealjs/unnamed-chunk-27-1.png" width="960" class="r-stretch"></section>
+<img data-src="eda_files/figure-revealjs/unnamed-chunk-28-1.png" width="960" class="r-stretch"></section>
 <section id="two-continuous-variables" class="slide level2">
 <h2>Two continuous variables</h2>
 <ul>
@@ -1595,9 +1613,9 @@ sex      NotHS NotTC NotC  C+
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
-<span id="cb50-2"><a href="#cb50-2"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb50-3"><a href="#cb50-3"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb52-2"><a href="#cb52-2"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb52-3"><a href="#cb52-3"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -1605,31 +1623,31 @@ sex      NotHS NotTC NotC  C+
 <section id="two-continuous-variables-1" class="slide level2">
 <h2>Two continuous variables</h2>
 
-<img data-src="eda_files/figure-revealjs/unnamed-chunk-29-1.png" width="960" class="r-stretch"></section>
+<img data-src="eda_files/figure-revealjs/unnamed-chunk-30-1.png" width="960" class="r-stretch"></section>
 <section id="two-continuous-variables-alpha" class="slide level2">
 <h2>Two continuous variables; alpha</h2>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
-<span id="cb51-2"><a href="#cb51-2"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb51-3"><a href="#cb51-3"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>, <span class="at">size =</span> <span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb53-2"><a href="#cb53-2"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb53-3"><a href="#cb53-3"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>, <span class="at">size =</span> <span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="two-continuous-variables-alpha-1" class="slide level2">
 <h2>Two continuous variables; alpha</h2>
 
-<img data-src="eda_files/figure-revealjs/unnamed-chunk-31-1.png" width="960" class="r-stretch"></section>
+<img data-src="eda_files/figure-revealjs/unnamed-chunk-32-1.png" width="960" class="r-stretch"></section>
 <section id="two-continuous-variables-make-one-categorical" class="slide level2">
 <h2>Two continuous variables; make one categorical</h2>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
-<span id="cb52-2"><a href="#cb52-2"></a>  <span class="fu">filter</span>(carat <span class="sc">&lt;=</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb52-3"><a href="#cb52-3"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb52-4"><a href="#cb52-4"></a>  <span class="fu">geom_boxplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">group =</span> <span class="fu">cut_width</span>(carat, <span class="fl">0.1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb54-2"><a href="#cb54-2"></a>  <span class="fu">filter</span>(carat <span class="sc">&lt;=</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb54-3"><a href="#cb54-3"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb54-4"><a href="#cb54-4"></a>  <span class="fu">geom_boxplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">group =</span> <span class="fu">cut_width</span>(carat, <span class="fl">0.1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -1641,7 +1659,7 @@ sex      NotHS NotTC NotC  C+
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
-<p><img data-src="eda_files/figure-revealjs/unnamed-chunk-33-1.png" width="960"></p>
+<p><img data-src="eda_files/figure-revealjs/unnamed-chunk-34-1.png" width="960"></p>
 </div>
 </div>
 </div>
