@@ -1159,7 +1159,7 @@
     "href": "wrangle-data/tidy-data/tidy-data.html#unite",
     "title": "Tidy Data",
     "section": "unite()",
-    "text": "unite()\n\nreverse of separate()\ncombines multiple columns into a single column\nImportant parameters\n\ndata: A data frame.\ncol: The name of the new column, as a string or symbol.\n\n…: We list the varaibles we want to unite. Separate the names with comma.\n\nsep: Separator to use between values."
+    "text": "unite()\n\nreverse of separate()\ncombines multiple columns into a single column\nImportant parameters\n\ndata: A data frame.\ncol: The name of the new column, as a string or symbol.\n\n…: We list the variables we want to unite. Separate the names with comma.\n\nsep: Separator to use between values."
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#unite-example.-fix-tidy3century",
@@ -1208,7 +1208,7 @@
     "href": "wrangle-data/tidy-data/tidy-data.html#missing-fill",
     "title": "Tidy Data",
     "section": "missing; fill()",
-    "text": "missing; fill()\n\n\nCode\ntreatment <- tribble(\n  ~ person,           ~ treatment, ~response,\n  \"Derrick Whitmore\", 1,           7,\n  NA,                 2,           10,\n  NA,                 3,           9,\n  \"Katherine Burke\",  1,           4\n)\ntreatment\n\n\n# A tibble: 4 × 3\n  person           treatment response\n  <chr>                <dbl>    <dbl>\n1 Derrick Whitmore         1        7\n2 <NA>                     2       10\n3 <NA>                     3        9\n4 Katherine Burke          1        4\n\n\n\nfill() can save one from a lot of work\nNA for person , should be the name of the person above\nimportant parameter:\n\n… Columns to fill.Nmaes separated by “,”\n.direction = c(“down”, “up”, “downup”, “updown”))"
+    "text": "missing; fill()\n\n\nCode\ntreatment <- tribble(\n  ~ person,           ~ treatment, ~response,\n  \"Derrick Whitmore\", 1,           7,\n  NA,                 2,           10,\n  NA,                 3,           9,\n  \"Katherine Burke\",  1,           4\n)\ntreatment\n\n\n# A tibble: 4 × 3\n  person           treatment response\n  <chr>                <dbl>    <dbl>\n1 Derrick Whitmore         1        7\n2 <NA>                     2       10\n3 <NA>                     3        9\n4 Katherine Burke          1        4\n\n\n\nfill() can save one from a lot of work\nNA for person , should be the name of the person above\nimportant parameter:\n\n… Columns to fill. Names separated by “,”\n.direction = c(“down”, “up”, “downup”, “updown”))"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#missing-fill-example",
@@ -1222,7 +1222,7 @@
     "href": "wrangle-data/tidy-data/tidy-data.html#case-who",
     "title": "Tidy Data",
     "section": "Case; who",
-    "text": "Case; who\n\n\nCode\ndim(who)\n\n\n[1] 7240   60\n\n\n\n\nCode\nwho[1:3, ]\n\n\n# A tibble: 3 × 60\n  country     iso2  iso3   year new_sp…¹ new_s…² new_s…³ new_s…⁴ new_s…⁵ new_s…⁶\n  <chr>       <chr> <chr> <int>    <int>   <int>   <int>   <int>   <int>   <int>\n1 Afghanistan AF    AFG    1980       NA      NA      NA      NA      NA      NA\n2 Afghanistan AF    AFG    1981       NA      NA      NA      NA      NA      NA\n3 Afghanistan AF    AFG    1982       NA      NA      NA      NA      NA      NA\n# … with 50 more variables: new_sp_m65 <int>, new_sp_f014 <int>,\n#   new_sp_f1524 <int>, new_sp_f2534 <int>, new_sp_f3544 <int>,\n#   new_sp_f4554 <int>, new_sp_f5564 <int>, new_sp_f65 <int>,\n#   new_sn_m014 <int>, new_sn_m1524 <int>, new_sn_m2534 <int>,\n#   new_sn_m3544 <int>, new_sn_m4554 <int>, new_sn_m5564 <int>,\n#   new_sn_m65 <int>, new_sn_f014 <int>, new_sn_f1524 <int>,\n#   new_sn_f2534 <int>, new_sn_f3544 <int>, new_sn_f4554 <int>, …\n# ℹ Use `colnames()` to see all variable names"
+    "text": "Case; who\n\n\nCode\ndim(who)\n\n\n[1] 7240   60\n\n\n\n\nCode\nwho[1:3, ]\n\n\n# A tibble: 3 × 60\n  country     iso2  iso3   year new_sp…¹ new_s…² new_s…³ new_s…⁴ new_s…⁵ new_s…⁶\n  <chr>       <chr> <chr> <int>    <int>   <int>   <int>   <int>   <int>   <int>\n1 Afghanistan AF    AFG    1980       NA      NA      NA      NA      NA      NA\n2 Afghanistan AF    AFG    1981       NA      NA      NA      NA      NA      NA\n3 Afghanistan AF    AFG    1982       NA      NA      NA      NA      NA      NA\n# … with 50 more variables: new_sp_m65 <int>, new_sp_f014 <int>,\n#   new_sp_f1524 <int>, new_sp_f2534 <int>, new_sp_f3544 <int>,\n#   new_sp_f4554 <int>, new_sp_f5564 <int>, new_sp_f65 <int>,\n#   new_sn_m014 <int>, new_sn_m1524 <int>, new_sn_m2534 <int>,\n#   new_sn_m3544 <int>, new_sn_m4554 <int>, new_sn_m5564 <int>,\n#   new_sn_m65 <int>, new_sn_f014 <int>, new_sn_f1524 <int>,\n#   new_sn_f2534 <int>, new_sn_f3544 <int>, new_sn_f4554 <int>, …"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#case-who-1",
@@ -1250,35 +1250,35 @@
     "href": "wrangle-data/tidy-data/tidy-data.html#who-gather-variables",
     "title": "Tidy Data",
     "section": "who, gather variables",
-    "text": "who, gather variables\n\n\nCode\nwho1 <- who %>% \n  pivot_longer(cols = new_sp_m014:newrel_f65,\n               names_to = \"key\",\n               values_to = \"cases\",\n               values_drop_na = TRUE\n               )\nwho1\n\n\n# A tibble: 76,046 × 6\n   country     iso2  iso3   year key          cases\n   <chr>       <chr> <chr> <int> <chr>        <int>\n 1 Afghanistan AF    AFG    1997 new_sp_m014      0\n 2 Afghanistan AF    AFG    1997 new_sp_m1524    10\n 3 Afghanistan AF    AFG    1997 new_sp_m2534     6\n 4 Afghanistan AF    AFG    1997 new_sp_m3544     3\n 5 Afghanistan AF    AFG    1997 new_sp_m4554     5\n 6 Afghanistan AF    AFG    1997 new_sp_m5564     2\n 7 Afghanistan AF    AFG    1997 new_sp_m65       0\n 8 Afghanistan AF    AFG    1997 new_sp_f014      5\n 9 Afghanistan AF    AFG    1997 new_sp_f1524    38\n10 Afghanistan AF    AFG    1997 new_sp_f2534    36\n# … with 76,036 more rows\n# ℹ Use `print(n = ...)` to see more rows"
+    "text": "who, gather variables\n\n\nCode\nwho1 <- who %>% \n  pivot_longer(cols = new_sp_m014:newrel_f65,\n               names_to = \"key\",\n               values_to = \"cases\",\n               values_drop_na = TRUE\n               )\nwho1\n\n\n# A tibble: 76,046 × 6\n   country     iso2  iso3   year key          cases\n   <chr>       <chr> <chr> <int> <chr>        <int>\n 1 Afghanistan AF    AFG    1997 new_sp_m014      0\n 2 Afghanistan AF    AFG    1997 new_sp_m1524    10\n 3 Afghanistan AF    AFG    1997 new_sp_m2534     6\n 4 Afghanistan AF    AFG    1997 new_sp_m3544     3\n 5 Afghanistan AF    AFG    1997 new_sp_m4554     5\n 6 Afghanistan AF    AFG    1997 new_sp_m5564     2\n 7 Afghanistan AF    AFG    1997 new_sp_m65       0\n 8 Afghanistan AF    AFG    1997 new_sp_f014      5\n 9 Afghanistan AF    AFG    1997 new_sp_f1524    38\n10 Afghanistan AF    AFG    1997 new_sp_f2534    36\n# … with 76,036 more rows"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#whats-in-a-variable-name",
     "href": "wrangle-data/tidy-data/tidy-data.html#whats-in-a-variable-name",
     "title": "Tidy Data",
-    "section": "Whats in a variable name?",
-    "text": "Whats in a variable name?\n\n“new_sp_m014”\n\n“new”: new case\nsp: Type of TB, alt. “rel”, “ep”, “sn”, “sp”\nm: male, alt. “m” and “f”\n014: age 0-14, alt “014”, “1524”, “2534”, “3544”, “4554”, “5564”, “65”"
+    "section": "What’s in a variable name?",
+    "text": "What’s in a variable name?\n\n“new_sp_m014”\n\n“new”: new case\nsp: Type of TB, alt. “rel”, “ep”, “sn”, “sp”\nm: male, alt. “m” and “f”\n014: age 0-14, alt “014”, “1524”, “2534”, “3544”, “4554”, “5564”, “65”"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#who1",
     "href": "wrangle-data/tidy-data/tidy-data.html#who1",
     "title": "Tidy Data",
     "section": "who1",
-    "text": "who1\n\n\nCode\nhead(who1, n=5)\n\n\n# A tibble: 5 × 6\n  country     iso2  iso3   year key          cases\n  <chr>       <chr> <chr> <int> <chr>        <int>\n1 Afghanistan AF    AFG    1997 new_sp_m014      0\n2 Afghanistan AF    AFG    1997 new_sp_m1524    10\n3 Afghanistan AF    AFG    1997 new_sp_m2534     6\n4 Afghanistan AF    AFG    1997 new_sp_m3544     3\n5 Afghanistan AF    AFG    1997 new_sp_m4554     5\n\n\n\nhave to fix one inconsistency in key;\n\n“newrel” should have been “new_rel”\n\n\n\n\nCode\nwho2 <- who1 %>% \n  mutate(\n    key = str_replace(key, \"newrel\", \"new_rel\")\n  )"
+    "text": "who1\n\n\nCode\nhead(who1, n=5)\n\n\n# A tibble: 5 × 6\n  country     iso2  iso3   year key          cases\n  <chr>       <chr> <chr> <int> <chr>        <int>\n1 Afghanistan AF    AFG    1997 new_sp_m014      0\n2 Afghanistan AF    AFG    1997 new_sp_m1524    10\n3 Afghanistan AF    AFG    1997 new_sp_m2534     6\n4 Afghanistan AF    AFG    1997 new_sp_m3544     3\n5 Afghanistan AF    AFG    1997 new_sp_m4554     5\n\n\n\nhave to fix one inconsistency in key;\n\n“newrel” should have been “new_rel”\n\n\n\n\n\nCode\nwho2 <- who1 %>% \n  mutate(\n    key = str_replace(key, \"newrel\", \"new_rel\")\n  )"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#separate-out-values-from-key-variable",
     "href": "wrangle-data/tidy-data/tidy-data.html#separate-out-values-from-key-variable",
     "title": "Tidy Data",
     "section": "Separate out values from “key” variable",
-    "text": "Separate out values from “key” variable\n\n\nCode\nwho3 <- who2 %>% \n  separate(col = key,\n           into = c(\"new\", \"type\", \"sexage\"),\n           sep = \"_\"\n           )\nwho3\n\n\n# A tibble: 76,046 × 8\n   country     iso2  iso3   year new   type  sexage cases\n   <chr>       <chr> <chr> <int> <chr> <chr> <chr>  <int>\n 1 Afghanistan AF    AFG    1997 new   sp    m014       0\n 2 Afghanistan AF    AFG    1997 new   sp    m1524     10\n 3 Afghanistan AF    AFG    1997 new   sp    m2534      6\n 4 Afghanistan AF    AFG    1997 new   sp    m3544      3\n 5 Afghanistan AF    AFG    1997 new   sp    m4554      5\n 6 Afghanistan AF    AFG    1997 new   sp    m5564      2\n 7 Afghanistan AF    AFG    1997 new   sp    m65        0\n 8 Afghanistan AF    AFG    1997 new   sp    f014       5\n 9 Afghanistan AF    AFG    1997 new   sp    f1524     38\n10 Afghanistan AF    AFG    1997 new   sp    f2534     36\n# … with 76,036 more rows\n# ℹ Use `print(n = ...)` to see more rows"
+    "text": "Separate out values from “key” variable\n\n\nCode\nwho3 <- who2 %>% \n  separate(col = key,\n           into = c(\"new\", \"type\", \"sexage\"),\n           sep = \"_\"\n           )\nwho3\n\n\n# A tibble: 76,046 × 8\n   country     iso2  iso3   year new   type  sexage cases\n   <chr>       <chr> <chr> <int> <chr> <chr> <chr>  <int>\n 1 Afghanistan AF    AFG    1997 new   sp    m014       0\n 2 Afghanistan AF    AFG    1997 new   sp    m1524     10\n 3 Afghanistan AF    AFG    1997 new   sp    m2534      6\n 4 Afghanistan AF    AFG    1997 new   sp    m3544      3\n 5 Afghanistan AF    AFG    1997 new   sp    m4554      5\n 6 Afghanistan AF    AFG    1997 new   sp    m5564      2\n 7 Afghanistan AF    AFG    1997 new   sp    m65        0\n 8 Afghanistan AF    AFG    1997 new   sp    f014       5\n 9 Afghanistan AF    AFG    1997 new   sp    f1524     38\n10 Afghanistan AF    AFG    1997 new   sp    f2534     36\n# … with 76,036 more rows"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#drop-variables-and-split-sexage",
     "href": "wrangle-data/tidy-data/tidy-data.html#drop-variables-and-split-sexage",
     "title": "Tidy Data",
     "section": "Drop variables and split sexage",
-    "text": "Drop variables and split sexage\n\n\nCode\nwho5 <- who3 %>% \n  select(-new, -iso2, -iso3) %>% \n  separate(col = sexage,\n           into = c(\"sex\", \"age\"),\n           sep = 1\n           )\nwho5\n\n\n# A tibble: 76,046 × 6\n   country      year type  sex   age   cases\n   <chr>       <int> <chr> <chr> <chr> <int>\n 1 Afghanistan  1997 sp    m     014       0\n 2 Afghanistan  1997 sp    m     1524     10\n 3 Afghanistan  1997 sp    m     2534      6\n 4 Afghanistan  1997 sp    m     3544      3\n 5 Afghanistan  1997 sp    m     4554      5\n 6 Afghanistan  1997 sp    m     5564      2\n 7 Afghanistan  1997 sp    m     65        0\n 8 Afghanistan  1997 sp    f     014       5\n 9 Afghanistan  1997 sp    f     1524     38\n10 Afghanistan  1997 sp    f     2534     36\n# … with 76,036 more rows\n# ℹ Use `print(n = ...)` to see more rows"
+    "text": "Drop variables and split sexage\n\n\nCode\nwho5 <- who3 %>% \n  select(-new, -iso2, -iso3) %>% \n  separate(col = sexage,\n           into = c(\"sex\", \"age\"),\n           sep = 1\n           )\nwho5\n\n\n# A tibble: 76,046 × 6\n   country      year type  sex   age   cases\n   <chr>       <int> <chr> <chr> <chr> <int>\n 1 Afghanistan  1997 sp    m     014       0\n 2 Afghanistan  1997 sp    m     1524     10\n 3 Afghanistan  1997 sp    m     2534      6\n 4 Afghanistan  1997 sp    m     3544      3\n 5 Afghanistan  1997 sp    m     4554      5\n 6 Afghanistan  1997 sp    m     5564      2\n 7 Afghanistan  1997 sp    m     65        0\n 8 Afghanistan  1997 sp    f     014       5\n 9 Afghanistan  1997 sp    f     1524     38\n10 Afghanistan  1997 sp    f     2534     36\n# … with 76,036 more rows"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#split-age-into-age_start-and-age_end",

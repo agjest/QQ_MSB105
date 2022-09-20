@@ -441,7 +441,7 @@ tidy3century
 
     -   col: The name of the new column, as a string or symbol.
 
-        -   ...: We list the varaibles we want to unite. Separate the
+        -   ...: We list the variables we want to unite. Separate the
             names with comma.
 
     -   sep: Separator to use between values.
@@ -535,7 +535,7 @@ treatment
 -   `fill()` can save one from a lot of work
 -   NA for person , should be the name of the person above
 -   important parameter:
-    -   ... Columns to fill.Nmaes separated by ","
+    -   ... Columns to fill. Names separated by ","
     -   .direction = c("down", "up", "downup", "updown"))
 
 ## missing; fill() example
@@ -619,7 +619,7 @@ who1 <- who %>%
 who1
 ```
 
-## Whats in a variable name?
+## What's in a variable name?
 
 -   "new_sp_m014"
     -   "new": new case
@@ -639,6 +639,8 @@ head(who1, n=5)
 
 -   have to fix one inconsistency in key;
     -   "newrel" should have been "new_rel"
+
+. . .
 
 ```{r}
 who2 <- who1 %>% 

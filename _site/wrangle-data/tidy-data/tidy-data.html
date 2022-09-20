@@ -1030,7 +1030,7 @@
 <li class="fragment"><p>data: A data frame.</p></li>
 <li class="fragment"><p>col: The name of the new column, as a string or symbol.</p>
 <ul>
-<li class="fragment">…: We list the varaibles we want to unite. Separate the names with comma.</li>
+<li class="fragment">…: We list the variables we want to unite. Separate the names with comma.</li>
 </ul></li>
 <li class="fragment"><p>sep: Separator to use between values.</p></li>
 </ul></li>
@@ -1224,7 +1224,7 @@
 <li class="fragment">NA for person , should be the name of the person above</li>
 <li class="fragment">important parameter:
 <ul>
-<li class="fragment">… Columns to fill.Nmaes separated by “,”</li>
+<li class="fragment">… Columns to fill. Names separated by “,”</li>
 <li class="fragment">.direction = c(“down”, “up”, “downup”, “updown”))</li>
 </ul></li>
 </ul>
@@ -1293,8 +1293,7 @@
 #   new_sn_m014 &lt;int&gt;, new_sn_m1524 &lt;int&gt;, new_sn_m2534 &lt;int&gt;,
 #   new_sn_m3544 &lt;int&gt;, new_sn_m4554 &lt;int&gt;, new_sn_m5564 &lt;int&gt;,
 #   new_sn_m65 &lt;int&gt;, new_sn_f014 &lt;int&gt;, new_sn_f1524 &lt;int&gt;,
-#   new_sn_f2534 &lt;int&gt;, new_sn_f3544 &lt;int&gt;, new_sn_f4554 &lt;int&gt;, …
-# ℹ Use `colnames()` to see all variable names</code></pre>
+#   new_sn_f2534 &lt;int&gt;, new_sn_f3544 &lt;int&gt;, new_sn_f4554 &lt;int&gt;, …</code></pre>
 </div>
 </div>
 </section>
@@ -1440,13 +1439,12 @@ character   integer
  8 Afghanistan AF    AFG    1997 new_sp_f014      5
  9 Afghanistan AF    AFG    1997 new_sp_f1524    38
 10 Afghanistan AF    AFG    1997 new_sp_f2534    36
-# … with 76,036 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 76,036 more rows</code></pre>
 </div>
 </div>
 </section>
 <section id="whats-in-a-variable-name" class="slide level2">
-<h2>Whats in a variable name?</h2>
+<h2>What’s in a variable name?</h2>
 <ul>
 <li class="fragment">“new_sp_m014”
 <ul>
@@ -1481,6 +1479,7 @@ character   integer
 <li class="fragment">“newrel” should have been “new_rel”</li>
 </ul></li>
 </ul>
+<div class="fragment">
 <div class="cell">
 <details open="">
 <summary>Code</summary>
@@ -1489,6 +1488,7 @@ character   integer
 <span id="cb78-3"><a href="#cb78-3"></a>    <span class="at">key =</span> <span class="fu">str_replace</span>(key, <span class="st">"newrel"</span>, <span class="st">"new_rel"</span>)</span>
 <span id="cb78-4"><a href="#cb78-4"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
 </div>
 </section>
 <section id="separate-out-values-from-key-variable" class="slide level2">
@@ -1517,8 +1517,7 @@ character   integer
  8 Afghanistan AF    AFG    1997 new   sp    f014       5
  9 Afghanistan AF    AFG    1997 new   sp    f1524     38
 10 Afghanistan AF    AFG    1997 new   sp    f2534     36
-# … with 76,036 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 76,036 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -1549,8 +1548,7 @@ character   integer
  8 Afghanistan  1997 sp    f     014       5
  9 Afghanistan  1997 sp    f     1524     38
 10 Afghanistan  1997 sp    f     2534     36
-# … with 76,036 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 76,036 more rows</code></pre>
 </div>
 </div>
 </section>
