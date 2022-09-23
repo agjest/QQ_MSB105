@@ -62,6 +62,7 @@ knitr::write_bib(
 -   If you end up with a factor and want a numeric vector see [R FAQ:
     7.10 How do I convert factors to
     numeric?](https://cran.r-project.org/doc/FAQ/R-FAQ.html#How-do-I-convert-factors-to-numeric_003f)
+    -   `v = as.numeric(levels(f))[as.integer(f)]`
 -   To make a factor manually you do
     `my_df$variable_name <- factor(my_df$variable_name)` or use
     `parse_factor()` which is a safer alternative.

@@ -449,7 +449,10 @@
 <section id="factors-1" class="slide level2">
 <h2>Factors</h2>
 <ul>
-<li class="fragment">If you end up with a factor and want a numeric vector see <a href="https://cran.r-project.org/doc/FAQ/R-FAQ.html#How-do-I-convert-factors-to-numeric_003f">R FAQ: 7.10 How do I convert factors to numeric?</a></li>
+<li class="fragment">If you end up with a factor and want a numeric vector see <a href="https://cran.r-project.org/doc/FAQ/R-FAQ.html#How-do-I-convert-factors-to-numeric_003f">R FAQ: 7.10 How do I convert factors to numeric?</a>
+<ul>
+<li class="fragment"><code>v = as.numeric(levels(f))[as.integer(f)]</code></li>
+</ul></li>
 <li class="fragment">To make a factor manually you do <code>my_df$variable_name &lt;- factor(my_df$variable_name)</code> or use <code>parse_factor()</code> which is a safer alternative.</li>
 </ul>
 </section>

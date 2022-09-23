@@ -339,13 +339,18 @@ my_flights <- my_flights %>%
             )
 ```
 
--   We ought to group the variables a bit better with `select()`, but
-    not now.
+-   We also ought to group the variables a bit better with `select()`.
 
 . . .
 
 ```{r, eval = FALSE}
-View(my_flights)
+my_flights <- my_flights %>% 
+  select(year, month, day, dep_time, everything()) %>% 
+  print()
+```
+
+```{r}
+#View(my_flights)
 ```
 
 ## The other joins
