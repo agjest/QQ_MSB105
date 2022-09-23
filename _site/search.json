@@ -256,14 +256,14 @@
     "href": "wrangle-data/factors/factors.html#how-to-fix-this-cont.",
     "title": "Factors",
     "section": "How to fix this, cont.",
-    "text": "How to fix this, cont.\n\n\nCode\n# US standard; Sunday first day of the week\nday_levels <- c(\"Sun\", \"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\")\ntmp_days <- df_days %>% \n  mutate(\n    days_fixed = factor(days, levels = day_levels)\n  ) %>%\n  select(days_fixed) \n\n\n\n\nCode\ntmp_days %>% \n  table() \n\n\ndays_fixed\nSun Mon Tue Wed Thu Fri Sat \n 11   7  17  13  27  11   8 \n\n\n\n\nCode\n# Need a table before sum else one gets\n# 'only defined on a data frame with all numeric-alike variables'\ntmp_days %>% \n  table() %>% \n  sum()\n\n\n[1] 94\n\n\n\n94?"
+    "text": "How to fix this, cont.\n\n\nCode\n# US standard; Sunday first day of the week\nday_levels <- c(\"Sun\", \"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\")\ntmp_days <- df_days %>% \n  mutate(\n    days_fixed = factor(days, levels = day_levels)\n  ) %>%\n  select(days_fixed) \n\n\n\n\nCode\ntmp_days %>% \n  table() \n\n\ndays_fixed\nSun Mon Tue Wed Thu Fri Sat \n 11   7  17  13  27  11   8 \n\n\n\n\nCode\n# Need a table before sum \ntmp_days %>% \n  table() %>% \n  sum()\n\n\n[1] 94\n\n\n\n94?"
   },
   {
     "objectID": "wrangle-data/factors/factors.html#how-to-fix-this-cont.-1",
     "href": "wrangle-data/factors/factors.html#how-to-fix-this-cont.-1",
     "title": "Factors",
     "section": "How to fix this, cont.",
-    "text": "How to fix this, cont.\n\n6 days have disappeared. What happend?\n\nWe forgot to change “Thurs” to “Thu”, so 6 of the 100 days did not match any level.\nThis is quietly ignored without any warning by factor().\n\nThis is dangerous!\n\n\nMuch better to use parse_factor() from tidyverse (forcats)."
+    "text": "How to fix this, cont.\n\n6 days have disappeared. What happend?\n\nWe forgot to change “Thurs” to “Thu”, so 6 of the 100 days did not match any level.\nThis is quietly ignored without any warning by factor().\n\nThis is dangerous!\n\n\nMuch better to use parse_factor() from tidyverse (package: forcats)."
   },
   {
     "objectID": "wrangle-data/factors/factors.html#how-to-fix-this-cont.-2",
@@ -305,7 +305,7 @@
     "href": "wrangle-data/factors/factors.html#automatic-levels",
     "title": "Factors",
     "section": "Automatic levels",
-    "text": "Automatic levels\n\nNote! The order of the levels is mainly of significance in visualisations, i.e. when we present our results\nAbove we specified the levels explicitly\nAutomatic levels:\n\nAlphabetic order\nWhen they first occur levels = unique(variable_name)\nFix it after creation with fct_inorder() that gives the order in wich they first occur or\nfct_infreq() according to frequency or\nfct_inseq() according to value (numeric values) in combination with fct_rev() or\nfct_reorder() for more general reorder, se r4ds 15.4 for example."
+    "text": "Automatic levels\n\nNote! The order of the levels is mainly of significance in visualisations, i.e. when we present our results\nAbove we specified the levels explicitly\nAutomatic levels:\n\nAlphabetic order\nWhen they first occur levels = unique(variable_name)\nFix it after creation with fct_inorder() that gives the order in which they first occur or\nfct_infreq() according to frequency or\nfct_inseq() according to value (numeric values) in combination with fct_rev() or\nfct_reorder() for more general reorder, se r4ds 15.4 for example."
   },
   {
     "objectID": "wrangle-data/factors/factors.html#automatic-levels-1",
@@ -8397,7 +8397,7 @@
     "href": "wrangle-data/factors/factors.html#automatic-levels-cont.-1",
     "title": "Factors",
     "section": "Automatic levels cont.",
-    "text": "Automatic levels cont.\n\n\nCode\ndf_days <- df_days %>% \n  mutate(\n    # convert day_of_the_week to character\n    day_of_the_week = as.character(day_of_the_week),\n    # convert day_of_the_week to factor\n    day_of_the_week = parse_factor(day_of_the_week)\n  )\ndf_days[1:6,]\n\n\n# A tibble: 6 × 3\n  days  days_fixed day_of_the_week\n  <chr> <fct>      <fct>          \n1 Sun   Sun        1              \n2 Thu   Thu        5              \n3 Thu   Thu        5              \n4 Sat   Sat        7              \n5 Thu   Thu        5              \n6 Thu   Thu        5"
+    "text": "Automatic levels cont.\n\n\nCode\ndf_days <- df_days %>% \n  mutate(\n    # first convert day_of_the_week to character\n    day_of_the_week = as.character(day_of_the_week),\n    # then convert day_of_the_week to factor\n    day_of_the_week = parse_factor(day_of_the_week)\n  )\ndf_days[1:6,]\n\n\n# A tibble: 6 × 3\n  days  days_fixed day_of_the_week\n  <chr> <fct>      <fct>          \n1 Sun   Sun        1              \n2 Thu   Thu        5              \n3 Thu   Thu        5              \n4 Sat   Sat        7              \n5 Thu   Thu        5              \n6 Thu   Thu        5"
   },
   {
     "objectID": "wrangle-data/factors/factors.html#automatic-levels-cont.-2",

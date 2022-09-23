@@ -124,8 +124,7 @@ tmp_days %>%
 ```
 
 ```{r}
-# Need a table before sum else one gets
-# 'only defined on a data frame with all numeric-alike variables'
+# Need a table before sum 
 tmp_days %>% 
   table() %>% 
   sum()
@@ -140,7 +139,8 @@ tmp_days %>%
         not match any level.
     -   This is quietly ignored without any warning by `factor()`.
         -   This is **dangerous**!
--   Much better to use `parse_factor()` from **tidyverse (forcats).**
+-   Much better to use `parse_factor()` from **tidyverse (package:
+    forcats).**
 
 ## How to fix this, cont. {.smaller}
 
@@ -189,14 +189,14 @@ df_days %>%
 
 ## Automatic levels
 
--   **Note!** The order of the levels is mainly of significance in
-    visualisations, i.e. when we present our results
+-   **Note!** **The order of the levels is mainly of significance in
+    visualisations**, i.e. when we present our results
 -   Above we specified the levels explicitly
 -   Automatic levels:
     -   Alphabetic order
     -   When they first occur `levels = unique(variable_name)`
     -   Fix it after creation with `fct_inorder()` that gives the order
-        in wich they first occur or
+        in which they first occur or
     -   `fct_infreq()` according to frequency or
     -   `fct_inseq()` according to value (numeric values) in combination
         with `fct_rev()` or
@@ -219,9 +219,9 @@ head(df_days$day_of_the_week, n = 5)
 ```{r}
 df_days <- df_days %>% 
   mutate(
-    # convert day_of_the_week to character
+    # first convert day_of_the_week to character
     day_of_the_week = as.character(day_of_the_week),
-    # convert day_of_the_week to factor
+    # then convert day_of_the_week to factor
     day_of_the_week = parse_factor(day_of_the_week)
   )
 df_days[1:6,]

@@ -541,11 +541,10 @@ Sun Mon Tue Wed Thu Fri Sat
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Need a table before sum else one gets</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="co"># 'only defined on a data frame with all numeric-alike variables'</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>tmp_days <span class="sc">%&gt;%</span> </span>
-<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">table</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb10-5"><a href="#cb10-5"></a>  <span class="fu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Need a table before sum </span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>tmp_days <span class="sc">%&gt;%</span> </span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">table</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 94</code></pre>
@@ -566,7 +565,7 @@ Sun Mon Tue Wed Thu Fri Sat
 <li class="fragment">This is <strong>dangerous</strong>!</li>
 </ul></li>
 </ul></li>
-<li class="fragment">Much better to use <code>parse_factor()</code> from <strong>tidyverse (forcats).</strong></li>
+<li class="fragment">Much better to use <code>parse_factor()</code> from <strong>tidyverse (package: forcats).</strong></li>
 </ul>
 </section>
 <section id="how-to-fix-this-cont.-2" class="slide level2 smaller">
@@ -637,13 +636,13 @@ Sun Mon Tue Wed Thu Fri Sat
 <section id="automatic-levels" class="slide level2">
 <h2>Automatic levels</h2>
 <ul>
-<li class="fragment"><strong>Note!</strong> The order of the levels is mainly of significance in visualisations, i.e.&nbsp;when we present our results</li>
+<li class="fragment"><strong>Note!</strong> <strong>The order of the levels is mainly of significance in visualisations</strong>, i.e.&nbsp;when we present our results</li>
 <li class="fragment">Above we specified the levels explicitly</li>
 <li class="fragment">Automatic levels:
 <ul>
 <li class="fragment">Alphabetic order</li>
 <li class="fragment">When they first occur <code>levels = unique(variable_name)</code></li>
-<li class="fragment">Fix it after creation with <code>fct_inorder()</code> that gives the order in wich they first occur or</li>
+<li class="fragment">Fix it after creation with <code>fct_inorder()</code> that gives the order in which they first occur or</li>
 <li class="fragment"><code>fct_infreq()</code> according to frequency or</li>
 <li class="fragment"><code>fct_inseq()</code> according to value (numeric values) in combination with <code>fct_rev()</code> or</li>
 <li class="fragment"><code>fct_reorder()</code> for more general reorder, se <em>r4ds</em> 15.4 for example.</li>
@@ -681,9 +680,9 @@ Levels: Sun Mon Tue Wed Thu Fri Sat</code></pre>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>df_days <span class="ot">&lt;-</span> df_days <span class="sc">%&gt;%</span> </span>
 <span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb21-3"><a href="#cb21-3"></a>    <span class="co"># convert day_of_the_week to character</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>    <span class="co"># first convert day_of_the_week to character</span></span>
 <span id="cb21-4"><a href="#cb21-4"></a>    <span class="at">day_of_the_week =</span> <span class="fu">as.character</span>(day_of_the_week),</span>
-<span id="cb21-5"><a href="#cb21-5"></a>    <span class="co"># convert day_of_the_week to factor</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a>    <span class="co"># then convert day_of_the_week to factor</span></span>
 <span id="cb21-6"><a href="#cb21-6"></a>    <span class="at">day_of_the_week =</span> <span class="fu">parse_factor</span>(day_of_the_week)</span>
 <span id="cb21-7"><a href="#cb21-7"></a>  )</span>
 <span id="cb21-8"><a href="#cb21-8"></a>df_days[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
