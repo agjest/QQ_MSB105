@@ -235,7 +235,7 @@
     "href": "wrangle-data/factors/factors.html#factors-in-tidyverse-forcats",
     "title": "Factors",
     "section": "Factors in tidyverse; forcats",
-    "text": "Factors in tidyverse; forcats\n\nPart of core tidyverse (i.e. library(tidyverse) will load forecats)\nHow to make a factor variable?"
+    "text": "Factors in tidyverse; forcats\n\nPart of core tidyverse (i.e. library(tidyverse) will load forecats)\nHow to make a factor variable?\n\n\n\n\nCode\n# Some alternatives Long Abbreviations for Days\nx <- c(\"Mon\", \"Tue\", \"Tues\", \"Wed\", \"Thu\", \"Thur\", \"Thurs\", \"Fri\", \"Sat\", \"Sun\")\nset.seed(1234)\ndf_days <- tibble(\n  days = sample(x, size = 100, replace = TRUE)\n  )\ndf_days %>% table()\n\n\ndays\n  Fri   Mon   Sat   Sun   Thu  Thur Thurs   Tue  Tues   Wed \n   11     7     8    11    10    17     6     6    11    13"
   },
   {
     "objectID": "wrangle-data/factors/factors.html#factors-in-tidyverse-forcats-1",

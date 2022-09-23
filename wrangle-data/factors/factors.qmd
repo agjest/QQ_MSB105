@@ -73,12 +73,6 @@ knitr::write_bib(
     *forecats*)
 -   How to make a factor variable?
 
-## Factors in *tidyverse*; *forcats*
-
--   Part of core *tidyverse* (i.e. `library(tidyverse)` will load
-    *forecats*)
--   How to make a factor variable?
-
 . . .
 
 ```{r}
