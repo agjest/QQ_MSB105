@@ -354,7 +354,7 @@
     "href": "wrangle-data/factors/factors.html#recoding-factors",
     "title": "Factors",
     "section": "Recoding factors",
-    "text": "Recoding factors\n\nPerhaps we want to change the names of the different levels\nfct_recode() can help\nfct_relevel() change the ordering of the levels"
+    "text": "Recoding factors\n\nPerhaps we want to change the names of the different levels\nfct_recode() can help\nfct_relevel() change the ordering of the levels\n\n\n\n\nCode\n# Norwegian abbreviations \ndf_days <- df_days %>%\n  mutate(\n    days_nor = days_fixed,\n    days_nor = fct_recode(days_nor,\n      \"søn\" = \"Sun\",\n      \"man\" = \"Mon\",\n      \"tir\" = \"Tue\",\n      \"ons\" = \"Wed\",\n      \"tor\" = \"Thu\",\n      \"fre\" = \"Fri\",\n      \"lør\" = \"Sat\",\n    ),\n    # monday first day of week\n    days_nor = fct_relevel(days_nor, \"søn\", after = 6)\n  )\nlevels(df_days$days_nor)\n\n\n[1] \"man\" \"tir\" \"ons\" \"tor\" \"fre\" \"lør\" \"søn\""
   },
   {
     "objectID": "wrangle-data/factors/factors.html#recoding-factors-1",

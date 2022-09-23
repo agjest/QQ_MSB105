@@ -292,12 +292,6 @@ levels(df_days$day_of_the_week)
 -   `fct_recode()` can help
 -   `fct_relevel()` change the ordering of the levels
 
-## Recoding factors {.smaller}
-
--   Perhaps we want to change the names of the different levels
--   `fct_recode()` can help
--   `fct_relevel()` change the ordering of the levels
-
 . . .
 
 ```{r}
