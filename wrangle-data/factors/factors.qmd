@@ -151,6 +151,20 @@ df_days <- df_days %>%
   )
 ```
 
+-   Gives the following warnings.
+
+. . .
+
+    Warning: 6 parsing failures.
+    row col           expected actual
+      9  -- value in level set  Thurs
+     29  -- value in level set  Thurs
+     59  -- value in level set  Thurs
+     69  -- value in level set  Thurs
+     73  -- value in level set  Thurs
+    ... ... .................. ......
+    See problems(...) for more details.
+
 ## How to fix this, cont.
 
 -   `parse_factor()` gives us proper warnings.

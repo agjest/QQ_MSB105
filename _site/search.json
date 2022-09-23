@@ -270,7 +270,7 @@
     "href": "wrangle-data/factors/factors.html#how-to-fix-this-cont.-2",
     "title": "Factors",
     "section": "How to fix this, cont.",
-    "text": "How to fix this, cont.\n\n\nCode\ndf_days <- df_days %>% \n  mutate(\n    days_fixed = parse_factor(days, levels = day_levels)\n  )"
+    "text": "How to fix this, cont.\n\n\nCode\ndf_days <- df_days %>% \n  mutate(\n    days_fixed = parse_factor(days, levels = day_levels)\n  )\n\n\n\nGives the following warnings.\n\n\nWarning: 6 parsing failures.\nrow col           expected actual\n  9  -- value in level set  Thurs\n 29  -- value in level set  Thurs\n 59  -- value in level set  Thurs\n 69  -- value in level set  Thurs\n 73  -- value in level set  Thurs\n... ... .................. ......\nSee problems(...) for more details."
   },
   {
     "objectID": "wrangle-data/factors/factors.html#how-to-fix-this-cont.-3",
