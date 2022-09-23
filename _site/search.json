@@ -235,7 +235,7 @@
     "href": "wrangle-data/factors/factors.html#factors-in-tidyverse-forcats",
     "title": "Factors",
     "section": "Factors in tidyverse; forcats",
-    "text": "Factors in tidyverse; forcats\n\nPart of core tidyverse (i.e. library(tidyverse) will load forecats)\nHow to make a factor variable?\n\n\n\n\nCode\n# Some alternatives Long Abbreviations for Days\nx <- c(\"Mon\", \"Tue\", \"Tues\", \"Wed\", \"Thu\", \"Thur\", \"Thurs\", \"Fri\", \"Sat\", \"Sun\")\nset.seed(1234)\ndf_days <- tibble(\n  days = sample(x, size = 100, replace = TRUE)\n  )\ndf_days %>% table()\n\n\ndays\n  Fri   Mon   Sat   Sun   Thu  Thur Thurs   Tue  Tues   Wed \n   11     7     8    11    10    17     6     6    11    13"
+    "text": "Factors in tidyverse; forcats\n\nPart of core tidyverse (i.e. library(tidyverse) will load forecats)\nHow to make a factor variable?\n\n\n\n\nCode\n# Some alternatives Long Abbreviations for Days\nx <- c(\"Mon\", \"Tue\", \"Tues\", \"Wed\", \"Thu\", \"Thur\", \"Thurs\", \"Fri\", \"Sat\", \"Sun\")\nset.seed(1234)\ndf_days <- tibble(\n  days = sample(x, size = 100, replace = TRUE)\n  )\ndf_days %>% table()\n\n\ndays\n  Fri   Mon   Sat   Sun   Thu  Thur Thurs   Tue  Tues   Wed \n   11     7     8    11    10    17     6     6    11    13 \n\n\n\nThursday is abbreviated in three different ways, while Tuesday are abbreviated in two different ways."
   },
   {
     "objectID": "wrangle-data/factors/factors.html#factors-in-tidyverse-forcats-1",
@@ -256,14 +256,14 @@
     "href": "wrangle-data/factors/factors.html#how-to-fix-this-cont.",
     "title": "Factors",
     "section": "How to fix this, cont.",
-    "text": "How to fix this, cont.\n\n\nCode\n# US standard; Sunday first day of the week\nday_levels <- c(\"Sun\", \"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\")\ndf_days %>% \n  mutate(\n    days_fixed = factor(days, levels = day_levels)\n  ) %>%\n  select(days_fixed) %>% \n  table() %>% \n  sum()\n\n\n[1] 94"
+    "text": "How to fix this, cont.\n\n\nCode\n# US standard; Sunday first day of the week\nday_levels <- c(\"Sun\", \"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\")\ntmp_days <- df_days %>% \n  mutate(\n    days_fixed = factor(days, levels = day_levels)\n  ) %>%\n  select(days_fixed) \n\n\n\n\nCode\ntmp_days %>% \n  table() \n\n\ndays_fixed\nSun Mon Tue Wed Thu Fri Sat \n 11   7  17  13  27  11   8 \n\n\n\n\nCode\n# Need a table before sum else one gets\n# 'only defined on a data frame with all numeric-alike variables'\ntmp_days %>% \n  table() %>% \n  sum()\n\n\n[1] 94\n\n\n\n94?"
   },
   {
     "objectID": "wrangle-data/factors/factors.html#how-to-fix-this-cont.-1",
     "href": "wrangle-data/factors/factors.html#how-to-fix-this-cont.-1",
     "title": "Factors",
     "section": "How to fix this, cont.",
-    "text": "How to fix this, cont.\n\n6 days have disappeared. What happend?\n\nWe forgot to change “Thurs” to “Thu”, so 6 of the 100 days did not match any level. Quietly ignored without any warning. This is dangerous!\n\nMuch better to use parse_factor()"
+    "text": "How to fix this, cont.\n\n6 days have disappeared. What happend?\n\nWe forgot to change “Thurs” to “Thu”, so 6 of the 100 days did not match any level.\nThis is quietly ignored without any warning by factor().\n\nThis is dangerous!\n\n\nMuch better to use parse_factor() from tidyverse (forcats)."
   },
   {
     "objectID": "wrangle-data/factors/factors.html#how-to-fix-this-cont.-2",
@@ -277,7 +277,7 @@
     "href": "wrangle-data/factors/factors.html#how-to-fix-this-cont.-3",
     "title": "Factors",
     "section": "How to fix this, cont.",
-    "text": "How to fix this, cont.\n\nparse_factor() gives us proper warnings.\nAfter the warnings we can table again with the option useNA = \"always\"."
+    "text": "How to fix this, cont.\n\nparse_factor() gives us proper warnings.\nAfter the warnings we can table again with the option useNA = \"always\".\n\n\n\n\nCode\ntable(df_days$days_fixed, useNA = \"always\")\n\n\n\n Sun  Mon  Tue  Wed  Thu  Fri  Sat <NA> \n  11    7   17   13   27   11    8    6"
   },
   {
     "objectID": "wrangle-data/factors/factors.html#how-to-fix-this-cont.-4",
@@ -291,7 +291,7 @@
     "href": "wrangle-data/factors/factors.html#how-to-fix-this-cont",
     "title": "Factors",
     "section": "How to fix this, cont",
-    "text": "How to fix this, cont\n\nThen we can fix our problem (add “Thurs”)"
+    "text": "How to fix this, cont\n\nThen we can fix our problem (add “Thurs”)\n\n\n\n\nCode\ndf_days <- df_days %>%\n  mutate(\n    days_fixed = parse_factor(\n      case_when(\n        days %in% c(\"Tues\") ~ \"Tue\",\n        days %in% c(\"Thur\", \"Thurs\") ~ \"Thu\",\n        # the others just like days\n        TRUE ~ days\n      ),\n      levels = day_levels\n    )\n  )\ndf_days %>%\n  select(days_fixed) %>%\n  table(useNA = \"always\")\n\n\ndays_fixed\n Sun  Mon  Tue  Wed  Thu  Fri  Sat <NA> \n  11    7   17   13   33   11    8    0"
   },
   {
     "objectID": "wrangle-data/factors/factors.html#how-to-fix-this-cont-1",
@@ -8384,5 +8384,33 @@
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Single variable, load data cont.",
     "text": "Single variable, load data cont.\n\nNicer solution\n\n\n\n\nCode\n# number of NAs in each variable\n# drop variables with no NA\nmy_heights %>% \n  is.na() %>% \n  colSums()\n\n\n   income    height    weight       age   marital       sex education      afqt \n        0         0        95         0         0         0        10       262 \n\n\n\nor\n\n\n\n\n\nCode\n# number of NAs in each variable\n# drop variables with no NA\nmy_heights %>% \n  is.na() %>% \n  colSums() %>% \n  .[. > 0]\n\n\n   weight education      afqt \n       95        10       262"
+  },
+  {
+    "objectID": "wrangle-data/factors/factors.html#automatic-levels-cont.",
+    "href": "wrangle-data/factors/factors.html#automatic-levels-cont.",
+    "title": "Factors",
+    "section": "Automatic levels cont.",
+    "text": "Automatic levels cont.\n\n\nCode\nhead(df_days$days_fixed, n = 5)\n\n\n[1] Sun Thu Thu Sat Thu\nLevels: Sun Mon Tue Wed Thu Fri Sat\n\n\nCode\ndf_days <- df_days %>%\n  mutate(\n    day_of_the_week = as.numeric(days_fixed)\n  )\nhead(df_days$day_of_the_week, n = 5)\n\n\n[1] 1 5 5 7 5"
+  },
+  {
+    "objectID": "wrangle-data/factors/factors.html#automatic-levels-cont.-1",
+    "href": "wrangle-data/factors/factors.html#automatic-levels-cont.-1",
+    "title": "Factors",
+    "section": "Automatic levels cont.",
+    "text": "Automatic levels cont.\n\n\nCode\ndf_days <- df_days %>% \n  mutate(\n    # convert day_of_the_week to character\n    day_of_the_week = as.character(day_of_the_week),\n    # convert day_of_the_week to factor\n    day_of_the_week = parse_factor(day_of_the_week)\n  )\ndf_days[1:6,]\n\n\n# A tibble: 6 × 3\n  days  days_fixed day_of_the_week\n  <chr> <fct>      <fct>          \n1 Sun   Sun        1              \n2 Thu   Thu        5              \n3 Thu   Thu        5              \n4 Sat   Sat        7              \n5 Thu   Thu        5              \n6 Thu   Thu        5"
+  },
+  {
+    "objectID": "wrangle-data/factors/factors.html#automatic-levels-cont.-2",
+    "href": "wrangle-data/factors/factors.html#automatic-levels-cont.-2",
+    "title": "Factors",
+    "section": "Automatic levels cont.",
+    "text": "Automatic levels cont.\n\n\nCode\nlevels(df_days$day_of_the_week)\n\n\n[1] \"1\" \"5\" \"7\" \"4\" \"3\" \"6\" \"2\"\n\n\n\nThe ordering of the levels is determined by when a value occurs."
+  },
+  {
+    "objectID": "wrangle-data/factors/factors.html#automatic-levels-cont.-3",
+    "href": "wrangle-data/factors/factors.html#automatic-levels-cont.-3",
+    "title": "Factors",
+    "section": "Automatic levels cont.",
+    "text": "Automatic levels cont.\n\n\nCode\ndf_days$day_of_the_week <- fct_inseq(df_days$day_of_the_week)\nlevels(df_days$day_of_the_week)\n\n\n[1] \"1\" \"2\" \"3\" \"4\" \"5\" \"6\" \"7\"\n\n\n\n\nCode\ndf_days %>% \n  filter(days_fixed == \"Thu\") %>% \n  head(n = 5)\n\n\n# A tibble: 5 × 3\n  days  days_fixed day_of_the_week\n  <chr> <fct>      <fct>          \n1 Thu   Thu        5              \n2 Thu   Thu        5              \n3 Thu   Thu        5              \n4 Thu   Thu        5              \n5 Thurs Thu        5              \n\n\n\nLevels are ordered after number."
   }
 ]

@@ -85,6 +85,9 @@ df_days <- tibble(
 df_days %>% table()
 ```
 
+-   Thursday is abbreviated in three different ways, while Tuesday are
+    abbreviated in two different ways.
+
 ## How to fix this
 
 -   Change the values
@@ -108,22 +111,36 @@ df_days %>% table()
 ```{r}
 # US standard; Sunday first day of the week
 day_levels <- c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
-df_days %>% 
+tmp_days <- df_days %>% 
   mutate(
     days_fixed = factor(days, levels = day_levels)
   ) %>%
-  select(days_fixed) %>% 
+  select(days_fixed) 
+```
+
+```{r}
+tmp_days %>% 
+  table() 
+```
+
+```{r}
+# Need a table before sum else one gets
+# 'only defined on a data frame with all numeric-alike variables'
+tmp_days %>% 
   table() %>% 
   sum()
 ```
+
+-   94?
 
 ## How to fix this, cont.
 
 -   6 days have disappeared. What happend?
     -   We forgot to change "Thurs" to "Thu", so 6 of the 100 days did
-        not match any level. Quietly ignored without any warning. This
-        is **dangerous**!
--   Much better to use `parse_factor()`
+        not match any level.
+    -   This is quietly ignored without any warning by `factor()`.
+        -   This is **dangerous**!
+-   Much better to use `parse_factor()` from **tidyverse (forcats).**
 
 ## How to fix this, cont. {.smaller}
 
@@ -140,21 +157,11 @@ df_days <- df_days %>%
 -   After the warnings we can table again with the option
     `useNA = "always"`.
 
-## How to fix this, cont.
-
--   `parse_factor()` gives us proper warnings.
--   After the warnings we can table again with the option
-    `useNA = "always"`.
-
 . . .
 
 ```{r}
 table(df_days$days_fixed, useNA = "always")
 ```
-
-## How to fix this, cont
-
--   Then we can fix our problem (add "Thurs")
 
 ## How to fix this, cont
 
@@ -196,7 +203,7 @@ df_days %>%
     -   `fct_reorder()` for more general reorder, se *r4ds* 15.4 for
         example.
 
-## Automatic levels
+## Automatic levels cont.
 
 ```{r}
 head(df_days$days_fixed, n = 5)
@@ -207,7 +214,7 @@ df_days <- df_days %>%
 head(df_days$day_of_the_week, n = 5)
 ```
 
-## Automatic levels
+## Automatic levels cont.
 
 ```{r}
 df_days <- df_days %>% 
@@ -220,7 +227,7 @@ df_days <- df_days %>%
 df_days[1:6,]
 ```
 
-## Automatic levels
+## Automatic levels cont.
 
 ```{r}
 levels(df_days$day_of_the_week)
@@ -228,7 +235,7 @@ levels(df_days$day_of_the_week)
 
 -   The ordering of the levels is determined by when a value occurs.
 
-## Automatic levels
+## Automatic levels cont.
 
 ```{r}
 df_days$day_of_the_week <- fct_inseq(df_days$day_of_the_week)
@@ -238,7 +245,7 @@ levels(df_days$day_of_the_week)
 ```{r}
 df_days %>% 
   filter(days_fixed == "Thu") %>% 
-  head(n=5)
+  head(n = 5)
 ```
 
 -   Levels are ordered after number.
