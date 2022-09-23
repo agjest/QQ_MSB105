@@ -338,7 +338,7 @@ levels(df_days$d_o_t_w_nor)
     ordering of the levels, i.e. "7", "6" ... "1"
 -   `fct_collapse()`: collapses levels, several old levels into a new
     level (or into an old level)
--   `fct_lump_min()`: lumps levels that appear fewer than min times.
+-   `fct_lump_min()`: lumps levels that appear fewer than min. times.
 -   `fct_lump_prop()`: lumps levels that appear in fewer prop \* n
     times, for instance less than 3%
 -   `fct_lump_n()`: lumps all levels except for the n most frequent (or
@@ -346,6 +346,7 @@ levels(df_days$d_o_t_w_nor)
 -   `fct_lump_lowfreq()`: lumps together the least frequent levels,
     ensuring that "other" is still the smallest level.
 -   see `?fct_lump` for examples
--   `fct_other()`: keep some levls, put the rest in an "other" category.
+-   `fct_other()`: keep some levels, put the rest in an "other"
+    category.
 
 ## References

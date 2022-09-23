@@ -375,7 +375,7 @@
     "href": "wrangle-data/factors/factors.html#other-functions",
     "title": "Factors",
     "section": "Other functions",
-    "text": "Other functions\n\nfct_rev(): used together with fct_infreq(). Reverses the ordering of the levels, i.e. “7”, “6” … “1”\nfct_collapse(): collapses levels, several old levels into a new level (or into an old level)\nfct_lump_min(): lumps levels that appear fewer than min times.\nfct_lump_prop(): lumps levels that appear in fewer prop * n times, for instance less than 3%\nfct_lump_n(): lumps all levels except for the n most frequent (or least frequent if n < 0)\nfct_lump_lowfreq(): lumps together the least frequent levels, ensuring that “other” is still the smallest level.\nsee ?fct_lump for examples\nfct_other(): keep some levls, put the rest in an “other” category."
+    "text": "Other functions\n\nfct_rev(): used together with fct_infreq(). Reverses the ordering of the levels, i.e. “7”, “6” … “1”\nfct_collapse(): collapses levels, several old levels into a new level (or into an old level)\nfct_lump_min(): lumps levels that appear fewer than min. times.\nfct_lump_prop(): lumps levels that appear in fewer prop * n times, for instance less than 3%\nfct_lump_n(): lumps all levels except for the n most frequent (or least frequent if n < 0)\nfct_lump_lowfreq(): lumps together the least frequent levels, ensuring that “other” is still the smallest level.\nsee ?fct_lump for examples\nfct_other(): keep some levels, put the rest in an “other” category."
   },
   {
     "objectID": "wrangle-data/factors/factors.html#references",
