@@ -130,12 +130,30 @@ as.numeric(no_d)
 as.numeric(us_d)
 ```
 
-## To date object
+## To date object cont.
 
 ```{r}
 us_d - no_d
-month(us_d, abbr = TRUE)
-month(no_d, abbr = TRUE)
+month(us_d)
+month(us_d, label = TRUE)
+month(us_d, label = TRUE, abbr = TRUE)
+```
+
+## To date object cont.
+
+```{r}
+month(us_d, label = TRUE, abbr = FALSE)
+```
+
+```{r}
+# Get code for locale with command 
+# locale -a 
+# in Terminal
+month(no_d, label = TRUE, abbr = FALSE, locale = "no_NO")
+```
+
+```{r}
+month(no_d, label = TRUE, abbr = TRUE, locale = "no_NO")
 ```
 
 ## Date object math
@@ -143,7 +161,6 @@ month(no_d, abbr = TRUE)
 ```{r}
 no_d == us_d
 as.numeric(no_d) == as.numeric(us_d)
-
 ```
 
 ## date-time {.smaller}
@@ -208,11 +225,6 @@ now() # date time
 as_date(now())
 as_datetime(today())
 ```
-
-## Different inputs
-
--   You never know what you have to deal with
--   dmy() and friends are quite smart
 
 ## Different inputs
 

@@ -466,7 +466,7 @@
     "href": "wrangle-data/time-data/time-data.html#to-date-object-1",
     "title": "Time Data",
     "section": "To date object",
-    "text": "To date object\n\n\nCode\nus_d - no_d\n\n\nTime difference of 0 days\n\n\nCode\nmonth(us_d, abbr = TRUE)\n\n\n[1] 9\n\n\nCode\nmonth(no_d, abbr = TRUE)\n\n\n[1] 9"
+    "text": "To date object\n\n\nCode\nus_d - no_d\n\n\nTime difference of 0 days\n\n\nCode\nmonth(us_d)\n\n\n[1] 9\n\n\nCode\nmonth(us_d, label = TRUE)\n\n\n[1] Sep\n12 Levels: Jan < Feb < Mar < Apr < May < Jun < Jul < Aug < Sep < ... < Dec\n\n\nCode\nmonth(us_d, label = TRUE, abbr = TRUE)\n\n\n[1] Sep\n12 Levels: Jan < Feb < Mar < Apr < May < Jun < Jul < Aug < Sep < ... < Dec\n\n\nCode\nmonth(us_d, label = TRUE, abbr = FALSE)\n\n\n[1] September\n12 Levels: January < February < March < April < May < June < ... < December\n\n\n\n\nCode\n# Get code for locale with command \n# locale -a \n# in Terminal\nmonth(no_d, label = TRUE, abbr = FALSE, locale = \"no_NO\")\n\n\n[1] september\n12 Levels: januar < februar < mars < april < mai < juni < juli < ... < desember\n\n\n\n\nCode\nmonth(no_d, label = TRUE, abbr = TRUE, locale = \"no_NO\")\n\n\n[1] sep\n12 Levels: jan < feb < mar < apr < mai < jun < jul < aug < sep < ... < des"
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#date-object-math",
@@ -508,14 +508,14 @@
     "href": "wrangle-data/time-data/time-data.html#change-type",
     "title": "Time Data",
     "section": "Change type",
-    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2022-09-08\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2022-09-08 09:09:57 CEST\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2022-09-08\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2022-09-08 UTC\""
+    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2022-09-27\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2022-09-27 13:05:17 CEST\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2022-09-27\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2022-09-27 UTC\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#different-inputs",
     "href": "wrangle-data/time-data/time-data.html#different-inputs",
     "title": "Time Data",
     "section": "Different inputs",
-    "text": "Different inputs\n\nYou never know what you have to deal with\ndmy() and friends are quite smart"
+    "text": "Different inputs\n\nYou never know what you have to deal with\ndmy() and friends are quite smart\n\n\n\n\nCode\nmy_dato <- \"11_9_01\"\ndmy(my_dato)\n\n\n[1] \"2001-09-11\"\n\n\nCode\nmy_dato <- \"11:9:01\"\ndmy(my_dato)\n\n\n[1] \"2001-09-11\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#different-inputs-1",
@@ -599,28 +599,28 @@
     "href": "wrangle-data/time-data/time-data.html#an-example-my_life",
     "title": "Time Data",
     "section": "An example: my_life",
-    "text": "An example: my_life\n\nPlaying with time and writing a function\n\n\n\n\nCode\nmy_life <- function(birthday = \"25121964\", unit = \"weeks\") {\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\nmy_life() # with default values\n\n\n[1] \"You are about 3010.85714285714 weeks old.\""
+    "text": "An example: my_life\n\nPlaying with time and writing a function\n\n\n\n\nCode\nmy_life <- function(birthday = \"25121964\", unit = \"weeks\") {\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\nmy_life() # with default values\n\n\n[1] \"You are about 3013.57142857143 weeks old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#an-example-my_life-1",
     "href": "wrangle-data/time-data/time-data.html#an-example-my_life-1",
     "title": "Time Data",
     "section": "An example: my_life",
-    "text": "An example: my_life\n\nsome are just too young to play with R\n\n\n\n\nCode\nmy_life <- function(birthday = \"25121964\", unit = \"weeks\") {\n# too young to play with R, week as unit\nif (as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))/52.25 < 5) {\nreturn(\"You are far too young to play with R!\")\n}\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\n\n\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3010.85714285714 weeks old.\""
+    "text": "An example: my_life\n\nsome are just too young to play with R\n\n\n\n\nCode\nmy_life <- function(birthday = \"25121964\", unit = \"weeks\") {\n# too young to play with R, week as unit\nif (as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))/52.25 < 5) {\nreturn(\"You are far too young to play with R!\")\n}\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\n\n\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3013.57142857143 weeks old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#an-example-my_life-2",
     "href": "wrangle-data/time-data/time-data.html#an-example-my_life-2",
     "title": "Time Data",
     "section": "An example: my_life",
-    "text": "An example: my_life\n\nPerhaps we should round off our answer.\n\n\n\n\nCode\nmy_life <- function(birthday = \"01012020\", unit = \"weeks\") {\n  # find the difference between today and birthday with week as unit\n  life_w <- as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))\n  # too young to play with R, week as unit\n  if (life_w / 52.25 < 5) {\n    return(\"You are far too young to play with R!\")\n  } else {\n    # find the difference between today and birthday measured in unit\n    life = round(as.numeric(difftime(today(), dmy(birthday), units = unit)), 0)\n    # one case for each unit\n    case_when(\n      unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n      unit == \"days\" ~ paste(\"You are about\", life, \"days old.\"),\n      unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n      unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n      unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n    )\n  }\n}\nmy_life(01032016)\n\n\n[1] \"You are about 340 weeks old.\""
+    "text": "An example: my_life\n\nPerhaps we should round off our answer.\n\n\n\n\nCode\nmy_life <- function(birthday = \"01012020\", unit = \"weeks\") {\n  # find the difference between today and birthday with week as unit\n  life_w <- as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))\n  # too young to play with R, week as unit\n  if (life_w / 52.25 < 5) {\n    return(\"You are far too young to play with R!\")\n  } else {\n    # find the difference between today and birthday measured in unit\n    life = round(as.numeric(difftime(today(), dmy(birthday), units = unit)), 0)\n    # one case for each unit\n    case_when(\n      unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n      unit == \"days\" ~ paste(\"You are about\", life, \"days old.\"),\n      unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n      unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n      unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n    )\n  }\n}\nmy_life(01032016)\n\n\n[1] \"You are about 343 weeks old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#testing-my_life",
     "href": "wrangle-data/time-data/time-data.html#testing-my_life",
     "title": "Time Data",
     "section": "Testing my_life()",
-    "text": "Testing my_life()\n\n\nCode\nmy_life(\"01032005\", unit = \"weeks\")\n\n\n[1] \"You are about 914 weeks old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"days\")\n\n\n[1] \"You are about 6400 days old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"mins\")\n\n\n[1] \"You are about 9216000 minutes old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"secs\")\n\n\n[1] \"You are about 552960000 seconds old.\""
+    "text": "Testing my_life()\n\n\nCode\nmy_life(\"01032005\", unit = \"weeks\")\n\n\n[1] \"You are about 917 weeks old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"days\")\n\n\n[1] \"You are about 6419 days old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"mins\")\n\n\n[1] \"You are about 9243360 minutes old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"secs\")\n\n\n[1] \"You are about 554601600 seconds old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#an-example-my_life-3",
@@ -641,7 +641,7 @@
     "href": "wrangle-data/time-data/time-data.html#final-testing",
     "title": "Time Data",
     "section": "Final testing",
-    "text": "Final testing\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"years\")\n\n\n[1] \"You are about 57.62 years old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"months\")\n\n\n[1] \"You are about 691.49 months old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3011 weeks old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"days\")\n\n\n[1] \"You are about 21076 days old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"hours\")\n\n\n[1] \"You are about 505824 hours old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"mins\")\n\n\n[1] \"You are about 30.349.440 minutes old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"secs\")\n\n\n[1] \"You are about 1.820.966.400 seconds old.\""
+    "text": "Final testing\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"years\")\n\n\n[1] \"You are about 57.68 years old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"months\")\n\n\n[1] \"You are about 692.11 months old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3014 weeks old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"days\")\n\n\n[1] \"You are about 21095 days old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"hours\")\n\n\n[1] \"You are about 506280 hours old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"mins\")\n\n\n[1] \"You are about 30.376.800 minutes old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"secs\")\n\n\n[1] \"You are about 1.822.608.000 seconds old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#references",
@@ -8412,5 +8412,19 @@
     "title": "Factors",
     "section": "Automatic levels cont.",
     "text": "Automatic levels cont.\n\n\nCode\ndf_days$day_of_the_week <- fct_inseq(df_days$day_of_the_week)\nlevels(df_days$day_of_the_week)\n\n\n[1] \"1\" \"2\" \"3\" \"4\" \"5\" \"6\" \"7\"\n\n\n\n\nCode\ndf_days %>% \n  filter(days_fixed == \"Thu\") %>% \n  head(n = 5)\n\n\n# A tibble: 5 × 3\n  days  days_fixed day_of_the_week\n  <chr> <fct>      <fct>          \n1 Thu   Thu        5              \n2 Thu   Thu        5              \n3 Thu   Thu        5              \n4 Thu   Thu        5              \n5 Thurs Thu        5              \n\n\n\nLevels are ordered after number."
+  },
+  {
+    "objectID": "wrangle-data/time-data/time-data.html#to-date-object-cont.",
+    "href": "wrangle-data/time-data/time-data.html#to-date-object-cont.",
+    "title": "Time Data",
+    "section": "To date object cont.",
+    "text": "To date object cont.\n\n\nCode\nus_d - no_d\n\n\nTime difference of 0 days\n\n\nCode\nmonth(us_d)\n\n\n[1] 9\n\n\nCode\nmonth(us_d, label = TRUE)\n\n\n[1] Sep\n12 Levels: Jan < Feb < Mar < Apr < May < Jun < Jul < Aug < Sep < ... < Dec\n\n\nCode\nmonth(us_d, label = TRUE, abbr = TRUE)\n\n\n[1] Sep\n12 Levels: Jan < Feb < Mar < Apr < May < Jun < Jul < Aug < Sep < ... < Dec"
+  },
+  {
+    "objectID": "wrangle-data/time-data/time-data.html#to-date-object-cont.-1",
+    "href": "wrangle-data/time-data/time-data.html#to-date-object-cont.-1",
+    "title": "Time Data",
+    "section": "To date object cont.",
+    "text": "To date object cont.\n\n\nCode\nmonth(us_d, label = TRUE, abbr = FALSE)\n\n\n[1] September\n12 Levels: January < February < March < April < May < June < ... < December\n\n\n\n\nCode\n# Get code for locale with command \n# locale -a \n# in Terminal\nmonth(no_d, label = TRUE, abbr = FALSE, locale = \"no_NO\")\n\n\n[1] september\n12 Levels: januar < februar < mars < april < mai < juni < juli < ... < desember\n\n\n\n\nCode\nmonth(no_d, label = TRUE, abbr = TRUE, locale = \"no_NO\")\n\n\n[1] sep\n12 Levels: jan < feb < mar < apr < mai < jun < jul < aug < sep < ... < des"
   }
 ]
