@@ -324,7 +324,7 @@ decide_numvec <- function(x) {
   x_ans <- case_when(
     x_g == TRUE~ paste(x, "is greater than zero"),
     x_l == TRUE ~ paste(x, "is less than zero"),
-    !(x_g | x_g) == TRUE ~ paste(x, "is zero")
+    !(x_g | x_l) == TRUE ~ paste(x, "is zero")
   )
   x_ans
 }

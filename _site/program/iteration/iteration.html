@@ -686,9 +686,9 @@
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
-      expr     min       lq      mean   median      uq     max neval
- myT(test) 589.293 604.6680 627.54723 620.1045 636.648 842.427   100
-   t(test)  15.293  16.7895  18.38399  17.1995  18.737  44.403   100</code></pre>
+      expr     min       lq      mean  median       uq     max neval
+ myT(test) 591.835 602.4745 629.57714 613.155 638.7185 854.235   100
+   t(test)  14.719  16.9535  18.85057  17.302  18.6345  62.320   100</code></pre>
 </div>
 </div>
 <ul>
@@ -863,7 +863,7 @@
 <span id="cb37-5"><a href="#cb37-5"></a>  x_ans <span class="ot">&lt;-</span> <span class="fu">case_when</span>(</span>
 <span id="cb37-6"><a href="#cb37-6"></a>    x_g <span class="sc">==</span> <span class="cn">TRUE</span><span class="sc">~</span> <span class="fu">paste</span>(x, <span class="st">"is greater than zero"</span>),</span>
 <span id="cb37-7"><a href="#cb37-7"></a>    x_l <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">paste</span>(x, <span class="st">"is less than zero"</span>),</span>
-<span id="cb37-8"><a href="#cb37-8"></a>    <span class="sc">!</span>(x_g <span class="sc">|</span> x_g) <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">paste</span>(x, <span class="st">"is zero"</span>)</span>
+<span id="cb37-8"><a href="#cb37-8"></a>    <span class="sc">!</span>(x_g <span class="sc">|</span> x_l) <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">paste</span>(x, <span class="st">"is zero"</span>)</span>
 <span id="cb37-9"><a href="#cb37-9"></a>  )</span>
 <span id="cb37-10"><a href="#cb37-10"></a>  x_ans</span>
 <span id="cb37-11"><a href="#cb37-11"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -885,11 +885,11 @@
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
                     expr       min        lq      mean    median        uq
- decide_number_vec(test) 15.483486 15.724135 16.455417 15.875692 17.484860
-     decide_numvec(test)  3.188693  3.240271  3.329272  3.279918  3.356895
+ decide_number_vec(test) 15.510751 15.674423 16.456180 15.785451 17.461633
+     decide_numvec(test)  3.170735  3.225224  3.321949  3.278237  3.343325
        max neval
- 19.336666   100
-  5.195766   100</code></pre>
+ 19.774341   100
+  4.984534   100</code></pre>
 </div>
 </div>
 <ul>
