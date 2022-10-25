@@ -70,7 +70,7 @@ my_df1 <- my_df[1:3, 1:3]
 -   For loops, used to be quite slow in R, but not any more
 
     -   Not "The R way", but OK to use if it gives an easy solution
-    -   Often there is cleaner R way if one can just recognise it
+    -   Often there is a cleaner R way, if one can just recognise it
 
 -   The R way
 
@@ -80,7 +80,7 @@ my_df1 <- my_df[1:3, 1:3]
 
     -   Apply a function to every row, column or element in a dataframe
 
--   We will use the *tidyvers'* reimplementation of the apply family
+-   We will use the *tidyverses* reimplementation of the apply family
 
     -   More consistent
 
@@ -97,16 +97,27 @@ my_df1 <- my_df[1:3, 1:3]
 
 ## For loop, vector
 
+Add 5 to sequence 1, 2, ..., 10
+
 ```{r}
 # allocate empty vector for output
 out <- vector(mode = "integer", length = 10)
 for (i in 1L:10L) {
   out[[i]] <- 5L + i
 }
+```
+
+```{r}
 out
 ```
 
 ## For loop, tibble {.smaller}
+
+-   Nested loop
+
+    -   loop over columns
+
+        -   for each column loop over all rows
 
 ```{r}
 my_df1
@@ -115,28 +126,47 @@ out <- tibble(x = vector(mode = "double", length = 3),
               y = vector(mode = "double", length = 3),
               z = vector(mode = "double", length = 3))
 # i row, j column
+# column
 for (j in 1:ncol(my_df1)) {
+# row
   for (i in 1:nrow(my_df1)) {
     out[[i, j]] <-  my_df1[[i, j]] + 5
   }
 }
+```
+
+```{r}
 out
+```
+
+## The R way
+
+```{r}
+my_df1 + 5
 ```
 
 ## For loop, tibble, rows to columns {.smaller}
 
 ```{r}
 my_df1
+```
+
+```{r}
 # allocate empty vector for output
 out <- tibble(x = vector(mode = "double", length = 3),
               y = vector(mode = "double", length = 3),
               z = vector(mode = "double", length = 3))
 # i row, j column
+# column
 for (j in 1:ncol(my_df1)) {
+# row
   for (i in 1:nrow(my_df1)) {
     out[[i, j]] <-  my_df1[[j, i]]
   }
 }
+```
+
+```{r}
 out
 ```
 
@@ -152,7 +182,9 @@ myT <- function(df) {
 # allocate empty tibble for transposed df
 out <- matrix(ncol = nrow(df), nrow = ncol(df))
 # i row, j column
+# column
 for (j in 1:ncol(df)) {
+# row
   for (i in 1:nrow(df)) {
     out[[j, i]] <-  df[[i, j]]
   }
@@ -190,8 +222,32 @@ microbenchmark(myT(test), t(test))
 
 ```{r}
 tmp <- my_df
-tmp[, 2] <- apply(tmp[,2], MARGIN = 1, FUN = "as.character")
+# change values in column 2 to character
+# tmp[, 2] <- apply(tmp[,2], MARGIN = 1, FUN = "as.character")
+# does not work
+tmp[, 2] <- as.character(tmp[,2])
+typeof(tmp[, 2])
+```
+
+```{r}
+# works, more elegant
+tmp <- my_df
+tmp$y <- as.character(tmp$y)
+```
+
+```{r}
+tmp
+```
+
+```{r}
 tmp[3, 2] <- "some text"
+# or
+tmp[3, "y"] <- "some text"
+# or
+tmp$y[[3]] <- "some text"
+```
+
+```{r}
 myT(tmp)
 ```
 
@@ -218,7 +274,7 @@ decide_number <- function(x) {
 
 -   add support for vectors
 -   Input the vector, preallocate space for result `vec`
--   The for loop spin through the elements of x (input vector)
+-   The `for` loop spin through the elements of x (input vector)
 -   For each element our previously defined function `decide_number()`
     is called. The result is placed in `vec`
 
@@ -280,6 +336,7 @@ decide_numvec <- function(x) {
 # checking speed
 set.seed(444)
 test_vec <- sample(1:10, 10000, replace = TRUE)
+# Unit: milliseconds
 microbenchmark::microbenchmark(decide_number_vec(test), decide_numvec(test))
 ```
 
@@ -290,16 +347,6 @@ microbenchmark::microbenchmark(decide_number_vec(test), decide_numvec(test))
 Modifying an existing object, instead of creating a new object. Looping
 over names or values, instead of indices. Handling outputs of unknown
 length. Handling sequences of unknown length.
-
-## Modifying an existing object
-
--   Simple, we already have the output allocated (it' s the input). We
-    only have to modify elements in input and return as output.
-    -   Working on elements, so very important to use `[[]]`
--   Looping patterns
-    -   Loop over elements (`for (x in xs)`)
-    -   Loop over names (`for (nm in names(xs))`)
-    -   Loop over index, most general. Can extract both name and value.
 
 ## Modifying an existing object
 
@@ -366,6 +413,9 @@ unlist(out)
 ```{r}
 data <- uol_list(c(0.5, -2, 1.25))
 length(data)
+```
+
+```{r}
 head(data, n = 15)
 ```
 
@@ -380,14 +430,8 @@ head(data, n = 15)
 -   Building dataframe.
 
     -   Do not use incremental `rbind` for each iteration.
-    -   Instead put intermediate results into a_list.
+    -   Instead put intermediate results into a list (a_list).
     -   Use `dplyr::bind_rows(a_list)` as last statement.
-
-## Unknown sequence length
-
--   Use `while()`
--   Nice for simulations ("continue until something happens")
--   Structure
 
 ## Unknown sequence length
 
@@ -416,19 +460,7 @@ while (condition) {
     -   See r4ds 21.4 for details
 -   a tibble/dataframe is a **list** of equal length vectors. The
     `length()` function used on a list will return the number of
-    elements, i.e. the number of vectors in df which is also det number
-    of columns.
-
-## For loops vs. functionals
-
--   for loops essential in most programming languages
--   Not as essential i R
-    -   R functional programming language
-    -   Wrap up for loops in functions and call the function instead
-    -   See r4ds 21.4 for details
--   a tibble/dataframe is a **list** of equal length vectors. The
-    `length()` function used on a list will return the number of
-    elements, i.e. the number of vectors in df which is also det number
+    elements, i.e. the number of vectors in df which is also the number
     of columns.
 
 . . .
@@ -442,11 +474,6 @@ df2[[3]]
 
 ## For loops vs. functionals {.smaller}
 
--   Note how we get hold of function name in `stopifnot()`.
-    -   `stopifnot(fun %in% c(mean, median, sd, min, max))` will not
-        work
-    -   One of those tricks it's nice to know
--   Being able to pass a function to another function is very powerful
 -   `seq_along()` is very handy.
 
 . . .
@@ -460,6 +487,12 @@ seq_along(my_df)
 ```
 
 ## For loops vs. functionals {.smaller}
+
+-   Note how we get hold of function name in `stopifnot()`.
+    -   `stopifnot(fun %in% c(mean, median, sd, min, max))` will not
+        work
+    -   One of those tricks it's nice to know
+-   Being able to pass a function to another function is very powerful
 
 ```{r}
 col_summary <- function(df, fun) {
@@ -477,6 +510,24 @@ col_summary <- function(df, fun) {
 
 ```{r}
 glimpse(df2)
+```
+
+## For loops vs. functionals {.smaller}
+
+-   Note the use of `df[[i]]`
+
+    -   Why not `df[, i]`?
+
+. . .
+
+```{r}
+# just content
+my_df[[2]]
+```
+
+```{r}
+# with wrapping
+my_df[, 2]
 ```
 
 ## Testing
@@ -539,24 +590,50 @@ col_summary(df2, sd)
     -   If you havn't done any programming before (c, fortran etc.) this
         is the way to go.
 -   The map-functions makes the code easier to read and understand
--   Why map\_\* when we have the apply family
+-   Why map\_\* when we have the apply family?
     -   The map\_\* family is more consistent. Easier to transfer skills
         from one function to another.
 
 ## `map` family examples
-
--   Read as: "use the mean function on every column in my_df and return
-    result as type double"
--   Easy to see what function is used, not so much indexes and other
-    stuff as in the for-loop
-
-. . .
 
 ```{r}
 map_dbl(my_df, mean)
 map_dbl(my_df, sum)
 # returns the sums as type character
 map_chr(my_df, sum)
+```
+
+-   Read as: "use the mean function on every column in my_df and return
+    result as type double"
+-   Easy to see what function is used, not so much indexes and other
+    stuff as in the for-loop
+-   Will the following code work?
+
+. . .
+
+```{r}
+#| eval: false
+map_int(my_df, mean)
+```
+
+-   No
+
+. . .
+
+-   Will this work?
+
+```{r}
+as.integer(map_dbl(my_df, mean))
+```
+
+-   No truncates double values
+
+-   Must do
+
+. . .
+
+```{r}
+round(map_dbl(my_df, mean), digits = 0)
 ```
 
 ## `map` family examples
@@ -691,6 +768,11 @@ tmp <- tibble(
   runif_m2_2 = tmp$my_data[[2]]
 )
 head(tmp, n = 3)
+```
+
+```{r}
+#| echo: false
+#siste
 ```
 
 ## References
