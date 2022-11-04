@@ -592,6 +592,34 @@ typeof(l)
 
 ## Lists cont.
 
+-   Find the name of list elements
+
+. . .
+
+```{r}
+#make copy of l
+ll <- l
+names(ll)
+```
+
+-   change name of first element in the list `ll`
+
+. . .
+
+```{r}
+names(ll)[1] <- "New Name"
+```
+
+```{r}
+names(ll)
+```
+
+```{r}
+rm(ll)
+```
+
+## Lists cont.
+
 ```{r}
 typeof(l$x)
 ```
@@ -1417,4 +1445,3 @@ h_a_t
 #| echo: false
 #siste
 ```
-
