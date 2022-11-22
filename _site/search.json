@@ -6423,7 +6423,7 @@
     "href": "model/many-models/many-models.html#simple-model",
     "title": "Many models",
     "section": "Simple model",
-    "text": "Simple model\n\nRemove growth\nProblem: 90 different countries\nStart with one: Norway\n\n\n\n\nCode\nno <- newgapminder %>% filter(country == \"Norway\")\nno_mod = lm(lifeExp ~ year, data = no)\nno1 <- no %>%\n  ggplot(mapping = aes(x = year, y = lifeExp)) +\n  geom_line() +\n  ggtitle(\"Full data =\")\nno2 <- no %>% \n  add_predictions(no_mod, var = \"pred_no\") %>% \n  ggplot(mapping = aes(x = year, y = pred_no)) +\n  geom_line() +\n  ggtitle(\"Linear trend + \")\nno3 <- no %>% \n  add_residuals(no_mod, var = \"res_no\") %>% \n  ggplot(mapping = aes(x = year, y = res_no)) +\n  geom_line() +\n  ggtitle(\" Residuals\")\nno1 + no2 + no3"
+    "text": "Simple model\n\nRemove growth\nProblem: 90 different countries\nStart with one: Norway\n\n\n\n\nCode\nno <- newgapminder %>% filter(country == \"Norway\")\nno_mod = lm(lifeExp ~ year, data = no)\nno1 <- no %>%\n  ggplot(mapping = aes(x = year, y = lifeExp)) +\n  geom_line() +\n  ggtitle(\"Full data =\")\nno2 <- no %>% \n  add_predictions(no_mod, var = \"pred_no\") %>% \n  ggplot(mapping = aes(x = year, y = pred_no)) +\n  geom_line() +\n  ggtitle(\"Linear trend + \")\nno3 <- no %>% \n  add_residuals(no_mod, var = \"res_no\") %>% \n  ggplot(mapping = aes(x = year, y = res_no)) +\n  geom_line() +\n  ggtitle(\" Residuals\")\n# since we use package patchwork\nno1 + no2 + no3"
   },
   {
     "objectID": "model/many-models/many-models.html#simple-model-1",
@@ -6535,7 +6535,7 @@
     "href": "model/many-models/many-models.html#plot-of-residuals-against-year-for-norway-1",
     "title": "Many models",
     "section": "Plot of residuals against year for Norway",
-    "text": "Plot of residuals against year for Norway\n\nShows clear signs of autocorrelation"
+    "text": "Plot of residuals against year for Norway\n\n\nShows clear signs of autocorrelation"
   },
   {
     "objectID": "model/many-models/many-models.html#plot-residuals-for-all-countries",
@@ -6563,7 +6563,7 @@
     "href": "model/many-models/many-models.html#facetting-by-continent-1",
     "title": "Many models",
     "section": "Facetting by continent",
-    "text": "Facetting by continent\n\nEurope is dull, all the action is in Africa."
+    "text": "Facetting by continent\n\n\nEurope is dull, all the action is in Africa."
   },
   {
     "objectID": "model/many-models/many-models.html#mean-lifeexp-over-country-not-population-per-continent",
@@ -8446,6 +8446,6 @@
     "href": "model/many-models/many-models.html#newgapminder",
     "title": "Many models",
     "section": "newgapminder",
-    "text": "newgapminder\n\n\nCode\nprint(head(newgapminder, n = 10))\n\n\n# A tibble: 10 × 6\n   country   continent year       lifeExp      pop gdpPercap\n   <chr>     <chr>     <date>       <dbl>    <dbl>     <dbl>\n 1 Argentina Americas  1962-01-01    64.4 21153042     5711.\n 2 Argentina Americas  1967-01-01    64.9 22828872     6255.\n 3 Argentina Americas  1972-01-01    66.2 24653172     7369.\n 4 Argentina Americas  1977-01-01    68.4 26661397     7744.\n 5 Argentina Americas  1982-01-01    70.8 28794550     7210.\n 6 Argentina Americas  1987-01-01    72.0 31184411     7294.\n 7 Argentina Americas  1992-01-01    72.6 33529320     7157.\n 8 Argentina Americas  1997-01-01    73.5 35657438     8543.\n 9 Argentina Americas  2002-01-01    74.2 37681743     6854.\n10 Argentina Americas  2007-01-01    75.1 39684303     9902."
+    "text": "newgapminder\n\n\nCode\nprint(head(newgapminder, n = 20))\n\n\n# A tibble: 20 × 6\n   country   continent year       lifeExp      pop gdpPercap\n   <chr>     <chr>     <date>       <dbl>    <dbl>     <dbl>\n 1 Argentina Americas  1962-01-01    64.4 21153042     5711.\n 2 Argentina Americas  1967-01-01    64.9 22828872     6255.\n 3 Argentina Americas  1972-01-01    66.2 24653172     7369.\n 4 Argentina Americas  1977-01-01    68.4 26661397     7744.\n 5 Argentina Americas  1982-01-01    70.8 28794550     7210.\n 6 Argentina Americas  1987-01-01    72.0 31184411     7294.\n 7 Argentina Americas  1992-01-01    72.6 33529320     7157.\n 8 Argentina Americas  1997-01-01    73.5 35657438     8543.\n 9 Argentina Americas  2002-01-01    74.2 37681743     6854.\n10 Argentina Americas  2007-01-01    75.1 39684303     9902.\n11 Argentina Americas  2012-01-01    76.0 41755188    10650.\n12 Argentina Americas  2017-01-01    76.7 43937143    10404.\n13 Australia Oceania   1962-01-01    71.2 10643420    19246.\n14 Australia Oceania   1967-01-01    71.3 11899644    22965.\n15 Australia Oceania   1972-01-01    71.6 13244163    26794.\n16 Australia Oceania   1977-01-01    73.3 14092545    28625.\n17 Australia Oceania   1982-01-01    74.8 14979203    30912.\n18 Australia Oceania   1987-01-01    76.0 16183159    33127.\n19 Australia Oceania   1992-01-01    77.4 17402179    35035.\n20 Australia Oceania   1997-01-01    78.6 18387205    40154."
   }
 ]

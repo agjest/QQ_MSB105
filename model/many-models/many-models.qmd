@@ -78,7 +78,7 @@ newgapminder <- read_csv(file = "./newgapminder.csv")
 ## newgapminder
 
 ```{r}
-print(head(newgapminder, n = 10))
+print(head(newgapminder, n = 20))
 ```
 
 ## Plotting the data for each country
@@ -141,6 +141,7 @@ no3 <- no %>%
   ggplot(mapping = aes(x = year, y = res_no)) +
   geom_line() +
   ggtitle(" Residuals")
+# since we use package patchwork
 no1 + no2 + no3
 ```
 
@@ -360,10 +361,6 @@ res_90c %>%
 
 ## Plot of residuals against year for Norway {.smaller}
 
--   Shows clear signs of autocorrelation
-
-. . .
-
 ```{r, echo = FALSE}
 res_90c %>% 
   filter(country == "Norway") %>% 
@@ -372,6 +369,8 @@ res_90c %>%
   geom_line() +
   geom_hline(yintercept = 0)
 ```
+
+-   Shows clear signs of autocorrelation
 
 ## Plot residuals for all countries
 
@@ -410,10 +409,6 @@ res_90c %>%
 
 ## Facetting by continent
 
--   Europe is dull, all the action is in Africa.
-
-. . .
-
 ```{r, echo=FALSE}
 res_90c %>% 
   ggplot(mapping = aes(x = year, y = resid)) + 
@@ -422,6 +417,8 @@ res_90c %>%
   geom_hline(yintercept = 0, colour = "white") +
   facet_wrap(~continent) 
 ```
+
+-   Europe is dull, all the action is in Africa.
 
 ## Mean lifeExp (over country not population) per continent
 
@@ -727,9 +724,8 @@ tribble(
 -   `unnest(c(list-column1, list-column2, etc.))`. - Note you now have
     to use `c()` even with one list-column.
 
-```{=html}
-<!-- -->
-```
+. . .
+
     -   Option `drop = TRUE` is now depricated.
 
     -   Use `select(-list-column, etc)` before `unnest()` if you want to

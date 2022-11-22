@@ -479,10 +479,10 @@
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">print</span>(<span class="fu">head</span>(newgapminder, <span class="at">n =</span> <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">print</span>(<span class="fu">head</span>(newgapminder, <span class="at">n =</span> <span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 6
+<pre><code># A tibble: 20 × 6
    country   continent year       lifeExp      pop gdpPercap
    &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;       &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
  1 Argentina Americas  1962-01-01    64.4 21153042     5711.
@@ -494,7 +494,17 @@
  7 Argentina Americas  1992-01-01    72.6 33529320     7157.
  8 Argentina Americas  1997-01-01    73.5 35657438     8543.
  9 Argentina Americas  2002-01-01    74.2 37681743     6854.
-10 Argentina Americas  2007-01-01    75.1 39684303     9902.</code></pre>
+10 Argentina Americas  2007-01-01    75.1 39684303     9902.
+11 Argentina Americas  2012-01-01    76.0 41755188    10650.
+12 Argentina Americas  2017-01-01    76.7 43937143    10404.
+13 Australia Oceania   1962-01-01    71.2 10643420    19246.
+14 Australia Oceania   1967-01-01    71.3 11899644    22965.
+15 Australia Oceania   1972-01-01    71.6 13244163    26794.
+16 Australia Oceania   1977-01-01    73.3 14092545    28625.
+17 Australia Oceania   1982-01-01    74.8 14979203    30912.
+18 Australia Oceania   1987-01-01    76.0 16183159    33127.
+19 Australia Oceania   1992-01-01    77.4 17402179    35035.
+20 Australia Oceania   1997-01-01    78.6 18387205    40154.</code></pre>
 </div>
 </div>
 </section>
@@ -556,7 +566,8 @@
 <span id="cb8-14"><a href="#cb8-14"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> res_no)) <span class="sc">+</span></span>
 <span id="cb8-15"><a href="#cb8-15"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb8-16"><a href="#cb8-16"></a>  <span class="fu">ggtitle</span>(<span class="st">" Residuals"</span>)</span>
-<span id="cb8-17"><a href="#cb8-17"></a>no1 <span class="sc">+</span> no2 <span class="sc">+</span> no3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-17"><a href="#cb8-17"></a><span class="co"># since we use package patchwork</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a>no1 <span class="sc">+</span> no2 <span class="sc">+</span> no3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -895,16 +906,10 @@ F-statistic:   467 on 1 and 10 DF,  p-value: 1.005e-09</code></pre>
 </section>
 <section id="plot-of-residuals-against-year-for-norway-1" class="slide level2 smaller">
 <h2>Plot of residuals against year for Norway</h2>
-<ul>
+
+<img data-src="many-models_files/figure-revealjs/unnamed-chunk-23-1.png" width="960" class="r-stretch"><ul>
 <li class="fragment">Shows clear signs of autocorrelation</li>
 </ul>
-<div class="fragment">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="many-models_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></p>
-</div>
-</div>
-</div>
 </section>
 <section id="plot-residuals-for-all-countries" class="slide level2">
 <h2>Plot residuals for all countries</h2>
@@ -941,16 +946,10 @@ F-statistic:   467 on 1 and 10 DF,  p-value: 1.005e-09</code></pre>
 </section>
 <section id="facetting-by-continent-1" class="slide level2">
 <h2>Facetting by continent</h2>
-<ul>
+
+<img data-src="many-models_files/figure-revealjs/unnamed-chunk-27-1.png" width="960" class="r-stretch"><ul>
 <li class="fragment">Europe is dull, all the action is in Africa.</li>
 </ul>
-<div class="fragment">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="many-models_files/figure-revealjs/unnamed-chunk-27-1.png" width="960"></p>
-</div>
-</div>
-</div>
 </section>
 <section id="mean-lifeexp-over-country-not-population-per-continent" class="slide level2">
 <h2>Mean lifeExp (over country not population) per continent</h2>
@@ -1435,11 +1434,12 @@ F-statistic:   467 on 1 and 10 DF,  p-value: 1.005e-09</code></pre>
 </ul></li>
 <li class="fragment"><code>unnest(c(list-column1, list-column2, etc.))</code>. - Note you now have to use <code>c()</code> even with one list-column.</li>
 </ul>
-<!-- -->
+<div class="fragment">
 <pre><code>-   Option `drop = TRUE` is now depricated.
 
 -   Use `select(-list-column, etc)` before `unnest()` if you want to
     drop some columns.</code></pre>
+</div>
 </section>
 <section id="list-to-vector" class="slide level2">
 <h2>List to vector</h2>
