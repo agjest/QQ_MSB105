@@ -61,7 +61,7 @@ knitr::write_bib(
 -   List-columns to store arbitrary data structures in a data frame
 -   broom package to turn models into tidy data.
 -   Example gapminder, we will use
-    [newgapminder](http://msb105.netlify.app/model/many-models/newgapminder.csv){download =" \"newgapminder.csv"}
+    [newgapminder](https://msb105.netlify.app/model/many-models/newgapminder.csv){download="newgapminder.csv"}
     our updated version of the dataset from last assignment
 
 ## Read in newgapminder

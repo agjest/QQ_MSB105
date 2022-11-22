@@ -6381,7 +6381,7 @@
     "href": "model/many-models/many-models.html#introduction",
     "title": "Many models",
     "section": "Introduction",
-    "text": "Introduction\n\nMany simple models on complex datasets\nList-columns to store arbitrary data structures in a data frame\nbroom package to turn models into tidy data.\nExample gapminder, we will use newgapminder{download =” \"newgapminder.csv”} our updated version of the dataset from last assignment"
+    "text": "Introduction\n\nMany simple models on complex datasets\nList-columns to store arbitrary data structures in a data frame\nbroom package to turn models into tidy data.\nExample gapminder, we will use newgapminder our updated version of the dataset from last assignment"
   },
   {
     "objectID": "model/many-models/many-models.html#read-in-newgapminder",
