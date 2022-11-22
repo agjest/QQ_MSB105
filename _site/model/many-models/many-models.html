@@ -7,7 +7,7 @@
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.0.36">
+  <meta name="generator" content="quarto-1.1.189">
 
   <meta name="author" content="ag">
   <title>MSB105 - Many models</title>
@@ -19,10 +19,15 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -452,7 +457,7 @@
 <li class="fragment">Many simple models on complex datasets</li>
 <li class="fragment">List-columns to store arbitrary data structures in a data frame</li>
 <li class="fragment">broom package to turn models into tidy data.</li>
-<li class="fragment">Example gapminder, we will use newgapminder our updated version of the dataset from last assignment</li>
+<li class="fragment">Example gapminder, we will use <a href="file://newgapminder.csv">newgapminder</a> our updated version of the dataset from last assignment</li>
 </ul>
 </section>
 <section id="read-in-newgapminder" class="slide level2">
@@ -587,8 +592,7 @@
  8 Bangladesh   Asia      &lt;tibble [12 × 4]&gt;
  9 Bahamas      Americas  &lt;tibble [12 × 4]&gt;
 10 Belize       Americas  &lt;tibble [12 × 4]&gt;
-# … with 80 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 80 more rows</code></pre>
 </div>
 </div>
 </div>
@@ -712,8 +716,7 @@
 1 Argentina Americas  &lt;tibble [12 × 4]&gt; &lt;lm&gt;  
 2 Australia Oceania   &lt;tibble [12 × 4]&gt; &lt;lm&gt;  
 3 Austria   Europe    &lt;tibble [12 × 4]&gt; &lt;lm&gt;  
-# … with 87 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 87 more rows</code></pre>
 </div>
 </div>
 </div>
@@ -824,8 +827,7 @@ F-statistic:   467 on 1 and 10 DF,  p-value: 1.005e-09</code></pre>
 2 Argentina Americas  &lt;tibble&gt; &lt;lm&gt;   1967-01-01    64.9 22828872   6255. -1.06 
 3 Argentina Americas  &lt;tibble&gt; &lt;lm&gt;   1972-01-01    66.2 24653172   7369. -0.945
 4 Argentina Americas  &lt;tibble&gt; &lt;lm&gt;   1977-01-01    68.4 26661397   7744.  0.105
-# … with 1,076 more rows, and abbreviated variable name ¹​gdpPercap
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 1,076 more rows, and abbreviated variable name ¹​gdpPercap</code></pre>
 </div>
 </div>
 </div>
@@ -849,8 +851,7 @@ F-statistic:   467 on 1 and 10 DF,  p-value: 1.005e-09</code></pre>
 3 Norway  Europe    &lt;tibble&gt; &lt;lm&gt;   1972-01-01    74.2 3933726    35368. -0.110 
 4 Norway  Europe    &lt;tibble&gt; &lt;lm&gt;   1977-01-01    75.1 4044335    43237. -0.0544
 5 Norway  Europe    &lt;tibble&gt; &lt;lm&gt;   1982-01-01    75.8 4111650    49046. -0.148 
-# … with 7 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 7 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -1028,8 +1029,7 @@ F-statistic:   467 on 1 and 10 DF,  p-value: 1.005e-09</code></pre>
 4    0.998   0.998 0.152   4524. 1.28e-14     1   6.64 -7.29
 # … with 4 more variables: BIC &lt;dbl&gt;, deviance &lt;dbl&gt;,
 #   df.residual &lt;int&gt;, nobs &lt;int&gt;, and abbreviated variable
-#   names ¹​r.squared, ²​adj.r.squared, ³​statistic
-# ℹ Use `colnames()` to see all variable names</code></pre>
+#   names ¹​r.squared, ²​adj.r.squared, ³​statistic</code></pre>
 </div>
 </div>
 </section>
@@ -1091,8 +1091,7 @@ F-statistic:   467 on 1 and 10 DF,  p-value: 1.005e-09</code></pre>
 #   p.value &lt;dbl&gt;, df &lt;dbl&gt;, logLik &lt;dbl&gt;, AIC &lt;dbl&gt;,
 #   BIC &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;,
 #   nobs &lt;int&gt;, and abbreviated variable names ¹​r.squared,
-#   ²​adj.r.squared
-# ℹ Use `colnames()` to see all variable names</code></pre>
+#   ²​adj.r.squared</code></pre>
 </div>
 </div>
 </section>
@@ -1154,8 +1153,7 @@ F-statistic:   467 on 1 and 10 DF,  p-value: 1.005e-09</code></pre>
 # … with 86 more rows, 7 more variables: df &lt;dbl&gt;,
 #   logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, deviance &lt;dbl&gt;,
 #   df.residual &lt;int&gt;, nobs &lt;int&gt;, and abbreviated variable
-#   names ¹​r.squared, ²​adj.r.squared, ³​statistic
-# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+#   names ¹​r.squared, ²​adj.r.squared, ³​statistic</code></pre>
 </div>
 </div>
 </section>
@@ -1191,8 +1189,7 @@ F-statistic:   467 on 1 and 10 DF,  p-value: 1.005e-09</code></pre>
 #   logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, deviance &lt;dbl&gt;,
 #   df.residual &lt;int&gt;, nobs &lt;int&gt;, and abbreviated variable
 #   names ¹​continent, ²​r.squared, ³​adj.r.squared,
-#   ⁴​statistic
-# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+#   ⁴​statistic</code></pre>
 </div>
 </div>
 </section>
@@ -1228,8 +1225,7 @@ F-statistic:   467 on 1 and 10 DF,  p-value: 1.005e-09</code></pre>
 #   logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, deviance &lt;dbl&gt;,
 #   df.residual &lt;int&gt;, nobs &lt;int&gt;, and abbreviated variable
 #   names ¹​continent, ²​r.squared, ³​adj.r.squared,
-#   ⁴​statistic
-# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+#   ⁴​statistic</code></pre>
 </div>
 </div>
 </section>
@@ -1415,6 +1411,7 @@ F-statistic:   467 on 1 and 10 DF,  p-value: 1.005e-09</code></pre>
 </ul></li>
 <li class="fragment"><code>unnest(c(list-column1, list-column2, etc.))</code>. - Note you now have to use <code>c()</code> even with one list-column.</li>
 </ul>
+<!-- -->
 <pre><code>-   Option `drop = TRUE` is now depricated.
 
 -   Use `select(-list-column, etc)` before `unnest()` if you want to
@@ -1711,8 +1708,7 @@ F-statistic:   467 on 1 and 10 DF,  p-value: 1.005e-09</code></pre>
 4 Australia Oceania   &lt;lm&gt;   year    6.50e-4 2.70e-5    24.1
 # … with 176 more rows, 1 more variable: p.value &lt;dbl&gt;, and
 #   abbreviated variable names ¹​estimate, ²​std.error,
-#   ³​statistic
-# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+#   ³​statistic</code></pre>
 </div>
 </div>
 </div>
@@ -1785,8 +1781,7 @@ F-statistic:   467 on 1 and 10 DF,  p-value: 1.005e-09</code></pre>
 4 Argentina Americas    68.4 1977-01-01    68.3  0.105 0.127
 # … with 1,076 more rows, 3 more variables: .sigma &lt;dbl&gt;,
 #   .cooksd &lt;dbl&gt;, .std.resid &lt;dbl&gt;, and abbreviated
-#   variable name ¹​continent
-# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+#   variable name ¹​continent</code></pre>
 </div>
 </div>
 </div>
@@ -1800,6 +1795,9 @@ F-statistic:   467 on 1 and 10 DF,  p-value: 1.005e-09</code></pre>
 <li class="fragment">Links to the vignettes are at the top of the page</li>
 </ul></li>
 </ul>
+<div class="cell">
+
+</div>
 </section>
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>
@@ -2158,7 +2156,8 @@ Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino 
       for (var i=0; i<noterefs.length; i++) {
         const ref = noterefs[i];
         tippyHover(ref, function() {
-          let href = ref.getAttribute('href');
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
