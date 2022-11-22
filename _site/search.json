@@ -8440,5 +8440,12 @@
     "title": "Very Short Intro to R",
     "section": "Lists cont.",
     "text": "Lists cont.\n\n\nCode\ntypeof(l$x)\n\n\n[1] \"integer\"\n\n\n\n\nCode\nis.vector(l$x)\n\n\n[1] TRUE\n\n\n\nl$x, element x in list l\n\n\n\n\nCode\ntypeof(l$y)\n\n\n[1] \"character\"\n\n\n\n\n\n\nCode\ntypeof(l$z)\n\n\n[1] \"double\""
+  },
+  {
+    "objectID": "model/many-models/many-models.html#newgapminder",
+    "href": "model/many-models/many-models.html#newgapminder",
+    "title": "Many models",
+    "section": "newgapminder",
+    "text": "newgapminder\n\n\nCode\nprint(head(newgapminder, n = 10))\n\n\n# A tibble: 10 × 6\n   country   continent year       lifeExp      pop gdpPercap\n   <chr>     <chr>     <date>       <dbl>    <dbl>     <dbl>\n 1 Argentina Americas  1962-01-01    64.4 21153042     5711.\n 2 Argentina Americas  1967-01-01    64.9 22828872     6255.\n 3 Argentina Americas  1972-01-01    66.2 24653172     7369.\n 4 Argentina Americas  1977-01-01    68.4 26661397     7744.\n 5 Argentina Americas  1982-01-01    70.8 28794550     7210.\n 6 Argentina Americas  1987-01-01    72.0 31184411     7294.\n 7 Argentina Americas  1992-01-01    72.6 33529320     7157.\n 8 Argentina Americas  1997-01-01    73.5 35657438     8543.\n 9 Argentina Americas  2002-01-01    74.2 37681743     6854.\n10 Argentina Americas  2007-01-01    75.1 39684303     9902."
   }
 ]

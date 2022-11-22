@@ -75,6 +75,12 @@ knitr::write_bib(
 newgapminder <- read_csv(file = "./newgapminder.csv")
 ```
 
+## newgapminder
+
+```{r}
+print(head(newgapminder, n = 10))
+```
+
 ## Plotting the data for each country
 
 ```{r, eval=FALSE}
