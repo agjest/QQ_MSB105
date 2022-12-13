@@ -7,7 +7,7 @@
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.0.36">
+  <meta name="generator" content="quarto-1.1.189">
 
   <meta name="author" content="ag">
   <title>MSB105 - Strings and regular expressions</title>
@@ -19,10 +19,15 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -550,8 +555,8 @@ second</code></pre>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="fu">str_view</span>(x, <span class="st">"an"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-e0fc513296df3475fb72" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e0fc513296df3475fb72">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li>b<span class='match'>an<\/span>ana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d7843f4957aadc3b21a0" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d7843f4957aadc3b21a0">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li>b<span class='match'>an<\/span>ana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -564,8 +569,8 @@ second</code></pre>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">str_view</span>(x, <span class="st">"a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-e86916cac030009a4e37" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e86916cac030009a4e37">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>pple<\/li>\n  <li>b<span class='match'>a<\/span>nana<\/li>\n  <li>pe<span class='match'>a<\/span>r<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a39a7b3d89d0fc916c9f" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a39a7b3d89d0fc916c9f">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>pple<\/li>\n  <li>b<span class='match'>a<\/span>nana<\/li>\n  <li>pe<span class='match'>a<\/span>r<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -578,8 +583,8 @@ second</code></pre>
 <span id="cb15-2"><a href="#cb15-2"></a><span class="fu">str_view</span>(x, <span class="st">".a."</span>) <span class="co"># Why not apple?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-af72026bfe32bf2a1957" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-af72026bfe32bf2a1957">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li><span class='match'>ban<\/span>ana<\/li>\n  <li>p<span class='match'>ear<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-995b54a31276f6dfe11e" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-995b54a31276f6dfe11e">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li><span class='match'>ban<\/span>ana<\/li>\n  <li>p<span class='match'>ear<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -601,8 +606,8 @@ second</code></pre>
 <span id="cb17-2"><a href="#cb17-2"></a><span class="fu">str_view</span>(x, <span class="st">"a</span><span class="sc">\\</span><span class="st">."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-0bde3f3a8d3e1d9cbdae" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0bde3f3a8d3e1d9cbdae">{"x":{"html":"<ul>\n  <li>ap\\ple<\/li>\n  <li>ban<span class='match'>a.<\/span>na<\/li>\n  <li>pe.ar<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-67fb3b0571f25d2e87d0" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-67fb3b0571f25d2e87d0">{"x":{"html":"<ul>\n  <li>ap\\ple<\/li>\n  <li>ban<span class='match'>a.<\/span>na<\/li>\n  <li>pe.ar<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -615,8 +620,8 @@ second</code></pre>
 <span id="cb18-2"><a href="#cb18-2"></a><span class="fu">str_view</span>(x, <span class="st">"</span><span class="sc">\\\\</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-f365d230b6fd9d66d648" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f365d230b6fd9d66d648">{"x":{"html":"<ul>\n  <li>ap<span class='match'>\\<\/span>ple<\/li>\n  <li>bana.na<\/li>\n  <li>pe.ar<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3e6a9f6490473e6760eb" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3e6a9f6490473e6760eb">{"x":{"html":"<ul>\n  <li>ap<span class='match'>\\<\/span>ple<\/li>\n  <li>bana.na<\/li>\n  <li>pe.ar<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -638,8 +643,8 @@ second</code></pre>
 <span id="cb19-2"><a href="#cb19-2"></a><span class="fu">str_view</span>(x, <span class="st">"^a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-ef934df470a160ae07dd" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ef934df470a160ae07dd">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>pple pie<\/li>\n  <li><span class='match'>a<\/span>pple<\/li>\n  <li><span class='match'>a<\/span>pple cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c69c49c683655fe2bb52" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c69c49c683655fe2bb52">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>pple pie<\/li>\n  <li><span class='match'>a<\/span>pple<\/li>\n  <li><span class='match'>a<\/span>pple cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -653,8 +658,8 @@ second</code></pre>
 <span id="cb20-2"><a href="#cb20-2"></a><span class="fu">str_view</span>(x, <span class="st">"e$"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-84d0ed262e09b41b0670" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-84d0ed262e09b41b0670">{"x":{"html":"<ul>\n  <li>apple pi<span class='match'>e<\/span><\/li>\n  <li>appl<span class='match'>e<\/span><\/li>\n  <li>apple cak<span class='match'>e<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1612eca33918c4f7fc1f" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1612eca33918c4f7fc1f">{"x":{"html":"<ul>\n  <li>apple pi<span class='match'>e<\/span><\/li>\n  <li>appl<span class='match'>e<\/span><\/li>\n  <li>apple cak<span class='match'>e<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -667,8 +672,8 @@ second</code></pre>
 <span id="cb21-2"><a href="#cb21-2"></a><span class="fu">str_view</span>(x, <span class="st">"apple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-b4e958cfa0ebc5ff3344" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b4e958cfa0ebc5ff3344">{"x":{"html":"<ul>\n  <li><span class='match'>apple<\/span> pie<\/li>\n  <li><span class='match'>apple<\/span><\/li>\n  <li><span class='match'>apple<\/span> cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-534f1e3171f58ffea1bf" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-534f1e3171f58ffea1bf">{"x":{"html":"<ul>\n  <li><span class='match'>apple<\/span> pie<\/li>\n  <li><span class='match'>apple<\/span><\/li>\n  <li><span class='match'>apple<\/span> cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -681,8 +686,8 @@ second</code></pre>
 <span id="cb22-2"><a href="#cb22-2"></a><span class="fu">str_view</span>(x, <span class="st">"^apple$"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-767c688545b127463239" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-767c688545b127463239">{"x":{"html":"<ul>\n  <li>apple pie<\/li>\n  <li><span class='match'>apple<\/span><\/li>\n  <li>apple cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-61b472173505eb1bedcc" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-61b472173505eb1bedcc">{"x":{"html":"<ul>\n  <li>apple pie<\/li>\n  <li><span class='match'>apple<\/span><\/li>\n  <li>apple cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -703,8 +708,8 @@ second</code></pre>
 <span id="cb23-2"><a href="#cb23-2"></a><span class="fu">str_view</span>(x, <span class="st">"</span><span class="sc">\\</span><span class="st">s[cp]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-475e5d250025a08d17c3" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-475e5d250025a08d17c3">{"x":{"html":"<ul>\n  <li>apple<span class='match'> p<\/span>ie<\/li>\n  <li>apple tart<\/li>\n  <li>apple<span class='match'> c<\/span>ake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-50faefce41b264527577" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-50faefce41b264527577">{"x":{"html":"<ul>\n  <li>apple<span class='match'> p<\/span>ie<\/li>\n  <li>apple tart<\/li>\n  <li>apple<span class='match'> c<\/span>ake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -718,8 +723,8 @@ second</code></pre>
 <span id="cb24-2"><a href="#cb24-2"></a><span class="fu">str_view</span>(x, <span class="st">"</span><span class="sc">\\</span><span class="st">s[^c]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-1ca9ec163cd01ba34d83" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1ca9ec163cd01ba34d83">{"x":{"html":"<ul>\n  <li>apple<span class='match'> p<\/span>ie<\/li>\n  <li>apple<span class='match'> t<\/span>art<\/li>\n  <li>apple cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7cbe17c617b71a5f07d1" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7cbe17c617b71a5f07d1">{"x":{"html":"<ul>\n  <li>apple<span class='match'> p<\/span>ie<\/li>\n  <li>apple<span class='match'> t<\/span>art<\/li>\n  <li>apple cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1471,7 +1476,8 @@ Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino 
       for (var i=0; i<noterefs.length; i++) {
         const ref = noterefs[i];
         tippyHover(ref, function() {
-          let href = ref.getAttribute('href');
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);

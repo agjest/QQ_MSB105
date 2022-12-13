@@ -248,13 +248,21 @@ knitr::include_graphics("eks-rmd-docx.png")
 -   Matematikk blir konvertert til formler som er editerbare i Word
     (ikke bilder)
 
-## Ønsket format
+## Ønsket format Rmarkdown
 
-```{r, echo = FALSE, out.height = "425px"}
-knitr::include_graphics("knitr-meny.png")
-```
+![Velg format fra knitr menyen.](knitr-meny.png)
+
+. . .
 
 -   Vi velger ønsket format vha. `knitr` menyen.
+
+## Ønsket format Quarto dokument
+
+![Klikk Render knappen. Hvis vi har definert flere format (pdf. html,
+docx) i YAML vil vi se en liten drop-down meny til høyre for Render
+kappen. Her kan vi velge hvilket format vi ønsker å «rendre»
+til.](render.png)
+
 -   Med Quarto velger vi **Render** fra ikon-linjen øverst i editoren
     (øvre venstre «pane»).
 
@@ -267,4 +275,3 @@ knitr::include_graphics("knitr-meny.png")
 -   For en presentasjon ville vi hatt andre alternativer (som
     Powerpoint) og **revealjs**. Ønsket format blir angitt i YAML,
     f.eks. `format: revealjs`.
-

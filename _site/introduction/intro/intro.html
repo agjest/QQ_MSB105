@@ -7,7 +7,7 @@
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.0.36">
+  <meta name="generator" content="quarto-1.1.189">
 
   <title>MSB105 - Introduksjon Data Science</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,10 +18,15 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -658,19 +663,23 @@
 <li class="fragment">Matematikk blir konvertert til formler som er editerbare i Word (ikke bilder)</li>
 </ul>
 </section>
-<section id="ønsket-format" class="slide level2">
-<h2>Ønsket format</h2>
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="knitr-meny.png" width="375" height="425"></p>
-</div>
-</div>
+<section id="ønsket-format-rmarkdown" class="slide level2">
+<h2>Ønsket format Rmarkdown</h2>
+
+<img data-src="knitr-meny.png" class="r-stretch quarto-figure-center"><p class="caption">Velg format fra knitr menyen.</p><div class="fragment">
 <ul>
 <li class="fragment">Vi velger ønsket format vha. <code>knitr</code> menyen.</li>
+</ul>
+</div>
+</section>
+<section id="ønsket-format-quarto-dokument" class="slide level2">
+<h2>Ønsket format Quarto dokument</h2>
+
+<img data-src="render.png" class="r-stretch quarto-figure-center"><p class="caption">Klikk Render knappen. Hvis vi har definert flere format (pdf. html, docx) i YAML vil vi se en liten drop-down meny til høyre for Render kappen. Her kan vi velge hvilket format vi ønsker å «rendre» til.</p><ul>
 <li class="fragment">Med Quarto velger vi <strong>Render</strong> fra ikon-linjen øverst i editoren (øvre venstre «pane»).</li>
 </ul>
 </section>
-<section id="ønsket-format-1" class="slide level2">
+<section id="ønsket-format" class="slide level2">
 <h2>Ønsket format</h2>
 <ul>
 <li class="fragment">Dokumentformatene .pdf, .html og .docx er de mest relevante alternativene</li>
@@ -1003,7 +1012,8 @@
       for (var i=0; i<noterefs.length; i++) {
         const ref = noterefs[i];
         tippyHover(ref, function() {
-          let href = ref.getAttribute('href');
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);

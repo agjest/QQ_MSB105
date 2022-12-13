@@ -7,7 +7,7 @@
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.0.36">
+  <meta name="generator" content="quarto-1.1.189">
 
   <meta name="author" content="ag">
   <title>MSB105 - Transforming Data</title>
@@ -19,10 +19,15 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -784,8 +789,7 @@
 #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
 #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, and
 #   abbreviated variable names ¹​sched_dep_time, ²​dep_delay,
-#   ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay
-# ℹ Use `colnames()` to see all variable names</code></pre>
+#   ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay</code></pre>
 </div>
 </div>
 </section>
@@ -813,8 +817,7 @@
 #   flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
 #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;,
 #   time_hour &lt;dttm&gt;, and abbreviated variable names ¹​sched_dep_time,
-#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay
-# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay</code></pre>
 </div>
 </div>
 </section>
@@ -842,8 +845,7 @@
 #   flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
 #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;,
 #   time_hour &lt;dttm&gt;, and abbreviated variable names ¹​sched_dep_time,
-#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay
-# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay</code></pre>
 </div>
 </div>
 <ul>
@@ -879,8 +881,7 @@
 #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
 #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, and
 #   abbreviated variable names ¹​sched_dep_time, ²​dep_delay,
-#   ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay
-# ℹ Use `colnames()` to see all variable names</code></pre>
+#   ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay</code></pre>
 </div>
 </div>
 </section>
@@ -909,8 +910,7 @@
 #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
 #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, and
 #   abbreviated variable names ¹​sched_dep_time, ²​dep_delay,
-#   ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay
-# ℹ Use `colnames()` to see all variable names</code></pre>
+#   ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay</code></pre>
 </div>
 </div>
 </section>
@@ -1081,8 +1081,7 @@
 #   flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
 #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;,
 #   time_hour &lt;dttm&gt;, and abbreviated variable names ¹​sched_dep_time,
-#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay
-# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay</code></pre>
 </div>
 </div>
 </section>
@@ -1113,8 +1112,7 @@
 #   flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
 #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;,
 #   time_hour &lt;dttm&gt;, and abbreviated variable names ¹​sched_dep_time,
-#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay
-# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay</code></pre>
 </div>
 </div>
 </section>
@@ -1144,8 +1142,7 @@
 #   flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
 #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;,
 #   time_hour &lt;dttm&gt;, and abbreviated variable names ¹​sched_dep_time,
-#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay
-# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay</code></pre>
 </div>
 </div>
 </section>
@@ -1170,8 +1167,7 @@
  8     1     1  2013       -14
  9     1     1  2013        -8
 10     1     1  2013         8
-# … with 336,766 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 336,766 more rows</code></pre>
 </div>
 </div>
 <ul>
@@ -1747,7 +1743,8 @@
       for (var i=0; i<noterefs.length; i++) {
         const ref = noterefs[i];
         tippyHover(ref, function() {
-          let href = ref.getAttribute('href');
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);

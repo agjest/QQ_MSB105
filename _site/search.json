@@ -238,13 +238,6 @@
     "text": "Factors in tidyverse; forcats\n\nPart of core tidyverse (i.e. library(tidyverse) will load forecats)\nHow to make a factor variable?\n\n\n\n\nCode\n# Some alternatives Long Abbreviations for Days\nx <- c(\"Mon\", \"Tue\", \"Tues\", \"Wed\", \"Thu\", \"Thur\", \"Thurs\", \"Fri\", \"Sat\", \"Sun\")\nset.seed(1234)\ndf_days <- tibble(\n  days = sample(x, size = 100, replace = TRUE)\n  )\ndf_days %>% table()\n\n\ndays\n  Fri   Mon   Sat   Sun   Thu  Thur Thurs   Tue  Tues   Wed \n   11     7     8    11    10    17     6     6    11    13 \n\n\n\nThursday is abbreviated in three different ways, while Tuesday are abbreviated in two different ways."
   },
   {
-    "objectID": "wrangle-data/factors/factors.html#factors-in-tidyverse-forcats-1",
-    "href": "wrangle-data/factors/factors.html#factors-in-tidyverse-forcats-1",
-    "title": "Factors",
-    "section": "Factors in tidyverse; forcats",
-    "text": "Factors in tidyverse; forcats\n\nPart of core tidyverse (i.e. library(tidyverse) will load forecats)\nHow to make a factor variable?\n\n\n\n\nCode\n# Some alternatives Long Abbreviations for Days\nx <- c(\"Mon\", \"Tue\", \"Tues\", \"Wed\", \"Thu\", \"Thur\", \"Thurs\", \"Fri\", \"Sat\", \"Sun\")\nset.seed(1234)\ndf_days <- tibble(\n  days = sample(x, size = 100, replace = TRUE)\n  )\ndf_days %>% table()\n\n\ndays\n  Fri   Mon   Sat   Sun   Thu  Thur Thurs   Tue  Tues   Wed \n   11     7     8    11    10    17     6     6    11    13"
-  },
-  {
     "objectID": "wrangle-data/factors/factors.html#how-to-fix-this",
     "href": "wrangle-data/factors/factors.html#how-to-fix-this",
     "title": "Factors",
@@ -280,22 +273,8 @@
     "text": "How to fix this, cont.\n\nparse_factor() gives us proper warnings.\nAfter the warnings we can table again with the option useNA = \"always\".\n\n\n\n\nCode\ntable(df_days$days_fixed, useNA = \"always\")\n\n\n\n Sun  Mon  Tue  Wed  Thu  Fri  Sat <NA> \n  11    7   17   13   27   11    8    6"
   },
   {
-    "objectID": "wrangle-data/factors/factors.html#how-to-fix-this-cont.-4",
-    "href": "wrangle-data/factors/factors.html#how-to-fix-this-cont.-4",
-    "title": "Factors",
-    "section": "How to fix this, cont.",
-    "text": "How to fix this, cont.\n\nparse_factor() gives us proper warnings.\nAfter the warnings we can table again with the option useNA = \"always\".\n\n\n\n\nCode\ntable(df_days$days_fixed, useNA = \"always\")\n\n\n\n Sun  Mon  Tue  Wed  Thu  Fri  Sat <NA> \n  11    7   17   13   27   11    8    6"
-  },
-  {
     "objectID": "wrangle-data/factors/factors.html#how-to-fix-this-cont",
     "href": "wrangle-data/factors/factors.html#how-to-fix-this-cont",
-    "title": "Factors",
-    "section": "How to fix this, cont",
-    "text": "How to fix this, cont\n\nThen we can fix our problem (add “Thurs”)\n\n\n\n\nCode\ndf_days <- df_days %>%\n  mutate(\n    days_fixed = parse_factor(\n      case_when(\n        days %in% c(\"Tues\") ~ \"Tue\",\n        days %in% c(\"Thur\", \"Thurs\") ~ \"Thu\",\n        # the others just like days\n        TRUE ~ days\n      ),\n      levels = day_levels\n    )\n  )\ndf_days %>%\n  select(days_fixed) %>%\n  table(useNA = \"always\")\n\n\ndays_fixed\n Sun  Mon  Tue  Wed  Thu  Fri  Sat <NA> \n  11    7   17   13   33   11    8    0"
-  },
-  {
-    "objectID": "wrangle-data/factors/factors.html#how-to-fix-this-cont-1",
-    "href": "wrangle-data/factors/factors.html#how-to-fix-this-cont-1",
     "title": "Factors",
     "section": "How to fix this, cont",
     "text": "How to fix this, cont\n\nThen we can fix our problem (add “Thurs”)\n\n\n\n\nCode\ndf_days <- df_days %>%\n  mutate(\n    days_fixed = parse_factor(\n      case_when(\n        days %in% c(\"Tues\") ~ \"Tue\",\n        days %in% c(\"Thur\", \"Thurs\") ~ \"Thu\",\n        # the others just like days\n        TRUE ~ days\n      ),\n      levels = day_levels\n    )\n  )\ndf_days %>%\n  select(days_fixed) %>%\n  table(useNA = \"always\")\n\n\ndays_fixed\n Sun  Mon  Tue  Wed  Thu  Fri  Sat <NA> \n  11    7   17   13   33   11    8    0"
@@ -308,32 +287,32 @@
     "text": "Automatic levels\n\nNote! The order of the levels is mainly of significance in visualisations, i.e. when we present our results\nAbove we specified the levels explicitly\nAutomatic levels:\n\nAlphabetic order\nWhen they first occur levels = unique(variable_name)\nFix it after creation with fct_inorder() that gives the order in which they first occur or\nfct_infreq() according to frequency or\nfct_inseq() according to value (numeric values) in combination with fct_rev() or\nfct_reorder() for more general reorder, se r4ds 15.4 for example."
   },
   {
-    "objectID": "wrangle-data/factors/factors.html#automatic-levels-1",
-    "href": "wrangle-data/factors/factors.html#automatic-levels-1",
+    "objectID": "wrangle-data/factors/factors.html#automatic-levels-cont.",
+    "href": "wrangle-data/factors/factors.html#automatic-levels-cont.",
     "title": "Factors",
-    "section": "Automatic levels",
-    "text": "Automatic levels\n\n\nCode\nhead(df_days$days_fixed, n = 5)\n\n\n[1] Sun Thu Thu Sat Thu\nLevels: Sun Mon Tue Wed Thu Fri Sat\n\n\nCode\ndf_days <- df_days %>%\n  mutate(\n    day_of_the_week = as.numeric(days_fixed)\n  )\nhead(df_days$day_of_the_week, n = 5)\n\n\n[1] 1 5 5 7 5"
+    "section": "Automatic levels cont.",
+    "text": "Automatic levels cont.\n\n\nCode\nhead(df_days$days_fixed, n = 5)\n\n\n[1] Sun Thu Thu Sat Thu\nLevels: Sun Mon Tue Wed Thu Fri Sat\n\n\nCode\ndf_days <- df_days %>%\n  mutate(\n    day_of_the_week = as.numeric(days_fixed)\n  )\nhead(df_days$day_of_the_week, n = 5)\n\n\n[1] 1 5 5 7 5"
   },
   {
-    "objectID": "wrangle-data/factors/factors.html#automatic-levels-2",
-    "href": "wrangle-data/factors/factors.html#automatic-levels-2",
+    "objectID": "wrangle-data/factors/factors.html#automatic-levels-cont.-1",
+    "href": "wrangle-data/factors/factors.html#automatic-levels-cont.-1",
     "title": "Factors",
-    "section": "Automatic levels",
-    "text": "Automatic levels\n\n\nCode\ndf_days <- df_days %>% \n  mutate(\n    # convert day_of_the_week to character\n    day_of_the_week = as.character(day_of_the_week),\n    # convert day_of_the_week to factor\n    day_of_the_week = parse_factor(day_of_the_week)\n  )\ndf_days[1:6,]\n\n\n# A tibble: 6 × 3\n  days  days_fixed day_of_the_week\n  <chr> <fct>      <fct>          \n1 Sun   Sun        1              \n2 Thu   Thu        5              \n3 Thu   Thu        5              \n4 Sat   Sat        7              \n5 Thu   Thu        5              \n6 Thu   Thu        5"
+    "section": "Automatic levels cont.",
+    "text": "Automatic levels cont.\n\n\nCode\ndf_days <- df_days %>% \n  mutate(\n    # first convert day_of_the_week to character\n    day_of_the_week = as.character(day_of_the_week),\n    # then convert day_of_the_week to factor\n    day_of_the_week = parse_factor(day_of_the_week)\n  )\ndf_days[1:6,]\n\n\n# A tibble: 6 × 3\n  days  days_fixed day_of_the_week\n  <chr> <fct>      <fct>          \n1 Sun   Sun        1              \n2 Thu   Thu        5              \n3 Thu   Thu        5              \n4 Sat   Sat        7              \n5 Thu   Thu        5              \n6 Thu   Thu        5"
   },
   {
-    "objectID": "wrangle-data/factors/factors.html#automatic-levels-3",
-    "href": "wrangle-data/factors/factors.html#automatic-levels-3",
+    "objectID": "wrangle-data/factors/factors.html#automatic-levels-cont.-2",
+    "href": "wrangle-data/factors/factors.html#automatic-levels-cont.-2",
     "title": "Factors",
-    "section": "Automatic levels",
-    "text": "Automatic levels\n\n\nCode\nlevels(df_days$day_of_the_week)\n\n\n[1] \"1\" \"5\" \"7\" \"4\" \"3\" \"6\" \"2\"\n\n\n\nThe ordering of the levels is determined by when a value occurs."
+    "section": "Automatic levels cont.",
+    "text": "Automatic levels cont.\n\n\nCode\nlevels(df_days$day_of_the_week)\n\n\n[1] \"1\" \"5\" \"7\" \"4\" \"3\" \"6\" \"2\"\n\n\n\nThe ordering of the levels is determined by when a value occurs."
   },
   {
-    "objectID": "wrangle-data/factors/factors.html#automatic-levels-4",
-    "href": "wrangle-data/factors/factors.html#automatic-levels-4",
+    "objectID": "wrangle-data/factors/factors.html#automatic-levels-cont.-3",
+    "href": "wrangle-data/factors/factors.html#automatic-levels-cont.-3",
     "title": "Factors",
-    "section": "Automatic levels",
-    "text": "Automatic levels\n\n\nCode\ndf_days$day_of_the_week <- fct_inseq(df_days$day_of_the_week)\nlevels(df_days$day_of_the_week)\n\n\n[1] \"1\" \"2\" \"3\" \"4\" \"5\" \"6\" \"7\"\n\n\n\n\nCode\ndf_days %>% \n  filter(days_fixed == \"Thu\") %>% \n  head(n=5)\n\n\n# A tibble: 5 × 3\n  days  days_fixed day_of_the_week\n  <chr> <fct>      <fct>          \n1 Thu   Thu        5              \n2 Thu   Thu        5              \n3 Thu   Thu        5              \n4 Thu   Thu        5              \n5 Thurs Thu        5              \n\n\n\nLevels are ordered after number."
+    "section": "Automatic levels cont.",
+    "text": "Automatic levels cont.\n\n\nCode\ndf_days$day_of_the_week <- fct_inseq(df_days$day_of_the_week)\nlevels(df_days$day_of_the_week)\n\n\n[1] \"1\" \"2\" \"3\" \"4\" \"5\" \"6\" \"7\"\n\n\n\n\nCode\ndf_days %>% \n  filter(days_fixed == \"Thu\") %>% \n  head(n = 5)\n\n\n# A tibble: 5 × 3\n  days  days_fixed day_of_the_week\n  <chr> <fct>      <fct>          \n1 Thu   Thu        5              \n2 Thu   Thu        5              \n3 Thu   Thu        5              \n4 Thu   Thu        5              \n5 Thurs Thu        5              \n\n\n\nLevels are ordered after number."
   },
   {
     "objectID": "wrangle-data/factors/factors.html#fct_infreq",
@@ -352,13 +331,6 @@
   {
     "objectID": "wrangle-data/factors/factors.html#recoding-factors",
     "href": "wrangle-data/factors/factors.html#recoding-factors",
-    "title": "Factors",
-    "section": "Recoding factors",
-    "text": "Recoding factors\n\nPerhaps we want to change the names of the different levels\nfct_recode() can help\nfct_relevel() change the ordering of the levels\n\n\n\n\nCode\n# Norwegian abbreviations \ndf_days <- df_days %>%\n  mutate(\n    days_nor = days_fixed,\n    days_nor = fct_recode(days_nor,\n      \"søn\" = \"Sun\",\n      \"man\" = \"Mon\",\n      \"tir\" = \"Tue\",\n      \"ons\" = \"Wed\",\n      \"tor\" = \"Thu\",\n      \"fre\" = \"Fri\",\n      \"lør\" = \"Sat\",\n    ),\n    # monday first day of week\n    days_nor = fct_relevel(days_nor, \"søn\", after = 6)\n  )\nlevels(df_days$days_nor)\n\n\n[1] \"man\" \"tir\" \"ons\" \"tor\" \"fre\" \"lør\" \"søn\""
-  },
-  {
-    "objectID": "wrangle-data/factors/factors.html#recoding-factors-1",
-    "href": "wrangle-data/factors/factors.html#recoding-factors-1",
     "title": "Factors",
     "section": "Recoding factors",
     "text": "Recoding factors\n\nPerhaps we want to change the names of the different levels\nfct_recode() can help\nfct_relevel() change the ordering of the levels\n\n\n\n\nCode\n# Norwegian abbreviations \ndf_days <- df_days %>%\n  mutate(\n    days_nor = days_fixed,\n    days_nor = fct_recode(days_nor,\n      \"søn\" = \"Sun\",\n      \"man\" = \"Mon\",\n      \"tir\" = \"Tue\",\n      \"ons\" = \"Wed\",\n      \"tor\" = \"Thu\",\n      \"fre\" = \"Fri\",\n      \"lør\" = \"Sat\",\n    ),\n    # monday first day of week\n    days_nor = fct_relevel(days_nor, \"søn\", after = 6)\n  )\nlevels(df_days$days_nor)\n\n\n[1] \"man\" \"tir\" \"ons\" \"tor\" \"fre\" \"lør\" \"søn\""
@@ -462,11 +434,18 @@
     "text": "To date object\n\n\nCode\nstr(no_d)\n\n\n Date[1:1], format: \"2001-09-11\"\n\n\nCode\nstr(us_d)\n\n\n Date[1:1], format: \"2001-09-11\"\n\n\nCode\nas.numeric(no_d)\n\n\n[1] 11576\n\n\nCode\nas.numeric(us_d)\n\n\n[1] 11576"
   },
   {
-    "objectID": "wrangle-data/time-data/time-data.html#to-date-object-1",
-    "href": "wrangle-data/time-data/time-data.html#to-date-object-1",
+    "objectID": "wrangle-data/time-data/time-data.html#to-date-object-cont.",
+    "href": "wrangle-data/time-data/time-data.html#to-date-object-cont.",
     "title": "Time Data",
-    "section": "To date object",
-    "text": "To date object\n\n\nCode\nus_d - no_d\n\n\nTime difference of 0 days\n\n\nCode\nmonth(us_d)\n\n\n[1] 9\n\n\nCode\nmonth(us_d, label = TRUE)\n\n\n[1] Sep\n12 Levels: Jan < Feb < Mar < Apr < May < Jun < Jul < Aug < Sep < ... < Dec\n\n\nCode\nmonth(us_d, label = TRUE, abbr = TRUE)\n\n\n[1] Sep\n12 Levels: Jan < Feb < Mar < Apr < May < Jun < Jul < Aug < Sep < ... < Dec\n\n\nCode\nmonth(us_d, label = TRUE, abbr = FALSE)\n\n\n[1] September\n12 Levels: January < February < March < April < May < June < ... < December\n\n\n\n\nCode\n# Get code for locale with command \n# locale -a \n# in Terminal\nmonth(no_d, label = TRUE, abbr = FALSE, locale = \"no_NO\")\n\n\n[1] september\n12 Levels: januar < februar < mars < april < mai < juni < juli < ... < desember\n\n\n\n\nCode\nmonth(no_d, label = TRUE, abbr = TRUE, locale = \"no_NO\")\n\n\n[1] sep\n12 Levels: jan < feb < mar < apr < mai < jun < jul < aug < sep < ... < des"
+    "section": "To date object cont.",
+    "text": "To date object cont.\n\n\nCode\nus_d - no_d\n\n\nTime difference of 0 days\n\n\nCode\nmonth(us_d)\n\n\n[1] 9\n\n\nCode\nmonth(us_d, label = TRUE)\n\n\n[1] Sep\n12 Levels: Jan < Feb < Mar < Apr < May < Jun < Jul < Aug < Sep < ... < Dec\n\n\nCode\nmonth(us_d, label = TRUE, abbr = TRUE)\n\n\n[1] Sep\n12 Levels: Jan < Feb < Mar < Apr < May < Jun < Jul < Aug < Sep < ... < Dec"
+  },
+  {
+    "objectID": "wrangle-data/time-data/time-data.html#to-date-object-cont.-1",
+    "href": "wrangle-data/time-data/time-data.html#to-date-object-cont.-1",
+    "title": "Time Data",
+    "section": "To date object cont.",
+    "text": "To date object cont.\n\n\nCode\nmonth(us_d, label = TRUE, abbr = FALSE)\n\n\n[1] September\n12 Levels: January < February < March < April < May < June < ... < December\n\n\n\n\nCode\n# Get code for locale with command \n# locale -a \n# in Terminal\nmonth(no_d, label = TRUE, abbr = FALSE, locale = \"no_NO\")\n\n\n[1] september\n12 Levels: januar < februar < mars < april < mai < juni < juli < ... < desember\n\n\n\n\nCode\nmonth(no_d, label = TRUE, abbr = TRUE, locale = \"no_NO\")\n\n\n[1] sep\n12 Levels: jan < feb < mar < apr < mai < jun < jul < aug < sep < ... < des"
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#date-object-math",
@@ -508,18 +487,11 @@
     "href": "wrangle-data/time-data/time-data.html#change-type",
     "title": "Time Data",
     "section": "Change type",
-    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2022-09-27\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2022-09-27 13:05:17 CEST\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2022-09-27\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2022-09-27 UTC\""
+    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2022-12-13\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2022-12-13 08:34:07 CET\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2022-12-13\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2022-12-13 UTC\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#different-inputs",
     "href": "wrangle-data/time-data/time-data.html#different-inputs",
-    "title": "Time Data",
-    "section": "Different inputs",
-    "text": "Different inputs\n\nYou never know what you have to deal with\ndmy() and friends are quite smart\n\n\n\n\nCode\nmy_dato <- \"11_9_01\"\ndmy(my_dato)\n\n\n[1] \"2001-09-11\"\n\n\nCode\nmy_dato <- \"11:9:01\"\ndmy(my_dato)\n\n\n[1] \"2001-09-11\""
-  },
-  {
-    "objectID": "wrangle-data/time-data/time-data.html#different-inputs-1",
-    "href": "wrangle-data/time-data/time-data.html#different-inputs-1",
     "title": "Time Data",
     "section": "Different inputs",
     "text": "Different inputs\n\nYou never know what you have to deal with\ndmy() and friends are quite smart\n\n\n\n\nCode\nmy_dato <- \"11_9_01\"\ndmy(my_dato)\n\n\n[1] \"2001-09-11\"\n\n\nCode\nmy_dato <- \"11:9:01\"\ndmy(my_dato)\n\n\n[1] \"2001-09-11\""
@@ -599,28 +571,28 @@
     "href": "wrangle-data/time-data/time-data.html#an-example-my_life",
     "title": "Time Data",
     "section": "An example: my_life",
-    "text": "An example: my_life\n\nPlaying with time and writing a function\n\n\n\n\nCode\nmy_life <- function(birthday = \"25121964\", unit = \"weeks\") {\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\nmy_life() # with default values\n\n\n[1] \"You are about 3013.57142857143 weeks old.\""
+    "text": "An example: my_life\n\nPlaying with time and writing a function\n\n\n\n\nCode\nmy_life <- function(birthday = \"25121964\", unit = \"weeks\") {\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\nmy_life() # with default values\n\n\n[1] \"You are about 3024.57142857143 weeks old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#an-example-my_life-1",
     "href": "wrangle-data/time-data/time-data.html#an-example-my_life-1",
     "title": "Time Data",
     "section": "An example: my_life",
-    "text": "An example: my_life\n\nsome are just too young to play with R\n\n\n\n\nCode\nmy_life <- function(birthday = \"25121964\", unit = \"weeks\") {\n# too young to play with R, week as unit\nif (as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))/52.25 < 5) {\nreturn(\"You are far too young to play with R!\")\n}\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\n\n\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3013.57142857143 weeks old.\""
+    "text": "An example: my_life\n\nsome are just too young to play with R\n\n\n\n\nCode\nmy_life <- function(birthday = \"25121964\", unit = \"weeks\") {\n# too young to play with R, week as unit\nif (as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))/52.25 < 5) {\nreturn(\"You are far too young to play with R!\")\n}\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\n\n\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3024.57142857143 weeks old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#an-example-my_life-2",
     "href": "wrangle-data/time-data/time-data.html#an-example-my_life-2",
     "title": "Time Data",
     "section": "An example: my_life",
-    "text": "An example: my_life\n\nPerhaps we should round off our answer.\n\n\n\n\nCode\nmy_life <- function(birthday = \"01012020\", unit = \"weeks\") {\n  # find the difference between today and birthday with week as unit\n  life_w <- as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))\n  # too young to play with R, week as unit\n  if (life_w / 52.25 < 5) {\n    return(\"You are far too young to play with R!\")\n  } else {\n    # find the difference between today and birthday measured in unit\n    life = round(as.numeric(difftime(today(), dmy(birthday), units = unit)), 0)\n    # one case for each unit\n    case_when(\n      unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n      unit == \"days\" ~ paste(\"You are about\", life, \"days old.\"),\n      unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n      unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n      unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n    )\n  }\n}\nmy_life(01032016)\n\n\n[1] \"You are about 343 weeks old.\""
+    "text": "An example: my_life\n\nPerhaps we should round off our answer.\n\n\n\n\nCode\nmy_life <- function(birthday = \"01012020\", unit = \"weeks\") {\n  # find the difference between today and birthday with week as unit\n  life_w <- as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))\n  # too young to play with R, week as unit\n  if (life_w / 52.25 < 5) {\n    return(\"You are far too young to play with R!\")\n  } else {\n    # find the difference between today and birthday measured in unit\n    life = round(as.numeric(difftime(today(), dmy(birthday), units = unit)), 0)\n    # one case for each unit\n    case_when(\n      unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n      unit == \"days\" ~ paste(\"You are about\", life, \"days old.\"),\n      unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n      unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n      unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n    )\n  }\n}\nmy_life(01032016)\n\n\n[1] \"You are about 354 weeks old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#testing-my_life",
     "href": "wrangle-data/time-data/time-data.html#testing-my_life",
     "title": "Time Data",
     "section": "Testing my_life()",
-    "text": "Testing my_life()\n\n\nCode\nmy_life(\"01032005\", unit = \"weeks\")\n\n\n[1] \"You are about 917 weeks old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"days\")\n\n\n[1] \"You are about 6419 days old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"mins\")\n\n\n[1] \"You are about 9243360 minutes old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"secs\")\n\n\n[1] \"You are about 554601600 seconds old.\""
+    "text": "Testing my_life()\n\n\nCode\nmy_life(\"01032005\", unit = \"weeks\")\n\n\n[1] \"You are about 928 weeks old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"days\")\n\n\n[1] \"You are about 6496 days old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"mins\")\n\n\n[1] \"You are about 9354240 minutes old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"secs\")\n\n\n[1] \"You are about 561254400 seconds old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#an-example-my_life-3",
@@ -641,7 +613,7 @@
     "href": "wrangle-data/time-data/time-data.html#final-testing",
     "title": "Time Data",
     "section": "Final testing",
-    "text": "Final testing\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"years\")\n\n\n[1] \"You are about 57.68 years old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"months\")\n\n\n[1] \"You are about 692.11 months old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3014 weeks old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"days\")\n\n\n[1] \"You are about 21095 days old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"hours\")\n\n\n[1] \"You are about 506280 hours old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"mins\")\n\n\n[1] \"You are about 30.376.800 minutes old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"secs\")\n\n\n[1] \"You are about 1.822.608.000 seconds old.\""
+    "text": "Final testing\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"years\")\n\n\n[1] \"You are about 57.89 years old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"months\")\n\n\n[1] \"You are about 694.64 months old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3025 weeks old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"days\")\n\n\n[1] \"You are about 21172 days old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"hours\")\n\n\n[1] \"You are about 508128 hours old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"mins\")\n\n\n[1] \"You are about 30.487.680 minutes old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"secs\")\n\n\n[1] \"You are about 1.829.260.800 seconds old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#references",
@@ -711,7 +683,7 @@
     "href": "wrangle-data/tibbles/tibbles.html#printing-to-console-large-tibbles",
     "title": "Tibbles",
     "section": "Printing to console large tibbles",
-    "text": "Printing to console large tibbles\n\n\nCode\nclass(mtcars)\n\n\n[1] \"data.frame\"\n\n\n\n\nCode\nas_tibble(mtcars)\n\n\n# A tibble: 32 × 11\n     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb\n   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>\n 1  21       6  160    110  3.9   2.62  16.5     0     1     4     4\n 2  21       6  160    110  3.9   2.88  17.0     0     1     4     4\n 3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1\n 4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1\n 5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2\n 6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1\n 7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4\n 8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2\n 9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2\n10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4\n# … with 22 more rows\n# ℹ Use `print(n = ...)` to see more rows"
+    "text": "Printing to console large tibbles\n\n\nCode\nclass(mtcars)\n\n\n[1] \"data.frame\"\n\n\n\n\nCode\nas_tibble(mtcars)\n\n\n# A tibble: 32 × 11\n     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb\n   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>\n 1  21       6  160    110  3.9   2.62  16.5     0     1     4     4\n 2  21       6  160    110  3.9   2.88  17.0     0     1     4     4\n 3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1\n 4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1\n 5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2\n 6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1\n 7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4\n 8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2\n 9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2\n10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4\n# … with 22 more rows"
   },
   {
     "objectID": "wrangle-data/tibbles/tibbles.html#picking-values-from-tibble-in-a-pipe",
@@ -1460,28 +1432,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\n\nTime difference of 1.200979 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\n\nTime difference of 1.179543 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\n\nTime difference of 1.352358 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\n\nTime difference of 1.337013 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n\nCode\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n\n[1] 12.6"
+    "text": "Speed Difference\n\n\nCode\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n\n[1] 13.35"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\n\nTime difference of 0.02826595 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 4684.41"
+    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\n\nTime difference of 0.02741003 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 4777.82"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#other-types-of-vectors-logical",
@@ -1531,6 +1503,13 @@
     "title": "Very Short Intro to R",
     "section": "Lists cont.",
     "text": "Lists cont.\n\nFind the name of list elements\n\n\n\n\nCode\n#make copy of l\nll <- l\nnames(ll)\n\n\n[1] \"x\" \"y\" \"z\"\n\n\n\nchange name of first element in the list ll\n\n\n\n\n\nCode\nnames(ll)[1] <- \"New Name\"\n\n\n\n\nCode\nnames(ll)\n\n\n[1] \"New Name\" \"y\"        \"z\"       \n\n\n\n\nCode\nrm(ll)"
+  },
+  {
+    "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#lists-cont.-1",
+    "href": "introduction/very-short-intro-r/very-short-intro-r.html#lists-cont.-1",
+    "title": "Very Short Intro to R",
+    "section": "Lists cont.",
+    "text": "Lists cont.\n\n\nCode\ntypeof(l$x)\n\n\n[1] \"integer\"\n\n\n\n\nCode\nis.vector(l$x)\n\n\n[1] TRUE\n\n\n\nl$x, element x in list l\n\n\n\n\nCode\ntypeof(l$y)\n\n\n[1] \"character\"\n\n\n\n\n\n\nCode\ntypeof(l$z)\n\n\n[1] \"double\""
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#list-in-list",
@@ -2111,28 +2090,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\nTime difference of 1.260258 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx <- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d1 <- t2 - t1)\n\nTime difference of 1.157191 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\nTime difference of 1.392098 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 <- Sys.time()\nx <- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 <- Sys.time()\n(d2 <- t2 - t1)\n\nTime difference of 1.31362 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 10.46"
+    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 13.52"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\nTime difference of 0.026335 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 5186.11"
+    "text": "The R way\n\nset.seed(666)\nt1 <- Sys.time()\nx <- rnorm(1000000)\nt2 <- Sys.time()\n(d3 <- t2 - t1)\n\nTime difference of 0.02624011 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 4906.15"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#other-types-of-vectors-logical",
@@ -2646,13 +2625,6 @@
     "text": "The ideas of Gentleman and Temple Lang (2003), which were implemented by Gentleman (2005) when parts of Golub et al. (1999) was reproduced as a compendium (Gentleman and Temple Lang, 2003), i.e. reproducible research. The RStudio Team (2020) implementation of R Notebookis a modern implementation of the same basic ideas. R Notebooks achieves this by using the R Core Team (2020) packages knitr(Xie, 2014) and rmarkdown (Allaire et al., 2020). The process is documented in Xie (2015), Xie (2020), Xie et al. (2018) and Wickham and Grolemund (2016). R Notebooks support mathematical typesetting via $$, see (Lamport, 1986) and also (knuth1986texbook?), and can be converted to different output formats with the help of Pandoc (Pandoc - Pandoc User’s Guide, n.d.).\nFuther tips might be found in Tierney (n.d.)."
   },
   {
-    "objectID": "introduction/s-d-d/cite.html#references",
-    "href": "introduction/s-d-d/cite.html#references",
-    "title": "Citations in R Notebooks",
-    "section": "References",
-    "text": "References\n\n\nAllaire, J., Xie, Y., McPherson, J., Luraschi, J., Ushey, K., Atkins, A., Wickham, H., Cheng, J., Chang, W., and Iannone, R. (2020). Rmarkdown: Dynamic documents for r. https://github.com/rstudio/rmarkdown\n\n\nGentleman, R. (2005). Reproducible Research: A Bioinformatics Case Study. Statistical Applications in Genetics and Molecular Biology, 4(1). https://doi.org/10.2202/1544-6115.1034\n\n\nGentleman, R., and Temple Lang, D. (2003). Statistical Analyses and Reproducible Research. Journal of Computational and Graphical Statistics, 16(1), 1–23. https://doi.org/10.1198/106186007X178663\n\n\nGolub, T. R., Slonim, D. K., Tamayo, P., Huard, C., Gaasenbeek, M., Mesirov, J. P., Coller, H., Loh, M., Downing, J. R., Caligiuri, M., Bloomfield, C., and Lander, E. (1999). Molecular classification of cancer: Class discovery and class prediction by gene monitoring. Science (New York, N.Y.), 286, 531–537.\n\n\nLamport, L. (1986). LATEX: A document preparation system (pp. XIV, 242). Addison-Wesley.\n\n\nPandoc - Pandoc User’s Guide. (n.d.). Retrieved March 10, 2020, from https://pandoc.org/MANUAL.html\n\n\nR Core Team. (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing. https://www.R-project.org/\n\n\nRStudio Team. (2020). RStudio: Integrated development environment for r. RStudio, PBC. http://www.rstudio.com/\n\n\nTierney, N. (n.d.). RMarkdown for Scientists. Retrieved August 23, 2020, from https://rmd4sci.njtierney.com/\n\n\nWickham, H., and Grolemund, G. (2016). R for data science: Import, tidy, transform, visualize, and model data (pp. XXV, 492). O’Reilly.\n\n\nXie, Y. (2014). Knitr: A comprehensive tool for reproducible research in R. In V. Stodden, F. Leisch, and R. D. Peng (Eds.), Implementing reproducible computational research. Chapman and Hall/CRC. http://www.crcpress.com/product/isbn/9781466561595\n\n\nXie, Y. (2015). Dynamic documents with R and knitr (2nd ed.). Chapman and Hall/CRC. https://yihui.org/knitr/\n\n\nXie, Y. (2020). Knitr: A general-purpose package for dynamic report generation in r. https://yihui.org/knitr/\n\n\nXie, Y., Allaire, J. J., and Grolemund, G. (2018). R markdown: The definitive guide. Chapman and Hall/CRC. https://bookdown.org/yihui/rmarkdown"
-  },
-  {
     "objectID": "introduction/s-d-d/Structured-Dynamic-Documents.html#where-to-get-more-informations",
     "href": "introduction/s-d-d/Structured-Dynamic-Documents.html#where-to-get-more-informations",
     "title": "Structured Dynamic Documents",
@@ -3091,7 +3063,7 @@
     "href": "introduction/intro/Intro.html#ønsket-format",
     "title": "Introduksjon Data Science",
     "section": "Ønsket format",
-    "text": "Ønsket format\n\n\n\n\n\n\nVi velger ønsket format vha. knitr menyen.\nMed Quarto velger vi Render fra ikon-linjen øverst i editoren (øvre venstre «pane»)."
+    "text": "Ønsket format\n\nDokumentformatene .pdf, .html og .docx er de mest relevante alternativene\nDet er også mulighet for å generere rapporter vha. en mal og parametre.\nFor en presentasjon ville vi hatt andre alternativer (som Powerpoint) og revealjs. Ønsket format blir angitt i YAML, f.eks. format: revealjs.\n\n\n\nMSB105"
   },
   {
     "objectID": "introduction/intro/Intro.html#ønsket-format-1",
@@ -3217,7 +3189,7 @@
     "href": "introduction/undervisningsplan/undervisningsplan.html#eksempel-long-format",
     "title": "Undervisningsplan",
     "section": "Eksempel long format",
-    "text": "Eksempel long format\n\n\nCode\n# Leser inn csv fil med data\nRegHeltLedige_l <- read_csv(\"RegHeltLedige_l.csv\")\n# Heller dataene inn i en pipe\nRegHeltLedige_l %>% \n# Plukker ut tre måneder rundt årsskiftet\n  filter(\n    (year == 2013 & month %in% c(\"12\")) |\n      (year == 2014 & month %in% c(\"01\", \"02\"))\n  ) \n\n\n# A tibble: 54 × 5\n   knr   kNavn        year month unemp\n   <chr> <chr>       <dbl> <chr> <dbl>\n 1 0101  Halden       2013 12      3.7\n 2 0101  Halden       2014 01      3.8\n 3 0101  Halden       2014 02      3.7\n 4 0104  Moss         2013 12      3.3\n 5 0104  Moss         2014 01      4  \n 6 0104  Moss         2014 02      4  \n 7 0105  Sarpsborg    2013 12      3.7\n 8 0105  Sarpsborg    2014 01      4.4\n 9 0105  Sarpsborg    2014 02      4.3\n10 0106  Fredrikstad  2013 12      4.6\n# … with 44 more rows\n# ℹ Use `print(n = ...)` to see more rows\n\n\n\nDette kommer vi til å jobbe mye med"
+    "text": "Eksempel long format\n\n\nCode\n# Leser inn csv fil med data\nRegHeltLedige_l <- read_csv(\"RegHeltLedige_l.csv\")\n# Heller dataene inn i en pipe\nRegHeltLedige_l %>% \n# Plukker ut tre måneder rundt årsskiftet\n  filter(\n    (year == 2013 & month %in% c(\"12\")) |\n      (year == 2014 & month %in% c(\"01\", \"02\"))\n  ) \n\n\n# A tibble: 54 × 5\n   knr   kNavn        year month unemp\n   <chr> <chr>       <dbl> <chr> <dbl>\n 1 0101  Halden       2013 12      3.7\n 2 0101  Halden       2014 01      3.8\n 3 0101  Halden       2014 02      3.7\n 4 0104  Moss         2013 12      3.3\n 5 0104  Moss         2014 01      4  \n 6 0104  Moss         2014 02      4  \n 7 0105  Sarpsborg    2013 12      3.7\n 8 0105  Sarpsborg    2014 01      4.4\n 9 0105  Sarpsborg    2014 02      4.3\n10 0106  Fredrikstad  2013 12      4.6\n# … with 44 more rows\n\n\n\nDette kommer vi til å jobbe mye med"
   },
   {
     "objectID": "introduction/undervisningsplan/undervisningsplan.html#undervisningsplan-fortsettelse",
@@ -4116,330 +4088,330 @@
     "text": "References\n\n\nMSB105\n\n\n\nAllaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, Winston Chang, and Richard Iannone. 2022. Rmarkdown: Dynamic Documents for r. https://CRAN.R-project.org/package=rmarkdown.\n\n\nLangsrud, Øyvind, and Jan Bruusgaard. 2021. PxWebApiData: PX-Web Data by API. https://github.com/statisticsnorway/PxWebApiData.\n\n\nR Core Team. 2022. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. https://www.R-project.org/.\n\n\nWickham, Hadley. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2022. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686.\n\n\nWickham, Hadley, and Jennifer Bryan. 2022. Readxl: Read Excel Files. https://CRAN.R-project.org/package=readxl.\n\n\nWickham, Hadley, Jim Hester, and Jennifer Bryan. 2022. Readr: Read Rectangular Text Data. https://CRAN.R-project.org/package=readr.\n\n\nXie, Yihui, J. J. Allaire, and Garrett Grolemund. 2018. R Markdown: The Definitive Guide. Boca Raton, Florida: Chapman; Hall/CRC. https://bookdown.org/yihui/rmarkdown.\n\n\nXie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. R Markdown Cookbook. Boca Raton, Florida: Chapman; Hall/CRC. https://bookdown.org/yihui/rmarkdown-cookbook."
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#introduction-to-transforming-data-chp.-5",
-    "href": "explore-data/trans-data/trans-data.html#introduction-to-transforming-data-chp.-5",
+    "objectID": "explore-data/trans-data/index.html#introduction-to-transforming-data-chp.-5",
+    "href": "explore-data/trans-data/index.html#introduction-to-transforming-data-chp.-5",
     "title": "Transforming Data",
     "section": "Introduction to Transforming Data (chp. 5)",
     "text": "Introduction to Transforming Data (chp. 5)\nAddin ViewPipeSteps\n\nPackage (addIn) ViewPipeSteps\neasier debugging of pipes"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#nice-tutorials-on-rstudio",
-    "href": "explore-data/trans-data/trans-data.html#nice-tutorials-on-rstudio",
+    "objectID": "explore-data/trans-data/index.html#nice-tutorials-on-rstudio",
+    "href": "explore-data/trans-data/index.html#nice-tutorials-on-rstudio",
     "title": "Transforming Data",
     "section": "Nice tutorials on RStudio",
     "text": "Nice tutorials on RStudio\n\nRStudio Crash Course for beginners 2020.\n\nMore on Bryan Jenks\n\nIntroduction to R and RStudio\nR Programming Tutorial - Learn the Basics of StatisticalComputing\nmore tips on Twitter: @rstudiotips"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#introduction",
-    "href": "explore-data/trans-data/trans-data.html#introduction",
+    "objectID": "explore-data/trans-data/index.html#introduction",
+    "href": "explore-data/trans-data/index.html#introduction",
     "title": "Transforming Data",
     "section": "Introduction",
     "text": "Introduction\n\nChapter 5 is a central chapter.\nIt covers how to manipulate a dataframe/tibble.\nI highly recommend that you work through (follow) the example in the book.\nSuggestions:\n\nDo it in a Quarto Document.\nCopy the code from the book into your own Quarto Document.\nTry to experiment with the code and write your own remarks/comment about the code and how it works.\n\nI will cover the most important material in lectures, but we do not have time to cover all the finer details."
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#small-collection-of-verbs",
-    "href": "explore-data/trans-data/trans-data.html#small-collection-of-verbs",
+    "objectID": "explore-data/trans-data/index.html#small-collection-of-verbs",
+    "href": "explore-data/trans-data/index.html#small-collection-of-verbs",
     "title": "Transforming Data",
     "section": "Small collection of verbs",
     "text": "Small collection of verbs\n\nWe will use a small collection of verbs:\n\nfilter(): show us just the data that satisfies one or more conditions\narrange(): sort (rearranges) the rows\nselect(): select some of the variables (remove the variables that does not interest us)\nmutate(): make new variables in the dataframe/tibble\n\ntransmute() only keeps the new variables\nrename(): change the name of a variable (this is really a variant of mutate()).\n\n\nsummarise() and group_by(): Group by one or more criteria and then summarise the variables (max, min, mean, median, sd etc.)\nThe functions above are from the dplyr package which is part of the tidyverse."
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#data-nycflights13",
-    "href": "explore-data/trans-data/trans-data.html#data-nycflights13",
+    "objectID": "explore-data/trans-data/index.html#data-nycflights13",
+    "href": "explore-data/trans-data/index.html#data-nycflights13",
     "title": "Transforming Data",
     "section": "Data: nycflights13",
     "text": "Data: nycflights13\n\nWe will follow the book and use the dataset nycflights13.\nThe dataset is in a package (called nycflights13) that we have to install first.\nSee also:\n\nvignette(\"dplyr\"),\nstarwars dataset,\nvignette(\"grouping\"),\nvignette(\"colwise\") and\nvignette(\"rowwise\")"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#the-pipe-5.6.1-and-more-details-in-chap.-18",
-    "href": "explore-data/trans-data/trans-data.html#the-pipe-5.6.1-and-more-details-in-chap.-18",
+    "objectID": "explore-data/trans-data/index.html#the-pipe-5.6.1-and-more-details-in-chap.-18",
+    "href": "explore-data/trans-data/index.html#the-pipe-5.6.1-and-more-details-in-chap.-18",
     "title": "Transforming Data",
     "section": "The pipe, 5.6.1 and more details in chap. 18",
     "text": "The pipe, 5.6.1 and more details in chap. 18\n\nThree equivalent ways to calculate in R\nFunction in function in function in function …\nTemporary variables\nThe pipe"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#function-in-function-in-function",
-    "href": "explore-data/trans-data/trans-data.html#function-in-function-in-function",
+    "objectID": "explore-data/trans-data/index.html#function-in-function-in-function",
+    "href": "explore-data/trans-data/index.html#function-in-function-in-function",
     "title": "Transforming Data",
     "section": "Function in function in function …",
     "text": "Function in function in function …\n\n\nCode\nset.seed(1234)\nres_mean_rnorm_3dig <- paste(\"Result:\", round(mean(rnorm(n = 10, mean = 0, sd = 1)), digits = 3), sep = \"\")\nres_mean_rnorm_3dig\n\n\n[1] \"Result:-0.383\""
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#temporary-variables",
-    "href": "explore-data/trans-data/trans-data.html#temporary-variables",
+    "objectID": "explore-data/trans-data/index.html#temporary-variables",
+    "href": "explore-data/trans-data/index.html#temporary-variables",
     "title": "Transforming Data",
     "section": "Temporary variables",
     "text": "Temporary variables\n\nMeaningful names with clean-up\n\n\n\n\nCode\nset.seed(1234)\nres_rnorm <- rnorm(n = 10, mean = 0, sd = 1)\nres_mean_rnorm <- mean(res_rnorm)\nres_mean_rnorm_3dig <- round(res_mean_rnorm, digits = 3)\nres_mean_rnorm_3dig_string <- paste(\"Result:\", res_mean_rnorm_3dig, sep = \"\")\n# print result\nres_mean_rnorm_3dig_string\n\n\n[1] \"Result:-0.383\"\n\n\nCode\n# cleanup\nrm(res_rnorm, res_mean_rnorm, res_mean_rnorm_3dig, res_mean_rnorm_3dig_string)"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#temporary-variables-in-reality",
-    "href": "explore-data/trans-data/trans-data.html#temporary-variables-in-reality",
+    "objectID": "explore-data/trans-data/index.html#temporary-variables-in-reality",
+    "href": "explore-data/trans-data/index.html#temporary-variables-in-reality",
     "title": "Transforming Data",
     "section": "Temporary variables (in reality)",
     "text": "Temporary variables (in reality)\n\nWhat we usually do, bad variable names and no clean-up\n\n\n\n\nCode\nset.seed(1234)\ntmp <- rnorm(n = 10, mean = 0, sd = 1)\ntmp1 <- mean(tmp)\ntmp2 <- round(tmp1, digits = 3)\npaste(\"Result:\", tmp2, sep = \"\")\n\n\n[1] \"Result:-0.383\"\n\n\n\n\nCode\n# ^t, object names that start with 't' \nls(pattern = \"^t\")\n\n\n[1] \"tmp\"  \"tmp1\" \"tmp2\""
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#the-pipe-with-addin-viewpipesteps",
-    "href": "explore-data/trans-data/trans-data.html#the-pipe-with-addin-viewpipesteps",
+    "objectID": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps",
+    "href": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps",
     "title": "Transforming Data",
     "section": "The pipe with addin viewpipesteps",
     "text": "The pipe with addin viewpipesteps\n\n\nCode\nset.seed(1234)\nres_mean_rnorm_3dig_string <- \n  rnorm(n = 10, mean = 0, sd = 1) %>%\n  mean() %>%\n  round(digits = 3) %>% \n  # The dot '.' is to show where the content of the pipe should be put\n  paste(\"Result:\", .)\nres_mean_rnorm_3dig_string\n\n\n[1] \"Result: -0.383\""
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#the-pipe-cont.",
-    "href": "explore-data/trans-data/trans-data.html#the-pipe-cont.",
+    "objectID": "explore-data/trans-data/index.html#the-pipe-cont.",
+    "href": "explore-data/trans-data/index.html#the-pipe-cont.",
     "title": "Transforming Data",
     "section": "The pipe cont.",
     "text": "The pipe cont.\n\nWhat would happen if we dropped the ‘.’ in paste(\"Result:\", .)?\n\n\n\n\nCode\nset.seed(1234)\nres_mean_rnorm_3dig_string <- \n  rnorm(n = 10, mean = 0, sd = 1) %>%\n  mean() %>%\n  round(digits = 3) %>% \n  # The dot '.' is to show where the content of the pipe should be put\n  paste(\"Result:\")\nres_mean_rnorm_3dig_string\n\n\n[1] \"-0.383 Result:\""
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#the-pipe-with-addin-viewpipesteps-1",
-    "href": "explore-data/trans-data/trans-data.html#the-pipe-with-addin-viewpipesteps-1",
+    "objectID": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps-1",
+    "href": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps-1",
     "title": "Transforming Data",
     "section": "The pipe with Addin viewpipesteps",
     "text": "The pipe with Addin viewpipesteps\n\nRun the set.seed() function\nSelect the pipe\nChoose Print Pipe Chain Steps\n\n\n\n\n\nSelect the pipe"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#the-pipe-with-addin-viewpipesteps-cont.",
-    "href": "explore-data/trans-data/trans-data.html#the-pipe-with-addin-viewpipesteps-cont.",
+    "objectID": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps-cont.",
+    "href": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps-cont.",
     "title": "Transforming Data",
     "section": "The pipe with Addin viewpipesteps cont.",
     "text": "The pipe with Addin viewpipesteps cont.\n\nSelect Print Pipe Chain Steps from Addins menu\n\n\n\n\n\nSelect Print Pipe Chain Steps in the Addins drop-down menu."
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#the-pipe-with-addin-viewpipesteps-cont.-1",
-    "href": "explore-data/trans-data/trans-data.html#the-pipe-with-addin-viewpipesteps-cont.-1",
+    "objectID": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps-cont.-1",
+    "href": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps-cont.-1",
     "title": "Transforming Data",
     "section": "The pipe with Addin viewpipesteps cont.",
     "text": "The pipe with Addin viewpipesteps cont.\n\nIn the Console we will get the result (output) of every step in the pipe\n\n\n\n\n\nSelect Print Pipe Chain Steps from Addins drop-down menu."
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#the-pipe-alternative-not-much-used",
-    "href": "explore-data/trans-data/trans-data.html#the-pipe-alternative-not-much-used",
+    "objectID": "explore-data/trans-data/index.html#the-pipe-alternative-not-much-used",
+    "href": "explore-data/trans-data/index.html#the-pipe-alternative-not-much-used",
     "title": "Transforming Data",
     "section": "The pipe, alternative not much used",
     "text": "The pipe, alternative not much used\n\n\nCode\nset.seed(1234)\nrnorm(\n  n = 10,\n  mean = 0,\n  sd = 1\n) %>%\n  mean() %>%\n  round(digits = 3) %>% \n  paste(\"Result:\", .) -> res_mean_rnorm_3dig_string\nres_mean_rnorm_3dig_string\n\n\n[1] \"Result: -0.383\""
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#more-about-the-pipe",
-    "href": "explore-data/trans-data/trans-data.html#more-about-the-pipe",
+    "objectID": "explore-data/trans-data/index.html#more-about-the-pipe",
+    "href": "explore-data/trans-data/index.html#more-about-the-pipe",
     "title": "Transforming Data",
     "section": "More about the pipe",
     "text": "More about the pipe\n\nWork like the unix shell pipe (‘|’)\nOutput from one function is the input of the next function\nTemporary variables in the background, but we don’t have to come up with names or remove them when not needed any more.\nUses the fact that most R functions have the data as their first argument\n\nThe regression function lm(formula, data, …) is an important counter example\nWe use ‘.’ to specify where the data in the pipe enters a function\n\nIf not the first argument (function_name(., other arguments) is the default)\n\n\nThe tidyverse is designed to work well with the pipe\n\nThe sf packages we will encounter next year are also designed to work well with tidyverse and pipes"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#nycflights13",
-    "href": "explore-data/trans-data/trans-data.html#nycflights13",
+    "objectID": "explore-data/trans-data/index.html#nycflights13",
+    "href": "explore-data/trans-data/index.html#nycflights13",
     "title": "Transforming Data",
     "section": "nycflights13",
     "text": "nycflights13\n\n\nCode\n# see setup at the top for loading of \n# nycflights13 package\n?nycflights13\n\n\n\nLoad the nycflights13 package.\nGet help via Packages pane and click nycflights13."
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#nycflights13-1",
-    "href": "explore-data/trans-data/trans-data.html#nycflights13-1",
+    "objectID": "explore-data/trans-data/index.html#nycflights13-1",
+    "href": "explore-data/trans-data/index.html#nycflights13-1",
     "title": "Transforming Data",
     "section": "nycflights13",
     "text": "nycflights13\n\nThe package contains 5 datsets\n\nairline\nairports\nflights\nplanes\nweather\n\nuse ? to read the help for each\n\n\n\n\nCode\n?flights"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#variables-in-flights-from-help",
-    "href": "explore-data/trans-data/trans-data.html#variables-in-flights-from-help",
+    "objectID": "explore-data/trans-data/index.html#variables-in-flights-from-help",
+    "href": "explore-data/trans-data/index.html#variables-in-flights-from-help",
     "title": "Transforming Data",
     "section": "Variables in flights (from help)",
     "text": "Variables in flights (from help)\n\nyear, month, day: Date of departure.\ndep_time, arr_time: Actual departure and arrival times (format HHMM or HMM), local tz.\nsched_dep_time, sched_arr_time: Scheduled departure and arrival times (format HHMM or HMM), local tz.\ndep_delay, arr_delay: Departure and arrival delays, in minutes. Negative times represent early departures/arrivals.\ncarrier: Two letters carrier abbreviation. See airlines to get name.\nflight: Flight number."
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#variables-in-flights-from-help-cont.",
-    "href": "explore-data/trans-data/trans-data.html#variables-in-flights-from-help-cont.",
+    "objectID": "explore-data/trans-data/index.html#variables-in-flights-from-help-cont.",
+    "href": "explore-data/trans-data/index.html#variables-in-flights-from-help-cont.",
     "title": "Transforming Data",
     "section": "Variables in flights (from help) cont.",
     "text": "Variables in flights (from help) cont.\n\ntailnum: Plane tail number. See planes for additional metadata.\norigin, dest: Origin and destination. See airports for additional metadata.\nair_time: Amount of time spent in the air, in minutes.\ndistance: Distance between airports, in miles.\nhour, minute: Time of scheduled departure broken into hour and minutes.\ntime_hour: Scheduled date and hour of the flight as a POSIXct date. Along with origin, can be used to join flights data to weather data."
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#a-first-look-on-flights",
-    "href": "explore-data/trans-data/trans-data.html#a-first-look-on-flights",
+    "objectID": "explore-data/trans-data/index.html#a-first-look-on-flights",
+    "href": "explore-data/trans-data/index.html#a-first-look-on-flights",
     "title": "Transforming Data",
     "section": "A first look on flights",
     "text": "A first look on flights\n\n\nCode\n# what size is it\ndim(flights)\n\n\n[1] 336776     19\n\n\n\n\n\nCode\n# what type; data.frame, tibble?\nclass(flights)\n\n\n[1] \"tbl_df\"     \"tbl\"        \"data.frame\""
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#a-first-look-on-flights-1",
-    "href": "explore-data/trans-data/trans-data.html#a-first-look-on-flights-1",
+    "objectID": "explore-data/trans-data/index.html#a-first-look-on-flights-1",
+    "href": "explore-data/trans-data/index.html#a-first-look-on-flights-1",
     "title": "Transforming Data",
     "section": "A first look on flights",
-    "text": "A first look on flights\n\n\nCode\nprint(\n  head(flights, n = 5),\n  width = 70\n  )\n\n\n# A tibble: 5 × 19\n   year month   day dep_time sched_d…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n  <int> <int> <int>    <int>     <int>   <dbl>   <int>   <int>   <dbl>\n1  2013     1     1      517       515       2     830     819      11\n2  2013     1     1      533       529       4     850     830      20\n3  2013     1     1      542       540       2     923     850      33\n4  2013     1     1      544       545      -1    1004    1022     -18\n5  2013     1     1      554       600      -6     812     837     -25\n# … with 10 more variables: carrier <chr>, flight <int>,\n#   tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>,\n#   distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dttm>, and\n#   abbreviated variable names ¹​sched_dep_time, ²​dep_delay,\n#   ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay\n# ℹ Use `colnames()` to see all variable names"
+    "text": "A first look on flights\n\n\nCode\nprint(\n  head(flights, n = 5),\n  width = 70\n  )\n\n\n# A tibble: 5 × 19\n   year month   day dep_time sched_d…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n  <int> <int> <int>    <int>     <int>   <dbl>   <int>   <int>   <dbl>\n1  2013     1     1      517       515       2     830     819      11\n2  2013     1     1      533       529       4     850     830      20\n3  2013     1     1      542       540       2     923     850      33\n4  2013     1     1      544       545      -1    1004    1022     -18\n5  2013     1     1      554       600      -6     812     837     -25\n# … with 10 more variables: carrier <chr>, flight <int>,\n#   tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>,\n#   distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dttm>, and\n#   abbreviated variable names ¹​sched_dep_time, ²​dep_delay,\n#   ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#using-filter-from-r4ds",
-    "href": "explore-data/trans-data/trans-data.html#using-filter-from-r4ds",
+    "objectID": "explore-data/trans-data/index.html#using-filter-from-r4ds",
+    "href": "explore-data/trans-data/index.html#using-filter-from-r4ds",
     "title": "Transforming Data",
     "section": "Using filter(), from r4ds",
-    "text": "Using filter(), from r4ds\n\n\nCode\nprint(\n  filter(flights, month == 1, day == 1),\n  n = 5, \n  width = 70\n  )\n\n\n# A tibble: 842 × 19\n   year month   day dep_time sched_d…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n  <int> <int> <int>    <int>     <int>   <dbl>   <int>   <int>   <dbl>\n1  2013     1     1      517       515       2     830     819      11\n2  2013     1     1      533       529       4     850     830      20\n3  2013     1     1      542       540       2     923     850      33\n4  2013     1     1      544       545      -1    1004    1022     -18\n5  2013     1     1      554       600      -6     812     837     -25\n# … with 837 more rows, 10 more variables: carrier <chr>,\n#   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,\n#   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,\n#   time_hour <dttm>, and abbreviated variable names ¹​sched_dep_time,\n#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay\n# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names"
+    "text": "Using filter(), from r4ds\n\n\nCode\nprint(\n  filter(flights, month == 1, day == 1),\n  n = 5, \n  width = 70\n  )\n\n\n# A tibble: 842 × 19\n   year month   day dep_time sched_d…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n  <int> <int> <int>    <int>     <int>   <dbl>   <int>   <int>   <dbl>\n1  2013     1     1      517       515       2     830     819      11\n2  2013     1     1      533       529       4     850     830      20\n3  2013     1     1      542       540       2     923     850      33\n4  2013     1     1      544       545      -1    1004    1022     -18\n5  2013     1     1      554       600      -6     812     837     -25\n# … with 837 more rows, 10 more variables: carrier <chr>,\n#   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,\n#   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,\n#   time_hour <dttm>, and abbreviated variable names ¹​sched_dep_time,\n#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#more-filter-ex-1",
-    "href": "explore-data/trans-data/trans-data.html#more-filter-ex-1",
+    "objectID": "explore-data/trans-data/index.html#more-filter-ex-1",
+    "href": "explore-data/trans-data/index.html#more-filter-ex-1",
     "title": "Transforming Data",
     "section": "More filter-ex-1",
-    "text": "More filter-ex-1\n\n\nCode\nprint(\n  filter(flights, month == 1, day %in% c(1, 15, 30)),\n  n = 5,\n  width = 70\n  )\n\n\n# A tibble: 2,636 × 19\n   year month   day dep_time sched_d…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n  <int> <int> <int>    <int>     <int>   <dbl>   <int>   <int>   <dbl>\n1  2013     1     1      517       515       2     830     819      11\n2  2013     1     1      533       529       4     850     830      20\n3  2013     1     1      542       540       2     923     850      33\n4  2013     1     1      544       545      -1    1004    1022     -18\n5  2013     1     1      554       600      -6     812     837     -25\n# … with 2,631 more rows, 10 more variables: carrier <chr>,\n#   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,\n#   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,\n#   time_hour <dttm>, and abbreviated variable names ¹​sched_dep_time,\n#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay\n# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names\n\n\n\nWhy no day 15 and 30?\nnote %in%, it’s very handy and flexible"
+    "text": "More filter-ex-1\n\n\nCode\nprint(\n  filter(flights, month == 1, day %in% c(1, 15, 30)),\n  n = 5,\n  width = 70\n  )\n\n\n# A tibble: 2,636 × 19\n   year month   day dep_time sched_d…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n  <int> <int> <int>    <int>     <int>   <dbl>   <int>   <int>   <dbl>\n1  2013     1     1      517       515       2     830     819      11\n2  2013     1     1      533       529       4     850     830      20\n3  2013     1     1      542       540       2     923     850      33\n4  2013     1     1      544       545      -1    1004    1022     -18\n5  2013     1     1      554       600      -6     812     837     -25\n# … with 2,631 more rows, 10 more variables: carrier <chr>,\n#   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,\n#   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,\n#   time_hour <dttm>, and abbreviated variable names ¹​sched_dep_time,\n#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay\n\n\n\nWhy no day 15 and 30?\nnote %in%, it’s very handy and flexible"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#more-filter-ex-1-1",
-    "href": "explore-data/trans-data/trans-data.html#more-filter-ex-1-1",
+    "objectID": "explore-data/trans-data/index.html#more-filter-ex-1-1",
+    "href": "explore-data/trans-data/index.html#more-filter-ex-1-1",
     "title": "Transforming Data",
     "section": "More filter-ex-1",
-    "text": "More filter-ex-1\n\n\nCode\nflights_some_days_jan <- filter(flights, month == 1, day %in% c(1, 15, 30))\n# tail(flights_some_days_jan, n = 5)\n# more control\nprint(\n  slice_tail(flights_some_days_jan, n = 7),\n  width = 70\n  )\n\n\n# A tibble: 7 × 19\n   year month   day dep_time sched_d…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n  <int> <int> <int>    <int>     <int>   <dbl>   <int>   <int>   <dbl>\n1  2013     1    30       NA      1410      NA      NA    1555      NA\n2  2013     1    30       NA       810      NA      NA     955      NA\n3  2013     1    30       NA      1510      NA      NA    1745      NA\n4  2013     1    30       NA      1725      NA      NA    1855      NA\n5  2013     1    30       NA      1800      NA      NA    1939      NA\n6  2013     1    30       NA      1506      NA      NA    1640      NA\n7  2013     1    30       NA       958      NA      NA    1137      NA\n# … with 10 more variables: carrier <chr>, flight <int>,\n#   tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>,\n#   distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dttm>, and\n#   abbreviated variable names ¹​sched_dep_time, ²​dep_delay,\n#   ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay\n# ℹ Use `colnames()` to see all variable names"
+    "text": "More filter-ex-1\n\n\nCode\nflights_some_days_jan <- filter(flights, month == 1, day %in% c(1, 15, 30))\n# tail(flights_some_days_jan, n = 5)\n# more control\nprint(\n  slice_tail(flights_some_days_jan, n = 7),\n  width = 70\n  )\n\n\n# A tibble: 7 × 19\n   year month   day dep_time sched_d…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n  <int> <int> <int>    <int>     <int>   <dbl>   <int>   <int>   <dbl>\n1  2013     1    30       NA      1410      NA      NA    1555      NA\n2  2013     1    30       NA       810      NA      NA     955      NA\n3  2013     1    30       NA      1510      NA      NA    1745      NA\n4  2013     1    30       NA      1725      NA      NA    1855      NA\n5  2013     1    30       NA      1800      NA      NA    1939      NA\n6  2013     1    30       NA      1506      NA      NA    1640      NA\n7  2013     1    30       NA       958      NA      NA    1137      NA\n# … with 10 more variables: carrier <chr>, flight <int>,\n#   tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>,\n#   distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dttm>, and\n#   abbreviated variable names ¹​sched_dep_time, ²​dep_delay,\n#   ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#doing-it-with-a-pipe",
-    "href": "explore-data/trans-data/trans-data.html#doing-it-with-a-pipe",
+    "objectID": "explore-data/trans-data/index.html#doing-it-with-a-pipe",
+    "href": "explore-data/trans-data/index.html#doing-it-with-a-pipe",
     "title": "Transforming Data",
     "section": "Doing it with a Pipe",
-    "text": "Doing it with a Pipe\n\n\nCode\n  flights %>% \n  filter(month == 1, day %in% c(1, 15, 30)) %>% \n  slice_tail(n = 7) %>% \n  print(width = 70)\n\n\n# A tibble: 7 × 19\n   year month   day dep_time sched_d…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n  <int> <int> <int>    <int>     <int>   <dbl>   <int>   <int>   <dbl>\n1  2013     1    30       NA      1410      NA      NA    1555      NA\n2  2013     1    30       NA       810      NA      NA     955      NA\n3  2013     1    30       NA      1510      NA      NA    1745      NA\n4  2013     1    30       NA      1725      NA      NA    1855      NA\n5  2013     1    30       NA      1800      NA      NA    1939      NA\n6  2013     1    30       NA      1506      NA      NA    1640      NA\n7  2013     1    30       NA       958      NA      NA    1137      NA\n# … with 10 more variables: carrier <chr>, flight <int>,\n#   tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>,\n#   distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dttm>, and\n#   abbreviated variable names ¹​sched_dep_time, ²​dep_delay,\n#   ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay\n# ℹ Use `colnames()` to see all variable names"
+    "text": "Doing it with a Pipe\n\n\nCode\n  flights %>% \n  filter(month == 1, day %in% c(1, 15, 30)) %>% \n  slice_tail(n = 7) %>% \n  print(width = 70)\n\n\n# A tibble: 7 × 19\n   year month   day dep_time sched_d…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n  <int> <int> <int>    <int>     <int>   <dbl>   <int>   <int>   <dbl>\n1  2013     1    30       NA      1410      NA      NA    1555      NA\n2  2013     1    30       NA       810      NA      NA     955      NA\n3  2013     1    30       NA      1510      NA      NA    1745      NA\n4  2013     1    30       NA      1725      NA      NA    1855      NA\n5  2013     1    30       NA      1800      NA      NA    1939      NA\n6  2013     1    30       NA      1506      NA      NA    1640      NA\n7  2013     1    30       NA       958      NA      NA    1137      NA\n# … with 10 more variables: carrier <chr>, flight <int>,\n#   tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>,\n#   distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dttm>, and\n#   abbreviated variable names ¹​sched_dep_time, ²​dep_delay,\n#   ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#operators",
-    "href": "explore-data/trans-data/trans-data.html#operators",
+    "objectID": "explore-data/trans-data/index.html#operators",
+    "href": "explore-data/trans-data/index.html#operators",
     "title": "Transforming Data",
     "section": "Operators",
     "text": "Operators\n\n== NB! not =; equal\n<, >, >=, <=\n! for negate, !near(1/5 * 5, 5/5) is FALSE\n| is or, ex. TRUE | FALSE is TRUE\n& is and, ex. TRUE & FALSE is FALSE. TRUE & TRUE is TRUE, !(TRUE & FALSE) is TRUE\n%in% is very handy, x %in% c(1, 3), TRUE if x is 1 or 3"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#use-near-not-for-doublenumeric",
-    "href": "explore-data/trans-data/trans-data.html#use-near-not-for-doublenumeric",
+    "objectID": "explore-data/trans-data/index.html#use-near-not-for-doublenumeric",
+    "href": "explore-data/trans-data/index.html#use-near-not-for-doublenumeric",
     "title": "Transforming Data",
     "section": "Use near() not == for double/numeric",
     "text": "Use near() not == for double/numeric\n\n\nCode\n(1/49) * 49 == 1\n\n\n[1] FALSE\n\n\nCode\n# and\n(1/49) * 49 == 49/49\n\n\n[1] FALSE\n\n\nCode\n# but\n(1/5) * 5 == 5/5\n\n\n[1] TRUE\n\n\nCode\n# but\n(5/4) == 1.25\n\n\n[1] TRUE"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#use-near-not-for-doublenumeric-cont.",
-    "href": "explore-data/trans-data/trans-data.html#use-near-not-for-doublenumeric-cont.",
+    "objectID": "explore-data/trans-data/index.html#use-near-not-for-doublenumeric-cont.",
+    "href": "explore-data/trans-data/index.html#use-near-not-for-doublenumeric-cont.",
     "title": "Transforming Data",
     "section": "Use near() not == for double/numeric cont.",
     "text": "Use near() not == for double/numeric cont.\n\nuse near()\n\n\n\n\nCode\nnear(1/49 * 49, 1)\n\n\n[1] TRUE\n\n\nCode\nnear(1/5 * 5, 5/5)\n\n\n[1] TRUE"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#small-exercise",
-    "href": "explore-data/trans-data/trans-data.html#small-exercise",
+    "objectID": "explore-data/trans-data/index.html#small-exercise",
+    "href": "explore-data/trans-data/index.html#small-exercise",
     "title": "Transforming Data",
     "section": "Small Exercise",
     "text": "Small Exercise\n1) How many flights were there in April and September (total)?\n2) How many flights were there in total the first two days of a month?\n3) How may flights were there during 2013 that had an arrival delay greater than or equal to 15 min., but less than 30 min.?"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#solution-small-exercise",
-    "href": "explore-data/trans-data/trans-data.html#solution-small-exercise",
+    "objectID": "explore-data/trans-data/index.html#solution-small-exercise",
+    "href": "explore-data/trans-data/index.html#solution-small-exercise",
     "title": "Transforming Data",
     "section": "Solution Small Exercise",
-    "text": "Solution Small Exercise\n1) How many flights were there in April and September (total)?\n\n\n\nCode\nfilter(flights, month %in% c(4,9)) %>%\n  nrow()\n\n\n[1] 55904\n\n\n\n\n\n\nCode\n# or\nfilter(flights, month %in% c(4,9)) %>%\n  dim() %>% \n  # pick just the number of rows\n  .[1]\n\n\n[1] 55904"
+    "text": "Solution Small Exercise\n1) How many flights were there in April and September (total)?"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#solution-small-exercise-cont.",
-    "href": "explore-data/trans-data/trans-data.html#solution-small-exercise-cont.",
+    "objectID": "explore-data/trans-data/index.html#solution-small-exercise-cont.",
+    "href": "explore-data/trans-data/index.html#solution-small-exercise-cont.",
     "title": "Transforming Data",
     "section": "Solution Small Exercise cont.",
-    "text": "Solution Small Exercise cont.\n2) How many flights were there in total the first two days of a month?\n\n\nCode\nfilter(flights, day %in% c(1:2)) %>%\n  nrow()\n\n\n[1] 21844\n\n\n\n\nCode\nfilter(flights, day %in% c(1:2)) %>%\n  dim() %>% \n  .[1]\n\n\n[1] 21844"
+    "text": "Solution Small Exercise cont.\n2) How many flights were there in total the first two days of a month?"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#solution-small-exercise-cont.-1",
-    "href": "explore-data/trans-data/trans-data.html#solution-small-exercise-cont.-1",
+    "objectID": "explore-data/trans-data/index.html#solution-small-exercise-cont.-1",
+    "href": "explore-data/trans-data/index.html#solution-small-exercise-cont.-1",
     "title": "Transforming Data",
     "section": "Solution Small Exercise cont.",
-    "text": "Solution Small Exercise cont.\n3) How may flights were there during 2013 that had an arrival delay greater than or equal to 15 min., but less than 30 min.?\n\n\nCode\nfilter(flights, arr_delay >= 15 & arr_delay < 30) %>%\n  nrow()\n\n\n[1] 27298\n\n\n\n\n\nCode\n# or\nfilter(flights, arr_delay >= 15, arr_delay < 30) %>%\n  dim() %>%\n  .[1]\n\n\n[1] 27298\n\n\n\n\n\nNote use of .. Needed when using classic functions like [."
+    "text": "Solution Small Exercise cont.\n3) How may flights were there during 2013 that had an arrival delay greater than or equal to 15 min., but less than 30 min.?\n\n\n\n\n\n\n\n\n\n\nNote use of .. Needed when using classic functions like [."
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#missing-values-na",
-    "href": "explore-data/trans-data/trans-data.html#missing-values-na",
+    "objectID": "explore-data/trans-data/index.html#missing-values-na",
+    "href": "explore-data/trans-data/index.html#missing-values-na",
     "title": "Transforming Data",
     "section": "Missing values NA",
     "text": "Missing values NA\n\nGeneral rule: If one is NA, whole result will be NA,\n\nex. sum(c(1, 2, NA, 4, 5)) will return\nNA.\n\nCheck for NA with is.na()\n\nNOT x == NA\n\nis.na() returns TRUE if NA\nHow to count number of NAs in a vector?\n\nsum(is.na(flights$arr_delay)) will return\n9430"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#arrange-sorts-rows",
-    "href": "explore-data/trans-data/trans-data.html#arrange-sorts-rows",
+    "objectID": "explore-data/trans-data/index.html#arrange-sorts-rows",
+    "href": "explore-data/trans-data/index.html#arrange-sorts-rows",
     "title": "Transforming Data",
     "section": "arrange() sorts rows",
-    "text": "arrange() sorts rows\n\n\nCode\nprint(\n  arrange(flights, year, month, day),\n  n = 10,\n  width = 70\n  )\n\n\n# A tibble: 336,776 × 19\n    year month   day dep_time sched_…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n   <int> <int> <int>    <int>    <int>   <dbl>   <int>   <int>   <dbl>\n 1  2013     1     1      517      515       2     830     819      11\n 2  2013     1     1      533      529       4     850     830      20\n 3  2013     1     1      542      540       2     923     850      33\n 4  2013     1     1      544      545      -1    1004    1022     -18\n 5  2013     1     1      554      600      -6     812     837     -25\n 6  2013     1     1      554      558      -4     740     728      12\n 7  2013     1     1      555      600      -5     913     854      19\n 8  2013     1     1      557      600      -3     709     723     -14\n 9  2013     1     1      557      600      -3     838     846      -8\n10  2013     1     1      558      600      -2     753     745       8\n# … with 336,766 more rows, 10 more variables: carrier <chr>,\n#   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,\n#   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,\n#   time_hour <dttm>, and abbreviated variable names ¹​sched_dep_time,\n#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay\n# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names"
+    "text": "arrange() sorts rows\n\n\nCode\nprint(\n  arrange(flights, year, month, day),\n  n = 10,\n  width = 70\n  )\n\n\n# A tibble: 336,776 × 19\n    year month   day dep_time sched_…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n   <int> <int> <int>    <int>    <int>   <dbl>   <int>   <int>   <dbl>\n 1  2013     1     1      517      515       2     830     819      11\n 2  2013     1     1      533      529       4     850     830      20\n 3  2013     1     1      542      540       2     923     850      33\n 4  2013     1     1      544      545      -1    1004    1022     -18\n 5  2013     1     1      554      600      -6     812     837     -25\n 6  2013     1     1      554      558      -4     740     728      12\n 7  2013     1     1      555      600      -5     913     854      19\n 8  2013     1     1      557      600      -3     709     723     -14\n 9  2013     1     1      557      600      -3     838     846      -8\n10  2013     1     1      558      600      -2     753     745       8\n# … with 336,766 more rows, 10 more variables: carrier <chr>,\n#   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,\n#   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,\n#   time_hour <dttm>, and abbreviated variable names ¹​sched_dep_time,\n#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#arrange-sorts-rows-as-pipe",
-    "href": "explore-data/trans-data/trans-data.html#arrange-sorts-rows-as-pipe",
+    "objectID": "explore-data/trans-data/index.html#arrange-sorts-rows-as-pipe",
+    "href": "explore-data/trans-data/index.html#arrange-sorts-rows-as-pipe",
     "title": "Transforming Data",
     "section": "arrange() sorts rows as pipe",
-    "text": "arrange() sorts rows as pipe\n\n\nCode\nflights %>% \n  arrange(year, month, day) %>% \n  print(n = 10, width = 70)\n\n\n# A tibble: 336,776 × 19\n    year month   day dep_time sched_…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n   <int> <int> <int>    <int>    <int>   <dbl>   <int>   <int>   <dbl>\n 1  2013     1     1      517      515       2     830     819      11\n 2  2013     1     1      533      529       4     850     830      20\n 3  2013     1     1      542      540       2     923     850      33\n 4  2013     1     1      544      545      -1    1004    1022     -18\n 5  2013     1     1      554      600      -6     812     837     -25\n 6  2013     1     1      554      558      -4     740     728      12\n 7  2013     1     1      555      600      -5     913     854      19\n 8  2013     1     1      557      600      -3     709     723     -14\n 9  2013     1     1      557      600      -3     838     846      -8\n10  2013     1     1      558      600      -2     753     745       8\n# … with 336,766 more rows, 10 more variables: carrier <chr>,\n#   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,\n#   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,\n#   time_hour <dttm>, and abbreviated variable names ¹​sched_dep_time,\n#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay\n# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names"
+    "text": "arrange() sorts rows as pipe\n\n\nCode\nflights %>% \n  arrange(year, month, day) %>% \n  print(n = 10, width = 70)\n\n\n# A tibble: 336,776 × 19\n    year month   day dep_time sched_…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n   <int> <int> <int>    <int>    <int>   <dbl>   <int>   <int>   <dbl>\n 1  2013     1     1      517      515       2     830     819      11\n 2  2013     1     1      533      529       4     850     830      20\n 3  2013     1     1      542      540       2     923     850      33\n 4  2013     1     1      544      545      -1    1004    1022     -18\n 5  2013     1     1      554      600      -6     812     837     -25\n 6  2013     1     1      554      558      -4     740     728      12\n 7  2013     1     1      555      600      -5     913     854      19\n 8  2013     1     1      557      600      -3     709     723     -14\n 9  2013     1     1      557      600      -3     838     846      -8\n10  2013     1     1      558      600      -2     753     745       8\n# … with 336,766 more rows, 10 more variables: carrier <chr>,\n#   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,\n#   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,\n#   time_hour <dttm>, and abbreviated variable names ¹​sched_dep_time,\n#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#arrange-sort-rows-decending",
-    "href": "explore-data/trans-data/trans-data.html#arrange-sort-rows-decending",
+    "objectID": "explore-data/trans-data/index.html#arrange-sort-rows-decending",
+    "href": "explore-data/trans-data/index.html#arrange-sort-rows-decending",
     "title": "Transforming Data",
     "section": "arrange() sort rows decending",
-    "text": "arrange() sort rows decending\n\n\nCode\n#dec. first\nprint(arrange(flights, year, desc(month), day), n = 10, width = 70)\n\n\n# A tibble: 336,776 × 19\n    year month   day dep_time sched_…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n   <int> <int> <int>    <int>    <int>   <dbl>   <int>   <int>   <dbl>\n 1  2013    12     1       13     2359      14     446     445       1\n 2  2013    12     1       17     2359      18     443     437       6\n 3  2013    12     1      453      500      -7     636     651     -15\n 4  2013    12     1      520      515       5     749     808     -19\n 5  2013    12     1      536      540      -4     845     850      -5\n 6  2013    12     1      540      550     -10    1005    1027     -22\n 7  2013    12     1      541      545      -4     734     755     -21\n 8  2013    12     1      546      545       1     826     835      -9\n 9  2013    12     1      549      600     -11     648     659     -11\n10  2013    12     1      550      600     -10     825     854     -29\n# … with 336,766 more rows, 10 more variables: carrier <chr>,\n#   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,\n#   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,\n#   time_hour <dttm>, and abbreviated variable names ¹​sched_dep_time,\n#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay\n# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names"
+    "text": "arrange() sort rows decending\n\n\nCode\n#dec. first\nprint(arrange(flights, year, desc(month), day), n = 10, width = 70)\n\n\n# A tibble: 336,776 × 19\n    year month   day dep_time sched_…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n   <int> <int> <int>    <int>    <int>   <dbl>   <int>   <int>   <dbl>\n 1  2013    12     1       13     2359      14     446     445       1\n 2  2013    12     1       17     2359      18     443     437       6\n 3  2013    12     1      453      500      -7     636     651     -15\n 4  2013    12     1      520      515       5     749     808     -19\n 5  2013    12     1      536      540      -4     845     850      -5\n 6  2013    12     1      540      550     -10    1005    1027     -22\n 7  2013    12     1      541      545      -4     734     755     -21\n 8  2013    12     1      546      545       1     826     835      -9\n 9  2013    12     1      549      600     -11     648     659     -11\n10  2013    12     1      550      600     -10     825     854     -29\n# … with 336,766 more rows, 10 more variables: carrier <chr>,\n#   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,\n#   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,\n#   time_hour <dttm>, and abbreviated variable names ¹​sched_dep_time,\n#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#select-selects-the-variables-you-want",
-    "href": "explore-data/trans-data/trans-data.html#select-selects-the-variables-you-want",
+    "objectID": "explore-data/trans-data/index.html#select-selects-the-variables-you-want",
+    "href": "explore-data/trans-data/index.html#select-selects-the-variables-you-want",
     "title": "Transforming Data",
     "section": "select() selects the variables you want",
-    "text": "select() selects the variables you want\n\n\nCode\n(my_vars <- select(flights, day, month, year, arr_delay))\n\n\n# A tibble: 336,776 × 4\n     day month  year arr_delay\n   <int> <int> <int>     <dbl>\n 1     1     1  2013        11\n 2     1     1  2013        20\n 3     1     1  2013        33\n 4     1     1  2013       -18\n 5     1     1  2013       -25\n 6     1     1  2013        12\n 7     1     1  2013        19\n 8     1     1  2013       -14\n 9     1     1  2013        -8\n10     1     1  2013         8\n# … with 336,766 more rows\n# ℹ Use `print(n = ...)` to see more rows\n\n\n\nHow to select the same variables, but only for May?"
+    "text": "select() selects the variables you want\n\n\nCode\n(my_vars <- select(flights, day, month, year, arr_delay))\n\n\n# A tibble: 336,776 × 4\n     day month  year arr_delay\n   <int> <int> <int>     <dbl>\n 1     1     1  2013        11\n 2     1     1  2013        20\n 3     1     1  2013        33\n 4     1     1  2013       -18\n 5     1     1  2013       -25\n 6     1     1  2013        12\n 7     1     1  2013        19\n 8     1     1  2013       -14\n 9     1     1  2013        -8\n10     1     1  2013         8\n# … with 336,766 more rows\n\n\n\nHow to select the same variables, but only for May?"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#filter-and-select-in-pipe",
-    "href": "explore-data/trans-data/trans-data.html#filter-and-select-in-pipe",
+    "objectID": "explore-data/trans-data/index.html#filter-and-select-in-pipe",
+    "href": "explore-data/trans-data/index.html#filter-and-select-in-pipe",
     "title": "Transforming Data",
     "section": "filter() and select() in pipe",
     "text": "filter() and select() in pipe\n\n\nCode\n# Use a pipe\nmy_vars_May <- flights %>%\n  filter(month == 5) %>%\n  select(day, month, year, arr_delay)\nhead(my_vars_May)\n\n\n# A tibble: 6 × 4\n    day month  year arr_delay\n  <int> <int> <int>     <dbl>\n1     1     5  2013       408\n2     1     5  2013         1\n3     1     5  2013        -4\n4     1     5  2013        -9\n5     1     5  2013       -23\n6     1     5  2013        -6\n\n\n\nHow do we find median arr_delay in May?"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#filter-and-select-in-pipe-cont.",
-    "href": "explore-data/trans-data/trans-data.html#filter-and-select-in-pipe-cont.",
+    "objectID": "explore-data/trans-data/index.html#filter-and-select-in-pipe-cont.",
+    "href": "explore-data/trans-data/index.html#filter-and-select-in-pipe-cont.",
     "title": "Transforming Data",
     "section": "filter() and select() in pipe cont.",
     "text": "filter() and select() in pipe cont.\n\n\nCode\n# Use a pipe\nmy_vars_May <-  flights %>%\n  filter(month == 5) %>%\n  select(arr_delay)\n\nmedian(my_vars_May$arr_delay, na.rm = TRUE)\n\n\n[1] -8\n\n\n\nTo calculate the median direct in the pipe we need another function called summarise() that we will cover soon."
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#new-variable-use-mutate",
-    "href": "explore-data/trans-data/trans-data.html#new-variable-use-mutate",
+    "objectID": "explore-data/trans-data/index.html#new-variable-use-mutate",
+    "href": "explore-data/trans-data/index.html#new-variable-use-mutate",
     "title": "Transforming Data",
     "section": "New variable, use mutate",
     "text": "New variable, use mutate\n\n\nCode\nmy_new_data <- flights %>%\n  select(year:day, ends_with(\"delay\"), distance, air_time) %>%\n  mutate(\n    gain = dep_delay - arr_delay,\n    speed = (distance/air_time) * 60\n    ) %>%\n  select(year:day, gain, everything()) %>%\n  arrange(gain)\nhead(my_new_data, n = 5) \n\n\n# A tibble: 5 × 9\n   year month   day  gain dep_delay arr_delay distance air_time speed\n  <int> <int> <int> <dbl>     <dbl>     <dbl>    <dbl>    <dbl> <dbl>\n1  2013    11     1  -196        -2       194     2475      336  442.\n2  2013     4    18  -181        -2       179     1389      234  356.\n3  2013     8     8  -165       180       345     2565      420  366.\n4  2013     7    10  -161        16       177     2586      387  401.\n5  2013     6    27  -157        43       200      544      120  272 \n\n\n\n\nNote use of the helper function ends_with()\n\nMany helper functions and they can save a lot of time\nSee ?select for details\n\nHow do we get speed between dep_delay and arr_delay?"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#new-variable-use-mutate-cont.",
-    "href": "explore-data/trans-data/trans-data.html#new-variable-use-mutate-cont.",
+    "objectID": "explore-data/trans-data/index.html#new-variable-use-mutate-cont.",
+    "href": "explore-data/trans-data/index.html#new-variable-use-mutate-cont.",
     "title": "Transforming Data",
     "section": "New variable, use mutate cont.",
     "text": "New variable, use mutate cont.\n\n\nCode\nmy_new_data <- flights %>%\n  select(year:day, ends_with(\"delay\"), distance, air_time) %>%\n  mutate(\n    gain = dep_delay - arr_delay,\n    speed = (distance/air_time) * 60\n    ) %>%\n  select(year:day, gain, dep_delay, speed, everything()) %>%\n  arrange(gain)\nhead(my_new_data, n=5) \n\n\n# A tibble: 5 × 9\n   year month   day  gain dep_delay speed arr_delay distance air_time\n  <int> <int> <int> <dbl>     <dbl> <dbl>     <dbl>    <dbl>    <dbl>\n1  2013    11     1  -196        -2  442.       194     2475      336\n2  2013     4    18  -181        -2  356.       179     1389      234\n3  2013     8     8  -165       180  366.       345     2565      420\n4  2013     7    10  -161        16  401.       177     2586      387\n5  2013     6    27  -157        43  272        200      544      120"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#transmute",
-    "href": "explore-data/trans-data/trans-data.html#transmute",
+    "objectID": "explore-data/trans-data/index.html#transmute",
+    "href": "explore-data/trans-data/index.html#transmute",
     "title": "Transforming Data",
     "section": "transmute()",
     "text": "transmute()\n\nWhen should we use transmute()\nWhen we just want to keep the new variable(s)"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#transmute-1",
-    "href": "explore-data/trans-data/trans-data.html#transmute-1",
+    "objectID": "explore-data/trans-data/index.html#transmute-1",
+    "href": "explore-data/trans-data/index.html#transmute-1",
     "title": "Transforming Data",
     "section": "transmute()",
     "text": "transmute()\n\n\nCode\nmy_data <- flights %>%\n    transmute(\n    gain = dep_delay - arr_delay,\n    speed = (distance/air_time) * 60\n    ) %>%\n  arrange(gain)\nhead(my_data, n = 3)\n\n\n# A tibble: 3 × 2\n   gain speed\n  <dbl> <dbl>\n1  -196  442.\n2  -181  356.\n3  -165  366."
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#transmute-alternative-to-mutate-and-then-select",
-    "href": "explore-data/trans-data/trans-data.html#transmute-alternative-to-mutate-and-then-select",
+    "objectID": "explore-data/trans-data/index.html#transmute-alternative-to-mutate-and-then-select",
+    "href": "explore-data/trans-data/index.html#transmute-alternative-to-mutate-and-then-select",
     "title": "Transforming Data",
     "section": "transmute() alternative to mutate() and then select()",
     "text": "transmute() alternative to mutate() and then select()\n\n\nCode\nmy_data <- flights %>%\n    mutate(\n    gain = dep_delay - arr_delay,\n    speed = (distance/air_time) * 60\n    ) %>%\n  select(gain, speed) %>%\n  arrange(gain)\nhead(my_data, n = 3)\n\n\n# A tibble: 3 × 2\n   gain speed\n  <dbl> <dbl>\n1  -196  442.\n2  -181  356.\n3  -165  366."
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#summarise-and-group_by",
-    "href": "explore-data/trans-data/trans-data.html#summarise-and-group_by",
+    "objectID": "explore-data/trans-data/index.html#summarise-and-group_by",
+    "href": "explore-data/trans-data/index.html#summarise-and-group_by",
     "title": "Transforming Data",
     "section": "summarise() and group_by()",
     "text": "summarise() and group_by()\n\n\nCode\n# note na.rm = TRUE, else everything will be NA \n# even if just one NA\nflights %>%\n  summarise(delay = median(arr_delay, na.rm = TRUE))\n\n\n# A tibble: 1 × 1\n  delay\n  <dbl>\n1    -5\n\n\n\n\nOur example with arr_delay from earlier\n\n\n\n\n\nCode\nflights %>%\n  filter(month == 5) %>%\n  select(arr_delay) %>%\n  summarise(median_arr_delay = median(arr_delay, na.rm = TRUE))\n\n\n# A tibble: 1 × 1\n  median_arr_delay\n             <dbl>\n1               -8"
   },
   {
-    "objectID": "explore-data/trans-data/trans-data.html#summarise-and-group_by-1",
-    "href": "explore-data/trans-data/trans-data.html#summarise-and-group_by-1",
+    "objectID": "explore-data/trans-data/index.html#summarise-and-group_by-1",
+    "href": "explore-data/trans-data/index.html#summarise-and-group_by-1",
     "title": "Transforming Data",
     "section": "summarise() and group_by()",
     "text": "summarise() and group_by()\n\nHow to get median arr_delay for each month?\n\n\n\n\nCode\nflights %>%\n  group_by(month) %>%\n  summarise(median_arr_delay = median(arr_delay, na.rm = TRUE))\n\n\n# A tibble: 12 × 2\n   month median_arr_delay\n   <int>            <dbl>\n 1     1               -3\n 2     2               -3\n 3     3               -6\n 4     4               -2\n 5     5               -8\n 6     6               -2\n 7     7               -2\n 8     8               -5\n 9     9              -12\n10    10               -7\n11    11               -6\n12    12                2\n\n\n\n\nCode\n#siste\n\n\n\n\nMSB105"
@@ -4898,6 +4870,13 @@
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Single variable, load data",
     "text": "Single variable, load data\n\nLoad the data\n\n\n\n\nCode\nmy_heights <- modelr::heights\n\n\n\nAny NAs?\n\n\n\n\n\nCode\n# NAs in my_heights?\nmy_heights %>% \n  apply(MARGIN = 2, FUN = is.na) %>% \n  apply(MARGIN = 2, FUN = sum) \n\n\n   income    height    weight       age   marital       sex education      afqt \n        0         0        95         0         0         0        10       262 \n\n\n\nor\n\n\n\n\n\nCode\n# NAs in my_heights?\nmy_heights %>% \n  is.na() %>% \n  apply(MARGIN = 2, FUN = sum) \n\n\n   income    height    weight       age   marital       sex education      afqt \n        0         0        95         0         0         0        10       262"
+  },
+  {
+    "objectID": "explore-data/eda/eda.html#single-variable-load-data-cont.",
+    "href": "explore-data/eda/eda.html#single-variable-load-data-cont.",
+    "title": "Exploratory Data Analysis (EDA)",
+    "section": "Single variable, load data cont.",
+    "text": "Single variable, load data cont.\n\nNicer solution\n\n\n\n\nCode\n# number of NAs in each variable\n# drop variables with no NA\nmy_heights %>% \n  is.na() %>% \n  colSums()\n\n\n   income    height    weight       age   marital       sex education      afqt \n        0         0        95         0         0         0        10       262 \n\n\n\nor\n\n\n\n\n\nCode\n# number of NAs in each variable\n# drop variables with no NA\nmy_heights %>% \n  is.na() %>% \n  colSums() %>% \n  .[. > 0]\n\n\n   weight education      afqt \n       95        10       262"
   },
   {
     "objectID": "explore-data/eda/eda.html#descriptive-statistics",
@@ -6143,21 +6122,21 @@
     "href": "model/model-basics/model-basics.html#matrix-multiplication-4",
     "title": "Model basics",
     "section": "Matrix multiplication",
-    "text": "Matrix multiplication\n$$\n\\[\\begin{bmatrix}\n\n\n10 & 30 & 20 \\\\\n30 & 130 & 100\\\\\n20 & 100 & 80\n\\end{bmatrix}\\]\n$$\n\n\nCode\nM %*% t(M)\n\n\n     [,1] [,2] [,3]\n[1,]   10   30   20\n[2,]   30  130  100\n[3,]   20  100   80"
+    "text": "Matrix multiplication\n\\[\\begin{bmatrix}\n10 & 30 & 20 \\\\\n30 & 130 & 100\\\\\n20 & 100 & 80\n\\end{bmatrix}\\]\n\n\nCode\nM %*% t(M)\n\n\n     [,1] [,2] [,3]\n[1,]   10   30   20\n[2,]   30  130  100\n[3,]   20  100   80"
   },
   {
     "objectID": "model/model-basics/model-basics.html#multiplication-by-vector",
     "href": "model/model-basics/model-basics.html#multiplication-by-vector",
     "title": "Model basics",
     "section": "Multiplication by vector",
-    "text": "Multiplication by vector\n\nJust like multiplying by a matrix with 1 row or 1 column\n\n\n\\[y = \\begin{bmatrix}7\\\\2\\\\4\\end{bmatrix}\\]\n\\[(\\boldsymbol{M} · t(\\boldsymbol{M})) · \\boldsymbol{y}\\]\n\n\n\n(M %*% t(M)) is 3x3\ny is 3x1\n(M · t(M)) · y, 3x3 3x1\nPossible, since 3x3 in the middle, and dimension of result will be 3x1, 3 rows and 1 column"
+    "text": "Multiplication by vector\n\nJust like multiplying by a matrix with 1 row or 1 column\n\n\n\\[y = \\begin{bmatrix}7\\\\2\\\\4\\end{bmatrix}\\] \\[(\\boldsymbol{M} · t(\\boldsymbol{M})) · \\boldsymbol{y}\\]\n\n\n\n(M %*% t(M)) is 3x3\ny is 3x1\n(M · t(M)) · y, 3x3 3x1\nPossible, since 3x3 in the middle, and dimension of result will be 3x1, 3 rows and 1 column"
   },
   {
     "objectID": "model/model-basics/model-basics.html#multiplication-by-vector-1",
     "href": "model/model-basics/model-basics.html#multiplication-by-vector-1",
     "title": "Model basics",
     "section": "Multiplication by vector",
-    "text": "Multiplication by vector\n\n(M %*% t(M)) is 3x3\ny is 3x1\n(M · t(M)) · y, 3x3 3x1\nPossible, since 3x3 in the middle, and dimension of result will be 3x1, 3 rows and 1 column\n\n\n\\[(M · t(M)) · y = \\begin{bmatrix}\n10 & 30 & 20 \\\\\n30 & 130 & 100\\\\\n20 & 100 & 80\n\\end{bmatrix} · \\begin{bmatrix}7\\\\2\\\\4\\end{bmatrix} =\n\\begin{bmatrix}\n10·7+30·2+20·4\\\\\n30·7+130·2+100·4\\\\\n20·7+100·2+80·4\n\\end{bmatrix}\\]\n$$=\n\\[\\begin{bmatrix}\n\n\n210\\\\\n870\\\\\n660\n\\end{bmatrix}\\]\n$$"
+    "text": "Multiplication by vector\n\n(M %*% t(M)) is 3x3\ny is 3x1\n(M · t(M)) · y, 3x3 3x1\nPossible, since 3x3 in the middle, and dimension of result will be 3x1, 3 rows and 1 column\n\n\n\\[(M · t(M)) · y = \\begin{bmatrix}\n10 & 30 & 20 \\\\\n30 & 130 & 100\\\\\n20 & 100 & 80\n\\end{bmatrix} · \\begin{bmatrix}7\\\\2\\\\4\\end{bmatrix} =\n\\begin{bmatrix}\n10·7+30·2+20·4\\\\\n30·7+130·2+100·4\\\\\n20·7+100·2+80·4\n\\end{bmatrix}\\]\n\\[=\\begin{bmatrix}\n210\\\\\n870\\\\\n660\n\\end{bmatrix}\\]"
   },
   {
     "objectID": "model/model-basics/model-basics.html#multiplication-by-vector-2",
@@ -6389,6 +6368,13 @@
     "title": "Many models",
     "section": "Read in newgapminder",
     "text": "Read in newgapminder\n\nOur dataset is somewhat smaller than the one in gapminder, but have more updated data\n\n\n\n\nCode\nnewgapminder <- read_csv(file = \"./newgapminder.csv\")"
+  },
+  {
+    "objectID": "model/many-models/many-models.html#newgapminder",
+    "href": "model/many-models/many-models.html#newgapminder",
+    "title": "Many models",
+    "section": "newgapminder",
+    "text": "newgapminder\n\n\nCode\nprint(head(newgapminder, n = 20))\n\n\n# A tibble: 20 × 6\n   country   continent year       lifeExp      pop gdpPercap\n   <chr>     <chr>     <date>       <dbl>    <dbl>     <dbl>\n 1 Argentina Americas  1962-01-01    64.4 21153042     5711.\n 2 Argentina Americas  1967-01-01    64.9 22828872     6255.\n 3 Argentina Americas  1972-01-01    66.2 24653172     7369.\n 4 Argentina Americas  1977-01-01    68.4 26661397     7744.\n 5 Argentina Americas  1982-01-01    70.8 28794550     7210.\n 6 Argentina Americas  1987-01-01    72.0 31184411     7294.\n 7 Argentina Americas  1992-01-01    72.6 33529320     7157.\n 8 Argentina Americas  1997-01-01    73.5 35657438     8543.\n 9 Argentina Americas  2002-01-01    74.2 37681743     6854.\n10 Argentina Americas  2007-01-01    75.1 39684303     9902.\n11 Argentina Americas  2012-01-01    76.0 41755188    10650.\n12 Argentina Americas  2017-01-01    76.7 43937143    10404.\n13 Australia Oceania   1962-01-01    71.2 10643420    19246.\n14 Australia Oceania   1967-01-01    71.3 11899644    22965.\n15 Australia Oceania   1972-01-01    71.6 13244163    26794.\n16 Australia Oceania   1977-01-01    73.3 14092545    28625.\n17 Australia Oceania   1982-01-01    74.8 14979203    30912.\n18 Australia Oceania   1987-01-01    76.0 16183159    33127.\n19 Australia Oceania   1992-01-01    77.4 17402179    35035.\n20 Australia Oceania   1997-01-01    78.6 18387205    40154."
   },
   {
     "objectID": "model/many-models/many-models.html#plotting-the-data-for-each-country",
@@ -7109,7 +7095,7 @@
     "href": "model/model-building/model-building.html#nyc-flight-data-cont.",
     "title": "Model building",
     "section": "NYC flight data cont.",
-    "text": "NYC flight data cont.\n\n\nCode\n# OK in slide output\noptions(tibble.print_min = 3)\nprint(daily, n = 3)\n\n\n# A tibble: 365 × 2\n  date           n\n  <date>     <int>\n1 2013-01-01   842\n2 2013-01-02   943\n3 2013-01-03   914\n# … with 362 more rows\n# ℹ Use `print(n = ...)` to see more rows"
+    "text": "NYC flight data cont.\n\n\nCode\n# OK in slide output\noptions(tibble.print_min = 3)\nprint(daily, n = 3)\n\n\n# A tibble: 365 × 2\n  date           n\n  <date>     <int>\n1 2013-01-01   842\n2 2013-01-02   943\n3 2013-01-03   914\n# … with 362 more rows"
   },
   {
     "objectID": "model/model-building/model-building.html#plotting-daily",
@@ -7798,6 +7784,13 @@
     "text": "For loop, tibble\n\nNested loop\n\nloop over columns\n\nfor each column loop over all rows\n\n\n\n\n\nCode\nmy_df1\n\n\n# A tibble: 3 × 3\n      x     y     z\n  <dbl> <dbl> <dbl>\n1  99.2  43.0  9.22\n2 119.   37.1 15.3 \n3  79.5  49.1  8.23\n\n\nCode\n# allocate empty vector for output\nout <- tibble(x = vector(mode = \"double\", length = 3),\n              y = vector(mode = \"double\", length = 3),\n              z = vector(mode = \"double\", length = 3))\n# i row, j column\n# column\nfor (j in 1:ncol(my_df1)) {\n# row\n  for (i in 1:nrow(my_df1)) {\n    out[[i, j]] <-  my_df1[[i, j]] + 5\n  }\n}\n\n\n\n\nCode\nout\n\n\n# A tibble: 3 × 3\n      x     y     z\n  <dbl> <dbl> <dbl>\n1 104.   48.0  14.2\n2 124.   42.1  20.3\n3  84.5  54.1  13.2"
   },
   {
+    "objectID": "program/iteration/iteration.html#the-r-way",
+    "href": "program/iteration/iteration.html#the-r-way",
+    "title": "Iteration",
+    "section": "The R way",
+    "text": "The R way\n\n\nCode\nmy_df1 + 5\n\n\n         x        y        z\n1 104.1719 48.03157 14.21825\n2 124.3468 42.14962 20.32454\n3  84.4871 54.09765 13.22684"
+  },
+  {
     "objectID": "program/iteration/iteration.html#for-loop-tibble-rows-to-columns",
     "href": "program/iteration/iteration.html#for-loop-tibble-rows-to-columns",
     "title": "Iteration",
@@ -7816,7 +7809,7 @@
     "href": "program/iteration/iteration.html#for-loop-tibble-2",
     "title": "Iteration",
     "section": "For loop, tibble",
-    "text": "For loop, tibble\n\ntesting\n\n\n\n\nCode\nmyT(my_df)\n\n\n# A tibble: 3 × 10\n    V_1   V_2   V_3   V_4   V_5   V_6   V_7    V_8    V_9   V_10\n  <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>  <dbl>  <dbl>\n1 99.2  119.  79.5  103.  84.7  97.3  112.  106.   104.    94.4 \n2 43.0   37.1 49.1   56.8 81.7  43.2   58.0  48.7   50.5  115.  \n3  9.22  15.3  8.23 114.   3.45  1.80  51.1   1.79   6.56   4.66\n\n\nCode\ntest <- matrix(sample(1:10, 10000, replace = TRUE), \n               nrow = 100, ncol = 100)\n# checking speed\nmicrobenchmark(myT(test), t(test))\n\n\nUnit: microseconds\n      expr     min       lq      mean  median       uq     max neval\n myT(test) 591.835 602.4745 629.57714 613.155 638.7185 854.235   100\n   t(test)  14.719  16.9535  18.85057  17.302  18.6345  62.320   100\n\n\n\nOur routine is about 40 times slower than Rs t(). Why so much slower? See Efficient R programming."
+    "text": "For loop, tibble\n\ntesting\n\n\n\n\nCode\nmyT(my_df)\n\n\n# A tibble: 3 × 10\n    V_1   V_2   V_3   V_4   V_5   V_6   V_7    V_8    V_9   V_10\n  <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>  <dbl>  <dbl>\n1 99.2  119.  79.5  103.  84.7  97.3  112.  106.   104.    94.4 \n2 43.0   37.1 49.1   56.8 81.7  43.2   58.0  48.7   50.5  115.  \n3  9.22  15.3  8.23 114.   3.45  1.80  51.1   1.79   6.56   4.66\n\n\nCode\ntest <- matrix(sample(1:10, 10000, replace = TRUE), \n               nrow = 100, ncol = 100)\n# checking speed\nmicrobenchmark(myT(test), t(test))\n\n\nUnit: microseconds\n      expr     min       lq     mean   median       uq     max neval\n myT(test) 586.382 591.6505 608.7557 595.8325 607.5175 802.944   100\n   t(test)  13.940  16.1745  17.4332  16.6665  17.4865  37.843   100\n\n\n\nOur routine is about 40 times slower than Rs t(). Why so much slower? See Efficient R programming."
   },
   {
     "objectID": "program/iteration/iteration.html#myt-with-other-input",
@@ -7858,7 +7851,7 @@
     "href": "program/iteration/iteration.html#testing",
     "title": "Iteration",
     "section": "Testing",
-    "text": "Testing\n\n\nCode\n# checking speed\nset.seed(444)\ntest_vec <- sample(1:10, 10000, replace = TRUE)\n# Unit: milliseconds\nmicrobenchmark::microbenchmark(decide_number_vec(test), decide_numvec(test))\n\n\nUnit: milliseconds\n                    expr       min        lq      mean    median        uq\n decide_number_vec(test) 15.510751 15.674423 16.456180 15.785451 17.461633\n     decide_numvec(test)  3.170735  3.225224  3.321949  3.278237  3.343325\n       max neval\n 19.774341   100\n  4.984534   100\n\n\n\nvector version about 7 times faster"
+    "text": "Testing\n\n\nCode\n# checking speed\nset.seed(444)\ntest_vec <- sample(1:10, 10000, replace = TRUE)\n# Unit: milliseconds\nmicrobenchmark::microbenchmark(decide_number_vec(test), decide_numvec(test))\n\n\nUnit: milliseconds\n                    expr       min       lq      mean    median        uq\n decide_number_vec(test) 15.568684 15.87288 16.623536 16.088400 17.662861\n     decide_numvec(test)  3.183814  3.26403  3.333855  3.303472  3.355276\n       max neval\n 19.849248   100\n  5.146402   100\n\n\n\nvector version about 7 times faster"
   },
   {
     "objectID": "program/iteration/iteration.html#for-loop-variations",
@@ -7870,13 +7863,6 @@
   {
     "objectID": "program/iteration/iteration.html#modifying-an-existing-object",
     "href": "program/iteration/iteration.html#modifying-an-existing-object",
-    "title": "Iteration",
-    "section": "Modifying an existing object",
-    "text": "Modifying an existing object\n\nSimple, we already have the output allocated (it’ s the input). We only have to modify elements in input and return as output.\n\nWorking on elements, so very important to use [[]]\n\nLooping patterns\n\nLoop over elements (for (x in xs))\nLoop over names (for (nm in names(xs)))\nLoop over index, most general. Can extract both name and value.\n\n\n\n\n\nCode\nfor (i in seq_along(x)) {\n  name <- names(x)[[i]]\n  value <- x[[i]]\n}"
-  },
-  {
-    "objectID": "program/iteration/iteration.html#modifying-an-existing-object-1",
-    "href": "program/iteration/iteration.html#modifying-an-existing-object-1",
     "title": "Iteration",
     "section": "Modifying an existing object",
     "text": "Modifying an existing object\n\nSimple, we already have the output allocated (it’ s the input). We only have to modify elements in input and return as output.\n\nWorking on elements, so very important to use [[]]\n\nLooping patterns\n\nLoop over elements (for (x in xs))\nLoop over names (for (nm in names(xs)))\nLoop over index, most general. Can extract both name and value.\n\n\n\n\n\nCode\nfor (i in seq_along(x)) {\n  name <- names(x)[[i]]\n  value <- x[[i]]\n}"
@@ -7905,13 +7891,6 @@
   {
     "objectID": "program/iteration/iteration.html#unknown-sequence-length",
     "href": "program/iteration/iteration.html#unknown-sequence-length",
-    "title": "Iteration",
-    "section": "Unknown sequence length",
-    "text": "Unknown sequence length\n\nUse while()\nNice for simulations (“continue until something happens”)\nStructure\n\n\n\n\nCode\nwhile (condition) {\n  body\n}\n\n\n\nBe aware of infinite loops.\n\nYou must make sure that the condition is met eventually, otherwise it will run forever (or until you stop it)"
-  },
-  {
-    "objectID": "program/iteration/iteration.html#unknown-sequence-length-1",
-    "href": "program/iteration/iteration.html#unknown-sequence-length-1",
     "title": "Iteration",
     "section": "Unknown sequence length",
     "text": "Unknown sequence length\n\nUse while()\nNice for simulations (“continue until something happens”)\nStructure\n\n\n\n\nCode\nwhile (condition) {\n  body\n}\n\n\n\nBe aware of infinite loops.\n\nYou must make sure that the condition is met eventually, otherwise it will run forever (or until you stop it)"
@@ -8050,402 +8029,17 @@
     "text": "References\n\n\nMSB105\n\n\n\nBache, Stefan Milton, and Hadley Wickham. 2022. Magrittr: A Forward-Pipe Operator for r. https://CRAN.R-project.org/package=magrittr.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nMersmann, Olaf. 2021. Microbenchmark: Accurate Timing Functions. https://github.com/joshuaulrich/microbenchmark/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nWickham, Hadley. 2022. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
-    "objectID": "explore-data/trans-data/index.html#introduction-to-transforming-data-chp.-5",
-    "href": "explore-data/trans-data/index.html#introduction-to-transforming-data-chp.-5",
-    "title": "Transforming Data",
-    "section": "Introduction to Transforming Data (chp. 5)",
-    "text": "Introduction to Transforming Data (chp. 5)\nAddin ViewPipeSteps\n\nPackage (addIn) ViewPipeSteps\neasier debugging of pipes"
+    "objectID": "introduction/intro/Intro.html#ønsket-format-rmarkdown",
+    "href": "introduction/intro/Intro.html#ønsket-format-rmarkdown",
+    "title": "Introduksjon Data Science",
+    "section": "Ønsket format Rmarkdown",
+    "text": "Ønsket format Rmarkdown\n\nVelg format fra knitr menyen.\n\nVi velger ønsket format vha. knitr menyen."
   },
   {
-    "objectID": "explore-data/trans-data/index.html#nice-tutorials-on-rstudio",
-    "href": "explore-data/trans-data/index.html#nice-tutorials-on-rstudio",
-    "title": "Transforming Data",
-    "section": "Nice tutorials on RStudio",
-    "text": "Nice tutorials on RStudio\n\nRStudio Crash Course for beginners 2020.\n\nMore on Bryan Jenks\n\nIntroduction to R and RStudio\nR Programming Tutorial - Learn the Basics of StatisticalComputing\nmore tips on Twitter: @rstudiotips"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#introduction",
-    "href": "explore-data/trans-data/index.html#introduction",
-    "title": "Transforming Data",
-    "section": "Introduction",
-    "text": "Introduction\n\nChapter 5 is a central chapter.\nIt covers how to manipulate a dataframe/tibble.\nI highly recommend that you work through (follow) the example in the book.\nSuggestions:\n\nDo it in a Quarto Document.\nCopy the code from the book into your own Quarto Document.\nTry to experiment with the code and write your own remarks/comment about the code and how it works.\n\nI will cover the most important material in lectures, but we do not have time to cover all the finer details."
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#small-collection-of-verbs",
-    "href": "explore-data/trans-data/index.html#small-collection-of-verbs",
-    "title": "Transforming Data",
-    "section": "Small collection of verbs",
-    "text": "Small collection of verbs\n\nWe will use a small collection of verbs:\n\nfilter(): show us just the data that satisfies one or more conditions\narrange(): sort (rearranges) the rows\nselect(): select some of the variables (remove the variables that does not interest us)\nmutate(): make new variables in the dataframe/tibble\n\ntransmute() only keeps the new variables\nrename(): change the name of a variable (this is really a variant of mutate()).\n\n\nsummarise() and group_by(): Group by one or more criteria and then summarise the variables (max, min, mean, median, sd etc.)\nThe functions above are from the dplyr package which is part of the tidyverse."
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#data-nycflights13",
-    "href": "explore-data/trans-data/index.html#data-nycflights13",
-    "title": "Transforming Data",
-    "section": "Data: nycflights13",
-    "text": "Data: nycflights13\n\nWe will follow the book and use the dataset nycflights13.\nThe dataset is in a package (called nycflights13) that we have to install first.\nSee also:\n\nvignette(\"dplyr\"),\nstarwars dataset,\nvignette(\"grouping\"),\nvignette(\"colwise\") and\nvignette(\"rowwise\")"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#the-pipe-5.6.1-and-more-details-in-chap.-18",
-    "href": "explore-data/trans-data/index.html#the-pipe-5.6.1-and-more-details-in-chap.-18",
-    "title": "Transforming Data",
-    "section": "The pipe, 5.6.1 and more details in chap. 18",
-    "text": "The pipe, 5.6.1 and more details in chap. 18\n\nThree equivalent ways to calculate in R\nFunction in function in function in function …\nTemporary variables\nThe pipe"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#function-in-function-in-function",
-    "href": "explore-data/trans-data/index.html#function-in-function-in-function",
-    "title": "Transforming Data",
-    "section": "Function in function in function …",
-    "text": "Function in function in function …\n\n\nCode\nset.seed(1234)\nres_mean_rnorm_3dig <- paste(\"Result:\", round(mean(rnorm(n = 10, mean = 0, sd = 1)), digits = 3), sep = \"\")\nres_mean_rnorm_3dig\n\n\n[1] \"Result:-0.383\""
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#temporary-variables",
-    "href": "explore-data/trans-data/index.html#temporary-variables",
-    "title": "Transforming Data",
-    "section": "Temporary variables",
-    "text": "Temporary variables\n\nMeaningful names with clean-up\n\n\n\n\nCode\nset.seed(1234)\nres_rnorm <- rnorm(n = 10, mean = 0, sd = 1)\nres_mean_rnorm <- mean(res_rnorm)\nres_mean_rnorm_3dig <- round(res_mean_rnorm, digits = 3)\nres_mean_rnorm_3dig_string <- paste(\"Result:\", res_mean_rnorm_3dig, sep = \"\")\n# print result\nres_mean_rnorm_3dig_string\n\n\n[1] \"Result:-0.383\"\n\n\nCode\n# cleanup\nrm(res_rnorm, res_mean_rnorm, res_mean_rnorm_3dig, res_mean_rnorm_3dig_string)"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#temporary-variables-in-reality",
-    "href": "explore-data/trans-data/index.html#temporary-variables-in-reality",
-    "title": "Transforming Data",
-    "section": "Temporary variables (in reality)",
-    "text": "Temporary variables (in reality)\n\nWhat we usually do, bad variable names and no clean-up\n\n\n\n\nCode\nset.seed(1234)\ntmp <- rnorm(n = 10, mean = 0, sd = 1)\ntmp1 <- mean(tmp)\ntmp2 <- round(tmp1, digits = 3)\npaste(\"Result:\", tmp2, sep = \"\")\n\n\n[1] \"Result:-0.383\"\n\n\n\n\nCode\n# ^t, object names that start with 't' \nls(pattern = \"^t\")\n\n\n[1] \"tmp\"  \"tmp1\" \"tmp2\""
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps",
-    "href": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps",
-    "title": "Transforming Data",
-    "section": "The pipe with addin viewpipesteps",
-    "text": "The pipe with addin viewpipesteps\n\n\nCode\nset.seed(1234)\nres_mean_rnorm_3dig_string <- \n  rnorm(n = 10, mean = 0, sd = 1) %>%\n  mean() %>%\n  round(digits = 3) %>% \n  # The dot '.' is to show where the content of the pipe should be put\n  paste(\"Result:\", .)\nres_mean_rnorm_3dig_string\n\n\n[1] \"Result: -0.383\""
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#the-pipe-cont.",
-    "href": "explore-data/trans-data/index.html#the-pipe-cont.",
-    "title": "Transforming Data",
-    "section": "The pipe cont.",
-    "text": "The pipe cont.\n\nWhat would happen if we dropped the ‘.’ in paste(\"Result:\", .)?\n\n\n\n\nCode\nset.seed(1234)\nres_mean_rnorm_3dig_string <- \n  rnorm(n = 10, mean = 0, sd = 1) %>%\n  mean() %>%\n  round(digits = 3) %>% \n  # The dot '.' is to show where the content of the pipe should be put\n  paste(\"Result:\")\nres_mean_rnorm_3dig_string\n\n\n[1] \"-0.383 Result:\""
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps-1",
-    "href": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps-1",
-    "title": "Transforming Data",
-    "section": "The pipe with Addin viewpipesteps",
-    "text": "The pipe with Addin viewpipesteps\n\nRun the set.seed() function\nSelect the pipe\nChoose Print Pipe Chain Steps\n\n\n\n\n\nSelect the pipe"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps-cont.",
-    "href": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps-cont.",
-    "title": "Transforming Data",
-    "section": "The pipe with Addin viewpipesteps cont.",
-    "text": "The pipe with Addin viewpipesteps cont.\n\nSelect Print Pipe Chain Steps from Addins menu\n\n\n\n\n\nSelect Print Pipe Chain Steps in the Addins drop-down menu."
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps-cont.-1",
-    "href": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps-cont.-1",
-    "title": "Transforming Data",
-    "section": "The pipe with Addin viewpipesteps cont.",
-    "text": "The pipe with Addin viewpipesteps cont.\n\nIn the Console we will get the result (output) of every step in the pipe\n\n\n\n\n\nSelect Print Pipe Chain Steps from Addins drop-down menu."
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#the-pipe-alternative-not-much-used",
-    "href": "explore-data/trans-data/index.html#the-pipe-alternative-not-much-used",
-    "title": "Transforming Data",
-    "section": "The pipe, alternative not much used",
-    "text": "The pipe, alternative not much used\n\n\nCode\nset.seed(1234)\nrnorm(\n  n = 10,\n  mean = 0,\n  sd = 1\n) %>%\n  mean() %>%\n  round(digits = 3) %>% \n  paste(\"Result:\", .) -> res_mean_rnorm_3dig_string\nres_mean_rnorm_3dig_string\n\n\n[1] \"Result: -0.383\""
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#more-about-the-pipe",
-    "href": "explore-data/trans-data/index.html#more-about-the-pipe",
-    "title": "Transforming Data",
-    "section": "More about the pipe",
-    "text": "More about the pipe\n\nWork like the unix shell pipe (‘|’)\nOutput from one function is the input of the next function\nTemporary variables in the background, but we don’t have to come up with names or remove them when not needed any more.\nUses the fact that most R functions have the data as their first argument\n\nThe regression function lm(formula, data, …) is an important counter example\nWe use ‘.’ to specify where the data in the pipe enters a function\n\nIf not the first argument (function_name(., other arguments) is the default)\n\n\nThe tidyverse is designed to work well with the pipe\n\nThe sf packages we will encounter next year are also designed to work well with tidyverse and pipes"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#nycflights13",
-    "href": "explore-data/trans-data/index.html#nycflights13",
-    "title": "Transforming Data",
-    "section": "nycflights13",
-    "text": "nycflights13\n\n\nCode\n# see setup at the top for loading of \n# nycflights13 package\n?nycflights13\n\n\n\nLoad the nycflights13 package.\nGet help via Packages pane and click nycflights13."
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#nycflights13-1",
-    "href": "explore-data/trans-data/index.html#nycflights13-1",
-    "title": "Transforming Data",
-    "section": "nycflights13",
-    "text": "nycflights13\n\nThe package contains 5 datsets\n\nairline\nairports\nflights\nplanes\nweather\n\nuse ? to read the help for each\n\n\n\n\nCode\n?flights"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#variables-in-flights-from-help",
-    "href": "explore-data/trans-data/index.html#variables-in-flights-from-help",
-    "title": "Transforming Data",
-    "section": "Variables in flights (from help)",
-    "text": "Variables in flights (from help)\n\nyear, month, day: Date of departure.\ndep_time, arr_time: Actual departure and arrival times (format HHMM or HMM), local tz.\nsched_dep_time, sched_arr_time: Scheduled departure and arrival times (format HHMM or HMM), local tz.\ndep_delay, arr_delay: Departure and arrival delays, in minutes. Negative times represent early departures/arrivals.\ncarrier: Two letters carrier abbreviation. See airlines to get name.\nflight: Flight number."
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#variables-in-flights-from-help-cont.",
-    "href": "explore-data/trans-data/index.html#variables-in-flights-from-help-cont.",
-    "title": "Transforming Data",
-    "section": "Variables in flights (from help) cont.",
-    "text": "Variables in flights (from help) cont.\n\ntailnum: Plane tail number. See planes for additional metadata.\norigin, dest: Origin and destination. See airports for additional metadata.\nair_time: Amount of time spent in the air, in minutes.\ndistance: Distance between airports, in miles.\nhour, minute: Time of scheduled departure broken into hour and minutes.\ntime_hour: Scheduled date and hour of the flight as a POSIXct date. Along with origin, can be used to join flights data to weather data."
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#a-first-look-on-flights",
-    "href": "explore-data/trans-data/index.html#a-first-look-on-flights",
-    "title": "Transforming Data",
-    "section": "A first look on flights",
-    "text": "A first look on flights\n\n\nCode\n# what size is it\ndim(flights)\n\n\n[1] 336776     19\n\n\n\n\n\nCode\n# what type; data.frame, tibble?\nclass(flights)\n\n\n[1] \"tbl_df\"     \"tbl\"        \"data.frame\""
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#a-first-look-on-flights-1",
-    "href": "explore-data/trans-data/index.html#a-first-look-on-flights-1",
-    "title": "Transforming Data",
-    "section": "A first look on flights",
-    "text": "A first look on flights\n\n\nCode\nprint(\n  head(flights, n = 5),\n  width = 70\n  )\n\n\n# A tibble: 5 × 19\n   year month   day dep_time sched_d…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n  <int> <int> <int>    <int>     <int>   <dbl>   <int>   <int>   <dbl>\n1  2013     1     1      517       515       2     830     819      11\n2  2013     1     1      533       529       4     850     830      20\n3  2013     1     1      542       540       2     923     850      33\n4  2013     1     1      544       545      -1    1004    1022     -18\n5  2013     1     1      554       600      -6     812     837     -25\n# … with 10 more variables: carrier <chr>, flight <int>,\n#   tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>,\n#   distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dttm>, and\n#   abbreviated variable names ¹​sched_dep_time, ²​dep_delay,\n#   ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay\n# ℹ Use `colnames()` to see all variable names"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#using-filter-from-r4ds",
-    "href": "explore-data/trans-data/index.html#using-filter-from-r4ds",
-    "title": "Transforming Data",
-    "section": "Using filter(), from r4ds",
-    "text": "Using filter(), from r4ds\n\n\nCode\nprint(\n  filter(flights, month == 1, day == 1),\n  n = 5, \n  width = 70\n  )\n\n\n# A tibble: 842 × 19\n   year month   day dep_time sched_d…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n  <int> <int> <int>    <int>     <int>   <dbl>   <int>   <int>   <dbl>\n1  2013     1     1      517       515       2     830     819      11\n2  2013     1     1      533       529       4     850     830      20\n3  2013     1     1      542       540       2     923     850      33\n4  2013     1     1      544       545      -1    1004    1022     -18\n5  2013     1     1      554       600      -6     812     837     -25\n# … with 837 more rows, 10 more variables: carrier <chr>,\n#   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,\n#   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,\n#   time_hour <dttm>, and abbreviated variable names ¹​sched_dep_time,\n#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay\n# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#more-filter-ex-1",
-    "href": "explore-data/trans-data/index.html#more-filter-ex-1",
-    "title": "Transforming Data",
-    "section": "More filter-ex-1",
-    "text": "More filter-ex-1\n\n\nCode\nprint(\n  filter(flights, month == 1, day %in% c(1, 15, 30)),\n  n = 5,\n  width = 70\n  )\n\n\n# A tibble: 2,636 × 19\n   year month   day dep_time sched_d…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n  <int> <int> <int>    <int>     <int>   <dbl>   <int>   <int>   <dbl>\n1  2013     1     1      517       515       2     830     819      11\n2  2013     1     1      533       529       4     850     830      20\n3  2013     1     1      542       540       2     923     850      33\n4  2013     1     1      544       545      -1    1004    1022     -18\n5  2013     1     1      554       600      -6     812     837     -25\n# … with 2,631 more rows, 10 more variables: carrier <chr>,\n#   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,\n#   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,\n#   time_hour <dttm>, and abbreviated variable names ¹​sched_dep_time,\n#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay\n# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names\n\n\n\nWhy no day 15 and 30?\nnote %in%, it’s very handy and flexible"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#more-filter-ex-1-1",
-    "href": "explore-data/trans-data/index.html#more-filter-ex-1-1",
-    "title": "Transforming Data",
-    "section": "More filter-ex-1",
-    "text": "More filter-ex-1\n\n\nCode\nflights_some_days_jan <- filter(flights, month == 1, day %in% c(1, 15, 30))\n# tail(flights_some_days_jan, n = 5)\n# more control\nprint(\n  slice_tail(flights_some_days_jan, n = 7),\n  width = 70\n  )\n\n\n# A tibble: 7 × 19\n   year month   day dep_time sched_d…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n  <int> <int> <int>    <int>     <int>   <dbl>   <int>   <int>   <dbl>\n1  2013     1    30       NA      1410      NA      NA    1555      NA\n2  2013     1    30       NA       810      NA      NA     955      NA\n3  2013     1    30       NA      1510      NA      NA    1745      NA\n4  2013     1    30       NA      1725      NA      NA    1855      NA\n5  2013     1    30       NA      1800      NA      NA    1939      NA\n6  2013     1    30       NA      1506      NA      NA    1640      NA\n7  2013     1    30       NA       958      NA      NA    1137      NA\n# … with 10 more variables: carrier <chr>, flight <int>,\n#   tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>,\n#   distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dttm>, and\n#   abbreviated variable names ¹​sched_dep_time, ²​dep_delay,\n#   ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay\n# ℹ Use `colnames()` to see all variable names"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#doing-it-with-a-pipe",
-    "href": "explore-data/trans-data/index.html#doing-it-with-a-pipe",
-    "title": "Transforming Data",
-    "section": "Doing it with a Pipe",
-    "text": "Doing it with a Pipe\n\n\nCode\n  flights %>% \n  filter(month == 1, day %in% c(1, 15, 30)) %>% \n  slice_tail(n = 7) %>% \n  print(width = 70)\n\n\n# A tibble: 7 × 19\n   year month   day dep_time sched_d…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n  <int> <int> <int>    <int>     <int>   <dbl>   <int>   <int>   <dbl>\n1  2013     1    30       NA      1410      NA      NA    1555      NA\n2  2013     1    30       NA       810      NA      NA     955      NA\n3  2013     1    30       NA      1510      NA      NA    1745      NA\n4  2013     1    30       NA      1725      NA      NA    1855      NA\n5  2013     1    30       NA      1800      NA      NA    1939      NA\n6  2013     1    30       NA      1506      NA      NA    1640      NA\n7  2013     1    30       NA       958      NA      NA    1137      NA\n# … with 10 more variables: carrier <chr>, flight <int>,\n#   tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>,\n#   distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dttm>, and\n#   abbreviated variable names ¹​sched_dep_time, ²​dep_delay,\n#   ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay\n# ℹ Use `colnames()` to see all variable names"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#operators",
-    "href": "explore-data/trans-data/index.html#operators",
-    "title": "Transforming Data",
-    "section": "Operators",
-    "text": "Operators\n\n== NB! not =; equal\n<, >, >=, <=\n! for negate, !near(1/5 * 5, 5/5) is FALSE\n| is or, ex. TRUE | FALSE is TRUE\n& is and, ex. TRUE & FALSE is FALSE. TRUE & TRUE is TRUE, !(TRUE & FALSE) is TRUE\n%in% is very handy, x %in% c(1, 3), TRUE if x is 1 or 3"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#use-near-not-for-doublenumeric",
-    "href": "explore-data/trans-data/index.html#use-near-not-for-doublenumeric",
-    "title": "Transforming Data",
-    "section": "Use near() not == for double/numeric",
-    "text": "Use near() not == for double/numeric\n\n\nCode\n(1/49) * 49 == 1\n\n\n[1] FALSE\n\n\nCode\n# and\n(1/49) * 49 == 49/49\n\n\n[1] FALSE\n\n\nCode\n# but\n(1/5) * 5 == 5/5\n\n\n[1] TRUE\n\n\nCode\n# but\n(5/4) == 1.25\n\n\n[1] TRUE"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#use-near-not-for-doublenumeric-cont.",
-    "href": "explore-data/trans-data/index.html#use-near-not-for-doublenumeric-cont.",
-    "title": "Transforming Data",
-    "section": "Use near() not == for double/numeric cont.",
-    "text": "Use near() not == for double/numeric cont.\n\nuse near()\n\n\n\n\nCode\nnear(1/49 * 49, 1)\n\n\n[1] TRUE\n\n\nCode\nnear(1/5 * 5, 5/5)\n\n\n[1] TRUE"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#small-exercise",
-    "href": "explore-data/trans-data/index.html#small-exercise",
-    "title": "Transforming Data",
-    "section": "Small Exercise",
-    "text": "Small Exercise\n1) How many flights were there in April and September (total)?\n2) How many flights were there in total the first two days of a month?\n3) How may flights were there during 2013 that had an arrival delay greater than or equal to 15 min., but less than 30 min.?"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#solution-small-exercise",
-    "href": "explore-data/trans-data/index.html#solution-small-exercise",
-    "title": "Transforming Data",
-    "section": "Solution Small Exercise",
-    "text": "Solution Small Exercise\n1) How many flights were there in April and September (total)?"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#solution-small-exercise-cont.",
-    "href": "explore-data/trans-data/index.html#solution-small-exercise-cont.",
-    "title": "Transforming Data",
-    "section": "Solution Small Exercise cont.",
-    "text": "Solution Small Exercise cont.\n2) How many flights were there in total the first two days of a month?"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#solution-small-exercise-cont.-1",
-    "href": "explore-data/trans-data/index.html#solution-small-exercise-cont.-1",
-    "title": "Transforming Data",
-    "section": "Solution Small Exercise cont.",
-    "text": "Solution Small Exercise cont.\n3) How may flights were there during 2013 that had an arrival delay greater than or equal to 15 min., but less than 30 min.?\n\n\n\n\n\n\n\n\n\n\nNote use of .. Needed when using classic functions like [."
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#missing-values-na",
-    "href": "explore-data/trans-data/index.html#missing-values-na",
-    "title": "Transforming Data",
-    "section": "Missing values NA",
-    "text": "Missing values NA\n\nGeneral rule: If one is NA, whole result will be NA,\n\nex. sum(c(1, 2, NA, 4, 5)) will return\nNA.\n\nCheck for NA with is.na()\n\nNOT x == NA\n\nis.na() returns TRUE if NA\nHow to count number of NAs in a vector?\n\nsum(is.na(flights$arr_delay)) will return\n9430"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#arrange-sorts-rows",
-    "href": "explore-data/trans-data/index.html#arrange-sorts-rows",
-    "title": "Transforming Data",
-    "section": "arrange() sorts rows",
-    "text": "arrange() sorts rows\n\n\nCode\nprint(\n  arrange(flights, year, month, day),\n  n = 10,\n  width = 70\n  )\n\n\n# A tibble: 336,776 × 19\n    year month   day dep_time sched_…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n   <int> <int> <int>    <int>    <int>   <dbl>   <int>   <int>   <dbl>\n 1  2013     1     1      517      515       2     830     819      11\n 2  2013     1     1      533      529       4     850     830      20\n 3  2013     1     1      542      540       2     923     850      33\n 4  2013     1     1      544      545      -1    1004    1022     -18\n 5  2013     1     1      554      600      -6     812     837     -25\n 6  2013     1     1      554      558      -4     740     728      12\n 7  2013     1     1      555      600      -5     913     854      19\n 8  2013     1     1      557      600      -3     709     723     -14\n 9  2013     1     1      557      600      -3     838     846      -8\n10  2013     1     1      558      600      -2     753     745       8\n# … with 336,766 more rows, 10 more variables: carrier <chr>,\n#   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,\n#   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,\n#   time_hour <dttm>, and abbreviated variable names ¹​sched_dep_time,\n#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay\n# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#arrange-sorts-rows-as-pipe",
-    "href": "explore-data/trans-data/index.html#arrange-sorts-rows-as-pipe",
-    "title": "Transforming Data",
-    "section": "arrange() sorts rows as pipe",
-    "text": "arrange() sorts rows as pipe\n\n\nCode\nflights %>% \n  arrange(year, month, day) %>% \n  print(n = 10, width = 70)\n\n\n# A tibble: 336,776 × 19\n    year month   day dep_time sched_…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n   <int> <int> <int>    <int>    <int>   <dbl>   <int>   <int>   <dbl>\n 1  2013     1     1      517      515       2     830     819      11\n 2  2013     1     1      533      529       4     850     830      20\n 3  2013     1     1      542      540       2     923     850      33\n 4  2013     1     1      544      545      -1    1004    1022     -18\n 5  2013     1     1      554      600      -6     812     837     -25\n 6  2013     1     1      554      558      -4     740     728      12\n 7  2013     1     1      555      600      -5     913     854      19\n 8  2013     1     1      557      600      -3     709     723     -14\n 9  2013     1     1      557      600      -3     838     846      -8\n10  2013     1     1      558      600      -2     753     745       8\n# … with 336,766 more rows, 10 more variables: carrier <chr>,\n#   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,\n#   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,\n#   time_hour <dttm>, and abbreviated variable names ¹​sched_dep_time,\n#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay\n# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#arrange-sort-rows-decending",
-    "href": "explore-data/trans-data/index.html#arrange-sort-rows-decending",
-    "title": "Transforming Data",
-    "section": "arrange() sort rows decending",
-    "text": "arrange() sort rows decending\n\n\nCode\n#dec. first\nprint(arrange(flights, year, desc(month), day), n = 10, width = 70)\n\n\n# A tibble: 336,776 × 19\n    year month   day dep_time sched_…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵\n   <int> <int> <int>    <int>    <int>   <dbl>   <int>   <int>   <dbl>\n 1  2013    12     1       13     2359      14     446     445       1\n 2  2013    12     1       17     2359      18     443     437       6\n 3  2013    12     1      453      500      -7     636     651     -15\n 4  2013    12     1      520      515       5     749     808     -19\n 5  2013    12     1      536      540      -4     845     850      -5\n 6  2013    12     1      540      550     -10    1005    1027     -22\n 7  2013    12     1      541      545      -4     734     755     -21\n 8  2013    12     1      546      545       1     826     835      -9\n 9  2013    12     1      549      600     -11     648     659     -11\n10  2013    12     1      550      600     -10     825     854     -29\n# … with 336,766 more rows, 10 more variables: carrier <chr>,\n#   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,\n#   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,\n#   time_hour <dttm>, and abbreviated variable names ¹​sched_dep_time,\n#   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay\n# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#select-selects-the-variables-you-want",
-    "href": "explore-data/trans-data/index.html#select-selects-the-variables-you-want",
-    "title": "Transforming Data",
-    "section": "select() selects the variables you want",
-    "text": "select() selects the variables you want\n\n\nCode\n(my_vars <- select(flights, day, month, year, arr_delay))\n\n\n# A tibble: 336,776 × 4\n     day month  year arr_delay\n   <int> <int> <int>     <dbl>\n 1     1     1  2013        11\n 2     1     1  2013        20\n 3     1     1  2013        33\n 4     1     1  2013       -18\n 5     1     1  2013       -25\n 6     1     1  2013        12\n 7     1     1  2013        19\n 8     1     1  2013       -14\n 9     1     1  2013        -8\n10     1     1  2013         8\n# … with 336,766 more rows\n# ℹ Use `print(n = ...)` to see more rows\n\n\n\nHow to select the same variables, but only for May?"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#filter-and-select-in-pipe",
-    "href": "explore-data/trans-data/index.html#filter-and-select-in-pipe",
-    "title": "Transforming Data",
-    "section": "filter() and select() in pipe",
-    "text": "filter() and select() in pipe\n\n\nCode\n# Use a pipe\nmy_vars_May <- flights %>%\n  filter(month == 5) %>%\n  select(day, month, year, arr_delay)\nhead(my_vars_May)\n\n\n# A tibble: 6 × 4\n    day month  year arr_delay\n  <int> <int> <int>     <dbl>\n1     1     5  2013       408\n2     1     5  2013         1\n3     1     5  2013        -4\n4     1     5  2013        -9\n5     1     5  2013       -23\n6     1     5  2013        -6\n\n\n\nHow do we find median arr_delay in May?"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#filter-and-select-in-pipe-cont.",
-    "href": "explore-data/trans-data/index.html#filter-and-select-in-pipe-cont.",
-    "title": "Transforming Data",
-    "section": "filter() and select() in pipe cont.",
-    "text": "filter() and select() in pipe cont.\n\n\nCode\n# Use a pipe\nmy_vars_May <-  flights %>%\n  filter(month == 5) %>%\n  select(arr_delay)\n\nmedian(my_vars_May$arr_delay, na.rm = TRUE)\n\n\n[1] -8\n\n\n\nTo calculate the median direct in the pipe we need another function called summarise() that we will cover soon."
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#new-variable-use-mutate",
-    "href": "explore-data/trans-data/index.html#new-variable-use-mutate",
-    "title": "Transforming Data",
-    "section": "New variable, use mutate",
-    "text": "New variable, use mutate\n\n\nCode\nmy_new_data <- flights %>%\n  select(year:day, ends_with(\"delay\"), distance, air_time) %>%\n  mutate(\n    gain = dep_delay - arr_delay,\n    speed = (distance/air_time) * 60\n    ) %>%\n  select(year:day, gain, everything()) %>%\n  arrange(gain)\nhead(my_new_data, n = 5) \n\n\n# A tibble: 5 × 9\n   year month   day  gain dep_delay arr_delay distance air_time speed\n  <int> <int> <int> <dbl>     <dbl>     <dbl>    <dbl>    <dbl> <dbl>\n1  2013    11     1  -196        -2       194     2475      336  442.\n2  2013     4    18  -181        -2       179     1389      234  356.\n3  2013     8     8  -165       180       345     2565      420  366.\n4  2013     7    10  -161        16       177     2586      387  401.\n5  2013     6    27  -157        43       200      544      120  272 \n\n\n\n\nNote use of the helper function ends_with()\n\nMany helper functions and they can save a lot of time\nSee ?select for details\n\nHow do we get speed between dep_delay and arr_delay?"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#new-variable-use-mutate-cont.",
-    "href": "explore-data/trans-data/index.html#new-variable-use-mutate-cont.",
-    "title": "Transforming Data",
-    "section": "New variable, use mutate cont.",
-    "text": "New variable, use mutate cont.\n\n\nCode\nmy_new_data <- flights %>%\n  select(year:day, ends_with(\"delay\"), distance, air_time) %>%\n  mutate(\n    gain = dep_delay - arr_delay,\n    speed = (distance/air_time) * 60\n    ) %>%\n  select(year:day, gain, dep_delay, speed, everything()) %>%\n  arrange(gain)\nhead(my_new_data, n=5) \n\n\n# A tibble: 5 × 9\n   year month   day  gain dep_delay speed arr_delay distance air_time\n  <int> <int> <int> <dbl>     <dbl> <dbl>     <dbl>    <dbl>    <dbl>\n1  2013    11     1  -196        -2  442.       194     2475      336\n2  2013     4    18  -181        -2  356.       179     1389      234\n3  2013     8     8  -165       180  366.       345     2565      420\n4  2013     7    10  -161        16  401.       177     2586      387\n5  2013     6    27  -157        43  272        200      544      120"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#transmute",
-    "href": "explore-data/trans-data/index.html#transmute",
-    "title": "Transforming Data",
-    "section": "transmute()",
-    "text": "transmute()\n\nWhen should we use transmute()\nWhen we just want to keep the new variable(s)"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#transmute-1",
-    "href": "explore-data/trans-data/index.html#transmute-1",
-    "title": "Transforming Data",
-    "section": "transmute()",
-    "text": "transmute()\n\n\nCode\nmy_data <- flights %>%\n    transmute(\n    gain = dep_delay - arr_delay,\n    speed = (distance/air_time) * 60\n    ) %>%\n  arrange(gain)\nhead(my_data, n = 3)\n\n\n# A tibble: 3 × 2\n   gain speed\n  <dbl> <dbl>\n1  -196  442.\n2  -181  356.\n3  -165  366."
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#transmute-alternative-to-mutate-and-then-select",
-    "href": "explore-data/trans-data/index.html#transmute-alternative-to-mutate-and-then-select",
-    "title": "Transforming Data",
-    "section": "transmute() alternative to mutate() and then select()",
-    "text": "transmute() alternative to mutate() and then select()\n\n\nCode\nmy_data <- flights %>%\n    mutate(\n    gain = dep_delay - arr_delay,\n    speed = (distance/air_time) * 60\n    ) %>%\n  select(gain, speed) %>%\n  arrange(gain)\nhead(my_data, n = 3)\n\n\n# A tibble: 3 × 2\n   gain speed\n  <dbl> <dbl>\n1  -196  442.\n2  -181  356.\n3  -165  366."
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#summarise-and-group_by",
-    "href": "explore-data/trans-data/index.html#summarise-and-group_by",
-    "title": "Transforming Data",
-    "section": "summarise() and group_by()",
-    "text": "summarise() and group_by()\n\n\nCode\n# note na.rm = TRUE, else everything will be NA \n# even if just one NA\nflights %>%\n  summarise(delay = median(arr_delay, na.rm = TRUE))\n\n\n# A tibble: 1 × 1\n  delay\n  <dbl>\n1    -5\n\n\n\n\nOur example with arr_delay from earlier\n\n\n\n\n\nCode\nflights %>%\n  filter(month == 5) %>%\n  select(arr_delay) %>%\n  summarise(median_arr_delay = median(arr_delay, na.rm = TRUE))\n\n\n# A tibble: 1 × 1\n  median_arr_delay\n             <dbl>\n1               -8"
-  },
-  {
-    "objectID": "explore-data/trans-data/index.html#summarise-and-group_by-1",
-    "href": "explore-data/trans-data/index.html#summarise-and-group_by-1",
-    "title": "Transforming Data",
-    "section": "summarise() and group_by()",
-    "text": "summarise() and group_by()\n\nHow to get median arr_delay for each month?\n\n\n\n\nCode\nflights %>%\n  group_by(month) %>%\n  summarise(median_arr_delay = median(arr_delay, na.rm = TRUE))\n\n\n# A tibble: 12 × 2\n   month median_arr_delay\n   <int>            <dbl>\n 1     1               -3\n 2     2               -3\n 3     3               -6\n 4     4               -2\n 5     5               -8\n 6     6               -2\n 7     7               -2\n 8     8               -5\n 9     9              -12\n10    10               -7\n11    11               -6\n12    12                2\n\n\n\n\nCode\n#siste\n\n\n\n\nMSB105"
-  },
-  {
-    "objectID": "explore-data/eda/eda.html#single-variable-load-data-cont.",
-    "href": "explore-data/eda/eda.html#single-variable-load-data-cont.",
-    "title": "Exploratory Data Analysis (EDA)",
-    "section": "Single variable, load data cont.",
-    "text": "Single variable, load data cont.\n\nNicer solution\n\n\n\n\nCode\n# number of NAs in each variable\n# drop variables with no NA\nmy_heights %>% \n  is.na() %>% \n  colSums()\n\n\n   income    height    weight       age   marital       sex education      afqt \n        0         0        95         0         0         0        10       262 \n\n\n\nor\n\n\n\n\n\nCode\n# number of NAs in each variable\n# drop variables with no NA\nmy_heights %>% \n  is.na() %>% \n  colSums() %>% \n  .[. > 0]\n\n\n   weight education      afqt \n       95        10       262"
-  },
-  {
-    "objectID": "wrangle-data/factors/factors.html#automatic-levels-cont.",
-    "href": "wrangle-data/factors/factors.html#automatic-levels-cont.",
-    "title": "Factors",
-    "section": "Automatic levels cont.",
-    "text": "Automatic levels cont.\n\n\nCode\nhead(df_days$days_fixed, n = 5)\n\n\n[1] Sun Thu Thu Sat Thu\nLevels: Sun Mon Tue Wed Thu Fri Sat\n\n\nCode\ndf_days <- df_days %>%\n  mutate(\n    day_of_the_week = as.numeric(days_fixed)\n  )\nhead(df_days$day_of_the_week, n = 5)\n\n\n[1] 1 5 5 7 5"
-  },
-  {
-    "objectID": "wrangle-data/factors/factors.html#automatic-levels-cont.-1",
-    "href": "wrangle-data/factors/factors.html#automatic-levels-cont.-1",
-    "title": "Factors",
-    "section": "Automatic levels cont.",
-    "text": "Automatic levels cont.\n\n\nCode\ndf_days <- df_days %>% \n  mutate(\n    # first convert day_of_the_week to character\n    day_of_the_week = as.character(day_of_the_week),\n    # then convert day_of_the_week to factor\n    day_of_the_week = parse_factor(day_of_the_week)\n  )\ndf_days[1:6,]\n\n\n# A tibble: 6 × 3\n  days  days_fixed day_of_the_week\n  <chr> <fct>      <fct>          \n1 Sun   Sun        1              \n2 Thu   Thu        5              \n3 Thu   Thu        5              \n4 Sat   Sat        7              \n5 Thu   Thu        5              \n6 Thu   Thu        5"
-  },
-  {
-    "objectID": "wrangle-data/factors/factors.html#automatic-levels-cont.-2",
-    "href": "wrangle-data/factors/factors.html#automatic-levels-cont.-2",
-    "title": "Factors",
-    "section": "Automatic levels cont.",
-    "text": "Automatic levels cont.\n\n\nCode\nlevels(df_days$day_of_the_week)\n\n\n[1] \"1\" \"5\" \"7\" \"4\" \"3\" \"6\" \"2\"\n\n\n\nThe ordering of the levels is determined by when a value occurs."
-  },
-  {
-    "objectID": "wrangle-data/factors/factors.html#automatic-levels-cont.-3",
-    "href": "wrangle-data/factors/factors.html#automatic-levels-cont.-3",
-    "title": "Factors",
-    "section": "Automatic levels cont.",
-    "text": "Automatic levels cont.\n\n\nCode\ndf_days$day_of_the_week <- fct_inseq(df_days$day_of_the_week)\nlevels(df_days$day_of_the_week)\n\n\n[1] \"1\" \"2\" \"3\" \"4\" \"5\" \"6\" \"7\"\n\n\n\n\nCode\ndf_days %>% \n  filter(days_fixed == \"Thu\") %>% \n  head(n = 5)\n\n\n# A tibble: 5 × 3\n  days  days_fixed day_of_the_week\n  <chr> <fct>      <fct>          \n1 Thu   Thu        5              \n2 Thu   Thu        5              \n3 Thu   Thu        5              \n4 Thu   Thu        5              \n5 Thurs Thu        5              \n\n\n\nLevels are ordered after number."
-  },
-  {
-    "objectID": "wrangle-data/time-data/time-data.html#to-date-object-cont.",
-    "href": "wrangle-data/time-data/time-data.html#to-date-object-cont.",
-    "title": "Time Data",
-    "section": "To date object cont.",
-    "text": "To date object cont.\n\n\nCode\nus_d - no_d\n\n\nTime difference of 0 days\n\n\nCode\nmonth(us_d)\n\n\n[1] 9\n\n\nCode\nmonth(us_d, label = TRUE)\n\n\n[1] Sep\n12 Levels: Jan < Feb < Mar < Apr < May < Jun < Jul < Aug < Sep < ... < Dec\n\n\nCode\nmonth(us_d, label = TRUE, abbr = TRUE)\n\n\n[1] Sep\n12 Levels: Jan < Feb < Mar < Apr < May < Jun < Jul < Aug < Sep < ... < Dec"
-  },
-  {
-    "objectID": "wrangle-data/time-data/time-data.html#to-date-object-cont.-1",
-    "href": "wrangle-data/time-data/time-data.html#to-date-object-cont.-1",
-    "title": "Time Data",
-    "section": "To date object cont.",
-    "text": "To date object cont.\n\n\nCode\nmonth(us_d, label = TRUE, abbr = FALSE)\n\n\n[1] September\n12 Levels: January < February < March < April < May < June < ... < December\n\n\n\n\nCode\n# Get code for locale with command \n# locale -a \n# in Terminal\nmonth(no_d, label = TRUE, abbr = FALSE, locale = \"no_NO\")\n\n\n[1] september\n12 Levels: januar < februar < mars < april < mai < juni < juli < ... < desember\n\n\n\n\nCode\nmonth(no_d, label = TRUE, abbr = TRUE, locale = \"no_NO\")\n\n\n[1] sep\n12 Levels: jan < feb < mar < apr < mai < jun < jul < aug < sep < ... < des"
-  },
-  {
-    "objectID": "program/iteration/iteration.html#the-r-way",
-    "href": "program/iteration/iteration.html#the-r-way",
-    "title": "Iteration",
-    "section": "The R way",
-    "text": "The R way\n\n\nCode\nmy_df1 + 5\n\n\n         x        y        z\n1 104.1719 48.03157 14.21825\n2 124.3468 42.14962 20.32454\n3  84.4871 54.09765 13.22684"
-  },
-  {
-    "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#lists-cont.-1",
-    "href": "introduction/very-short-intro-r/very-short-intro-r.html#lists-cont.-1",
-    "title": "Very Short Intro to R",
-    "section": "Lists cont.",
-    "text": "Lists cont.\n\n\nCode\ntypeof(l$x)\n\n\n[1] \"integer\"\n\n\n\n\nCode\nis.vector(l$x)\n\n\n[1] TRUE\n\n\n\nl$x, element x in list l\n\n\n\n\nCode\ntypeof(l$y)\n\n\n[1] \"character\"\n\n\n\n\n\n\nCode\ntypeof(l$z)\n\n\n[1] \"double\""
-  },
-  {
-    "objectID": "model/many-models/many-models.html#newgapminder",
-    "href": "model/many-models/many-models.html#newgapminder",
-    "title": "Many models",
-    "section": "newgapminder",
-    "text": "newgapminder\n\n\nCode\nprint(head(newgapminder, n = 20))\n\n\n# A tibble: 20 × 6\n   country   continent year       lifeExp      pop gdpPercap\n   <chr>     <chr>     <date>       <dbl>    <dbl>     <dbl>\n 1 Argentina Americas  1962-01-01    64.4 21153042     5711.\n 2 Argentina Americas  1967-01-01    64.9 22828872     6255.\n 3 Argentina Americas  1972-01-01    66.2 24653172     7369.\n 4 Argentina Americas  1977-01-01    68.4 26661397     7744.\n 5 Argentina Americas  1982-01-01    70.8 28794550     7210.\n 6 Argentina Americas  1987-01-01    72.0 31184411     7294.\n 7 Argentina Americas  1992-01-01    72.6 33529320     7157.\n 8 Argentina Americas  1997-01-01    73.5 35657438     8543.\n 9 Argentina Americas  2002-01-01    74.2 37681743     6854.\n10 Argentina Americas  2007-01-01    75.1 39684303     9902.\n11 Argentina Americas  2012-01-01    76.0 41755188    10650.\n12 Argentina Americas  2017-01-01    76.7 43937143    10404.\n13 Australia Oceania   1962-01-01    71.2 10643420    19246.\n14 Australia Oceania   1967-01-01    71.3 11899644    22965.\n15 Australia Oceania   1972-01-01    71.6 13244163    26794.\n16 Australia Oceania   1977-01-01    73.3 14092545    28625.\n17 Australia Oceania   1982-01-01    74.8 14979203    30912.\n18 Australia Oceania   1987-01-01    76.0 16183159    33127.\n19 Australia Oceania   1992-01-01    77.4 17402179    35035.\n20 Australia Oceania   1997-01-01    78.6 18387205    40154."
+    "objectID": "introduction/intro/Intro.html#ønsket-format-quarto-dokument",
+    "href": "introduction/intro/Intro.html#ønsket-format-quarto-dokument",
+    "title": "Introduksjon Data Science",
+    "section": "Ønsket format Quarto dokument",
+    "text": "Ønsket format Quarto dokument\n\nKlikk Render knappen. Hvis vi har definert flere format (pdf. html, docx) i YAML vil vi se en liten drop-down meny til høyre for Render kappen. Her kan vi velge hvilket format vi ønsker å «rendre» til.\nMed Quarto velger vi Render fra ikon-linjen øverst i editoren (øvre venstre «pane»)."
   }
 ]

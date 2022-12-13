@@ -7,7 +7,7 @@
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.0.36">
+  <meta name="generator" content="quarto-1.1.189">
 
   <meta name="author" content="ag">
   <title>MSB105 - Iteration</title>
@@ -19,10 +19,15 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -686,9 +691,9 @@
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
-      expr     min       lq      mean  median       uq     max neval
- myT(test) 591.835 602.4745 629.57714 613.155 638.7185 854.235   100
-   t(test)  14.719  16.9535  18.85057  17.302  18.6345  62.320   100</code></pre>
+      expr     min       lq     mean   median       uq     max neval
+ myT(test) 586.382 591.6505 608.7557 595.8325 607.5175 802.944   100
+   t(test)  13.940  16.1745  17.4332  16.6665  17.4865  37.843   100</code></pre>
 </div>
 </div>
 <ul>
@@ -884,12 +889,12 @@
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
-                    expr       min        lq      mean    median        uq
- decide_number_vec(test) 15.510751 15.674423 16.456180 15.785451 17.461633
-     decide_numvec(test)  3.170735  3.225224  3.321949  3.278237  3.343325
+                    expr       min       lq      mean    median        uq
+ decide_number_vec(test) 15.568684 15.87288 16.623536 16.088400 17.662861
+     decide_numvec(test)  3.183814  3.26403  3.333855  3.303472  3.355276
        max neval
- 19.774341   100
-  4.984534   100</code></pre>
+ 19.849248   100
+  5.146402   100</code></pre>
 </div>
 </div>
 <ul>
@@ -1965,7 +1970,8 @@ Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino 
       for (var i=0; i<noterefs.length; i++) {
         const ref = noterefs[i];
         tippyHover(ref, function() {
-          let href = ref.getAttribute('href');
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
