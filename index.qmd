@@ -1,5 +1,10 @@
 ---
 title: "MSB105"
+format:
+  html: 
+    css: styles.css
 ---
 
 Dette er websidene til kurset MSB105 Data Science ved HVL.
+
+![](bg.png){#iresponsive-image}

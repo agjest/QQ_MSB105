@@ -402,9 +402,6 @@
       margin-right: 0; 
     }
   </style>
-  <script src="../../site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-  <link href="../../site_libs/str_view-0.1.0/str_view.css" rel="stylesheet">
-  <script src="../../site_libs/str_view-binding-1.4.0/str_view.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -554,9 +551,8 @@ second</code></pre>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"pear"</span>)</span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="fu">str_view</span>(x, <span class="st">"an"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<div id="htmlwidget-d7843f4957aadc3b21a0" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d7843f4957aadc3b21a0">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li>b<span class='match'>an<\/span>ana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="cell-output cell-output-stdout">
+<pre><code>[2] │ b&lt;an&gt;&lt;an&gt;a</code></pre>
 </div>
 </div>
 </div>
@@ -566,11 +562,12 @@ second</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">str_view</span>(x, <span class="st">"a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">str_view</span>(x, <span class="st">"a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<div id="htmlwidget-a39a7b3d89d0fc916c9f" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a39a7b3d89d0fc916c9f">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>pple<\/li>\n  <li>b<span class='match'>a<\/span>nana<\/li>\n  <li>pe<span class='match'>a<\/span>r<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] │ &lt;a&gt;pple
+[2] │ b&lt;a&gt;n&lt;a&gt;n&lt;a&gt;
+[3] │ pe&lt;a&gt;r</code></pre>
 </div>
 </div>
 </section>
@@ -579,12 +576,12 @@ second</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># . matches everything except newline</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">str_view</span>(x, <span class="st">".a."</span>) <span class="co"># Why not apple?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># . matches everything except newline</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">str_view</span>(x, <span class="st">".a."</span>) <span class="co"># Why not apple?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<div id="htmlwidget-995b54a31276f6dfe11e" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-995b54a31276f6dfe11e">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li><span class='match'>ban<\/span>ana<\/li>\n  <li>p<span class='match'>ear<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="cell-output cell-output-stdout">
+<pre><code>[2] │ &lt;ban&gt;ana
+[3] │ p&lt;ear&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -593,7 +590,7 @@ second</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ap</span><span class="sc">\\</span><span class="st">ple"</span>, <span class="st">"bana.na"</span>, <span class="st">"pe.ar"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ap</span><span class="sc">\\</span><span class="st">ple"</span>, <span class="st">"bana.na"</span>, <span class="st">"pe.ar"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -602,12 +599,11 @@ second</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># explicit .</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">str_view</span>(x, <span class="st">"a</span><span class="sc">\\</span><span class="st">."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># explicit .</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">str_view</span>(x, <span class="st">"a</span><span class="sc">\\</span><span class="st">."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<div id="htmlwidget-67fb3b0571f25d2e87d0" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-67fb3b0571f25d2e87d0">{"x":{"html":"<ul>\n  <li>ap\\ple<\/li>\n  <li>ban<span class='match'>a.<\/span>na<\/li>\n  <li>pe.ar<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="cell-output cell-output-stdout">
+<pre><code>[2] │ ban&lt;a.&gt;na</code></pre>
 </div>
 </div>
 </section>
@@ -616,12 +612,11 @@ second</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># explicit \</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">str_view</span>(x, <span class="st">"</span><span class="sc">\\\\</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># explicit \</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="fu">str_view</span>(x, <span class="st">"</span><span class="sc">\\\\</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<div id="htmlwidget-3e6a9f6490473e6760eb" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3e6a9f6490473e6760eb">{"x":{"html":"<ul>\n  <li>ap<span class='match'>\\<\/span>ple<\/li>\n  <li>bana.na<\/li>\n  <li>pe.ar<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] │ ap&lt;\&gt;ple</code></pre>
 </div>
 </div>
 </section>
@@ -639,12 +634,13 @@ second</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"apple pie"</span>, <span class="st">"apple"</span>, <span class="st">"apple cake"</span>)</span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="fu">str_view</span>(x, <span class="st">"^a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"apple pie"</span>, <span class="st">"apple"</span>, <span class="st">"apple cake"</span>)</span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="fu">str_view</span>(x, <span class="st">"^a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<div id="htmlwidget-c69c49c683655fe2bb52" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c69c49c683655fe2bb52">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>pple pie<\/li>\n  <li><span class='match'>a<\/span>pple<\/li>\n  <li><span class='match'>a<\/span>pple cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] │ &lt;a&gt;pple pie
+[2] │ &lt;a&gt;pple
+[3] │ &lt;a&gt;pple cake</code></pre>
 </div>
 </div>
 </div>
@@ -654,12 +650,13 @@ second</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"apple pie"</span>, <span class="st">"apple"</span>, <span class="st">"apple cake"</span>)</span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">str_view</span>(x, <span class="st">"e$"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"apple pie"</span>, <span class="st">"apple"</span>, <span class="st">"apple cake"</span>)</span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="fu">str_view</span>(x, <span class="st">"e$"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<div id="htmlwidget-1612eca33918c4f7fc1f" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1612eca33918c4f7fc1f">{"x":{"html":"<ul>\n  <li>apple pi<span class='match'>e<\/span><\/li>\n  <li>appl<span class='match'>e<\/span><\/li>\n  <li>apple cak<span class='match'>e<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] │ apple pi&lt;e&gt;
+[2] │ appl&lt;e&gt;
+[3] │ apple cak&lt;e&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -668,12 +665,13 @@ second</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"apple pie"</span>, <span class="st">"apple"</span>, <span class="st">"apple cake"</span>)</span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">str_view</span>(x, <span class="st">"apple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"apple pie"</span>, <span class="st">"apple"</span>, <span class="st">"apple cake"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="fu">str_view</span>(x, <span class="st">"apple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<div id="htmlwidget-534f1e3171f58ffea1bf" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-534f1e3171f58ffea1bf">{"x":{"html":"<ul>\n  <li><span class='match'>apple<\/span> pie<\/li>\n  <li><span class='match'>apple<\/span><\/li>\n  <li><span class='match'>apple<\/span> cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] │ &lt;apple&gt; pie
+[2] │ &lt;apple&gt;
+[3] │ &lt;apple&gt; cake</code></pre>
 </div>
 </div>
 </section>
@@ -682,12 +680,11 @@ second</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"apple pie"</span>, <span class="st">"apple"</span>, <span class="st">"apple cake"</span>)</span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="fu">str_view</span>(x, <span class="st">"^apple$"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"apple pie"</span>, <span class="st">"apple"</span>, <span class="st">"apple cake"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="fu">str_view</span>(x, <span class="st">"^apple$"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<div id="htmlwidget-61b472173505eb1bedcc" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-61b472173505eb1bedcc">{"x":{"html":"<ul>\n  <li>apple pie<\/li>\n  <li><span class='match'>apple<\/span><\/li>\n  <li>apple cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="cell-output cell-output-stdout">
+<pre><code>[2] │ &lt;apple&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -704,12 +701,12 @@ second</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"apple pie"</span>, <span class="st">"apple tart"</span>, <span class="st">"apple cake"</span>)</span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">str_view</span>(x, <span class="st">"</span><span class="sc">\\</span><span class="st">s[cp]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"apple pie"</span>, <span class="st">"apple tart"</span>, <span class="st">"apple cake"</span>)</span>
+<span id="cb32-2"><a href="#cb32-2"></a><span class="fu">str_view</span>(x, <span class="st">"</span><span class="sc">\\</span><span class="st">s[cp]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<div id="htmlwidget-50faefce41b264527577" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-50faefce41b264527577">{"x":{"html":"<ul>\n  <li>apple<span class='match'> p<\/span>ie<\/li>\n  <li>apple tart<\/li>\n  <li>apple<span class='match'> c<\/span>ake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] │ apple&lt; p&gt;ie
+[3] │ apple&lt; c&gt;ake</code></pre>
 </div>
 </div>
 </div>
@@ -719,12 +716,12 @@ second</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"apple pie"</span>, <span class="st">"apple tart"</span>, <span class="st">"apple cake"</span>)</span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="fu">str_view</span>(x, <span class="st">"</span><span class="sc">\\</span><span class="st">s[^c]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"apple pie"</span>, <span class="st">"apple tart"</span>, <span class="st">"apple cake"</span>)</span>
+<span id="cb34-2"><a href="#cb34-2"></a><span class="fu">str_view</span>(x, <span class="st">"</span><span class="sc">\\</span><span class="st">s[^c]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<div id="htmlwidget-7cbe17c617b71a5f07d1" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7cbe17c617b71a5f07d1">{"x":{"html":"<ul>\n  <li>apple<span class='match'> p<\/span>ie<\/li>\n  <li>apple<span class='match'> t<\/span>art<\/li>\n  <li>apple cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] │ apple&lt; p&gt;ie
+[2] │ apple&lt; t&gt;art</code></pre>
 </div>
 </div>
 </section>
@@ -777,18 +774,18 @@ second</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://www.gutenberg.org/files/30027/30027-0.txt"</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="co"># read line by line</span></span>
-<span id="cb25-3"><a href="#cb25-3"></a><span class="co">#</span></span>
-<span id="cb25-4"><a href="#cb25-4"></a>con <span class="ot">&lt;-</span> <span class="fu">file</span>(url, <span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
-<span id="cb25-5"><a href="#cb25-5"></a>sult <span class="ot">&lt;-</span> <span class="fu">readLines</span>(con)</span>
-<span id="cb25-6"><a href="#cb25-6"></a><span class="fu">close</span>(con)</span>
-<span id="cb25-7"><a href="#cb25-7"></a><span class="co"># get rid of header stuff and licence at end</span></span>
-<span id="cb25-8"><a href="#cb25-8"></a>sult <span class="ot">&lt;-</span> sult[<span class="dv">63</span><span class="sc">:</span>(<span class="fu">length</span>(sult) <span class="sc">-</span> <span class="dv">354</span>)]</span>
-<span id="cb25-9"><a href="#cb25-9"></a><span class="co"># combine to string, each line separated by \n</span></span>
-<span id="cb25-10"><a href="#cb25-10"></a>sult <span class="ot">&lt;-</span> <span class="fu">str_c</span>(sult, <span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb25-11"><a href="#cb25-11"></a><span class="co"># save to file</span></span>
-<span id="cb25-12"><a href="#cb25-12"></a><span class="fu">cat</span>(sult, <span class="at">file =</span> <span class="st">"sult.txt"</span>, <span class="at">sep =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://www.gutenberg.org/files/30027/30027-0.txt"</span></span>
+<span id="cb36-2"><a href="#cb36-2"></a><span class="co"># read line by line</span></span>
+<span id="cb36-3"><a href="#cb36-3"></a><span class="co">#</span></span>
+<span id="cb36-4"><a href="#cb36-4"></a>con <span class="ot">&lt;-</span> <span class="fu">file</span>(url, <span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
+<span id="cb36-5"><a href="#cb36-5"></a>sult <span class="ot">&lt;-</span> <span class="fu">readLines</span>(con)</span>
+<span id="cb36-6"><a href="#cb36-6"></a><span class="fu">close</span>(con)</span>
+<span id="cb36-7"><a href="#cb36-7"></a><span class="co"># get rid of header stuff and licence at end</span></span>
+<span id="cb36-8"><a href="#cb36-8"></a>sult <span class="ot">&lt;-</span> sult[<span class="dv">63</span><span class="sc">:</span>(<span class="fu">length</span>(sult) <span class="sc">-</span> <span class="dv">354</span>)]</span>
+<span id="cb36-9"><a href="#cb36-9"></a><span class="co"># combine to string, each line separated by \n</span></span>
+<span id="cb36-10"><a href="#cb36-10"></a>sult <span class="ot">&lt;-</span> <span class="fu">str_c</span>(sult, <span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb36-11"><a href="#cb36-11"></a><span class="co"># save to file</span></span>
+<span id="cb36-12"><a href="#cb36-12"></a><span class="fu">cat</span>(sult, <span class="at">file =</span> <span class="st">"sult.txt"</span>, <span class="at">sep =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -798,16 +795,16 @@ second</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># number of characters</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="fu">nchar</span>(sult)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="co"># number of characters</span></span>
+<span id="cb37-2"><a href="#cb37-2"></a><span class="fu">nchar</span>(sult)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 329322</code></pre>
 </div>
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># the beginning of Sult</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a><span class="fu">str_sub</span>(sult, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">250</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="co"># the beginning of Sult</span></span>
+<span id="cb39-2"><a href="#cb39-2"></a><span class="fu">str_sub</span>(sult, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">250</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "\nFØRSTE STYKKE\n\n\nDet var i den Tid, jeg gik omkring og sulted i Kristiania, denne\nforunderlige By, som ingen forlader, før han har fået Mærker af den . . . .\n\nJeg ligger vågen på min Kvist og hører en Klokke nedenunder mig slå seks\nSlag; det var alle"</code></pre>
@@ -821,8 +818,8 @@ second</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># ss short for search string</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a>ss <span class="ot">&lt;-</span> <span class="st">"sult"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="co"># ss short for search string</span></span>
+<span id="cb41-2"><a href="#cb41-2"></a>ss <span class="ot">&lt;-</span> <span class="st">"sult"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ul>
@@ -833,8 +830,8 @@ second</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># how many times does "sult" occur *Sult*</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a><span class="fu">str_count</span>(sult, ss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="co"># how many times does "sult" occur *Sult*</span></span>
+<span id="cb42-2"><a href="#cb42-2"></a><span class="fu">str_count</span>(sult, ss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 33</code></pre>
@@ -854,9 +851,9 @@ second</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># [sS]{1}, one of s or S, {1} not necessary</span></span>
-<span id="cb33-2"><a href="#cb33-2"></a>ss <span class="ot">&lt;-</span> <span class="st">"[sS]{1}ult"</span></span>
-<span id="cb33-3"><a href="#cb33-3"></a><span class="fu">str_count</span>(sult, ss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="co"># [sS]{1}, one of s or S, {1} not necessary</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a>ss <span class="ot">&lt;-</span> <span class="st">"[sS]{1}ult"</span></span>
+<span id="cb44-3"><a href="#cb44-3"></a><span class="fu">str_count</span>(sult, ss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 54</code></pre>
@@ -869,8 +866,8 @@ second</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="co"># what we found</span></span>
-<span id="cb35-2"><a href="#cb35-2"></a><span class="fu">str_extract_all</span>(sult, ss) <span class="sc">%&gt;%</span> <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="co"># what we found</span></span>
+<span id="cb46-2"><a href="#cb46-2"></a><span class="fu">str_extract_all</span>(sult, ss) <span class="sc">%&gt;%</span> <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>.
@@ -891,7 +888,7 @@ sult Sult
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>ss <span class="ot">&lt;-</span> <span class="st">"</span><span class="sc">\\</span><span class="st">s[^</span><span class="sc">\\</span><span class="st">s]*[sS]ult[^</span><span class="sc">\\</span><span class="st">s]*</span><span class="sc">\\</span><span class="st">s"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>ss <span class="ot">&lt;-</span> <span class="st">"</span><span class="sc">\\</span><span class="st">s[^</span><span class="sc">\\</span><span class="st">s]*[sS]ult[^</span><span class="sc">\\</span><span class="st">s]*</span><span class="sc">\\</span><span class="st">s"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ul>
@@ -911,7 +908,7 @@ sult Sult
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">str_count</span>(sult, ss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">str_count</span>(sult, ss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 54</code></pre>
@@ -924,7 +921,7 @@ sult Sult
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">str_extract_all</span>(sult, ss) <span class="sc">%&gt;%</span> <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="fu">str_extract_all</span>(sult, ss) <span class="sc">%&gt;%</span> <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>.
@@ -951,7 +948,7 @@ sult Sult
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>ss <span class="ot">&lt;-</span> <span class="st">"</span><span class="sc">\\</span><span class="st">s{1}([sS]ult[^a</span><span class="sc">\\</span><span class="st">s.,;!]*)(</span><span class="sc">\\</span><span class="st">s?|[^</span><span class="sc">\\</span><span class="st">s.,;]*|[:punct:])?</span><span class="sc">\\</span><span class="st">s"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>ss <span class="ot">&lt;-</span> <span class="st">"</span><span class="sc">\\</span><span class="st">s{1}([sS]ult[^a</span><span class="sc">\\</span><span class="st">s.,;!]*)(</span><span class="sc">\\</span><span class="st">s?|[^</span><span class="sc">\\</span><span class="st">s.,;]*|[:punct:])?</span><span class="sc">\\</span><span class="st">s"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -959,7 +956,7 @@ sult Sult
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">str_count</span>(sult, ss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">str_count</span>(sult, ss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 52</code></pre>
@@ -975,9 +972,9 @@ sult Sult
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="co">#str_extract_all(sult, ss) %&gt;% table()</span></span>
-<span id="cb45-2"><a href="#cb45-2"></a><span class="co"># just the word, not punctuation </span></span>
-<span id="cb45-3"><a href="#cb45-3"></a><span class="fu">str_match_all</span>(sult, ss)[[<span class="dv">1</span>]][,<span class="dv">2</span>] <span class="sc">%&gt;%</span> <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="co">#str_extract_all(sult, ss) %&gt;% table()</span></span>
+<span id="cb56-2"><a href="#cb56-2"></a><span class="co"># just the word, not punctuation </span></span>
+<span id="cb56-3"><a href="#cb56-3"></a><span class="fu">str_match_all</span>(sult, ss)[[<span class="dv">1</span>]][,<span class="dv">2</span>] <span class="sc">%&gt;%</span> <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>.
@@ -1000,9 +997,9 @@ Sultetid   sultne
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="co"># the first 5 occurrences </span></span>
-<span id="cb47-2"><a href="#cb47-2"></a>tmp <span class="ot">&lt;-</span> <span class="fu">str_locate_all</span>(sult, ss)</span>
-<span id="cb47-3"><a href="#cb47-3"></a>tmp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="co"># the first 5 occurrences </span></span>
+<span id="cb58-2"><a href="#cb58-2"></a>tmp <span class="ot">&lt;-</span> <span class="fu">str_locate_all</span>(sult, ss)</span>
+<span id="cb58-3"><a href="#cb58-3"></a>tmp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
@@ -1074,23 +1071,23 @@ Sultetid   sultne
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>tørst <span class="ot">&lt;-</span> sult <span class="sc">%&gt;%</span> </span>
-<span id="cb49-2"><a href="#cb49-2"></a>  <span class="fu">str_replace_all</span>(</span>
-<span id="cb49-3"><a href="#cb49-3"></a>    <span class="fu">c</span>(</span>
-<span id="cb49-4"><a href="#cb49-4"></a>    <span class="st">"sulten"</span> <span class="ot">=</span> <span class="st">"tørst"</span>,</span>
-<span id="cb49-5"><a href="#cb49-5"></a>    <span class="st">"Sult"</span> <span class="ot">=</span> <span class="st">"Tørst"</span>,</span>
-<span id="cb49-6"><a href="#cb49-6"></a>    <span class="st">"sult"</span> <span class="ot">=</span> <span class="st">"tørst"</span>,</span>
-<span id="cb49-7"><a href="#cb49-7"></a>    <span class="st">"Sulten"</span> <span class="ot">=</span> <span class="st">"Tørsten"</span></span>
-<span id="cb49-8"><a href="#cb49-8"></a>    )</span>
-<span id="cb49-9"><a href="#cb49-9"></a>    ) <span class="sc">%&gt;%</span> </span>
-<span id="cb49-10"><a href="#cb49-10"></a>  <span class="fu">str_replace_all</span>(</span>
-<span id="cb49-11"><a href="#cb49-11"></a>    <span class="fu">c</span>(</span>
-<span id="cb49-12"><a href="#cb49-12"></a>      <span class="st">"Tørstan"</span> <span class="ot">=</span> <span class="st">"Sultan"</span>,</span>
-<span id="cb49-13"><a href="#cb49-13"></a>      <span class="st">"Restørstat"</span> <span class="ot">=</span> <span class="st">"Resultat"</span></span>
-<span id="cb49-14"><a href="#cb49-14"></a>      )</span>
-<span id="cb49-15"><a href="#cb49-15"></a>    )</span>
-<span id="cb49-16"><a href="#cb49-16"></a></span>
-<span id="cb49-17"><a href="#cb49-17"></a><span class="fu">cat</span>(tørst, <span class="at">file =</span> <span class="st">"tørst.txt"</span>, <span class="at">sep =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a>tørst <span class="ot">&lt;-</span> sult <span class="sc">%&gt;%</span> </span>
+<span id="cb60-2"><a href="#cb60-2"></a>  <span class="fu">str_replace_all</span>(</span>
+<span id="cb60-3"><a href="#cb60-3"></a>    <span class="fu">c</span>(</span>
+<span id="cb60-4"><a href="#cb60-4"></a>    <span class="st">"sulten"</span> <span class="ot">=</span> <span class="st">"tørst"</span>,</span>
+<span id="cb60-5"><a href="#cb60-5"></a>    <span class="st">"Sult"</span> <span class="ot">=</span> <span class="st">"Tørst"</span>,</span>
+<span id="cb60-6"><a href="#cb60-6"></a>    <span class="st">"sult"</span> <span class="ot">=</span> <span class="st">"tørst"</span>,</span>
+<span id="cb60-7"><a href="#cb60-7"></a>    <span class="st">"Sulten"</span> <span class="ot">=</span> <span class="st">"Tørsten"</span></span>
+<span id="cb60-8"><a href="#cb60-8"></a>    )</span>
+<span id="cb60-9"><a href="#cb60-9"></a>    ) <span class="sc">%&gt;%</span> </span>
+<span id="cb60-10"><a href="#cb60-10"></a>  <span class="fu">str_replace_all</span>(</span>
+<span id="cb60-11"><a href="#cb60-11"></a>    <span class="fu">c</span>(</span>
+<span id="cb60-12"><a href="#cb60-12"></a>      <span class="st">"Tørstan"</span> <span class="ot">=</span> <span class="st">"Sultan"</span>,</span>
+<span id="cb60-13"><a href="#cb60-13"></a>      <span class="st">"Restørstat"</span> <span class="ot">=</span> <span class="st">"Resultat"</span></span>
+<span id="cb60-14"><a href="#cb60-14"></a>      )</span>
+<span id="cb60-15"><a href="#cb60-15"></a>    )</span>
+<span id="cb60-16"><a href="#cb60-16"></a></span>
+<span id="cb60-17"><a href="#cb60-17"></a><span class="fu">cat</span>(tørst, <span class="at">file =</span> <span class="st">"tørst.txt"</span>, <span class="at">sep =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -1108,8 +1105,8 @@ Sultetid   sultne
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>tt <span class="ot">&lt;-</span> <span class="st">"(</span><span class="sc">\\</span><span class="st">.|</span><span class="sc">\\</span><span class="st">n)(.*[tT]ørst.*)(</span><span class="sc">\\</span><span class="st">.|</span><span class="sc">\\</span><span class="st">n)"</span></span>
-<span id="cb50-2"><a href="#cb50-2"></a><span class="fu">str_match_all</span>(tørst, tt)[[<span class="dv">1</span>]][<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>),<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a>tt <span class="ot">&lt;-</span> <span class="st">"(</span><span class="sc">\\</span><span class="st">.|</span><span class="sc">\\</span><span class="st">n)(.*[tT]ørst.*)(</span><span class="sc">\\</span><span class="st">.|</span><span class="sc">\\</span><span class="st">n)"</span></span>
+<span id="cb61-2"><a href="#cb61-2"></a><span class="fu">str_match_all</span>(tørst, tt)[[<span class="dv">1</span>]][<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>),<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Det var i den Tid, jeg gik omkring og tørsted i Kristiania, denne"           
