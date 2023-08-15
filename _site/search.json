@@ -3728,7 +3728,7 @@
     "href": "introduction/pref-setup-2022/ps2022.html",
     "title": "RStudio preference setup 2022",
     "section": "",
-    "text": "We set up the RStudio preferences so that we all work in an identical environment.\nSelect Preferences.. from the File menu\n\n\n\nSelect Preferences…\n\n\n\n\n\n\n\nGeneral:Basic\n\n\n\n\n\n\n\n\nGeneral:Graphics\n\n\n\n\n\n\n\n\nGeneral:Advanced\n\n\n\n\n\n\n\n\nCode:Editing\n\n\n\n\n\n\n\n\nCode:Display\n\n\n\n\n\n\n\n\nCode:Saving\n\n\n\n\n\n\n\n\nCode:Completion\n\n\n\n\n\n\n\n\nCode:Diagnostic\n\n\n\n\n\n\n\n\nConsole\n\n\n\n\n\nWhat font to use is up to you, but use a fixed-width font. I like fira-code. Courier or Monaco are good alternatives.\n\n\n\nAppearance\n\n\n\n\n\n\n\n\nPane layout 1\n\n\n\n\n\n\n\n\nPane layout 2\n\n\n\n\n\n\n\n\nPackages:Management\n\n\n\n\n\n\n\n\nPackages:Development\n\n\n\n\n\n\n\n\nPackages:C/C++\n\n\n\n\n\nSee rmarkdown-cookbook chapter 16 for details. We select “Document” for where to evaluate chunck, hence our “working directory will be the directory where our R Notebook is placed.\n\n\n\nR Markdown:Basic\n\n\n\n\n\n\n\n\nR Markdown:Advanced\n\n\n\n\n\n\n\n\nR Markdown:Visual\n\n\n\n\n\n\n\n\nR Markdown:Citations. Note! We will soon be changing Use libraries:, but My Library is OK for now.\n\n\n\n\n\n\n\n\nR Markdown:Quarto. Note! This pane does not exists in the latest version since Quarto now is the default.\n\n\n\n\n\n\n\n\nPython\n\n\n\n\n\n\n\n\nSweave\n\n\n\n\n\n\n\n\nSpelling\n\n\nChoose Install More Languages...from the Main dictionary language: drop-down menu. Norwegian should now be in the menu.\n\n\n\nWe are only going to use Git so SVN is not to important.\n\n\n\nGit/SVN\n\n\n\n\n\n\n\n\nPublishing\n\n\n\n\n\n\n\n\nTerminal:General\n\n\n\n\n\n\n\n\nTerminal:Closing\n\n\n\n\n\n\n\n\nAccessibility:General\n\n\n\n\n\n\n\n\nAccessibility:Announcements"
+    "text": "We set up the RStudio preferences so that we all work in an identical environment.\nSelect Preferences.. from the File menu.\n\n\n\nSelect Preferences…\n\n\nThe Global Options… are now on the Tools menu for both windows and macos.\n\n\n\nNew location for Global Options…\n\n\n\n\n\n\n\nGeneral:Basic\n\n\n\n\n\n\n\n\nGeneral:Graphics\n\n\n\n\n\n\n\n\nGeneral:Advanced\n\n\n\n\n\n\n\n\nCode:Editing\n\n\n\n\n\n\n\n\nCode:Display\n\n\n\n\n\n\n\n\nCode:Saving\n\n\n\n\n\n\n\n\nCode:Completion\n\n\n\n\n\n\n\n\nCode:Diagnostic\n\n\n\n\n\n\n\n\nConsole\n\n\n\n\n\nWhat font to use is up to you, but use a fixed-width font. I like fira-code. Courier or Monaco are good alternatives.\n\n\n\nAppearance\n\n\n\n\n\n\n\n\nPane layout 1\n\n\n\n\n\n\n\n\nPane layout 2\n\n\n\n\n\n\n\n\nPackages:Management\n\n\n\n\n\n\n\n\nPackages:Development\n\n\n\n\n\n\n\n\nPackages:C/C++\n\n\n\n\n\nSee rmarkdown-cookbook chapter 16 for details. We select “Document” for where to evaluate chunck, hence our “working directory will be the directory where our R Notebook is placed.\n\n\n\nR Markdown:Basic\n\n\n\n\n\n\n\n\nR Markdown:Advanced\n\n\n\n\n\n\n\n\nR Markdown:Visual\n\n\n\n\n\n\n\n\nR Markdown:Citations. Note! We will soon be changing Use libraries:, but My Library is OK for now.\n\n\n\n\n\n\n\n\nR Markdown:Quarto. Note! This pane does not exists in the latest version since Quarto now is the default.\n\n\n\n\n\n\n\n\nPython\n\n\n\n\n\n\n\n\nSweave\n\n\n\n\n\n\n\n\nSpelling\n\n\nChoose Install More Languages...from the Main dictionary language: drop-down menu. Norwegian should now be in the menu.\n\n\n\nWe are only going to use Git so SVN is not to important.\n\n\n\nGit/SVN\n\n\n\n\n\n\n\n\nPublishing\n\n\n\n\n\n\n\n\nTerminal:General\n\n\n\n\n\n\n\n\nTerminal:Closing\n\n\n\n\n\n\n\n\nAccessibility:General\n\n\n\n\n\n\n\n\nAccessibility:Announcements"
   },
   {
     "objectID": "introduction/illustrate-markdown/illustrate-markdown.html",
@@ -6374,21 +6374,21 @@
     "href": "model/many-models/many-models.html#read-in-newgapminder",
     "title": "Many models",
     "section": "Read in newgapminder",
-    "text": "Read in newgapminder\n\nOur dataset is somewhat smaller than the one in gapminder, but have more updated data\n\n\n\n\nCode\nnewgapminder <- read_csv(file = \"./newgapminder.csv\")"
+    "text": "Read in newgapminder\n\nOur dataset is somewhat smaller than the one in gapminder, but have more updated data\n\n. . .\n\nnewgapminder &lt;- read_csv(file = \"./newgapminder.csv\")\n\nRows: 1080 Columns: 6\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (2): country, continent\ndbl  (3): lifeExp, pop, gdpPercap\ndate (1): year\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message."
   },
   {
     "objectID": "model/many-models/many-models.html#newgapminder",
     "href": "model/many-models/many-models.html#newgapminder",
     "title": "Many models",
     "section": "newgapminder",
-    "text": "newgapminder\n\n\nCode\nprint(head(newgapminder, n = 20))\n\n\n# A tibble: 20 × 6\n   country   continent year       lifeExp      pop gdpPercap\n   <chr>     <chr>     <date>       <dbl>    <dbl>     <dbl>\n 1 Argentina Americas  1962-01-01    64.4 21153042     5711.\n 2 Argentina Americas  1967-01-01    64.9 22828872     6255.\n 3 Argentina Americas  1972-01-01    66.2 24653172     7369.\n 4 Argentina Americas  1977-01-01    68.4 26661397     7744.\n 5 Argentina Americas  1982-01-01    70.8 28794550     7210.\n 6 Argentina Americas  1987-01-01    72.0 31184411     7294.\n 7 Argentina Americas  1992-01-01    72.6 33529320     7157.\n 8 Argentina Americas  1997-01-01    73.5 35657438     8543.\n 9 Argentina Americas  2002-01-01    74.2 37681743     6854.\n10 Argentina Americas  2007-01-01    75.1 39684303     9902.\n11 Argentina Americas  2012-01-01    76.0 41755188    10650.\n12 Argentina Americas  2017-01-01    76.7 43937143    10404.\n13 Australia Oceania   1962-01-01    71.2 10643420    19246.\n14 Australia Oceania   1967-01-01    71.3 11899644    22965.\n15 Australia Oceania   1972-01-01    71.6 13244163    26794.\n16 Australia Oceania   1977-01-01    73.3 14092545    28625.\n17 Australia Oceania   1982-01-01    74.8 14979203    30912.\n18 Australia Oceania   1987-01-01    76.0 16183159    33127.\n19 Australia Oceania   1992-01-01    77.4 17402179    35035.\n20 Australia Oceania   1997-01-01    78.6 18387205    40154."
+    "text": "newgapminder\n\nprint(head(newgapminder, n = 20))\n\n# A tibble: 20 × 6\n   country   continent year       lifeExp      pop gdpPercap\n   &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;       &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;\n 1 Argentina Americas  1962-01-01    64.4 21153042     5711.\n 2 Argentina Americas  1967-01-01    64.9 22828872     6255.\n 3 Argentina Americas  1972-01-01    66.2 24653172     7369.\n 4 Argentina Americas  1977-01-01    68.4 26661397     7744.\n 5 Argentina Americas  1982-01-01    70.8 28794550     7210.\n 6 Argentina Americas  1987-01-01    72.0 31184411     7294.\n 7 Argentina Americas  1992-01-01    72.6 33529320     7157.\n 8 Argentina Americas  1997-01-01    73.5 35657438     8543.\n 9 Argentina Americas  2002-01-01    74.2 37681743     6854.\n10 Argentina Americas  2007-01-01    75.1 39684303     9902.\n11 Argentina Americas  2012-01-01    76.0 41755188    10650.\n12 Argentina Americas  2017-01-01    76.7 43937143    10404.\n13 Australia Oceania   1962-01-01    71.2 10643420    19246.\n14 Australia Oceania   1967-01-01    71.3 11899644    22965.\n15 Australia Oceania   1972-01-01    71.6 13244163    26794.\n16 Australia Oceania   1977-01-01    73.3 14092545    28625.\n17 Australia Oceania   1982-01-01    74.8 14979203    30912.\n18 Australia Oceania   1987-01-01    76.0 16183159    33127.\n19 Australia Oceania   1992-01-01    77.4 17402179    35035.\n20 Australia Oceania   1997-01-01    78.6 18387205    40154."
   },
   {
     "objectID": "model/many-models/many-models.html#plotting-the-data-for-each-country",
     "href": "model/many-models/many-models.html#plotting-the-data-for-each-country",
     "title": "Many models",
     "section": "Plotting the data for each country",
-    "text": "Plotting the data for each country\n\n\nCode\nnewgapminder %>% \n  ggplot(aes(year, lifeExp, group = country, colour = continent)) +\n    geom_line(alpha = 1/3)"
+    "text": "Plotting the data for each country\n\nnewgapminder %&gt;% \n  ggplot(aes(year, lifeExp, group = country, colour = continent)) +\n    geom_line(alpha = 1/3)"
   },
   {
     "objectID": "model/many-models/many-models.html#plotting-the-data-for-each-country-1",
@@ -6402,7 +6402,7 @@
     "href": "model/many-models/many-models.html#plotting-the-data-for-africa",
     "title": "Many models",
     "section": "Plotting the data for Africa",
-    "text": "Plotting the data for Africa\n\n\nCode\nnewgapminder %>% \n  filter(continent == \"Africa\")  %>% \n  ggplot(aes(year, lifeExp, group = country)) +\n    geom_line()"
+    "text": "Plotting the data for Africa\n\nnewgapminder %&gt;% \n  filter(continent == \"Africa\")  %&gt;% \n  ggplot(aes(year, lifeExp, group = country)) +\n    geom_line()"
   },
   {
     "objectID": "model/many-models/many-models.html#plotting-the-data-for-africa-1",
@@ -6416,7 +6416,7 @@
     "href": "model/many-models/many-models.html#simple-model",
     "title": "Many models",
     "section": "Simple model",
-    "text": "Simple model\n\nRemove growth\nProblem: 90 different countries\nStart with one: Norway\n\n\n\n\nCode\nno <- newgapminder %>% filter(country == \"Norway\")\nno_mod = lm(lifeExp ~ year, data = no)\nno1 <- no %>%\n  ggplot(mapping = aes(x = year, y = lifeExp)) +\n  geom_line() +\n  ggtitle(\"Full data =\")\nno2 <- no %>% \n  add_predictions(no_mod, var = \"pred_no\") %>% \n  ggplot(mapping = aes(x = year, y = pred_no)) +\n  geom_line() +\n  ggtitle(\"Linear trend + \")\nno3 <- no %>% \n  add_residuals(no_mod, var = \"res_no\") %>% \n  ggplot(mapping = aes(x = year, y = res_no)) +\n  geom_line() +\n  ggtitle(\" Residuals\")\n# since we use package patchwork\nno1 + no2 + no3"
+    "text": "Simple model\n\nRemove growth\nProblem: 90 different countries\nStart with one: Norway\n\n. . .\n\nno &lt;- newgapminder %&gt;% filter(country == \"Norway\")\nno_mod = lm(lifeExp ~ year, data = no)\nno1 &lt;- no %&gt;%\n  ggplot(mapping = aes(x = year, y = lifeExp)) +\n  geom_line() +\n  ggtitle(\"Full data =\")\nno2 &lt;- no %&gt;% \n  add_predictions(no_mod, var = \"pred_no\") %&gt;% \n  ggplot(mapping = aes(x = year, y = pred_no)) +\n  geom_line() +\n  ggtitle(\"Linear trend + \")\nno3 &lt;- no %&gt;% \n  add_residuals(no_mod, var = \"res_no\") %&gt;% \n  ggplot(mapping = aes(x = year, y = res_no)) +\n  geom_line() +\n  ggtitle(\" Residuals\")\n# since we use package patchwork\nno1 + no2 + no3"
   },
   {
     "objectID": "model/many-models/many-models.html#simple-model-1",
@@ -6430,14 +6430,14 @@
     "href": "model/many-models/many-models.html#only-89-left-to-do",
     "title": "Many models",
     "section": "Only 89 left to do!",
-    "text": "Only 89 left to do!\n\nWhat can one do?\n\nnest() the data\nCommon code in a function, map onto each country\n\nUsed to apply function on new variables, now subset of rows (1962 -2017 for 90 different countries)\nNested data frame: group_by()first, then nest()\n\n\n\n\nCode\nby_country <- newgapminder %>% \n  # next a trick to bring with us continent variable\n  # not needed for the grouping (no two countries with same name)\n  group_by(country, continent) %>% \n  nest()"
+    "text": "Only 89 left to do!\n\nWhat can one do?\n\nnest() the data\nCommon code in a function, map onto each country\n\nUsed to apply function on new variables, now subset of rows (1962 -2017 for 90 different countries)\nNested data frame: group_by()first, then nest()\n\n. . .\n\nby_country &lt;- newgapminder %&gt;% \n  # next a trick to bring with us continent variable\n  # not needed for the grouping (no two countries with same name)\n  group_by(country, continent) %&gt;% \n  nest()"
   },
   {
     "objectID": "model/many-models/many-models.html#nested-dataframes",
     "href": "model/many-models/many-models.html#nested-dataframes",
     "title": "Many models",
     "section": "Nested dataframes",
-    "text": "Nested dataframes\n\nThat was easy!\nWhat’s in by_country?\n\n\n\n\nCode\nby_country\n\n\n# A tibble: 90 × 3\n# Groups:   country, continent [90]\n   country      continent data             \n   <chr>        <chr>     <list>           \n 1 Argentina    Americas  <tibble [12 × 4]>\n 2 Australia    Oceania   <tibble [12 × 4]>\n 3 Austria      Europe    <tibble [12 × 4]>\n 4 Burundi      Africa    <tibble [12 × 4]>\n 5 Belgium      Europe    <tibble [12 × 4]>\n 6 Benin        Africa    <tibble [12 × 4]>\n 7 Burkina Faso Africa    <tibble [12 × 4]>\n 8 Bangladesh   Asia      <tibble [12 × 4]>\n 9 Bahamas      Americas  <tibble [12 × 4]>\n10 Belize       Americas  <tibble [12 × 4]>\n# … with 80 more rows"
+    "text": "Nested dataframes\n\nThat was easy!\nWhat’s in by_country?\n\n. . .\n\nby_country\n\n# A tibble: 90 × 3\n# Groups:   country, continent [90]\n   country      continent data             \n   &lt;chr&gt;        &lt;chr&gt;     &lt;list&gt;           \n 1 Argentina    Americas  &lt;tibble [12 × 4]&gt;\n 2 Australia    Oceania   &lt;tibble [12 × 4]&gt;\n 3 Austria      Europe    &lt;tibble [12 × 4]&gt;\n 4 Burundi      Africa    &lt;tibble [12 × 4]&gt;\n 5 Belgium      Europe    &lt;tibble [12 × 4]&gt;\n 6 Benin        Africa    &lt;tibble [12 × 4]&gt;\n 7 Burkina Faso Africa    &lt;tibble [12 × 4]&gt;\n 8 Bangladesh   Asia      &lt;tibble [12 × 4]&gt;\n 9 Bahamas      Americas  &lt;tibble [12 × 4]&gt;\n10 Belize       Americas  &lt;tibble [12 × 4]&gt;\n# ℹ 80 more rows"
   },
   {
     "objectID": "model/many-models/many-models.html#nested-dataframes-1",
@@ -6451,14 +6451,14 @@
     "href": "model/many-models/many-models.html#nested-dataframes-2",
     "title": "Many models",
     "section": "Nested dataframes",
-    "text": "Nested dataframes\n\nThis kind of structure is quite “new”\nNo good tools to inspect it\nstr() tends to give to much info\nThe best solution is to inspect a single element with [[]]\n\n\n\n\nCode\nby_country %>% \n  # pick Norway\n  filter(country == \"Norway\") %>%\n  # pick the data variable for norway\n  .$data %>% \n  # we want the content\n  .[[1]]"
+    "text": "Nested dataframes\n\nThis kind of structure is quite “new”\nNo good tools to inspect it\nstr() tends to give to much info\nThe best solution is to inspect a single element with [[]]\n\n. . .\n\nby_country %&gt;% \n  # pick Norway\n  filter(country == \"Norway\") %&gt;%\n  # pick the data variable for norway\n  .$data %&gt;% \n  # we want the content\n  .[[1]]"
   },
   {
     "objectID": "model/many-models/many-models.html#nested-dataframes-3",
     "href": "model/many-models/many-models.html#nested-dataframes-3",
     "title": "Many models",
     "section": "Nested dataframes",
-    "text": "Nested dataframes\n\n\n# A tibble: 12 × 4\n   year       lifeExp     pop gdpPercap\n   <date>       <dbl>   <dbl>     <dbl>\n 1 1962-01-01    73.2 3639213    24912.\n 2 1967-01-01    73.8 3784867    30311.\n 3 1972-01-01    74.2 3933726    35368.\n 4 1977-01-01    75.1 4044335    43237.\n 5 1982-01-01    75.8 4111650    49046.\n 6 1987-01-01    76.0 4186972    59392.\n 7 1992-01-01    77.1 4292685    63630.\n 8 1997-01-01    78.3 4420266    77045.\n 9 2002-01-01    79.0 4546017    83674.\n10 2007-01-01    80.6 4719403    91566.\n11 2012-01-01    81.5 5013716    88605.\n12 2017-01-01    82.3 5296324    91549."
+    "text": "Nested dataframes\n\n\n# A tibble: 12 × 4\n   year       lifeExp     pop gdpPercap\n   &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;\n 1 1962-01-01    73.2 3639213    24912.\n 2 1967-01-01    73.8 3784867    30311.\n 3 1972-01-01    74.2 3933726    35368.\n 4 1977-01-01    75.1 4044335    43237.\n 5 1982-01-01    75.8 4111650    49046.\n 6 1987-01-01    76.0 4186972    59392.\n 7 1992-01-01    77.1 4292685    63630.\n 8 1997-01-01    78.3 4420266    77045.\n 9 2002-01-01    79.0 4546017    83674.\n10 2007-01-01    80.6 4719403    91566.\n11 2012-01-01    81.5 5013716    88605.\n12 2017-01-01    82.3 5296324    91549."
   },
   {
     "objectID": "model/many-models/many-models.html#nested-dataframes-4",
@@ -6472,21 +6472,21 @@
     "href": "model/many-models/many-models.html#more-on-list-columns",
     "title": "Many models",
     "section": "More on list-columns",
-    "text": "More on list-columns\n\nDefine a model function\n\n\n\n\nCode\ncountry_model <- function(a_df) {\n  # same simple model for each country\n  lm(lifeExp ~ year, data = a_df)\n}\n\n\n\nWant to map this function onto the data for each country\nStore it in by_country as the variable model\n\n\n\n\n\nCode\nby_country <- by_country %>% \n  # remember map(data, function), our data named data\n  mutate(model = map(data, .f = country_model))\n\n\n\n\nCode\nprint(by_country, n = 3)\n\n\n# A tibble: 90 × 4\n# Groups:   country, continent [90]\n  country   continent data              model \n  <chr>     <chr>     <list>            <list>\n1 Argentina Americas  <tibble [12 × 4]> <lm>  \n2 Australia Oceania   <tibble [12 × 4]> <lm>  \n3 Austria   Europe    <tibble [12 × 4]> <lm>  \n# … with 87 more rows"
+    "text": "More on list-columns\n\nDefine a model function\n\n. . .\n\ncountry_model &lt;- function(a_df) {\n  # same simple model for each country\n  lm(lifeExp ~ year, data = a_df)\n}\n\n\nWant to map this function onto the data for each country\nStore it in by_country as the variable model\n\n. . .\n\nby_country &lt;- by_country %&gt;% \n  # remember map(data, function), our data named data\n  mutate(model = map(data, .f = country_model))\n\n\nprint(by_country, n = 3)\n\n# A tibble: 90 × 4\n# Groups:   country, continent [90]\n  country   continent data              model \n  &lt;chr&gt;     &lt;chr&gt;     &lt;list&gt;            &lt;list&gt;\n1 Argentina Americas  &lt;tibble [12 × 4]&gt; &lt;lm&gt;  \n2 Australia Oceania   &lt;tibble [12 × 4]&gt; &lt;lm&gt;  \n3 Austria   Europe    &lt;tibble [12 × 4]&gt; &lt;lm&gt;  \n# ℹ 87 more rows"
   },
   {
     "objectID": "model/many-models/many-models.html#summary-of-the-model-for-norway",
     "href": "model/many-models/many-models.html#summary-of-the-model-for-norway",
     "title": "Many models",
     "section": "Summary of the model for Norway",
-    "text": "Summary of the model for Norway\n\n\nCode\nby_country %>% \n  # pick Norway\n  filter(country == \"Norway\") %>%\n  # pick the data variable for norway\n  .$model %>% \n  # we want the content\n  .[[1]] %>% \n  summary()\n\n\n\nCall:\nlm(formula = lifeExp ~ year, data = a_df)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-0.78146 -0.26734 -0.08243  0.39243  0.63660 \n\nCoefficients:\n             Estimate Std. Error t value Pr(>|t|)    \n(Intercept) 7.396e+01  2.033e-01  363.76  < 2e-16 ***\nyear        4.619e-04  2.138e-05   21.61 1.01e-09 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.4668 on 10 degrees of freedom\nMultiple R-squared:  0.979, Adjusted R-squared:  0.9769 \nF-statistic:   467 on 1 and 10 DF,  p-value: 1.005e-09"
+    "text": "Summary of the model for Norway\n\nby_country %&gt;% \n  # pick Norway\n  filter(country == \"Norway\") %&gt;%\n  # pick the data variable for norway\n  .$model %&gt;% \n  # we want the content\n  .[[1]] %&gt;% \n  summary()\n\n\nCall:\nlm(formula = lifeExp ~ year, data = a_df)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-0.78146 -0.26734 -0.08243  0.39243  0.63660 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 7.396e+01  2.033e-01  363.76  &lt; 2e-16 ***\nyear        4.619e-04  2.138e-05   21.61 1.01e-09 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.4668 on 10 degrees of freedom\nMultiple R-squared:  0.979, Adjusted R-squared:  0.9769 \nF-statistic:   467 on 1 and 10 DF,  p-value: 1.005e-09"
   },
   {
     "objectID": "model/many-models/many-models.html#coefficients-of-the-model-for-norway",
     "href": "model/many-models/many-models.html#coefficients-of-the-model-for-norway",
     "title": "Many models",
     "section": "Coefficients of the model for Norway",
-    "text": "Coefficients of the model for Norway\n\n\nCode\nby_country %>% \n  # pick Norway\n  filter(country == \"Norway\") %>%\n  # pick the data variable for norway\n  .$model %>% \n  # we want the content\n  .[[1]] %>% \n  coefficients()\n\n\n (Intercept)         year \n7.396322e+01 4.619491e-04"
+    "text": "Coefficients of the model for Norway\n\nby_country %&gt;% \n  # pick Norway\n  filter(country == \"Norway\") %&gt;%\n  # pick the data variable for norway\n  .$model %&gt;% \n  # we want the content\n  .[[1]] %&gt;% \n  coefficients()\n\n (Intercept)         year \n7.396322e+01 4.619491e-04"
   },
   {
     "objectID": "model/many-models/many-models.html#more-by_country",
@@ -6500,147 +6500,147 @@
     "href": "model/many-models/many-models.html#adding-residuals-and-predictions-if-we-want-to",
     "title": "Many models",
     "section": "Adding residuals (and predictions if we want to)",
-    "text": "Adding residuals (and predictions if we want to)\n\n\nCode\nby_country <- by_country %>% \n  mutate(\n    # remember map2(var1, var2, function)\n    # we want to vary data and model\n    # one combination for each country\n    #add_residuals(data, model)\n    res = map2(data, model, add_residuals)\n  )\n\n\n\nThen we have added the residuals for each country to by_country"
+    "text": "Adding residuals (and predictions if we want to)\n\nby_country &lt;- by_country %&gt;% \n  mutate(\n    # remember map2(var1, var2, function)\n    # we want to vary data and model\n    # one combination for each country\n    #add_residuals(data, model)\n    res = map2(data, model, add_residuals)\n  )\n\n\nThen we have added the residuals for each country to by_country"
   },
   {
     "objectID": "model/many-models/many-models.html#how-to-get-things-out-of-their-nest",
     "href": "model/many-models/many-models.html#how-to-get-things-out-of-their-nest",
     "title": "Many models",
     "section": "How to get things out of their nest?",
-    "text": "How to get things out of their nest?\n\nunnest()\nSay we want to see the residuals. How will we get them?\n\n\n\n\nCode\nres_90c <- by_country %>% \n  unnest(res)\nprint(res_90c, n = 4)\n\n\n# A tibble: 1,080 × 9\n# Groups:   country, continent [90]\n  country   continent data     model  year       lifeExp      pop gdpPe…¹  resid\n  <chr>     <chr>     <list>   <list> <date>       <dbl>    <dbl>   <dbl>  <dbl>\n1 Argentina Americas  <tibble> <lm>   1962-01-01    64.4 21153042   5711. -0.365\n2 Argentina Americas  <tibble> <lm>   1967-01-01    64.9 22828872   6255. -1.06 \n3 Argentina Americas  <tibble> <lm>   1972-01-01    66.2 24653172   7369. -0.945\n4 Argentina Americas  <tibble> <lm>   1977-01-01    68.4 26661397   7744.  0.105\n# … with 1,076 more rows, and abbreviated variable name ¹​gdpPercap"
+    "text": "How to get things out of their nest?\n\nunnest()\nSay we want to see the residuals. How will we get them?\n\n. . .\n\nres_90c &lt;- by_country %&gt;% \n  unnest(res)\nprint(res_90c, n = 4)\n\n# A tibble: 1,080 × 9\n# Groups:   country, continent [90]\n  country   continent data     model  year       lifeExp    pop gdpPercap  resid\n  &lt;chr&gt;     &lt;chr&gt;     &lt;list&gt;   &lt;list&gt; &lt;date&gt;       &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;\n1 Argentina Americas  &lt;tibble&gt; &lt;lm&gt;   1962-01-01    64.4 2.12e7     5711. -0.365\n2 Argentina Americas  &lt;tibble&gt; &lt;lm&gt;   1967-01-01    64.9 2.28e7     6255. -1.06 \n3 Argentina Americas  &lt;tibble&gt; &lt;lm&gt;   1972-01-01    66.2 2.47e7     7369. -0.945\n4 Argentina Americas  &lt;tibble&gt; &lt;lm&gt;   1977-01-01    68.4 2.67e7     7744.  0.105\n# ℹ 1,076 more rows"
   },
   {
     "objectID": "model/many-models/many-models.html#residuals-and-the-variables-for-norway",
     "href": "model/many-models/many-models.html#residuals-and-the-variables-for-norway",
     "title": "Many models",
     "section": "Residuals and the variables for Norway",
-    "text": "Residuals and the variables for Norway\n\n\nCode\nres_90c %>% \n  filter(country == \"Norway\") %>% \n  print(n = 5)\n\n\n# A tibble: 12 × 9\n# Groups:   country, continent [1]\n  country continent data     model  year       lifeExp     pop gdpPercap   resid\n  <chr>   <chr>     <list>   <list> <date>       <dbl>   <dbl>     <dbl>   <dbl>\n1 Norway  Europe    <tibble> <lm>   1962-01-01    73.2 3639213    24912.  0.637 \n2 Norway  Europe    <tibble> <lm>   1967-01-01    73.8 3784867    30311.  0.383 \n3 Norway  Europe    <tibble> <lm>   1972-01-01    74.2 3933726    35368. -0.110 \n4 Norway  Europe    <tibble> <lm>   1977-01-01    75.1 4044335    43237. -0.0544\n5 Norway  Europe    <tibble> <lm>   1982-01-01    75.8 4111650    49046. -0.148 \n# … with 7 more rows"
+    "text": "Residuals and the variables for Norway\n\nres_90c %&gt;% \n  filter(country == \"Norway\") %&gt;% \n  print(n = 5)\n\n# A tibble: 12 × 9\n# Groups:   country, continent [1]\n  country continent data     model  year       lifeExp     pop gdpPercap   resid\n  &lt;chr&gt;   &lt;chr&gt;     &lt;list&gt;   &lt;list&gt; &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 Norway  Europe    &lt;tibble&gt; &lt;lm&gt;   1962-01-01    73.2 3639213    24912.  0.637 \n2 Norway  Europe    &lt;tibble&gt; &lt;lm&gt;   1967-01-01    73.8 3784867    30311.  0.383 \n3 Norway  Europe    &lt;tibble&gt; &lt;lm&gt;   1972-01-01    74.2 3933726    35368. -0.110 \n4 Norway  Europe    &lt;tibble&gt; &lt;lm&gt;   1977-01-01    75.1 4044335    43237. -0.0544\n5 Norway  Europe    &lt;tibble&gt; &lt;lm&gt;   1982-01-01    75.8 4111650    49046. -0.148 \n# ℹ 7 more rows"
   },
   {
     "objectID": "model/many-models/many-models.html#plot-of-residuals-against-year-for-norway",
     "href": "model/many-models/many-models.html#plot-of-residuals-against-year-for-norway",
     "title": "Many models",
     "section": "Plot of residuals against year for Norway",
-    "text": "Plot of residuals against year for Norway\n\n\nCode\nres_90c %>% \n  filter(country == \"Norway\") %>% \n  ggplot(mapping = aes(x = year, y = resid)) + \n  geom_point() +\n  geom_line() +\n  geom_hline(yintercept = 0)"
+    "text": "Plot of residuals against year for Norway\n\nres_90c %&gt;% \n  filter(country == \"Norway\") %&gt;% \n  ggplot(mapping = aes(x = year, y = resid)) + \n  geom_point() +\n  geom_line() +\n  geom_hline(yintercept = 0)"
   },
   {
     "objectID": "model/many-models/many-models.html#plot-of-residuals-against-year-for-norway-1",
     "href": "model/many-models/many-models.html#plot-of-residuals-against-year-for-norway-1",
     "title": "Many models",
     "section": "Plot of residuals against year for Norway",
-    "text": "Plot of residuals against year for Norway\n\n\nShows clear signs of autocorrelation"
+    "text": "Plot of residuals against year for Norway\n\n\n\n\n\n\nShows clear signs of autocorrelation"
   },
   {
     "objectID": "model/many-models/many-models.html#plot-residuals-for-all-countries",
     "href": "model/many-models/many-models.html#plot-residuals-for-all-countries",
     "title": "Many models",
     "section": "Plot residuals for all countries",
-    "text": "Plot residuals for all countries\n\n\nCode\nres_90c %>% \n  ggplot(mapping = aes(x = year, y = resid)) + \n  # because of group = country one line for each country\n  geom_line(aes(group = country), alpha = 1/6) +\n  # general smooth for all countries\n  geom_smooth(se = FALSE) +\n  geom_hline(yintercept = 0)"
+    "text": "Plot residuals for all countries\n\nres_90c %&gt;% \n  ggplot(mapping = aes(x = year, y = resid)) + \n  # because of group = country one line for each country\n  geom_line(aes(group = country), alpha = 1/6) +\n  # general smooth for all countries\n  geom_smooth(se = FALSE) +\n  geom_hline(yintercept = 0)"
   },
   {
     "objectID": "model/many-models/many-models.html#plot-residuals-for-all-countries-1",
     "href": "model/many-models/many-models.html#plot-residuals-for-all-countries-1",
     "title": "Many models",
     "section": "Plot residuals for all countries",
-    "text": "Plot residuals for all countries"
+    "text": "Plot residuals for all countries\n\n\n`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = \"cs\")'"
   },
   {
     "objectID": "model/many-models/many-models.html#facetting-by-continent",
     "href": "model/many-models/many-models.html#facetting-by-continent",
     "title": "Many models",
     "section": "Facetting by continent",
-    "text": "Facetting by continent\n\n\nCode\nres_90c %>% \n  ggplot(mapping = aes(x = year, y = resid)) + \n  # because of group = country one line for each country\n  geom_line(aes(group = country), alpha = 1/3) +\n  geom_hline(yintercept = 0, colour = \"white\") +\n  facet_wrap(~continent)"
+    "text": "Facetting by continent\n\nres_90c %&gt;% \n  ggplot(mapping = aes(x = year, y = resid)) + \n  # because of group = country one line for each country\n  geom_line(aes(group = country), alpha = 1/3) +\n  geom_hline(yintercept = 0, colour = \"white\") +\n  facet_wrap(~continent)"
   },
   {
     "objectID": "model/many-models/many-models.html#facetting-by-continent-1",
     "href": "model/many-models/many-models.html#facetting-by-continent-1",
     "title": "Many models",
     "section": "Facetting by continent",
-    "text": "Facetting by continent\n\n\nEurope is dull, all the action is in Africa."
+    "text": "Facetting by continent\n\n\n\n\n\n\nEurope is dull, all the action is in Africa."
   },
   {
     "objectID": "model/many-models/many-models.html#mean-lifeexp-over-country-not-population-per-continent",
     "href": "model/many-models/many-models.html#mean-lifeexp-over-country-not-population-per-continent",
     "title": "Many models",
     "section": "Mean lifeExp (over country not population) per continent",
-    "text": "Mean lifeExp (over country not population) per continent\n\n\nCode\nby_country %>% \n  unnest(c(data)) %>% \n  group_by(continent, year) %>% \n  summarise(mean_lifeExp = mean(lifeExp)\n           ) %>% \n  ggplot(aes(x = year, y = mean_lifeExp, colour = continent)) +\n    geom_line(lwd = 1)"
+    "text": "Mean lifeExp (over country not population) per continent\n\nby_country %&gt;% \n  unnest(c(data)) %&gt;% \n  group_by(continent, year) %&gt;% \n  summarise(mean_lifeExp = mean(lifeExp)\n           ) %&gt;% \n  ggplot(aes(x = year, y = mean_lifeExp, colour = continent)) +\n    geom_line(lwd = 1)"
   },
   {
     "objectID": "model/many-models/many-models.html#mean-lifeexp-over-country-not-population-per-continent-1",
     "href": "model/many-models/many-models.html#mean-lifeexp-over-country-not-population-per-continent-1",
     "title": "Many models",
     "section": "Mean lifeExp (over country not population) per continent",
-    "text": "Mean lifeExp (over country not population) per continent"
+    "text": "Mean lifeExp (over country not population) per continent\n\n\n`summarise()` has grouped output by 'continent'. You can override using the\n`.groups` argument."
   },
   {
     "objectID": "model/many-models/many-models.html#model-quality",
     "href": "model/many-models/many-models.html#model-quality",
     "title": "Many models",
     "section": "Model quality",
-    "text": "Model quality\n\nFilter on a country\nGet model from tibble\nPick out the lm object and send it to summary\n\n\n\n\nCode\nby_country %>% \n  filter(country %in% c(\"Norway\")) %>% \n  .$model %>%\n  .[[1]] %>% \n  summary()"
+    "text": "Model quality\n\nFilter on a country\nGet model from tibble\nPick out the lm object and send it to summary\n\n. . .\n\nby_country %&gt;% \n  filter(country %in% c(\"Norway\")) %&gt;% \n  .$model %&gt;%\n  .[[1]] %&gt;% \n  summary()"
   },
   {
     "objectID": "model/many-models/many-models.html#model-quality-cont.",
     "href": "model/many-models/many-models.html#model-quality-cont.",
     "title": "Many models",
     "section": "Model quality cont.",
-    "text": "Model quality cont.\n\n\nCode\nby_country %>% \n  filter(country %in% c(\"Norway\")) %>% \n  .$model %>%\n  .[[1]] %>% \n  summary()  \n\n\n\nCall:\nlm(formula = lifeExp ~ year, data = a_df)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-0.78146 -0.26734 -0.08243  0.39243  0.63660 \n\nCoefficients:\n             Estimate Std. Error t value Pr(>|t|)    \n(Intercept) 7.396e+01  2.033e-01  363.76  < 2e-16 ***\nyear        4.619e-04  2.138e-05   21.61 1.01e-09 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.4668 on 10 degrees of freedom\nMultiple R-squared:  0.979, Adjusted R-squared:  0.9769 \nF-statistic:   467 on 1 and 10 DF,  p-value: 1.005e-09\n\n\n\nCumbersome\nPackage broom is your friend"
+    "text": "Model quality cont.\n\nby_country %&gt;% \n  filter(country %in% c(\"Norway\")) %&gt;% \n  .$model %&gt;%\n  .[[1]] %&gt;% \n  summary()  \n\n\nCall:\nlm(formula = lifeExp ~ year, data = a_df)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-0.78146 -0.26734 -0.08243  0.39243  0.63660 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 7.396e+01  2.033e-01  363.76  &lt; 2e-16 ***\nyear        4.619e-04  2.138e-05   21.61 1.01e-09 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.4668 on 10 degrees of freedom\nMultiple R-squared:  0.979, Adjusted R-squared:  0.9769 \nF-statistic:   467 on 1 and 10 DF,  p-value: 1.005e-09\n\n\n\nCumbersome\nPackage broom is your friend"
   },
   {
     "objectID": "model/many-models/many-models.html#model-quality-broomglance",
     "href": "model/many-models/many-models.html#model-quality-broomglance",
     "title": "Many models",
     "section": "Model quality; broom::glance()",
-    "text": "Model quality; broom::glance()\n\n\nCode\noptions(tibble.width = 60)\nby_country %>% \n  filter(\n    country %in% c(\"Norway\", \"Sweden\", \n                        \"Denmark\", \"Finland\")\n    ) %>% \n  .$model %>% \n  map_df(glance) %>% \n  print()\n\n\n# A tibble: 4 × 12\n  r.squa…¹ adj.r…² sigma stati…³  p.value    df logLik   AIC\n     <dbl>   <dbl> <dbl>   <dbl>    <dbl> <dbl>  <dbl> <dbl>\n1    0.952   0.948 0.641    200. 6.20e- 8     1 -10.6  27.2 \n2    0.994   0.994 0.345   1702. 1.68e-12     1  -3.15 12.3 \n3    0.979   0.977 0.467    467. 1.01e- 9     1  -6.79 19.6 \n4    0.998   0.998 0.152   4524. 1.28e-14     1   6.64 -7.29\n# … with 4 more variables: BIC <dbl>, deviance <dbl>,\n#   df.residual <int>, nobs <int>, and abbreviated variable\n#   names ¹​r.squared, ²​adj.r.squared, ³​statistic"
+    "text": "Model quality; broom::glance()\n\noptions(tibble.width = 60)\nby_country %&gt;% \n  filter(\n    country %in% c(\"Norway\", \"Sweden\", \n                        \"Denmark\", \"Finland\")\n    ) %&gt;% \n  .$model %&gt;% \n  map_df(glance) %&gt;% \n  print()\n\n# A tibble: 4 × 12\n  r.squared adj.r.squared sigma statistic  p.value    df\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;\n1     0.952         0.948 0.641      200. 6.20e- 8     1\n2     0.994         0.994 0.345     1702. 1.68e-12     1\n3     0.979         0.977 0.467      467. 1.01e- 9     1\n4     0.998         0.998 0.152     4524. 1.28e-14     1\n# ℹ 6 more variables: logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;,\n#   deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
   },
   {
     "objectID": "model/many-models/many-models.html#model-quality-broomglance-1",
     "href": "model/many-models/many-models.html#model-quality-broomglance-1",
     "title": "Many models",
     "section": "Model quality; broom::glance()",
-    "text": "Model quality; broom::glance()\n\nBetter solution\n\nPut model summaries in by_country with mutate(mod_summary = )\nThen unnest(mod_summary)\n\n\n\n\n\nCode\nby_country %>%\n    filter(\n    country %in% c(\n      \"Norway\", \"Sweden\",\n      \"Denmark\", \"Finland\"\n    )\n  ) %>% \n  mutate(mod_summary = map(.x = model, .f = glance)) %>%\n  unnest(mod_summary) %>% \n  # don't want too many rows in the slide\n  print(n = 4)"
+    "text": "Model quality; broom::glance()\n\nBetter solution\n\nPut model summaries in by_country with mutate(mod_summary = )\nThen unnest(mod_summary)\n\n\n. . .\n\nby_country %&gt;%\n    filter(\n    country %in% c(\n      \"Norway\", \"Sweden\",\n      \"Denmark\", \"Finland\"\n    )\n  ) %&gt;% \n  mutate(mod_summary = map(.x = model, .f = glance)) %&gt;%\n  unnest(mod_summary) %&gt;% \n  # don't want too many rows in the slide\n  print(n = 4)"
   },
   {
     "objectID": "model/many-models/many-models.html#model-quality-broomglance-2",
     "href": "model/many-models/many-models.html#model-quality-broomglance-2",
     "title": "Many models",
     "section": "Model quality; broom::glance()",
-    "text": "Model quality; broom::glance()\n\n\nCode\nby_country %>%\n    filter(\n    country %in% c(\n      \"Norway\", \"Sweden\",\n      \"Denmark\", \"Finland\"\n    )\n  ) %>% \n  mutate(mod_summary = map(.x = model, .f = glance)) %>%\n  unnest(mod_summary) %>% \n  # don't want to may rows in the slide\n  print(n = 4)\n\n\n# A tibble: 4 × 17\n# Groups:   country, continent [4]\n  country continent data     model  res      r.squ…¹ adj.r…²\n  <chr>   <chr>     <list>   <list> <list>     <dbl>   <dbl>\n1 Denmark Europe    <tibble> <lm>   <tibble>   0.952   0.948\n2 Finland Europe    <tibble> <lm>   <tibble>   0.994   0.994\n3 Norway  Europe    <tibble> <lm>   <tibble>   0.979   0.977\n4 Sweden  Europe    <tibble> <lm>   <tibble>   0.998   0.998\n# … with 10 more variables: sigma <dbl>, statistic <dbl>,\n#   p.value <dbl>, df <dbl>, logLik <dbl>, AIC <dbl>,\n#   BIC <dbl>, deviance <dbl>, df.residual <int>,\n#   nobs <int>, and abbreviated variable names ¹​r.squared,\n#   ²​adj.r.squared"
+    "text": "Model quality; broom::glance()\n\nby_country %&gt;%\n    filter(\n    country %in% c(\n      \"Norway\", \"Sweden\",\n      \"Denmark\", \"Finland\"\n    )\n  ) %&gt;% \n  mutate(mod_summary = map(.x = model, .f = glance)) %&gt;%\n  unnest(mod_summary) %&gt;% \n  # don't want to may rows in the slide\n  print(n = 4)\n\n# A tibble: 4 × 17\n# Groups:   country, continent [4]\n  country continent data     model  res      r.squared\n  &lt;chr&gt;   &lt;chr&gt;     &lt;list&gt;   &lt;list&gt; &lt;list&gt;       &lt;dbl&gt;\n1 Denmark Europe    &lt;tibble&gt; &lt;lm&gt;   &lt;tibble&gt;     0.952\n2 Finland Europe    &lt;tibble&gt; &lt;lm&gt;   &lt;tibble&gt;     0.994\n3 Norway  Europe    &lt;tibble&gt; &lt;lm&gt;   &lt;tibble&gt;     0.979\n4 Sweden  Europe    &lt;tibble&gt; &lt;lm&gt;   &lt;tibble&gt;     0.998\n# ℹ 11 more variables: adj.r.squared &lt;dbl&gt;, sigma &lt;dbl&gt;,\n#   statistic &lt;dbl&gt;, p.value &lt;dbl&gt;, df &lt;dbl&gt;, logLik &lt;dbl&gt;,\n#   AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, deviance &lt;dbl&gt;,\n#   df.residual &lt;int&gt;, nobs &lt;int&gt;"
   },
   {
     "objectID": "model/many-models/many-models.html#model-quality-1",
     "href": "model/many-models/many-models.html#model-quality-1",
     "title": "Many models",
     "section": "Model quality",
-    "text": "Model quality\n\n\nCode\nby_country %>%\n  mutate(mod_summary = map(.x = model, .f = glance)) %>%\n  unnest(mod_summary) %>% \n  group_by(continent) %>% \n  summarise(mean_r_adj = mean(adj.r.squared))\n\n\n# A tibble: 5 × 2\n  continent mean_r_adj\n  <chr>          <dbl>\n1 Africa         0.655\n2 Americas       0.918\n3 Asia           0.951\n4 Europe         0.982\n5 Oceania        0.686\n\n\n\nThe model seems to have the best fit in Europe\nThe worst fit in Africa"
+    "text": "Model quality\n\nby_country %&gt;%\n  mutate(mod_summary = map(.x = model, .f = glance)) %&gt;%\n  unnest(mod_summary) %&gt;% \n  group_by(continent) %&gt;% \n  summarise(mean_r_adj = mean(adj.r.squared))\n\n# A tibble: 5 × 2\n  continent mean_r_adj\n  &lt;chr&gt;          &lt;dbl&gt;\n1 Africa         0.655\n2 Americas       0.918\n3 Asia           0.951\n4 Europe         0.982\n5 Oceania        0.686\n\n\n\nThe model seems to have the best fit in Europe\nThe worst fit in Africa"
   },
   {
     "objectID": "model/many-models/many-models.html#model-quality-preserve-mod_summary",
     "href": "model/many-models/many-models.html#model-quality-preserve-mod_summary",
     "title": "Many models",
     "section": "Model quality, preserve mod_summary",
-    "text": "Model quality, preserve mod_summary\n\n\nCode\nby_country <- by_country %>%\n  mutate(mod_summary = map(.x = model, .f = glance))\n\n\n\n\nCode\nby_country %>% \n  # drop = TRUE, deprecated, use select() instead\n  select(-data, -model, -res) %>% \n  # new interface, wrap in c()\n  unnest(c(mod_summary)) %>% \n  print(n = 4)\n\n\n# A tibble: 90 × 14\n# Groups:   country, continent [90]\n  country   continent r.squ…¹ adj.r…² sigma stati…³  p.value\n  <chr>     <chr>       <dbl>   <dbl> <dbl>   <dbl>    <dbl>\n1 Argentina Americas    0.962   0.958 0.882  252.   2.04e- 8\n2 Australia Oceania     0.983   0.981 0.589  581.   3.45e-10\n3 Austria   Europe      0.991   0.990 0.441 1052.   1.83e-11\n4 Burundi   Africa      0.456   0.402 8.32     8.40 1.59e- 2\n# … with 86 more rows, 7 more variables: df <dbl>,\n#   logLik <dbl>, AIC <dbl>, BIC <dbl>, deviance <dbl>,\n#   df.residual <int>, nobs <int>, and abbreviated variable\n#   names ¹​r.squared, ²​adj.r.squared, ³​statistic"
+    "text": "Model quality, preserve mod_summary\n\nby_country &lt;- by_country %&gt;%\n  mutate(mod_summary = map(.x = model, .f = glance))\n\n\nby_country %&gt;% \n  # drop = TRUE, deprecated, use select() instead\n  select(-data, -model, -res) %&gt;% \n  # new interface, wrap in c()\n  unnest(c(mod_summary)) %&gt;% \n  print(n = 4)\n\n# A tibble: 90 × 14\n# Groups:   country, continent [90]\n  country  continent r.squared adj.r.squared sigma statistic\n  &lt;chr&gt;    &lt;chr&gt;         &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;\n1 Argenti… Americas      0.962         0.958 0.882    252.  \n2 Austral… Oceania       0.983         0.981 0.589    581.  \n3 Austria  Europe        0.991         0.990 0.441   1052.  \n4 Burundi  Africa        0.456         0.402 8.32       8.40\n# ℹ 86 more rows\n# ℹ 8 more variables: p.value &lt;dbl&gt;, df &lt;dbl&gt;,\n#   logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, deviance &lt;dbl&gt;,\n#   df.residual &lt;int&gt;, nobs &lt;int&gt;"
   },
   {
     "objectID": "model/many-models/many-models.html#the-10-best-models",
     "href": "model/many-models/many-models.html#the-10-best-models",
     "title": "Many models",
     "section": "The 10 best models",
-    "text": "The 10 best models\n\n\nCode\nby_country %>% \n  # drop = TRUE, deprecated, use select() instead\n  select(-data, -model, -res) %>% \n  # new interface, wrap in c()\n  unnest(c(mod_summary)) %>% \n  arrange(desc(adj.r.squared)) %>% \n  print(n = 10)\n\n\n# A tibble: 90 × 14\n# Groups:   country, continent [90]\n   country    conti…¹ r.squ…² adj.r…³ sigma stati…⁴  p.value\n   <chr>      <chr>     <dbl>   <dbl> <dbl>   <dbl>    <dbl>\n 1 France     Europe    0.998   0.998 0.168   6500. 2.11e-15\n 2 Sweden     Europe    0.998   0.998 0.152   4524. 1.28e-14\n 3 Singapore  Asia      0.997   0.997 0.353   3183. 7.43e-14\n 4 Italy      Europe    0.997   0.996 0.274   3076. 8.80e-14\n 5 Bolivia    Americ…   0.996   0.995 0.634   2215. 4.52e-13\n 6 Belgium    Europe    0.995   0.994 0.293   1866. 1.06e-12\n 7 Finland    Europe    0.994   0.994 0.345   1702. 1.68e-12\n 8 Luxembourg Europe    0.993   0.993 0.370   1486. 3.30e-12\n 9 Haiti      Americ…   0.993   0.993 0.613   1483. 3.33e-12\n10 Mauritania Africa    0.993   0.992 0.590   1453. 3.69e-12\n# … with 80 more rows, 7 more variables: df <dbl>,\n#   logLik <dbl>, AIC <dbl>, BIC <dbl>, deviance <dbl>,\n#   df.residual <int>, nobs <int>, and abbreviated variable\n#   names ¹​continent, ²​r.squared, ³​adj.r.squared,\n#   ⁴​statistic"
+    "text": "The 10 best models\n\nby_country %&gt;% \n  # drop = TRUE, deprecated, use select() instead\n  select(-data, -model, -res) %&gt;% \n  # new interface, wrap in c()\n  unnest(c(mod_summary)) %&gt;% \n  arrange(desc(adj.r.squared)) %&gt;% \n  print(n = 10)\n\n# A tibble: 90 × 14\n# Groups:   country, continent [90]\n   country continent r.squared adj.r.squared sigma statistic\n   &lt;chr&gt;   &lt;chr&gt;         &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;\n 1 France  Europe        0.998         0.998 0.168     6500.\n 2 Sweden  Europe        0.998         0.998 0.152     4524.\n 3 Singap… Asia          0.997         0.997 0.353     3183.\n 4 Italy   Europe        0.997         0.996 0.274     3076.\n 5 Bolivia Americas      0.996         0.995 0.634     2215.\n 6 Belgium Europe        0.995         0.994 0.293     1866.\n 7 Finland Europe        0.994         0.994 0.345     1702.\n 8 Luxemb… Europe        0.993         0.993 0.370     1486.\n 9 Haiti   Americas      0.993         0.993 0.613     1483.\n10 Maurit… Africa        0.993         0.992 0.590     1453.\n# ℹ 80 more rows\n# ℹ 8 more variables: p.value &lt;dbl&gt;, df &lt;dbl&gt;,\n#   logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, deviance &lt;dbl&gt;,\n#   df.residual &lt;int&gt;, nobs &lt;int&gt;"
   },
   {
     "objectID": "model/many-models/many-models.html#the-10-worst-models",
     "href": "model/many-models/many-models.html#the-10-worst-models",
     "title": "Many models",
     "section": "The 10 worst models",
-    "text": "The 10 worst models\n\n\nCode\nby_country %>% \n  # drop = TRUE, deprecated, use select() instead\n  select(-data, -model, -res) %>% \n  # new interface, wrap in c()\n  unnest(c(mod_summary)) %>% \n  arrange(adj.r.squared) %>% \n  print(n = 10)\n\n\n# A tibble: 90 × 14\n# Groups:   country, continent [90]\n   country     conti…¹ r.squ…² adj.r…³ sigma stati…⁴ p.value\n   <chr>       <chr>     <dbl>   <dbl> <dbl>   <dbl>   <dbl>\n 1 Zambia      Africa   0.0574 -0.0369  5.17   0.609 0.453  \n 2 Zimbabwe    Africa   0.0585 -0.0357  5.80   0.621 0.449  \n 3 South Afri… Africa   0.0633 -0.0304  4.50   0.675 0.430  \n 4 Lesotho     Africa   0.233   0.157   4.66   3.04  0.112  \n 5 Botswana    Africa   0.256   0.181   4.70   3.43  0.0936 \n 6 Kenya       Africa   0.262   0.188   3.38   3.55  0.0888 \n 7 Central Af… Africa   0.271   0.199   2.49   3.73  0.0824 \n 8 Fiji        Oceania  0.386   0.325   1.22   6.30  0.0309 \n 9 Burundi     Africa   0.456   0.402   8.32   8.40  0.0159 \n10 Malawi      Africa   0.613   0.575   4.20  15.9   0.00259\n# … with 80 more rows, 7 more variables: df <dbl>,\n#   logLik <dbl>, AIC <dbl>, BIC <dbl>, deviance <dbl>,\n#   df.residual <int>, nobs <int>, and abbreviated variable\n#   names ¹​continent, ²​r.squared, ³​adj.r.squared,\n#   ⁴​statistic"
+    "text": "The 10 worst models\n\nby_country %&gt;% \n  # drop = TRUE, deprecated, use select() instead\n  select(-data, -model, -res) %&gt;% \n  # new interface, wrap in c()\n  unnest(c(mod_summary)) %&gt;% \n  arrange(adj.r.squared) %&gt;% \n  print(n = 10)\n\n# A tibble: 90 × 14\n# Groups:   country, continent [90]\n   country continent r.squared adj.r.squared sigma statistic\n   &lt;chr&gt;   &lt;chr&gt;         &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;\n 1 Zambia  Africa       0.0574       -0.0369  5.17     0.609\n 2 Zimbab… Africa       0.0585       -0.0357  5.80     0.621\n 3 South … Africa       0.0633       -0.0304  4.50     0.675\n 4 Lesotho Africa       0.233         0.157   4.66     3.04 \n 5 Botswa… Africa       0.256         0.181   4.70     3.43 \n 6 Kenya   Africa       0.262         0.188   3.38     3.55 \n 7 Centra… Africa       0.271         0.199   2.49     3.73 \n 8 Fiji    Oceania      0.386         0.325   1.22     6.30 \n 9 Burundi Africa       0.456         0.402   8.32     8.40 \n10 Malawi  Africa       0.613         0.575   4.20    15.9  \n# ℹ 80 more rows\n# ℹ 8 more variables: p.value &lt;dbl&gt;, df &lt;dbl&gt;,\n#   logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, deviance &lt;dbl&gt;,\n#   df.residual &lt;int&gt;, nobs &lt;int&gt;"
   },
   {
     "objectID": "model/many-models/many-models.html#plot-adj.r.square-and-sigma-by-continent",
     "href": "model/many-models/many-models.html#plot-adj.r.square-and-sigma-by-continent",
     "title": "Many models",
     "section": "Plot adj.r.square and sigma by continent",
-    "text": "Plot adj.r.square and sigma by continent\n\n\nCode\nby_country %>% \n  # unnest data to get to pop\n  unnest(c(data, mod_summary)) %>% \n  ggplot(mapping = aes(x = sigma, y = adj.r.squared, \n                       colour = continent, size = pop)) +\n  geom_point(alpha = 0.3) +\n  theme(legend.position = \"bottom\")"
+    "text": "Plot adj.r.square and sigma by continent\n\nby_country %&gt;% \n  # unnest data to get to pop\n  unnest(c(data, mod_summary)) %&gt;% \n  ggplot(mapping = aes(x = sigma, y = adj.r.squared, \n                       colour = continent, size = pop)) +\n  geom_point(alpha = 0.3) +\n  theme(legend.position = \"bottom\")"
   },
   {
     "objectID": "model/many-models/many-models.html#plot-adj.r.square-and-sigma-by-continent-1",
@@ -6654,7 +6654,7 @@
     "href": "model/many-models/many-models.html#plot-of-the-worst-fits",
     "title": "Many models",
     "section": "Plot of the worst fits",
-    "text": "Plot of the worst fits\n\n\nCode\n# Special case Rwanda\nrw <- by_country %>% filter(country == \"Rwanda\") %>% unnest(c(data,mod_summary))\nby_country %>% \n    # unnest data to get to pop\n  unnest(c(data, mod_summary)) %>% \n  filter(continent == \"Africa\") %>% \n  filter(adj.r.squared < 0.25) %>% \n  ggplot(mapping = aes(x = year, y = lifeExp, colour = country)) +\n  geom_line(lwd=1) + \n  geom_line(data = rw, mapping = aes(x = year, y = lifeExp), colour = \"black\", lwd=1) +\n  ggtitle(\"AIDS and genocide in Rwanda 1994\")"
+    "text": "Plot of the worst fits\n\n# Special case Rwanda\nrw &lt;- by_country %&gt;% filter(country == \"Rwanda\") %&gt;% unnest(c(data,mod_summary))\nby_country %&gt;% \n    # unnest data to get to pop\n  unnest(c(data, mod_summary)) %&gt;% \n  filter(continent == \"Africa\") %&gt;% \n  filter(adj.r.squared &lt; 0.25) %&gt;% \n  ggplot(mapping = aes(x = year, y = lifeExp, colour = country)) +\n  geom_line(lwd=1) + \n  geom_line(data = rw, mapping = aes(x = year, y = lifeExp), colour = \"black\", lwd=1) +\n  ggtitle(\"AIDS and genocide in Rwanda 1994\")"
   },
   {
     "objectID": "model/many-models/many-models.html#plot-of-the-worst-fits-1",
@@ -6682,14 +6682,14 @@
     "href": "model/many-models/many-models.html#how-classic-rs-data.frame-function-handles-a-list-of-vectors",
     "title": "Many models",
     "section": "How classic Rs data.frame() function handles a list of vectors",
-    "text": "How classic Rs data.frame() function handles a list of vectors\n\n\nCode\n# we want a list with two vectors\ndata.frame(x = list(1:3, 3:5))\n\n\n  x.1.3 x.3.5\n1     1     3\n2     2     4\n3     3     5\n\n\n\nGet two columns\nCan force the matter with I()\n\n\n\n\nCode\n# I() Inhibit Interpretation/Conversion of Objects\na_df <- data.frame(x = I(list(1:3, 3:5)))\na_df\n\n\n        x\n1 1, 2, 3\n2 3, 4, 5\n\n\nCode\na_df$x[[1]]\n\n\n[1] 1 2 3\n\n\nCode\na_df$x[[2]]\n\n\n[1] 3 4 5"
+    "text": "How classic Rs data.frame() function handles a list of vectors\n\n# we want a list with two vectors\ndata.frame(x = list(1:3, 3:5))\n\n  x.1.3 x.3.5\n1     1     3\n2     2     4\n3     3     5\n\n\n\nGet two columns\nCan force the matter with I()\n\n. . .\n\n# I() Inhibit Interpretation/Conversion of Objects\na_df &lt;- data.frame(x = I(list(1:3, 3:5)))\na_df\n\n        x\n1 1, 2, 3\n2 3, 4, 5\n\na_df$x[[1]]\n\n[1] 1 2 3\n\na_df$x[[2]]\n\n[1] 3 4 5"
   },
   {
     "objectID": "model/many-models/many-models.html#not-a-problem-with-tribblestibbels",
     "href": "model/many-models/many-models.html#not-a-problem-with-tribblestibbels",
     "title": "Many models",
     "section": "Not a problem with tribbles/tibbels",
-    "text": "Not a problem with tribbles/tibbels\n\n\nCode\ntibble(x = list(1:3, 3:5))\n\n\n# A tibble: 2 × 1\n  x        \n  <list>   \n1 <int [3]>\n2 <int [3]>\n\n\n\n\nCode\ntribble(\n  ~x,\n  1:3,\n  3:5\n)\n\n\n# A tibble: 2 × 1\n  x        \n  <list>   \n1 <int [3]>\n2 <int [3]>\n\n\n\ntribble() even makes a list for us\nList-columns handy for storing things, but we typically need to “unpack” them before use\nRemember: Most R functions work with vectors and/or dataframes"
+    "text": "Not a problem with tribbles/tibbels\n\ntibble(x = list(1:3, 3:5))\n\n# A tibble: 2 × 1\n  x        \n  &lt;list&gt;   \n1 &lt;int [3]&gt;\n2 &lt;int [3]&gt;\n\n\n\ntribble(\n  ~x,\n  1:3,\n  3:5\n)\n\n# A tibble: 2 × 1\n  x        \n  &lt;list&gt;   \n1 &lt;int [3]&gt;\n2 &lt;int [3]&gt;\n\n\n\ntribble() even makes a list for us\nList-columns handy for storing things, but we typically need to “unpack” them before use\nRemember: Most R functions work with vectors and/or dataframes"
   },
   {
     "objectID": "model/many-models/many-models.html#list-column-pipe-line",
@@ -6703,63 +6703,63 @@
     "href": "model/many-models/many-models.html#list-column-pipe-line-cont.",
     "title": "Many models",
     "section": "List-column pipe line cont.",
-    "text": "List-column pipe line cont.\n\nThen further transforming a list-column of models to a listcolumn of model summaries\nFinally one simplify list-columns back to vector or dataframes ready to use by regular R functions mutate() with\n\nmap_chr(),\nmap_lgl(),\nmap_int() and\nmap_dbl()\n\nunnest(c(list-column1, list-column2, etc.)). - Note you now have to use c() even with one list-column.\n\n\n-   Option `drop = TRUE` is now depricated.\n\n-   Use `select(-list-column, etc)` before `unnest()` if you want to\n    drop some columns."
+    "text": "List-column pipe line cont.\n\nThen further transforming a list-column of models to a listcolumn of model summaries\nFinally one simplify list-columns back to vector or dataframes ready to use by regular R functions mutate() with\n\nmap_chr(),\nmap_lgl(),\nmap_int() and\nmap_dbl()\n\nunnest(c(list-column1, list-column2, etc.)). - Note you now have to use c() even with one list-column.\n\n. . .\n-   Option `drop = TRUE` is now depricated.\n\n-   Use `select(-list-column, etc)` before `unnest()` if you want to\n    drop some columns."
   },
   {
     "objectID": "model/many-models/many-models.html#list-to-vector",
     "href": "model/many-models/many-models.html#list-to-vector",
     "title": "Many models",
     "section": "List to vector",
-    "text": "List to vector\n\nGet type and length, always works\nUseful for filter()\n\n\n\n\nCode\n# all sorts\na_trib <- tribble(\n  ~x,\n  letters[1:5],\n  1:3,\n  runif(5)\n)\n\na_trib %>% mutate(\n  # if we use plain map we get a list. NOT what we want.\n  type = map_chr(.x = x, .f = typeof),\n  length = map_int(.x = x, .f = length)\n)\n\n\n# A tibble: 3 × 3\n  x         type      length\n  <list>    <chr>      <int>\n1 <chr [5]> character      5\n2 <int [3]> integer        3\n3 <dbl [5]> double         5"
+    "text": "List to vector\n\nGet type and length, always works\nUseful for filter()\n\n. . .\n\n# all sorts\na_trib &lt;- tribble(\n  ~x,\n  letters[1:5],\n  1:3,\n  runif(5)\n)\n\na_trib %&gt;% mutate(\n  # if we use plain map we get a list. NOT what we want.\n  type = map_chr(.x = x, .f = typeof),\n  length = map_int(.x = x, .f = length)\n)\n\n# A tibble: 3 × 3\n  x         type      length\n  &lt;list&gt;    &lt;chr&gt;      &lt;int&gt;\n1 &lt;chr [5]&gt; character      5\n2 &lt;int [3]&gt; integer        3\n3 &lt;dbl [5]&gt; double         5"
   },
   {
     "objectID": "model/many-models/many-models.html#list-to-vector-1",
     "href": "model/many-models/many-models.html#list-to-vector-1",
     "title": "Many models",
     "section": "List to vector",
-    "text": "List to vector\n\n\nCode\na_trib %>% mutate(\n  # if we use plain map we get a list. NOT what we want.\n  type = map_chr(.x = x, .f = typeof),\n  length = map_int(.x = x, .f = length)\n) %>% \n  filter(length == 5)\n\n\n# A tibble: 2 × 3\n  x         type      length\n  <list>    <chr>      <int>\n1 <chr [5]> character      5\n2 <dbl [5]> double         5\n\n\nCode\na_trib %>% mutate(\n  # if we use plain map we get a list. NOT what we want.\n  type = map_chr(.x = x, .f = typeof),\n  length = map_int(.x = x, .f = length)\n) %>% \n  filter(type == \"double\")\n\n\n# A tibble: 1 × 3\n  x         type   length\n  <list>    <chr>   <int>\n1 <dbl [5]> double      5"
+    "text": "List to vector\n\na_trib %&gt;% mutate(\n  # if we use plain map we get a list. NOT what we want.\n  type = map_chr(.x = x, .f = typeof),\n  length = map_int(.x = x, .f = length)\n) %&gt;% \n  filter(length == 5)\n\n# A tibble: 2 × 3\n  x         type      length\n  &lt;list&gt;    &lt;chr&gt;      &lt;int&gt;\n1 &lt;chr [5]&gt; character      5\n2 &lt;dbl [5]&gt; double         5\n\na_trib %&gt;% mutate(\n  # if we use plain map we get a list. NOT what we want.\n  type = map_chr(.x = x, .f = typeof),\n  length = map_int(.x = x, .f = length)\n) %&gt;% \n  filter(type == \"double\")\n\n# A tibble: 1 × 3\n  x         type   length\n  &lt;list&gt;    &lt;chr&gt;   &lt;int&gt;\n1 &lt;dbl [5]&gt; double      5"
   },
   {
     "objectID": "model/many-models/many-models.html#list-to-vector-2",
     "href": "model/many-models/many-models.html#list-to-vector-2",
     "title": "Many models",
     "section": "List to vector",
-    "text": "List to vector\n\nUse argument .null = to provide for missing values\n\n\n\n\nCode\na_trib <- tribble(\n  ~x,\n  list(a = 1, b = 2),\n  list(a = 2, c = 4)\n)\na_trib\n\n\n# A tibble: 2 × 1\n  x               \n  <list>          \n1 <named list [2]>\n2 <named list [2]>"
+    "text": "List to vector\n\nUse argument .null = to provide for missing values\n\n. . .\n\na_trib &lt;- tribble(\n  ~x,\n  list(a = 1, b = 2),\n  list(a = 2, c = 4)\n)\na_trib\n\n# A tibble: 2 × 1\n  x               \n  &lt;list&gt;          \n1 &lt;named list [2]&gt;\n2 &lt;named list [2]&gt;"
   },
   {
     "objectID": "model/many-models/many-models.html#list-to-vector-3",
     "href": "model/many-models/many-models.html#list-to-vector-3",
     "title": "Many models",
     "section": "List to vector",
-    "text": "List to vector\n\n\nCode\na_trib  %>% mutate(\n  # pick the values for a's\n  a = map_dbl(x, \"a\"),\n  #pick the values b's, NA_real_ if missing. \n  # No b in the second list\n  b = map_dbl(x, \"b\", .null = NA_real_)\n)\n\n\n# A tibble: 2 × 3\n  x                    a     b\n  <list>           <dbl> <dbl>\n1 <named list [2]>     1     2\n2 <named list [2]>     2    NA"
+    "text": "List to vector\n\na_trib  %&gt;% mutate(\n  # pick the values for a's\n  a = map_dbl(x, \"a\"),\n  #pick the values b's, NA_real_ if missing. \n  # No b in the second list\n  b = map_dbl(x, \"b\", .null = NA_real_)\n)\n\n# A tibble: 2 × 3\n  x                    a     b\n  &lt;list&gt;           &lt;dbl&gt; &lt;dbl&gt;\n1 &lt;named list [2]&gt;     1     2\n2 &lt;named list [2]&gt;     2    NA"
   },
   {
     "objectID": "model/many-models/many-models.html#unnest",
     "href": "model/many-models/many-models.html#unnest",
     "title": "Many models",
     "section": "unnest()",
-    "text": "unnest()\n\nRepeats the regular columns once for each element of the list-column.\n\n\n\n\nCode\na_tib <- tibble(x = 1:2, y = list(1:4, 1))\na_tib\n\n\n# A tibble: 2 × 2\n      x y        \n  <int> <list>   \n1     1 <int [4]>\n2     2 <dbl [1]>\n\n\nCode\na_tib %>% unnest(c(y))\n\n\n# A tibble: 5 × 2\n      x     y\n  <int> <dbl>\n1     1     1\n2     1     2\n3     1     3\n4     1     4\n5     2     1"
+    "text": "unnest()\n\nRepeats the regular columns once for each element of the list-column.\n\n. . .\n\na_tib &lt;- tibble(x = 1:2, y = list(1:4, 1))\na_tib\n\n# A tibble: 2 × 2\n      x y        \n  &lt;int&gt; &lt;list&gt;   \n1     1 &lt;int [4]&gt;\n2     2 &lt;dbl [1]&gt;\n\na_tib %&gt;% unnest(c(y))\n\n# A tibble: 5 × 2\n      x     y\n  &lt;int&gt; &lt;dbl&gt;\n1     1     1\n2     1     2\n3     1     3\n4     1     4\n5     2     1"
   },
   {
     "objectID": "model/many-models/many-models.html#unnest-1",
     "href": "model/many-models/many-models.html#unnest-1",
     "title": "Many models",
     "section": "unnest()",
-    "text": "unnest()\n\n\nCode\na_tib <- tibble(x = list(1:2, 1:5), y = list(1:4, 1))\na_tib\n\n\n# A tibble: 2 × 2\n  x         y        \n  <list>    <list>   \n1 <int [2]> <int [4]>\n2 <int [5]> <dbl [1]>\n\n\nCode\na_tib %>% unnest(c(y))\n\n\n# A tibble: 5 × 2\n  x             y\n  <list>    <dbl>\n1 <int [2]>     1\n2 <int [2]>     2\n3 <int [2]>     3\n4 <int [2]>     4\n5 <int [5]>     1"
+    "text": "unnest()\n\na_tib &lt;- tibble(x = list(1:2, 1:5), y = list(1:4, 1))\na_tib\n\n# A tibble: 2 × 2\n  x         y        \n  &lt;list&gt;    &lt;list&gt;   \n1 &lt;int [2]&gt; &lt;int [4]&gt;\n2 &lt;int [5]&gt; &lt;dbl [1]&gt;\n\na_tib %&gt;% unnest(c(y))\n\n# A tibble: 5 × 2\n  x             y\n  &lt;list&gt;    &lt;dbl&gt;\n1 &lt;int [2]&gt;     1\n2 &lt;int [2]&gt;     2\n3 &lt;int [2]&gt;     3\n4 &lt;int [2]&gt;     4\n5 &lt;int [5]&gt;     1"
   },
   {
     "objectID": "model/many-models/many-models.html#unnest-2",
     "href": "model/many-models/many-models.html#unnest-2",
     "title": "Many models",
     "section": "unnest()",
-    "text": "unnest()\n\n\nCode\na_tib %>% unnest(c(x))\n\n\n# A tibble: 7 × 2\n      x y        \n  <int> <list>   \n1     1 <int [4]>\n2     2 <int [4]>\n3     1 <dbl [1]>\n4     2 <dbl [1]>\n5     3 <dbl [1]>\n6     4 <dbl [1]>\n7     5 <dbl [1]>\n\n\n\n\nCode\n# Does not work, different number of elements in rows\na_tib %>% unnest(c(x, y))\n\n\nReturns: Error: Incompatible lengths: 2, 4. Run rlang::last_error() to see where the error occurred."
+    "text": "unnest()\n\na_tib %&gt;% unnest(c(x))\n\n# A tibble: 7 × 2\n      x y        \n  &lt;int&gt; &lt;list&gt;   \n1     1 &lt;int [4]&gt;\n2     2 &lt;int [4]&gt;\n3     1 &lt;dbl [1]&gt;\n4     2 &lt;dbl [1]&gt;\n5     3 &lt;dbl [1]&gt;\n6     4 &lt;dbl [1]&gt;\n7     5 &lt;dbl [1]&gt;\n\n\n\n# Does not work, different number of elements in rows\na_tib %&gt;% unnest(c(x, y))\n\nReturns: Error: Incompatible lengths: 2, 4. Run rlang::last_error() to see where the error occurred."
   },
   {
     "objectID": "model/many-models/many-models.html#unnest-3",
     "href": "model/many-models/many-models.html#unnest-3",
     "title": "Many models",
     "section": "unnest()",
-    "text": "unnest()\n\n\nCode\na_tib <- tibble(x = list(1:2, 1:3), y = list(10:11, 1))\na_tib\n\n\n# A tibble: 2 × 2\n  x         y        \n  <list>    <list>   \n1 <int [2]> <int [2]>\n2 <int [3]> <dbl [1]>\n\n\n\n\nCode\n# same number of elemets or vector of length 1\na_tib %>% unnest(c(x, y))\n\n\n# A tibble: 5 × 2\n      x     y\n  <int> <dbl>\n1     1    10\n2     2    11\n3     1     1\n4     2     1\n5     3     1\n\n\n\nSame with list-columns of dataframes. You can unnest multiple list columns, but the data frames in each row must have the same number of rows."
+    "text": "unnest()\n\na_tib &lt;- tibble(x = list(1:2, 1:3), y = list(10:11, 1))\na_tib\n\n# A tibble: 2 × 2\n  x         y        \n  &lt;list&gt;    &lt;list&gt;   \n1 &lt;int [2]&gt; &lt;int [2]&gt;\n2 &lt;int [3]&gt; &lt;dbl [1]&gt;\n\n\n\n# same number of elemets or vector of length 1\na_tib %&gt;% unnest(c(x, y))\n\n# A tibble: 5 × 2\n      x     y\n  &lt;int&gt; &lt;dbl&gt;\n1     1    10\n2     2    11\n3     1     1\n4     2     1\n5     3     1\n\n\n\nSame with list-columns of dataframes. You can unnest multiple list columns, but the data frames in each row must have the same number of rows."
   },
   {
     "objectID": "model/many-models/many-models.html#more-from-broom",
@@ -6773,21 +6773,21 @@
     "href": "model/many-models/many-models.html#tidy-data-with-broom",
     "title": "Many models",
     "section": "Tidy data with broom",
-    "text": "Tidy data with broom\n\nGives us model coefficients and accompanying statistics\n\n\n\n\nCode\nby_country <- by_country %>%\n  mutate(mod_tidy = map(.x = model, .f = tidy))\n\n\n\n\nCode\nby_country %>%\n  select(-data, -res, -mod_summary) %>% \n  unnest(mod_tidy) %>% \n  print(n = 4)\n\n\n# A tibble: 180 × 8\n# Groups:   country, continent [90]\n  country   continent model  term    estim…¹ std.e…² stati…³\n  <chr>     <chr>     <list> <chr>     <dbl>   <dbl>   <dbl>\n1 Argentina Americas  <lm>   (Inter… 6.67e+1 3.84e-1   174. \n2 Argentina Americas  <lm>   year    6.41e-4 4.04e-5    15.9\n3 Australia Oceania   <lm>   (Inter… 7.21e+1 2.56e-1   281. \n4 Australia Oceania   <lm>   year    6.50e-4 2.70e-5    24.1\n# … with 176 more rows, 1 more variable: p.value <dbl>, and\n#   abbreviated variable names ¹​estimate, ²​std.error,\n#   ³​statistic"
+    "text": "Tidy data with broom\n\nGives us model coefficients and accompanying statistics\n\n. . .\n\nby_country &lt;- by_country %&gt;%\n  mutate(mod_tidy = map(.x = model, .f = tidy))\n\n\nby_country %&gt;%\n  select(-data, -res, -mod_summary) %&gt;% \n  unnest(mod_tidy) %&gt;% \n  print(n = 4)\n\n# A tibble: 180 × 8\n# Groups:   country, continent [90]\n  country continent model term  estimate std.error statistic\n  &lt;chr&gt;   &lt;chr&gt;     &lt;lis&gt; &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 Argent… Americas  &lt;lm&gt;  (Int…  6.67e+1 0.384         174. \n2 Argent… Americas  &lt;lm&gt;  year   6.41e-4 0.0000404      15.9\n3 Austra… Oceania   &lt;lm&gt;  (Int…  7.21e+1 0.256         281. \n4 Austra… Oceania   &lt;lm&gt;  year   6.50e-4 0.0000270      24.1\n# ℹ 176 more rows\n# ℹ 1 more variable: p.value &lt;dbl&gt;"
   },
   {
     "objectID": "model/many-models/many-models.html#tidy-data-with-broom-1",
     "href": "model/many-models/many-models.html#tidy-data-with-broom-1",
     "title": "Many models",
     "section": "Tidy data with broom",
-    "text": "Tidy data with broom\n\nNow we can do things like\n\n\n\n\nCode\nby_country <- by_country %>%\n  mutate(\n new18 = map(c(ymd(\"2018-01-01\")), as_tibble_col, column_name = \"year\"),\n pred18 = map2(model, new18, predict.lm)\n) \n\nby_country %>% \n  group_by(continent) %>% \n  unnest(pred18 ) %>% \n  summarise(mean_p18 = mean(pred18),\n            sd_p18 = sd(pred18),\n            min_p18 = min(pred18),\n            max_p18 = max(pred18))\n\n\n# A tibble: 5 × 5\n  continent mean_p18 sd_p18 min_p18 max_p18\n  <chr>        <dbl>  <dbl>   <dbl>   <dbl>\n1 Africa        62.5  7.01     49.2    81.1\n2 Americas      77.2  4.26     65.1    84.8\n3 Asia          77.6  6.23     67.0    85.7\n4 Europe        82.2  0.962    80.1    83.9\n5 Oceania       70.2 12.4      58.9    83.5"
+    "text": "Tidy data with broom\n\nNow we can do things like\n\n. . .\n\nby_country &lt;- by_country %&gt;%\n  mutate(\n new18 = map(c(ymd(\"2018-01-01\")), as_tibble_col, column_name = \"year\"),\n pred18 = map2(model, new18, predict.lm)\n) \n\nby_country %&gt;% \n  group_by(continent) %&gt;% \n  unnest(pred18 ) %&gt;% \n  summarise(mean_p18 = mean(pred18),\n            sd_p18 = sd(pred18),\n            min_p18 = min(pred18),\n            max_p18 = max(pred18))\n\n# A tibble: 5 × 5\n  continent mean_p18 sd_p18 min_p18 max_p18\n  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1 Africa        62.5  7.01     49.2    81.1\n2 Americas      77.2  4.26     65.1    84.8\n3 Asia          77.6  6.23     67.0    85.7\n4 Europe        82.2  0.962    80.1    83.9\n5 Oceania       70.2 12.4      58.9    83.5"
   },
   {
     "objectID": "model/many-models/many-models.html#broomaugment",
     "href": "model/many-models/many-models.html#broomaugment",
     "title": "Many models",
     "section": "broom:augment()",
-    "text": "broom:augment()\n\naugment() gives us a lot of goodies regarding the model\n\n\n\n\nCode\nby_country <- by_country %>%\n  mutate(mod_aug = map(.x = model, .f = augment))\n\n\n\n\nCode\nby_country %>%\n  select(-data, -res, -mod_summary, -mod_tidy, -c(model:pred18)) %>% \n  unnest(mod_aug) %>% \n  print(n = 4)\n\n\n# A tibble: 1,080 × 10\n# Groups:   country, continent [90]\n  country   contin…¹ lifeExp year       .fitted .resid  .hat\n  <chr>     <chr>      <dbl> <date>       <dbl>  <dbl> <dbl>\n1 Argentina Americas    64.4 1962-01-01    64.8 -0.365 0.295\n2 Argentina Americas    64.9 1967-01-01    66.0 -1.06  0.225\n3 Argentina Americas    66.2 1972-01-01    67.1 -0.945 0.169\n4 Argentina Americas    68.4 1977-01-01    68.3  0.105 0.127\n# … with 1,076 more rows, 3 more variables: .sigma <dbl>,\n#   .cooksd <dbl>, .std.resid <dbl>, and abbreviated\n#   variable name ¹​continent"
+    "text": "broom:augment()\n\naugment() gives us a lot of goodies regarding the model\n\n. . .\n\nby_country &lt;- by_country %&gt;%\n  mutate(mod_aug = map(.x = model, .f = augment))\n\n\nby_country %&gt;%\n  select(-data, -res, -mod_summary, -mod_tidy, -c(model:pred18)) %&gt;% \n  unnest(mod_aug) %&gt;% \n  print(n = 4)\n\n# A tibble: 1,080 × 10\n# Groups:   country, continent [90]\n  country  continent lifeExp year       .fitted .resid  .hat\n  &lt;chr&gt;    &lt;chr&gt;       &lt;dbl&gt; &lt;date&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 Argenti… Americas     64.4 1962-01-01    64.8 -0.365 0.295\n2 Argenti… Americas     64.9 1967-01-01    66.0 -1.06  0.225\n3 Argenti… Americas     66.2 1972-01-01    67.1 -0.945 0.169\n4 Argenti… Americas     68.4 1977-01-01    68.3  0.105 0.127\n# ℹ 1,076 more rows\n# ℹ 3 more variables: .sigma &lt;dbl&gt;, .cooksd &lt;dbl&gt;,\n#   .std.resid &lt;dbl&gt;"
   },
   {
     "objectID": "model/many-models/many-models.html#still-more-broom",
@@ -8034,5 +8034,215 @@
     "title": "Iteration",
     "section": "References",
     "text": "References\n\n\nMSB105\n\n\n\nBache, Stefan Milton, and Hadley Wickham. 2022. Magrittr: A Forward-Pipe Operator for r. https://CRAN.R-project.org/package=magrittr.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nMersmann, Olaf. 2021. Microbenchmark: Accurate Timing Functions. https://github.com/joshuaulrich/microbenchmark/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nWickham, Hadley. 2022. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#generalbasic",
+    "href": "introduction/pref-setup-2022/ps2022.html#generalbasic",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "General:Basic"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#generalgraphics",
+    "href": "introduction/pref-setup-2022/ps2022.html#generalgraphics",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "General:Graphics"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#generaladvanced",
+    "href": "introduction/pref-setup-2022/ps2022.html#generaladvanced",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "General:Advanced"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#codeediting",
+    "href": "introduction/pref-setup-2022/ps2022.html#codeediting",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "Code:Editing"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#codedisplay",
+    "href": "introduction/pref-setup-2022/ps2022.html#codedisplay",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "Code:Display"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#codesaving",
+    "href": "introduction/pref-setup-2022/ps2022.html#codesaving",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "Code:Saving"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#codecompletion",
+    "href": "introduction/pref-setup-2022/ps2022.html#codecompletion",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "Code:Completion"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#codediagnostic",
+    "href": "introduction/pref-setup-2022/ps2022.html#codediagnostic",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "Code:Diagnostic"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#console",
+    "href": "introduction/pref-setup-2022/ps2022.html#console",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "Console"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#appearance",
+    "href": "introduction/pref-setup-2022/ps2022.html#appearance",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "What font to use is up to you, but use a fixed-width font. I like fira-code. Courier or Monaco are good alternatives.\n\n\n\nAppearance"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#pane-layout-1",
+    "href": "introduction/pref-setup-2022/ps2022.html#pane-layout-1",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "Pane layout 1"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#pane-layout-2",
+    "href": "introduction/pref-setup-2022/ps2022.html#pane-layout-2",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "Pane layout 2"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#packagesmanagement",
+    "href": "introduction/pref-setup-2022/ps2022.html#packagesmanagement",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "Packages:Management"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#packagesdevelopment",
+    "href": "introduction/pref-setup-2022/ps2022.html#packagesdevelopment",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "Packages:Development"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#packagescc",
+    "href": "introduction/pref-setup-2022/ps2022.html#packagescc",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "Packages:C/C++"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#r-markdownbasic",
+    "href": "introduction/pref-setup-2022/ps2022.html#r-markdownbasic",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "See rmarkdown-cookbook chapter 16 for details. We select “Document” for where to evaluate chunck, hence our “working directory will be the directory where our R Notebook is placed.\n\n\n\nR Markdown:Basic"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#r-markdown-advanced",
+    "href": "introduction/pref-setup-2022/ps2022.html#r-markdown-advanced",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "R Markdown:Advanced"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#r-markdown-visual",
+    "href": "introduction/pref-setup-2022/ps2022.html#r-markdown-visual",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "R Markdown:Visual"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#r-markdown-citations",
+    "href": "introduction/pref-setup-2022/ps2022.html#r-markdown-citations",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "R Markdown:Citations. Note! We will soon be changing Use libraries:, but My Library is OK for now."
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#r-markdown-quarto",
+    "href": "introduction/pref-setup-2022/ps2022.html#r-markdown-quarto",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "R Markdown:Quarto. Note! This pane does not exists in the latest version since Quarto now is the default."
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#python",
+    "href": "introduction/pref-setup-2022/ps2022.html#python",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "Python"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#sweave",
+    "href": "introduction/pref-setup-2022/ps2022.html#sweave",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "Sweave"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#spelling",
+    "href": "introduction/pref-setup-2022/ps2022.html#spelling",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "Spelling\n\n\nChoose Install More Languages...from the Main dictionary language: drop-down menu. Norwegian should now be in the menu."
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#gitsvn",
+    "href": "introduction/pref-setup-2022/ps2022.html#gitsvn",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "We are only going to use Git so SVN is not to important.\n\n\n\nGit/SVN"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#publishing",
+    "href": "introduction/pref-setup-2022/ps2022.html#publishing",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "Publishing"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#terminalgeneral",
+    "href": "introduction/pref-setup-2022/ps2022.html#terminalgeneral",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "Terminal:General"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#terminalclosing",
+    "href": "introduction/pref-setup-2022/ps2022.html#terminalclosing",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "Terminal:Closing"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#accessibilitygeneral",
+    "href": "introduction/pref-setup-2022/ps2022.html#accessibilitygeneral",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "Accessibility:General"
+  },
+  {
+    "objectID": "introduction/pref-setup-2022/ps2022.html#accessibilityannouncements",
+    "href": "introduction/pref-setup-2022/ps2022.html#accessibilityannouncements",
+    "title": "RStudio preference setup 2022",
+    "section": "",
+    "text": "Accessibility:Announcements"
+  },
+  {
+    "objectID": "model/many-models/many-models.html",
+    "href": "model/many-models/many-models.html",
+    "title": "Many models",
+    "section": "",
+    "text": "suppressPackageStartupMessages({\n  library(tidyverse)\n  library(modelr)\n  options(na.action = na.exclude)\n  library(nycflights13)\n  library(lubridate)\n  library(tseries)\n  library(patchwork)\n  library(broom)\n})\n# create a bib file for the R packages\n# used in this document\n# Note! Needs to do a touch ag_many_models.bib in terminal before first run\n# else stops when bibliography: \"ag_many_models.bib\" not found in YAML\nknitr::write_bib(\n  c(\n    \"tidyverse\",\n    \"modelr\",\n    \"nycflights13\",\n    \"lubridate\",\n    \"tseries\",\n    \"patchwork\",\n    \"hexbin\"\n    ),\n  file = \"ag_many_models.bib\"\n  )\n\nWarning in knitr::write_bib(c(\"tidyverse\", \"modelr\", \"nycflights13\",\n\"lubridate\", : package(s) hexbin not found"
   }
 ]

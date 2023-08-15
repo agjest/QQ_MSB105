@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.189">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -74,31 +74,39 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">MSB105</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">Home</a>
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../introduction/introduction.html">Introduction</a>
+    <a class="nav-link" href="../../introduction/introduction.html" rel="" target="">
+ <span class="menu-text">Introduction</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../explore-data/explore-data.html">Explore Data</a>
+    <a class="nav-link" href="../../explore-data/explore-data.html" rel="" target="">
+ <span class="menu-text">Explore Data</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../wrangle-data/wrangle-data.html">Data Wrangling</a>
+    <a class="nav-link" href="../../wrangle-data/wrangle-data.html" rel="" target="">
+ <span class="menu-text">Data Wrangling</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../program/program.html">Program</a>
+    <a class="nav-link" href="../../program/program.html" rel="" target="">
+ <span class="menu-text">Program</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../model/model.html">Model</a>
+    <a class="nav-link" href="../../model/model.html" rel="" target="">
+ <span class="menu-text">Model</span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -160,6 +168,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -169,11 +178,18 @@ ul.task-list li input[type="checkbox"] {
 <section id="setup-preferences-in-r-studio" class="level1">
 <h1>Setup preferences in R Studio</h1>
 <p>We set up the RStudio preferences so that we all work in an identical environment.</p>
-<p>Select <code>Preferences..</code> from the <code>File</code> menu</p>
+<p>Select <code>Preferences..</code> from the <code>File</code> menu.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="ps0.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Select Preferences…</figcaption><p></p>
+<figcaption class="figure-caption">Select Preferences…</figcaption>
+</figure>
+</div>
+<p>The Global Options… are now on the Tools menu for both windows and macos.</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="new_pref.png" class="img-fluid figure-img" width="310"></p>
+<figcaption class="figure-caption">New location for Global Options…</figcaption>
 </figure>
 </div>
 <section id="generalbasic" class="level2">
@@ -181,7 +197,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="General-Basic.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">General:Basic</figcaption><p></p>
+<figcaption class="figure-caption">General:Basic</figcaption>
 </figure>
 </div>
 </section>
@@ -190,7 +206,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="General-Graphics.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">General:Graphics</figcaption><p></p>
+<figcaption class="figure-caption">General:Graphics</figcaption>
 </figure>
 </div>
 </section>
@@ -199,7 +215,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="General-Advanced.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">General:Advanced</figcaption><p></p>
+<figcaption class="figure-caption">General:Advanced</figcaption>
 </figure>
 </div>
 </section>
@@ -208,7 +224,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Code-Editing.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Code:Editing</figcaption><p></p>
+<figcaption class="figure-caption">Code:Editing</figcaption>
 </figure>
 </div>
 </section>
@@ -217,7 +233,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Code-Display.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Code:Display</figcaption><p></p>
+<figcaption class="figure-caption">Code:Display</figcaption>
 </figure>
 </div>
 </section>
@@ -226,7 +242,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Code-Saving.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Code:Saving</figcaption><p></p>
+<figcaption class="figure-caption">Code:Saving</figcaption>
 </figure>
 </div>
 </section>
@@ -235,7 +251,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Code-Completion.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Code:Completion</figcaption><p></p>
+<figcaption class="figure-caption">Code:Completion</figcaption>
 </figure>
 </div>
 </section>
@@ -244,7 +260,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Code-Diagnostic.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Code:Diagnostic</figcaption><p></p>
+<figcaption class="figure-caption">Code:Diagnostic</figcaption>
 </figure>
 </div>
 </section>
@@ -253,7 +269,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Console.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Console</figcaption><p></p>
+<figcaption class="figure-caption">Console</figcaption>
 </figure>
 </div>
 </section>
@@ -263,7 +279,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Appearance.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Appearance</figcaption><p></p>
+<figcaption class="figure-caption">Appearance</figcaption>
 </figure>
 </div>
 </section>
@@ -272,7 +288,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Pane-Layout-1.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Pane layout 1</figcaption><p></p>
+<figcaption class="figure-caption">Pane layout 1</figcaption>
 </figure>
 </div>
 </section>
@@ -281,7 +297,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Pane-Layout-2.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Pane layout 2</figcaption><p></p>
+<figcaption class="figure-caption">Pane layout 2</figcaption>
 </figure>
 </div>
 </section>
@@ -290,7 +306,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Packages-Management.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Packages:Management</figcaption><p></p>
+<figcaption class="figure-caption">Packages:Management</figcaption>
 </figure>
 </div>
 </section>
@@ -299,7 +315,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Packages-Development.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Packages:Development</figcaption><p></p>
+<figcaption class="figure-caption">Packages:Development</figcaption>
 </figure>
 </div>
 </section>
@@ -308,7 +324,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Packages-Development-c.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Packages:C/C++</figcaption><p></p>
+<figcaption class="figure-caption">Packages:C/C++</figcaption>
 </figure>
 </div>
 </section>
@@ -318,7 +334,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="R-Markdown-Basic.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">R Markdown:Basic</figcaption><p></p>
+<figcaption class="figure-caption">R Markdown:Basic</figcaption>
 </figure>
 </div>
 </section>
@@ -327,7 +343,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="R-Markdown-Advanced.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">R Markdown:Advanced</figcaption><p></p>
+<figcaption class="figure-caption">R Markdown:Advanced</figcaption>
 </figure>
 </div>
 </section>
@@ -336,7 +352,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="R-Markdown-Visual.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">R Markdown:Visual</figcaption><p></p>
+<figcaption class="figure-caption">R Markdown:Visual</figcaption>
 </figure>
 </div>
 </section>
@@ -345,7 +361,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="R-Markdown-Citations.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">R Markdown:Citations. Note! <strong>We will soon be changing <em>Use libraries:,</em> but <em>My Library</em> is OK for now.</strong></figcaption><p></p>
+<figcaption class="figure-caption">R Markdown:Citations. Note! <strong>We will soon be changing <em>Use libraries:,</em> but <em>My Library</em> is OK for now.</strong></figcaption>
 </figure>
 </div>
 </section>
@@ -354,7 +370,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="R-Markdown-Quarto.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">R Markdown:Quarto. <strong>Note! This pane does not exists in the latest version since Quarto now is the default.</strong></figcaption><p></p>
+<figcaption class="figure-caption">R Markdown:Quarto. <strong>Note! This pane does not exists in the latest version since Quarto now is the default.</strong></figcaption>
 </figure>
 </div>
 </section>
@@ -363,7 +379,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Python.png" class="img-fluid figure-img" width="724"></p>
-<p></p><figcaption class="figure-caption">Python</figcaption><p></p>
+<figcaption class="figure-caption">Python</figcaption>
 </figure>
 </div>
 </section>
@@ -372,7 +388,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Sweave.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Sweave</figcaption><p></p>
+<figcaption class="figure-caption">Sweave</figcaption>
 </figure>
 </div>
 </section>
@@ -381,7 +397,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Spelling.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Spelling</figcaption><p></p>
+<figcaption class="figure-caption">Spelling</figcaption>
 </figure>
 </div>
 <p>Choose <code>Install More Languages...</code>from the <code>Main dictionary language:</code> drop-down menu. Norwegian should now be in the menu.</p>
@@ -392,7 +408,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Git-SVN.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Git/SVN</figcaption><p></p>
+<figcaption class="figure-caption">Git/SVN</figcaption>
 </figure>
 </div>
 </section>
@@ -401,7 +417,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Publishing.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Publishing</figcaption><p></p>
+<figcaption class="figure-caption">Publishing</figcaption>
 </figure>
 </div>
 </section>
@@ -410,7 +426,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Terminal-General.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Terminal:General</figcaption><p></p>
+<figcaption class="figure-caption">Terminal:General</figcaption>
 </figure>
 </div>
 </section>
@@ -419,7 +435,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Terminal-Closing.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Terminal:Closing</figcaption><p></p>
+<figcaption class="figure-caption">Terminal:Closing</figcaption>
 </figure>
 </div>
 </section>
@@ -428,7 +444,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Accessibility-General.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Accessibility:General</figcaption><p></p>
+<figcaption class="figure-caption">Accessibility:General</figcaption>
 </figure>
 </div>
 </section>
@@ -437,7 +453,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Accessibility-Announcements.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Accessibility:Announcements</figcaption><p></p>
+<figcaption class="figure-caption">Accessibility:Announcements</figcaption>
 </figure>
 </div>
 
@@ -473,9 +489,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -487,7 +517,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -523,24 +570,128 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
