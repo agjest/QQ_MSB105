@@ -726,10 +726,12 @@ tribble(
 
 . . .
 
-    -   Option `drop = TRUE` is now depricated.
+```         
+-   Option `drop = TRUE` is now depricated.
 
-    -   Use `select(-list-column, etc)` before `unnest()` if you want to
-        drop some columns.
+-   Use `select(-list-column, etc)` before `unnest()` if you want to
+    drop some columns.
+```
 
 ## List to vector
 

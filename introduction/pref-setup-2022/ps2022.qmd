@@ -15,6 +15,10 @@ Select `Preferences..` from the `File` menu
 
 ![Select Preferences...](ps0.png)
 
+The Global Options... are now on the Tools menu for both windows and macos.
+
+![New location for Global Options...](new_pref.png){fig-align="left" width="310"}
+
 ## General:Basic
 
 ![General:Basic](General-Basic.png)
@@ -96,7 +100,7 @@ We select "Document" for where to evaluate chunck, hence our "working directory 
 
 ## R Markdown Citations
 
-![R Markdown:Citations. Note! **We will soon be changing *Use libraries:,* but *My Library* is OK for now.** ](R-Markdown-Citations.png)
+![R Markdown:Citations. Note! **We will soon be changing *Use libraries:,* but *My Library* is OK for now.**](R-Markdown-Citations.png)
 
 ## R Markdown Quarto
 
