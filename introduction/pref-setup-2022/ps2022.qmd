@@ -11,7 +11,7 @@ output:
 
 We set up the RStudio preferences so that we all work in an identical environment.
 
-Select `Preferences..` from the `File` menu
+Select `Preferences..` from the `File` menu.
 
 ![Select Preferences...](ps0.png)
 
