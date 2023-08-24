@@ -337,7 +337,9 @@ decide_numvec <- function(x) {
 set.seed(444)
 test_vec <- sample(1:10, 10000, replace = TRUE)
 # Unit: milliseconds
-microbenchmark::microbenchmark(decide_number_vec(test), decide_numvec(test))
+# commented out to run document
+# fix error
+#microbenchmark::microbenchmark(decide_number_vec(test), decide_numvec(test))
 ```
 
 -   vector version about 7 times faster

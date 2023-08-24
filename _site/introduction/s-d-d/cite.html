@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.189">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,14 +17,15 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -38,8 +39,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -93,31 +93,39 @@ div.csl-indent {
     <span class="navbar-title">MSB105</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">Home</a>
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../introduction/introduction.html">Introduction</a>
+    <a class="nav-link" href="../../introduction/introduction.html" rel="" target="">
+ <span class="menu-text">Introduction</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../explore-data/explore-data.html">Explore Data</a>
+    <a class="nav-link" href="../../explore-data/explore-data.html" rel="" target="">
+ <span class="menu-text">Explore Data</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../wrangle-data/wrangle-data.html">Data Wrangling</a>
+    <a class="nav-link" href="../../wrangle-data/wrangle-data.html" rel="" target="">
+ <span class="menu-text">Data Wrangling</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../program/program.html">Program</a>
+    <a class="nav-link" href="../../program/program.html" rel="" target="">
+ <span class="menu-text">Program</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../model/model.html">Model</a>
+    <a class="nav-link" href="../../model/model.html" rel="" target="">
+ <span class="menu-text">Model</span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -149,6 +157,7 @@ div.csl-indent {
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -161,56 +170,56 @@ div.csl-indent {
 <p>Futher tips might be found in <span class="citation" data-cites="tierneya">Tierney (<a href="#ref-tierneya" role="doc-biblioref">n.d.</a>)</span>.</p>
 </section>
 <section id="references" class="level2">
-
-
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list">
+<div id="ref-allaire2020" class="csl-entry" role="listitem">
+Allaire, J., Xie, Y., McPherson, J., Luraschi, J., Ushey, K., Atkins, A., Wickham, H., Cheng, J., Chang, W., and Iannone, R. (2020). <em>Rmarkdown: <span>Dynamic</span> documents for r</em>. <a href="https://github.com/rstudio/rmarkdown">https://github.com/rstudio/rmarkdown</a>
+</div>
+<div id="ref-gentleman2005" class="csl-entry" role="listitem">
+Gentleman, R. (2005). Reproducible <span>Research</span>: <span>A Bioinformatics Case Study</span>. <em>Statistical Applications in Genetics and Molecular Biology</em>, <em>4</em>(1). <a href="https://doi.org/10.2202/1544-6115.1034">https://doi.org/10.2202/1544-6115.1034</a>
+</div>
+<div id="ref-gentleman2003" class="csl-entry" role="listitem">
+Gentleman, R., and Temple Lang, D. (2003). Statistical <span>Analyses</span> and <span>Reproducible Research</span>. <em>Journal of Computational and Graphical Statistics</em>, <em>16</em>(1), 1–23. <a href="https://doi.org/10.1198/106186007X178663">https://doi.org/10.1198/106186007X178663</a>
+</div>
+<div id="ref-golub1999" class="csl-entry" role="listitem">
+Golub, T. R., Slonim, D. K., Tamayo, P., Huard, C., Gaasenbeek, M., Mesirov, J. P., Coller, H., Loh, M., Downing, J. R., Caligiuri, M., Bloomfield, C., and Lander, E. (1999). Molecular classification of cancer: Class discovery and class prediction by gene monitoring. <em>Science (New York, N.Y.)</em>, <em>286</em>, 531–537.
+</div>
+<div id="ref-lamport1986" class="csl-entry" role="listitem">
+Lamport, L. (1986). <em><span>LATEX</span>: A document preparation system</em> (pp. XIV, 242). <span>Addison-Wesley</span>.
+</div>
+<div id="ref-zotero-94" class="csl-entry" role="listitem">
+<em>Pandoc - <span>Pandoc User</span>’s <span>Guide</span></em>. (n.d.). Retrieved March 10, 2020, from <a href="https://pandoc.org/MANUAL.html">https://pandoc.org/MANUAL.html</a>
+</div>
+<div id="ref-rcoreteam2020" class="csl-entry" role="listitem">
+R Core Team. (2020). <em>R: <span>A</span> language and environment for statistical computing</em>. <span>R Foundation for Statistical Computing</span>. <a href="https://www.R-project.org/">https://www.R-project.org/</a>
+</div>
+<div id="ref-rstudioteam2020" class="csl-entry" role="listitem">
+RStudio Team. (2020). <em><span>RStudio</span>: <span>Integrated</span> development environment for r</em>. <span>RStudio, PBC.</span> <a href="http://www.rstudio.com/">http://www.rstudio.com/</a>
+</div>
+<div id="ref-tierneya" class="csl-entry" role="listitem">
+Tierney, N. (n.d.). <em><span>RMarkdown</span> for <span>Scientists</span></em>. Retrieved August 23, 2020, from <a href="https://rmd4sci.njtierney.com/">https://rmd4sci.njtierney.com/</a>
+</div>
+<div id="ref-wickham2016" class="csl-entry" role="listitem">
+Wickham, H., and Grolemund, G. (2016). <em>R for data science: Import, tidy, transform, visualize, and model data</em> (pp. XXV, 492). <span>O’Reilly</span>.
+</div>
+<div id="ref-xie2014" class="csl-entry" role="listitem">
+Xie, Y. (2014). Knitr: <span>A</span> comprehensive tool for reproducible research in <span>R</span>. In V. Stodden, F. Leisch, and R. D. Peng (Eds.), <em>Implementing reproducible computational research</em>. <span>Chapman and Hall/CRC</span>. <a href="http://www.crcpress.com/product/isbn/9781466561595">http://www.crcpress.com/product/isbn/9781466561595</a>
+</div>
+<div id="ref-xie2015" class="csl-entry" role="listitem">
+Xie, Y. (2015). <em>Dynamic documents with <span>R</span> and knitr</em> (2nd ed.). <span>Chapman and Hall/CRC</span>. <a href="https://yihui.org/knitr/">https://yihui.org/knitr/</a>
+</div>
+<div id="ref-xie2020" class="csl-entry" role="listitem">
+Xie, Y. (2020). <em>Knitr: <span>A</span> general-purpose package for dynamic report generation in r</em>. <a href="https://yihui.org/knitr/">https://yihui.org/knitr/</a>
+</div>
+<div id="ref-xie2018" class="csl-entry" role="listitem">
+Xie, Y., Allaire, J. J., and Grolemund, G. (2018). <em>R markdown: <span>The</span> definitive guide</em>. <span>Chapman and Hall/CRC</span>. <a href="https://bookdown.org/yihui/rmarkdown">https://bookdown.org/yihui/rmarkdown</a>
+</div>
+</div>
 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="doc-bibliography">
-<div id="ref-allaire2020" class="csl-entry" role="doc-biblioentry">
-Allaire, J., Xie, Y., McPherson, J., Luraschi, J., Ushey, K., Atkins, A., Wickham, H., Cheng, J., Chang, W., and Iannone, R. (2020). <em>Rmarkdown: <span>Dynamic</span> documents for r</em>. <a href="https://github.com/rstudio/rmarkdown">https://github.com/rstudio/rmarkdown</a>
-</div>
-<div id="ref-gentleman2005" class="csl-entry" role="doc-biblioentry">
-Gentleman, R. (2005). Reproducible <span>Research</span>: <span>A Bioinformatics Case Study</span>. <em>Statistical Applications in Genetics and Molecular Biology</em>, <em>4</em>(1). <a href="https://doi.org/10.2202/1544-6115.1034">https://doi.org/10.2202/1544-6115.1034</a>
-</div>
-<div id="ref-gentleman2003" class="csl-entry" role="doc-biblioentry">
-Gentleman, R., and Temple Lang, D. (2003). Statistical <span>Analyses</span> and <span>Reproducible Research</span>. <em>Journal of Computational and Graphical Statistics</em>, <em>16</em>(1), 1–23. <a href="https://doi.org/10.1198/106186007X178663">https://doi.org/10.1198/106186007X178663</a>
-</div>
-<div id="ref-golub1999" class="csl-entry" role="doc-biblioentry">
-Golub, T. R., Slonim, D. K., Tamayo, P., Huard, C., Gaasenbeek, M., Mesirov, J. P., Coller, H., Loh, M., Downing, J. R., Caligiuri, M., Bloomfield, C., and Lander, E. (1999). Molecular classification of cancer: Class discovery and class prediction by gene monitoring. <em>Science (New York, N.Y.)</em>, <em>286</em>, 531–537.
-</div>
-<div id="ref-lamport1986" class="csl-entry" role="doc-biblioentry">
-Lamport, L. (1986). <em><span>LATEX</span>: A document preparation system</em> (pp. XIV, 242). <span>Addison-Wesley</span>.
-</div>
-<div id="ref-zotero-94" class="csl-entry" role="doc-biblioentry">
-<em>Pandoc - <span>Pandoc User</span>’s <span>Guide</span></em>. (n.d.). Retrieved March 10, 2020, from <a href="https://pandoc.org/MANUAL.html">https://pandoc.org/MANUAL.html</a>
-</div>
-<div id="ref-rcoreteam2020" class="csl-entry" role="doc-biblioentry">
-R Core Team. (2020). <em>R: <span>A</span> language and environment for statistical computing</em>. <span>R Foundation for Statistical Computing</span>. <a href="https://www.R-project.org/">https://www.R-project.org/</a>
-</div>
-<div id="ref-rstudioteam2020" class="csl-entry" role="doc-biblioentry">
-RStudio Team. (2020). <em><span>RStudio</span>: <span>Integrated</span> development environment for r</em>. <span>RStudio, PBC.</span> <a href="http://www.rstudio.com/">http://www.rstudio.com/</a>
-</div>
-<div id="ref-tierneya" class="csl-entry" role="doc-biblioentry">
-Tierney, N. (n.d.). <em><span>RMarkdown</span> for <span>Scientists</span></em>. Retrieved August 23, 2020, from <a href="https://rmd4sci.njtierney.com/">https://rmd4sci.njtierney.com/</a>
-</div>
-<div id="ref-wickham2016" class="csl-entry" role="doc-biblioentry">
-Wickham, H., and Grolemund, G. (2016). <em>R for data science: Import, tidy, transform, visualize, and model data</em> (pp. XXV, 492). <span>O’Reilly</span>.
-</div>
-<div id="ref-xie2014" class="csl-entry" role="doc-biblioentry">
-Xie, Y. (2014). Knitr: <span>A</span> comprehensive tool for reproducible research in <span>R</span>. In V. Stodden, F. Leisch, and R. D. Peng (Eds.), <em>Implementing reproducible computational research</em>. <span>Chapman and Hall/CRC</span>. <a href="http://www.crcpress.com/product/isbn/9781466561595">http://www.crcpress.com/product/isbn/9781466561595</a>
-</div>
-<div id="ref-xie2015" class="csl-entry" role="doc-biblioentry">
-Xie, Y. (2015). <em>Dynamic documents with <span>R</span> and knitr</em> (2nd ed.). <span>Chapman and Hall/CRC</span>. <a href="https://yihui.org/knitr/">https://yihui.org/knitr/</a>
-</div>
-<div id="ref-xie2020" class="csl-entry" role="doc-biblioentry">
-Xie, Y. (2020). <em>Knitr: <span>A</span> general-purpose package for dynamic report generation in r</em>. <a href="https://yihui.org/knitr/">https://yihui.org/knitr/</a>
-</div>
-<div id="ref-xie2018" class="csl-entry" role="doc-biblioentry">
-Xie, Y., Allaire, J. J., and Grolemund, G. (2018). <em>R markdown: <span>The</span> definitive guide</em>. <span>Chapman and Hall/CRC</span>. <a href="https://bookdown.org/yihui/rmarkdown">https://bookdown.org/yihui/rmarkdown</a>
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -238,9 +247,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -252,7 +275,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -288,24 +328,128 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>

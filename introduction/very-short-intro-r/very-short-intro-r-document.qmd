@@ -26,8 +26,6 @@ rm(list=ls())
 2+2
 ```
 
-
-
 ```{r}
 (2/15)^0.25*exp(4) - 200
 ```
@@ -38,15 +36,11 @@ rm(list=ls())
 2
 ```
 
-
-
 Must give it a name (an address to location in memory) to be able to retrieve it.
 
 ```{r}
 x <- 2
 ```
-
-
 
 We can also write `x = 2`, but `<-` is the R way.
 We **assign** 2 to x.
@@ -64,8 +58,6 @@ To both assign and print out result use parentheses.
 (y <- 5)
 ```
 
-
-
 ```{r}
 (z <- x + y)
 ```
@@ -78,15 +70,11 @@ We can change an assignment.
 (x <- 13)
 ```
 
-
-
 ```{r}
 z
 ```
 
 z retains value
-
-
 
 ```{r}
 # update assignment
@@ -101,8 +89,6 @@ z gets new value
 typeof(z)
 ```
 
-
-
 If we want z to be an integer we must do
 
 ```{r}
@@ -111,8 +97,6 @@ x <- 13L
 y <- 5L
 (z <- x + y)
 ```
-
-
 
 ```{r}
 typeof(z)
@@ -127,19 +111,13 @@ Even single digits, as above, are vectors of length 1.
 (x <- c(2, 8, 9, 21:29, 17:12))
 ```
 
-
-
 ```{r}
 (y <- 6:(5 + length(x)))
 ```
 
-
-
 ```{r}
 (z <- x + y)
 ```
-
-
 
 What happend?
 
@@ -151,13 +129,9 @@ What happend?
 
 What will z now be?
 
-
-
 ```{r}
 (z <- x + y)
 ```
-
-
 
 ```{r}
 (y <- 6:13) 
@@ -181,13 +155,9 @@ What will z now be?
 typeof(z)
 ```
 
-
-
 ```{r}
 z <- as.integer(z)
 ```
-
-
 
 ```{r}
 typeof(z)
@@ -199,13 +169,9 @@ typeof(z)
 z <- as.character(z)
 ```
 
-
-
 ```{r}
 typeof(z)
 ```
-
-
 
 ```{r}
 z
@@ -220,12 +186,8 @@ z
 z[1]
 ```
 
-
-
 What will happen?
 Why?
-
-
 
 ```{r}
 # commented out else document will not run
@@ -241,13 +203,9 @@ z <- as.integer(z)
 z[1] + z[2]
 ```
 
-
-
 ```{r}
 z
 ```
-
-
 
 What will the next one return?
 
@@ -266,8 +224,6 @@ x[5] + z[c(1:2, c(9, 3, 1), 13:11)]
 
 Note that the indexes must be put inside `c()`.
 
-
-
 ```{r}
 c(1:2, c(9, 3, 1), 13:11)
 ```
@@ -280,13 +236,9 @@ What happened previous slide?
 x[5]
 ```
 
-
-
 ```{r}
 z[c(1:2, c(9, 3, 1), 13:11)]
 ```
-
-
 
 ```{r}
 x[5] + z[c(1:2, c(9, 3, 1), 13:11)]
@@ -304,8 +256,6 @@ What will the following return?
 #| eval: false
 z[-1]
 ```
-
-
 
 What will the following return?
 
@@ -327,13 +277,9 @@ How to drop last value?
 head(z, n = -1)
 ```
 
-
-
 ```{r}
 head(z, n = -2)
 ```
-
-
 
 Get the two values at the end
 
@@ -342,8 +288,6 @@ z[(length(z)-1):length(z)]
 ```
 
 or
-
-
 
 ```{r}
 tail(z, n = 2)
@@ -354,8 +298,6 @@ tail(z, n = 2)
 ```{r}
 x <- numeric(10)
 ```
-
-
 
 ```{r}
 x
@@ -435,8 +377,6 @@ t2 <- Sys.time()
 head(x, n = 10)
 ```
 
-
-
 ```{r}
 # percent faster
 round((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)
@@ -448,8 +388,6 @@ round((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)
 x <- x[1:10]
 q <- x < 0
 ```
-
-
 
 ```{r}
 q
@@ -465,13 +403,9 @@ temp <- c(11, 17, 22, 15, 15, 25)
 weather <- c("Rainy", "Sunny", "Sunny", "Fair", "Fair", "Sunny") 
 ```
 
-
-
 ```{r}
 names(temp) <- weather
 ```
-
-
 
 ```{r}
 temp
@@ -488,14 +422,10 @@ temp[names(temp) == "Sunny"]
 sex <- c(1, 2, 1, 2, 2, 1, 2)
 ```
 
-
-
 ```{r}
 # new labels, "F" for 1 and "M" for 2
 sex_f <- factor(sex, labels = c("F", "M"))
 ```
-
-
 
 ```{r}
 sex_f
@@ -509,8 +439,6 @@ table(sex_f)
 
 -   Every element of a vector **must** be of the **same type**.
 -   If not, elements will be converted
-
-
 
 ```{r}
 (x <- 1:3)
@@ -560,8 +488,6 @@ typeof(x)
 
 -   Most flexible datatype in R, but also more complex and perhaps more difficult to work with
 
-
-
 ```{r}
 l <- list(x = 1:3, y = c("A", letters[4:13]), z = seq(from = 1.3, to = 2.7, by = 0.2))
 ```
@@ -586,13 +512,9 @@ is.vector(l$x)
 
 -   l\$x, element x in list l
 
-
-
 ```{r}
 typeof(l$y)
 ```
-
-
 
 ```{r}
 typeof(l$z)
@@ -601,8 +523,6 @@ typeof(l$z)
 ## List in list
 
 -   We can have lists inside lists
-
-
 
 ```{r}
 l <- list(
@@ -634,8 +554,6 @@ l$z$zb
 
 -   The most used datastructure in R
 -   A dataframe is a list of vectors and/or lists of the **same length**.
-
-
 
 ```{r}
 df <- data.frame(x = 1:3, y = letters[1:3], z = LETTERS[1:3])
@@ -677,8 +595,6 @@ df
 ```{r}
 df$q <- c(2.1, 0.4, 0.9)
 ```
-
-
 
 ```{r}
 #| code-fold: true
@@ -800,8 +716,8 @@ is.data.frame(df[c(1, 3), 2:3])
 ## Be aware of the following cont.
 
 -   If we select a single item from a dataframe we end up with a vector with one element
--   If we select multiple values from a row in a dataframe we end up with a vector with multiple arguments
--   If we select multiple values from a column in a dataframe we end up a dataframe
+-   If we select multiple values from a row in a dataframe we end up with a dataframe
+-   If we select multiple values from a column in a dataframe we end up with a ***vector***.
 -   If we select values from multiple rows and columns we end up with a dataframe
 
 ## Dataframe versus Tibble
@@ -824,14 +740,10 @@ tib
 is.vector(tib[2,3])
 ```
 
-
-
 ```{r}
 # tibble just an updated dataframe
 is.data.frame(tib[2,3])
 ```
-
-
 
 **Note! Selecting from a tibble ALWAYS return a dataframe, selecting from a dataframe will return a dataframe OR a vector.**
 
@@ -849,13 +761,9 @@ is.data.frame(tib[2,3])
 X <- matrix(c(2, 2, -1, 5, 2, 6), nrow = 3, byrow = FALSE)
 ```
 
-
-
 ```{r}
 X
 ```
-
-
 
 ```{r}
 matrix(c(2, 2, -1, 5, 2, 6), nrow = 3, byrow = TRUE)
@@ -868,13 +776,9 @@ matrix(c(2, 2, -1, 5, 2, 6), nrow = 3, byrow = TRUE)
 t(X)
 ```
 
-
-
 ```{r}
 Y <- matrix(c(-3, 2, 2.5, 6, -4, 4), nrow = 2, byrow = FALSE)
 ```
-
-
 
 ```{r}
 Y
