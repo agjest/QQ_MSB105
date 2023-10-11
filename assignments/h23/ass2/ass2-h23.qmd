@@ -26,7 +26,7 @@ Datasettet er kalt *heights* og er en del av pakken modelr, @modelr, som er en u
 
 Følgende «chunk» er kode som samtlige grupper bør kjøre rett etter setup chunk-en slik at vi jobber med samme data og har samme variabelnavn.
 
-``` {r}
+```{r}
 hoyde <- modelr::heights
 
 hoyde <- hoyde %>% 
@@ -62,12 +62,12 @@ hoydeHighInc <- hoyde |>
 
 ## Gjennomgang av koden
 
-Her følger en gjennomgang av koden ovenfor steg for steg. I tillegg gis noen eksempler på bruk av `vt()` og `st()` fra pakken `vtable`.
+Her følger en gjennomgang av koden ovenfor steg for steg.
+I tillegg gis noen eksempler på bruk av `vt()` og `st()` fra pakken `vtable`.
 
 Vi starter med å lese inn datasettet.
 
-
-```{#lst-leser-inn-data .R lst-cap="Leser inn heights datasettet fra pakken modelr og gir datasettet navnet hoyde."}
+``` {#lst-leser-inn-data .R lst-cap="Leser inn heights datasettet fra pakken modelr og gir datasettet navnet hoyde."}
 hoyde <- modelr::heights
 ```
 
@@ -79,22 +79,24 @@ hoyde <- modelr::heights
 
 Vi kan så bruke `st()` fra `vtable` for å sjekke datasettet (merk at dere vil se en annen tabell hvis dere har kjørt hele kode-blokken ovenfor).
 
-```{#lst-sjekker-data-vha-vt .R lst-cap="Sjekker innleste data vha. st()."}
+``` {#lst-sjekker-data-vha-vt .R lst-cap="Sjekker innleste data vha. st()."}
 hoyde |>  st()
-``` 
+```
 
 ```{r}
 #| echo: false
 hoyde |>  st()
 ```
 
-Vi har altså 7006 observasjoner og 8 variabler. For variablene `weight`, `education` og `afqt` har vi NA-er. 
+Vi har altså 7006 observasjoner og 8 variabler.
+For variablene `weight`, `education` og `afqt` har vi NA-er.
 
 Det har vært spekulert om observert lønnsmessig «høyde premium» egentlig er en skjult «vekt straff».
 Tanken er at det er en negativ sammenheng mellom høyde og overvekt og at arbeidsgivere er redd for at personer som strever med overvekt har større sjanse for å ha eller få alvorlig helseproblemer og at arbeidsgivere derfor anser disse arbeidstakerne som mindre produktive og derfor tilbyr lavere lønn.
-For å se om dette er tilfelle lager vi en ny variabel `bmi` («body mass index»). I tillegg lager vi en forenklet versjon av variabelen `marital` der vi bare skiller mellom `married` (TRUE) og `not_married` (FALSE).
+For å se om dette er tilfelle lager vi en ny variabel `bmi` («body mass index»).
+I tillegg lager vi en forenklet versjon av variabelen `marital` der vi bare skiller mellom `married` (TRUE) og `not_married` (FALSE).
 
-```{#lst-bmi-married .R lst-cap="Bruker mutate til å lage variabelen `bmi`. I tillegg bruker vi funksjonen `fct_collapse` til å «klappe sammen» de fem kategorien i marital til bare to kategorier i variabelen `married`."}
+``` {#lst-bmi-married .R lst-cap="Bruker mutate til å lage variabelen `bmi`. I tillegg bruker vi funksjonen `fct_collapse` til å «klappe sammen» de fem kategorien i marital til bare to kategorier i variabelen `married`."}
 hoyde <- hoyde %>% 
   mutate(
     bmi = weight * 0.4536/(height * 2.54/100)^2,
@@ -108,7 +110,7 @@ hoyde <- hoyde %>%
 Vi forenkler også variabelen `education` s.a.
 vi bare skiller mellom kategorien `not_hs` («Not High School Exam»; 0 ≤ education \<12), `not_cc` («Not Community College»; 12 ≤ education \<14) `not_col` («Not College»; 14 ≤ education \< 16) og `col_plus` («4 years College or more»; education ≥ 16)
 
-```{#lst-edu_fac .R lst-cap="I samme mutate lager vi også variablen `edu_fac` ved å kutte `education` opp i fire intervaller"}
+``` {#lst-edu_fac .R lst-cap="I samme mutate lager vi også variablen `edu_fac` ved å kutte `education` opp i fire intervaller"}
 edu_fac = cut(
       x = education,
       breaks = c(0, 12, 14, 16, 21),
@@ -121,16 +123,15 @@ edu_fac = cut(
 
 Det kan være hensiktmessig å samle kategorivariablene lengst til høyre i datasettet (f.eks blir resultatet av `st()`en noe ryddigere tabell).
 
-```{#lst-move-vars .R lst-cap="Endrer rekkefølgen på variablene s.a. kategorivariablene samles lengst til høyre i datasettet."}
+``` {#lst-move-vars .R lst-cap="Endrer rekkefølgen på variablene s.a. kategorivariablene samles lengst til høyre i datasettet."}
   select(income:age, education:bmi, everything())
 ```
-  
+
 Vi kommer ikke til å bruke variablene `education` og `marital` så disse dropper vi.
 
-```{#lst-drop-vars .R lst-cap="Vi skal ikke benytte variablene `marital` og `education` så disse droppes fra datasettet."}
+``` {#lst-drop-vars .R lst-cap="Vi skal ikke benytte variablene `marital` og `education` så disse droppes fra datasettet."}
   select(-education, -marital)
 ```
-
 
 ```{r}
 #| echo: false
@@ -168,7 +169,7 @@ Til slutt deler vi hoyde inn i tre datasett, hhv.
 `hoyde_inc_zero`, `hoyde_inc_norm` og `hoyde_inc_high`.
 Vi vil analysere `hoyde_inc_norm` grundigst og så sjekke eventuelle funn opp mot `hoyde_inc_zero` og `hoyde_inc_high`.
 
-```{#lst-3-subsets .R lst-cap="Vi deler `hoyde` inn i tre «subsets». Datasettet `hoydeNormInc` er det vi vil konsentrere oss om."}
+``` {#lst-3-subsets .R lst-cap="Vi deler `hoyde` inn i tre «subsets». Datasettet `hoydeNormInc` er det vi vil konsentrere oss om."}
 # Inntekt lik 0
 hoydeZeroInc <- hoyde |> 
   filter(income == 0)
@@ -238,7 +239,8 @@ hoydeHighInc |> vt()
 
 ## Scatterplot for høyde og inntekt
 
-Plot av høyde mot inntekt for normal-inntekter (større enn \$0, mindre enn \$343830). Vi har benyttet `geom_jitter()` som er en variant av `geom_point()`.
+Plot av høyde mot inntekt for normal-inntekter (større enn \$0, mindre enn \$343830).
+Vi har benyttet `geom_jitter()` som er en variant av `geom_point()`.
 
 ```{r}
 #| fig-cap: Vi ser ut til å få høyere inntekt dess høyere vi er.
@@ -284,15 +286,22 @@ hoydeNormInc  |>
     )
 ```
 
-Er dette hele historien eller kan det være andre bakenforliggende variabler som styrer dette. Det skal vi forsøke å få et innblikk i vha. EDA
+Er dette hele historien eller kan det være andre bakenforliggende variabler som styrer dette.
+Det skal vi forsøke å få et innblikk i vha.
+EDA
 
 ## Lage histogram for to subsets
 
-En teknikk som kan være aktuell i en EDA anlyse er å lage histogram av datene der dataene er delt opp i undrgrupper. Plasserer vi histogrammene i samme figur er de lettere å sammenligne. 
+En teknikk som kan være aktuell i en EDA anlyse er å lage histogram av datene der dataene er delt opp i undrgrupper.
+Plasserer vi histogrammene i samme figur er de lettere å sammenligne.
 
-Her illustreres denne teknikken ved å studere fordelingen av høyde for hhv. kvinner og menn. Vi starter med å regne ut gjennomsnittlig høyde og standardavvik for hhv. menn og kvinner. Disse parametrene vil vi bruke for å tegne inn normalfordelingskurver i samme plot.
+Her illustreres denne teknikken ved å studere fordelingen av høyde for hhv.
+kvinner og menn.
+Vi starter med å regne ut gjennomsnittlig høyde og standardavvik for hhv.
+menn og kvinner.
+Disse parametrene vil vi bruke for å tegne inn normalfordelingskurver i samme plot.
 
-```{#lst-mean-sd .R lst-cap="Beregner gjennomsnittlig høyde og standardavvik for hhv. kvinner og menn. Merk at her har vi benyttet data fra hele datasettet, dvs. 7006 observasjoner."}
+``` {#lst-mean-sd .R lst-cap="Beregner gjennomsnittlig høyde og standardavvik for hhv. kvinner og menn. Merk at her har vi benyttet data fra hele datasettet, dvs. 7006 observasjoner."}
 meanHeightMale <- hoyde |> 
   filter(sex == 'male') %>% 
   select(height) |> 
@@ -321,7 +330,6 @@ sdHeightFemale <- hoyde |>
   select(height) |>
   pull() |> 
   sd()
-
 ```
 
 ```{r}
@@ -359,8 +367,7 @@ sdHeightFemale <- hoyde |>
 
 Så genererer vi histogram og overliggende empirisk fordeling tegnet utfra gjennomsnittlig høyde og tilhørende standardavvik som vi har regnet ut ovenfor.
 
-
-```{#lst-hist .R lst-cap="Histogrammer for høyde for hhv. menn og kvinner med inntegnet normalfordelingskurve (tetthetsfunksjon). Normalfordelingskurvene er tegnet ut fra gjennomsnitt og standardavvik beregnet ovenfor. Dataene er fra hele datasettet `heights`."}
+``` {#lst-hist .R lst-cap="Histogrammer for høyde for hhv. menn og kvinner med inntegnet normalfordelingskurve (tetthetsfunksjon). Normalfordelingskurvene er tegnet ut fra gjennomsnitt og standardavvik beregnet ovenfor. Dataene er fra hele datasettet `heights`."}
 hoyde %>%
   ggplot() +
   ### male ###
@@ -493,7 +500,7 @@ Sammenhengen mellom:
 -   Fordeling menn/kvinner i hoydeZeroInc og hoydeHighInc
 -   Skiller obs. i hoydeZeroInc og hoydeHighInc seg fra hoydeNormInc mht. høyde og utdanning.
 
-Noen referanser som kan være et utgangspunkt for litteratur gjennomgang: @bureau; @case2008; @case2009; @deaton2009; @hubler2015; @mitchell2020; @ochsenfeld2016; @published2009
+Noen referanser som kan være et utgangspunkt for litteraturgjennomgang: @bureau; @case2008; @case2009; @deaton2009; @hubler2015; @mitchell2020; @ochsenfeld2016; @published2009
 
 ### Gruppe 2
 
@@ -507,7 +514,7 @@ Sammenhengen mellom kjønn og inntekt:
     -   Studer kategoriene 65, 66, 67 og 68 tommer høy (hvor vi både har menn og kvinner). Lag et subset for hver av de fire høydene og sjekk for forskjeller i inntekt mellom kjønn. Husk konklusjon.
 -   Er det markante kjønnsforskjeller i hoydeZeroInc og hoydeHighInc?
 
-Noen referanser som kan være et utgangspunkt for litteratur gjennomgang: @aragao; @bobbitt-zeher2007; @bureau; @card2016; @hejase2020; @mitchell2020; @nyirongo; @ochsenfeld2016; @petersen1995; @santossilva2021; @on-the-economy-blog2020; @gould2016.
+Noen referanser som kan være et utgangspunkt for litteraturgjennomgang: @aragao; @bobbitt-zeher2007; @bureau; @card2016; @hejase2020; @mitchell2020; @nyirongo; @ochsenfeld2016; @petersen1995; @santossilva2021; @on-the-economy-blog2020; @gould2016.
 
 Sammenhengen mellom ansiennitet (alder) og inntekt:
 
@@ -515,7 +522,7 @@ Sammenhengen mellom ansiennitet (alder) og inntekt:
 -   Er det forskjeller mht. kjønn?
 -   Er det markante kjønnsforskjeller mht. alder i hoydeZeroInc, hoydeHighInc og hoydeNormInc?
 
-Noen referanser som kan være et utgangspunkt for litteratur gjennomgang: @medoff1980, @dash2017, @mincer1974
+Noen referanser som kan være et utgangspunkt for litteraturgjennomgang: @medoff1980, @dash2017, @mincer1974
 
 ### Gruppe 3
 
@@ -528,7 +535,7 @@ Tjener «smarte» personer mer?
 -   Sammenhengen mellom edu_fac/education og afqt
 -   Sammenhengen mellom høyde og afqt
 
-Referanser som kan være et utgangspunkt for litteratur gjennomgang: @zagorsky2007; @bound1986, @wolfinger2019, @kanarek2013, @nls2023, @iii1996
+Referanser som kan være et utgangspunkt for litteraturgjennomgang: @zagorsky2007; @bound1986, @wolfinger2019, @kanarek2013, @nls2023, @iii1996
 
 Sammenhengen mellom ansiennitet (alder) og inntekt:
 
@@ -536,7 +543,7 @@ Sammenhengen mellom ansiennitet (alder) og inntekt:
 -   Er det forskjeller mht. kjønn?
 -   Er det markante kjønnsforskjeller mht. alder i hoydeZeroInc, hoydeHighInc og hoydeNormInc?
 
-Noen referanser som kan være et utgangspunkt for litteratur gjennomgang: @medoff1980, @dash2017, @mincer1974
+Noen referanser som kan være et utgangspunkt for litteraturgjennomgang: @medoff1980, @dash2017, @mincer1974
 
 ### Gruppe 4
 
@@ -547,7 +554,7 @@ Sammenhengen mellom gift/ugift og inntekt.
 -   Er det noen sammenheng mellom gift/ugift og utdannelse?
 -   Er det noen sammenheng mellom bmi og gift/ugift?
 
-Referanser som kan være et utgangspunkt for litteratur gjennomgang: @on-the-economy-blog2020; @vandenbroucke; @case2008
+Referanser som kan være et utgangspunkt for litteraturgjennomgang: @on-the-economy-blog2020; @vandenbroucke; @case2008
 
 ### Gruppe 5
 
@@ -558,13 +565,11 @@ Sammenheng mellom mbi og inntekt.
 -   sammenheng bmi og inntektsforskjell mellom menn/kvinner gitt gift/ugift
 -   sammenheng bmi og inntektsforskjell mellom menn/kvinner gitt edu_fac
 
-Referanser som kan være et utgangspunkt for litteratur gjennomgang: @bockerman2019; @caliendo2016; @cawley2015; @edwards2021; @han2009; @hildebrand2010; @kan2012; @lee2017; @sargent1994; @zotero-1832; @zotero-1833
+Referanser som kan være et utgangspunkt for litteraturgjennomgang: @bockerman2019; @caliendo2016; @cawley2015; @edwards2021; @han2009; @hildebrand2010; @kan2012; @lee2017; @sargent1994; @zotero-1832; @zotero-1833
 
 ```{r}
 #| echo: false
 #siste
 ```
-
-
 
 # Referanser
