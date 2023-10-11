@@ -500,7 +500,7 @@ Sammenhengen mellom:
 -   Fordeling menn/kvinner i hoydeZeroInc og hoydeHighInc
 -   Skiller obs. i hoydeZeroInc og hoydeHighInc seg fra hoydeNormInc mht. høyde og utdanning.
 
-Noen referanser som kan være et utgangspunkt for litteraturgjennomgang: @bureau; @case2008; @case2009; @deaton2009; @hubler2015; @mitchell2020; @ochsenfeld2016; @published2009
+Noen referanser som kan være et utgangspunkt for litteraturgjennomgang: @bureau; @case2008; @case2009; @deaton2009; @hubler2015; @mitchell2020; @ochsenfeld2016 og @published2009
 
 ### Gruppe 2
 
@@ -514,7 +514,7 @@ Sammenhengen mellom kjønn og inntekt:
     -   Studer kategoriene 65, 66, 67 og 68 tommer høy (hvor vi både har menn og kvinner). Lag et subset for hver av de fire høydene og sjekk for forskjeller i inntekt mellom kjønn. Husk konklusjon.
 -   Er det markante kjønnsforskjeller i hoydeZeroInc og hoydeHighInc?
 
-Noen referanser som kan være et utgangspunkt for litteraturgjennomgang: @aragao; @bobbitt-zeher2007; @bureau; @card2016; @hejase2020; @mitchell2020; @nyirongo; @ochsenfeld2016; @petersen1995; @santossilva2021; @on-the-economy-blog2020; @gould2016.
+Noen referanser som kan være et utgangspunkt for litteraturgjennomgang: @aragao; @bobbitt-zeher2007; @bureau; @card2016; @hejase2020; @mitchell2020; @nyirongo; @ochsenfeld2016; @petersen1995; @santossilva2021; @on-the-economy-blog2020 og @gould2016.
 
 Sammenhengen mellom ansiennitet (alder) og inntekt:
 
@@ -522,7 +522,7 @@ Sammenhengen mellom ansiennitet (alder) og inntekt:
 -   Er det forskjeller mht. kjønn?
 -   Er det markante kjønnsforskjeller mht. alder i hoydeZeroInc, hoydeHighInc og hoydeNormInc?
 
-Noen referanser som kan være et utgangspunkt for litteraturgjennomgang: @medoff1980, @dash2017, @mincer1974
+Noen referanser som kan være et utgangspunkt for litteraturgjennomgang: @medoff1980, @dash2017 og @mincer1974
 
 ### Gruppe 3
 
@@ -535,7 +535,7 @@ Tjener «smarte» personer mer?
 -   Sammenhengen mellom edu_fac/education og afqt
 -   Sammenhengen mellom høyde og afqt
 
-Referanser som kan være et utgangspunkt for litteraturgjennomgang: @zagorsky2007; @bound1986, @wolfinger2019, @kanarek2013, @nls2023, @iii1996
+Referanser som kan være et utgangspunkt for litteraturgjennomgang: @zagorsky2007; @bound1986, @wolfinger2019, @kanarek2013, @nls2023 og @iii1996
 
 Sammenhengen mellom ansiennitet (alder) og inntekt:
 
@@ -543,7 +543,7 @@ Sammenhengen mellom ansiennitet (alder) og inntekt:
 -   Er det forskjeller mht. kjønn?
 -   Er det markante kjønnsforskjeller mht. alder i hoydeZeroInc, hoydeHighInc og hoydeNormInc?
 
-Noen referanser som kan være et utgangspunkt for litteraturgjennomgang: @medoff1980, @dash2017, @mincer1974
+Noen referanser som kan være et utgangspunkt for litteraturgjennomgang: @medoff1980, @dash2017 og @mincer1974
 
 ### Gruppe 4
 
@@ -554,7 +554,7 @@ Sammenhengen mellom gift/ugift og inntekt.
 -   Er det noen sammenheng mellom gift/ugift og utdannelse?
 -   Er det noen sammenheng mellom bmi og gift/ugift?
 
-Referanser som kan være et utgangspunkt for litteraturgjennomgang: @on-the-economy-blog2020; @vandenbroucke; @case2008
+Referanser som kan være et utgangspunkt for litteraturgjennomgang: @on-the-economy-blog2020; @vandenbroucke og @case2008
 
 ### Gruppe 5
 
@@ -565,6 +565,6 @@ Sammenheng mellom mbi og inntekt.
 -   sammenheng bmi og inntektsforskjell mellom menn/kvinner gitt gift/ugift
 -   sammenheng bmi og inntektsforskjell mellom menn/kvinner gitt edu_fac
 
-Referanser som kan være et utgangspunkt for litteraturgjennomgang: @bockerman2019; @caliendo2016; @cawley2015; @edwards2021; @han2009; @hildebrand2010; @kan2012; @lee2017; @sargent1994; @zotero-1832; @zotero-1833
+Referanser som kan være et utgangspunkt for litteraturgjennomgang: @bockerman2019; @caliendo2016; @cawley2015; @edwards2021; @han2009; @hildebrand2010; @kan2012; @lee2017; @sargent1994; @zotero-1832 og @zotero-1833
 
 ## Referanser
