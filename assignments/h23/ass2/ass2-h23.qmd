@@ -497,7 +497,7 @@ Sammenhengen mellom:
     -   bruk edu_fac variabelen
 -   høyde og inntekt; facet mht. edu_fac
 -   utdanning og høyde
--   Fordeling menn/kvinner i hoydeZeroInc og hoydeHighInc
+-   Fordeling utdanning i hoydeZeroInc og hoydeHighInc
 -   Skiller obs. i hoydeZeroInc og hoydeHighInc seg fra hoydeNormInc mht. høyde og utdanning.
 
 Noen referanser som kan være et utgangspunkt for litteraturgjennomgang: @bureau; @case2008; @case2009; @deaton2009; @hubler2015; @mitchell2020; @ochsenfeld2016 og @published2009
