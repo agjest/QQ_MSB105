@@ -1,5 +1,5 @@
 ---
-title: "DS assignment 1 2023"
+title: "Assignment 1 2023"
 format: 
   html: default
   pdf: default
@@ -10,7 +10,7 @@ editor: visual
 
 Gruppe 1
 
-:   Espen Knutsen (esknu), René Rødde Bracci (Rrbracci), Marius Martinussen (Marma-gest)
+:   Espen, René, Marius
 
 -   Hvorfor er ikke Checkpoint/renv nok til å sikre reproduserbarhet
     -   Hvordan kan Docker sikre økt reproduserbarhet?
@@ -18,33 +18,35 @@ Gruppe 1
 
 Gruppe 2
 
-:   Asbjørn Gaard (AGaard01), Anine Therese Karlsen (anikar001)
+:   Asbjørn, Anine
 
 -   Hvorfor er reproduserbarhet viktig for forskning?
     -   Har forskningsresultater som ikke er reproduserbare noen verdi?
 
 Gruppe 3
 
-:   Hilde Jensen (hkoj), Håkon Alne Paulsen (hapaulsen)
+:   Hilde og Håkon
 
 -   Hva er forskjellen på reproduserbar og replikerbar forskning?
     -   Hva er nåværende aksepterte definisjon?
 
 Gruppe 4
 
-:   Hanna Sundal Bjerkheim (??), Elvar Solheim (ElvarSolheim)
+:   Hanna og Elvar
 
 -   Hvordan kan MRAN (Microsoft R Aplication Network) og **Checkpoint** hjelpe oss med å oppnå reproduserbarhet?
 
 Gruppe 5
 
-:   Emilie Sørhaug (ehs1901), Ingrid Strømme (inst10)
+:   Emilie og Ingrid
 
 -   Hvordan kan **renv** hjelpe oss med å oppnå reproduserbarhet?
     -   Hva er forskjellen på **Checkpoint** og **renv**?
 
 ## Fremføring av presentasjoner
 
-Foreslått: Torsdag 14. sept. kl. 12:15-15:00
+Foreslått: Torsdag 14.
+sept. kl.
+12:15-15:00
 
 Rekkefølge: Gruppe 2, Gruppe 3, Gruppe 4, Gruppe 5, Gruppe 1
