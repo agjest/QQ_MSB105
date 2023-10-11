@@ -8314,5 +8314,33 @@
     "title": "Iteration",
     "section": "References",
     "text": "References\n\n\nMSB105\n\n\n\nBache, Stefan Milton, and Hadley Wickham. 2022. Magrittr: A Forward-Pipe Operator for r. https://CRAN.R-project.org/package=magrittr.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nMersmann, Olaf. 2023. Microbenchmark: Accurate Timing Functions. https://github.com/joshuaulrich/microbenchmark/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2023. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nWickham, Hadley. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+  },
+  {
+    "objectID": "introduction/Zotero_demo/first_pres.html",
+    "href": "introduction/Zotero_demo/first_pres.html",
+    "title": "MSB105",
+    "section": "",
+    "text": "title: “first_pres” author: “Arnstein Gjestland” bibliography: my_bib.bib format: revealjs: theme: simple reveal_options: code-fold: true incremental: true smaller: true scrollable: true"
+  },
+  {
+    "objectID": "introduction/Zotero_demo/first_pres.html#quarto",
+    "href": "introduction/Zotero_demo/first_pres.html#quarto",
+    "title": "MSB105",
+    "section": "Quarto",
+    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
+  },
+  {
+    "objectID": "introduction/Zotero_demo/first_pres.html#bullets",
+    "href": "introduction/Zotero_demo/first_pres.html#bullets",
+    "title": "MSB105",
+    "section": "Bullets",
+    "text": "Bullets\nWhen you click the Render button a document will be generated that includes:\n\nContent authored with markdown\nOutput from executable code"
+  },
+  {
+    "objectID": "introduction/Zotero_demo/first_pres.html#code",
+    "href": "introduction/Zotero_demo/first_pres.html#code",
+    "title": "MSB105",
+    "section": "Code",
+    "text": "Code\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2"
   }
 ]

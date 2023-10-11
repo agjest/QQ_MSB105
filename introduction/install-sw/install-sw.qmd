@@ -11,6 +11,7 @@ format:
         smaller: true
         scrollable: true
         slide-number: c/t
+  pptx: default
 editor: visual
 editor_options:
   markdown:
