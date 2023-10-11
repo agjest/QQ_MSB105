@@ -18,7 +18,7 @@ library(vtable)
 library(tidyverse)
 ```
 
-# Beskrivelse av data
+## Beskrivelse av data
 
 Datasettet er kalt *heights* og er en del av pakken modelr, @modelr, som er en utvidelspakke for statistikksystemet R, @Rcore.
 
