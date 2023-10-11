@@ -1,0 +1,79 @@
+---
+title: "Mal for presentasjon"
+author: "Your Names"
+format:
+  revealjs:
+        theme: simple
+        reveal_options:
+        code-fold: show
+        incremental: true
+        smaller: true
+        scrollable: true
+        slide-number: c/t
+editor: visual
+editor_options:
+  markdown:
+    wrap: 72
+    canonical: true
+    chunk_output_type: console
+echo: true
+eval: true
+bibliography: reproducibility.bib
+---
+
+## Slide 1
+
+-   First point
+
+    1)  First underpoint
+    2)  Second underpoint
+
+-   Second point
+
+. . .
+
+For å sikre at ting venter med å bli vist bruk Slide Pause fra Insert
+menyen. Vises som ... i Quarto presentasjonen, men er usynlig i den
+endelige presentasjonen.
+
+## Slide 2
+
+-   Hvis en har incremental: true i YAML kan en få en liste til å bli
+    nonincremental ved å benytte en Div (Div... fra Insert menyen)
+-   Lag Div-en. Klikk de tre prikkene til høyre. Skriv inn
+    `.nonincremental` for class (`.incremental` hvis en ikke har
+    incremental som default)
+
+. . .
+
+::: nonincremental
+-   første
+-   andre
+:::
+
+. . .
+
+::: nonincremental
+-   First point
+
+    1)  First underpoint
+    2)  Second underpoint
+
+-   Second point
+:::
+
+## Slide 3
+
+::: nonincremental
+-   Content authored with markdown
+-   Output from executable code
+:::
+
+. . .
+
+::: nonincremental
+-   first
+-   second
+:::
+
+## Referanser

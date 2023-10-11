@@ -1,0 +1,10 @@
+---
+title: "Assignments"
+editor: visual
+---
+
+The assignments for different years.
+
+## Different years
+
+-   [h23](h23/ass-h23.qmd)

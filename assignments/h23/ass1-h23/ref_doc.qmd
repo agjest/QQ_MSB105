@@ -1,0 +1,9 @@
+---
+title: "Referanser fra felles bibliotek"
+format: pdf
+editor: visual
+bibliography: reproducibility.bib
+nocite: '@*'
+---
+
+## Referanser

@@ -14,6 +14,7 @@ website:
       - file: wrangle-data/wrangle-data.qmd
       - file: program/program.qmd
       - file: model/model.qmd
+      - file: assignments/assignments.qmd
 
 format:
   html:
