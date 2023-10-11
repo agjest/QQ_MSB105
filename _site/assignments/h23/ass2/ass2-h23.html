@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MSB105 - Er det høyde som bestemmer inntekt?</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Ingen resultater",
+    "search-matching-documents-text": "Samsvarende dokumenter",
+    "search-copy-link-title": "Kopier link for å søke",
+    "search-hide-matches-text": "Skjul ytterlige resultater",
+    "search-more-match-text": "annet resultat i dette dokumentet",
+    "search-more-matches-text": "andre resultater i dette dokumentet",
+    "search-clear-button-title": "Tøm",
+    "search-detached-cancel-button-title": "Avbryt",
+    "search-submit-button-title": "Send inn"
+  }
+}</script>
+
+<script src="../../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">MSB105</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Slå på navigering" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../introduction/introduction.html" rel="" target="">
+ <span class="menu-text">Introduction</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../explore-data/explore-data.html" rel="" target="">
+ <span class="menu-text">Explore Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../wrangle-data/wrangle-data.html" rel="" target="">
+ <span class="menu-text">Data Wrangling</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../program/program.html" rel="" target="">
+ <span class="menu-text">Program</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../model/model.html" rel="" target="">
+ <span class="menu-text">Model</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../assignments/assignments.html" rel="" target="">
+ <span class="menu-text">Assignments</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">På denne siden</h2>
+   
+  <ul>
+  <li><a href="#beskrivelse-av-data" id="toc-beskrivelse-av-data" class="nav-link active" data-scroll-target="#beskrivelse-av-data"><span class="header-section-number">1</span> Beskrivelse av data</a>
+  <ul class="collapse">
+  <li><a href="#kode" id="toc-kode" class="nav-link" data-scroll-target="#kode"><span class="header-section-number">1.1</span> Kode</a></li>
+  <li><a href="#gjennomgang-av-koden" id="toc-gjennomgang-av-koden" class="nav-link" data-scroll-target="#gjennomgang-av-koden"><span class="header-section-number">1.2</span> Gjennomgang av koden</a></li>
+  <li><a href="#splitter-i-tre-datasett" id="toc-splitter-i-tre-datasett" class="nav-link" data-scroll-target="#splitter-i-tre-datasett"><span class="header-section-number">1.3</span> Splitter i tre datasett</a></li>
+  <li><a href="#beskrivende-statistikk-for-de-tre-datasettene" id="toc-beskrivende-statistikk-for-de-tre-datasettene" class="nav-link" data-scroll-target="#beskrivende-statistikk-for-de-tre-datasettene"><span class="header-section-number">1.4</span> Beskrivende statistikk for de tre datasettene</a>
+  <ul class="collapse">
+  <li><a href="#hoydezeroinc" id="toc-hoydezeroinc" class="nav-link" data-scroll-target="#hoydezeroinc"><span class="header-section-number">1.4.1</span> hoydeZeroInc</a></li>
+  <li><a href="#hoydenorminc" id="toc-hoydenorminc" class="nav-link" data-scroll-target="#hoydenorminc"><span class="header-section-number">1.4.2</span> hoydeNormInc</a></li>
+  <li><a href="#hoydehighinc" id="toc-hoydehighinc" class="nav-link" data-scroll-target="#hoydehighinc"><span class="header-section-number">1.4.3</span> hoydeHighInc</a></li>
+  </ul></li>
+  <li><a href="#scatterplot-for-høyde-og-inntekt" id="toc-scatterplot-for-høyde-og-inntekt" class="nav-link" data-scroll-target="#scatterplot-for-høyde-og-inntekt"><span class="header-section-number">1.5</span> Scatterplot for høyde og inntekt</a></li>
+  <li><a href="#lage-histogram-for-to-subsets" id="toc-lage-histogram-for-to-subsets" class="nav-link" data-scroll-target="#lage-histogram-for-to-subsets"><span class="header-section-number">1.6</span> Lage histogram for to subsets</a></li>
+  <li><a href="#oppgaven" id="toc-oppgaven" class="nav-link" data-scroll-target="#oppgaven"><span class="header-section-number">1.7</span> Oppgaven</a>
+  <ul class="collapse">
+  <li><a href="#arbeidsform" id="toc-arbeidsform" class="nav-link" data-scroll-target="#arbeidsform"><span class="header-section-number">1.7.1</span> Arbeidsform</a></li>
+  <li><a href="#levering" id="toc-levering" class="nav-link" data-scroll-target="#levering"><span class="header-section-number">1.7.2</span> Levering</a></li>
+  <li><a href="#tips-presentasjon" id="toc-tips-presentasjon" class="nav-link" data-scroll-target="#tips-presentasjon"><span class="header-section-number">1.7.3</span> Tips presentasjon</a></li>
+  </ul></li>
+  <li><a href="#problemstilling-for-hver-gruppe" id="toc-problemstilling-for-hver-gruppe" class="nav-link" data-scroll-target="#problemstilling-for-hver-gruppe"><span class="header-section-number">1.8</span> Problemstilling for hver gruppe</a>
+  <ul class="collapse">
+  <li><a href="#gruppe-1" id="toc-gruppe-1" class="nav-link" data-scroll-target="#gruppe-1"><span class="header-section-number">1.8.1</span> Gruppe 1</a></li>
+  <li><a href="#gruppe-2" id="toc-gruppe-2" class="nav-link" data-scroll-target="#gruppe-2"><span class="header-section-number">1.8.2</span> Gruppe 2</a></li>
+  <li><a href="#gruppe-3" id="toc-gruppe-3" class="nav-link" data-scroll-target="#gruppe-3"><span class="header-section-number">1.8.3</span> Gruppe 3</a></li>
+  <li><a href="#gruppe-4" id="toc-gruppe-4" class="nav-link" data-scroll-target="#gruppe-4"><span class="header-section-number">1.8.4</span> Gruppe 4</a></li>
+  <li><a href="#gruppe-5" id="toc-gruppe-5" class="nav-link" data-scroll-target="#gruppe-5"><span class="header-section-number">1.8.5</span> Gruppe 5</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#referanser" id="toc-referanser" class="nav-link" data-scroll-target="#referanser"><span class="header-section-number">2</span> Referanser</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Andre formater</h2><ul><li><a href="ass2-h23.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="ass2-h23.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Er det høyde som bestemmer inntekt?</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vtable)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="beskrivelse-av-data" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Beskrivelse av data</h1>
+<p>Datasettet er kalt <em>heights</em> og er en del av pakken modelr, <span class="citation" data-cites="modelr">Wickham (<a href="#ref-modelr" role="doc-biblioref">2020</a>)</span>, som er en utvidelspakke for statistikksystemet R, <span class="citation" data-cites="Rcore">R Core Team (<a href="#ref-Rcore" role="doc-biblioref">2021</a>)</span>.</p>
+<section id="kode" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="kode"><span class="header-section-number">1.1</span> Kode</h2>
+<p>Følgende «chunk» er kode som samtlige grupper bør kjøre rett etter setup chunk-en slik at vi jobber med samme data og har samme variabelnavn.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>hoyde <span class="ot">&lt;-</span> modelr<span class="sc">::</span>heights</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>hoyde <span class="ot">&lt;-</span> hoyde <span class="sc">%&gt;%</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">bmi =</span> weight <span class="sc">*</span> <span class="fl">0.4536</span><span class="sc">/</span>(height <span class="sc">*</span> <span class="fl">2.54</span><span class="sc">/</span><span class="dv">100</span>)<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">married =</span> <span class="fu">fct_collapse</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">.f =</span> marital,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">married =</span> <span class="st">"married"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">other_level =</span> <span class="st">"not married"</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">edu_fac =</span> <span class="fu">cut</span>(</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> education,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>),</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"not_hs"</span>, <span class="st">"not_cc"</span>, <span class="st">"not_col"</span>, <span class="st">"col_plus"</span>),</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">right =</span> <span class="cn">FALSE</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># reorganiserer data s.a. de fire faktor-variablerne kommer</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># lengst til høyre</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(income<span class="sc">:</span>age, education<span class="sc">:</span>bmi, <span class="fu">everything</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Dropper marital og education siden disse ikke skal brukes</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>education, <span class="sc">-</span>marital)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Inntekt lik 0</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>hoydeZeroInc <span class="ot">&lt;-</span> hoyde <span class="sc">|&gt;</span> </span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(income <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co"># «Normal» inntekt</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>hoydeNormInc <span class="ot">&lt;-</span> hoyde <span class="sc">|&gt;</span> </span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(income <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> income <span class="sc">&lt;</span> <span class="dv">343830</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>hoydeHighInc <span class="ot">&lt;-</span> hoyde <span class="sc">|&gt;</span> </span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(income <span class="sc">==</span> <span class="dv">343830</span>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="gjennomgang-av-koden" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="gjennomgang-av-koden"><span class="header-section-number">1.2</span> Gjennomgang av koden</h2>
+<p>Her følger en gjennomgang av koden ovenfor steg for steg. I tillegg gis noen eksempler på bruk av <code>vt()</code> og <code>st()</code> fra pakken <code>vtable</code>.</p>
+<p>Vi starter med å lese inn datasettet.</p>
+<div id="lst-leser-inn-data" class="listing">
+<p>Liste&nbsp;1: Leser inn heights datasettet fra pakken modelr og gir datasettet navnet hoyde.</p>
+<div class="sourceCode" id="lst-leser-inn-data" data-lst-cap="Leser inn heights datasettet fra pakken modelr og gir datasettet navnet hoyde."><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-leser-inn-data-1"><a href="#lst-leser-inn-data-1" aria-hidden="true" tabindex="-1"></a>hoyde <span class="ot">&lt;-</span> modelr<span class="sc">::</span>heights</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vi kan så bruke <code>st()</code> fra <code>vtable</code> for å sjekke datasettet (merk at dere vil se en annen tabell hvis dere har kjørt hele kode-blokken ovenfor).</p>
+<div id="lst-sjekker-data-vha-vt" class="listing">
+<p>Liste&nbsp;2: Sjekker innleste data vha. st().</p>
+<div class="sourceCode" id="lst-sjekker-data-vha-vt" data-lst-cap="Sjekker innleste data vha. st()."><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-sjekker-data-vha-vt-1"><a href="#lst-sjekker-data-vha-vt-1" aria-hidden="true" tabindex="-1"></a>hoyde <span class="sc">|&gt;</span>  <span class="fu">st</span>()</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Summary Statistics</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Variable</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">N</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Mean</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Std. Dev.</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Min</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Pctl. 25</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Pctl. 75</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">income</td>
+<td style="text-align: left;">7006</td>
+<td style="text-align: left;">41204</td>
+<td style="text-align: left;">55892</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">166</td>
+<td style="text-align: left;">55000</td>
+<td style="text-align: left;">343830</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">height</td>
+<td style="text-align: left;">7006</td>
+<td style="text-align: left;">67</td>
+<td style="text-align: left;">4.1</td>
+<td style="text-align: left;">52</td>
+<td style="text-align: left;">64</td>
+<td style="text-align: left;">70</td>
+<td style="text-align: left;">84</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">weight</td>
+<td style="text-align: left;">6911</td>
+<td style="text-align: left;">188</td>
+<td style="text-align: left;">44</td>
+<td style="text-align: left;">76</td>
+<td style="text-align: left;">157</td>
+<td style="text-align: left;">212</td>
+<td style="text-align: left;">524</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">age</td>
+<td style="text-align: left;">7006</td>
+<td style="text-align: left;">51</td>
+<td style="text-align: left;">2.2</td>
+<td style="text-align: left;">47</td>
+<td style="text-align: left;">49</td>
+<td style="text-align: left;">53</td>
+<td style="text-align: left;">56</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">marital</td>
+<td style="text-align: left;">7006</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">... single</td>
+<td style="text-align: left;">1124</td>
+<td style="text-align: left;">16%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">... married</td>
+<td style="text-align: left;">3806</td>
+<td style="text-align: left;">54%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">... separated</td>
+<td style="text-align: left;">366</td>
+<td style="text-align: left;">5%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">... divorced</td>
+<td style="text-align: left;">1549</td>
+<td style="text-align: left;">22%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">... widowed</td>
+<td style="text-align: left;">161</td>
+<td style="text-align: left;">2%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sex</td>
+<td style="text-align: left;">7006</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">... male</td>
+<td style="text-align: left;">3402</td>
+<td style="text-align: left;">49%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">... female</td>
+<td style="text-align: left;">3604</td>
+<td style="text-align: left;">51%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">education</td>
+<td style="text-align: left;">6996</td>
+<td style="text-align: left;">13</td>
+<td style="text-align: left;">2.6</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">15</td>
+<td style="text-align: left;">20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">afqt</td>
+<td style="text-align: left;">6744</td>
+<td style="text-align: left;">41</td>
+<td style="text-align: left;">29</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">15</td>
+<td style="text-align: left;">65</td>
+<td style="text-align: left;">100</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>Vi har altså 7006 observasjoner og 8 variabler. For variablene <code>weight</code>, <code>education</code> og <code>afqt</code> har vi NA-er.</p>
+<p>Det har vært spekulert om observert lønnsmessig «høyde premium» egentlig er en skjult «vekt straff». Tanken er at det er en negativ sammenheng mellom høyde og overvekt og at arbeidsgivere er redd for at personer som strever med overvekt har større sjanse for å ha eller få alvorlig helseproblemer og at arbeidsgivere derfor anser disse arbeidstakerne som mindre produktive og derfor tilbyr lavere lønn. For å se om dette er tilfelle lager vi en ny variabel <code>bmi</code> («body mass index»). I tillegg lager vi en forenklet versjon av variabelen <code>marital</code> der vi bare skiller mellom <code>married</code> (TRUE) og <code>not_married</code> (FALSE).</p>
+<div id="lst-bmi-married" class="listing">
+<p>Liste&nbsp;3: Bruker mutate til å lage variabelen <code>bmi</code>. I tillegg bruker vi funksjonen <code>fct_collapse</code> til å «klappe sammen» de fem kategorien i marital til bare to kategorier i variabelen <code>married</code>.</p>
+<div class="sourceCode" id="lst-bmi-married" data-lst-cap="Bruker mutate til å lage variabelen `bmi`. I tillegg bruker vi funksjonen `fct_collapse` til å «klappe sammen» de fem kategorien i marital til bare to kategorier i variabelen `married`."><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-bmi-married-1"><a href="#lst-bmi-married-1" aria-hidden="true" tabindex="-1"></a>hoyde <span class="ot">&lt;-</span> hoyde <span class="sc">%&gt;%</span> </span>
+<span id="lst-bmi-married-2"><a href="#lst-bmi-married-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="lst-bmi-married-3"><a href="#lst-bmi-married-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">bmi =</span> weight <span class="sc">*</span> <span class="fl">0.4536</span><span class="sc">/</span>(height <span class="sc">*</span> <span class="fl">2.54</span><span class="sc">/</span><span class="dv">100</span>)<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="lst-bmi-married-4"><a href="#lst-bmi-married-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">married =</span> <span class="fu">fct_collapse</span>(</span>
+<span id="lst-bmi-married-5"><a href="#lst-bmi-married-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">.f =</span> marital,</span>
+<span id="lst-bmi-married-6"><a href="#lst-bmi-married-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">married =</span> <span class="st">"married"</span>,</span>
+<span id="lst-bmi-married-7"><a href="#lst-bmi-married-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">other_level =</span> <span class="st">"not married"</span></span>
+<span id="lst-bmi-married-8"><a href="#lst-bmi-married-8" aria-hidden="true" tabindex="-1"></a>    ),</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vi forenkler også variabelen <code>education</code> s.a. vi bare skiller mellom kategorien <code>not_hs</code> («Not High School Exam»; 0 ≤ education &lt;12), <code>not_cc</code> («Not Community College»; 12 ≤ education &lt;14) <code>not_col</code> («Not College»; 14 ≤ education &lt; 16) og <code>col_plus</code> («4 years College or more»; education ≥ 16)</p>
+<div id="lst-edu_fac" class="listing">
+<p>Liste&nbsp;4: I samme mutate lager vi også variablen <code>edu_fac</code> ved å kutte <code>education</code> opp i fire intervaller</p>
+<div class="sourceCode" id="lst-edu_fac" data-lst-cap="I samme mutate lager vi også variablen `edu_fac` ved å kutte `education` opp i fire intervaller"><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-edu_fac-1"><a href="#lst-edu_fac-1" aria-hidden="true" tabindex="-1"></a>edu_fac <span class="ot">=</span> <span class="fu">cut</span>(</span>
+<span id="lst-edu_fac-2"><a href="#lst-edu_fac-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> education,</span>
+<span id="lst-edu_fac-3"><a href="#lst-edu_fac-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>),</span>
+<span id="lst-edu_fac-4"><a href="#lst-edu_fac-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"not_hs"</span>, <span class="st">"not_cc"</span>, </span>
+<span id="lst-edu_fac-5"><a href="#lst-edu_fac-5" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"not_col"</span>, <span class="st">"col_plus"</span>),</span>
+<span id="lst-edu_fac-6"><a href="#lst-edu_fac-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">right =</span> <span class="cn">FALSE</span></span>
+<span id="lst-edu_fac-7"><a href="#lst-edu_fac-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="lst-edu_fac-8"><a href="#lst-edu_fac-8" aria-hidden="true" tabindex="-1"></a>  <span class="er">)</span></span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Det kan være hensiktmessig å samle kategorivariablene lengst til høyre i datasettet (f.eks blir resultatet av <code>st()</code>en noe ryddigere tabell).</p>
+<div id="lst-move-vars" class="listing">
+<p>Liste&nbsp;5: Endrer rekkefølgen på variablene s.a. kategorivariablene samles lengst til høyre i datasettet.</p>
+<div class="sourceCode" id="lst-move-vars" data-lst-cap="Endrer rekkefølgen på variablene s.a. kategorivariablene samles lengst til høyre i datasettet."><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-move-vars-1"><a href="#lst-move-vars-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(income<span class="sc">:</span>age, education<span class="sc">:</span>bmi, <span class="fu">everything</span>())</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vi kommer ikke til å bruke variablene <code>education</code> og <code>marital</code> så disse dropper vi.</p>
+<div id="lst-drop-vars" class="listing">
+<p>Liste&nbsp;6: Vi skal ikke benytte variablene <code>marital</code> og <code>education</code> så disse droppes fra datasettet.</p>
+<div class="sourceCode" id="lst-drop-vars" data-lst-cap="Vi skal ikke benytte variablene `marital` og `education` så disse droppes fra datasettet."><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-drop-vars-1"><a href="#lst-drop-vars-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>education, <span class="sc">-</span>marital)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Hoyde med nye variabler:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>hoyde <span class="sc">|&gt;</span> <span class="fu">vt</span>(<span class="at">missing =</span> <span class="cn">TRUE</span>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>hoyde</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Name</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Class</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Values</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">income</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">Num: 0 to 343830</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">height</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">Num: 52 to 84</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">weight</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">Num: 76 to 524</td>
+<td style="text-align: left;">95</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">age</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">Num: 47 to 56</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">afqt</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">Num: 0 to 100</td>
+<td style="text-align: left;">262</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bmi</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">Num: 12.874 to 74.99</td>
+<td style="text-align: left;">95</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sex</td>
+<td style="text-align: left;">factor</td>
+<td style="text-align: left;">'male' 'female'</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">married</td>
+<td style="text-align: left;">factor</td>
+<td style="text-align: left;">'married' 'not married'</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">edu_fac</td>
+<td style="text-align: left;">factor</td>
+<td style="text-align: left;">'not_hs' 'not_cc' 'not_col' 'col_plus'</td>
+<td style="text-align: left;">10</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="splitter-i-tre-datasett" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="splitter-i-tre-datasett"><span class="header-section-number">1.3</span> Splitter i tre datasett</h2>
+<p>Til slutt deler vi hoyde inn i tre datasett, hhv. <code>hoyde_inc_zero</code>, <code>hoyde_inc_norm</code> og <code>hoyde_inc_high</code>. Vi vil analysere <code>hoyde_inc_norm</code> grundigst og så sjekke eventuelle funn opp mot <code>hoyde_inc_zero</code> og <code>hoyde_inc_high</code>.</p>
+<div id="lst-3-subsets" class="listing">
+<p>Liste&nbsp;7: Vi deler <code>hoyde</code> inn i tre «subsets». Datasettet <code>hoydeNormInc</code> er det vi vil konsentrere oss om.</p>
+<div class="sourceCode" id="lst-3-subsets" data-lst-cap="Vi deler `hoyde` inn i tre «subsets». Datasettet `hoydeNormInc` er det vi vil konsentrere oss om."><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-3-subsets-1"><a href="#lst-3-subsets-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inntekt lik 0</span></span>
+<span id="lst-3-subsets-2"><a href="#lst-3-subsets-2" aria-hidden="true" tabindex="-1"></a>hoydeZeroInc <span class="ot">&lt;-</span> hoyde <span class="sc">|&gt;</span> </span>
+<span id="lst-3-subsets-3"><a href="#lst-3-subsets-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(income <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="lst-3-subsets-4"><a href="#lst-3-subsets-4" aria-hidden="true" tabindex="-1"></a><span class="co"># «Normal» inntekt</span></span>
+<span id="lst-3-subsets-5"><a href="#lst-3-subsets-5" aria-hidden="true" tabindex="-1"></a>hoydeNormInc <span class="ot">&lt;-</span> hoyde <span class="sc">|&gt;</span> </span>
+<span id="lst-3-subsets-6"><a href="#lst-3-subsets-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(income <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> income <span class="sc">&lt;</span> <span class="dv">343830</span>)</span>
+<span id="lst-3-subsets-7"><a href="#lst-3-subsets-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Høy inntekt</span></span>
+<span id="lst-3-subsets-8"><a href="#lst-3-subsets-8" aria-hidden="true" tabindex="-1"></a>hoydeHighInc <span class="ot">&lt;-</span> hoyde <span class="sc">|&gt;</span> </span>
+<span id="lst-3-subsets-9"><a href="#lst-3-subsets-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(income <span class="sc">==</span> <span class="dv">343830</span>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="beskrivende-statistikk-for-de-tre-datasettene" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="beskrivende-statistikk-for-de-tre-datasettene"><span class="header-section-number">1.4</span> Beskrivende statistikk for de tre datasettene</h2>
+<section id="hoydezeroinc" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="hoydezeroinc"><span class="header-section-number">1.4.1</span> hoydeZeroInc</h3>
+<p>Datasettet <code>hoydeZeroInc</code> inneholder 1740 observasjoner. Vi har 0, 0, 26, 0, 78, 26, 0, 0, 8 manglende verdier (NA) for variablene income, height, weight, age, afqt, bmi, sex, married, edu_fac.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>hoydeZeroInc <span class="sc">|&gt;</span> <span class="fu">st</span>()</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Summary Statistics</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Variable</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">N</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Mean</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Std. Dev.</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Min</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Pctl. 25</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Pctl. 75</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">income</td>
+<td style="text-align: left;">1740</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">height</td>
+<td style="text-align: left;">1740</td>
+<td style="text-align: left;">66</td>
+<td style="text-align: left;">4.1</td>
+<td style="text-align: left;">55</td>
+<td style="text-align: left;">63</td>
+<td style="text-align: left;">69</td>
+<td style="text-align: left;">84</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">weight</td>
+<td style="text-align: left;">1714</td>
+<td style="text-align: left;">187</td>
+<td style="text-align: left;">49</td>
+<td style="text-align: left;">76</td>
+<td style="text-align: left;">153</td>
+<td style="text-align: left;">215</td>
+<td style="text-align: left;">524</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">age</td>
+<td style="text-align: left;">1740</td>
+<td style="text-align: left;">51</td>
+<td style="text-align: left;">2.2</td>
+<td style="text-align: left;">47</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;">53</td>
+<td style="text-align: left;">56</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">afqt</td>
+<td style="text-align: left;">1662</td>
+<td style="text-align: left;">29</td>
+<td style="text-align: left;">26</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">7.5</td>
+<td style="text-align: left;">44</td>
+<td style="text-align: left;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bmi</td>
+<td style="text-align: left;">1714</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">7.4</td>
+<td style="text-align: left;">14</td>
+<td style="text-align: left;">25</td>
+<td style="text-align: left;">33</td>
+<td style="text-align: left;">75</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sex</td>
+<td style="text-align: left;">1740</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">... male</td>
+<td style="text-align: left;">745</td>
+<td style="text-align: left;">43%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">... female</td>
+<td style="text-align: left;">995</td>
+<td style="text-align: left;">57%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">married</td>
+<td style="text-align: left;">1740</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">... married</td>
+<td style="text-align: left;">705</td>
+<td style="text-align: left;">41%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">... not married</td>
+<td style="text-align: left;">1035</td>
+<td style="text-align: left;">59%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">edu_fac</td>
+<td style="text-align: left;">1732</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">... not_hs</td>
+<td style="text-align: left;">497</td>
+<td style="text-align: left;">29%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">... not_cc</td>
+<td style="text-align: left;">835</td>
+<td style="text-align: left;">48%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">... not_col</td>
+<td style="text-align: left;">211</td>
+<td style="text-align: left;">12%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">... col_plus</td>
+<td style="text-align: left;">189</td>
+<td style="text-align: left;">11%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>hoydeZeroInc <span class="sc">|&gt;</span> <span class="fu">vt</span>()</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>hoydeZeroInc</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Name</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Class</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">income</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">Num: 0 to 0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">height</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">Num: 55 to 84</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">weight</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">Num: 76 to 524</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">age</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">Num: 47 to 56</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">afqt</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">Num: 0 to 100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bmi</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">Num: 14.293 to 74.99</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sex</td>
+<td style="text-align: left;">factor</td>
+<td style="text-align: left;">'male' 'female'</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">married</td>
+<td style="text-align: left;">factor</td>
+<td style="text-align: left;">'married' 'not married'</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">edu_fac</td>
+<td style="text-align: left;">factor</td>
+<td style="text-align: left;">'not_hs' 'not_cc' 'not_col' 'col_plus'</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="hoydenorminc" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="hoydenorminc"><span class="header-section-number">1.4.2</span> hoydeNormInc</h3>
+<p>Datasettet <code>hoydeNormInc</code> inneholder 5123 observasjoner. Vi har 0, 0, 69, 0, 184, 69, 0, 0, 2 manglende verdier (NA) for variablene income, height, weight, age, afqt, bmi, sex, married, edu_fac.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>hoydeNormInc <span class="sc">|&gt;</span> <span class="fu">st</span>()</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Summary Statistics</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Variable</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">N</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Mean</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Std. Dev.</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Min</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Pctl. 25</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Pctl. 75</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">income</td>
+<td style="text-align: left;">5123</td>
+<td style="text-align: left;">46751</td>
+<td style="text-align: left;">33286</td>
+<td style="text-align: left;">45</td>
+<td style="text-align: left;">23000</td>
+<td style="text-align: left;">62000</td>
+<td style="text-align: left;">178000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">height</td>
+<td style="text-align: left;">5123</td>
+<td style="text-align: left;">67</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">52</td>
+<td style="text-align: left;">64</td>
+<td style="text-align: left;">70</td>
+<td style="text-align: left;">80</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">weight</td>
+<td style="text-align: left;">5054</td>
+<td style="text-align: left;">188</td>
+<td style="text-align: left;">43</td>
+<td style="text-align: left;">78</td>
+<td style="text-align: left;">159</td>
+<td style="text-align: left;">212</td>
+<td style="text-align: left;">480</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">age</td>
+<td style="text-align: left;">5123</td>
+<td style="text-align: left;">51</td>
+<td style="text-align: left;">2.2</td>
+<td style="text-align: left;">47</td>
+<td style="text-align: left;">49</td>
+<td style="text-align: left;">53</td>
+<td style="text-align: left;">56</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">afqt</td>
+<td style="text-align: left;">4939</td>
+<td style="text-align: left;">44</td>
+<td style="text-align: left;">28</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">20</td>
+<td style="text-align: left;">68</td>
+<td style="text-align: left;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bmi</td>
+<td style="text-align: left;">5054</td>
+<td style="text-align: left;">29</td>
+<td style="text-align: left;">5.8</td>
+<td style="text-align: left;">13</td>
+<td style="text-align: left;">25</td>
+<td style="text-align: left;">32</td>
+<td style="text-align: left;">67</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sex</td>
+<td style="text-align: left;">5123</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">... male</td>
+<td style="text-align: left;">2526</td>
+<td style="text-align: left;">49%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">... female</td>
+<td style="text-align: left;">2597</td>
+<td style="text-align: left;">51%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">married</td>
+<td style="text-align: left;">5123</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">... married</td>
+<td style="text-align: left;">2983</td>
+<td style="text-align: left;">58%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">... not married</td>
+<td style="text-align: left;">2140</td>
+<td style="text-align: left;">42%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">edu_fac</td>
+<td style="text-align: left;">5121</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">... not_hs</td>
+<td style="text-align: left;">559</td>
+<td style="text-align: left;">11%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">... not_cc</td>
+<td style="text-align: left;">2349</td>
+<td style="text-align: left;">46%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">... not_col</td>
+<td style="text-align: left;">886</td>
+<td style="text-align: left;">17%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">... col_plus</td>
+<td style="text-align: left;">1327</td>
+<td style="text-align: left;">26%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>hoydeNormInc <span class="sc">|&gt;</span> <span class="fu">vt</span>()</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>hoydeNormInc</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Name</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Class</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">income</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">Num: 45 to 178000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">height</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">Num: 52 to 80</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">weight</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">Num: 78 to 480</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">age</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">Num: 47 to 56</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">afqt</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">Num: 0 to 100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bmi</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">Num: 12.874 to 66.947</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sex</td>
+<td style="text-align: left;">factor</td>
+<td style="text-align: left;">'male' 'female'</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">married</td>
+<td style="text-align: left;">factor</td>
+<td style="text-align: left;">'married' 'not married'</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">edu_fac</td>
+<td style="text-align: left;">factor</td>
+<td style="text-align: left;">'not_hs' 'not_cc' 'not_col' 'col_plus'</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="hoydehighinc" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="hoydehighinc"><span class="header-section-number">1.4.3</span> hoydeHighInc</h3>
+<p>Datasettet <code>hoydeHighInc</code> inneholder 143 observasjoner. Vi har 0, 0, 0, 0, 0, 0, 0, 0, 0 manglende verdier (NA) for variablene income, height, weight, age, afqt, bmi, sex, married, edu_fac.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>hoydeHighInc <span class="sc">|&gt;</span> <span class="fu">st</span>()</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Summary Statistics</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Variable</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">N</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Mean</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Std. Dev.</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Min</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Pctl. 25</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Pctl. 75</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">income</td>
+<td style="text-align: left;">143</td>
+<td style="text-align: left;">343830</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">343830</td>
+<td style="text-align: left;">343830</td>
+<td style="text-align: left;">343830</td>
+<td style="text-align: left;">343830</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">height</td>
+<td style="text-align: left;">143</td>
+<td style="text-align: left;">71</td>
+<td style="text-align: left;">3.1</td>
+<td style="text-align: left;">61</td>
+<td style="text-align: left;">69</td>
+<td style="text-align: left;">72</td>
+<td style="text-align: left;">81</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">weight</td>
+<td style="text-align: left;">143</td>
+<td style="text-align: left;">195</td>
+<td style="text-align: left;">37</td>
+<td style="text-align: left;">123</td>
+<td style="text-align: left;">170</td>
+<td style="text-align: left;">210</td>
+<td style="text-align: left;">335</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">age</td>
+<td style="text-align: left;">143</td>
+<td style="text-align: left;">51</td>
+<td style="text-align: left;">2.3</td>
+<td style="text-align: left;">48</td>
+<td style="text-align: left;">49</td>
+<td style="text-align: left;">53</td>
+<td style="text-align: left;">55</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">afqt</td>
+<td style="text-align: left;">143</td>
+<td style="text-align: left;">78</td>
+<td style="text-align: left;">22</td>
+<td style="text-align: left;">3.3</td>
+<td style="text-align: left;">70</td>
+<td style="text-align: left;">94</td>
+<td style="text-align: left;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bmi</td>
+<td style="text-align: left;">143</td>
+<td style="text-align: left;">28</td>
+<td style="text-align: left;">4.8</td>
+<td style="text-align: left;">15</td>
+<td style="text-align: left;">25</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">45</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sex</td>
+<td style="text-align: left;">143</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">... male</td>
+<td style="text-align: left;">131</td>
+<td style="text-align: left;">92%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">... female</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">8%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">married</td>
+<td style="text-align: left;">143</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">... married</td>
+<td style="text-align: left;">118</td>
+<td style="text-align: left;">83%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">... not married</td>
+<td style="text-align: left;">25</td>
+<td style="text-align: left;">17%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">edu_fac</td>
+<td style="text-align: left;">143</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">... not_hs</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">1%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">... not_cc</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">8%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">... not_col</td>
+<td style="text-align: left;">13</td>
+<td style="text-align: left;">9%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">... col_plus</td>
+<td style="text-align: left;">117</td>
+<td style="text-align: left;">82%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>hoydeHighInc <span class="sc">|&gt;</span> <span class="fu">vt</span>()</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>hoydeHighInc</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Name</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Class</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">income</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">Num: 343830 to 343830</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">height</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">Num: 61 to 81</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">weight</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">Num: 123 to 335</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">age</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">Num: 48 to 55</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">afqt</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">Num: 3.283 to 100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bmi</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">Num: 15.416 to 45.434</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sex</td>
+<td style="text-align: left;">factor</td>
+<td style="text-align: left;">'male' 'female'</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">married</td>
+<td style="text-align: left;">factor</td>
+<td style="text-align: left;">'married' 'not married'</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">edu_fac</td>
+<td style="text-align: left;">factor</td>
+<td style="text-align: left;">'not_hs' 'not_cc' 'not_col' 'col_plus'</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+</section>
+<section id="scatterplot-for-høyde-og-inntekt" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="scatterplot-for-høyde-og-inntekt"><span class="header-section-number">1.5</span> Scatterplot for høyde og inntekt</h2>
+<p>Plot av høyde mot inntekt for normal-inntekter (større enn $0, mindre enn $343830). Vi har benyttet <code>geom_jitter()</code> som er en variant av <code>geom_point()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>hoyde  <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> height,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> income</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">1</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.40</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">formula =</span> y <span class="sc">~</span> x,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"black"</span>,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">lwd =</span> <span class="fl">0.75</span>,</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="cn">FALSE</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ass2-h23_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Vi ser ut til å få høyere inntekt dess høyere vi er.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>hoydeNormInc  <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> height,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> income</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">1</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.40</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">formula =</span> y <span class="sc">~</span> x,</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"black"</span>,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">lwd =</span> <span class="fl">0.75</span>,</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="cn">FALSE</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ass2-h23_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Sammenhengen synes å være den samme når vi studerer normale inntekter.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Er dette hele historien eller kan det være andre bakenforliggende variabler som styrer dette. Det skal vi forsøke å få et innblikk i vha. EDA</p>
+</section>
+<section id="lage-histogram-for-to-subsets" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="lage-histogram-for-to-subsets"><span class="header-section-number">1.6</span> Lage histogram for to subsets</h2>
+<p>En teknikk som kan være aktuell i en EDA anlyse er å lage histogram av datene der dataene er delt opp i undrgrupper. Plasserer vi histogrammene i samme figur er de lettere å sammenligne.</p>
+<p>Her illustreres denne teknikken ved å studere fordelingen av høyde for hhv. kvinner og menn. Vi starter med å regne ut gjennomsnittlig høyde og standardavvik for hhv. menn og kvinner. Disse parametrene vil vi bruke for å tegne inn normalfordelingskurver i samme plot.</p>
+<div id="lst-mean-sd" class="listing">
+<p>Liste&nbsp;8: Beregner gjennomsnittlig høyde og standardavvik for hhv. kvinner og menn. Merk at her har vi benyttet data fra hele datasettet, dvs. 7006 observasjoner.</p>
+<div class="sourceCode" id="lst-mean-sd" data-lst-cap="Beregner gjennomsnittlig høyde og standardavvik for hhv. kvinner og menn. Merk at her har vi benyttet data fra hele datasettet, dvs. 7006 observasjoner."><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-mean-sd-1"><a href="#lst-mean-sd-1" aria-hidden="true" tabindex="-1"></a>meanHeightMale <span class="ot">&lt;-</span> hoyde <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-2"><a href="#lst-mean-sd-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">'male'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="lst-mean-sd-3"><a href="#lst-mean-sd-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(height) <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-4"><a href="#lst-mean-sd-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># konverterer en tibble med 3402 rekker og 1 kolonne</span></span>
+<span id="lst-mean-sd-5"><a href="#lst-mean-sd-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># til en vektor med 3402 elementer siden mean() forlanger en</span></span>
+<span id="lst-mean-sd-6"><a href="#lst-mean-sd-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># vektor som input</span></span>
+<span id="lst-mean-sd-7"><a href="#lst-mean-sd-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>() <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-8"><a href="#lst-mean-sd-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># finner gjennomsnittet av verdiene i vektoren</span></span>
+<span id="lst-mean-sd-9"><a href="#lst-mean-sd-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>()</span>
+<span id="lst-mean-sd-10"><a href="#lst-mean-sd-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-mean-sd-11"><a href="#lst-mean-sd-11" aria-hidden="true" tabindex="-1"></a>meanHeightFemale <span class="ot">&lt;-</span> hoyde <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-12"><a href="#lst-mean-sd-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">'female'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="lst-mean-sd-13"><a href="#lst-mean-sd-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(height) <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-14"><a href="#lst-mean-sd-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>() <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-15"><a href="#lst-mean-sd-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>()</span>
+<span id="lst-mean-sd-16"><a href="#lst-mean-sd-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-mean-sd-17"><a href="#lst-mean-sd-17" aria-hidden="true" tabindex="-1"></a><span class="co"># standard deviation</span></span>
+<span id="lst-mean-sd-18"><a href="#lst-mean-sd-18" aria-hidden="true" tabindex="-1"></a>sdHeightMale <span class="ot">&lt;-</span> hoyde <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-19"><a href="#lst-mean-sd-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">'male'</span>) <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-20"><a href="#lst-mean-sd-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(height) <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-21"><a href="#lst-mean-sd-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>() <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-22"><a href="#lst-mean-sd-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd</span>()</span>
+<span id="lst-mean-sd-23"><a href="#lst-mean-sd-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-mean-sd-24"><a href="#lst-mean-sd-24" aria-hidden="true" tabindex="-1"></a>sdHeightFemale <span class="ot">&lt;-</span> hoyde <span class="sc">|&gt;</span></span>
+<span id="lst-mean-sd-25"><a href="#lst-mean-sd-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">'female'</span>) <span class="sc">|&gt;</span></span>
+<span id="lst-mean-sd-26"><a href="#lst-mean-sd-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(height) <span class="sc">|&gt;</span></span>
+<span id="lst-mean-sd-27"><a href="#lst-mean-sd-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>() <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-28"><a href="#lst-mean-sd-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd</span>()</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Så genererer vi histogram og overliggende empirisk fordeling tegnet utfra gjennomsnittlig høyde og tilhørende standardavvik som vi har regnet ut ovenfor.</p>
+<div id="lst-hist" class="listing">
+<p>Liste&nbsp;9: Histogrammer for høyde for hhv. menn og kvinner med inntegnet normalfordelingskurve (tetthetsfunksjon). Normalfordelingskurvene er tegnet ut fra gjennomsnitt og standardavvik beregnet ovenfor. Dataene er fra hele datasettet <code>heights</code>.</p>
+<div class="sourceCode" id="lst-hist" data-lst-cap="Histogrammer for høyde for hhv. menn og kvinner med inntegnet normalfordelingskurve (tetthetsfunksjon). Normalfordelingskurvene er tegnet ut fra gjennomsnitt og standardavvik beregnet ovenfor. Dataene er fra hele datasettet `heights`."><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-hist-1"><a href="#lst-hist-1" aria-hidden="true" tabindex="-1"></a>hoyde <span class="sc">%&gt;%</span></span>
+<span id="lst-hist-2"><a href="#lst-hist-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="lst-hist-3"><a href="#lst-hist-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">### male </span><span class="al">###</span></span>
+<span id="lst-hist-4"><a href="#lst-hist-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(</span>
+<span id="lst-hist-5"><a href="#lst-hist-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">filter</span>(hoyde, sex <span class="sc">==</span> <span class="st">"male"</span>),</span>
+<span id="lst-hist-6"><a href="#lst-hist-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> <span class="fu">after_stat</span>(density)),</span>
+<span id="lst-hist-7"><a href="#lst-hist-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">colour =</span> <span class="st">'grey40'</span>, <span class="at">fill =</span> <span class="st">'grey40'</span></span>
+<span id="lst-hist-8"><a href="#lst-hist-8" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span> </span>
+<span id="lst-hist-9"><a href="#lst-hist-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(</span>
+<span id="lst-hist-10"><a href="#lst-hist-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">xintercept =</span> meanHeightMale,</span>
+<span id="lst-hist-11"><a href="#lst-hist-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">'grey40'</span>, <span class="at">lwd =</span> <span class="fl">0.75</span>, <span class="at">linetype =</span> <span class="dv">3</span></span>
+<span id="lst-hist-12"><a href="#lst-hist-12" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="lst-hist-13"><a href="#lst-hist-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(</span>
+<span id="lst-hist-14"><a href="#lst-hist-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> dnorm,</span>
+<span id="lst-hist-15"><a href="#lst-hist-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> meanHeightMale, <span class="at">sd =</span> sdHeightMale),</span>
+<span id="lst-hist-16"><a href="#lst-hist-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">'grey40'</span></span>
+<span id="lst-hist-17"><a href="#lst-hist-17" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="lst-hist-18"><a href="#lst-hist-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># female</span></span>
+<span id="lst-hist-19"><a href="#lst-hist-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(</span>
+<span id="lst-hist-20"><a href="#lst-hist-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">filter</span>(hoyde, sex <span class="sc">==</span> <span class="st">"female"</span>),</span>
+<span id="lst-hist-21"><a href="#lst-hist-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> <span class="fu">after_stat</span>(density)),</span>
+<span id="lst-hist-22"><a href="#lst-hist-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">colour =</span> <span class="st">'black'</span>, <span class="at">fill =</span> <span class="st">'grey40'</span></span>
+<span id="lst-hist-23"><a href="#lst-hist-23" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="lst-hist-24"><a href="#lst-hist-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(</span>
+<span id="lst-hist-25"><a href="#lst-hist-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> meanHeightFemale, <span class="at">sd =</span> sdHeightFemale),</span>
+<span id="lst-hist-26"><a href="#lst-hist-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">'black'</span></span>
+<span id="lst-hist-27"><a href="#lst-hist-27" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="lst-hist-28"><a href="#lst-hist-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(</span>
+<span id="lst-hist-29"><a href="#lst-hist-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">xintercept =</span> meanHeightFemale, <span class="at">colour =</span> <span class="st">'grey40'</span>, <span class="at">lwd =</span> <span class="fl">0.75</span>, <span class="at">linetype =</span> <span class="dv">3</span></span>
+<span id="lst-hist-30"><a href="#lst-hist-30" aria-hidden="true" tabindex="-1"></a>    ) </span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-hist" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ass2-h23_files/figure-html/fig-hist-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figur&nbsp;1: Histogram av høyde fordelt på kjønn. I tillegg er normalfordeling for observert gjennomsnitt og standard-avvik, også fordelt på kjønn, tegnet inn.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="oppgaven" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="oppgaven"><span class="header-section-number">1.7</span> Oppgaven</h2>
+<p>Hver gruppe skal skrive et «mini-paper» over lesten:</p>
+<ol type="1">
+<li>Innledning</li>
+<li>Litteraturgjennomgang utfra gruppens problemstilling.</li>
+<li>EDA av datasettet heights med utgangspunkt i problemstillingen angitt for hver gruppe nedenfor.</li>
+<li>Konklusjon</li>
+<li>Referanser</li>
+</ol>
+<p>og lage en tilhørende presentasjon (10-15 min.) av resultatene.</p>
+<section id="arbeidsform" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="arbeidsform"><span class="header-section-number">1.7.1</span> Arbeidsform</h3>
+<p>Gruppene skal jobbe i et RStudio prosjekt koblet mot et Github repo.</p>
+</section>
+<section id="levering" class="level3" data-number="1.7.2">
+<h3 data-number="1.7.2" class="anchored" data-anchor-id="levering"><span class="header-section-number">1.7.2</span> Levering</h3>
+<p>Når ferdig inviter meg (agjest) inn i repo (oppe i Github). Jeg vil gjøre en pull, lage en ny gren ag. Foreslå eventuelle fiks/endringer og opprette et nytt dokument ag_comments.qmd med generelle kommentarer. Dette vil jeg gjøre tilgjengelig som en pull request på Github. Dere kan da se hva jeg forslår og eventuelt akseptere mine endringer.</p>
+</section>
+<section id="tips-presentasjon" class="level3" data-number="1.7.3">
+<h3 data-number="1.7.3" class="anchored" data-anchor-id="tips-presentasjon"><span class="header-section-number">1.7.3</span> Tips presentasjon</h3>
+<p>Enkleste måten å lage en presentasjon når paperet er ferdig er å lagre paperet med ett nytt navn, feks lagre paper.qmd som paper_pres.qmd. Så endre YAML header til en header som passer for presentasjon og så slette tekst/gjøre tekst om til punkter. Husk header nivå 2 gir ny slide. Plot, tabeller, kode etc. fra paper skal da være tilgjengelig i presentasjonen.</p>
+</section>
+</section>
+<section id="problemstilling-for-hver-gruppe" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="problemstilling-for-hver-gruppe"><span class="header-section-number">1.8</span> Problemstilling for hver gruppe</h2>
+<section id="gruppe-1" class="level3" data-number="1.8.1">
+<h3 data-number="1.8.1" class="anchored" data-anchor-id="gruppe-1"><span class="header-section-number">1.8.1</span> Gruppe 1</h3>
+<p>Sammenhengen mellom:</p>
+<ul>
+<li>utdanning og inntekt
+<ul>
+<li>bruk edu_fac variabelen</li>
+</ul></li>
+<li>høyde og inntekt; facet mht. edu_fac</li>
+<li>utdanning og høyde</li>
+<li>Fordeling menn/kvinner i hoydeZeroInc og hoydeHighInc</li>
+<li>Skiller obs. i hoydeZeroInc og hoydeHighInc seg fra hoydeNormInc mht. høyde og utdanning.</li>
+</ul>
+<p>Noen referanser som kan være et utgangspunkt for litteratur gjennomgang: <span class="citation" data-cites="bureau">Bureau (<a href="#ref-bureau" role="doc-biblioref">n.d.</a>)</span>; <span class="citation" data-cites="case2008">Case and Paxson (<a href="#ref-case2008" role="doc-biblioref">2008</a>)</span>; <span class="citation" data-cites="case2009">Case, Paxson, and Islam (<a href="#ref-case2009" role="doc-biblioref">2009</a>)</span>; <span class="citation" data-cites="deaton2009">Deaton and Arora (<a href="#ref-deaton2009" role="doc-biblioref">2009</a>)</span>; <span class="citation" data-cites="hubler2015">Hübler (<a href="#ref-hubler2015" role="doc-biblioref">2015</a>)</span>; <span class="citation" data-cites="mitchell2020">Mitchell (<a href="#ref-mitchell2020" role="doc-biblioref">2020</a>)</span>; <span class="citation" data-cites="ochsenfeld2016">Ochsenfeld (<a href="#ref-ochsenfeld2016" role="doc-biblioref">2016</a>)</span>; <span class="citation" data-cites="published2009">published (<a href="#ref-published2009" role="doc-biblioref">2009</a>)</span></p>
+</section>
+<section id="gruppe-2" class="level3" data-number="1.8.2">
+<h3 data-number="1.8.2" class="anchored" data-anchor-id="gruppe-2"><span class="header-section-number">1.8.2</span> Gruppe 2</h3>
+<p>Sammenhengen mellom kjønn og inntekt:</p>
+<ul>
+<li>høyde og inntekt
+<ul>
+<li>scatterplot facet mht. kjønn.</li>
+<li>Bruk teknikken med hele datasettet i bakgrunnen</li>
+</ul></li>
+<li>Høyde menn/kvinner i hoydeZeroInc og hoydeHighInc. Skiller disse seg fra høyde menn/kvinner i hoydeNormInc.</li>
+<li>Har vi inntektsforskjeller mellom menn og kvinner som er like høye?
+<ul>
+<li>Studer kategoriene 65, 66, 67 og 68 tommer høy (hvor vi både har menn og kvinner). Lag et subset for hver av de fire høydene og sjekk for forskjeller i inntekt mellom kjønn. Husk konklusjon.</li>
+</ul></li>
+<li>Er det markante kjønnsforskjeller i hoydeZeroInc og hoydeHighInc?</li>
+</ul>
+<p>Noen referanser som kan være et utgangspunkt for litteratur gjennomgang: <span class="citation" data-cites="aragao">Aragão (<a href="#ref-aragao" role="doc-biblioref">n.d.</a>)</span>; <span class="citation" data-cites="bobbitt-zeher2007">Bobbitt-Zeher (<a href="#ref-bobbitt-zeher2007" role="doc-biblioref">2007</a>)</span>; <span class="citation" data-cites="bureau">Bureau (<a href="#ref-bureau" role="doc-biblioref">n.d.</a>)</span>; <span class="citation" data-cites="card2016">Card, Cardoso, and Kline (<a href="#ref-card2016" role="doc-biblioref">2016</a>)</span>; <span class="citation" data-cites="hejase2020">Hejase and Hejase (<a href="#ref-hejase2020" role="doc-biblioref">2020</a>)</span>; <span class="citation" data-cites="mitchell2020">Mitchell (<a href="#ref-mitchell2020" role="doc-biblioref">2020</a>)</span>; <span class="citation" data-cites="nyirongo">Nyirongo (<a href="#ref-nyirongo" role="doc-biblioref">n.d.</a>)</span>; <span class="citation" data-cites="ochsenfeld2016">Ochsenfeld (<a href="#ref-ochsenfeld2016" role="doc-biblioref">2016</a>)</span>; <span class="citation" data-cites="petersen1995">Petersen and Morgan (<a href="#ref-petersen1995" role="doc-biblioref">1995</a>)</span>; <span class="citation" data-cites="santossilva2021">Santos Silva and Klasen (<a href="#ref-santossilva2021" role="doc-biblioref">2021</a>)</span>; <span class="citation" data-cites="on-the-economy-blog2020">On-The-Economy-Blog (<a href="#ref-on-the-economy-blog2020" role="doc-biblioref">2020</a>)</span>; <span class="citation" data-cites="gould2016">Gould, Schieder, and Geier (<a href="#ref-gould2016" role="doc-biblioref">2016</a>)</span>.</p>
+<p>Sammenhengen mellom ansiennitet (alder) og inntekt:</p>
+<ul>
+<li>Er det noen sammenheng?</li>
+<li>Er det forskjeller mht. kjønn?</li>
+<li>Er det markante kjønnsforskjeller mht. alder i hoydeZeroInc, hoydeHighInc og hoydeNormInc?</li>
+</ul>
+<p>Noen referanser som kan være et utgangspunkt for litteratur gjennomgang: <span class="citation" data-cites="medoff1980">Medoff and Abraham (<a href="#ref-medoff1980" role="doc-biblioref">1980</a>)</span>, <span class="citation" data-cites="dash2017">Dash, Bakshi, and Chugh (<a href="#ref-dash2017" role="doc-biblioref">2017</a>)</span>, <span class="citation" data-cites="mincer1974">Mincer (<a href="#ref-mincer1974" role="doc-biblioref">1974</a>)</span></p>
+</section>
+<section id="gruppe-3" class="level3" data-number="1.8.3">
+<h3 data-number="1.8.3" class="anchored" data-anchor-id="gruppe-3"><span class="header-section-number">1.8.3</span> Gruppe 3</h3>
+<p>Sammenhengen mellom inntekt og evnenivå (afqt). Tjener «smarte» personer mer?</p>
+<ul>
+<li>Sammenhengen mellom afqt og inntekt i hoydeNormInc</li>
+<li>aftq i hoydeZeroInc og hoydeHighInc</li>
+<li>Sammenhengen mellom afqt og inntekt, facet mht. kjønn</li>
+<li>Sammenhengen mellom edu_fac/education og afqt</li>
+<li>Sammenhengen mellom høyde og afqt</li>
+</ul>
+<p>Referanser som kan være et utgangspunkt for litteratur gjennomgang: <span class="citation" data-cites="zagorsky2007">Zagorsky (<a href="#ref-zagorsky2007" role="doc-biblioref">2007</a>)</span>; <span class="citation" data-cites="bound1986">Bound, Griliches, and Hall (<a href="#ref-bound1986" role="doc-biblioref">1986</a>)</span>, <span class="citation" data-cites="wolfinger2019">Wolfinger (<a href="#ref-wolfinger2019" role="doc-biblioref">2019</a>)</span>, <span class="citation" data-cites="kanarek2013">Kanarek (<a href="#ref-kanarek2013" role="doc-biblioref">2013</a>)</span>, <span class="citation" data-cites="nls2023">NLS (<a href="#ref-nls2023" role="doc-biblioref">2023</a>)</span>, <span class="citation" data-cites="iii1996">Iii and Spriggs (<a href="#ref-iii1996" role="doc-biblioref">1996</a>)</span></p>
+<p>Sammenhengen mellom ansiennitet (alder) og inntekt:</p>
+<ul>
+<li>Er det noen sammenheng?</li>
+<li>Er det forskjeller mht. kjønn?</li>
+<li>Er det markante kjønnsforskjeller mht. alder i hoydeZeroInc, hoydeHighInc og hoydeNormInc?</li>
+</ul>
+<p>Noen referanser som kan være et utgangspunkt for litteratur gjennomgang: <span class="citation" data-cites="medoff1980">Medoff and Abraham (<a href="#ref-medoff1980" role="doc-biblioref">1980</a>)</span>, <span class="citation" data-cites="dash2017">Dash, Bakshi, and Chugh (<a href="#ref-dash2017" role="doc-biblioref">2017</a>)</span>, <span class="citation" data-cites="mincer1974">Mincer (<a href="#ref-mincer1974" role="doc-biblioref">1974</a>)</span></p>
+</section>
+<section id="gruppe-4" class="level3" data-number="1.8.4">
+<h3 data-number="1.8.4" class="anchored" data-anchor-id="gruppe-4"><span class="header-section-number">1.8.4</span> Gruppe 4</h3>
+<p>Sammenhengen mellom gift/ugift og inntekt.</p>
+<ul>
+<li>Er det forskjell menn/kvinner?</li>
+<li>Varierer premie/straff for gift mann/kvinne med utdannelse?</li>
+<li>Er det noen sammenheng mellom gift/ugift og utdannelse?</li>
+<li>Er det noen sammenheng mellom bmi og gift/ugift?</li>
+</ul>
+<p>Referanser som kan være et utgangspunkt for litteratur gjennomgang: <span class="citation" data-cites="on-the-economy-blog2020">On-The-Economy-Blog (<a href="#ref-on-the-economy-blog2020" role="doc-biblioref">2020</a>)</span>; <span class="citation" data-cites="vandenbroucke">Vandenbroucke (<a href="#ref-vandenbroucke" role="doc-biblioref">n.d.</a>)</span>; <span class="citation" data-cites="case2008">Case and Paxson (<a href="#ref-case2008" role="doc-biblioref">2008</a>)</span></p>
+</section>
+<section id="gruppe-5" class="level3" data-number="1.8.5">
+<h3 data-number="1.8.5" class="anchored" data-anchor-id="gruppe-5"><span class="header-section-number">1.8.5</span> Gruppe 5</h3>
+<p>Sammenheng mellom mbi og inntekt.</p>
+<ul>
+<li>sammenheng bmi og inntekt</li>
+<li>sammenheng bmi og inntektsforskjell mellom menn/kvinner</li>
+<li>sammenheng bmi og inntektsforskjell mellom menn/kvinner gitt gift/ugift</li>
+<li>sammenheng bmi og inntektsforskjell mellom menn/kvinner gitt edu_fac</li>
+</ul>
+<p>Referanser som kan være et utgangspunkt for litteratur gjennomgang: <span class="citation" data-cites="bockerman2019">Böckerman et al. (<a href="#ref-bockerman2019" role="doc-biblioref">2019</a>)</span>; <span class="citation" data-cites="caliendo2016">Caliendo and Gehrsitz (<a href="#ref-caliendo2016" role="doc-biblioref">2016</a>)</span>; <span class="citation" data-cites="cawley2015">Cawley (<a href="#ref-cawley2015" role="doc-biblioref">2015</a>)</span>; <span class="citation" data-cites="edwards2021">Edwards, Bjørngaard, and Minet Kinge (<a href="#ref-edwards2021" role="doc-biblioref">2021</a>)</span>; <span class="citation" data-cites="han2009">Han, Norton, and Stearns (<a href="#ref-han2009" role="doc-biblioref">2009</a>)</span>; <span class="citation" data-cites="hildebrand2010">Hildebrand and Kerm (<a href="#ref-hildebrand2010" role="doc-biblioref">2010</a>)</span>; <span class="citation" data-cites="kan2012">Kan and Lee (<a href="#ref-kan2012" role="doc-biblioref">2012</a>)</span>; <span class="citation" data-cites="lee2017">Lee (<a href="#ref-lee2017" role="doc-biblioref">2017</a>)</span>; <span class="citation" data-cites="sargent1994">Sargent and Blanchflower (<a href="#ref-sargent1994" role="doc-biblioref">1994</a>)</span>; <span class="citation" data-cites="zotero-1832"><span>“The <span>Impact</span> of <span>Obesity</span> on <span>Wages</span> | <span>Journal</span> of <span>Human Resources</span>”</span> (<a href="#ref-zotero-1832" role="doc-biblioref">n.d.</a>)</span>; <span class="citation" data-cites="zotero-1833"><span>“The Wage Effects of Obesity: A Longitudinal Study - <span>Baum</span> - 2004 - <span>Health Economics</span> - <span>Wiley Online Library</span>”</span> (<a href="#ref-zotero-1833" role="doc-biblioref">n.d.</a>)</span></p>
+</section>
+</section>
+</section>
+<section id="referanser" class="level1" data-number="2">
+
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">2 Referanser</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-aragao" class="csl-entry" role="listitem">
+Aragão, Carolina. n.d. <span>“Gender Pay Gap in <span>U</span>.<span>S</span>. Hasn’t Changed Much in Two Decades.”</span> <em>Pew Research Center</em>. Accessed October 6, 2023.
+</div>
+<div id="ref-bobbitt-zeher2007" class="csl-entry" role="listitem">
+Bobbitt-Zeher, Donna. 2007. <span>“The <span>Gender Income Gap</span> and the <span>Role</span> of <span>Education</span>.”</span> <em>Sociology of Education</em> 80 (1): 1–22.
+</div>
+<div id="ref-bockerman2019" class="csl-entry" role="listitem">
+Böckerman, Petri, John Cawley, Jutta Viinikainen, Terho Lehtimäki, Suvi Rovio, Ilkka Seppälä, Jaakko Pehkonen, and Olli Raitakari. 2019. <span>“<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6585973">The Effect of Weight on Labor Market Outcomes: <span>An</span> Application of Genetic Instrumental Variables</a>.”</span> <em>Health Economics</em> 28 (1): 65–77.
+</div>
+<div id="ref-bound1986" class="csl-entry" role="listitem">
+Bound, John, Zvi Griliches, and Bronwyn H. Hall. 1986. <span>“Wages, <span>Schooling</span> and <span>IQ</span> of <span>Brothers</span> and <span>Sisters</span>: <span>Do</span> the <span>Family Factors Differ</span>?”</span> <em>International Economic Review</em> 27 (1): 77–105.
+</div>
+<div id="ref-bureau" class="csl-entry" role="listitem">
+Bureau, US Census. n.d. <span>“Among the <span>Educated</span>, <span>Women Earn</span> 74 <span>Cents</span> for <span>Every Dollar Men Make</span>.”</span> <em>Census.gov</em>. https://www.census.gov/library/stories/2019/05/college-degree-widens-gender-earnings-gap.html. Accessed October 6, 2023.
+</div>
+<div id="ref-caliendo2016" class="csl-entry" role="listitem">
+Caliendo, Marco, and Markus Gehrsitz. 2016. <span>“Obesity and the Labor Market: <span>A</span> Fresh Look at the Weight Penalty.”</span> <em>Economics &amp; Human Biology</em> 23 (December): 209–25.
+</div>
+<div id="ref-card2016" class="csl-entry" role="listitem">
+Card, David, Ana Rute Cardoso, and Patrick Kline. 2016. <span>“Bargaining, <span>Sorting</span>, and the <span>Gender Wage Gap</span>: <span>Quantifying</span> the <span>Impact</span> of <span>Firms</span> on the <span>Relative Pay</span> of <span>Women</span> *.”</span> <em>The Quarterly Journal of Economics</em> 131 (2): 633–86.
+</div>
+<div id="ref-case2008" class="csl-entry" role="listitem">
+Case, Anne, and Christina Paxson. 2008. <span>“Stature and <span>Status</span>: <span>Height</span>, <span>Ability</span>, and <span>Labor Market Outcomes</span>.”</span> <em>Journal of Political Economy</em> 116 (3): 499–532.
+</div>
+<div id="ref-case2009" class="csl-entry" role="listitem">
+Case, Anne, Christina Paxson, and Mahnaz Islam. 2009. <span>“Making Sense of the Labor Market Height Premium: <span>Evidence</span> from the <span>British Household Panel Survey</span>.”</span> <em>Economics Letters</em> 102 (3): 174–76.
+</div>
+<div id="ref-cawley2015" class="csl-entry" role="listitem">
+Cawley, John. 2015. <span>“An Economy of Scales: <span>A</span> Selective Review of Obesity’s Economic Causes, Consequences, and Solutions.”</span> <em>Journal of Health Economics</em> 43 (September): 244–68.
+</div>
+<div id="ref-dash2017" class="csl-entry" role="listitem">
+Dash, Mihir, Suprabha Bakshi, and Aarushi Chugh. 2017. <span>“The <span>Relationship Between Work Experience</span> and <span>Employee Compensation</span>: <span>A Case Study</span> of the <span>Indian IT Industry</span>.”</span> <em>Journal of Applied Management and Investments</em> 6 (1): 5–10.
+</div>
+<div id="ref-deaton2009" class="csl-entry" role="listitem">
+Deaton, Angus, and Raksha Arora. 2009. <span>“Life at the Top: <span>The</span> Benefits of Height.”</span> <em>Economics &amp; Human Biology</em> 7 (2): 133–36.
+</div>
+<div id="ref-edwards2021" class="csl-entry" role="listitem">
+Edwards, Christina Hansen, Johan Håkon Bjørngaard, and Jonas Minet Kinge. 2021. <span>“<a href="https://www.ncbi.nlm.nih.gov/pubmed/33993584">The Relationship Between Body Mass Index and Income: <span>Using</span> Genetic Variants from <span>HUNT</span> as Instrumental Variables</a>.”</span> <em>Health Economics</em> 30 (8): 1933–49.
+</div>
+<div id="ref-gould2016" class="csl-entry" role="listitem">
+Gould, Elise, Jessica Schieder, and Kathleen Geier. 2016. <span>“What Is the Gender Pay Gap and Is It Real?: <span>The</span> Complete Guide to How Women Are Paid Less Than Men and Why It Can&amp;#8217;t Be Explained Away.”</span> <em>Economic Policy Institute</em>. https://www.epi.org/publication/what-is-the-gender-pay-gap-and-is-it-real/.
+</div>
+<div id="ref-han2009" class="csl-entry" role="listitem">
+Han, Euna, Edward C. Norton, and Sally C. Stearns. 2009. <span>“Weight and Wages: Fat Versus Lean Paychecks.”</span> <em>Health Economics</em> 18 (5): 535–48.
+</div>
+<div id="ref-hejase2020" class="csl-entry" role="listitem">
+Hejase, Hussin J., and Ale J. Hejase. 2020. <span>“Gender <span>Discrimination</span>: <span>The Gender Wage Gap</span>.”</span> <em>Journal of Economics and Economic Education Research</em> 21 (1S): 1–4.
+</div>
+<div id="ref-hildebrand2010" class="csl-entry" role="listitem">
+Hildebrand, Vincent, and Philippe Van Kerm. 2010. <span>“Body Size and Wages in <span>Europe</span>: <span>A</span> Semi-Parametric Analysis.”</span>
+</div>
+<div id="ref-hubler2015" class="csl-entry" role="listitem">
+Hübler, Olaf. 2015. <span>“Height and <span>Wages</span>.”</span> In.
+</div>
+<div id="ref-iii1996" class="csl-entry" role="listitem">
+Iii, William, and William Spriggs. 1996. <span>“What Does the <span>AFQT</span> Really Measure: <span>Race</span>, Wages, Schooling and the <span>AFQT</span> Score.”</span> <em>The Review of Black Political Economy</em> 24 (June): 13–46.
+</div>
+<div id="ref-kan2012" class="csl-entry" role="listitem">
+Kan, Kamhon, and Myoung-Jae Lee. 2012. <span>“Lose Weight for a Raise Only If Overweight: <span>Marginal</span> Integration for Semi-Linear Panel Models.”</span> <em>Journal of Applied Econometrics</em> 27 (4): 666–85.
+</div>
+<div id="ref-kanarek2013" class="csl-entry" role="listitem">
+Kanarek, Jaret. 2013. <span>“Youth <span>Aptitude</span> as a <span>Predictor</span> of <span>Adulthood Income</span> - <span>CORE</span>.”</span> <em>Undergaduate Economic Review</em>, 1st series, 10.
+</div>
+<div id="ref-lee2017" class="csl-entry" role="listitem">
+Lee, Wang-Sheng. 2017. <span>“Big and Tall: <span>Does</span> a Height Premium Dwarf an Obesity Penalty in the Labor Market?”</span> <em>Economics &amp; Human Biology</em> 27 (November): 289–304.
+</div>
+<div id="ref-medoff1980" class="csl-entry" role="listitem">
+Medoff, James L., and Katharine G. Abraham. 1980. <span>“Experience, <span>Performance</span>, and <span>Earnings</span>.”</span> <em>The Quarterly Journal of Economics</em> 95 (4): 703–36.
+</div>
+<div id="ref-mincer1974" class="csl-entry" role="listitem">
+Mincer, Jacob A. 1974. <span>“Schooling, <span>Experience</span>, and <span>Earnings</span>.”</span> <em>NBER Books</em>.
+</div>
+<div id="ref-mitchell2020" class="csl-entry" role="listitem">
+Mitchell, Travis. 2020. <span>“2. <span>Women</span>’s Lead in Skills and Education Is Helping Narrow the Gender Wage Gap.”</span> <em>Pew Research Center’s Social &amp; Demographic Trends Project</em>.
+</div>
+<div id="ref-nls2023" class="csl-entry" role="listitem">
+NLS. 2023. <span>“Aptitude, <span>Achievement</span> &amp; <span>Intelligence Scores</span> | <span>National Longitudinal Surveys</span>.”</span> https://www.nlsinfo.org/content/cohorts/nlsy79/topical-guide/education/aptitude-achievement-intelligence-scores.
+</div>
+<div id="ref-nyirongo" class="csl-entry" role="listitem">
+Nyirongo, Venge. n.d. <span>“Tackling <span>Discriminatory Labour Practices</span>, <span>Labour Market Segmentation</span> and <span>Gender Pay Gaps</span>.”</span>
+</div>
+<div id="ref-ochsenfeld2016" class="csl-entry" role="listitem">
+Ochsenfeld, Fabian. 2016. <span>“The <span>Gender Income Gap</span> and the <span>Roles</span> of <span>Education</span> and <span>Family Formation</span>: <span>A Scientific Replication</span> of <span>Bobbitt-Zeher</span> (2007).”</span> {{SSRN Scholarly Paper}}. <span>Rochester, NY</span>.
+</div>
+<div id="ref-on-the-economy-blog2020" class="csl-entry" role="listitem">
+On-The-Economy-Blog. 2020. <span>“Taking a <span>Closer Look</span> at <span>Marital Status</span> and the <span>Earnings Gap</span>.”</span> https://www.stlouisfed.org/on-the-economy/2020/september/taking-closer-look-marital-status-earnings-gap.
+</div>
+<div id="ref-petersen1995" class="csl-entry" role="listitem">
+Petersen, Trond, and Laurie A. Morgan. 1995. <span>“Separate and <span>Unequal</span>: <span>Occupation-Establishment Sex Segregation</span> and the <span>Gender Wage Gap</span>.”</span> <em>American Journal of Sociology</em> 101 (2): 329–65.
+</div>
+<div id="ref-published2009" class="csl-entry" role="listitem">
+published, Robert Roy Britt. 2009. <span>“Taller <span>People Earn More Money</span>.”</span> <em>Livescience.com</em>. https://www.livescience.com/5552-taller-people-earn-money.html.
+</div>
+<div id="ref-Rcore" class="csl-entry" role="listitem">
+R Core Team. 2021. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
+</div>
+<div id="ref-santossilva2021" class="csl-entry" role="listitem">
+Santos Silva, Manuel, and Stephan Klasen. 2021. <span>“Gender Inequality as a Barrier to Economic Growth: A Review of the Theoretical Literature.”</span> <em>Review of Economics of the Household</em> 19 (3): 581–614.
+</div>
+<div id="ref-sargent1994" class="csl-entry" role="listitem">
+Sargent, James D., and David G. Blanchflower. 1994. <span>“Obesity and <span>Stature</span> in <span>Adolescence</span> and <span>Earnings</span> in <span>Young Adulthood</span>: <span>Analysis</span> of a <span>British Birth Cohort</span>.”</span> <em>Archives of Pediatrics &amp; Adolescent Medicine</em> 148 (7): 681–87.
+</div>
+<div id="ref-zotero-1832" class="csl-entry" role="listitem">
+<span>“The <span>Impact</span> of <span>Obesity</span> on <span>Wages</span> | <span>Journal</span> of <span>Human Resources</span>.”</span> n.d. https://jhr.uwpress.org/content/XXXIX/2/451.short. Accessed October 6, 2023.
+</div>
+<div id="ref-zotero-1833" class="csl-entry" role="listitem">
+<span>“The Wage Effects of Obesity: A Longitudinal Study - <span>Baum</span> - 2004 - <span>Health Economics</span> - <span>Wiley Online Library</span>.”</span> n.d. https://onlinelibrary.wiley.com/doi/abs/10.1002/hec.881. Accessed October 6, 2023.
+</div>
+<div id="ref-vandenbroucke" class="csl-entry" role="listitem">
+Vandenbroucke, Guillaume. n.d. <span>“Married <span>Men Sit Atop</span> the <span>Wage Ladder</span>.”</span> https://research.stlouisfed.org/publications/economic-synopses/2018/09/14/married-men-sit-atop-the-wage-ladder. Accessed October 6, 2023.
+</div>
+<div id="ref-modelr" class="csl-entry" role="listitem">
+Wickham, Hadley. 2020. <em>Modelr: Modelling Functions That Work with the Pipe</em>. <a href="https://CRAN.R-project.org/package=modelr">https://CRAN.R-project.org/package=modelr</a>.
+</div>
+<div id="ref-wolfinger2019" class="csl-entry" role="listitem">
+Wolfinger, Nicholas H. 2019. <span>“Can <span>Intelligence Predict Income</span>?”</span> <em>Institute for Family Studies</em>. https://ifstudies.org/blog/can-intelligence-predict-income.
+</div>
+<div id="ref-zagorsky2007" class="csl-entry" role="listitem">
+Zagorsky, Jay L. 2007. <span>“Do You Have to Be Smart to Be Rich? <span>The</span> Impact of <span>IQ</span> on Wealth, Income and Financial Distress.”</span> <em>Intelligence</em> 35 (5): 489–501.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopiert!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopiert!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

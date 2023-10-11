@@ -1,7 +1,6 @@
 ---
 title: "first_pres"
 author: "Arnstein Gjestland"
-bibliography: my_bib.bib
 format:
   revealjs:
         theme: simple

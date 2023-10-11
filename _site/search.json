@@ -172,7 +172,7 @@
     "href": "wrangle-data/relational-data/relational-data.html#references",
     "title": "Joins",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nWickham, Hadley. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nWickham, Hadley. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "wrangle-data/data-import-cont/data-import-cont.html#data-import",
@@ -354,7 +354,7 @@
     "href": "wrangle-data/factors/factors.html#references",
     "title": "Factors",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nWickham, Hadley. 2023a. Forcats: Tools for Working with Categorical Variables (Factors). https://CRAN.R-project.org/package=forcats.\n\n\n———. 2023b. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nWickham, Hadley. 2023a. Forcats: Tools for Working with Categorical Variables (Factors). https://forcats.tidyverse.org/.\n\n\n———. 2023b. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "wrangle-data/wrangle-data.html",
@@ -494,7 +494,7 @@
     "href": "wrangle-data/time-data/time-data.html#change-type",
     "title": "Time Data",
     "section": "Change type",
-    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2023-08-24\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2023-08-24 11:53:21 CEST\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2023-08-24\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2023-08-24 UTC\""
+    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2023-10-11\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2023-10-11 13:08:25 CEST\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2023-10-11\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2023-10-11 UTC\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#different-inputs",
@@ -578,28 +578,28 @@
     "href": "wrangle-data/time-data/time-data.html#an-example-my_life",
     "title": "Time Data",
     "section": "An example: my_life",
-    "text": "An example: my_life\n\nPlaying with time and writing a function\n\n\n\n\nCode\nmy_life &lt;- function(birthday = \"25121964\", unit = \"weeks\") {\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\nmy_life() # with default values\n\n\n[1] \"You are about 3060.85714285714 weeks old.\""
+    "text": "An example: my_life\n\nPlaying with time and writing a function\n\n\n\n\nCode\nmy_life &lt;- function(birthday = \"25121964\", unit = \"weeks\") {\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\nmy_life() # with default values\n\n\n[1] \"You are about 3067.71428571429 weeks old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#an-example-my_life-1",
     "href": "wrangle-data/time-data/time-data.html#an-example-my_life-1",
     "title": "Time Data",
     "section": "An example: my_life",
-    "text": "An example: my_life\n\nsome are just too young to play with R\n\n\n\n\nCode\nmy_life &lt;- function(birthday = \"25121964\", unit = \"weeks\") {\n# too young to play with R, week as unit\nif (as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))/52.25 &lt; 5) {\nreturn(\"You are far too young to play with R!\")\n}\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\n\n\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3060.85714285714 weeks old.\""
+    "text": "An example: my_life\n\nsome are just too young to play with R\n\n\n\n\nCode\nmy_life &lt;- function(birthday = \"25121964\", unit = \"weeks\") {\n# too young to play with R, week as unit\nif (as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))/52.25 &lt; 5) {\nreturn(\"You are far too young to play with R!\")\n}\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\n\n\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3067.71428571429 weeks old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#an-example-my_life-2",
     "href": "wrangle-data/time-data/time-data.html#an-example-my_life-2",
     "title": "Time Data",
     "section": "An example: my_life",
-    "text": "An example: my_life\n\nPerhaps we should round off our answer.\n\n\n\n\nCode\nmy_life &lt;- function(birthday = \"01012020\", unit = \"weeks\") {\n  # find the difference between today and birthday with week as unit\n  life_w &lt;- as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))\n  # too young to play with R, week as unit\n  if (life_w / 52.25 &lt; 5) {\n    return(\"You are far too young to play with R!\")\n  } else {\n    # find the difference between today and birthday measured in unit\n    life = round(as.numeric(difftime(today(), dmy(birthday), units = unit)), 0)\n    # one case for each unit\n    case_when(\n      unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n      unit == \"days\" ~ paste(\"You are about\", life, \"days old.\"),\n      unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n      unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n      unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n    )\n  }\n}\nmy_life(01032016)\n\n\n[1] \"You are about 390 weeks old.\""
+    "text": "An example: my_life\n\nPerhaps we should round off our answer.\n\n\n\n\nCode\nmy_life &lt;- function(birthday = \"01012020\", unit = \"weeks\") {\n  # find the difference between today and birthday with week as unit\n  life_w &lt;- as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))\n  # too young to play with R, week as unit\n  if (life_w / 52.25 &lt; 5) {\n    return(\"You are far too young to play with R!\")\n  } else {\n    # find the difference between today and birthday measured in unit\n    life = round(as.numeric(difftime(today(), dmy(birthday), units = unit)), 0)\n    # one case for each unit\n    case_when(\n      unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n      unit == \"days\" ~ paste(\"You are about\", life, \"days old.\"),\n      unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n      unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n      unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n    )\n  }\n}\nmy_life(01032016)\n\n\n[1] \"You are about 397 weeks old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#testing-my_life",
     "href": "wrangle-data/time-data/time-data.html#testing-my_life",
     "title": "Time Data",
     "section": "Testing my_life()",
-    "text": "Testing my_life()\n\n\nCode\nmy_life(\"01032005\", unit = \"weeks\")\n\n\n[1] \"You are about 964 weeks old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"days\")\n\n\n[1] \"You are about 6750 days old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"mins\")\n\n\n[1] \"You are about 9720000 minutes old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"secs\")\n\n\n[1] \"You are about 583200000 seconds old.\""
+    "text": "Testing my_life()\n\n\nCode\nmy_life(\"01032005\", unit = \"weeks\")\n\n\n[1] \"You are about 971 weeks old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"days\")\n\n\n[1] \"You are about 6798 days old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"mins\")\n\n\n[1] \"You are about 9789120 minutes old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"secs\")\n\n\n[1] \"You are about 587347200 seconds old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#an-example-my_life-3",
@@ -620,14 +620,14 @@
     "href": "wrangle-data/time-data/time-data.html#final-testing",
     "title": "Time Data",
     "section": "Final testing",
-    "text": "Final testing\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"years\")\n\n\n[1] \"You are about 58.58 years old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"months\")\n\n\n[1] \"You are about 702.97 months old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3061 weeks old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"days\")\n\n\n[1] \"You are about 21426 days old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"hours\")\n\n\n[1] \"You are about 514224 hours old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"mins\")\n\n\n[1] \"You are about 30.853.440 minutes old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"secs\")\n\n\n[1] \"You are about 1.851.206.400 seconds old.\""
+    "text": "Final testing\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"years\")\n\n\n[1] \"You are about 58.71 years old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"months\")\n\n\n[1] \"You are about 704.55 months old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3068 weeks old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"days\")\n\n\n[1] \"You are about 21474 days old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"hours\")\n\n\n[1] \"You are about 515376 hours old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"mins\")\n\n\n[1] \"You are about 30.922.560 minutes old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"secs\")\n\n\n[1] \"You are about 1.855.353.600 seconds old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#references",
     "href": "wrangle-data/time-data/time-data.html#references",
     "title": "Time Data",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2023. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nWickham, Hadley. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2023. Lubridate: Make Dealing with Dates a Little Easier. https://lubridate.tidyverse.org.\n\n\nWickham, Hadley. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "wrangle-data/tibbles/tibbles.html#tibbles-chap.-10",
@@ -949,7 +949,7 @@
     "href": "wrangle-data/string-data/string-data.html#references",
     "title": "Strings and regular expressions",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nBenoit, Kenneth, and Adam Obeng. 2023. Readtext: Import and Handling for Plain and Formatted Text Files. https://github.com/quanteda/readtext.\n\n\nWickham, Hadley. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nBenoit, Kenneth, and Adam Obeng. 2023. Readtext: Import and Handling for Plain and Formatted Text Files. https://github.com/quanteda/readtext.\n\n\nWickham, Hadley. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#load-tidyverse",
@@ -1267,6 +1267,146 @@
     "text": "Split age into age_start and age_end\n\n\nCode\nwho6 &lt;- who5 %&gt;% \n  mutate(\n    age = str_pad(age, width = 4, side = \"left\", pad = \"0\"),\n    age = str_replace(age, \"0065\", \"6599\")\n  ) %&gt;% \n  separate(col = age,\n           into = c(\"age_start\", \"age_end\"),\n           sep = 2\n           )\nwho6[1:5,]\n\n\n# A tibble: 5 × 7\n  country      year type  sex   age_start age_end cases\n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 Afghanistan  1997 sp    m     00        14          0\n2 Afghanistan  1997 sp    m     15        24         10\n3 Afghanistan  1997 sp    m     25        34          6\n4 Afghanistan  1997 sp    m     35        44          3\n5 Afghanistan  1997 sp    m     45        54          5\n\n\nCode\ndim(who6)\n\n\n[1] 76046     7\n\n\n\n\nMSB105"
   },
   {
+    "objectID": "assignments/assignments.html",
+    "href": "assignments/assignments.html",
+    "title": "Assignments",
+    "section": "",
+    "text": "The assignments for different years."
+  },
+  {
+    "objectID": "assignments/assignments.html#different-years",
+    "href": "assignments/assignments.html#different-years",
+    "title": "Assignments",
+    "section": "Different years",
+    "text": "Different years\n\nh23"
+  },
+  {
+    "objectID": "assignments/h23/ass-h23.html",
+    "href": "assignments/h23/ass-h23.html",
+    "title": "Assignments h23",
+    "section": "",
+    "text": "The assignments for different years."
+  },
+  {
+    "objectID": "assignments/h23/ass-h23.html#different-years",
+    "href": "assignments/h23/ass-h23.html#different-years",
+    "title": "Assignments h23",
+    "section": "Different years",
+    "text": "Different years\n\nAssignment 1 h23\nAssignment 2 h23"
+  },
+  {
+    "objectID": "assignments/h23/ass2/ass2-h23.html",
+    "href": "assignments/h23/ass2/ass2-h23.html",
+    "title": "Er det høyde som bestemmer inntekt?",
+    "section": "",
+    "text": "library(vtable)\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "assignments/h23/ass2/ass2-h23.html#kode",
+    "href": "assignments/h23/ass2/ass2-h23.html#kode",
+    "title": "Er det høyde som bestemmer inntekt?",
+    "section": "1.1 Kode",
+    "text": "1.1 Kode\nFølgende «chunk» er kode som samtlige grupper bør kjøre rett etter setup chunk-en slik at vi jobber med samme data og har samme variabelnavn.\n\nhoyde &lt;- modelr::heights\n\nhoyde &lt;- hoyde %&gt;% \n  mutate(\n    bmi = weight * 0.4536/(height * 2.54/100)^2,\n    married = fct_collapse(\n      .f = marital,\n      married = \"married\",\n      other_level = \"not married\"\n    ),\n    edu_fac = cut(\n      x = education,\n      breaks = c(0, 12, 14, 16, 21),\n      labels = c(\"not_hs\", \"not_cc\", \"not_col\", \"col_plus\"),\n      right = FALSE\n    )\n  ) |&gt; \n  # reorganiserer data s.a. de fire faktor-variablerne kommer\n  # lengst til høyre\n  select(income:age, education:bmi, everything()) |&gt;\n  # Dropper marital og education siden disse ikke skal brukes\n  select(-education, -marital)\n\n# Inntekt lik 0\nhoydeZeroInc &lt;- hoyde |&gt; \n  filter(income == 0)\n# «Normal» inntekt\nhoydeNormInc &lt;- hoyde |&gt; \n  filter(income &gt; 0 & income &lt; 343830)\nhoydeHighInc &lt;- hoyde |&gt; \n  filter(income == 343830)"
+  },
+  {
+    "objectID": "assignments/h23/ass2/ass2-h23.html#gjennomgang-av-koden",
+    "href": "assignments/h23/ass2/ass2-h23.html#gjennomgang-av-koden",
+    "title": "Er det høyde som bestemmer inntekt?",
+    "section": "1.2 Gjennomgang av koden",
+    "text": "1.2 Gjennomgang av koden\nHer følger en gjennomgang av koden ovenfor steg for steg. I tillegg gis noen eksempler på bruk av vt() og st() fra pakken vtable.\nVi starter med å lese inn datasettet.\n\nListe 1: Leser inn heights datasettet fra pakken modelr og gir datasettet navnet hoyde.\nhoyde &lt;- modelr::heights\n\nVi kan så bruke st() fra vtable for å sjekke datasettet (merk at dere vil se en annen tabell hvis dere har kjørt hele kode-blokken ovenfor).\n\nListe 2: Sjekker innleste data vha. st().\nhoyde |&gt;  st()\n\n\n\n\nSummary Statistics\n\n\nVariable\nN\nMean\nStd. Dev.\nMin\nPctl. 25\nPctl. 75\nMax\n\n\n\n\nincome\n7006\n41204\n55892\n0\n166\n55000\n343830\n\n\nheight\n7006\n67\n4.1\n52\n64\n70\n84\n\n\nweight\n6911\n188\n44\n76\n157\n212\n524\n\n\nage\n7006\n51\n2.2\n47\n49\n53\n56\n\n\nmarital\n7006\n\n\n\n\n\n\n\n\n... single\n1124\n16%\n\n\n\n\n\n\n\n... married\n3806\n54%\n\n\n\n\n\n\n\n... separated\n366\n5%\n\n\n\n\n\n\n\n... divorced\n1549\n22%\n\n\n\n\n\n\n\n... widowed\n161\n2%\n\n\n\n\n\n\n\nsex\n7006\n\n\n\n\n\n\n\n\n... male\n3402\n49%\n\n\n\n\n\n\n\n... female\n3604\n51%\n\n\n\n\n\n\n\neducation\n6996\n13\n2.6\n1\n12\n15\n20\n\n\nafqt\n6744\n41\n29\n0\n15\n65\n100\n\n\n\n\n\n\n\nVi har altså 7006 observasjoner og 8 variabler. For variablene weight, education og afqt har vi NA-er.\nDet har vært spekulert om observert lønnsmessig «høyde premium» egentlig er en skjult «vekt straff». Tanken er at det er en negativ sammenheng mellom høyde og overvekt og at arbeidsgivere er redd for at personer som strever med overvekt har større sjanse for å ha eller få alvorlig helseproblemer og at arbeidsgivere derfor anser disse arbeidstakerne som mindre produktive og derfor tilbyr lavere lønn. For å se om dette er tilfelle lager vi en ny variabel bmi («body mass index»). I tillegg lager vi en forenklet versjon av variabelen marital der vi bare skiller mellom married (TRUE) og not_married (FALSE).\n\nListe 3: Bruker mutate til å lage variabelen bmi. I tillegg bruker vi funksjonen fct_collapse til å «klappe sammen» de fem kategorien i marital til bare to kategorier i variabelen married.\nhoyde &lt;- hoyde %&gt;% \n  mutate(\n    bmi = weight * 0.4536/(height * 2.54/100)^2,\n    married = fct_collapse(\n      .f = marital,\n      married = \"married\",\n      other_level = \"not married\"\n    ),\n\nVi forenkler også variabelen education s.a. vi bare skiller mellom kategorien not_hs («Not High School Exam»; 0 ≤ education &lt;12), not_cc («Not Community College»; 12 ≤ education &lt;14) not_col («Not College»; 14 ≤ education &lt; 16) og col_plus («4 years College or more»; education ≥ 16)\n\nListe 4: I samme mutate lager vi også variablen edu_fac ved å kutte education opp i fire intervaller\nedu_fac = cut(\n      x = education,\n      breaks = c(0, 12, 14, 16, 21),\n      labels = c(\"not_hs\", \"not_cc\", \n                    \"not_col\", \"col_plus\"),\n      right = FALSE\n    )\n  )\n\nDet kan være hensiktmessig å samle kategorivariablene lengst til høyre i datasettet (f.eks blir resultatet av st()en noe ryddigere tabell).\n\nListe 5: Endrer rekkefølgen på variablene s.a. kategorivariablene samles lengst til høyre i datasettet.\n  select(income:age, education:bmi, everything())\n\nVi kommer ikke til å bruke variablene education og marital så disse dropper vi.\n\nListe 6: Vi skal ikke benytte variablene marital og education så disse droppes fra datasettet.\n  select(-education, -marital)\n\nHoyde med nye variabler:\n\nhoyde |&gt; vt(missing = TRUE)\n\n\nhoyde\n\n\nName\nClass\nValues\nMissing\n\n\n\n\nincome\ninteger\nNum: 0 to 343830\n0\n\n\nheight\nnumeric\nNum: 52 to 84\n0\n\n\nweight\ninteger\nNum: 76 to 524\n95\n\n\nage\ninteger\nNum: 47 to 56\n0\n\n\nafqt\nnumeric\nNum: 0 to 100\n262\n\n\nbmi\nnumeric\nNum: 12.874 to 74.99\n95\n\n\nsex\nfactor\n'male' 'female'\n0\n\n\nmarried\nfactor\n'married' 'not married'\n0\n\n\nedu_fac\nfactor\n'not_hs' 'not_cc' 'not_col' 'col_plus'\n10"
+  },
+  {
+    "objectID": "assignments/h23/ass2/ass2-h23.html#splitter-i-tre-datasett",
+    "href": "assignments/h23/ass2/ass2-h23.html#splitter-i-tre-datasett",
+    "title": "Er det høyde som bestemmer inntekt?",
+    "section": "1.3 Splitter i tre datasett",
+    "text": "1.3 Splitter i tre datasett\nTil slutt deler vi hoyde inn i tre datasett, hhv. hoyde_inc_zero, hoyde_inc_norm og hoyde_inc_high. Vi vil analysere hoyde_inc_norm grundigst og så sjekke eventuelle funn opp mot hoyde_inc_zero og hoyde_inc_high.\n\nListe 7: Vi deler hoyde inn i tre «subsets». Datasettet hoydeNormInc er det vi vil konsentrere oss om.\n# Inntekt lik 0\nhoydeZeroInc &lt;- hoyde |&gt; \n  filter(income == 0)\n# «Normal» inntekt\nhoydeNormInc &lt;- hoyde |&gt; \n  filter(income &gt; 0 & income &lt; 343830)\n# Høy inntekt\nhoydeHighInc &lt;- hoyde |&gt; \n  filter(income == 343830)"
+  },
+  {
+    "objectID": "assignments/h23/ass2/ass2-h23.html#beskrivende-statistikk-for-de-tre-datasettene",
+    "href": "assignments/h23/ass2/ass2-h23.html#beskrivende-statistikk-for-de-tre-datasettene",
+    "title": "Er det høyde som bestemmer inntekt?",
+    "section": "1.4 Beskrivende statistikk for de tre datasettene",
+    "text": "1.4 Beskrivende statistikk for de tre datasettene\n\n1.4.1 hoydeZeroInc\nDatasettet hoydeZeroInc inneholder 1740 observasjoner. Vi har 0, 0, 26, 0, 78, 26, 0, 0, 8 manglende verdier (NA) for variablene income, height, weight, age, afqt, bmi, sex, married, edu_fac.\n\nhoydeZeroInc |&gt; st()\n\n\nSummary Statistics\n\n\nVariable\nN\nMean\nStd. Dev.\nMin\nPctl. 25\nPctl. 75\nMax\n\n\n\n\nincome\n1740\n0\n0\n0\n0\n0\n0\n\n\nheight\n1740\n66\n4.1\n55\n63\n69\n84\n\n\nweight\n1714\n187\n49\n76\n153\n215\n524\n\n\nage\n1740\n51\n2.2\n47\n50\n53\n56\n\n\nafqt\n1662\n29\n26\n0\n7.5\n44\n100\n\n\nbmi\n1714\n30\n7.4\n14\n25\n33\n75\n\n\nsex\n1740\n\n\n\n\n\n\n\n\n... male\n745\n43%\n\n\n\n\n\n\n\n... female\n995\n57%\n\n\n\n\n\n\n\nmarried\n1740\n\n\n\n\n\n\n\n\n... married\n705\n41%\n\n\n\n\n\n\n\n... not married\n1035\n59%\n\n\n\n\n\n\n\nedu_fac\n1732\n\n\n\n\n\n\n\n\n... not_hs\n497\n29%\n\n\n\n\n\n\n\n... not_cc\n835\n48%\n\n\n\n\n\n\n\n... not_col\n211\n12%\n\n\n\n\n\n\n\n... col_plus\n189\n11%\n\n\n\n\n\n\n\n\n\n\n\n\n\nhoydeZeroInc |&gt; vt()\n\n\nhoydeZeroInc\n\n\nName\nClass\nValues\n\n\n\n\nincome\ninteger\nNum: 0 to 0\n\n\nheight\nnumeric\nNum: 55 to 84\n\n\nweight\ninteger\nNum: 76 to 524\n\n\nage\ninteger\nNum: 47 to 56\n\n\nafqt\nnumeric\nNum: 0 to 100\n\n\nbmi\nnumeric\nNum: 14.293 to 74.99\n\n\nsex\nfactor\n'male' 'female'\n\n\nmarried\nfactor\n'married' 'not married'\n\n\nedu_fac\nfactor\n'not_hs' 'not_cc' 'not_col' 'col_plus'\n\n\n\n\n\n\n\n\n\n1.4.2 hoydeNormInc\nDatasettet hoydeNormInc inneholder 5123 observasjoner. Vi har 0, 0, 69, 0, 184, 69, 0, 0, 2 manglende verdier (NA) for variablene income, height, weight, age, afqt, bmi, sex, married, edu_fac.\n\nhoydeNormInc |&gt; st()\n\n\nSummary Statistics\n\n\nVariable\nN\nMean\nStd. Dev.\nMin\nPctl. 25\nPctl. 75\nMax\n\n\n\n\nincome\n5123\n46751\n33286\n45\n23000\n62000\n178000\n\n\nheight\n5123\n67\n4\n52\n64\n70\n80\n\n\nweight\n5054\n188\n43\n78\n159\n212\n480\n\n\nage\n5123\n51\n2.2\n47\n49\n53\n56\n\n\nafqt\n4939\n44\n28\n0\n20\n68\n100\n\n\nbmi\n5054\n29\n5.8\n13\n25\n32\n67\n\n\nsex\n5123\n\n\n\n\n\n\n\n\n... male\n2526\n49%\n\n\n\n\n\n\n\n... female\n2597\n51%\n\n\n\n\n\n\n\nmarried\n5123\n\n\n\n\n\n\n\n\n... married\n2983\n58%\n\n\n\n\n\n\n\n... not married\n2140\n42%\n\n\n\n\n\n\n\nedu_fac\n5121\n\n\n\n\n\n\n\n\n... not_hs\n559\n11%\n\n\n\n\n\n\n\n... not_cc\n2349\n46%\n\n\n\n\n\n\n\n... not_col\n886\n17%\n\n\n\n\n\n\n\n... col_plus\n1327\n26%\n\n\n\n\n\n\n\n\n\n\n\n\n\nhoydeNormInc |&gt; vt()\n\n\nhoydeNormInc\n\n\nName\nClass\nValues\n\n\n\n\nincome\ninteger\nNum: 45 to 178000\n\n\nheight\nnumeric\nNum: 52 to 80\n\n\nweight\ninteger\nNum: 78 to 480\n\n\nage\ninteger\nNum: 47 to 56\n\n\nafqt\nnumeric\nNum: 0 to 100\n\n\nbmi\nnumeric\nNum: 12.874 to 66.947\n\n\nsex\nfactor\n'male' 'female'\n\n\nmarried\nfactor\n'married' 'not married'\n\n\nedu_fac\nfactor\n'not_hs' 'not_cc' 'not_col' 'col_plus'\n\n\n\n\n\n\n\n\n\n1.4.3 hoydeHighInc\nDatasettet hoydeHighInc inneholder 143 observasjoner. Vi har 0, 0, 0, 0, 0, 0, 0, 0, 0 manglende verdier (NA) for variablene income, height, weight, age, afqt, bmi, sex, married, edu_fac.\n\nhoydeHighInc |&gt; st()\n\n\nSummary Statistics\n\n\nVariable\nN\nMean\nStd. Dev.\nMin\nPctl. 25\nPctl. 75\nMax\n\n\n\n\nincome\n143\n343830\n0\n343830\n343830\n343830\n343830\n\n\nheight\n143\n71\n3.1\n61\n69\n72\n81\n\n\nweight\n143\n195\n37\n123\n170\n210\n335\n\n\nage\n143\n51\n2.3\n48\n49\n53\n55\n\n\nafqt\n143\n78\n22\n3.3\n70\n94\n100\n\n\nbmi\n143\n28\n4.8\n15\n25\n30\n45\n\n\nsex\n143\n\n\n\n\n\n\n\n\n... male\n131\n92%\n\n\n\n\n\n\n\n... female\n12\n8%\n\n\n\n\n\n\n\nmarried\n143\n\n\n\n\n\n\n\n\n... married\n118\n83%\n\n\n\n\n\n\n\n... not married\n25\n17%\n\n\n\n\n\n\n\nedu_fac\n143\n\n\n\n\n\n\n\n\n... not_hs\n2\n1%\n\n\n\n\n\n\n\n... not_cc\n11\n8%\n\n\n\n\n\n\n\n... not_col\n13\n9%\n\n\n\n\n\n\n\n... col_plus\n117\n82%\n\n\n\n\n\n\n\n\n\n\n\n\n\nhoydeHighInc |&gt; vt()\n\n\nhoydeHighInc\n\n\nName\nClass\nValues\n\n\n\n\nincome\ninteger\nNum: 343830 to 343830\n\n\nheight\nnumeric\nNum: 61 to 81\n\n\nweight\ninteger\nNum: 123 to 335\n\n\nage\ninteger\nNum: 48 to 55\n\n\nafqt\nnumeric\nNum: 3.283 to 100\n\n\nbmi\nnumeric\nNum: 15.416 to 45.434\n\n\nsex\nfactor\n'male' 'female'\n\n\nmarried\nfactor\n'married' 'not married'\n\n\nedu_fac\nfactor\n'not_hs' 'not_cc' 'not_col' 'col_plus'"
+  },
+  {
+    "objectID": "assignments/h23/ass2/ass2-h23.html#scatterplot-for-høyde-og-inntekt",
+    "href": "assignments/h23/ass2/ass2-h23.html#scatterplot-for-høyde-og-inntekt",
+    "title": "Er det høyde som bestemmer inntekt?",
+    "section": "1.5 Scatterplot for høyde og inntekt",
+    "text": "1.5 Scatterplot for høyde og inntekt\nPlot av høyde mot inntekt for normal-inntekter (større enn $0, mindre enn $343830). Vi har benyttet geom_jitter() som er en variant av geom_point().\n\nhoyde  |&gt; \n  ggplot(\n  mapping = aes(\n    x = height,\n    y = income\n    )\n  ) + \n  geom_jitter(\n    size = 1,\n    alpha = 0.40\n    ) +\n  geom_smooth(\n    formula = y ~ x,\n    method = \"lm\",\n    colour = \"black\",\n    lwd = 0.75,\n    se = FALSE\n    )\n\n\n\n\nVi ser ut til å få høyere inntekt dess høyere vi er.\n\n\n\n\n\nhoydeNormInc  |&gt; \n  ggplot(\n  mapping = aes(\n    x = height,\n    y = income\n    )\n  ) + \n  geom_jitter(\n    size = 1,\n    alpha = 0.40\n    ) +\n  geom_smooth(\n    formula = y ~ x,\n    method = \"lm\",\n    colour = \"black\",\n    lwd = 0.75,\n    se = FALSE\n    )\n\n\n\n\nSammenhengen synes å være den samme når vi studerer normale inntekter.\n\n\n\n\nEr dette hele historien eller kan det være andre bakenforliggende variabler som styrer dette. Det skal vi forsøke å få et innblikk i vha. EDA"
+  },
+  {
+    "objectID": "assignments/h23/ass2/ass2-h23.html#lage-histogram-for-to-subsets",
+    "href": "assignments/h23/ass2/ass2-h23.html#lage-histogram-for-to-subsets",
+    "title": "Er det høyde som bestemmer inntekt?",
+    "section": "1.6 Lage histogram for to subsets",
+    "text": "1.6 Lage histogram for to subsets\nEn teknikk som kan være aktuell i en EDA anlyse er å lage histogram av datene der dataene er delt opp i undrgrupper. Plasserer vi histogrammene i samme figur er de lettere å sammenligne.\nHer illustreres denne teknikken ved å studere fordelingen av høyde for hhv. kvinner og menn. Vi starter med å regne ut gjennomsnittlig høyde og standardavvik for hhv. menn og kvinner. Disse parametrene vil vi bruke for å tegne inn normalfordelingskurver i samme plot.\n\nListe 8: Beregner gjennomsnittlig høyde og standardavvik for hhv. kvinner og menn. Merk at her har vi benyttet data fra hele datasettet, dvs. 7006 observasjoner.\nmeanHeightMale &lt;- hoyde |&gt; \n  filter(sex == 'male') %&gt;% \n  select(height) |&gt; \n  # konverterer en tibble med 3402 rekker og 1 kolonne\n  # til en vektor med 3402 elementer siden mean() forlanger en\n  # vektor som input\n  pull() |&gt; \n  # finner gjennomsnittet av verdiene i vektoren\n  mean()\n\nmeanHeightFemale &lt;- hoyde |&gt; \n  filter(sex == 'female') %&gt;% \n  select(height) |&gt; \n  pull() |&gt; \n  mean()\n\n# standard deviation\nsdHeightMale &lt;- hoyde |&gt; \n  filter(sex == 'male') |&gt; \n  select(height) |&gt; \n  pull() |&gt; \n  sd()\n\nsdHeightFemale &lt;- hoyde |&gt;\n  filter(sex == 'female') |&gt;\n  select(height) |&gt;\n  pull() |&gt; \n  sd()\n\nSå genererer vi histogram og overliggende empirisk fordeling tegnet utfra gjennomsnittlig høyde og tilhørende standardavvik som vi har regnet ut ovenfor.\n\nListe 9: Histogrammer for høyde for hhv. menn og kvinner med inntegnet normalfordelingskurve (tetthetsfunksjon). Normalfordelingskurvene er tegnet ut fra gjennomsnitt og standardavvik beregnet ovenfor. Dataene er fra hele datasettet heights.\nhoyde %&gt;%\n  ggplot() +\n  ### male ###\n  geom_histogram(\n    data = filter(hoyde, sex == \"male\"),\n    mapping = aes(x = height, y = after_stat(density)),\n    binwidth = 1, alpha = 0.3, colour = 'grey40', fill = 'grey40'\n    ) + \n  geom_vline(\n    xintercept = meanHeightMale,\n    colour = 'grey40', lwd = 0.75, linetype = 3\n    ) +\n  stat_function(\n    fun = dnorm,\n    args = list(mean = meanHeightMale, sd = sdHeightMale),\n    colour = 'grey40'\n    ) +\n  # female\n  geom_histogram(\n    data = filter(hoyde, sex == \"female\"),\n    mapping = aes(x = height, y = after_stat(density)),\n    binwidth = 1, alpha = 0.7, colour = 'black', fill = 'grey40'\n    ) +\n  stat_function(\n    fun = dnorm, args = list(mean = meanHeightFemale, sd = sdHeightFemale),\n    colour = 'black'\n    ) +\n  geom_vline(\n    xintercept = meanHeightFemale, colour = 'grey40', lwd = 0.75, linetype = 3\n    ) \n\n\n\n\n\n\nFigur 1: Histogram av høyde fordelt på kjønn. I tillegg er normalfordeling for observert gjennomsnitt og standard-avvik, også fordelt på kjønn, tegnet inn."
+  },
+  {
+    "objectID": "assignments/h23/ass2/ass2-h23.html#oppgaven",
+    "href": "assignments/h23/ass2/ass2-h23.html#oppgaven",
+    "title": "Er det høyde som bestemmer inntekt?",
+    "section": "1.7 Oppgaven",
+    "text": "1.7 Oppgaven\nHver gruppe skal skrive et «mini-paper» over lesten:\n\nInnledning\nLitteraturgjennomgang utfra gruppens problemstilling.\nEDA av datasettet heights med utgangspunkt i problemstillingen angitt for hver gruppe nedenfor.\nKonklusjon\nReferanser\n\nog lage en tilhørende presentasjon (10-15 min.) av resultatene.\n\n1.7.1 Arbeidsform\nGruppene skal jobbe i et RStudio prosjekt koblet mot et Github repo.\n\n\n1.7.2 Levering\nNår ferdig inviter meg (agjest) inn i repo (oppe i Github). Jeg vil gjøre en pull, lage en ny gren ag. Foreslå eventuelle fiks/endringer og opprette et nytt dokument ag_comments.qmd med generelle kommentarer. Dette vil jeg gjøre tilgjengelig som en pull request på Github. Dere kan da se hva jeg forslår og eventuelt akseptere mine endringer.\n\n\n1.7.3 Tips presentasjon\nEnkleste måten å lage en presentasjon når paperet er ferdig er å lagre paperet med ett nytt navn, feks lagre paper.qmd som paper_pres.qmd. Så endre YAML header til en header som passer for presentasjon og så slette tekst/gjøre tekst om til punkter. Husk header nivå 2 gir ny slide. Plot, tabeller, kode etc. fra paper skal da være tilgjengelig i presentasjonen."
+  },
+  {
+    "objectID": "assignments/h23/ass2/ass2-h23.html#problemstilling-for-hver-gruppe",
+    "href": "assignments/h23/ass2/ass2-h23.html#problemstilling-for-hver-gruppe",
+    "title": "Er det høyde som bestemmer inntekt?",
+    "section": "1.8 Problemstilling for hver gruppe",
+    "text": "1.8 Problemstilling for hver gruppe\n\n1.8.1 Gruppe 1\nSammenhengen mellom:\n\nutdanning og inntekt\n\nbruk edu_fac variabelen\n\nhøyde og inntekt; facet mht. edu_fac\nutdanning og høyde\nFordeling menn/kvinner i hoydeZeroInc og hoydeHighInc\nSkiller obs. i hoydeZeroInc og hoydeHighInc seg fra hoydeNormInc mht. høyde og utdanning.\n\nNoen referanser som kan være et utgangspunkt for litteratur gjennomgang: Bureau (n.d.); Case and Paxson (2008); Case, Paxson, and Islam (2009); Deaton and Arora (2009); Hübler (2015); Mitchell (2020); Ochsenfeld (2016); published (2009)\n\n\n1.8.2 Gruppe 2\nSammenhengen mellom kjønn og inntekt:\n\nhøyde og inntekt\n\nscatterplot facet mht. kjønn.\nBruk teknikken med hele datasettet i bakgrunnen\n\nHøyde menn/kvinner i hoydeZeroInc og hoydeHighInc. Skiller disse seg fra høyde menn/kvinner i hoydeNormInc.\nHar vi inntektsforskjeller mellom menn og kvinner som er like høye?\n\nStuder kategoriene 65, 66, 67 og 68 tommer høy (hvor vi både har menn og kvinner). Lag et subset for hver av de fire høydene og sjekk for forskjeller i inntekt mellom kjønn. Husk konklusjon.\n\nEr det markante kjønnsforskjeller i hoydeZeroInc og hoydeHighInc?\n\nNoen referanser som kan være et utgangspunkt for litteratur gjennomgang: Aragão (n.d.); Bobbitt-Zeher (2007); Bureau (n.d.); Card, Cardoso, and Kline (2016); Hejase and Hejase (2020); Mitchell (2020); Nyirongo (n.d.); Ochsenfeld (2016); Petersen and Morgan (1995); Santos Silva and Klasen (2021); On-The-Economy-Blog (2020); Gould, Schieder, and Geier (2016).\nSammenhengen mellom ansiennitet (alder) og inntekt:\n\nEr det noen sammenheng?\nEr det forskjeller mht. kjønn?\nEr det markante kjønnsforskjeller mht. alder i hoydeZeroInc, hoydeHighInc og hoydeNormInc?\n\nNoen referanser som kan være et utgangspunkt for litteratur gjennomgang: Medoff and Abraham (1980), Dash, Bakshi, and Chugh (2017), Mincer (1974)\n\n\n1.8.3 Gruppe 3\nSammenhengen mellom inntekt og evnenivå (afqt). Tjener «smarte» personer mer?\n\nSammenhengen mellom afqt og inntekt i hoydeNormInc\naftq i hoydeZeroInc og hoydeHighInc\nSammenhengen mellom afqt og inntekt, facet mht. kjønn\nSammenhengen mellom edu_fac/education og afqt\nSammenhengen mellom høyde og afqt\n\nReferanser som kan være et utgangspunkt for litteratur gjennomgang: Zagorsky (2007); Bound, Griliches, and Hall (1986), Wolfinger (2019), Kanarek (2013), NLS (2023), Iii and Spriggs (1996)\nSammenhengen mellom ansiennitet (alder) og inntekt:\n\nEr det noen sammenheng?\nEr det forskjeller mht. kjønn?\nEr det markante kjønnsforskjeller mht. alder i hoydeZeroInc, hoydeHighInc og hoydeNormInc?\n\nNoen referanser som kan være et utgangspunkt for litteratur gjennomgang: Medoff and Abraham (1980), Dash, Bakshi, and Chugh (2017), Mincer (1974)\n\n\n1.8.4 Gruppe 4\nSammenhengen mellom gift/ugift og inntekt.\n\nEr det forskjell menn/kvinner?\nVarierer premie/straff for gift mann/kvinne med utdannelse?\nEr det noen sammenheng mellom gift/ugift og utdannelse?\nEr det noen sammenheng mellom bmi og gift/ugift?\n\nReferanser som kan være et utgangspunkt for litteratur gjennomgang: On-The-Economy-Blog (2020); Vandenbroucke (n.d.); Case and Paxson (2008)\n\n\n1.8.5 Gruppe 5\nSammenheng mellom mbi og inntekt.\n\nsammenheng bmi og inntekt\nsammenheng bmi og inntektsforskjell mellom menn/kvinner\nsammenheng bmi og inntektsforskjell mellom menn/kvinner gitt gift/ugift\nsammenheng bmi og inntektsforskjell mellom menn/kvinner gitt edu_fac\n\nReferanser som kan være et utgangspunkt for litteratur gjennomgang: Böckerman et al. (2019); Caliendo and Gehrsitz (2016); Cawley (2015); Edwards, Bjørngaard, and Minet Kinge (2021); Han, Norton, and Stearns (2009); Hildebrand and Kerm (2010); Kan and Lee (2012); Lee (2017); Sargent and Blanchflower (1994); “The Impact of Obesity on Wages | Journal of Human Resources” (n.d.); “The Wage Effects of Obesity: A Longitudinal Study - Baum - 2004 - Health Economics - Wiley Online Library” (n.d.)"
+  },
+  {
+    "objectID": "assignments/h23/ass1/mal_pres.html#slide-1",
+    "href": "assignments/h23/ass1/mal_pres.html#slide-1",
+    "title": "Mal for presentasjon",
+    "section": "Slide 1",
+    "text": "Slide 1\n\nFirst point\n\nFirst underpoint\nSecond underpoint\n\nSecond point\n\n\nFor å sikre at ting venter med å bli vist bruk Slide Pause fra Insert menyen. Vises som … i Quarto presentasjonen, men er usynlig i den endelige presentasjonen."
+  },
+  {
+    "objectID": "assignments/h23/ass1/mal_pres.html#slide-2",
+    "href": "assignments/h23/ass1/mal_pres.html#slide-2",
+    "title": "Mal for presentasjon",
+    "section": "Slide 2",
+    "text": "Slide 2\n\nHvis en har incremental: true i YAML kan en få en liste til å bli nonincremental ved å benytte en Div (Div… fra Insert menyen)\nLag Div-en. Klikk de tre prikkene til høyre. Skriv inn .nonincremental for class (.incremental hvis en ikke har incremental som default)\n\n\n\n\nførste\nandre\n\n\n\n\n\n\nFirst point\n\nFirst underpoint\nSecond underpoint\n\nSecond point"
+  },
+  {
+    "objectID": "assignments/h23/ass1/mal_pres.html#slide-3",
+    "href": "assignments/h23/ass1/mal_pres.html#slide-3",
+    "title": "Mal for presentasjon",
+    "section": "Slide 3",
+    "text": "Slide 3\n\n\nContent authored with markdown\nOutput from executable code\n\n\n\n\n\nfirst\nsecond"
+  },
+  {
+    "objectID": "assignments/h23/ass1/mal_pres.html#referanser",
+    "href": "assignments/h23/ass1/mal_pres.html#referanser",
+    "title": "Mal for presentasjon",
+    "section": "Referanser",
+    "text": "Referanser"
+  },
+  {
+    "objectID": "assignments/h23/ass1/ass1-h23.html",
+    "href": "assignments/h23/ass1/ass1-h23.html",
+    "title": "DS assignment 1 2023",
+    "section": "",
+    "text": "Gruppe 1\n\nEspen Knutsen (esknu), René Rødde Bracci (Rrbracci), Marius Martinussen (Marma-gest)\n\n\n\nHvorfor er ikke Checkpoint/renv nok til å sikre reproduserbarhet\n\nHvordan kan Docker sikre økt reproduserbarhet?\nEr Docker «over-kill»?\n\n\n\nGruppe 2\n\nAsbjørn Gaard (AGaard01), Anine Therese Karlsen (anikar001)\n\n\n\nHvorfor er reproduserbarhet viktig for forskning?\n\nHar forskningsresultater som ikke er reproduserbare noen verdi?\n\n\n\nGruppe 3\n\nHilde Jensen (hkoj), Håkon Alne Paulsen (hapaulsen)\n\n\n\nHva er forskjellen på reproduserbar og replikerbar forskning?\n\nHva er nåværende aksepterte definisjon?\n\n\n\nGruppe 4\n\nHanna Sundal Bjerkheim (??), Elvar Solheim (ElvarSolheim)\n\n\n\nHvordan kan MRAN (Microsoft R Aplication Network) og Checkpoint hjelpe oss med å oppnå reproduserbarhet?\n\n\nGruppe 5\n\nEmilie Sørhaug (ehs1901), Ingrid Strømme (inst10)\n\n\n\nHvordan kan renv hjelpe oss med å oppnå reproduserbarhet?\n\nHva er forskjellen på Checkpoint og renv?"
+  },
+  {
+    "objectID": "assignments/h23/ass1/ass1-h23.html#grupper",
+    "href": "assignments/h23/ass1/ass1-h23.html#grupper",
+    "title": "DS assignment 1 2023",
+    "section": "",
+    "text": "Gruppe 1\n\nEspen Knutsen (esknu), René Rødde Bracci (Rrbracci), Marius Martinussen (Marma-gest)\n\n\n\nHvorfor er ikke Checkpoint/renv nok til å sikre reproduserbarhet\n\nHvordan kan Docker sikre økt reproduserbarhet?\nEr Docker «over-kill»?\n\n\n\nGruppe 2\n\nAsbjørn Gaard (AGaard01), Anine Therese Karlsen (anikar001)\n\n\n\nHvorfor er reproduserbarhet viktig for forskning?\n\nHar forskningsresultater som ikke er reproduserbare noen verdi?\n\n\n\nGruppe 3\n\nHilde Jensen (hkoj), Håkon Alne Paulsen (hapaulsen)\n\n\n\nHva er forskjellen på reproduserbar og replikerbar forskning?\n\nHva er nåværende aksepterte definisjon?\n\n\n\nGruppe 4\n\nHanna Sundal Bjerkheim (??), Elvar Solheim (ElvarSolheim)\n\n\n\nHvordan kan MRAN (Microsoft R Aplication Network) og Checkpoint hjelpe oss med å oppnå reproduserbarhet?\n\n\nGruppe 5\n\nEmilie Sørhaug (ehs1901), Ingrid Strømme (inst10)\n\n\n\nHvordan kan renv hjelpe oss med å oppnå reproduserbarhet?\n\nHva er forskjellen på Checkpoint og renv?"
+  },
+  {
+    "objectID": "assignments/h23/ass1/ass1-h23.html#fremføring-av-presentasjoner",
+    "href": "assignments/h23/ass1/ass1-h23.html#fremføring-av-presentasjoner",
+    "title": "DS assignment 1 2023",
+    "section": "Fremføring av presentasjoner",
+    "text": "Fremføring av presentasjoner\nForeslått: Torsdag 14. sept. kl. 12:15-15:00\nRekkefølge: Gruppe 2, Gruppe 3, Gruppe 4, Gruppe 5, Gruppe 1"
+  },
+  {
     "objectID": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html",
     "href": "introduction/very-short-intro-r/Innledende-R-notater-forelesning.html",
     "title": "Innledende R notater forelesning",
@@ -1439,28 +1579,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx &lt;- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d1 &lt;- t2 - t1)\n\n\nTime difference of 1.284744 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx &lt;- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d1 &lt;- t2 - t1)\n\n\nTime difference of 1.142356 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nx &lt;- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d2 &lt;- t2 - t1)\n\n\nTime difference of 1.42941 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nx &lt;- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d2 &lt;- t2 - t1)\n\n\nTime difference of 1.230303 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n\nCode\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n\n[1] 11.26"
+    "text": "Speed Difference\n\n\nCode\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n\n[1] 7.7"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 &lt;- Sys.time()\nx &lt;- rnorm(1000000)\nt2 &lt;- Sys.time()\n(d3 &lt;- t2 - t1)\n\n\nTime difference of 0.02765083 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 5069.5"
+    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 &lt;- Sys.time()\nx &lt;- rnorm(1000000)\nt2 &lt;- Sys.time()\n(d3 &lt;- t2 - t1)\n\n\nTime difference of 0.02983809 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 4023.26"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#other-types-of-vectors-logical",
@@ -2097,28 +2237,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx &lt;- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d1 &lt;- t2 - t1)\n\nTime difference of 1.356548 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx &lt;- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d1 &lt;- t2 - t1)\n\nTime difference of 1.160174 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nx &lt;- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d2 &lt;- t2 - t1)\n\nTime difference of 1.303082 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nx &lt;- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d2 &lt;- t2 - t1)\n\nTime difference of 1.219377 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] -3.94"
+    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 5.1"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\nset.seed(666)\nt1 &lt;- Sys.time()\nx &lt;- rnorm(1000000)\nt2 &lt;- Sys.time()\n(d3 &lt;- t2 - t1)\n\nTime difference of 0.02978992 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 4274.24"
+    "text": "The R way\n\nset.seed(666)\nt1 &lt;- Sys.time()\nx &lt;- rnorm(1000000)\nt2 &lt;- Sys.time()\n(d3 &lt;- t2 - t1)\n\nTime difference of 0.02789497 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 4271.31"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#other-types-of-vectors-logical",
@@ -3427,7 +3567,7 @@
     "href": "introduction/Zotero_demo/Zotero_demo.html#get-citation-information-with-a-pipe",
     "title": "Zotero demo",
     "section": "Get citation information with a pipe",
-    "text": "Get citation information with a pipe\nThe following code that uses a pipe is probably far easier to follow.\n\n\nCode\n# Easier to understand with a pipe\nc(\"knitr\", \"rmarkdown\", \"tidyverse\") %&gt;% \n  # use the R citation function on the package list\n  map(citation) %&gt;% \n  # convert the reference info to bibtex format by using the toBibtex\n  # function on each member of the reference list\n  map(toBibtex) %&gt;%\n  # print the list\n  map(print) %&gt;% \n  # only want the list elements combined, not each list item\n  # in addition, hence max.level=0 \n  str(max.level=0)\n\n\n@Manual{,\n  title = {knitr: A General-Purpose Package for Dynamic Report Generation in R},\n  author = {Yihui Xie},\n  year = {2023},\n  note = {R package version 1.42},\n  url = {https://yihui.org/knitr/},\n}\n\n@Book{,\n  title = {Dynamic Documents with {R} and knitr},\n  author = {Yihui Xie},\n  publisher = {Chapman and Hall/CRC},\n  address = {Boca Raton, Florida},\n  year = {2015},\n  edition = {2nd},\n  note = {ISBN 978-1498716963},\n  url = {https://yihui.org/knitr/},\n}\n\n@InCollection{,\n  booktitle = {Implementing Reproducible Computational Research},\n  editor = {Victoria Stodden and Friedrich Leisch and Roger D. Peng},\n  title = {knitr: A Comprehensive Tool for Reproducible Research in {R}},\n  author = {Yihui Xie},\n  publisher = {Chapman and Hall/CRC},\n  year = {2014},\n  note = {ISBN 978-1466561595},\n}\n@Manual{,\n  title = {rmarkdown: Dynamic Documents for R},\n  author = {JJ Allaire and Yihui Xie and Christophe Dervieux and Jonathan McPherson and Javier Luraschi and Kevin Ushey and Aron Atkins and Hadley Wickham and Joe Cheng and Winston Chang and Richard Iannone},\n  year = {2023},\n  note = {R package version 2.24},\n  url = {https://github.com/rstudio/rmarkdown},\n}\n\n@Book{,\n  title = {R Markdown: The Definitive Guide},\n  author = {Yihui Xie and J.J. Allaire and Garrett Grolemund},\n  publisher = {Chapman and Hall/CRC},\n  address = {Boca Raton, Florida},\n  year = {2018},\n  isbn = {9781138359338},\n  url = {https://bookdown.org/yihui/rmarkdown},\n}\n\n@Book{,\n  title = {R Markdown Cookbook},\n  author = {Yihui Xie and Christophe Dervieux and Emily Riederer},\n  publisher = {Chapman and Hall/CRC},\n  address = {Boca Raton, Florida},\n  year = {2020},\n  isbn = {9780367563837},\n  url = {https://bookdown.org/yihui/rmarkdown-cookbook},\n}\n@Article{,\n  title = {Welcome to the {tidyverse}},\n  author = {Hadley Wickham and Mara Averick and Jennifer Bryan and Winston Chang and Lucy D'Agostino McGowan and Romain François and Garrett Grolemund and Alex Hayes and Lionel Henry and Jim Hester and Max Kuhn and Thomas Lin Pedersen and Evan Miller and Stephan Milton Bache and Kirill Müller and Jeroen Ooms and David Robinson and Dana Paige Seidel and Vitalie Spinu and Kohske Takahashi and Davis Vaughan and Claus Wilke and Kara Woo and Hiroaki Yutani},\n  year = {2019},\n  journal = {Journal of Open Source Software},\n  volume = {4},\n  number = {43},\n  pages = {1686},\n  doi = {10.21105/joss.01686},\n}\nList of 3"
+    "text": "Get citation information with a pipe\nThe following code that uses a pipe is probably far easier to follow.\n\n\nCode\n# Easier to understand with a pipe\nc(\"knitr\", \"rmarkdown\", \"tidyverse\") %&gt;% \n  # use the R citation function on the package list\n  map(citation) %&gt;% \n  # convert the reference info to bibtex format by using the toBibtex\n  # function on each member of the reference list\n  map(toBibtex) %&gt;%\n  # print the list\n  map(print) %&gt;% \n  # only want the list elements combined, not each list item\n  # in addition, hence max.level=0 \n  str(max.level=0)\n\n\n@Manual{,\n  title = {knitr: A General-Purpose Package for Dynamic Report Generation in R},\n  author = {Yihui Xie},\n  year = {2023},\n  note = {R package version 1.44},\n  url = {https://yihui.org/knitr/},\n}\n\n@Book{,\n  title = {Dynamic Documents with {R} and knitr},\n  author = {Yihui Xie},\n  publisher = {Chapman and Hall/CRC},\n  address = {Boca Raton, Florida},\n  year = {2015},\n  edition = {2nd},\n  note = {ISBN 978-1498716963},\n  url = {https://yihui.org/knitr/},\n}\n\n@InCollection{,\n  booktitle = {Implementing Reproducible Computational Research},\n  editor = {Victoria Stodden and Friedrich Leisch and Roger D. Peng},\n  title = {knitr: A Comprehensive Tool for Reproducible Research in {R}},\n  author = {Yihui Xie},\n  publisher = {Chapman and Hall/CRC},\n  year = {2014},\n  note = {ISBN 978-1466561595},\n}\n@Manual{,\n  title = {rmarkdown: Dynamic Documents for R},\n  author = {JJ Allaire and Yihui Xie and Christophe Dervieux and Jonathan McPherson and Javier Luraschi and Kevin Ushey and Aron Atkins and Hadley Wickham and Joe Cheng and Winston Chang and Richard Iannone},\n  year = {2023},\n  note = {R package version 2.25},\n  url = {https://github.com/rstudio/rmarkdown},\n}\n\n@Book{,\n  title = {R Markdown: The Definitive Guide},\n  author = {Yihui Xie and J.J. Allaire and Garrett Grolemund},\n  publisher = {Chapman and Hall/CRC},\n  address = {Boca Raton, Florida},\n  year = {2018},\n  isbn = {9781138359338},\n  url = {https://bookdown.org/yihui/rmarkdown},\n}\n\n@Book{,\n  title = {R Markdown Cookbook},\n  author = {Yihui Xie and Christophe Dervieux and Emily Riederer},\n  publisher = {Chapman and Hall/CRC},\n  address = {Boca Raton, Florida},\n  year = {2020},\n  isbn = {9780367563837},\n  url = {https://bookdown.org/yihui/rmarkdown-cookbook},\n}\n@Article{,\n  title = {Welcome to the {tidyverse}},\n  author = {Hadley Wickham and Mara Averick and Jennifer Bryan and Winston Chang and Lucy D'Agostino McGowan and Romain François and Garrett Grolemund and Alex Hayes and Lionel Henry and Jim Hester and Max Kuhn and Thomas Lin Pedersen and Evan Miller and Stephan Milton Bache and Kirill Müller and Jeroen Ooms and David Robinson and Dana Paige Seidel and Vitalie Spinu and Kohske Takahashi and Davis Vaughan and Claus Wilke and Kara Woo and Hiroaki Yutani},\n  year = {2019},\n  journal = {Journal of Open Source Software},\n  volume = {4},\n  number = {43},\n  pages = {1686},\n  doi = {10.21105/joss.01686},\n}\nList of 3"
   },
   {
     "objectID": "introduction/Zotero_demo/Zotero_demo.html#copy-package-references",
@@ -3491,6 +3631,27 @@
     "title": "Zotero demo",
     "section": "Exercise",
     "text": "Exercise\nChange the citation style to Apa 7. ed. no ampersand.\nChange the citation style to Chicago Manual of Style 17th edition (author-date).\n\n\nMSB105"
+  },
+  {
+    "objectID": "introduction/Zotero_demo/first_pres.html#quarto",
+    "href": "introduction/Zotero_demo/first_pres.html#quarto",
+    "title": "first_pres",
+    "section": "Quarto",
+    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
+  },
+  {
+    "objectID": "introduction/Zotero_demo/first_pres.html#bullets",
+    "href": "introduction/Zotero_demo/first_pres.html#bullets",
+    "title": "first_pres",
+    "section": "Bullets",
+    "text": "Bullets\nWhen you click the Render button a document will be generated that includes:\n\nContent authored with markdown\nOutput from executable code"
+  },
+  {
+    "objectID": "introduction/Zotero_demo/first_pres.html#code",
+    "href": "introduction/Zotero_demo/first_pres.html#code",
+    "title": "first_pres",
+    "section": "Code",
+    "text": "Code\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n\n[1] 2"
   },
   {
     "objectID": "introduction/git-github/git-github.html#register-on-github",
@@ -4344,7 +4505,7 @@
     "href": "explore-data/import-export-data/import-export-data.html#references",
     "title": "Import/Export Data",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nAllaire, JJ, Yihui Xie, Christophe Dervieux, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, et al. 2023. Rmarkdown: Dynamic Documents for r. https://CRAN.R-project.org/package=rmarkdown.\n\n\nLangsrud, Øyvind, and Jan Bruusgaard. 2023. PxWebApiData: PX-Web Data by API. https://github.com/statisticsnorway/PxWebApiData.\n\n\nR Core Team. 2023. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. https://www.R-project.org/.\n\n\nWickham, Hadley. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686.\n\n\nWickham, Hadley, and Jennifer Bryan. 2023. Readxl: Read Excel Files. https://CRAN.R-project.org/package=readxl.\n\n\nWickham, Hadley, Jim Hester, and Jennifer Bryan. 2023. Readr: Read Rectangular Text Data. https://CRAN.R-project.org/package=readr.\n\n\nXie, Yihui, J. J. Allaire, and Garrett Grolemund. 2018. R Markdown: The Definitive Guide. Boca Raton, Florida: Chapman; Hall/CRC. https://bookdown.org/yihui/rmarkdown.\n\n\nXie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. R Markdown Cookbook. Boca Raton, Florida: Chapman; Hall/CRC. https://bookdown.org/yihui/rmarkdown-cookbook."
+    "text": "References\n\n\nMSB105\n\n\n\nAllaire, JJ, Yihui Xie, Christophe Dervieux, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, et al. 2023. Rmarkdown: Dynamic Documents for r. https://github.com/rstudio/rmarkdown.\n\n\nLangsrud, Øyvind, and Jan Bruusgaard. 2023. PxWebApiData: PX-Web Data by API. https://github.com/statisticsnorway/PxWebApiData.\n\n\nR Core Team. 2023. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. https://www.R-project.org/.\n\n\nWickham, Hadley. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686.\n\n\nWickham, Hadley, and Jennifer Bryan. 2023. Readxl: Read Excel Files. https://readxl.tidyverse.org.\n\n\nWickham, Hadley, Jim Hester, and Jennifer Bryan. 2023. Readr: Read Rectangular Text Data. https://readr.tidyverse.org.\n\n\nXie, Yihui, J. J. Allaire, and Garrett Grolemund. 2018. R Markdown: The Definitive Guide. Boca Raton, Florida: Chapman; Hall/CRC. https://bookdown.org/yihui/rmarkdown.\n\n\nXie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. R Markdown Cookbook. Boca Raton, Florida: Chapman; Hall/CRC. https://bookdown.org/yihui/rmarkdown-cookbook."
   },
   {
     "objectID": "explore-data/trans-data/index.html#introduction-to-transforming-data-chp.-5",
@@ -5520,7 +5681,7 @@
     "href": "explore-data/eda/eda.html#references",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nAuguie, Baptiste. 2017. gridExtra: Miscellaneous Functions for \"Grid\" Graphics. https://CRAN.R-project.org/package=gridExtra.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nHuntington-Klein, Nick. 2023. Vtable: Variable Table for Variable Documentation. https://nickch-k.github.io/vtable/.\n\n\nMüller, Kirill, and Hadley Wickham. 2023. Tibble: Simple Data Frames. https://CRAN.R-project.org/package=tibble.\n\n\nR Core Team. 2023. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. https://www.R-project.org/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2023. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nWickham, Hadley. 2016. Ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. https://ggplot2.tidyverse.org.\n\n\n———. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2022. Stringr: Simple, Consistent Wrappers for Common String Operations. https://CRAN.R-project.org/package=stringr.\n\n\n———. 2023a. Forcats: Tools for Working with Categorical Variables (Factors). https://CRAN.R-project.org/package=forcats.\n\n\n———. 2023b. Modelr: Modelling Functions That Work with the Pipe. https://CRAN.R-project.org/package=modelr.\n\n\n———. 2023c. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686.\n\n\nWickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, Hiroaki Yutani, and Dewey Dunnington. 2023. Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics. https://CRAN.R-project.org/package=ggplot2.\n\n\nWickham, Hadley, Romain François, Lionel Henry, Kirill Müller, and Davis Vaughan. 2023. Dplyr: A Grammar of Data Manipulation. https://CRAN.R-project.org/package=dplyr.\n\n\nWickham, Hadley, and Lionel Henry. 2023. Purrr: Functional Programming Tools. https://CRAN.R-project.org/package=purrr.\n\n\nWickham, Hadley, Jim Hester, and Jennifer Bryan. 2023. Readr: Read Rectangular Text Data. https://CRAN.R-project.org/package=readr.\n\n\nWickham, Hadley, Davis Vaughan, and Maximilian Girlich. 2023. Tidyr: Tidy Messy Data. https://CRAN.R-project.org/package=tidyr.\n\n\nYu, Guangchuang. 2023. Ggplotify: Convert Plot to Grob or Ggplot Object. https://github.com/GuangchuangYu/ggplotify.\n\n\nZhu, Hao. 2021. kableExtra: Construct Complex Table with Kable and Pipe Syntax. https://CRAN.R-project.org/package=kableExtra."
+    "text": "References\n\n\nMSB105\n\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nHuntington-Klein, Nick. 2023. Vtable: Variable Table for Variable Documentation. https://nickch-k.github.io/vtable/.\n\n\nMüller, Kirill, and Hadley Wickham. 2023. Tibble: Simple Data Frames. https://tibble.tidyverse.org/.\n\n\nR Core Team. 2023. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. https://www.R-project.org/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2023. Lubridate: Make Dealing with Dates a Little Easier. https://lubridate.tidyverse.org.\n\n\nWickham, Hadley. 2016. Ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. https://ggplot2.tidyverse.org.\n\n\n———. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2022. Stringr: Simple, Consistent Wrappers for Common String Operations. https://stringr.tidyverse.org.\n\n\n———. 2023a. Forcats: Tools for Working with Categorical Variables (Factors). https://forcats.tidyverse.org/.\n\n\n———. 2023b. Modelr: Modelling Functions That Work with the Pipe. https://modelr.tidyverse.org.\n\n\n———. 2023c. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686.\n\n\nWickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, Hiroaki Yutani, and Dewey Dunnington. 2023. Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics. https://ggplot2.tidyverse.org.\n\n\nWickham, Hadley, Romain François, Lionel Henry, Kirill Müller, and Davis Vaughan. 2023. Dplyr: A Grammar of Data Manipulation. https://dplyr.tidyverse.org.\n\n\nWickham, Hadley, and Lionel Henry. 2023. Purrr: Functional Programming Tools. https://purrr.tidyverse.org/.\n\n\nWickham, Hadley, Jim Hester, and Jennifer Bryan. 2023. Readr: Read Rectangular Text Data. https://readr.tidyverse.org.\n\n\nWickham, Hadley, Davis Vaughan, and Maximilian Girlich. 2023. Tidyr: Tidy Messy Data. https://tidyr.tidyverse.org.\n\n\nYu, Guangchuang. 2023. Ggplotify: Convert Plot to Grob or Ggplot Object. https://github.com/GuangchuangYu/ggplotify.\n\n\nZhu, Hao. 2021. kableExtra: Construct Complex Table with Kable and Pipe Syntax. http://haozhu233.github.io/kableExtra/."
   },
   {
     "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html",
@@ -6633,7 +6794,7 @@
     "href": "model/model-basics/model-basics.html#references",
     "title": "Model basics",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nWickham, Hadley. 2023a. Modelr: Modelling Functions That Work with the Pipe. https://CRAN.R-project.org/package=modelr.\n\n\n———. 2023b. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nWickham, Hadley. 2023a. Modelr: Modelling Functions That Work with the Pipe. https://modelr.tidyverse.org.\n\n\n———. 2023b. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "model/many-models/many-models.html#introduction",
@@ -7074,7 +7235,7 @@
     "href": "model/many-models/many-models.html#references",
     "title": "Many models",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nCarr, Dan, Nicholas Lewin-Koh, and Martin Maechler. 2023. Hexbin: Hexagonal Binning Routines. https://github.com/edzer/hexbin.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nPedersen, Thomas Lin. 2022. Patchwork: The Composer of Plots. https://CRAN.R-project.org/package=patchwork.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2023. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nTrapletti, Adrian, and Kurt Hornik. 2023. Tseries: Time Series Analysis and Computational Finance. https://CRAN.R-project.org/package=tseries.\n\n\nWickham, Hadley. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2023a. Modelr: Modelling Functions That Work with the Pipe. https://CRAN.R-project.org/package=modelr.\n\n\n———. 2023b. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nCarr, Dan, Nicholas Lewin-Koh, and Martin Maechler. 2023. Hexbin: Hexagonal Binning Routines. https://github.com/edzer/hexbin.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nPedersen, Thomas Lin. 2022. Patchwork: The Composer of Plots. https://patchwork.data-imaginist.com.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2023. Lubridate: Make Dealing with Dates a Little Easier. https://lubridate.tidyverse.org.\n\n\nWickham, Hadley. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2023a. Modelr: Modelling Functions That Work with the Pipe. https://modelr.tidyverse.org.\n\n\n———. 2023b. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "model/model-building/model-building.html#introduction",
@@ -7529,7 +7690,7 @@
     "href": "model/model-building/model-building.html#references",
     "title": "Model building",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nCarr, Dan, Nicholas Lewin-Koh, and Martin Maechler. 2023. Hexbin: Hexagonal Binning Routines. https://github.com/edzer/hexbin.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nPedersen, Thomas Lin. 2022. Patchwork: The Composer of Plots. https://CRAN.R-project.org/package=patchwork.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2023. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nTrapletti, Adrian, and Kurt Hornik. 2023. Tseries: Time Series Analysis and Computational Finance. https://CRAN.R-project.org/package=tseries.\n\n\nWickham, Hadley. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2023a. Modelr: Modelling Functions That Work with the Pipe. https://CRAN.R-project.org/package=modelr.\n\n\n———. 2023b. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nCarr, Dan, Nicholas Lewin-Koh, and Martin Maechler. 2023. Hexbin: Hexagonal Binning Routines. https://github.com/edzer/hexbin.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nPedersen, Thomas Lin. 2022. Patchwork: The Composer of Plots. https://patchwork.data-imaginist.com.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2023. Lubridate: Make Dealing with Dates a Little Easier. https://lubridate.tidyverse.org.\n\n\nWickham, Hadley. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2023a. Modelr: Modelling Functions That Work with the Pipe. https://modelr.tidyverse.org.\n\n\n———. 2023b. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "program/pipes-cont/pipes-cont.html#load-tidyverse-and-magrittr",
@@ -7613,7 +7774,7 @@
     "href": "program/pipes-cont/pipes-cont.html#references",
     "title": "Pipes",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nBache, Stefan Milton, and Hadley Wickham. 2022. Magrittr: A Forward-Pipe Operator for r. https://CRAN.R-project.org/package=magrittr.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2023. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nWickham, Hadley. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nBache, Stefan Milton, and Hadley Wickham. 2022. Magrittr: A Forward-Pipe Operator for r. https://magrittr.tidyverse.org.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2023. Lubridate: Make Dealing with Dates a Little Easier. https://lubridate.tidyverse.org.\n\n\nWickham, Hadley. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "program/vectors/vectors.html#load-tidyverse",
@@ -7795,7 +7956,7 @@
     "href": "program/vectors/vectors.html#references",
     "title": "Vectors",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nBache, Stefan Milton, and Hadley Wickham. 2022. Magrittr: A Forward-Pipe Operator for r. https://CRAN.R-project.org/package=magrittr.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2023. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nWickham, Hadley. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nBache, Stefan Milton, and Hadley Wickham. 2022. Magrittr: A Forward-Pipe Operator for r. https://magrittr.tidyverse.org.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2023. Lubridate: Make Dealing with Dates a Little Easier. https://lubridate.tidyverse.org.\n\n\nWickham, Hadley. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "program/program.html",
@@ -8033,7 +8194,7 @@
     "href": "program/functions/functions.html#references",
     "title": "Functions",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nWickham, Hadley. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nWickham, Hadley. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "program/iteration/iteration.html#define-my_df",
@@ -8096,7 +8257,7 @@
     "href": "program/iteration/iteration.html#for-loop-tibble-2",
     "title": "Iteration",
     "section": "For loop, tibble",
-    "text": "For loop, tibble\n\ntesting\n\n\n\n\nCode\nmyT(my_df)\n\n\n# A tibble: 3 × 10\n    V_1   V_2   V_3   V_4   V_5   V_6   V_7    V_8    V_9   V_10\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 99.2  119.  79.5  103.  84.7  97.3  112.  106.   104.    94.4 \n2 43.0   37.1 49.1   56.8 81.7  43.2   58.0  48.7   50.5  115.  \n3  9.22  15.3  8.23 114.   3.45  1.80  51.1   1.79   6.56   4.66\n\n\nCode\ntest &lt;- matrix(sample(1:10, 10000, replace = TRUE), \n               nrow = 100, ncol = 100)\n# checking speed\nmicrobenchmark(myT(test), t(test))\n\n\nUnit: microseconds\n      expr     min       lq      mean  median       uq     max neval\n myT(test) 601.019 608.6655 624.17416 619.920 636.2585 762.846   100\n   t(test)  16.072  16.6870  19.09616  17.056  18.0605  56.826   100\n\n\n\nOur routine is about 40 times slower than Rs t(). Why so much slower? See Efficient R programming."
+    "text": "For loop, tibble\n\ntesting\n\n\n\n\nCode\nmyT(my_df)\n\n\n# A tibble: 3 × 10\n    V_1   V_2   V_3   V_4   V_5   V_6   V_7    V_8    V_9   V_10\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 99.2  119.  79.5  103.  84.7  97.3  112.  106.   104.    94.4 \n2 43.0   37.1 49.1   56.8 81.7  43.2   58.0  48.7   50.5  115.  \n3  9.22  15.3  8.23 114.   3.45  1.80  51.1   1.79   6.56   4.66\n\n\nCode\ntest &lt;- matrix(sample(1:10, 10000, replace = TRUE), \n               nrow = 100, ncol = 100)\n# checking speed\nmicrobenchmark(myT(test), t(test))\n\n\nUnit: microseconds\n      expr     min       lq      mean  median       uq     max neval\n myT(test) 601.921 609.8135 627.35822 617.624 639.1285 729.349   100\n   t(test)  13.776  16.3180  16.99778  16.564  17.1380  33.210   100\n\n\n\nOur routine is about 40 times slower than Rs t(). Why so much slower? See Efficient R programming."
   },
   {
     "objectID": "program/iteration/iteration.html#myt-with-other-input",
@@ -8313,34 +8474,6 @@
     "href": "program/iteration/iteration.html#references",
     "title": "Iteration",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nBache, Stefan Milton, and Hadley Wickham. 2022. Magrittr: A Forward-Pipe Operator for r. https://CRAN.R-project.org/package=magrittr.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nMersmann, Olaf. 2023. Microbenchmark: Accurate Timing Functions. https://github.com/joshuaulrich/microbenchmark/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2023. Lubridate: Make Dealing with Dates a Little Easier. https://CRAN.R-project.org/package=lubridate.\n\n\nWickham, Hadley. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
-  },
-  {
-    "objectID": "introduction/Zotero_demo/first_pres.html",
-    "href": "introduction/Zotero_demo/first_pres.html",
-    "title": "MSB105",
-    "section": "",
-    "text": "title: “first_pres” author: “Arnstein Gjestland” bibliography: my_bib.bib format: revealjs: theme: simple reveal_options: code-fold: true incremental: true smaller: true scrollable: true"
-  },
-  {
-    "objectID": "introduction/Zotero_demo/first_pres.html#quarto",
-    "href": "introduction/Zotero_demo/first_pres.html#quarto",
-    "title": "MSB105",
-    "section": "Quarto",
-    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
-  },
-  {
-    "objectID": "introduction/Zotero_demo/first_pres.html#bullets",
-    "href": "introduction/Zotero_demo/first_pres.html#bullets",
-    "title": "MSB105",
-    "section": "Bullets",
-    "text": "Bullets\nWhen you click the Render button a document will be generated that includes:\n\nContent authored with markdown\nOutput from executable code"
-  },
-  {
-    "objectID": "introduction/Zotero_demo/first_pres.html#code",
-    "href": "introduction/Zotero_demo/first_pres.html#code",
-    "title": "MSB105",
-    "section": "Code",
-    "text": "Code\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2"
+    "text": "References\n\n\nMSB105\n\n\n\nBache, Stefan Milton, and Hadley Wickham. 2022. Magrittr: A Forward-Pipe Operator for r. https://magrittr.tidyverse.org.\n\n\nGrolemund, Garrett, and Hadley Wickham. 2011. “Dates and Times Made Easy with lubridate.” Journal of Statistical Software 40 (3): 1–25. https://www.jstatsoft.org/v40/i03/.\n\n\nMersmann, Olaf. 2023. Microbenchmark: Accurate Timing Functions. https://github.com/joshuaulrich/microbenchmark/.\n\n\nSpinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2023. Lubridate: Make Dealing with Dates a Little Easier. https://lubridate.tidyverse.org.\n\n\nWickham, Hadley. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   }
 ]
