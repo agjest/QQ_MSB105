@@ -567,9 +567,4 @@ Sammenheng mellom mbi og inntekt.
 
 Referanser som kan være et utgangspunkt for litteraturgjennomgang: @bockerman2019; @caliendo2016; @cawley2015; @edwards2021; @han2009; @hildebrand2010; @kan2012; @lee2017; @sargent1994; @zotero-1832; @zotero-1833
 
-```{r}
-#| echo: false
-#siste
-```
-
-# Referanser
+## Referanser
