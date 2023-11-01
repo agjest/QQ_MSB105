@@ -8,6 +8,7 @@ format:
         reveal_options:
         incremental: true
         smaller: true
+        code-copy: true
         scrollable: true
         slide-number: c/t
 editor: visual
@@ -22,16 +23,23 @@ bibliography: ag_strings.bib
 nocite: '@*'
 ---
 
-```{r setup}
+## Setup
+
+```{r}
+#| echo: fenced
+#| label: setup
+#| message: false
 library(tidyverse)
 library(readtext)
 ```
 
+::: nonincremental
+-   Create a bib file for the R packages used in this document Note!
+-   Needs to do a touch(ag_ds.bib) in terminal before first run
+-   Else stops when bibliography: "ag_ds.bib" not found in YAML
+:::
+
 ```{r}
-# create a bib file for the R packages 
-# used in this document
-# Note! Needs to do a touch(ag_ds.bib) in terminal before first run
-# else stops when bibliography: "ag_ds.bib" not found in YAML
 knitr::write_bib(c(
   "tidyverse",
   "readtext"
@@ -44,6 +52,16 @@ file = "ag_strings.bib"
 
 ::: columns
 ::: {.column width="50%"}
+::: nonincremental
+-   package *stringr* part of core tidyverse
+    -   string functions
+    -   How to find them?
+        -   str\_
+-   "string" or 'string', but "This is a 'string'"
+-   Escape is your best friend!
+-   `\n` is newline and `\t` is tab
+:::
+
 ```{r}
 string1 <- "test1"
 string2 <- 'test2'
@@ -52,11 +70,6 @@ string4 <- "'test4'"
 string5 <- "first\nsecond"
 string6 <- "first\tsecond"
 ```
-
--   package *stringr* part of core tidyverse
--   "string" or 'string', but "This is a 'string'"
--   Escape is your best friend!
--   `\n` is newline and `\t` is tab
 :::
 
 ::: {.column width="50%"}
@@ -90,20 +103,23 @@ writeLines(string6)
 
 ::: columns
 ::: {.column width="50%"}
--   How to find them?
-    -   tidyverse `str_`
+::: nonincremental
 -   Some important ones
     -   str_length()
+
     -   str_pad()
+
     -   str_replace()
+
     -   str_extract()
+
     -   str_extract_all()
+
     -   str_match()
-    -   str_match_all()
-    -   str_c(); combine strings
+
+    -   str_c(); combine strings into one string
 :::
 
-::: {.column width="50%"}
 ```{r}
 str_length(string1)
 ```
@@ -112,7 +128,9 @@ str_length(string1)
 # Note that \t counts as a character.
 str_length(string6)
 ```
+:::
 
+::: {.column width="50%"}
 ```{r}
 x <- c(321, 21, 1978)
 str_pad(x, width = 7, side = "left", pad = "0")
@@ -135,34 +153,76 @@ str_extract(y, pattern = "9")
 ```
 
 ```{r}
-str_extract_all(y, pattern = "9")
+# * betyr null eller flere, alpha er STORE og små bokstaver
+str_extract(z, pattern = "[:alpha:]*(\\d*)", group = 1)
 ```
 
 ```{r}
-str_extract(z, pattern = "[:print:]⁠*\\d*")
+# + betyr 1 eller flere, alpha er STORE og små bokstaver
+str_extract(z, pattern = "[:alpha:]+(\\d*)", group = 1)
 ```
 
 ```{r}
-# simplify = FALSE, default, gives list, TRUE gives character matrix
-str_extract_all(z, pattern = "\\d*", simplify = TRUE)
+# tidyverse version of paste0()
+z <- str_c(z, collapse = ""); z
 ```
 :::
 :::
 
 ## String functions cont.
 
--   Some important ones cont.
-    -   str_sub()
-        -   ex. str_sub("string", 2, 4)
+::: columns
+::: {.column width="50%"}
+::: nonincremental
+-   str_match_all()
 
-            -   returns "tri",
+-   str_sub()
 
-        -   str_sub("string", -4, -2)
+-   str_to_lower()
 
-            -   returns "rin"
-    -   str_to_lower()
-    -   str_to_upper()
-    -   str_to_title()
+-   str_to_upper()
+
+-   str_to_title()
+:::
+
+Character matrix; The first column is the complete match, followed by
+one column for each capture group. Column 2 is capture group 1, Column 3
+is capture group 2.
+
+```{r}
+str_match(z, pattern = "(\\d+)[a,b]+\\d+([:alpha:]+)(.*)")
+```
+
+New second group.
+
+```{r}
+str_match(z, pattern = "(\\d+)([a,b]+\\d+)([:alpha:]+)(.*)")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+str_sub("string", start = 2L, end = 4L)
+```
+
+```{r}
+# from right
+str_sub("string", start = -4L, end = -2L)
+```
+
+```{r}
+str_to_lower("BOKSTAVER")
+```
+
+```{r}
+str_to_upper("bokstaver")
+```
+
+```{r}
+str_to_title("this is a very important title")
+```
+:::
+:::
 
 ## Regular expressions
 
