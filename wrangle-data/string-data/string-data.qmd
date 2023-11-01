@@ -6,7 +6,6 @@ format:
         theme: simple
         footer: '[MSB105](/index.html)'
         reveal_options:
-        code-fold: show
         incremental: true
         smaller: true
         scrollable: true
@@ -43,6 +42,8 @@ file = "ag_strings.bib"
 
 ## Strings; chapter 14
 
+::: columns
+::: {.column width="50%"}
 -   package *stringr* part of core tidyverse
 -   "string" or 'string', but "This is a 'string'"
 -   Escape is your best friend!
@@ -56,17 +57,19 @@ string2 <- 'test2'
 string3 <- "\'test3\'"
 string4 <- "'test4'"
 string5 <- "first\nsecond"
+```
+:::
+
+::: {.column width="50%"}
+```{r}
 writeLines(string1)
 writeLines(string2)
-```
-
-## Strings
-
-```{r}
 writeLines(string3)
 writeLines(string4)
 writeLines(string5)
 ```
+:::
+:::
 
 ## String functions
 

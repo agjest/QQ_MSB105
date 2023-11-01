@@ -711,14 +711,14 @@
     "href": "wrangle-data/string-data/string-data.html#strings-chapter-14",
     "title": "Strings and regular expressions",
     "section": "Strings; chapter 14",
-    "text": "Strings; chapter 14\n\npackage stringr part of core tidyverse\n“string” or ‘string’, but “This is a ‘string’”\nEscape is your best friend!\n\\n is newline and \\t is tab\n\n\n\n\nCode\nstring1 &lt;- \"test1\"\nstring2 &lt;- 'test2'\nstring3 &lt;- \"\\'test3\\'\"\nstring4 &lt;- \"'test4'\"\nstring5 &lt;- \"first\\nsecond\"\nwriteLines(string1)\n\n\ntest1\n\n\nCode\nwriteLines(string2)\n\n\ntest2"
+    "text": "Strings; chapter 14\n\n\n\npackage stringr part of core tidyverse\n“string” or ‘string’, but “This is a ‘string’”\nEscape is your best friend!\n\\n is newline and \\t is tab\n\n. . .\n\nstring1 &lt;- \"test1\"\nstring2 &lt;- 'test2'\nstring3 &lt;- \"\\'test3\\'\"\nstring4 &lt;- \"'test4'\"\nstring5 &lt;- \"first\\nsecond\"\n\n\n\nwriteLines(string1)\n\ntest1\n\nwriteLines(string2)\n\ntest2\n\nwriteLines(string3)\n\n'test3'\n\nwriteLines(string4)\n\n'test4'\n\nwriteLines(string5)\n\nfirst\nsecond"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#strings",
     "href": "wrangle-data/string-data/string-data.html#strings",
     "title": "Strings and regular expressions",
     "section": "Strings",
-    "text": "Strings\n\n\nCode\nwriteLines(string3)\n\n\n'test3'\n\n\nCode\nwriteLines(string4)\n\n\n'test4'\n\n\nCode\nwriteLines(string5)\n\n\nfirst\nsecond"
+    "text": "Strings\n\nwriteLines(string3)\n\n'test3'\n\nwriteLines(string4)\n\n'test4'\n\nwriteLines(string5)\n\nfirst\nsecond"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#string-functions",
@@ -739,84 +739,84 @@
     "href": "wrangle-data/string-data/string-data.html#regular-expressions",
     "title": "Strings and regular expressions",
     "section": "Regular expressions",
-    "text": "Regular expressions\n\nIncredibly powerful\nHard to master\n\n\n\n\nCode\nx &lt;- c(\"apple\", \"banana\", \"pear\")\nstr_view(x, \"an\")\n\n\n[2] │ b&lt;an&gt;&lt;an&gt;a"
+    "text": "Regular expressions\n\nIncredibly powerful\nHard to master\n\n\n\nx &lt;- c(\"apple\", \"banana\", \"pear\")\nstr_view(x, \"an\")\n\n[2] │ b&lt;an&gt;&lt;an&gt;a"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#regular-expressions-cont.",
     "href": "wrangle-data/string-data/string-data.html#regular-expressions-cont.",
     "title": "Strings and regular expressions",
     "section": "Regular expressions cont.",
-    "text": "Regular expressions cont.\n\n\nCode\nstr_view(x, \"a\")\n\n\n[1] │ &lt;a&gt;pple\n[2] │ b&lt;a&gt;n&lt;a&gt;n&lt;a&gt;\n[3] │ pe&lt;a&gt;r"
+    "text": "Regular expressions cont.\n\nstr_view(x, \"a\")\n\n[1] │ &lt;a&gt;pple\n[2] │ b&lt;a&gt;n&lt;a&gt;n&lt;a&gt;\n[3] │ pe&lt;a&gt;r"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#regular-expressions-cont.-1",
     "href": "wrangle-data/string-data/string-data.html#regular-expressions-cont.-1",
     "title": "Strings and regular expressions",
     "section": "Regular expressions cont.",
-    "text": "Regular expressions cont.\n\n\nCode\n# . matches everything except newline\nstr_view(x, \".a.\") # Why not apple?\n\n\n[2] │ &lt;ban&gt;ana\n[3] │ p&lt;ear&gt;"
+    "text": "Regular expressions cont.\n\n# . matches everything except newline\nstr_view(x, \".a.\") # Why not apple?\n\n[2] │ &lt;ban&gt;ana\n[3] │ p&lt;ear&gt;"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#regular-expressions-cont.-2",
     "href": "wrangle-data/string-data/string-data.html#regular-expressions-cont.-2",
     "title": "Strings and regular expressions",
     "section": "Regular expressions cont.",
-    "text": "Regular expressions cont.\n\n\nCode\nx &lt;- c(\"ap\\\\ple\", \"bana.na\", \"pe.ar\")"
+    "text": "Regular expressions cont.\n\nx &lt;- c(\"ap\\\\ple\", \"bana.na\", \"pe.ar\")"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#regular-expressions-cont.-3",
     "href": "wrangle-data/string-data/string-data.html#regular-expressions-cont.-3",
     "title": "Strings and regular expressions",
     "section": "Regular expressions cont.",
-    "text": "Regular expressions cont.\n\n\nCode\n# explicit .\nstr_view(x, \"a\\\\.\")\n\n\n[2] │ ban&lt;a.&gt;na"
+    "text": "Regular expressions cont.\n\n# explicit .\nstr_view(x, \"a\\\\.\")\n\n[2] │ ban&lt;a.&gt;na"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#regular-expressions-cont.-4",
     "href": "wrangle-data/string-data/string-data.html#regular-expressions-cont.-4",
     "title": "Strings and regular expressions",
     "section": "Regular expressions cont.",
-    "text": "Regular expressions cont.\n\n\nCode\n# explicit \\\nstr_view(x, \"\\\\\\\\\")\n\n\n[1] │ ap&lt;\\&gt;ple"
+    "text": "Regular expressions cont.\n\n# explicit \\\nstr_view(x, \"\\\\\\\\\")\n\n[1] │ ap&lt;\\&gt;ple"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#more-regexp",
     "href": "wrangle-data/string-data/string-data.html#more-regexp",
     "title": "Strings and regular expressions",
     "section": "More regexp",
-    "text": "More regexp\n\n. match everything except newline (\\n)\nAnchors:\n\n^ start of line\n$ end of line\n\n\n\n\n\nCode\nx &lt;- c(\"apple pie\", \"apple\", \"apple cake\")\nstr_view(x, \"^a\")\n\n\n[1] │ &lt;a&gt;pple pie\n[2] │ &lt;a&gt;pple\n[3] │ &lt;a&gt;pple cake"
+    "text": "More regexp\n\n. match everything except newline (\\n)\nAnchors:\n\n^ start of line\n$ end of line\n\n\n\n\nx &lt;- c(\"apple pie\", \"apple\", \"apple cake\")\nstr_view(x, \"^a\")\n\n[1] │ &lt;a&gt;pple pie\n[2] │ &lt;a&gt;pple\n[3] │ &lt;a&gt;pple cake"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#more-regexp-cont.",
     "href": "wrangle-data/string-data/string-data.html#more-regexp-cont.",
     "title": "Strings and regular expressions",
     "section": "More regexp cont.",
-    "text": "More regexp cont.\n\n\nCode\nx &lt;- c(\"apple pie\", \"apple\", \"apple cake\")\nstr_view(x, \"e$\")\n\n\n[1] │ apple pi&lt;e&gt;\n[2] │ appl&lt;e&gt;\n[3] │ apple cak&lt;e&gt;"
+    "text": "More regexp cont.\n\nx &lt;- c(\"apple pie\", \"apple\", \"apple cake\")\nstr_view(x, \"e$\")\n\n[1] │ apple pi&lt;e&gt;\n[2] │ appl&lt;e&gt;\n[3] │ apple cak&lt;e&gt;"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#more-regexp-cont.-1",
     "href": "wrangle-data/string-data/string-data.html#more-regexp-cont.-1",
     "title": "Strings and regular expressions",
     "section": "More regexp cont.",
-    "text": "More regexp cont.\n\n\nCode\nx &lt;- c(\"apple pie\", \"apple\", \"apple cake\")\nstr_view(x, \"apple\")\n\n\n[1] │ &lt;apple&gt; pie\n[2] │ &lt;apple&gt;\n[3] │ &lt;apple&gt; cake"
+    "text": "More regexp cont.\n\nx &lt;- c(\"apple pie\", \"apple\", \"apple cake\")\nstr_view(x, \"apple\")\n\n[1] │ &lt;apple&gt; pie\n[2] │ &lt;apple&gt;\n[3] │ &lt;apple&gt; cake"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#more-regexp-cont.-2",
     "href": "wrangle-data/string-data/string-data.html#more-regexp-cont.-2",
     "title": "Strings and regular expressions",
     "section": "More regexp cont.",
-    "text": "More regexp cont.\n\n\nCode\nx &lt;- c(\"apple pie\", \"apple\", \"apple cake\")\nstr_view(x, \"^apple$\")\n\n\n[2] │ &lt;apple&gt;"
+    "text": "More regexp cont.\n\nx &lt;- c(\"apple pie\", \"apple\", \"apple cake\")\nstr_view(x, \"^apple$\")\n\n[2] │ &lt;apple&gt;"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#regexp-character-classes",
     "href": "wrangle-data/string-data/string-data.html#regexp-character-classes",
     "title": "Strings and regular expressions",
     "section": "regexp; Character classes",
-    "text": "regexp; Character classes\n\n\\d: matches any digit.\n\\s: matches any whitespace (e.g. space, tab, newline).\n\\S: matches any whitespace except newline\n[abc]: matches a, b, or c.\n[^abc]: matches anything except a, b, or c.\n\n\n\n\nCode\nx &lt;- c(\"apple pie\", \"apple tart\", \"apple cake\")\nstr_view(x, \"\\\\s[cp]\")\n\n\n[1] │ apple&lt; p&gt;ie\n[3] │ apple&lt; c&gt;ake"
+    "text": "regexp; Character classes\n\n\\d: matches any digit.\n\\s: matches any whitespace (e.g. space, tab, newline).\n\\S: matches any whitespace except newline\n[abc]: matches a, b, or c.\n[^abc]: matches anything except a, b, or c.\n\n\n\nx &lt;- c(\"apple pie\", \"apple tart\", \"apple cake\")\nstr_view(x, \"\\\\s[cp]\")\n\n[1] │ apple&lt; p&gt;ie\n[3] │ apple&lt; c&gt;ake"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#regexp-character-classes-cont.",
     "href": "wrangle-data/string-data/string-data.html#regexp-character-classes-cont.",
     "title": "Strings and regular expressions",
     "section": "regexp; Character classes cont.",
-    "text": "regexp; Character classes cont.\n\n\nCode\nx &lt;- c(\"apple pie\", \"apple tart\", \"apple cake\")\nstr_view(x, \"\\\\s[^c]\")\n\n\n[1] │ apple&lt; p&gt;ie\n[2] │ apple&lt; t&gt;art"
+    "text": "regexp; Character classes cont.\n\nx &lt;- c(\"apple pie\", \"apple tart\", \"apple cake\")\nstr_view(x, \"\\\\s[^c]\")\n\n[1] │ apple&lt; p&gt;ie\n[2] │ apple&lt; t&gt;art"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#regexp-repetition",
@@ -851,35 +851,35 @@
     "href": "wrangle-data/string-data/string-data.html#get-hold-of-sult",
     "title": "Strings and regular expressions",
     "section": "Get hold of Sult",
-    "text": "Get hold of Sult\nSee www.gutenberg.org/ebooks/30027/ for copyright information and license information.\n\n\n\nCode\nurl &lt;- \"https://www.gutenberg.org/files/30027/30027-0.txt\"\n# read line by line\n#\ncon &lt;- file(url, encoding = \"UTF-8\")\nsult &lt;- readLines(con)\nclose(con)\n# get rid of header stuff and licence at end\nsult &lt;- sult[63:(length(sult) - 354)]\n# combine to string, each line separated by \\n\nsult &lt;- str_c(sult, collapse = \"\\n\")\n# save to file\ncat(sult, file = \"sult.txt\", sep = \"\")"
+    "text": "Get hold of Sult\nSee www.gutenberg.org/ebooks/30027/ for copyright information and license information.\n\n\nurl &lt;- \"https://www.gutenberg.org/files/30027/30027-0.txt\"\n# read line by line\n#\ncon &lt;- file(url, encoding = \"UTF-8\")\nsult &lt;- readLines(con)\nclose(con)\n# get rid of header stuff and licence at end\nsult &lt;- sult[63:(length(sult) - 354)]\n# combine to string, each line separated by \\n\nsult &lt;- str_c(sult, collapse = \"\\n\")\n# save to file\ncat(sult, file = \"sult.txt\", sep = \"\")"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#the-beginning-of-sult",
     "href": "wrangle-data/string-data/string-data.html#the-beginning-of-sult",
     "title": "Strings and regular expressions",
     "section": "The beginning of Sult",
-    "text": "The beginning of Sult\n\n\nCode\n# number of characters\nnchar(sult)\n\n\n[1] 329322\n\n\nCode\n# the beginning of Sult\nstr_sub(sult, start = 1, end = 250)\n\n\n[1] \"\\nFØRSTE STYKKE\\n\\n\\nDet var i den Tid, jeg gik omkring og sulted i Kristiania, denne\\nforunderlige By, som ingen forlader, før han har fået Mærker af den . . . .\\n\\nJeg ligger vågen på min Kvist og hører en Klokke nedenunder mig slå seks\\nSlag; det var alle\""
+    "text": "The beginning of Sult\n\n# number of characters\nnchar(sult)\n\n[1] 329322\n\n# the beginning of Sult\nstr_sub(sult, start = 1, end = 250)\n\n[1] \"\\nFØRSTE STYKKE\\n\\n\\nDet var i den Tid, jeg gik omkring og sulted i Kristiania, denne\\nforunderlige By, som ingen forlader, før han har fået Mærker af den . . . .\\n\\nJeg ligger vågen på min Kvist og hører en Klokke nedenunder mig slå seks\\nSlag; det var alle\""
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#searching-for-sult",
     "href": "wrangle-data/string-data/string-data.html#searching-for-sult",
     "title": "Strings and regular expressions",
     "section": "Searching for sult",
-    "text": "Searching for sult\nWe start simply by searching for the string “sult”.\n\n\n\nCode\n# ss short for search string\nss &lt;- \"sult\"\n\n\n\nThen we count occurrences.\n\n\n\n\n\nCode\n# how many times does \"sult\" occur *Sult*\nstr_count(sult, ss)\n\n\n[1] 33"
+    "text": "Searching for sult\nWe start simply by searching for the string “sult”.\n\n\n# ss short for search string\nss &lt;- \"sult\"\n\n\nThen we count occurrences.\n\n\n\n\n# how many times does \"sult\" occur *Sult*\nstr_count(sult, ss)\n\n[1] 33"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#refining-match-first-letter-capital",
     "href": "wrangle-data/string-data/string-data.html#refining-match-first-letter-capital",
     "title": "Strings and regular expressions",
     "section": "Refining match, first letter capital",
-    "text": "Refining match, first letter capital\n\nWe realise that this approach was far to simplistic.\nFor instance Hamsun might have started a sentence with sult and we would then have a capital s.\nIn addition at the time Sult was written Norwegian texts adhered to the German tradition of capitalising nouns.\nHence we have to allow for a capital s at the start of “sult”.\n\n\n\n\nCode\n# [sS]{1}, one of s or S, {1} not necessary\nss &lt;- \"[sS]{1}ult\"\nstr_count(sult, ss)\n\n\n[1] 54"
+    "text": "Refining match, first letter capital\n\nWe realise that this approach was far to simplistic.\nFor instance Hamsun might have started a sentence with sult and we would then have a capital s.\nIn addition at the time Sult was written Norwegian texts adhered to the German tradition of capitalising nouns.\nHence we have to allow for a capital s at the start of “sult”.\n\n\n\n# [sS]{1}, one of s or S, {1} not necessary\nss &lt;- \"[sS]{1}ult\"\nstr_count(sult, ss)\n\n[1] 54"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#result-of-simple-match",
     "href": "wrangle-data/string-data/string-data.html#result-of-simple-match",
     "title": "Strings and regular expressions",
     "section": "Result of simple match",
-    "text": "Result of simple match\n\n\nCode\n# what we found\nstr_extract_all(sult, ss) %&gt;% table()\n\n\n.\nsult Sult \n  33   21 \n\n\n\nWe have 33 occurrences of “sult” and 21 of “Sult”."
+    "text": "Result of simple match\n\n# what we found\nstr_extract_all(sult, ss) %&gt;% table()\n\n.\nsult Sult \n  33   21 \n\n\n\nWe have 33 occurrences of “sult” and 21 of “Sult”."
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#refined-match",
@@ -893,49 +893,49 @@
     "href": "wrangle-data/string-data/string-data.html#refined-match-1",
     "title": "Strings and regular expressions",
     "section": "Refined match",
-    "text": "Refined match\n\n\nCode\nss &lt;- \"\\\\s[^\\\\s]*[sS]ult[^\\\\s]*\\\\s\"\n\n\n\nExplanation:\n\n“\\s[^\\\\s]*” before “[sS]ult”:\n\nwe start with a whitespace and between this whitespace and “[sS]ult” we can have whatever except whitespace 0 or more times.\n\n“[^\\\\s]*\\s” after “[sS]ult”:\n\nmeans whatever except whitespace up to first whitespace.\n\n\n\n\n\n\nCode\nstr_count(sult, ss)\n\n\n[1] 54"
+    "text": "Refined match\n\nss &lt;- \"\\\\s[^\\\\s]*[sS]ult[^\\\\s]*\\\\s\"\n\n\nExplanation:\n\n“\\s[^\\\\s]*” before “[sS]ult”:\n\nwe start with a whitespace and between this whitespace and “[sS]ult” we can have whatever except whitespace 0 or more times.\n\n“[^\\\\s]*\\s” after “[sS]ult”:\n\nmeans whatever except whitespace up to first whitespace.\n\n\n\n\n\nstr_count(sult, ss)\n\n[1] 54"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#result-of-refined-match",
     "href": "wrangle-data/string-data/string-data.html#result-of-refined-match",
     "title": "Strings and regular expressions",
     "section": "Result of refined match",
-    "text": "Result of refined match\n\n\nCode\nstr_extract_all(sult, ss) %&gt;% table()\n\n\n.\n   \\nSult.     \\nsulte   \\nsulted.   \\nSulten.   Resultat.        Sult  \n          1           1           1           1           1           3 \n    Sult,\\n      Sult,       Sult;       Sult!     Sultan,      sulte\\n \n          1           2           1           1           1           1 \n    sulted     sulted,     Sulten\\n     sulten      Sulten     sulten,  \n          8           1           1           3           7           7 \n   sulten;     Sultens      sulter     sulter!     sultet\\n     sultet  \n          2           1           1           1           1           2 \n   sultet,    Sultetid      sultne  \n          1           1           2 \n\n\n\nWe get one Resultat and one Sultan that we don’t want."
+    "text": "Result of refined match\n\nstr_extract_all(sult, ss) %&gt;% table()\n\n.\n   \\nSult.     \\nsulte   \\nsulted.   \\nSulten.   Resultat.        Sult  \n          1           1           1           1           1           3 \n    Sult,\\n      Sult,       Sult;       Sult!     Sultan,      sulte\\n \n          1           2           1           1           1           1 \n    sulted     sulted,     Sulten\\n     sulten      Sulten     sulten,  \n          8           1           1           3           7           7 \n   sulten;     Sultens      sulter     sulter!     sultet\\n     sultet  \n          2           1           1           1           1           2 \n   sultet,    Sultetid      sultne  \n          1           1           2 \n\n\n\nWe get one Resultat and one Sultan that we don’t want."
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#refining-our-match",
     "href": "wrangle-data/string-data/string-data.html#refining-our-match",
     "title": "Strings and regular expressions",
     "section": "Refining our match",
-    "text": "Refining our match\nWe might get rid of Resultat by demanding a whitespace before sult. Sultan we can get rid of by demanding that the first character after sult can’t be an “a”.\n\n\n\nCode\nss &lt;- \"\\\\s{1}([sS]ult[^a\\\\s.,;!]*)(\\\\s?|[^\\\\s.,;]*|[:punct:])?\\\\s\"\n\n\n\n\n\n\nCode\nstr_count(sult, ss)\n\n\n[1] 52\n\n\n\nHamsun mentions some form of sult (hunger) 52 times in his novel."
+    "text": "Refining our match\nWe might get rid of Resultat by demanding a whitespace before sult. Sultan we can get rid of by demanding that the first character after sult can’t be an “a”.\n\n\nss &lt;- \"\\\\s{1}([sS]ult[^a\\\\s.,;!]*)(\\\\s?|[^\\\\s.,;]*|[:punct:])?\\\\s\"\n\n\n\n\nstr_count(sult, ss)\n\n[1] 52\n\n\n\nHamsun mentions some form of sult (hunger) 52 times in his novel."
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#what-forms-of-sult-occurce",
     "href": "wrangle-data/string-data/string-data.html#what-forms-of-sult-occurce",
     "title": "Strings and regular expressions",
     "section": "What forms of “sult” occurce?",
-    "text": "What forms of “sult” occurce?\n\n\nCode\n#str_extract_all(sult, ss) %&gt;% table()\n# just the word, not punctuation \nstr_match_all(sult, ss)[[1]][,2] %&gt;% table()\n\n\n.\n    Sult    sulte   sulted   sulten   Sulten  Sultens   sulter   sultet \n       9        2       10       12        9        1        2        4 \nSultetid   sultne \n       1        2 \n\n\n\nIn total 10 different “versions” of sult."
+    "text": "What forms of “sult” occurce?\n\n#str_extract_all(sult, ss) %&gt;% table()\n# just the word, not punctuation \nstr_match_all(sult, ss)[[1]][,2] %&gt;% table()\n\n.\n    Sult    sulte   sulted   sulten   Sulten  Sultens   sulter   sultet \n       9        2       10       12        9        1        2        4 \nSultetid   sultne \n       1        2 \n\n\n\nIn total 10 different “versions” of sult."
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#where-does-sult-occur",
     "href": "wrangle-data/string-data/string-data.html#where-does-sult-occur",
     "title": "Strings and regular expressions",
     "section": "Where does “sult” occur",
-    "text": "Where does “sult” occur\n\nIf we are of the inquisitive sort me might wonder where exactly in the text some form of sult occurs. The answers is:\n\n\n\n\nCode\n# the first 5 occurrences \ntmp &lt;- str_locate_all(sult, ss)\ntmp\n\n\n[[1]]\n       start    end\n [1,]     55     62\n [2,]  27762  27769\n [3,]  54800  54807\n [4,]  66793  66801\n [5,]  70676  70683\n [6,]  76311  76319\n [7,]  88391  88399\n [8,]  88405  88413\n [9,]  90187  90194\n[10,]  91179  91185\n[11,]  92854  92859\n[12,]  95786  95793\n[13,]  96267  96274\n[14,]  97348  97355\n[15,]  97793  97802\n[16,]  98697  98705\n[17,] 101059 101067\n[18,] 101085 101093\n[19,] 101301 101306\n[20,] 107928 107936\n[21,] 116916 116923\n[22,] 128100 128108\n[23,] 133854 133860\n[24,] 137071 137079\n[25,] 139494 139502\n[26,] 144019 144025\n[27,] 146030 146036\n[28,] 146278 146285\n[29,] 146481 146488\n[30,] 150040 150047\n[31,] 151345 151353\n[32,] 151570 151576\n[33,] 152111 152116\n[34,] 158436 158443\n[35,] 158973 158980\n[36,] 166092 166099\n[37,] 166316 166322\n[38,] 179690 179697\n[39,] 187656 187663\n[40,] 199163 199169\n[41,] 201139 201147\n[42,] 204967 204974\n[43,] 220179 220187\n[44,] 222618 222625\n[45,] 233194 233201\n[46,] 233597 233604\n[47,] 250287 250294\n[48,] 299629 299637\n[49,] 308292 308298\n[50,] 312845 312852\n[51,] 320039 320046\n[52,] 326770 326777\n\n\nFirst mention of sult in some form start 53 characters into the file."
+    "text": "Where does “sult” occur\n\nIf we are of the inquisitive sort me might wonder where exactly in the text some form of sult occurs. The answers is:\n\n\n\n# the first 5 occurrences \ntmp &lt;- str_locate_all(sult, ss)\ntmp\n\n[[1]]\n       start    end\n [1,]     55     62\n [2,]  27762  27769\n [3,]  54800  54807\n [4,]  66793  66801\n [5,]  70676  70683\n [6,]  76311  76319\n [7,]  88391  88399\n [8,]  88405  88413\n [9,]  90187  90194\n[10,]  91179  91185\n[11,]  92854  92859\n[12,]  95786  95793\n[13,]  96267  96274\n[14,]  97348  97355\n[15,]  97793  97802\n[16,]  98697  98705\n[17,] 101059 101067\n[18,] 101085 101093\n[19,] 101301 101306\n[20,] 107928 107936\n[21,] 116916 116923\n[22,] 128100 128108\n[23,] 133854 133860\n[24,] 137071 137079\n[25,] 139494 139502\n[26,] 144019 144025\n[27,] 146030 146036\n[28,] 146278 146285\n[29,] 146481 146488\n[30,] 150040 150047\n[31,] 151345 151353\n[32,] 151570 151576\n[33,] 152111 152116\n[34,] 158436 158443\n[35,] 158973 158980\n[36,] 166092 166099\n[37,] 166316 166322\n[38,] 179690 179697\n[39,] 187656 187663\n[40,] 199163 199169\n[41,] 201139 201147\n[42,] 204967 204974\n[43,] 220179 220187\n[44,] 222618 222625\n[45,] 233194 233201\n[46,] 233597 233604\n[47,] 250287 250294\n[48,] 299629 299637\n[49,] 308292 308298\n[50,] 312845 312852\n[51,] 320039 320046\n[52,] 326770 326777\n\n\nFirst mention of sult in some form start 53 characters into the file."
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#making-a-new-master-piece",
     "href": "wrangle-data/string-data/string-data.html#making-a-new-master-piece",
     "title": "Strings and regular expressions",
     "section": "Making a new master piece",
-    "text": "Making a new master piece\n\nchange “sult” (hunger) to “tørst” (thirst)\na whole new meaning ;-)\n\n\n\n\nCode\ntørst &lt;- sult %&gt;% \n  str_replace_all(\n    c(\n    \"sulten\" = \"tørst\",\n    \"Sult\" = \"Tørst\",\n    \"sult\" = \"tørst\",\n    \"Sulten\" = \"Tørsten\"\n    )\n    ) %&gt;% \n  str_replace_all(\n    c(\n      \"Tørstan\" = \"Sultan\",\n      \"Restørstat\" = \"Resultat\"\n      )\n    )\n\ncat(tørst, file = \"tørst.txt\", sep = \"\")"
+    "text": "Making a new master piece\n\nchange “sult” (hunger) to “tørst” (thirst)\na whole new meaning ;-)\n\n\n\ntørst &lt;- sult %&gt;% \n  str_replace_all(\n    c(\n    \"sulten\" = \"tørst\",\n    \"Sult\" = \"Tørst\",\n    \"sult\" = \"tørst\",\n    \"Sulten\" = \"Tørsten\"\n    )\n    ) %&gt;% \n  str_replace_all(\n    c(\n      \"Tørstan\" = \"Sultan\",\n      \"Restørstat\" = \"Resultat\"\n      )\n    )\n\ncat(tørst, file = \"tørst.txt\", sep = \"\")"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#the-result",
     "href": "wrangle-data/string-data/string-data.html#the-result",
     "title": "Strings and regular expressions",
     "section": "The result",
-    "text": "The result\n\nOur new sentences\n\nSentence 2 is a false match (“største”), hence dropped.\nSix first sentences\n\n\n\n\n\nCode\ntt &lt;- \"(\\\\.|\\\\n)(.*[tT]ørst.*)(\\\\.|\\\\n)\"\nstr_match_all(tørst, tt)[[1]][c(1,3:7),3]\n\n\n[1] \"Det var i den Tid, jeg gik omkring og tørsted i Kristiania, denne\"           \n[2] \"om. Jeg havde så tydelig mærket, at når jeg tørsted lidt længe ad Gangen,\"   \n[3] \"ingen Frygt for at gå tørst tilsengs den Dag; de Tider var Gudskelov over!\"  \n[4] \"Kold og tørst, mer og mer uhyggelig tilmode, drev jeg opad Karl Johan; jeg\"  \n[5] \"Klokken var tre. Tørsten begyndte at blive noget slem med mig, jeg var mat\"  \n[6] \"fordømte Årstal mig? Nu gik jeg her og tørsted, så mine Tarmer krøb sammen i\""
+    "text": "The result\n\nOur new sentences\n\nSentence 2 is a false match (“største”), hence dropped.\nSix first sentences\n\n\n\n\ntt &lt;- \"(\\\\.|\\\\n)(.*[tT]ørst.*)(\\\\.|\\\\n)\"\nstr_match_all(tørst, tt)[[1]][c(1,3:7),3]\n\n[1] \"Det var i den Tid, jeg gik omkring og tørsted i Kristiania, denne\"           \n[2] \"om. Jeg havde så tydelig mærket, at når jeg tørsted lidt længe ad Gangen,\"   \n[3] \"ingen Frygt for at gå tørst tilsengs den Dag; de Tider var Gudskelov over!\"  \n[4] \"Kold og tørst, mer og mer uhyggelig tilmode, drev jeg opad Karl Johan; jeg\"  \n[5] \"Klokken var tre. Tørsten begyndte at blive noget slem med mig, jeg var mat\"  \n[6] \"fordømte Årstal mig? Nu gik jeg her og tørsted, så mine Tarmer krøb sammen i\""
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#a-new-master-piece",
@@ -949,7 +949,7 @@
     "href": "wrangle-data/string-data/string-data.html#references",
     "title": "Strings and regular expressions",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nBenoit, Kenneth, and Adam Obeng. 2023. Readtext: Import and Handling for Plain and Formatted Text Files. https://github.com/quanteda/readtext.\n\n\nWickham, Hadley. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nBenoit, Kenneth, and Adam Obeng. 2021. Readtext: Import and Handling for Plain and Formatted Text Files. https://github.com/quanteda/readtext.\n\n\nWickham, Hadley. 2022. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#load-tidyverse",
