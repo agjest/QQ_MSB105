@@ -276,10 +276,12 @@ weather |> filter(origin == "EWR") |> select(hour) |> table()
 ```
 
 ```{r}
+#| code-fold: false
 weather |> filter(origin == "LGA") |> select(hour) |> table()
 ```
 
 ```{r}
+#| code-fold: false
 weather |> filter(origin == "LGA") |> select(hour) |> table()
 ```
 
