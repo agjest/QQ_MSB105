@@ -808,10 +808,7 @@ ag
 <section id="check-hour-var.-in-weather" class="slide level2">
 <h2>Check hour var. in weather</h2>
 <div class="cell">
-<details open="">
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>weather <span class="sc">|&gt;</span> <span class="fu">filter</span>(origin <span class="sc">==</span> <span class="st">"EWR"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(hour) <span class="sc">|&gt;</span> <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>hour
   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19 

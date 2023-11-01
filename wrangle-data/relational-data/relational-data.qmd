@@ -272,6 +272,7 @@ my_flights <- my_flights %>%
 ## Check hour var. in weather
 
 ```{r}
+#| code-fold: false
 weather |> filter(origin == "EWR") |> select(hour) |> table()
 ```
 
