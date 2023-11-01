@@ -50,6 +50,7 @@ string2 <- 'test2'
 string3 <- "\'test3\'"
 string4 <- "'test4'"
 string5 <- "first\nsecond"
+string6 <- "first\tsecond"
 ```
 
 -   package *stringr* part of core tidyverse
@@ -78,11 +79,17 @@ writeLines(string4)
 ```{r}
 writeLines(string5)
 ```
+
+```{r}
+writeLines(string6)
+```
 :::
 :::
 
 ## String functions
 
+::: columns
+::: {.column width="50%"}
 -   How to find them?
     -   tidyverse `str_`
 -   Some important ones
@@ -94,6 +101,53 @@ writeLines(string5)
     -   str_match()
     -   str_match_all()
     -   str_c(); combine strings
+:::
+
+::: {.column width="50%"}
+```{r}
+str_length(string1)
+```
+
+```{r}
+# Note that \t counts as a character.
+str_length(string6)
+```
+
+```{r}
+x <- c(321, 21, 1978)
+str_pad(x, width = 7, side = "left", pad = "0")
+```
+
+```{r}
+str_pad(x, width = 5, side = "right", pad = "_")
+```
+
+```{r}
+y <- str_replace(x, pattern = "1", replacement = "9");y
+```
+
+```{r}
+z <- str_replace_all(y, pattern = "9", replacement = "ab");z
+```
+
+```{r}
+str_extract(y, pattern = "9")
+```
+
+```{r}
+str_extract_all(y, pattern = "9")
+```
+
+```{r}
+str_extract(z, pattern = "[:print:]⁠*\\d*")
+```
+
+```{r}
+# simplify = FALSE, default, gives list, TRUE gives character matrix
+str_extract_all(z, pattern = "\\d*", simplify = TRUE)
+```
+:::
+:::
 
 ## String functions cont.
 

@@ -711,7 +711,7 @@
     "href": "wrangle-data/string-data/string-data.html#strings-chapter-14",
     "title": "Strings and regular expressions",
     "section": "Strings; chapter 14",
-    "text": "Strings; chapter 14\n\n\n\nstring1 &lt;- \"test1\"\nstring2 &lt;- 'test2'\nstring3 &lt;- \"\\'test3\\'\"\nstring4 &lt;- \"'test4'\"\nstring5 &lt;- \"first\\nsecond\"\n\n\npackage stringr part of core tidyverse\n“string” or ‘string’, but “This is a ‘string’”\nEscape is your best friend!\n\\n is newline and \\t is tab\n\n\n\nwriteLines(string1)\n\ntest1\n\n\n\nwriteLines(string2)\n\ntest2\n\n\n\nwriteLines(string3)\n\n'test3'\n\n\n\nwriteLines(string4)\n\n'test4'\n\n\n\nwriteLines(string5)\n\nfirst\nsecond"
+    "text": "Strings; chapter 14\n\n\n\nstring1 &lt;- \"test1\"\nstring2 &lt;- 'test2'\nstring3 &lt;- \"\\'test3\\'\"\nstring4 &lt;- \"'test4'\"\nstring5 &lt;- \"first\\nsecond\"\nstring6 &lt;- \"first\\tsecond\"\n\n\npackage stringr part of core tidyverse\n“string” or ‘string’, but “This is a ‘string’”\nEscape is your best friend!\n\\n is newline and \\t is tab\n\n\n\nwriteLines(string1)\n\ntest1\n\n\n\nwriteLines(string2)\n\ntest2\n\n\n\nwriteLines(string3)\n\n'test3'\n\n\n\nwriteLines(string4)\n\n'test4'\n\n\n\nwriteLines(string5)\n\nfirst\nsecond\n\n\n\nwriteLines(string6)\n\nfirst   second"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#strings",
@@ -725,7 +725,7 @@
     "href": "wrangle-data/string-data/string-data.html#string-functions",
     "title": "Strings and regular expressions",
     "section": "String functions",
-    "text": "String functions\n\nHow to find them?\n\ntidyverse str_\n\nSome important ones\n\nstr_length()\nstr_pad()\nstr_replace()\nstr_extract()\nstr_extract_all()\nstr_match()\nstr_match_all()\nstr_c(); combine strings"
+    "text": "String functions\n\n\n\nHow to find them?\n\ntidyverse str_\n\nSome important ones\n\nstr_length()\nstr_pad()\nstr_replace()\nstr_extract()\nstr_extract_all()\nstr_match()\nstr_match_all()\nstr_c(); combine strings\n\n\n\n\nstr_length(string1)\n\n[1] 5\n\n\n\n# Note that \\t counts as a character.\nstr_length(string6)\n\n[1] 12\n\n\n\nx &lt;- c(321, 21, 1978)\nstr_pad(x, width = 7, side = \"left\", pad = \"0\")\n\n[1] \"0000321\" \"0000021\" \"0001978\"\n\n\n\nstr_pad(x, width = 5, side = \"right\", pad = \"_\")\n\n[1] \"321__\" \"21___\" \"1978_\"\n\n\n\ny &lt;- str_replace(x, pattern = \"1\", replacement = \"9\");y\n\n[1] \"329\"  \"29\"   \"9978\"\n\n\n\nz &lt;- str_replace_all(y, pattern = \"9\", replacement = \"ab\");z\n\n[1] \"32ab\"   \"2ab\"    \"abab78\"\n\n\n\nstr_extract(y, pattern = \"9\")\n\n[1] \"9\" \"9\" \"9\"\n\n\n\nstr_extract_all(y, pattern = \"9\")\n\n[[1]]\n[1] \"9\"\n\n[[2]]\n[1] \"9\"\n\n[[3]]\n[1] \"9\" \"9\"\n\n\n\nstr_extract(z, pattern = \"[:print:]⁠*\\\\d*\")\n\n[1] \"32\" \"2\"  \"a\" \n\n\n\n# simplify = FALSE, default, gives list, TRUE gives character matrix\nstr_extract_all(z, pattern = \"\\\\d*\", simplify = TRUE)\n\n     [,1] [,2] [,3] [,4] [,5] [,6]\n[1,] \"32\" \"\"   \"\"   \"\"   \"\"   \"\"  \n[2,] \"2\"  \"\"   \"\"   \"\"   \"\"   \"\"  \n[3,] \"\"   \"\"   \"\"   \"\"   \"78\" \"\""
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#string-functions-cont.",
