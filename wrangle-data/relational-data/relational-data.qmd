@@ -258,7 +258,9 @@ my_flights <- my_flights %>%
 
 -   Luckily we only have weather data for the origin (NYC) airport ;-)
 -   We want to know the weather conditions on departure
--   Weather has data for every date and every hour
+-   Weather has data for every date and every hour, hour 0 to 23.
+    -   Not all days have all hours. Probably dropped if no flights.
+    -   Probably the reason first row in weather is hour = 1 for EWR.
 -   dep_time: Actual departure and arrival times (format HHMM or HMM),
     local tz.
 -   We have to get the hour out of dep_time, ex. 513 should be 5 while
@@ -266,6 +268,23 @@ my_flights <- my_flights %>%
 -   Many solutions, convert to datetime object etc.
 -   We will pad with 0 in front to get 4 characters, then str_sub the
     two first characters and convert to integer.
+
+## Join origin airport and weather, check hour
+
+```{r}
+weather |> filter(origin == "EWR") |> select(hour) |> table()
+```
+
+```{r}
+weather |> filter(origin == "LGA") |> select(hour) |> table()
+```
+
+```{r}
+weather |> filter(origin == "LGA") |> select(hour) |> table()
+```
+
+-   This means we just have to get the two leftmost characters of
+    dep_time to get the hour.
 
 ## Join origin airport and weather, fix dep_time
 
@@ -300,6 +319,8 @@ x
 fix_dep_time <- function(x) {
   x = str_pad(x, width = 4, side = "left", pad = "0")
   x = str_sub(x, start = 1, end = 2)
+  # This is correct since hour 0: 23 in weather dataset
+  # Note that not all days have hour = 0
   x = as.integer(x)
   return(x)
   }
@@ -343,10 +364,11 @@ my_flights <- my_flights %>%
 
 . . .
 
-```{r, eval = FALSE}
+```{r}
+#| paged.print: false
 my_flights <- my_flights %>% 
   select(year, month, day, dep_time, everything()) %>% 
-  print()
+  print(width = 75)
 ```
 
 ```{r}

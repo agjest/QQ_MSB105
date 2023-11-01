@@ -109,7 +109,7 @@
     "href": "wrangle-data/relational-data/relational-data.html#join-origin-airport-and-weather",
     "title": "Joins",
     "section": "Join origin airport and weather",
-    "text": "Join origin airport and weather\n\nLuckily we only have weather data for the origin (NYC) airport ;-)\nWe want to know the weather conditions on departure\nWeather has data for every date and every hour\ndep_time: Actual departure and arrival times (format HHMM or HMM), local tz.\nWe have to get the hour out of dep_time, ex. 513 should be 5 while 1309 should be 13\nMany solutions, convert to datetime object etc.\nWe will pad with 0 in front to get 4 characters, then str_sub the two first characters and convert to integer."
+    "text": "Join origin airport and weather\n\nLuckily we only have weather data for the origin (NYC) airport ;-)\nWe want to know the weather conditions on departure\nWeather has data for every date and every hour, hour 0 to 23.\n\nNot all days have all hours. Probably dropped if no flights.\nProbably the reason first row in weather is hour = 1 for EWR.\n\ndep_time: Actual departure and arrival times (format HHMM or HMM), local tz.\nWe have to get the hour out of dep_time, ex. 513 should be 5 while 1309 should be 13\nMany solutions, convert to datetime object etc.\nWe will pad with 0 in front to get 4 characters, then str_sub the two first characters and convert to integer."
   },
   {
     "objectID": "wrangle-data/relational-data/relational-data.html#join-origin-airport-and-weather-fix-dep_time",
@@ -137,7 +137,7 @@
     "href": "wrangle-data/relational-data/relational-data.html#join-origin-airport-and-weather-fix_dep_time",
     "title": "Joins",
     "section": "Join origin airport and weather; fix_dep_time",
-    "text": "Join origin airport and weather; fix_dep_time\n\n\nCode\nfix_dep_time &lt;- function(x) {\n  x = str_pad(x, width = 4, side = \"left\", pad = \"0\")\n  x = str_sub(x, start = 1, end = 2)\n  x = as.integer(x)\n  return(x)\n  }"
+    "text": "Join origin airport and weather; fix_dep_time\n\n\nCode\nfix_dep_time &lt;- function(x) {\n  x = str_pad(x, width = 4, side = \"left\", pad = \"0\")\n  x = str_sub(x, start = 1, end = 2)\n  # This is correct since hour 0: 23 in weather dataset\n  # Note that not all days have hour = 0\n  x = as.integer(x)\n  return(x)\n  }"
   },
   {
     "objectID": "wrangle-data/relational-data/relational-data.html#join-origin-airport-and-weather-dep_time_hour",
@@ -158,7 +158,7 @@
     "href": "wrangle-data/relational-data/relational-data.html#join-origin-airport-and-weather-2",
     "title": "Joins",
     "section": "Join origin airport and weather",
-    "text": "Join origin airport and weather\n\n\nCode\nmy_flights &lt;- my_flights %&gt;% \n  left_join(weather, \n            by = c(\"origin\", \"year\", \"month\", \"day\", \"dep_time_hour\" = \"hour\"),\n            suffix = c(\"\", \"_weather\"), \n            keep = FALSE\n            )\n\n\n\nWe also ought to group the variables a bit better with select().\n\n\n\n\nCode\nmy_flights &lt;- my_flights %&gt;% \n  select(year, month, day, dep_time, everything()) %&gt;% \n  print()\n\n\n\n\nCode\n#View(my_flights)"
+    "text": "Join origin airport and weather\n\n\nCode\nmy_flights &lt;- my_flights %&gt;% \n  left_join(weather, \n            by = c(\"origin\", \"year\", \"month\", \"day\", \"dep_time_hour\" = \"hour\"),\n            suffix = c(\"\", \"_weather\"), \n            keep = FALSE\n            )\n\n\n\nWe also ought to group the variables a bit better with select().\n\n\n\n\nCode\nmy_flights &lt;- my_flights %&gt;% \n  select(year, month, day, dep_time, everything()) %&gt;% \n  print(width = 75)\n\n\n# A tibble: 336,776 × 54\n    year month   day dep_time faa   origin dest  lat_origin lat_dest\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt;\n 1  2013     1     1      517 EWR   EWR    IAH         40.7     30.0\n 2  2013     1     1      533 LGA   LGA    IAH         40.8     30.0\n 3  2013     1     1      542 JFK   JFK    MIA         40.6     25.8\n 4  2013     1     1      544 JFK   JFK    BQN         40.6     NA  \n 5  2013     1     1      554 LGA   LGA    ATL         40.8     33.6\n 6  2013     1     1      554 EWR   EWR    ORD         40.7     42.0\n 7  2013     1     1      555 EWR   EWR    FLL         40.7     26.1\n 8  2013     1     1      557 LGA   LGA    IAD         40.8     38.9\n 9  2013     1     1      557 JFK   JFK    MCO         40.6     28.4\n10  2013     1     1      558 LGA   LGA    ORD         40.8     42.0\n# ℹ 336,766 more rows\n# ℹ 45 more variables: name_airline &lt;chr&gt;, name_origin_airport &lt;chr&gt;,\n#   sched_dep_time &lt;int&gt;, dep_delay &lt;dbl&gt;, arr_time &lt;int&gt;,\n#   sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,\n#   tailnum &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,\n#   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, year_plane &lt;int&gt;, type &lt;chr&gt;,\n#   manufacturer &lt;chr&gt;, model &lt;chr&gt;, engines &lt;int&gt;, seats &lt;int&gt;, …\n\n\n\n\nCode\n#View(my_flights)"
   },
   {
     "objectID": "wrangle-data/relational-data/relational-data.html#the-other-joins",
@@ -172,7 +172,7 @@
     "href": "wrangle-data/relational-data/relational-data.html#references",
     "title": "Joins",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nWickham, Hadley. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nWickham, Hadley. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2022. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "wrangle-data/data-import-cont/data-import-cont.html#data-import",
@@ -8482,5 +8482,12 @@
     "title": "Er det høyde som bestemmer inntekt?",
     "section": "1 Beskrivelse av data",
     "text": "1 Beskrivelse av data\nDatasettet er kalt heights og er en del av pakken modelr, Wickham (2020), som er en utvidelspakke for statistikksystemet R, R Core Team (2021)."
+  },
+  {
+    "objectID": "wrangle-data/relational-data/relational-data.html#join-origin-airport-and-weather-check-hour",
+    "href": "wrangle-data/relational-data/relational-data.html#join-origin-airport-and-weather-check-hour",
+    "title": "Joins",
+    "section": "Join origin airport and weather, check hour",
+    "text": "Join origin airport and weather, check hour\n\n\nCode\nweather |&gt; filter(origin == \"EWR\") |&gt; select(hour) |&gt; table()\n\n\nhour\n  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19 \n359 365 362 364 364 364 363 362 364 363 363 364 363 364 363 364 363 363 363 363 \n 20  21  22  23 \n360 359 361 360 \n\n\n\n\nCode\nweather |&gt; filter(origin == \"LGA\") |&gt; select(hour) |&gt; table()\n\n\nhour\n  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19 \n358 364 362 363 363 364 363 364 364 364 363 364 364 364 364 364 364 363 364 363 \n 20  21  22  23 \n360 358 361 361 \n\n\n\n\nCode\nweather |&gt; filter(origin == \"LGA\") |&gt; select(hour) |&gt; table()\n\n\nhour\n  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19 \n358 364 362 363 363 364 363 364 364 364 363 364 364 364 364 364 364 363 364 363 \n 20  21  22  23 \n360 358 361 361 \n\n\n\nThis means we just have to get the two leftmost characters of dep_time to get the hour."
   }
 ]
