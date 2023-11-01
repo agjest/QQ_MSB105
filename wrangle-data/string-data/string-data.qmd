@@ -44,13 +44,6 @@ file = "ag_strings.bib"
 
 ::: columns
 ::: {.column width="50%"}
--   package *stringr* part of core tidyverse
--   "string" or 'string', but "This is a 'string'"
--   Escape is your best friend!
--   `\n` is newline and `\t` is tab
-
-. . .
-
 ```{r}
 string1 <- "test1"
 string2 <- 'test2'
@@ -58,14 +51,31 @@ string3 <- "\'test3\'"
 string4 <- "'test4'"
 string5 <- "first\nsecond"
 ```
+
+-   package *stringr* part of core tidyverse
+-   "string" or 'string', but "This is a 'string'"
+-   Escape is your best friend!
+-   `\n` is newline and `\t` is tab
 :::
 
 ::: {.column width="50%"}
 ```{r}
 writeLines(string1)
+```
+
+```{r}
 writeLines(string2)
+```
+
+```{r}
 writeLines(string3)
+```
+
+```{r}
 writeLines(string4)
+```
+
+```{r}
 writeLines(string5)
 ```
 :::

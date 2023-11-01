@@ -444,13 +444,6 @@ ag
 <h2>Strings; chapter 14</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<ul>
-<li class="fragment">package <em>stringr</em> part of core tidyverse</li>
-<li class="fragment">“string” or ‘string’, but “This is a ‘string’”</li>
-<li class="fragment">Escape is your best friend!</li>
-<li class="fragment"><code>\n</code> is newline and <code>\t</code> is tab</li>
-</ul>
-<p>. . .</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>string1 <span class="ot">&lt;-</span> <span class="st">"test1"</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>string2 <span class="ot">&lt;-</span> <span class="st">'test2'</span></span>
@@ -458,24 +451,38 @@ ag
 <span id="cb3-4"><a href="#cb3-4"></a>string4 <span class="ot">&lt;-</span> <span class="st">"'test4'"</span></span>
 <span id="cb3-5"><a href="#cb3-5"></a>string5 <span class="ot">&lt;-</span> <span class="st">"first</span><span class="sc">\n</span><span class="st">second"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ul>
+<li class="fragment">package <em>stringr</em> part of core tidyverse</li>
+<li class="fragment">“string” or ‘string’, but “This is a ‘string’”</li>
+<li class="fragment">Escape is your best friend!</li>
+<li class="fragment"><code>\n</code> is newline and <code>\t</code> is tab</li>
+</ul>
 </div><div class="column" style="width:50%;">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">writeLines</span>(string1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>test1</code></pre>
 </div>
+</div>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">writeLines</span>(string2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>test2</code></pre>
 </div>
+</div>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">writeLines</span>(string3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'test3'</code></pre>
 </div>
+</div>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">writeLines</span>(string4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'test4'</code></pre>
 </div>
+</div>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">writeLines</span>(string5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>first

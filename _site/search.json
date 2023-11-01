@@ -711,7 +711,7 @@
     "href": "wrangle-data/string-data/string-data.html#strings-chapter-14",
     "title": "Strings and regular expressions",
     "section": "Strings; chapter 14",
-    "text": "Strings; chapter 14\n\n\n\npackage stringr part of core tidyverse\n“string” or ‘string’, but “This is a ‘string’”\nEscape is your best friend!\n\\n is newline and \\t is tab\n\n. . .\n\nstring1 &lt;- \"test1\"\nstring2 &lt;- 'test2'\nstring3 &lt;- \"\\'test3\\'\"\nstring4 &lt;- \"'test4'\"\nstring5 &lt;- \"first\\nsecond\"\n\n\n\nwriteLines(string1)\n\ntest1\n\nwriteLines(string2)\n\ntest2\n\nwriteLines(string3)\n\n'test3'\n\nwriteLines(string4)\n\n'test4'\n\nwriteLines(string5)\n\nfirst\nsecond"
+    "text": "Strings; chapter 14\n\n\n\nstring1 &lt;- \"test1\"\nstring2 &lt;- 'test2'\nstring3 &lt;- \"\\'test3\\'\"\nstring4 &lt;- \"'test4'\"\nstring5 &lt;- \"first\\nsecond\"\n\n\npackage stringr part of core tidyverse\n“string” or ‘string’, but “This is a ‘string’”\nEscape is your best friend!\n\\n is newline and \\t is tab\n\n\n\nwriteLines(string1)\n\ntest1\n\n\n\nwriteLines(string2)\n\ntest2\n\n\n\nwriteLines(string3)\n\n'test3'\n\n\n\nwriteLines(string4)\n\n'test4'\n\n\n\nwriteLines(string5)\n\nfirst\nsecond"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#strings",
