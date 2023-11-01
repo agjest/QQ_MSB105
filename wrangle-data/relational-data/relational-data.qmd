@@ -269,7 +269,7 @@ my_flights <- my_flights %>%
 -   We will pad with 0 in front to get 4 characters, then str_sub the
     two first characters and convert to integer.
 
-## Join origin airport and weather, check hour
+## Check hour var. in weather
 
 ```{r}
 weather |> filter(origin == "EWR") |> select(hour) |> table()
