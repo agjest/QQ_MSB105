@@ -172,7 +172,7 @@ names(x)[[2]] <- "B"
 x
 ```
 
-## Subsetting vectors {.smaller}
+## Sub-setting vectors {.smaller}
 
 ```{r}
 x <- letters[10:15]

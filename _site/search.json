@@ -8678,5 +8678,12 @@
     "title": "Vectors",
     "section": "Sub-setting list with [[ and [ cont.",
     "text": "Sub-setting list with [[ and [ cont.\n\n\nCode\nlist(1, 2, 3)\n\n\n[[1]]\n[1] 1\n\n[[2]]\n[1] 2\n\n[[3]]\n[1] 3\n\n\nCode\nlist(1:3)[[1]][[2]]\n\n\n[1] 2\n\n\nCode\nlist(1, 2, 3)[[2]]\n\n\n[1] 2\n\n\nCode\nunlist(my_list)\n\n\n    A1     A2     A3     A4     B1     B2     B3     C1     C2     C3 \n   \"a\"    \"b\"    \"c\"    \"d\"    \"1\"    \"2\"    \"3\"    \"a\" \"1.25\" \"TRUE\" \n\n\nCode\ntypeof(unlist(my_list))\n\n\n[1] \"character\""
+  },
+  {
+    "objectID": "program/vectors/vectors.html#sub-setting-vectors",
+    "href": "program/vectors/vectors.html#sub-setting-vectors",
+    "title": "Vectors",
+    "section": "Sub-setting vectors",
+    "text": "Sub-setting vectors\n\n\nCode\nx &lt;- letters[10:15]\nx\n\n\n[1] \"j\" \"k\" \"l\" \"m\" \"n\" \"o\"\n\n\nCode\n# pick elements 3 and 5\nx[c(3,5)]\n\n\n[1] \"l\" \"n\"\n\n\nCode\n# name with capital letters\nx &lt;- purrr::set_names(x, nm = LETTERS[10:15])\nx\n\n\n  J   K   L   M   N   O \n\"j\" \"k\" \"l\" \"m\" \"n\" \"o\" \n\n\nCode\n# subset by name\nx[c(\"J\", \"L\", \"M\")]\n\n\n  J   L   M \n\"j\" \"l\" \"m\" \n\n\nCode\n# replicate elements\nx[c(\"L\", \"L\", \"J\", \"L\", rep(\"M\", 4))]\n\n\n  L   L   J   L   M   M   M   M \n\"l\" \"l\" \"j\" \"l\" \"m\" \"m\" \"m\" \"m\""
   }
 ]
