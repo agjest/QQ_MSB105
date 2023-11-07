@@ -124,7 +124,7 @@ str(my_df)
     -   Instead use: `if (length(x) > 0) {}`
 -   General rule: **The most complex type wins.**
 
-## Some exsamples
+## Some examples
 
 -   General rule: **The most complex type wins.**
 
