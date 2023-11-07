@@ -25,7 +25,9 @@ nocite: '@*'
 
 ## Load *tidyverse*
 
-```{r setup}
+```{r}
+#| label:  setup
+#| message: false
 library(tidyverse)
 ```
 
@@ -50,12 +52,58 @@ knitr::write_bib(
 -   Efficent alternative to making a lot of dummy variables
 -   R is perhaps a bit to eager, hence smart to remember the option
     `stringsAsFactors` for many functions.
-    -   Set this option to FALSE, default is TRUE
+    -   Set this option to FALSE, default is TRUE. Reversed since R 4.1,
+        default now FALSE.
+
     -   Then convert the character vector manually to a factor with
-        `var <- factor(var)` or better with the *tidyverse* alternative
-        from *forcats* (`var <- parse_factor(var)`)
+        `var <- factor(var)` (base::factor) or better with the
+        *tidyverse* alternative from *forcats* (`var <- fct(var)`)
+        (forcat::fct).
 -   The *tidyverse* functions will not convert to factor unless you ask
     for it.
+
+## Factors cont.
+
+From help: \"`fct()` is a stricter version of
+[`factor()`](http://127.0.0.1:35655/help/library/forcats/help/factor)
+that errors if your specification of `levels` is inconsistent with the
+values in `x`.\"
+
+```{r}
+x <- c("cat", "dog", "dog", "cow", "cat", "coow")
+# base factor()
+x_bf <- factor(x, levels = c("cat", "dog", "cow"))
+x_bf
+```
+
+```{r}
+#| paged.print: false
+# STRICTER; gives warning readr::parse_factor
+x_rf <- parse_factor(x, levels = c("cat", "dog", "cow"))
+x_rf
+```
+
+## Factors cont.
+
+-   fct() is very strict. Throws an error if value not in levels.
+
+. . .
+
+```{r}
+#| eval: false
+# STRICT; gives ERROR
+forcat fct()
+x_ff <- fct(x, levels = c("cat", "dog", "cow"))
+Error in `fct()`:
+! All values of `x` must appear in `levels` or `na`
+ℹ Missing level: "coow"
+```
+
+. . .
+
+-   You don't have to specify levels.
+-   If you don't. Levels will be set to unique values in data, orderer
+    as they first occur in data.
 
 ## Factors
 
@@ -63,14 +111,107 @@ knitr::write_bib(
     7.10 How do I convert factors to
     numeric?](https://cran.r-project.org/doc/FAQ/R-FAQ.html#How-do-I-convert-factors-to-numeric_003f)
     -   `v = as.numeric(levels(f))[as.integer(f)]`
--   To make a factor manually you do
-    `my_df$variable_name <- factor(my_df$variable_name)` or use
-    `parse_factor()` which is a safer alternative.
+    -   `v = as.numeric(as.character(f))` also works, but less efficient
+-   To make a factor manually you do:
+    -    `my_df$variable_name <- factor(my_df$variable_name)` or
+    -   use `parse_factor()` which is a safer alternative or
+    -   use `fct()` which is an even safer alternative.
 
 ## Factors in *tidyverse*; *forcats*
 
--   Part of core *tidyverse* (i.e. `library(tidyverse)` will load
-    *forecats*)
+-   Many of the functions in `forcats` are about reordering levels.
+    -   Cosmetic, for plots and tables
+    -   Results will not change
+-   Important technique:
+    -   Make factor of a variable.
+    -   Collapse the levels into groups we are interested in and throw
+        the rest into an \"Other\" category.
+    -   Alternative to `case_when()`
+
+## Example
+
+-   Use dataset `gss_cat` in the `forcats` package as an example.
+
+. . .
+
+```{r}
+#| paged.print: false
+gss_cat <- forcats::gss_cat
+gss_cat |> head(n = 5) |> print(width = 75)
+```
+
+. . .
+
+-   Most already factors
+-   Change `patyid` to character for illustration
+
+## Example; Change `patyid` to character
+
+```{r}
+gss_cat <- gss_cat |>
+  mutate(
+    partyid = as.character(partyid)
+  )
+```
+
+```{r}
+#| paged.print: false
+gss_cat |> head(n = 2) |> print(width = 75)
+```
+
+## Example; Make factor of `partyid`
+
+```{r}
+gss_cat <- gss_cat |> 
+  mutate(
+    partyid_fac = fct(partyid)
+  )
+```
+
+```{r}
+#| paged.print: false
+gss_cat |> head(n = 2) |> print(width = 75)
+```
+
+## Example; collapse levels
+
+```{r}
+levels(gss_cat$partyid_fac)
+```
+
+-   Only want "Strong republican", "Strong democrat" and all
+    "Independent"s.
+-   Put the rest into "Other"
+
+. . .
+
+```{r}
+gss_cat <- gss_cat |> 
+  mutate(
+    party = fct_collapse(
+      .f = partyid_fac,
+      "Strong rep" = "Strong republican",
+      "Strong dem" = "Strong democrat",
+      "Ind" = c("Independent", "Ind,near dem", "Ind,near rep"),
+      other_level = "Other"
+    )
+  )
+```
+
+## Example; new collapsed factor
+
+```{r}
+#| paged.print: false
+gss_cat |> 
+  select(year, partyid, partyid_fac, party) |>
+  head(n = 10) |>
+  print(width = 75)
+```
+
+## Another factor example
+
+-   `forcats` part of core *tidyverse* (i.e. `library(tidyverse)` will
+    load *forecats*)
 -   How to make a factor variable?
 
 . . .
@@ -95,6 +236,7 @@ df_days %>% table()
 . . .
 
 ```{r}
+# or use fct_collapse()
 df_days <- df_days %>% 
   mutate(
     days = case_when(
@@ -139,8 +281,8 @@ tmp_days %>%
         not match any level.
     -   This is quietly ignored without any warning by `factor()`.
         -   This is **dangerous**!
--   Much better to use `parse_factor()` from **tidyverse (package:
-    forcats).**
+-   Much safer to use `parse_factor()` from `readr` (warning for missing
+    level) or `fct()` from `forcats` (error for missing level).
 
 ## How to fix this, cont. {.smaller}
 
@@ -155,15 +297,17 @@ df_days <- df_days %>%
 
 . . .
 
-    Warning: 6 parsing failures.
-    row col           expected actual
-      9  -- value in level set  Thurs
-     29  -- value in level set  Thurs
-     59  -- value in level set  Thurs
-     69  -- value in level set  Thurs
-     73  -- value in level set  Thurs
-    ... ... .................. ......
-    See problems(...) for more details.
+```         
+Warning: 6 parsing failures.
+row col           expected actual
+  9  -- value in level set  Thurs
+ 29  -- value in level set  Thurs
+ 59  -- value in level set  Thurs
+ 69  -- value in level set  Thurs
+ 73  -- value in level set  Thurs
+... ... .................. ......
+See problems(...) for more details.
+```
 
 ## How to fix this, cont.
 
@@ -348,5 +492,10 @@ levels(df_days$d_o_t_w_nor)
 -   see `?fct_lump` for examples
 -   `fct_other()`: keep some levels, put the rest in an "other"
     category.
+
+```{r}
+#| echo: false
+# siste
+```
 
 ## References

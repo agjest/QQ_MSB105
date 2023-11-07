@@ -221,28 +221,28 @@
     "href": "wrangle-data/factors/factors.html#factors",
     "title": "Factors",
     "section": "Factors",
-    "text": "Factors\n\nWe have already encountered factors\nRs way of representing category variables\nEfficent alternative to making a lot of dummy variables\nR is perhaps a bit to eager, hence smart to remember the option stringsAsFactors for many functions.\n\nSet this option to FALSE, default is TRUE\nThen convert the character vector manually to a factor with var &lt;- factor(var) or better with the tidyverse alternative from forcats (var &lt;- parse_factor(var))\n\nThe tidyverse functions will not convert to factor unless you ask for it."
+    "text": "Factors\n\nWe have already encountered factors\nRs way of representing category variables\nEfficent alternative to making a lot of dummy variables\nR is perhaps a bit to eager, hence smart to remember the option stringsAsFactors for many functions.\n\nSet this option to FALSE, default is TRUE. Reversed since R 4.1, default now FALSE.\nThen convert the character vector manually to a factor with var &lt;- factor(var) (base::factor) or better with the tidyverse alternative from forcats (var &lt;- fct(var)) (forcat::fct).\n\nThe tidyverse functions will not convert to factor unless you ask for it."
   },
   {
     "objectID": "wrangle-data/factors/factors.html#factors-1",
     "href": "wrangle-data/factors/factors.html#factors-1",
     "title": "Factors",
     "section": "Factors",
-    "text": "Factors\n\nIf you end up with a factor and want a numeric vector see R FAQ: 7.10 How do I convert factors to numeric?\n\nv = as.numeric(levels(f))[as.integer(f)]\n\nTo make a factor manually you do my_df$variable_name &lt;- factor(my_df$variable_name) or use parse_factor() which is a safer alternative."
+    "text": "Factors\n\nIf you end up with a factor and want a numeric vector see R FAQ: 7.10 How do I convert factors to numeric?\n\nv = as.numeric(levels(f))[as.integer(f)]\nv = as.numeric(as.character(f)) also works, but less efficient\n\nTo make a factor manually you do:\n\nmy_df$variable_name &lt;- factor(my_df$variable_name) or\nuse parse_factor() which is a safer alternative or\nuse fct() which is an even safer alternative."
   },
   {
     "objectID": "wrangle-data/factors/factors.html#factors-in-tidyverse-forcats",
     "href": "wrangle-data/factors/factors.html#factors-in-tidyverse-forcats",
     "title": "Factors",
     "section": "Factors in tidyverse; forcats",
-    "text": "Factors in tidyverse; forcats\n\nPart of core tidyverse (i.e. library(tidyverse) will load forecats)\nHow to make a factor variable?\n\n\n\n\nCode\n# Some alternatives Long Abbreviations for Days\nx &lt;- c(\"Mon\", \"Tue\", \"Tues\", \"Wed\", \"Thu\", \"Thur\", \"Thurs\", \"Fri\", \"Sat\", \"Sun\")\nset.seed(1234)\ndf_days &lt;- tibble(\n  days = sample(x, size = 100, replace = TRUE)\n  )\ndf_days %&gt;% table()\n\n\ndays\n  Fri   Mon   Sat   Sun   Thu  Thur Thurs   Tue  Tues   Wed \n   11     7     8    11    10    17     6     6    11    13 \n\n\n\nThursday is abbreviated in three different ways, while Tuesday are abbreviated in two different ways."
+    "text": "Factors in tidyverse; forcats\n\nMany of the functions in forcats are about reordering levels.\n\nCosmetic, for plots and tables\nResults will not change\n\nImportant technique:\n\nMake factor of a variable.\nCollapse the levels into groups we are interested in and throw the rest into an \"Other\" category.\nAlternative to case_when()"
   },
   {
     "objectID": "wrangle-data/factors/factors.html#how-to-fix-this",
     "href": "wrangle-data/factors/factors.html#how-to-fix-this",
     "title": "Factors",
     "section": "How to fix this",
-    "text": "How to fix this\n\nChange the values\n\n\n\n\nCode\ndf_days &lt;- df_days %&gt;% \n  mutate(\n    days = case_when(\n      days %in% c(\"Tues\") ~ \"Tue\",\n      days %in% c(\"Thur\") ~ \"Thu\",\n      TRUE ~ days\n    )\n  )\ndf_days %&gt;% table()\n\n\ndays\n  Fri   Mon   Sat   Sun   Thu Thurs   Tue   Wed \n   11     7     8    11    27     6    17    13"
+    "text": "How to fix this\n\nChange the values\n\n\n\n\nCode\n# or use fct_collapse()\ndf_days &lt;- df_days %&gt;% \n  mutate(\n    days = case_when(\n      days %in% c(\"Tues\") ~ \"Tue\",\n      days %in% c(\"Thur\") ~ \"Thu\",\n      TRUE ~ days\n    )\n  )\ndf_days %&gt;% table()\n\n\ndays\n  Fri   Mon   Sat   Sun   Thu Thurs   Tue   Wed \n   11     7     8    11    27     6    17    13"
   },
   {
     "objectID": "wrangle-data/factors/factors.html#how-to-fix-this-cont.",
@@ -256,7 +256,7 @@
     "href": "wrangle-data/factors/factors.html#how-to-fix-this-cont.-1",
     "title": "Factors",
     "section": "How to fix this, cont.",
-    "text": "How to fix this, cont.\n\n6 days have disappeared. What happend?\n\nWe forgot to change “Thurs” to “Thu”, so 6 of the 100 days did not match any level.\nThis is quietly ignored without any warning by factor().\n\nThis is dangerous!\n\n\nMuch better to use parse_factor() from tidyverse (package: forcats)."
+    "text": "How to fix this, cont.\n\n6 days have disappeared. What happend?\n\nWe forgot to change “Thurs” to “Thu”, so 6 of the 100 days did not match any level.\nThis is quietly ignored without any warning by factor().\n\nThis is dangerous!\n\n\nMuch safer to use parse_factor() from readr (warning for missing level) or fct() from forcats (error for missing level)."
   },
   {
     "objectID": "wrangle-data/factors/factors.html#how-to-fix-this-cont.-2",
@@ -725,28 +725,28 @@
     "href": "wrangle-data/string-data/string-data.html#string-functions",
     "title": "Strings and regular expressions",
     "section": "String functions",
-    "text": "String functions\n\n\n\n\nSome important ones\n\nstr_length()\nstr_pad()\nstr_replace()\nstr_extract()\nstr_extract_all()\nstr_match()\nstr_c(); combine strings into one string\n\n\n\n\nstr_length(string1)\n\n[1] 5\n\n\n\n# Note that \\t counts as a character.\nstr_length(string6)\n\n[1] 12\n\n\n\n\nx &lt;- c(321, 21, 1978)\nstr_pad(x, width = 7, side = \"left\", pad = \"0\")\n\n[1] \"0000321\" \"0000021\" \"0001978\"\n\n\n\nstr_pad(x, width = 5, side = \"right\", pad = \"_\")\n\n[1] \"321__\" \"21___\" \"1978_\"\n\n\n\ny &lt;- str_replace(x, pattern = \"1\", replacement = \"9\");y\n\n[1] \"329\"  \"29\"   \"9978\"\n\n\n\nz &lt;- str_replace_all(y, pattern = \"9\", replacement = \"ab\");z\n\n[1] \"32ab\"   \"2ab\"    \"abab78\"\n\n\n\nstr_extract(y, pattern = \"9\")\n\n[1] \"9\" \"9\" \"9\"\n\n\n\n# * betyr null eller flere, alpha er STORE og små bokstaver\nstr_extract(z, pattern = \"[:alpha:]*(\\\\d*)\", group = 1)\n\n[1] \"32\" \"2\"  \"78\"\n\n\n\n# + betyr 1 eller flere, alpha er STORE og små bokstaver\nstr_extract(z, pattern = \"[:alpha:]+(\\\\d*)\", group = 1)\n\n[1] \"\"   \"\"   \"78\"\n\n\n\n# tidyverse version of paste0()\nz &lt;- str_c(z, collapse = \"\"); z\n\n[1] \"32ab2ababab78\""
+    "text": "String functions\n\n\n\n\nSome important ones\n\nstr_length()\nstr_pad()\nstr_replace()\nstr_extract()\nstr_extract_all()\nstr_match()\nstr_c(); combine strings into one string\n\n\n\n\nstr_length(string1)\n\n[1] 5\n\n\n\n# Note that \\t counts as a character.\nstr_length(string6)\n\n[1] 12\n\n\n\n\nx &lt;- c(321, 12111, 1978)\nstr_pad(x, width = 7, side = \"left\", pad = \"0\")\n\n[1] \"0000321\" \"0012111\" \"0001978\"\n\n\n\nstr_pad(x, width = 5, side = \"right\", pad = \"_\")\n\n[1] \"321__\" \"12111\" \"1978_\"\n\n\n\ny &lt;- str_replace(x, pattern = \"1\", replacement = \"9\");y\n\n[1] \"329\"   \"92111\" \"9978\" \n\n\n\nz &lt;- str_replace_all(y, pattern = \"9\", replacement = \"ab\");z\n\n[1] \"32ab\"   \"ab2111\" \"abab78\"\n\n\n\nstr_extract(y, pattern = \"9\")\n\n[1] \"9\" \"9\" \"9\"\n\n\n\n# * betyr null eller flere, alpha er STORE og små bokstaver\nstr_extract(z, pattern = \"[:alpha:]*(\\\\d*)\", group = 1)\n\n[1] \"32\"   \"2111\" \"78\"  \n\n\n\n# + betyr 1 eller flere, alpha er STORE og små bokstaver\nstr_extract(z, pattern = \"[:alpha:]+(\\\\d*)\", group = 1)\n\n[1] \"\"     \"2111\" \"78\"  \n\n\n\n# tidyverse version of paste0()\nz &lt;- str_c(z, collapse = \"\"); z\n\n[1] \"32abab2111abab78\""
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#string-functions-cont.",
     "href": "wrangle-data/string-data/string-data.html#string-functions-cont.",
     "title": "Strings and regular expressions",
     "section": "String functions cont.",
-    "text": "String functions cont.\n\n\n\n\nstr_match_all()\nstr_sub()\nstr_to_lower()\nstr_to_upper()\nstr_to_title()\n\n\nCharacter matrix; The first column is the complete match, followed by one column for each capture group. Column 2 is capture group 1, Column 3 is capture group 2.\n\nstr_match(z, pattern = \"(\\\\d+)[a,b]+\\\\d+([:alpha:]+)(.*)\")\n\n     [,1]            [,2] [,3]     [,4]\n[1,] \"32ab2ababab78\" \"32\" \"ababab\" \"78\"\n\n\nNew second group.\n\nstr_match(z, pattern = \"(\\\\d+)([a,b]+\\\\d+)([:alpha:]+)(.*)\")\n\n     [,1]            [,2] [,3]  [,4]     [,5]\n[1,] \"32ab2ababab78\" \"32\" \"ab2\" \"ababab\" \"78\"\n\n\n\n\nstr_sub(\"string\", start = 2L, end = 4L)\n\n[1] \"tri\"\n\n\n\n# from right\nstr_sub(\"string\", start = -4L, end = -2L)\n\n[1] \"rin\"\n\n\n\nstr_to_lower(\"BOKSTAVER\")\n\n[1] \"bokstaver\"\n\n\n\nstr_to_upper(\"bokstaver\")\n\n[1] \"BOKSTAVER\"\n\n\n\nstr_to_title(\"this is a very important title\")\n\n[1] \"This Is A Very Important Title\""
+    "text": "String functions cont.\n\n\n\n\nstr_match_all()\nstr_sub()\nstr_to_lower()\nstr_to_upper()\nstr_to_title()\n\n\nCharacter matrix; The first column is the complete match, followed by one column for each capture group. Column 2 is capture group 1, Column 3 is capture group 2.\n\nstr_match(z, pattern = \"(\\\\d+)[a,b]+\\\\d+([:alpha:]+)(.*)\")\n\n     [,1]               [,2] [,3]   [,4]\n[1,] \"32abab2111abab78\" \"32\" \"abab\" \"78\"\n\n\n\nNew second group.\n\nstr_match(z, pattern = \"(\\\\d+)([a,b]+\\\\d+)([:alpha:]+)(.*)\")\n\n     [,1]               [,2] [,3]       [,4]   [,5]\n[1,] \"32abab2111abab78\" \"32\" \"abab2111\" \"abab\" \"78\"\n\n\n\nstr_sub(\"string\", start = 2L, end = 4L)\n\n[1] \"tri\"\n\n\n\n# from right\nstr_sub(\"string\", start = -4L, end = -2L)\n\n[1] \"rin\"\n\n\n\nstr_to_lower(\"BOKSTAVER\")\n\n[1] \"bokstaver\"\n\n\n\nstr_to_upper(\"bokstaver\")\n\n[1] \"BOKSTAVER\"\n\n\n\nstr_to_title(\"this is a very important title\")\n\n[1] \"This Is A Very Important Title\""
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#regular-expressions",
     "href": "wrangle-data/string-data/string-data.html#regular-expressions",
     "title": "Strings and regular expressions",
     "section": "Regular expressions",
-    "text": "Regular expressions\n\nIncredibly powerful\nHard to master\n\n\n\nx &lt;- c(\"apple\", \"banana\", \"pear\")\nstr_view(x, \"an\")\n\n[2] │ b&lt;an&gt;&lt;an&gt;a"
+    "text": "Regular expressions\n\nIncredibly powerful\nHard to master\n\n\n\nx &lt;- c(\"apple\", \"banana\", \"pear\")\nstr_view(x, \"an\")\n\n[2] │ b&lt;an&gt;&lt;an&gt;a\n\n\n\n\n\nstr_view(x, \"a\")\n\n[1] │ &lt;a&gt;pple\n[2] │ b&lt;a&gt;n&lt;a&gt;n&lt;a&gt;\n[3] │ pe&lt;a&gt;r\n\n\n\n\n\n# . matches everything except newline\nstr_view(x, \".a.\") # Why not apple?\n\n[2] │ &lt;ban&gt;ana\n[3] │ p&lt;ear&gt;\n\n\n\n\n\nx &lt;- c(\"ap\\\\ple\", \"bana.na\", \"pe.ar\")\n\n\n\n\n# explicit .\nstr_view(x, \"a\\\\.\")\n\n[2] │ ban&lt;a.&gt;na\n\n\n\n\n\n# explicit \\\nstr_view(x, \"\\\\\\\\\")\n\n[1] │ ap&lt;\\&gt;ple"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#regular-expressions-cont.",
     "href": "wrangle-data/string-data/string-data.html#regular-expressions-cont.",
     "title": "Strings and regular expressions",
     "section": "Regular expressions cont.",
-    "text": "Regular expressions cont.\n\nstr_view(x, \"a\")\n\n[1] │ &lt;a&gt;pple\n[2] │ b&lt;a&gt;n&lt;a&gt;n&lt;a&gt;\n[3] │ pe&lt;a&gt;r"
+    "text": "Regular expressions cont.\n\n# explicit \\\nstr_view(x, \"\\\\\\\\\")\n\n[1] │ ap&lt;\\&gt;ple"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#regular-expressions-cont.-1",
@@ -781,14 +781,14 @@
     "href": "wrangle-data/string-data/string-data.html#more-regexp",
     "title": "Strings and regular expressions",
     "section": "More regexp",
-    "text": "More regexp\n\n. match everything except newline (\\n)\nAnchors:\n\n^ start of line\n$ end of line\n\n\n\n\nx &lt;- c(\"apple pie\", \"apple\", \"apple cake\")\nstr_view(x, \"^a\")\n\n[1] │ &lt;a&gt;pple pie\n[2] │ &lt;a&gt;pple\n[3] │ &lt;a&gt;pple cake"
+    "text": "More regexp\n\n. match everything except newline (\\n)\nAnchors:\n\n^ start of line\n$ end of line\n\n\n\n\nx &lt;- c(\"apple pie\", \"apple\", \"apple cake\")\nstr_view(x, \"^a\")\n\n[1] │ &lt;a&gt;pple pie\n[2] │ &lt;a&gt;pple\n[3] │ &lt;a&gt;pple cake\n\n\n\n\n\nx &lt;- c(\"apple pie\", \"apple\", \"apple cake\")\nstr_view(x, \"e$\")\n\n[1] │ apple pi&lt;e&gt;\n[2] │ appl&lt;e&gt;\n[3] │ apple cak&lt;e&gt;\n\n\n\n\n\nx &lt;- c(\"apple pie\", \"apple\", \"apple cake\")\nstr_view(x, \"apple\")\n\n[1] │ &lt;apple&gt; pie\n[2] │ &lt;apple&gt;\n[3] │ &lt;apple&gt; cake"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#more-regexp-cont.",
     "href": "wrangle-data/string-data/string-data.html#more-regexp-cont.",
     "title": "Strings and regular expressions",
     "section": "More regexp cont.",
-    "text": "More regexp cont.\n\nx &lt;- c(\"apple pie\", \"apple\", \"apple cake\")\nstr_view(x, \"e$\")\n\n[1] │ apple pi&lt;e&gt;\n[2] │ appl&lt;e&gt;\n[3] │ apple cak&lt;e&gt;"
+    "text": "More regexp cont.\n\nx &lt;- c(\"apple pie\", \"apple\", \"apple cake\")\nstr_view(x, \"^apple$\")\n\n[2] │ &lt;apple&gt;\n\n\n\nx &lt;- c(\"apple pie\", \"apple\", \"apple cake\")\nstr_view(x, \"apple$\")\n\n[2] │ &lt;apple&gt;\n\n\n\nx &lt;- c(\"apple pie\", \"apple\", \"apple cake\")\nstr_view(x, \"^apple\")\n\n[1] │ &lt;apple&gt; pie\n[2] │ &lt;apple&gt;\n[3] │ &lt;apple&gt; cake"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#more-regexp-cont.-1",
@@ -802,7 +802,7 @@
     "href": "wrangle-data/string-data/string-data.html#more-regexp-cont.-2",
     "title": "Strings and regular expressions",
     "section": "More regexp cont.",
-    "text": "More regexp cont.\n\nx &lt;- c(\"apple pie\", \"apple\", \"apple cake\")\nstr_view(x, \"^apple$\")\n\n[2] │ &lt;apple&gt;"
+    "text": "More regexp cont.\n\nx &lt;- c(\"apple pie\", \"apple\", \"apple cake\")\nstr_view(x, \"^apple$\")\n\n[2] │ &lt;apple&gt;\n\n\n\nx &lt;- c(\"apple pie\", \"apple\", \"apple cake\")\nstr_view(x, \"apple$\")\n\n[2] │ &lt;apple&gt;\n\n\n\nx &lt;- c(\"apple pie\", \"apple\", \"apple cake\")\nstr_view(x, \"^apple\")\n\n[1] │ &lt;apple&gt; pie\n[2] │ &lt;apple&gt;\n[3] │ &lt;apple&gt; cake"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#regexp-character-classes",
@@ -949,7 +949,7 @@
     "href": "wrangle-data/string-data/string-data.html#references",
     "title": "Strings and regular expressions",
     "section": "References",
-    "text": "References\n\n\nMSB105\n\n\n\nBenoit, Kenneth, and Adam Obeng. 2021. Readtext: Import and Handling for Plain and Formatted Text Files. https://github.com/quanteda/readtext.\n\n\nWickham, Hadley. 2022. Tidyverse: Easily Install and Load the Tidyverse. https://CRAN.R-project.org/package=tidyverse.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
+    "text": "References\n\n\nMSB105\n\n\n\nBenoit, Kenneth, and Adam Obeng. 2023. Readtext: Import and Handling for Plain and Formatted Text Files. https://github.com/quanteda/readtext.\n\n\nWickham, Hadley. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#load-tidyverse",
@@ -8510,5 +8510,61 @@
     "title": "Strings and regular expressions",
     "section": "Setup",
     "text": "Setup\n\n```{r}\n#| label: setup\n#| message: false\nlibrary(tidyverse)\nlibrary(readtext)\n```\n\n\n\nCreate a bib file for the R packages used in this document Note!\nNeeds to do a touch(ag_ds.bib) in terminal before first run\nElse stops when bibliography: “ag_ds.bib” not found in YAML\n\n\n\nknitr::write_bib(c(\n  \"tidyverse\",\n  \"readtext\"\n),\nfile = \"ag_strings.bib\"\n)"
+  },
+  {
+    "objectID": "wrangle-data/factors/factors.html#factors-cont.",
+    "href": "wrangle-data/factors/factors.html#factors-cont.",
+    "title": "Factors",
+    "section": "Factors cont.",
+    "text": "Factors cont.\nFrom help: \"fct() is a stricter version of factor() that errors if your specification of levels is inconsistent with the values in x.\"\n\n\nCode\nx &lt;- c(\"cat\", \"dog\", \"dog\", \"cow\", \"cat\", \"coow\")\n# base factor()\nx_bf &lt;- factor(x, levels = c(\"cat\", \"dog\", \"cow\"))\nx_bf\n\n\n[1] cat  dog  dog  cow  cat  &lt;NA&gt;\nLevels: cat dog cow\n\n\n\n\nCode\n# STRICTER; gives warning readr::parse_factor\nx_rf &lt;- parse_factor(x, levels = c(\"cat\", \"dog\", \"cow\"))\nx_rf\n\n\n[1] cat  dog  dog  cow  cat  &lt;NA&gt;\nattr(,\"problems\")\n# A tibble: 1 × 4\n    row   col expected           actual\n  &lt;int&gt; &lt;int&gt; &lt;chr&gt;              &lt;chr&gt; \n1     6    NA value in level set coow  \nLevels: cat dog cow"
+  },
+  {
+    "objectID": "wrangle-data/factors/factors.html#factors-cont.-1",
+    "href": "wrangle-data/factors/factors.html#factors-cont.-1",
+    "title": "Factors",
+    "section": "Factors cont.",
+    "text": "Factors cont.\n\nfct() is very strict. Throws an error if value not in levels.\n\n\n\n\nCode\n# STRICT; gives ERROR\nforcat fct()\nx_ff &lt;- fct(x, levels = c(\"cat\", \"dog\", \"cow\"))\nError in `fct()`:\n! All values of `x` must appear in `levels` or `na`\nℹ Missing level: \"coow\"\n\n\n\n\n\nYou don’t have to specify levels.\nIf you don’t. Levels will be set to unique values in data, orderer as they first occur in data."
+  },
+  {
+    "objectID": "wrangle-data/factors/factors.html#example",
+    "href": "wrangle-data/factors/factors.html#example",
+    "title": "Factors",
+    "section": "Example",
+    "text": "Example\n\nUse dataset gss_cat in the forcats package as an example.\n\n\n\n\nCode\ngss_cat &lt;- forcats::gss_cat\ngss_cat |&gt; head(n = 5) |&gt; print(width = 75)\n\n\n# A tibble: 5 × 9\n   year marital         age race  rincome       partyid relig denom tvhours\n  &lt;int&gt; &lt;fct&gt;         &lt;int&gt; &lt;fct&gt; &lt;fct&gt;         &lt;fct&gt;   &lt;fct&gt; &lt;fct&gt;   &lt;int&gt;\n1  2000 Never married    26 White $8000 to 9999 Ind,ne… Prot… Sout…      12\n2  2000 Divorced         48 White $8000 to 9999 Not st… Prot… Bapt…      NA\n3  2000 Widowed          67 White Not applicab… Indepe… Prot… No d…       2\n4  2000 Never married    39 White Not applicab… Ind,ne… Orth… Not …       4\n5  2000 Divorced         25 White Not applicab… Not st… None  Not …       1\n\n\n\n\n\nMost already factors\nChange patyid to character for illustration"
+  },
+  {
+    "objectID": "wrangle-data/factors/factors.html#example-change-patyid-to-character",
+    "href": "wrangle-data/factors/factors.html#example-change-patyid-to-character",
+    "title": "Factors",
+    "section": "Example; Change patyid to character",
+    "text": "Example; Change patyid to character\n\n\nCode\ngss_cat &lt;- gss_cat |&gt;\n  mutate(\n    partyid = as.character(partyid)\n  )\n\n\n\n\nCode\ngss_cat |&gt; head(n = 2) |&gt; print(width = 75)\n\n\n# A tibble: 2 × 9\n   year marital         age race  rincome       partyid relig denom tvhours\n  &lt;int&gt; &lt;fct&gt;         &lt;int&gt; &lt;fct&gt; &lt;fct&gt;         &lt;chr&gt;   &lt;fct&gt; &lt;fct&gt;   &lt;int&gt;\n1  2000 Never married    26 White $8000 to 9999 Ind,ne… Prot… Sout…      12\n2  2000 Divorced         48 White $8000 to 9999 Not st… Prot… Bapt…      NA"
+  },
+  {
+    "objectID": "wrangle-data/factors/factors.html#example-make-factor-of-partyid",
+    "href": "wrangle-data/factors/factors.html#example-make-factor-of-partyid",
+    "title": "Factors",
+    "section": "Example; Make factor of partyid",
+    "text": "Example; Make factor of partyid\n\n\nCode\ngss_cat &lt;- gss_cat |&gt; \n  mutate(\n    partyid_fac = fct(partyid)\n  )\n\n\n\n\nCode\ngss_cat |&gt; head(n = 2) |&gt; print(width = 75)\n\n\n# A tibble: 2 × 10\n   year marital   age race  rincome partyid relig denom tvhours partyid_fac\n  &lt;int&gt; &lt;fct&gt;   &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;chr&gt;   &lt;fct&gt; &lt;fct&gt;   &lt;int&gt; &lt;fct&gt;      \n1  2000 Never …    26 White $8000 … Ind,ne… Prot… Sout…      12 Ind,near r…\n2  2000 Divorc…    48 White $8000 … Not st… Prot… Bapt…      NA Not str re…"
+  },
+  {
+    "objectID": "wrangle-data/factors/factors.html#example-collapse-levels",
+    "href": "wrangle-data/factors/factors.html#example-collapse-levels",
+    "title": "Factors",
+    "section": "Example; collapse levels",
+    "text": "Example; collapse levels\n\n\nCode\nlevels(gss_cat$partyid_fac)\n\n\n [1] \"Ind,near rep\"       \"Not str republican\" \"Independent\"       \n [4] \"Not str democrat\"   \"Strong democrat\"    \"Ind,near dem\"      \n [7] \"Strong republican\"  \"Other party\"        \"No answer\"         \n[10] \"Don't know\"        \n\n\n\nOnly want “Strong republican”, “Strong democrat” and all “Independent”s.\nPut the rest into “Other”\n\n\n\n\nCode\ngss_cat &lt;- gss_cat |&gt; \n  mutate(\n    party = fct_collapse(\n      .f = partyid_fac,\n      \"Strong rep\" = \"Strong republican\",\n      \"Strong dem\" = \"Strong democrat\",\n      \"Ind\" = c(\"Independent\", \"Ind,near dem\", \"Ind,near rep\"),\n      other_level = \"Other\"\n    )\n  )"
+  },
+  {
+    "objectID": "wrangle-data/factors/factors.html#example-new-collapsed-factor",
+    "href": "wrangle-data/factors/factors.html#example-new-collapsed-factor",
+    "title": "Factors",
+    "section": "Example; new collapsed factor",
+    "text": "Example; new collapsed factor\n\n\nCode\ngss_cat |&gt; \n  select(year, partyid, partyid_fac, party) |&gt;\n  head(n = 10) |&gt;\n  print(width = 75)\n\n\n# A tibble: 10 × 4\n    year partyid            partyid_fac        party     \n   &lt;int&gt; &lt;chr&gt;              &lt;fct&gt;              &lt;fct&gt;     \n 1  2000 Ind,near rep       Ind,near rep       Ind       \n 2  2000 Not str republican Not str republican Other     \n 3  2000 Independent        Independent        Ind       \n 4  2000 Ind,near rep       Ind,near rep       Ind       \n 5  2000 Not str democrat   Not str democrat   Other     \n 6  2000 Strong democrat    Strong democrat    Strong dem\n 7  2000 Not str republican Not str republican Other     \n 8  2000 Ind,near dem       Ind,near dem       Ind       \n 9  2000 Not str democrat   Not str democrat   Other     \n10  2000 Strong republican  Strong republican  Strong rep"
+  },
+  {
+    "objectID": "wrangle-data/factors/factors.html#another-factor-example",
+    "href": "wrangle-data/factors/factors.html#another-factor-example",
+    "title": "Factors",
+    "section": "Another factor example",
+    "text": "Another factor example\n\nforcats part of core tidyverse (i.e. library(tidyverse) will load forecats)\nHow to make a factor variable?\n\n\n\n\nCode\n# Some alternatives Long Abbreviations for Days\nx &lt;- c(\"Mon\", \"Tue\", \"Tues\", \"Wed\", \"Thu\", \"Thur\", \"Thurs\", \"Fri\", \"Sat\", \"Sun\")\nset.seed(1234)\ndf_days &lt;- tibble(\n  days = sample(x, size = 100, replace = TRUE)\n  )\ndf_days %&gt;% table()\n\n\ndays\n  Fri   Mon   Sat   Sun   Thu  Thur Thurs   Tue  Tues   Wed \n   11     7     8    11    10    17     6     6    11    13 \n\n\n\nThursday is abbreviated in three different ways, while Tuesday are abbreviated in two different ways."
   }
 ]

@@ -132,7 +132,7 @@ str_length(string6)
 
 ::: {.column width="50%"}
 ```{r}
-x <- c(321, 21, 1978)
+x <- c(321, 12111, 1978)
 str_pad(x, width = 7, side = "left", pad = "0")
 ```
 
@@ -192,15 +192,15 @@ is capture group 2.
 ```{r}
 str_match(z, pattern = "(\\d+)[a,b]+\\d+([:alpha:]+)(.*)")
 ```
+:::
 
+::: {.column width="50%"}
 New second group.
 
 ```{r}
 str_match(z, pattern = "(\\d+)([a,b]+\\d+)([:alpha:]+)(.*)")
 ```
-:::
 
-::: {.column width="50%"}
 ```{r}
 str_sub("string", start = 2L, end = 4L)
 ```
@@ -236,33 +236,33 @@ x <- c("apple", "banana", "pear")
 str_view(x, "an")
 ```
 
-## Regular expressions cont.
+. . .
 
 ```{r}
 str_view(x, "a")
 ```
 
-## Regular expressions cont.
+. . .
 
 ```{r}
 # . matches everything except newline
 str_view(x, ".a.") # Why not apple?
 ```
 
-## Regular expressions cont.
+. . .
 
 ```{r}
 x <- c("ap\\ple", "bana.na", "pe.ar")
 ```
 
-## Regular expressions cont.
+. . .
 
 ```{r}
 # explicit .
 str_view(x, "a\\.")
 ```
 
-## Regular expressions cont.
+. . .
 
 ```{r}
 # explicit \
@@ -283,14 +283,14 @@ x <- c("apple pie", "apple", "apple cake")
 str_view(x, "^a")
 ```
 
-## More regexp cont.
+. . .
 
 ```{r}
 x <- c("apple pie", "apple", "apple cake")
 str_view(x, "e$")
 ```
 
-## More regexp cont.
+. . .
 
 ```{r}
 x <- c("apple pie", "apple", "apple cake")
@@ -303,6 +303,16 @@ str_view(x, "apple")
 ```{r}
 x <- c("apple pie", "apple", "apple cake")
 str_view(x, "^apple$")
+```
+
+```{r}
+x <- c("apple pie", "apple", "apple cake")
+str_view(x, "apple$")
+```
+
+```{r}
+x <- c("apple pie", "apple", "apple cake")
+str_view(x, "^apple")
 ```
 
 ## regexp; Character classes

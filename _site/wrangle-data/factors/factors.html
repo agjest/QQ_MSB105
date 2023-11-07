@@ -454,11 +454,70 @@ ag
 <li class="fragment">Efficent alternative to making a lot of dummy variables</li>
 <li class="fragment">R is perhaps a bit to eager, hence smart to remember the option <code>stringsAsFactors</code> for many functions.
 <ul>
-<li class="fragment">Set this option to FALSE, default is TRUE</li>
-<li class="fragment">Then convert the character vector manually to a factor with <code>var &lt;- factor(var)</code> or better with the <em>tidyverse</em> alternative from <em>forcats</em> (<code>var &lt;- parse_factor(var)</code>)</li>
+<li class="fragment"><p>Set this option to FALSE, default is TRUE. Reversed since R 4.1, default now FALSE.</p></li>
+<li class="fragment"><p>Then convert the character vector manually to a factor with <code>var &lt;- factor(var)</code> (base::factor) or better with the <em>tidyverse</em> alternative from <em>forcats</em> (<code>var &lt;- fct(var)</code>) (forcat::fct).</p></li>
 </ul></li>
 <li class="fragment">The <em>tidyverse</em> functions will not convert to factor unless you ask for it.</li>
 </ul>
+</section>
+<section id="factors-cont." class="slide level2">
+<h2>Factors cont.</h2>
+<p>From help: "<code>fct()</code> is a stricter version of <a href="http://127.0.0.1:35655/help/library/forcats/help/factor"><code>factor()</code></a> that errors if your specification of <code>levels</code> is inconsistent with the values in <code>x</code>."</p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cat"</span>, <span class="st">"dog"</span>, <span class="st">"dog"</span>, <span class="st">"cow"</span>, <span class="st">"cat"</span>, <span class="st">"coow"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co"># base factor()</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>x_bf <span class="ot">&lt;-</span> <span class="fu">factor</span>(x, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"cat"</span>, <span class="st">"dog"</span>, <span class="st">"cow"</span>))</span>
+<span id="cb3-4"><a href="#cb3-4"></a>x_bf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] cat  dog  dog  cow  cat  &lt;NA&gt;
+Levels: cat dog cow</code></pre>
+</div>
+</div>
+<div class="cell" data-paged.print="false">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># STRICTER; gives warning readr::parse_factor</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>x_rf <span class="ot">&lt;-</span> <span class="fu">parse_factor</span>(x, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"cat"</span>, <span class="st">"dog"</span>, <span class="st">"cow"</span>))</span>
+<span id="cb5-3"><a href="#cb5-3"></a>x_rf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] cat  dog  dog  cow  cat  &lt;NA&gt;
+attr(,"problems")
+# A tibble: 1 × 4
+    row   col expected           actual
+  &lt;int&gt; &lt;int&gt; &lt;chr&gt;              &lt;chr&gt; 
+1     6    NA value in level set coow  
+Levels: cat dog cow</code></pre>
+</div>
+</div>
+</section>
+<section id="factors-cont.-1" class="slide level2">
+<h2>Factors cont.</h2>
+<ul>
+<li class="fragment">fct() is very strict. Throws an error if value not in levels.</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># STRICT; gives ERROR</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>forcat <span class="fu">fct</span>()</span>
+<span id="cb7-3"><a href="#cb7-3"></a>x_ff <span class="ot">&lt;-</span> <span class="fu">fct</span>(x, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"cat"</span>, <span class="st">"dog"</span>, <span class="st">"cow"</span>))</span>
+<span id="cb7-4"><a href="#cb7-4"></a>Error <span class="cf">in</span> <span class="st">`</span><span class="at">fct()</span><span class="st">`</span><span class="sc">:</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="sc">!</span> All values of <span class="st">`</span><span class="at">x</span><span class="st">`</span> must appear <span class="cf">in</span> <span class="st">`</span><span class="at">levels</span><span class="st">`</span> or <span class="st">`</span><span class="at">na</span><span class="st">`</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>ℹ Missing level<span class="sc">:</span> <span class="st">"coow"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li class="fragment">You don’t have to specify levels.</li>
+<li class="fragment">If you don’t. Levels will be set to unique values in data, orderer as they first occur in data.</li>
+</ul>
+</div>
 </section>
 <section id="factors-1" class="slide level2">
 <h2>Factors</h2>
@@ -466,27 +525,193 @@ ag
 <li class="fragment">If you end up with a factor and want a numeric vector see <a href="https://cran.r-project.org/doc/FAQ/R-FAQ.html#How-do-I-convert-factors-to-numeric_003f">R FAQ: 7.10 How do I convert factors to numeric?</a>
 <ul>
 <li class="fragment"><code>v = as.numeric(levels(f))[as.integer(f)]</code></li>
+<li class="fragment"><code>v = as.numeric(as.character(f))</code> also works, but less efficient</li>
 </ul></li>
-<li class="fragment">To make a factor manually you do <code>my_df$variable_name &lt;- factor(my_df$variable_name)</code> or use <code>parse_factor()</code> which is a safer alternative.</li>
+<li class="fragment">To make a factor manually you do:
+<ul>
+<li class="fragment"><code>my_df$variable_name &lt;- factor(my_df$variable_name)</code> or</li>
+<li class="fragment">use <code>parse_factor()</code> which is a safer alternative or</li>
+<li class="fragment">use <code>fct()</code> which is an even safer alternative.</li>
+</ul></li>
 </ul>
 </section>
 <section id="factors-in-tidyverse-forcats" class="slide level2">
 <h2>Factors in <em>tidyverse</em>; <em>forcats</em></h2>
 <ul>
-<li class="fragment">Part of core <em>tidyverse</em> (i.e.&nbsp;<code>library(tidyverse)</code> will load <em>forecats</em>)</li>
+<li class="fragment">Many of the functions in <code>forcats</code> are about reordering levels.
+<ul>
+<li class="fragment">Cosmetic, for plots and tables</li>
+<li class="fragment">Results will not change</li>
+</ul></li>
+<li class="fragment">Important technique:
+<ul>
+<li class="fragment">Make factor of a variable.</li>
+<li class="fragment">Collapse the levels into groups we are interested in and throw the rest into an "Other" category.</li>
+<li class="fragment">Alternative to <code>case_when()</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<ul>
+<li class="fragment">Use dataset <code>gss_cat</code> in the <code>forcats</code> package as an example.</li>
+</ul>
+<div class="fragment">
+<div class="cell" data-paged.print="false">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>gss_cat <span class="ot">&lt;-</span> forcats<span class="sc">::</span>gss_cat</span>
+<span id="cb8-2"><a href="#cb8-2"></a>gss_cat <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 9
+   year marital         age race  rincome       partyid relig denom tvhours
+  &lt;int&gt; &lt;fct&gt;         &lt;int&gt; &lt;fct&gt; &lt;fct&gt;         &lt;fct&gt;   &lt;fct&gt; &lt;fct&gt;   &lt;int&gt;
+1  2000 Never married    26 White $8000 to 9999 Ind,ne… Prot… Sout…      12
+2  2000 Divorced         48 White $8000 to 9999 Not st… Prot… Bapt…      NA
+3  2000 Widowed          67 White Not applicab… Indepe… Prot… No d…       2
+4  2000 Never married    39 White Not applicab… Ind,ne… Orth… Not …       4
+5  2000 Divorced         25 White Not applicab… Not st… None  Not …       1</code></pre>
+</div>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li class="fragment">Most already factors</li>
+<li class="fragment">Change <code>patyid</code> to character for illustration</li>
+</ul>
+</div>
+</section>
+<section id="example-change-patyid-to-character" class="slide level2">
+<h2>Example; Change <code>patyid</code> to character</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>gss_cat <span class="ot">&lt;-</span> gss_cat <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb10-3"><a href="#cb10-3"></a>    <span class="at">partyid =</span> <span class="fu">as.character</span>(partyid)</span>
+<span id="cb10-4"><a href="#cb10-4"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-paged.print="false">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>gss_cat <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 9
+   year marital         age race  rincome       partyid relig denom tvhours
+  &lt;int&gt; &lt;fct&gt;         &lt;int&gt; &lt;fct&gt; &lt;fct&gt;         &lt;chr&gt;   &lt;fct&gt; &lt;fct&gt;   &lt;int&gt;
+1  2000 Never married    26 White $8000 to 9999 Ind,ne… Prot… Sout…      12
+2  2000 Divorced         48 White $8000 to 9999 Not st… Prot… Bapt…      NA</code></pre>
+</div>
+</div>
+</section>
+<section id="example-make-factor-of-partyid" class="slide level2">
+<h2>Example; Make factor of <code>partyid</code></h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>gss_cat <span class="ot">&lt;-</span> gss_cat <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-3"><a href="#cb13-3"></a>    <span class="at">partyid_fac =</span> <span class="fu">fct</span>(partyid)</span>
+<span id="cb13-4"><a href="#cb13-4"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-paged.print="false">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>gss_cat <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 10
+   year marital   age race  rincome partyid relig denom tvhours partyid_fac
+  &lt;int&gt; &lt;fct&gt;   &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;chr&gt;   &lt;fct&gt; &lt;fct&gt;   &lt;int&gt; &lt;fct&gt;      
+1  2000 Never …    26 White $8000 … Ind,ne… Prot… Sout…      12 Ind,near r…
+2  2000 Divorc…    48 White $8000 … Not st… Prot… Bapt…      NA Not str re…</code></pre>
+</div>
+</div>
+</section>
+<section id="example-collapse-levels" class="slide level2">
+<h2>Example; collapse levels</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">levels</span>(gss_cat<span class="sc">$</span>partyid_fac)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Ind,near rep"       "Not str republican" "Independent"       
+ [4] "Not str democrat"   "Strong democrat"    "Ind,near dem"      
+ [7] "Strong republican"  "Other party"        "No answer"         
+[10] "Don't know"        </code></pre>
+</div>
+</div>
+<ul>
+<li class="fragment">Only want “Strong republican”, “Strong democrat” and all “Independent”s.</li>
+<li class="fragment">Put the rest into “Other”</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>gss_cat <span class="ot">&lt;-</span> gss_cat <span class="sc">|&gt;</span> </span>
+<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-3"><a href="#cb18-3"></a>    <span class="at">party =</span> <span class="fu">fct_collapse</span>(</span>
+<span id="cb18-4"><a href="#cb18-4"></a>      <span class="at">.f =</span> partyid_fac,</span>
+<span id="cb18-5"><a href="#cb18-5"></a>      <span class="st">"Strong rep"</span> <span class="ot">=</span> <span class="st">"Strong republican"</span>,</span>
+<span id="cb18-6"><a href="#cb18-6"></a>      <span class="st">"Strong dem"</span> <span class="ot">=</span> <span class="st">"Strong democrat"</span>,</span>
+<span id="cb18-7"><a href="#cb18-7"></a>      <span class="st">"Ind"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Independent"</span>, <span class="st">"Ind,near dem"</span>, <span class="st">"Ind,near rep"</span>),</span>
+<span id="cb18-8"><a href="#cb18-8"></a>      <span class="at">other_level =</span> <span class="st">"Other"</span></span>
+<span id="cb18-9"><a href="#cb18-9"></a>    )</span>
+<span id="cb18-10"><a href="#cb18-10"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section id="example-new-collapsed-factor" class="slide level2">
+<h2>Example; new collapsed factor</h2>
+<div class="cell" data-paged.print="false">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>gss_cat <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">select</span>(year, partyid, partyid_fac, party) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 4
+    year partyid            partyid_fac        party     
+   &lt;int&gt; &lt;chr&gt;              &lt;fct&gt;              &lt;fct&gt;     
+ 1  2000 Ind,near rep       Ind,near rep       Ind       
+ 2  2000 Not str republican Not str republican Other     
+ 3  2000 Independent        Independent        Ind       
+ 4  2000 Ind,near rep       Ind,near rep       Ind       
+ 5  2000 Not str democrat   Not str democrat   Other     
+ 6  2000 Strong democrat    Strong democrat    Strong dem
+ 7  2000 Not str republican Not str republican Other     
+ 8  2000 Ind,near dem       Ind,near dem       Ind       
+ 9  2000 Not str democrat   Not str democrat   Other     
+10  2000 Strong republican  Strong republican  Strong rep</code></pre>
+</div>
+</div>
+</section>
+<section id="another-factor-example" class="slide level2">
+<h2>Another factor example</h2>
+<ul>
+<li class="fragment"><code>forcats</code> part of core <em>tidyverse</em> (i.e.&nbsp;<code>library(tidyverse)</code> will load <em>forecats</em>)</li>
 <li class="fragment">How to make a factor variable?</li>
 </ul>
 <div class="fragment">
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Some alternatives Long Abbreviations for Days</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Mon"</span>, <span class="st">"Tue"</span>, <span class="st">"Tues"</span>, <span class="st">"Wed"</span>, <span class="st">"Thu"</span>, <span class="st">"Thur"</span>, <span class="st">"Thurs"</span>, <span class="st">"Fri"</span>, <span class="st">"Sat"</span>, <span class="st">"Sun"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb3-4"><a href="#cb3-4"></a>df_days <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb3-5"><a href="#cb3-5"></a>  <span class="at">days =</span> <span class="fu">sample</span>(x, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb3-6"><a href="#cb3-6"></a>  )</span>
-<span id="cb3-7"><a href="#cb3-7"></a>df_days <span class="sc">%&gt;%</span> <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Some alternatives Long Abbreviations for Days</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Mon"</span>, <span class="st">"Tue"</span>, <span class="st">"Tues"</span>, <span class="st">"Wed"</span>, <span class="st">"Thu"</span>, <span class="st">"Thur"</span>, <span class="st">"Thurs"</span>, <span class="st">"Fri"</span>, <span class="st">"Sat"</span>, <span class="st">"Sun"</span>)</span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb21-4"><a href="#cb21-4"></a>df_days <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb21-5"><a href="#cb21-5"></a>  <span class="at">days =</span> <span class="fu">sample</span>(x, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-6"><a href="#cb21-6"></a>  )</span>
+<span id="cb21-7"><a href="#cb21-7"></a>df_days <span class="sc">%&gt;%</span> <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>days
@@ -508,15 +733,16 @@ ag
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>df_days <span class="ot">&lt;-</span> df_days <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb5-3"><a href="#cb5-3"></a>    <span class="at">days =</span> <span class="fu">case_when</span>(</span>
-<span id="cb5-4"><a href="#cb5-4"></a>      days <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Tues"</span>) <span class="sc">~</span> <span class="st">"Tue"</span>,</span>
-<span id="cb5-5"><a href="#cb5-5"></a>      days <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Thur"</span>) <span class="sc">~</span> <span class="st">"Thu"</span>,</span>
-<span id="cb5-6"><a href="#cb5-6"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> days</span>
-<span id="cb5-7"><a href="#cb5-7"></a>    )</span>
-<span id="cb5-8"><a href="#cb5-8"></a>  )</span>
-<span id="cb5-9"><a href="#cb5-9"></a>df_days <span class="sc">%&gt;%</span> <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># or use fct_collapse()</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>df_days <span class="ot">&lt;-</span> df_days <span class="sc">%&gt;%</span> </span>
+<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-4"><a href="#cb23-4"></a>    <span class="at">days =</span> <span class="fu">case_when</span>(</span>
+<span id="cb23-5"><a href="#cb23-5"></a>      days <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Tues"</span>) <span class="sc">~</span> <span class="st">"Tue"</span>,</span>
+<span id="cb23-6"><a href="#cb23-6"></a>      days <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Thur"</span>) <span class="sc">~</span> <span class="st">"Thu"</span>,</span>
+<span id="cb23-7"><a href="#cb23-7"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> days</span>
+<span id="cb23-8"><a href="#cb23-8"></a>    )</span>
+<span id="cb23-9"><a href="#cb23-9"></a>  )</span>
+<span id="cb23-10"><a href="#cb23-10"></a>df_days <span class="sc">%&gt;%</span> <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>days
@@ -531,20 +757,20 @@ ag
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># US standard; Sunday first day of the week</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>day_levels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Sun"</span>, <span class="st">"Mon"</span>, <span class="st">"Tue"</span>, <span class="st">"Wed"</span>, <span class="st">"Thu"</span>, <span class="st">"Fri"</span>, <span class="st">"Sat"</span>)</span>
-<span id="cb7-3"><a href="#cb7-3"></a>tmp_days <span class="ot">&lt;-</span> df_days <span class="sc">%&gt;%</span> </span>
-<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb7-5"><a href="#cb7-5"></a>    <span class="at">days_fixed =</span> <span class="fu">factor</span>(days, <span class="at">levels =</span> day_levels)</span>
-<span id="cb7-6"><a href="#cb7-6"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">select</span>(days_fixed) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># US standard; Sunday first day of the week</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>day_levels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Sun"</span>, <span class="st">"Mon"</span>, <span class="st">"Tue"</span>, <span class="st">"Wed"</span>, <span class="st">"Thu"</span>, <span class="st">"Fri"</span>, <span class="st">"Sat"</span>)</span>
+<span id="cb25-3"><a href="#cb25-3"></a>tmp_days <span class="ot">&lt;-</span> df_days <span class="sc">%&gt;%</span> </span>
+<span id="cb25-4"><a href="#cb25-4"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb25-5"><a href="#cb25-5"></a>    <span class="at">days_fixed =</span> <span class="fu">factor</span>(days, <span class="at">levels =</span> day_levels)</span>
+<span id="cb25-6"><a href="#cb25-6"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb25-7"><a href="#cb25-7"></a>  <span class="fu">select</span>(days_fixed) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>tmp_days <span class="sc">%&gt;%</span> </span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">table</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>tmp_days <span class="sc">%&gt;%</span> </span>
+<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">table</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>days_fixed
@@ -555,10 +781,10 @@ Sun Mon Tue Wed Thu Fri Sat
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Need a table before sum </span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>tmp_days <span class="sc">%&gt;%</span> </span>
-<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">table</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># Need a table before sum </span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>tmp_days <span class="sc">%&gt;%</span> </span>
+<span id="cb28-3"><a href="#cb28-3"></a>  <span class="fu">table</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb28-4"><a href="#cb28-4"></a>  <span class="fu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 94</code></pre>
@@ -579,7 +805,7 @@ Sun Mon Tue Wed Thu Fri Sat
 <li class="fragment">This is <strong>dangerous</strong>!</li>
 </ul></li>
 </ul></li>
-<li class="fragment">Much better to use <code>parse_factor()</code> from <strong>tidyverse (package: forcats).</strong></li>
+<li class="fragment">Much safer to use <code>parse_factor()</code> from <code>readr</code> (warning for missing level) or <code>fct()</code> from <code>forcats</code> (error for missing level).</li>
 </ul>
 </section>
 <section id="how-to-fix-this-cont.-2" class="slide level2 smaller">
@@ -587,10 +813,10 @@ Sun Mon Tue Wed Thu Fri Sat
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>df_days <span class="ot">&lt;-</span> df_days <span class="sc">%&gt;%</span> </span>
-<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-3"><a href="#cb12-3"></a>    <span class="at">days_fixed =</span> <span class="fu">parse_factor</span>(days, <span class="at">levels =</span> day_levels)</span>
-<span id="cb12-4"><a href="#cb12-4"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>df_days <span class="ot">&lt;-</span> df_days <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a href="#cb30-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb30-3"><a href="#cb30-3"></a>    <span class="at">days_fixed =</span> <span class="fu">parse_factor</span>(days, <span class="at">levels =</span> day_levels)</span>
+<span id="cb30-4"><a href="#cb30-4"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ul>
@@ -618,7 +844,7 @@ See problems(...) for more details.</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">table</span>(df_days<span class="sc">$</span>days_fixed, <span class="at">useNA =</span> <span class="st">"always"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">table</span>(df_days<span class="sc">$</span>days_fixed, <span class="at">useNA =</span> <span class="st">"always"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -637,21 +863,21 @@ See problems(...) for more details.</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>df_days <span class="ot">&lt;-</span> df_days <span class="sc">%&gt;%</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb16-3"><a href="#cb16-3"></a>    <span class="at">days_fixed =</span> <span class="fu">parse_factor</span>(</span>
-<span id="cb16-4"><a href="#cb16-4"></a>      <span class="fu">case_when</span>(</span>
-<span id="cb16-5"><a href="#cb16-5"></a>        days <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Tues"</span>) <span class="sc">~</span> <span class="st">"Tue"</span>,</span>
-<span id="cb16-6"><a href="#cb16-6"></a>        days <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Thur"</span>, <span class="st">"Thurs"</span>) <span class="sc">~</span> <span class="st">"Thu"</span>,</span>
-<span id="cb16-7"><a href="#cb16-7"></a>        <span class="co"># the others just like days</span></span>
-<span id="cb16-8"><a href="#cb16-8"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> days</span>
-<span id="cb16-9"><a href="#cb16-9"></a>      ),</span>
-<span id="cb16-10"><a href="#cb16-10"></a>      <span class="at">levels =</span> day_levels</span>
-<span id="cb16-11"><a href="#cb16-11"></a>    )</span>
-<span id="cb16-12"><a href="#cb16-12"></a>  )</span>
-<span id="cb16-13"><a href="#cb16-13"></a>df_days <span class="sc">%&gt;%</span></span>
-<span id="cb16-14"><a href="#cb16-14"></a>  <span class="fu">select</span>(days_fixed) <span class="sc">%&gt;%</span></span>
-<span id="cb16-15"><a href="#cb16-15"></a>  <span class="fu">table</span>(<span class="at">useNA =</span> <span class="st">"always"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>df_days <span class="ot">&lt;-</span> df_days <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb34-3"><a href="#cb34-3"></a>    <span class="at">days_fixed =</span> <span class="fu">parse_factor</span>(</span>
+<span id="cb34-4"><a href="#cb34-4"></a>      <span class="fu">case_when</span>(</span>
+<span id="cb34-5"><a href="#cb34-5"></a>        days <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Tues"</span>) <span class="sc">~</span> <span class="st">"Tue"</span>,</span>
+<span id="cb34-6"><a href="#cb34-6"></a>        days <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Thur"</span>, <span class="st">"Thurs"</span>) <span class="sc">~</span> <span class="st">"Thu"</span>,</span>
+<span id="cb34-7"><a href="#cb34-7"></a>        <span class="co"># the others just like days</span></span>
+<span id="cb34-8"><a href="#cb34-8"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> days</span>
+<span id="cb34-9"><a href="#cb34-9"></a>      ),</span>
+<span id="cb34-10"><a href="#cb34-10"></a>      <span class="at">levels =</span> day_levels</span>
+<span id="cb34-11"><a href="#cb34-11"></a>    )</span>
+<span id="cb34-12"><a href="#cb34-12"></a>  )</span>
+<span id="cb34-13"><a href="#cb34-13"></a>df_days <span class="sc">%&gt;%</span></span>
+<span id="cb34-14"><a href="#cb34-14"></a>  <span class="fu">select</span>(days_fixed) <span class="sc">%&gt;%</span></span>
+<span id="cb34-15"><a href="#cb34-15"></a>  <span class="fu">table</span>(<span class="at">useNA =</span> <span class="st">"always"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>days_fixed
@@ -682,7 +908,7 @@ See problems(...) for more details.</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">head</span>(df_days<span class="sc">$</span>days_fixed, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">head</span>(df_days<span class="sc">$</span>days_fixed, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] Sun Thu Thu Sat Thu
@@ -690,11 +916,11 @@ Levels: Sun Mon Tue Wed Thu Fri Sat</code></pre>
 </div>
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>df_days <span class="ot">&lt;-</span> df_days <span class="sc">%&gt;%</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb20-3"><a href="#cb20-3"></a>    <span class="at">day_of_the_week =</span> <span class="fu">as.numeric</span>(days_fixed)</span>
-<span id="cb20-4"><a href="#cb20-4"></a>  )</span>
-<span id="cb20-5"><a href="#cb20-5"></a><span class="fu">head</span>(df_days<span class="sc">$</span>day_of_the_week, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>df_days <span class="ot">&lt;-</span> df_days <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb38-3"><a href="#cb38-3"></a>    <span class="at">day_of_the_week =</span> <span class="fu">as.numeric</span>(days_fixed)</span>
+<span id="cb38-4"><a href="#cb38-4"></a>  )</span>
+<span id="cb38-5"><a href="#cb38-5"></a><span class="fu">head</span>(df_days<span class="sc">$</span>day_of_the_week, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 5 5 7 5</code></pre>
@@ -706,14 +932,14 @@ Levels: Sun Mon Tue Wed Thu Fri Sat</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>df_days <span class="ot">&lt;-</span> df_days <span class="sc">%&gt;%</span> </span>
-<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-3"><a href="#cb22-3"></a>    <span class="co"># first convert day_of_the_week to character</span></span>
-<span id="cb22-4"><a href="#cb22-4"></a>    <span class="at">day_of_the_week =</span> <span class="fu">as.character</span>(day_of_the_week),</span>
-<span id="cb22-5"><a href="#cb22-5"></a>    <span class="co"># then convert day_of_the_week to factor</span></span>
-<span id="cb22-6"><a href="#cb22-6"></a>    <span class="at">day_of_the_week =</span> <span class="fu">parse_factor</span>(day_of_the_week)</span>
-<span id="cb22-7"><a href="#cb22-7"></a>  )</span>
-<span id="cb22-8"><a href="#cb22-8"></a>df_days[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>df_days <span class="ot">&lt;-</span> df_days <span class="sc">%&gt;%</span> </span>
+<span id="cb40-2"><a href="#cb40-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb40-3"><a href="#cb40-3"></a>    <span class="co"># first convert day_of_the_week to character</span></span>
+<span id="cb40-4"><a href="#cb40-4"></a>    <span class="at">day_of_the_week =</span> <span class="fu">as.character</span>(day_of_the_week),</span>
+<span id="cb40-5"><a href="#cb40-5"></a>    <span class="co"># then convert day_of_the_week to factor</span></span>
+<span id="cb40-6"><a href="#cb40-6"></a>    <span class="at">day_of_the_week =</span> <span class="fu">parse_factor</span>(day_of_the_week)</span>
+<span id="cb40-7"><a href="#cb40-7"></a>  )</span>
+<span id="cb40-8"><a href="#cb40-8"></a>df_days[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
@@ -733,7 +959,7 @@ Levels: Sun Mon Tue Wed Thu Fri Sat</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">levels</span>(df_days<span class="sc">$</span>day_of_the_week)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">levels</span>(df_days<span class="sc">$</span>day_of_the_week)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "1" "5" "7" "4" "3" "6" "2"</code></pre>
@@ -748,8 +974,8 @@ Levels: Sun Mon Tue Wed Thu Fri Sat</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>df_days<span class="sc">$</span>day_of_the_week <span class="ot">&lt;-</span> <span class="fu">fct_inseq</span>(df_days<span class="sc">$</span>day_of_the_week)</span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="fu">levels</span>(df_days<span class="sc">$</span>day_of_the_week)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>df_days<span class="sc">$</span>day_of_the_week <span class="ot">&lt;-</span> <span class="fu">fct_inseq</span>(df_days<span class="sc">$</span>day_of_the_week)</span>
+<span id="cb44-2"><a href="#cb44-2"></a><span class="fu">levels</span>(df_days<span class="sc">$</span>day_of_the_week)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "1" "2" "3" "4" "5" "6" "7"</code></pre>
@@ -758,9 +984,9 @@ Levels: Sun Mon Tue Wed Thu Fri Sat</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>df_days <span class="sc">%&gt;%</span> </span>
-<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">filter</span>(days_fixed <span class="sc">==</span> <span class="st">"Thu"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-3"><a href="#cb28-3"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>df_days <span class="sc">%&gt;%</span> </span>
+<span id="cb46-2"><a href="#cb46-2"></a>  <span class="fu">filter</span>(days_fixed <span class="sc">==</span> <span class="st">"Thu"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb46-3"><a href="#cb46-3"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
@@ -782,8 +1008,8 @@ Levels: Sun Mon Tue Wed Thu Fri Sat</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>df_days<span class="sc">$</span>day_of_the_week <span class="ot">&lt;-</span> <span class="fu">fct_infreq</span>(df_days<span class="sc">$</span>day_of_the_week)</span>
-<span id="cb30-2"><a href="#cb30-2"></a><span class="fu">levels</span>(df_days<span class="sc">$</span>day_of_the_week)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>df_days<span class="sc">$</span>day_of_the_week <span class="ot">&lt;-</span> <span class="fu">fct_infreq</span>(df_days<span class="sc">$</span>day_of_the_week)</span>
+<span id="cb48-2"><a href="#cb48-2"></a><span class="fu">levels</span>(df_days<span class="sc">$</span>day_of_the_week)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "5" "3" "4" "1" "6" "7" "2"</code></pre>
@@ -802,8 +1028,8 @@ Levels: Sun Mon Tue Wed Thu Fri Sat</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>df_days<span class="sc">$</span>day_of_the_week <span class="ot">&lt;-</span> <span class="fu">fct_inorder</span>(df_days<span class="sc">$</span>day_of_the_week)</span>
-<span id="cb32-2"><a href="#cb32-2"></a><span class="fu">levels</span>(df_days<span class="sc">$</span>day_of_the_week)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>df_days<span class="sc">$</span>day_of_the_week <span class="ot">&lt;-</span> <span class="fu">fct_inorder</span>(df_days<span class="sc">$</span>day_of_the_week)</span>
+<span id="cb50-2"><a href="#cb50-2"></a><span class="fu">levels</span>(df_days<span class="sc">$</span>day_of_the_week)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "1" "5" "7" "4" "3" "6" "2"</code></pre>
@@ -825,23 +1051,23 @@ Levels: Sun Mon Tue Wed Thu Fri Sat</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># Norwegian abbreviations </span></span>
-<span id="cb34-2"><a href="#cb34-2"></a>df_days <span class="ot">&lt;-</span> df_days <span class="sc">%&gt;%</span></span>
-<span id="cb34-3"><a href="#cb34-3"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb34-4"><a href="#cb34-4"></a>    <span class="at">days_nor =</span> days_fixed,</span>
-<span id="cb34-5"><a href="#cb34-5"></a>    <span class="at">days_nor =</span> <span class="fu">fct_recode</span>(days_nor,</span>
-<span id="cb34-6"><a href="#cb34-6"></a>      <span class="st">"søn"</span> <span class="ot">=</span> <span class="st">"Sun"</span>,</span>
-<span id="cb34-7"><a href="#cb34-7"></a>      <span class="st">"man"</span> <span class="ot">=</span> <span class="st">"Mon"</span>,</span>
-<span id="cb34-8"><a href="#cb34-8"></a>      <span class="st">"tir"</span> <span class="ot">=</span> <span class="st">"Tue"</span>,</span>
-<span id="cb34-9"><a href="#cb34-9"></a>      <span class="st">"ons"</span> <span class="ot">=</span> <span class="st">"Wed"</span>,</span>
-<span id="cb34-10"><a href="#cb34-10"></a>      <span class="st">"tor"</span> <span class="ot">=</span> <span class="st">"Thu"</span>,</span>
-<span id="cb34-11"><a href="#cb34-11"></a>      <span class="st">"fre"</span> <span class="ot">=</span> <span class="st">"Fri"</span>,</span>
-<span id="cb34-12"><a href="#cb34-12"></a>      <span class="st">"lør"</span> <span class="ot">=</span> <span class="st">"Sat"</span>,</span>
-<span id="cb34-13"><a href="#cb34-13"></a>    ),</span>
-<span id="cb34-14"><a href="#cb34-14"></a>    <span class="co"># monday first day of week</span></span>
-<span id="cb34-15"><a href="#cb34-15"></a>    <span class="at">days_nor =</span> <span class="fu">fct_relevel</span>(days_nor, <span class="st">"søn"</span>, <span class="at">after =</span> <span class="dv">6</span>)</span>
-<span id="cb34-16"><a href="#cb34-16"></a>  )</span>
-<span id="cb34-17"><a href="#cb34-17"></a><span class="fu">levels</span>(df_days<span class="sc">$</span>days_nor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="co"># Norwegian abbreviations </span></span>
+<span id="cb52-2"><a href="#cb52-2"></a>df_days <span class="ot">&lt;-</span> df_days <span class="sc">%&gt;%</span></span>
+<span id="cb52-3"><a href="#cb52-3"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb52-4"><a href="#cb52-4"></a>    <span class="at">days_nor =</span> days_fixed,</span>
+<span id="cb52-5"><a href="#cb52-5"></a>    <span class="at">days_nor =</span> <span class="fu">fct_recode</span>(days_nor,</span>
+<span id="cb52-6"><a href="#cb52-6"></a>      <span class="st">"søn"</span> <span class="ot">=</span> <span class="st">"Sun"</span>,</span>
+<span id="cb52-7"><a href="#cb52-7"></a>      <span class="st">"man"</span> <span class="ot">=</span> <span class="st">"Mon"</span>,</span>
+<span id="cb52-8"><a href="#cb52-8"></a>      <span class="st">"tir"</span> <span class="ot">=</span> <span class="st">"Tue"</span>,</span>
+<span id="cb52-9"><a href="#cb52-9"></a>      <span class="st">"ons"</span> <span class="ot">=</span> <span class="st">"Wed"</span>,</span>
+<span id="cb52-10"><a href="#cb52-10"></a>      <span class="st">"tor"</span> <span class="ot">=</span> <span class="st">"Thu"</span>,</span>
+<span id="cb52-11"><a href="#cb52-11"></a>      <span class="st">"fre"</span> <span class="ot">=</span> <span class="st">"Fri"</span>,</span>
+<span id="cb52-12"><a href="#cb52-12"></a>      <span class="st">"lør"</span> <span class="ot">=</span> <span class="st">"Sat"</span>,</span>
+<span id="cb52-13"><a href="#cb52-13"></a>    ),</span>
+<span id="cb52-14"><a href="#cb52-14"></a>    <span class="co"># monday first day of week</span></span>
+<span id="cb52-15"><a href="#cb52-15"></a>    <span class="at">days_nor =</span> <span class="fu">fct_relevel</span>(days_nor, <span class="st">"søn"</span>, <span class="at">after =</span> <span class="dv">6</span>)</span>
+<span id="cb52-16"><a href="#cb52-16"></a>  )</span>
+<span id="cb52-17"><a href="#cb52-17"></a><span class="fu">levels</span>(df_days<span class="sc">$</span>days_nor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "man" "tir" "ons" "tor" "fre" "lør" "søn"</code></pre>
@@ -854,19 +1080,19 @@ Levels: Sun Mon Tue Wed Thu Fri Sat</code></pre>
 <div class="cell">
 <details open="">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="co"># day of the week Norwegian standard, monday day 1</span></span>
-<span id="cb36-2"><a href="#cb36-2"></a>df_days <span class="ot">&lt;-</span> df_days <span class="sc">%&gt;%</span></span>
-<span id="cb36-3"><a href="#cb36-3"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb36-4"><a href="#cb36-4"></a>    <span class="co"># get the numeric values of the nor days, mon = 1 etc</span></span>
-<span id="cb36-5"><a href="#cb36-5"></a>    <span class="at">d_o_t_w_nor =</span> <span class="fu">as.numeric</span>(days_nor),</span>
-<span id="cb36-6"><a href="#cb36-6"></a>    <span class="co"># convert to character to make categories</span></span>
-<span id="cb36-7"><a href="#cb36-7"></a>    <span class="at">d_o_t_w_nor =</span> <span class="fu">as.character</span>(d_o_t_w_nor),</span>
-<span id="cb36-8"><a href="#cb36-8"></a>    <span class="co"># make a factor of it</span></span>
-<span id="cb36-9"><a href="#cb36-9"></a>    <span class="at">d_o_t_w_nor =</span> <span class="fu">parse_factor</span>(d_o_t_w_nor),</span>
-<span id="cb36-10"><a href="#cb36-10"></a>    <span class="co"># sort the levels, "1", "2" ... "7"</span></span>
-<span id="cb36-11"><a href="#cb36-11"></a>    <span class="at">d_o_t_w_nor =</span> <span class="fu">fct_inseq</span>(d_o_t_w_nor)</span>
-<span id="cb36-12"><a href="#cb36-12"></a>  )</span>
-<span id="cb36-13"><a href="#cb36-13"></a><span class="fu">levels</span>(df_days<span class="sc">$</span>d_o_t_w_nor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="co"># day of the week Norwegian standard, monday day 1</span></span>
+<span id="cb54-2"><a href="#cb54-2"></a>df_days <span class="ot">&lt;-</span> df_days <span class="sc">%&gt;%</span></span>
+<span id="cb54-3"><a href="#cb54-3"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb54-4"><a href="#cb54-4"></a>    <span class="co"># get the numeric values of the nor days, mon = 1 etc</span></span>
+<span id="cb54-5"><a href="#cb54-5"></a>    <span class="at">d_o_t_w_nor =</span> <span class="fu">as.numeric</span>(days_nor),</span>
+<span id="cb54-6"><a href="#cb54-6"></a>    <span class="co"># convert to character to make categories</span></span>
+<span id="cb54-7"><a href="#cb54-7"></a>    <span class="at">d_o_t_w_nor =</span> <span class="fu">as.character</span>(d_o_t_w_nor),</span>
+<span id="cb54-8"><a href="#cb54-8"></a>    <span class="co"># make a factor of it</span></span>
+<span id="cb54-9"><a href="#cb54-9"></a>    <span class="at">d_o_t_w_nor =</span> <span class="fu">parse_factor</span>(d_o_t_w_nor),</span>
+<span id="cb54-10"><a href="#cb54-10"></a>    <span class="co"># sort the levels, "1", "2" ... "7"</span></span>
+<span id="cb54-11"><a href="#cb54-11"></a>    <span class="at">d_o_t_w_nor =</span> <span class="fu">fct_inseq</span>(d_o_t_w_nor)</span>
+<span id="cb54-12"><a href="#cb54-12"></a>  )</span>
+<span id="cb54-13"><a href="#cb54-13"></a><span class="fu">levels</span>(df_days<span class="sc">$</span>d_o_t_w_nor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "1" "2" "3" "4" "5" "6" "7"</code></pre>
