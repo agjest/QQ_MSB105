@@ -8573,5 +8573,110 @@
     "title": "Vectors",
     "section": "Some examples",
     "text": "Some examples\n\nGeneral rule: The most complex type wins.\n\n\n\n\nCode\n(x &lt;- c(1, 4, 7, TRUE, \"a\"))\n\n\n[1] \"1\"    \"4\"    \"7\"    \"TRUE\" \"a\"   \n\n\nCode\ntypeof(x)\n\n\n[1] \"character\"\n\n\nCode\n(y &lt;- c(1L, 1.5))\n\n\n[1] 1.0 1.5\n\n\nCode\ntypeof(y)\n\n\n[1] \"double\""
+  },
+  {
+    "objectID": "program/vectors/vectors.html#sub-setting-vectors-by-dropping-elements",
+    "href": "program/vectors/vectors.html#sub-setting-vectors-by-dropping-elements",
+    "title": "Vectors",
+    "section": "Sub-setting vectors by dropping elements",
+    "text": "Sub-setting vectors by dropping elements\n\n\nCode\nx\n\n\n  J   K   L   M   N   O \n\"j\" \"k\" \"l\" \"m\" \"n\" \"o\" \n\n\nCode\n# Drop elements, 1, 4 and 5\nx[c(-1, -4, -5)]\n\n\n  K   L   O \n\"k\" \"l\" \"o\" \n\n\nCode\n# subsetting with logicals\nx[c(TRUE, rep(FALSE,3), TRUE, FALSE)]\n\n\n  J   N \n\"j\" \"n\" \n\n\nCode\n(y &lt;- c(TRUE, rep(FALSE,3), TRUE, FALSE))\n\n\n[1]  TRUE FALSE FALSE FALSE  TRUE FALSE\n\n\nCode\nx[y]\n\n\n  J   N \n\"j\" \"n\""
+  },
+  {
+    "objectID": "program/vectors/vectors.html#sub-setting-vectors-by-dropping-elements-1",
+    "href": "program/vectors/vectors.html#sub-setting-vectors-by-dropping-elements-1",
+    "title": "Vectors",
+    "section": "Sub-setting vectors by dropping elements",
+    "text": "Sub-setting vectors by dropping elements\n\n\nCode\n# we can not mix + and -\nx[c(1, -4, 5)]\n\n\n`Returns: Error in x[c(1, -4, 5)] : only 0’s may be mixed with negative subscripts"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#sub-setting-with-and",
+    "href": "program/vectors/vectors.html#sub-setting-with-and",
+    "title": "Vectors",
+    "section": "Sub-setting with [[ and [",
+    "text": "Sub-setting with [[ and [\n\n[[ extract only a single element\n\n\n\n\nCode\ntypeof(`[[`)\n\n\n[1] \"special\"\n\n\nCode\ntypeof(`[`)\n\n\n[1] \"special\"\n\n\nCode\nx\n\n\n  J   K   L   M   N   O \n\"j\" \"k\" \"l\" \"m\" \"n\" \"o\" \n\n\nCode\nx[1]\n\n\n  J \n\"j\" \n\n\nCode\nx[[1]]\n\n\n[1] \"j\""
+  },
+  {
+    "objectID": "program/vectors/vectors.html#sub-setting-with-and-1",
+    "href": "program/vectors/vectors.html#sub-setting-with-and-1",
+    "title": "Vectors",
+    "section": "Sub-setting with [[ and [",
+    "text": "Sub-setting with [[ and [\n\n\nCode\nstr(x[1])\n\n\n Named chr \"j\"\n - attr(*, \"names\")= chr \"J\"\n\n\nCode\nstr(x[[1]])\n\n\n chr \"j\"\n\n\nCode\ntypeof(x[1])\n\n\n[1] \"character\"\n\n\nCode\ntypeof(x[[1]])\n\n\n[1] \"character\"\n\n\nCode\nnames(x[1])\n\n\n[1] \"J\"\n\n\nCode\nnames(x[[1]])\n\n\nNULL"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#sub-setting-dataframe-with-and",
+    "href": "program/vectors/vectors.html#sub-setting-dataframe-with-and",
+    "title": "Vectors",
+    "section": "Sub-setting dataframe with [[ and [",
+    "text": "Sub-setting dataframe with [[ and [\n\n`df[row(s), column(s)]\nOne dimension not given returns all rows or columns\n\n\n\n\nCode\nmy_df1 &lt;- my_df[1:3, ]\n# column 1 all rows\nmy_df1[, 1]\n\n\n# A tibble: 3 × 1\n      x\n  &lt;dbl&gt;\n1  99.2\n2 119. \n3  79.5\n\n\nCode\n# row 3, all columns\nmy_df1[3, ]\n\n\n# A tibble: 1 × 3\n      x     y     z\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1  79.5  49.1  8.23"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#sub-setting-dataframe-with-and-1",
+    "href": "program/vectors/vectors.html#sub-setting-dataframe-with-and-1",
+    "title": "Vectors",
+    "section": "Sub-setting dataframe with [[ and [",
+    "text": "Sub-setting dataframe with [[ and [\n\n\nCode\n# element in row 3, column 3\nmy_df1[3, 3]\n\n\n# A tibble: 1 × 1\n      z\n  &lt;dbl&gt;\n1  8.23\n\n\nCode\nmy_df1[[3,3]]\n\n\n[1] 8.22684\n\n\nCode\nclass(my_df1[3, 3])\n\n\n[1] \"tbl_df\"     \"tbl\"        \"data.frame\"\n\n\nCode\ntypeof(my_df1[3, 3])\n\n\n[1] \"list\"\n\n\nCode\nclass(my_df1[[3,3]])\n\n\n[1] \"numeric\""
+  },
+  {
+    "objectID": "program/vectors/vectors.html#sub-setting-dataframe-with-and-2",
+    "href": "program/vectors/vectors.html#sub-setting-dataframe-with-and-2",
+    "title": "Vectors",
+    "section": "Sub-setting dataframe with [[ and [",
+    "text": "Sub-setting dataframe with [[ and [\n\n\nCode\ntypeof(my_df1[[3,3]])\n\n\n[1] \"double\"\n\n\n\n\nCode\n# multiple elements [[]] gives an error\nmy_df1[[3,1:3]]\n\n\n\nError: Must extract column with a single valid subscript. x Subscript 1:3 has size 3 but must be size 1. Run rlang::last_error() to see where the error occurred."
+  },
+  {
+    "objectID": "program/vectors/vectors.html#sub-setting-list-with-and",
+    "href": "program/vectors/vectors.html#sub-setting-list-with-and",
+    "title": "Vectors",
+    "section": "Sub-setting list with [[ and [",
+    "text": "Sub-setting list with [[ and [\n\nNote the difference between [[ and [\n\n[[ returns a single value\n[ also returns a single value, but inside a dataframe/tibble\n\nVery important for lists\n\n\n\n\nCode\nmy_list &lt;- list(letters[1:4], 1:3, \"a\", 1.25, TRUE)\nstr(my_list)\n\n\nList of 5\n $ : chr [1:4] \"a\" \"b\" \"c\" \"d\"\n $ : int [1:3] 1 2 3\n $ : chr \"a\"\n $ : num 1.25\n $ : logi TRUE"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#sub-setting-list-with-and-cont.",
+    "href": "program/vectors/vectors.html#sub-setting-list-with-and-cont.",
+    "title": "Vectors",
+    "section": "Sub-setting list with [[ and [ cont.",
+    "text": "Sub-setting list with [[ and [ cont.\n\n\n\n\n\n\nNote\n\n\nBelow list() in second and third element.\n\n\n\n\n\nCode\nmy_list &lt;- list(letters[1:4], list(1:3), list(\"a\", 1.25, TRUE))\nstr(my_list)\n\n\nList of 3\n $ : chr [1:4] \"a\" \"b\" \"c\" \"d\"\n $ :List of 1\n  ..$ : int [1:3] 1 2 3\n $ :List of 3\n  ..$ : chr \"a\"\n  ..$ : num 1.25\n  ..$ : logi TRUE"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#sub-setting-list-with-and-cont.-1",
+    "href": "program/vectors/vectors.html#sub-setting-list-with-and-cont.-1",
+    "title": "Vectors",
+    "section": "Sub-setting list with [[ and [ cont.",
+    "text": "Sub-setting list with [[ and [ cont.\n\n\nCode\nmy_list[2]\n\n\n[[1]]\n[[1]][[1]]\n[1] 1 2 3\n\n\nCode\nmy_list[[2]]\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nstr(my_list[2])\n\n\nList of 1\n $ :List of 1\n  ..$ : int [1:3] 1 2 3\n\n\nCode\nstr(my_list[[2]])\n\n\nList of 1\n $ : int [1:3] 1 2 3"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#sub-setting-list-with-and-cont.-2",
+    "href": "program/vectors/vectors.html#sub-setting-list-with-and-cont.-2",
+    "title": "Vectors",
+    "section": "Sub-setting list with [[ and [ cont.",
+    "text": "Sub-setting list with [[ and [ cont.\n\nnamed components\n\n\n\n\n\n\n\nNote\n\n\nBelow A is a vector, while B and C are lists.\n\n\n\n\n\n\nCode\nmy_list &lt;- list(A = letters[1:4], B = list(1, 2, 3), C = list(\"a\", 1.25, TRUE))\nstr(my_list)\n\n\nList of 3\n $ A: chr [1:4] \"a\" \"b\" \"c\" \"d\"\n $ B:List of 3\n  ..$ : num 1\n  ..$ : num 2\n  ..$ : num 3\n $ C:List of 3\n  ..$ : chr \"a\"\n  ..$ : num 1.25\n  ..$ : logi TRUE"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#sub-setting-list-with-and-cont.-3",
+    "href": "program/vectors/vectors.html#sub-setting-list-with-and-cont.-3",
+    "title": "Vectors",
+    "section": "Sub-setting list with [[ and [ cont.",
+    "text": "Sub-setting list with [[ and [ cont.\n\n\nCode\nl &lt;- my_list[[\"C\"]]\nstr(l)\n\n\nList of 3\n $ : chr \"a\"\n $ : num 1.25\n $ : logi TRUE\n\n\n\n\nCode\n# Pick first element of list l\nl[[1]]\n\n\n[1] \"a\""
+  },
+  {
+    "objectID": "program/vectors/vectors.html#sub-setting-list-with-and-cont.-4",
+    "href": "program/vectors/vectors.html#sub-setting-list-with-and-cont.-4",
+    "title": "Vectors",
+    "section": "Sub-setting list with [[ and [ cont.",
+    "text": "Sub-setting list with [[ and [ cont.\n\n[[ trekker elementer opp av listen\n\n\n\n\nCode\nl &lt;- my_list[[\"B\"]]\nstr(l)\n\n\nList of 3\n $ : num 1\n $ : num 2\n $ : num 3\n\n\nCode\n# The value\nl[[1]]\n\n\n[1] 1\n\n\nCode\n# The value\nmy_list[[\"C\"]][[2]]\n\n\n[1] 1.25\n\n\nCode\n# The value\nmy_list$C[[2]]\n\n\n[1] 1.25"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#sub-setting-list-with-and-cont.-5",
+    "href": "program/vectors/vectors.html#sub-setting-list-with-and-cont.-5",
+    "title": "Vectors",
+    "section": "Sub-setting list with [[ and [ cont.",
+    "text": "Sub-setting list with [[ and [ cont.\n\nSee r4ds 20.5.3 Lists of condiments for a famous explanation of the difference between [[ and [.\n\n\n\n\nCode\n# notice the difference\nlist(1:3)\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nlist(c(1:3))\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nlist(c(1, 2, 3))\n\n\n[[1]]\n[1] 1 2 3\n\n\nCode\nlist(c(1, 2, 3))[[1]]\n\n\n[1] 1 2 3\n\n\nCode\nlist(1, 2, 3)[[1]]\n\n\n[1] 1"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#sub-setting-list-with-and-cont.-6",
+    "href": "program/vectors/vectors.html#sub-setting-list-with-and-cont.-6",
+    "title": "Vectors",
+    "section": "Sub-setting list with [[ and [ cont.",
+    "text": "Sub-setting list with [[ and [ cont.\n\n\nCode\nlist(1, 2, 3)\n\n\n[[1]]\n[1] 1\n\n[[2]]\n[1] 2\n\n[[3]]\n[1] 3\n\n\nCode\nlist(1:3)[[1]][[2]]\n\n\n[1] 2\n\n\nCode\nlist(1, 2, 3)[[2]]\n\n\n[1] 2\n\n\nCode\nunlist(my_list)\n\n\n    A1     A2     A3     A4     B1     B2     B3     C1     C2     C3 \n   \"a\"    \"b\"    \"c\"    \"d\"    \"1\"    \"2\"    \"3\"    \"a\" \"1.25\" \"TRUE\" \n\n\nCode\ntypeof(unlist(my_list))\n\n\n[1] \"character\""
   }
 ]
