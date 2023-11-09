@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Arnstein Gjestland">
+
+<title>MSB105 - Assingment 3; Pendling</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Ingen resultater",
+    "search-matching-documents-text": "Samsvarende dokumenter",
+    "search-copy-link-title": "Kopier link for å søke",
+    "search-hide-matches-text": "Skjul ytterlige resultater",
+    "search-more-match-text": "annet resultat i dette dokumentet",
+    "search-more-matches-text": "andre resultater i dette dokumentet",
+    "search-clear-button-title": "Tøm",
+    "search-detached-cancel-button-title": "Avbryt",
+    "search-submit-button-title": "Send inn"
+  }
+}</script>
+<link href="../../../site_libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="../../../site_libs/tabwid-1.1.3/tabwid.js"></script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">MSB105</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Slå på navigering" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../introduction/introduction.html" rel="" target="">
+ <span class="menu-text">Introduction</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../explore-data/explore-data.html" rel="" target="">
+ <span class="menu-text">Explore Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../wrangle-data/wrangle-data.html" rel="" target="">
+ <span class="menu-text">Data Wrangling</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../program/program.html" rel="" target="">
+ <span class="menu-text">Program</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../model/model.html" rel="" target="">
+ <span class="menu-text">Model</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../assignments/assignments.html" rel="" target="">
+ <span class="menu-text">Assignments</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">På denne siden</h2>
+   
+  <ul>
+  <li><a href="#innledning" id="toc-innledning" class="nav-link active" data-scroll-target="#innledning">Innledning</a>
+  <ul class="collapse">
+  <li><a href="#kommuner-på-haugalandet-2022" id="toc-kommuner-på-haugalandet-2022" class="nav-link" data-scroll-target="#kommuner-på-haugalandet-2022">Kommuner på Haugalandet 2022</a></li>
+  </ul></li>
+  <li><a href="#hente-data-fra-ssb" id="toc-hente-data-fra-ssb" class="nav-link" data-scroll-target="#hente-data-fra-ssb">Hente data fra SSB</a>
+  <ul class="collapse">
+  <li><a href="#rekkefølge-kommunene" id="toc-rekkefølge-kommunene" class="nav-link" data-scroll-target="#rekkefølge-kommunene">Rekkefølge kommunene</a></li>
+  <li><a href="#et-lite-eksempel" id="toc-et-lite-eksempel" class="nav-link" data-scroll-target="#et-lite-eksempel">Et lite eksempel</a></li>
+  <li><a href="#rekkefølge-på-rekker-og-kolonner-i-pendlematrisene" id="toc-rekkefølge-på-rekker-og-kolonner-i-pendlematrisene" class="nav-link" data-scroll-target="#rekkefølge-på-rekker-og-kolonner-i-pendlematrisene">Rekkefølge på rekker og kolonner i pendlematrisene</a></li>
+  <li><a href="#pendlematriser" id="toc-pendlematriser" class="nav-link" data-scroll-target="#pendlematriser">Pendlematriser</a></li>
+  </ul></li>
+  <li><a href="#spørsmål" id="toc-spørsmål" class="nav-link" data-scroll-target="#spørsmål">Spørsmål</a>
+  <ul class="collapse">
+  <li><a href="#spørsmål-vedrørende-pendleandels-matrisene-for-2000" id="toc-spørsmål-vedrørende-pendleandels-matrisene-for-2000" class="nav-link" data-scroll-target="#spørsmål-vedrørende-pendleandels-matrisene-for-2000">Spørsmål vedrørende pendle/andels-matrisene for 2000</a></li>
+  <li><a href="#spørsmål-vedrørende-pendleandels-matrisene-for-2012" id="toc-spørsmål-vedrørende-pendleandels-matrisene-for-2012" class="nav-link" data-scroll-target="#spørsmål-vedrørende-pendleandels-matrisene-for-2012">Spørsmål vedrørende pendle/andels-matrisene for 2012</a></li>
+  <li><a href="#spørsmål-vedrørende-pendleandels-matrisene-for-2022" id="toc-spørsmål-vedrørende-pendleandels-matrisene-for-2022" class="nav-link" data-scroll-target="#spørsmål-vedrørende-pendleandels-matrisene-for-2022">Spørsmål vedrørende pendle/andels-matrisene for 2022</a></li>
+  </ul></li>
+  <li><a href="#plots" id="toc-plots" class="nav-link" data-scroll-target="#plots">Plots</a>
+  <ul class="collapse">
+  <li><a href="#oppgave" id="toc-oppgave" class="nav-link" data-scroll-target="#oppgave">Oppgave</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Andre formater</h2><ul><li><a href="ass3-h23.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Assingment 3; Pendling</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Forfatter</div>
+    <div class="quarto-title-meta-contents">
+             <p>Arnstein Gjestland </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Pakker jeg brukte i min løsning.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyselect)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PxWebApiData)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(flextable)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="innledning" class="level2">
+<h2 class="anchored" data-anchor-id="innledning">Innledning</h2>
+<p>I denne oppgaven skal vi studere pendle-mønster for en norsk region. Vi vil studere et utvalg kommuner som kan sies å utgjøre det som gjerne kalles Haugalandet i perioden 2000 t.o.m. 2022. Dataene vil vi hente fra SSB sin statistikktabell 03321, «<em>Sysselsatte (15-74 år), etter arbeidssteds- og bostedskommune. Pendlingsstrømmer. 4. kvartal (K) 2000 - 2022</em>». Vi skal benytte dataene til å generere grafikk som viser utviklingen i jobbpendling over tid for de ulike kommunene. Grafikken vil vi generere vha <code>geom_line()</code> fra ggplot2 pakken (del av tidyverse). For <code>geom_line()</code> trenger vi dataene i såkalt «long-format». Dette bør vi ta hensyn til alt fra starten av i vår behandling av pendle-dataene.</p>
+<p>Vi vil beregne andelen som bor i de ulike kommunene for dem som <strong>jobber</strong> i en gitt kommune og også andelen som jobber i de ulike kommunene for dem som <strong>bor</strong> i en gitt kommune. Disse andelene er <em>ikke</em> like.</p>
+<p>I tillegg skal vi generere såkalte pendle-matriser («origin-destination-matrix»). I en pendle-matrise vil hver <strong>rekke</strong> angi hvor de som <strong>bor i en kommune</strong> arbeider. Tilsvarende angir en <strong>kolonne</strong> hvor de som <strong>jobber i en kommune</strong> bor.</p>
+<p>På Haugalandet har det også vært kommunesammenslåinger som har gitt oss Vidafjord fra 2006. Kommunene Sveio og Etne har også skiftet fra gamle Hordaland til nye Vestland fylke. Vi vil generere konsistente pendle-data for perioden 2000 t.o.m. 2022 som korresponderer med denne nye kommunestrukturen.</p>
+<p>Dataene fra SSB vil vi hente direkte inn i R via pakken <code>PxWebApiData</code>, som gir oss tilgang til SSB via en api.</p>
+<p>Vi vil hente data fra tabell 03321 og må selv ta oss av aggregeringen av data. Vi har også pendling fra kommuner utenfor regionen til Haugalandet og fra Haugalandet til kommuner utenfor regionen. Disse kommunene vil vi samle i kategorien “Andre”.</p>
+<section id="kommuner-på-haugalandet-2022" class="level3">
+<h3 class="anchored" data-anchor-id="kommuner-på-haugalandet-2022">Kommuner på Haugalandet 2022</h3>
+<p>Vi definerer Haugalandet som følgende kommuner: Haugesund, Karmøy, Tysvær, Sveio, Bokn, Vindafjord, Sauda og Etne. I tillegg vil vi ha samlekategorien Andre. Vi tar med både de «gamle» og «nye» kommunene når vi henter rådata. Disse kommunene vil bare inneholde data for de årene de har eksistert. Unntaket er Ølen (2002-2005) som synes å også innholde data fra perioden før 2002 da Ølen (knr 1214) var del av Hordaland fylke. Ølen (knr 1214) eksisterer derfor ikke i kommunelisten. For å få en sammenhengende tidsserie må vi slå sammen «gamle» og «nye» kommuner. F.eks vil vi ha at 4612 Sveio = 4612 Sveio + 1211 Sveio (-2019). Vi vil få til denne aggregeringen ved å benytte <code>fct_collapse()</code> funksjonen.</p>
+<p>Kommunene vi trenger data for er: Haugesund, Sauda, Bokn, Tysvær, Karmøy, Vindafjord (1965-2005), Ølen (2002-2005), Vindafjord, Etne, Sveio, Sveio (-2019), Etne (-2019).</p>
+<p>De korresponderende kommune-numrene er:</p>
+<pre><code>1106, 1135, 1145, 1149, 1154, 1159, 1160, 4611, 4612, 1211, 1216</code></pre>
+<p>Samlet i en tibble (<code>hland</code>) blir det slik:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-hland" class="anchored">
+
+<div class="tabwid"><style>.cl-2ec6a206{}.cl-2ec2e026{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2ec47cec{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2ec47cf6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 0.3;background-color:transparent;}.cl-2ec4873c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ec4873d{width:1.772in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ec48746{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ec48747{width:1.772in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ec48750{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ec48751{width:1.772in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2ec6a206"><caption>Tabell&nbsp;1:  <p>Kommunene på Haugalandet</p> </caption><thead><tr style="overflow-wrap:break-word;"><th class="cl-2ec4873c"><p class="cl-2ec47cec"><span class="cl-2ec2e026">knr</span></p></th><th class="cl-2ec4873d"><p class="cl-2ec47cec"><span class="cl-2ec2e026">kNavn</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2ec48746"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">1106</span></p></td><td class="cl-2ec48747"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">Haugesund</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ec48746"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">1135</span></p></td><td class="cl-2ec48747"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">Sauda</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ec48746"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">1145</span></p></td><td class="cl-2ec48747"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">Bokn</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ec48746"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">1146</span></p></td><td class="cl-2ec48747"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">Tysvær</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ec48746"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">1149</span></p></td><td class="cl-2ec48747"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">Karmøy</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ec48746"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">1154</span></p></td><td class="cl-2ec48747"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">Vindafjord (1965-2005)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ec48746"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">1159</span></p></td><td class="cl-2ec48747"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">Ølen (2002-2005)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ec48746"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">1160</span></p></td><td class="cl-2ec48747"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">Vindafjord</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ec48746"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">4611</span></p></td><td class="cl-2ec48747"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">Etne</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ec48746"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">4612</span></p></td><td class="cl-2ec48747"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">Sveio</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ec48746"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">1211</span></p></td><td class="cl-2ec48747"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">Sveio (-2019)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ec48750"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">1216</span></p></td><td class="cl-2ec48751"><p class="cl-2ec47cf6"><span class="cl-2ec2e026">Etne (-2019)</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</div>
+<p>Legg kommunenummerene fra <a href="#tbl-hland">Tabell&nbsp;1</a> inn i en vektor <code>knr</code> som <code>character</code>.</p>
+</section>
+</section>
+<section id="hente-data-fra-ssb" class="level2">
+<h2 class="anchored" data-anchor-id="hente-data-fra-ssb">Hente data fra SSB</h2>
+<p>Vi kunne trengt hele datasettet, dvs. for alle arbeidssted-kommuner, <code>akom</code>, og alle bosteds-kommuner,<code>bkom</code>, men det vil ikke SSB gi oss fra tabell 03321. Vi henter derfor ut data for alle <code>arb_kom</code> (arbeidssted-kommuner) for dem som bor i en av kommunene på Haugalandet i et datasett, og et annet datasett der vi henter ut <code>bo_kom</code> (bostedkommune) for dem som arbeider i en kommune på Haugalandet. Vi vil da mangle informasjon om hvor mange som både bor og arbeider utenfor Haugalandet. Dette er imidlertid av mindre interesse i den sammenhengen vi ser på her.</p>
+<p>Kall datasettet med antall arbeidstakere som arbeider på Haugalandet for <code>pend_00_22_ssb_arbHland</code>, og datasettet med arbeidstakere som bor på Haugalandet for <code>pend_00_22_ssb_boHland</code>.</p>
+<p>Se denne <a href="https://msb105.netlify.app/explore-data/import-export-data/import-export-data.html#/read-10540-table">sliden</a> (parameteren Region) for tips om hvordan man velger <em>alle</em> kommuner, men vi skal ha alle så dropp 11. Se videre denne <a href="https://msb105.netlify.app/explore-data/import-export-data/import-export-data.html#/check-variables-10540-table">sliden</a> for hvordan man kan finne hvilke data statistikktabell 03321 kan tilby (sliden er for tabell 10540).</p>
+<p>OBS! merk skrivemåten <em>Bokommuen</em>. Merk også at tid må angis som <code>character</code> vektor, dvs. <code>as.character(2000:2022)</code>.</p>
+<p>Hent arbeidstakere som bor på Haugalandet, jobber i kommuner over hele landet for perioden 2000-2022. Benytt funksjonen <code>PxWebApiData::ApiData12()</code> med argumentene:</p>
+<ul>
+<li><p>urlToData: nummer på tabellen som characters,</p></li>
+<li><p>ArbstedKomm: alle kommuner i landet (<a href="https://msb105.netlify.app/explore-data/import-export-data/import-export-data.html#/read-10540-table">Hint!</a>)</p></li>
+<li><p><strong>Bokommuen</strong>: character vektor med kommune-numrene (knr) til kommunene på Haugalandet.NB! Merk skrivemåten.</p></li>
+<li><p>Tid: character vektor med årene 2000 til 2022</p></li>
+</ul>
+<p>Gi rådataene om bosted navnet <code>pend_00_22_ssb_boHland</code>.</p>
+<p>Når en er sikker på at en har fått dataene en ønsker fra SSB kan det være lurt å sette <code>#| cache: true</code> i chunk-en. Da blir dataene tatt vare på og en slipper å hente nye data hver gang en kjører koden i dokumentet.</p>
+<p>Finn på tilsvarende vis antall arbeidstakere som jobber på Haugalandet med bosteds-kommune fordelt over hele landet. Kall dette objektet for <code>pend_00_22_ssb_arbHland</code>. Benytt igjen <code>ApiData12()</code>.</p>
+<p>Vi lager vår egen reduserte versjon av pend_00_22_ssb_arbHland og pend_00_22_ssb_boHland og kaller disse hhv. <code>pend_00_22_arbHland</code> og <code>pend_00_22_boHland</code>. Variablene vi trenger er</p>
+<ul>
+<li><p><code>arbeidsstedskommune</code>: som vi gir navnet arb_kom</p></li>
+<li><p><code>bostedskommune</code>: som vi gir navnet bo_kom</p></li>
+<li><p><code>år</code>: som vi gir navnet aar</p></li>
+<li><p><code>value</code>: som vi gir navnet <code>pendlere</code></p></li>
+</ul>
+<p>Vi bryr oss altså ikke om kommunenummer i det videre arbeidet og jobber bare med kommunenavn som kategorivariabler.</p>
+<p>Da skal vi ha noe som ser slik ut:</p>
+<div class="cell" data-paged.print="false">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pend_00_22_boHland, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 203,688 × 4
+  aar   bo_kom    arb_kom pendlere
+  &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;      &lt;int&gt;
+1 2000  Haugesund Halden         0
+2 2001  Haugesund Halden         0
+3 2002  Haugesund Halden         0
+4 2003  Haugesund Halden         0
+5 2004  Haugesund Halden         0
+# ℹ 203,683 more rows</code></pre>
+</div>
+</div>
+<p>Gjør tilsvarende for <code>pend_00_22_ssb_arbHland</code> og plasser resultatet i <code>pend_00_22_arbHland</code>.</p>
+<p>Da skal vi ende opp med noe som ser slik ut:</p>
+<div class="cell" data-paged.print="false">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pend_00_22_arbHland, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 203,688 × 4
+  aar   arb_kom   bo_kom pendlere
+  &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;int&gt;
+1 2000  Haugesund Halden        0
+2 2001  Haugesund Halden        0
+3 2002  Haugesund Halden        0
+4 2003  Haugesund Halden        0
+5 2004  Haugesund Halden        0
+# ℹ 203,683 more rows</code></pre>
+</div>
+</div>
+<p>Vi må så konvertere <code>arb_kom</code> og <code>bo_kom</code> til kategorivariabler vha. <code>fct()</code> funksjonen. Hver av disse variablene skal så kollapses til kategoriene <code>Haugesund</code>, <code>Sauda</code>, <code>Bokn</code>, <code>Tysvær</code>, <code>Karmøy</code>, <code>Vindafjord</code> og <code>Ølen</code>. Vi gjør dette ved å bruke <code>fct_collapse()</code> funksjonen. Vi må også sørge for at hhv. <code>Ølen</code> og <code>Vindafjord</code> blir slått sammen til en kategori fra sine «gamle» versjoner. Vi samler kommunene utenfor Haugalandet i kategorien «Andre» vha. argumentet <code>other_level = "Andre"</code>. Overskriv <code>arb_kom</code> og <code>bo_kom</code> med sine kollapsede versjoner.</p>
+<p>Dette vil gi oss noe som ser slik ut:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(pend_00_22_arbHland)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 203688      4</code></pre>
+</div>
+</div>
+<div class="cell" data-paged.print="false">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  aar   arb_kom   bo_kom    pendlere
+  &lt;chr&gt; &lt;fct&gt;     &lt;fct&gt;        &lt;int&gt;
+1 2000  Haugesund Haugesund    10157
+2 2000  Haugesund Sauda           60
+3 2000  Haugesund Bokn            34
+4 2000  Haugesund Tysvær        1234
+5 2000  Haugesund Karmøy        4081</code></pre>
+</div>
+</div>
+<p>Vi gjør så tilsvarende for <code>pend_00_22_boHland</code> og bruker de samme variabelnavnene.</p>
+<p>Dette vil gi oss noe som ser slik ut:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(pend_00_22_boHland)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 203688      4</code></pre>
+</div>
+</div>
+<div class="cell" data-paged.print="false">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  aar   bo_kom    arb_kom   pendlere
+  &lt;chr&gt; &lt;fct&gt;     &lt;fct&gt;        &lt;int&gt;
+1 2000  Haugesund Haugesund    10157
+2 2000  Haugesund Sauda            5
+3 2000  Haugesund Bokn            15
+4 2000  Haugesund Tysvær         593
+5 2000  Haugesund Karmøy        1664</code></pre>
+</div>
+</div>
+<p>Vi grupperer så mht. år, bo-kommune og arbeidssted, før vi benytter <code>summarise()</code> og finner totalt antall pendlere i disse gruppene. Vi trenger ikke gruppestrukturen så det kan være hensiktsmessig å fjerne den med <code>.groups = "drop"</code> som argument i <code>summarise()</code> funksjonen. Vi overskriver <code>pend_00_22_arbHland</code> med denne nye aggregerte versjonen, men det kan være lurt å først skrive til en temporær variabel til vi er sikre på at vi har gjort ting riktig.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># eval: false</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>pend_00_22_arbHland <span class="ot">&lt;-</span> pend_00_22_arbHland <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(aar, bo_kom, arb_kom) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pendlere =</span> <span class="fu">sum</span>(pendlere), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Har vi gjort ting riktig skal vi ha:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(pend_00_22_arbHland)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1656    4</code></pre>
+</div>
+</div>
+<div class="cell" data-paged.print="false">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pend_00_22_arbHland <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  aar   bo_kom    arb_kom   pendlere
+  &lt;chr&gt; &lt;fct&gt;     &lt;fct&gt;        &lt;int&gt;
+1 2000  Haugesund Haugesund    10157
+2 2000  Haugesund Sauda            5
+3 2000  Haugesund Bokn            15
+4 2000  Haugesund Tysvær         593
+5 2000  Haugesund Karmøy        1664</code></pre>
+</div>
+</div>
+<p>Gjør tilsvarende for <code>pend_00_22_boHland</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># eval: false</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>pend_00_22_boHland <span class="ot">&lt;-</span> pend_00_22_boHland <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(aar, arb_kom, bo_kom) <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pendlere =</span> <span class="fu">sum</span>(pendlere), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vi skal så slå de to datasettene sammen og får endelig bruk for en <code>full_join</code>. Den virker langt på veg som en <code>left_join()</code>, men fra Help: «A full_join() keeps all observations in x <strong>and</strong> y.». Bruk <code>join_by()</code> for å angi koblingsnøklene.</p>
+<p>Gi resultatet av <code>full_join()</code> et passende navn <code>pmat_long</code> og bruk <code>ungroup()</code> helt til slutt i pipen for å fjerne gruppestrukturen. Etter <code>full_join()</code> kan det være greit å endre <code>arb_kom</code> og <code>bo_kom</code> fra kategorivariabler til vanlige <code>character</code> variabler.</p>
+<p>Vi skal nå ha:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(pmat_long)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1840    4</code></pre>
+</div>
+</div>
+<div class="cell" data-paged.print="false">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pmat_long <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  aar   bo_kom    arb_kom   pendlere
+  &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;        &lt;int&gt;
+1 2000  Haugesund Haugesund    10157
+2 2000  Haugesund Sauda            5
+3 2000  Haugesund Bokn            15
+4 2000  Haugesund Tysvær         593
+5 2000  Haugesund Karmøy        1664</code></pre>
+</div>
+</div>
+<p>Senere skal vi f.eks lage plot som viser utviklingen i pendling i perioden 2000 til 2022 for personer som bor i Haugesund. Vi trenger da å finne for hvert år hvor mange arbeidstakere som bor i Haugesund og <strong>andelen</strong> av disse som jobber i Haugesund, Karmøy, …, Etne, Andre. Tilsvarende for andre kommuner. Andelene finner vi ved å finne totalt antall arbeidstakere (pendlere) for hver bo-kommune. Vi tar så antall pendlere og deler på totalen. Svaret ganger vi med 100 og avrunder til en desimal. Kall den nye variabelen bo_percent og legg den til i pmat_long. Vi får dette til ved å gruppere og så lage <code>bo_percent</code>i en mutate(), men uten å benytte <code>summarise()</code>. Vi må så gruppere på nytt for å lage <code>arb_percent</code>. Det er viktig å legge inn en <code>ungroup()</code> i pipe-en før vi grupperer på nytt. Legg også inn en <code>ungroup()</code> mot slutten av pipe-en før vi sorterer på år, arbeidskommune og bokommune.</p>
+<p>Også her kan det være lurt å legge resultatet inn i en temporær variabel til vi er sikre på at vi gjør ting riktig. Når alt er på plass overskriver vi <code>pmat_long</code> med den nye versjonen.</p>
+<p>Vi skal nå ha noe som ser slik ut:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(pmat_long)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1840    6</code></pre>
+</div>
+</div>
+<div class="cell" data-paged.print="false">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>pmat_long <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 6
+  aar   bo_kom    arb_kom pendlere bo_percent arb_percent
+  &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;      &lt;int&gt;      &lt;dbl&gt;       &lt;dbl&gt;
+1 2000  Bokn      Andre         64       15.6         1  
+2 2000  Etne      Andre        296       15.1         4.8
+3 2000  Haugesund Andre       1906       13.1        31.2
+4 2000  Karmøy    Andre       2158       12.5        35.3
+5 2000  Sauda     Andre        280       12.1         4.6</code></pre>
+</div>
+</div>
+<p>Da er vi ferdig med datamanipuleringen (<code>pmat_long</code>` er ferdig). Da er det bare det kjekke som gjenstår ;-)</p>
+<section id="rekkefølge-kommunene" class="level3">
+<h3 class="anchored" data-anchor-id="rekkefølge-kommunene">Rekkefølge kommunene</h3>
+<p>I pendlematrisene er det helt avgjørende at vi har samme rekkefølge på kommunene i rekker og kolonner s.a. diagonalene angir internpendling (de som bor og jobber i samme kommune).</p>
+<p>En slik fast rekkefølge på kommune er også hensiktmessig for å få en konsistens mellom plottene vi skal generer nedenfor.</p>
+<p>Disse pendlematrisene er et eksempel på en datastruktur som er svært hensiktmessig til sitt bruk, men som på ingen måte er «tidy». Tidyverse har derfor litt begrensete verktøy for å få til dette, men med litt «triksing» får vi det til. Vi må imidlertid benytte forskjellig triks på rekkene og kolonnene. Eksemplet nedenfor viser hvcordan vi kan få dette til.</p>
+</section>
+<section id="et-lite-eksempel" class="level3">
+<h3 class="anchored" data-anchor-id="et-lite-eksempel">Et lite eksempel</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ordning <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"C"</span>, <span class="st">"B"</span>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bare lager en liten eks. tibble</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">234</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">o =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="at">each =</span> <span class="dv">3</span>),</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">d =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="dv">3</span>),</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">size =</span> <span class="dv">9</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-paged.print="false">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 3
+  o     d         p
+  &lt;chr&gt; &lt;chr&gt; &lt;int&gt;
+1 A     A         1
+2 A     B        15
+3 A     C         2
+4 B     A        14
+5 B     B         2
+6 B     C         2
+7 C     A        13
+8 C     B         8
+9 C     C         1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span> </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> d,</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> p</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># rekkene ordnet som i ordning</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">fct</span>(o, <span class="at">levels =</span> ordning)) <span class="sc">|&gt;</span> </span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># kolonnene ordnet som i ordning</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">all_of</span>(<span class="fu">c</span>(<span class="st">"o"</span>, ordning)))</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-paged.print="false">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>mat</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  o         A     C     B
+  &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+1 A         1     2    15
+2 C        13     1     8
+3 B        14     2     2</code></pre>
+</div>
+</div>
+</section>
+<section id="rekkefølge-på-rekker-og-kolonner-i-pendlematrisene" class="level3">
+<h3 class="anchored" data-anchor-id="rekkefølge-på-rekker-og-kolonner-i-pendlematrisene">Rekkefølge på rekker og kolonner i pendlematrisene</h3>
+<p>Vi velger følgende ordning av kommunene:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>ordKom <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"bo_kom"</span> , <span class="st">"Haugesund"</span>, <span class="st">"Karmøy"</span>, <span class="st">"Tysvær"</span>, </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Sveio"</span>, <span class="st">"Bokn"</span>, <span class="st">"Vindafjord"</span>, <span class="st">"Sauda"</span>, </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Etne"</span>, <span class="st">"Andre"</span>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="pendlematriser" class="level3">
+<h3 class="anchored" data-anchor-id="pendlematriser">Pendlematriser</h3>
+<p>Lag en pendlematrise for Haugalandet for år 2000. Filtrer først på år. Vi trenger så å velge ut de tre kolonnene vi trenger for å gjøre en pivot_wider() med <code>arb_kom</code> som <code>names_from</code> og <code>pendlere</code> som <code>values_from</code>. Vi må så sortere på <code>bo_kom</code> i en <code>arrange()</code> og så velge ut de kolonnene vi ønsker i en <code>select()</code>. Vi må også endre navnet på den første kolonnen til <code>Bo kom.\\ Arb. kom</code> for å få en fin tabell. Vi kan gjøre dette vha. funksjonen <code>rename()</code>. Merk at vi må bruke dobbel slash for å få en slash i R. Legg den resulterende pendlematrisen i variabelen p2000.</p>
+<p>Resultatet skal se slik ut</p>
+<div class="cell" data-paged.print="false">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>p2000</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 10
+  `Bo kom.\\ Arb. kom` Haugesund Karmøy Tysvær Sveio  Bokn Vindafjord Sauda
+  &lt;chr&gt;                    &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt;      &lt;int&gt; &lt;int&gt;
+1 Haugesund                10157   1664    593    97    15        121     5
+2 Karmøy                    4081  10592    351    20    14         56     3
+3 Tysvær                    1234    307   2165    19    23        104     2
+4 Sveio                      680    121     71   956     3         22     1
+5 Bokn                        34     15     38     0   256          3     0
+6 Vindafjord                 298     68    138     8     3       3061    12
+7 Sauda                       60      4      2     0     0         13  1952
+8 Etne                        56     11     20     2     0        255     0
+9 Andre                      926    413    104    23    10        129   116
+# ℹ 2 more variables: Etne &lt;int&gt;, Andre &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>Her er litt tips til kode for å få en finere pendlematrise.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-p2000</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Pendlematrise for Haugalandet år 2000."</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>p2000 <span class="sc">|&gt;</span> </span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">flextable</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># a4 8.268 in - 1 in left margin - 1 in right margin = 6.268 in</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit_to_width</span>(<span class="at">max_width =</span> <span class="fl">6.268</span>, <span class="at">inc =</span> 1L, <span class="at">max_iter =</span> <span class="dv">20</span>, <span class="at">unit =</span> <span class="st">"in"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">line_spacing</span>(<span class="at">space =</span> <span class="dv">0</span>,</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">part =</span> <span class="st">"body"</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>              ) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hrule</span>(<span class="at">rule =</span> <span class="st">"exact"</span>)  <span class="sc">%&gt;%</span> </span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">height_all</span>(<span class="at">height =</span> <span class="dv">5</span>, <span class="at">part =</span> <span class="st">"all"</span>, <span class="at">unit =</span> <span class="st">"mm"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">padding</span>(<span class="at">padding.top =</span> <span class="dv">1</span>, <span class="at">padding.bottom =</span> <span class="dv">2</span>, <span class="at">part =</span> <span class="st">"all"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_booktabs</span>()</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="tbl-p2000" class="anchored">
+
+<div class="tabwid"><style>.cl-2f4fef5c{}.cl-2f4c9f96{font-family:'Helvetica';font-size:8pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2f4df2ec{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:1pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2f4df2ed{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:1pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2f4df2f6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:1pt;padding-left:5pt;padding-right:5pt;line-height: 0;background-color:transparent;}.cl-2f4df2f7{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:1pt;padding-left:5pt;padding-right:5pt;line-height: 0;background-color:transparent;}.cl-2f4dfbac{width:1.099in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbb6{width:0.754in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbb7{width:0.574in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbb8{width:0.556in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbb9{width:0.463in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbc0{width:0.438in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbc1{width:0.686in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbc2{width:0.506in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbca{width:0.463in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbcb{width:0.482in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbcc{width:1.099in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbd4{width:0.754in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbd5{width:0.574in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbd6{width:0.556in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbde{width:0.463in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbdf{width:0.438in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbe0{width:0.686in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbe8{width:0.506in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbe9{width:0.463in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbea{width:0.482in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbf2{width:1.099in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbf3{width:0.754in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbfc{width:0.574in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbfd{width:0.556in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfbfe{width:0.463in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfc06{width:0.438in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfc07{width:0.686in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfc08{width:0.506in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfc09{width:0.463in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f4dfc0a{width:0.482in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2f4fef5c"><caption>Tabell&nbsp;2:  <p>Pendlematrise for Haugalandet år 2000.</p> </caption><thead><tr style="overflow-wrap:break-word;"><th class="cl-2f4dfbac"><p class="cl-2f4df2ec"><span class="cl-2f4c9f96">Bo kom.\ Arb. kom</span></p></th><th class="cl-2f4dfbb6"><p class="cl-2f4df2ed"><span class="cl-2f4c9f96">Haugesund</span></p></th><th class="cl-2f4dfbb7"><p class="cl-2f4df2ed"><span class="cl-2f4c9f96">Karmøy</span></p></th><th class="cl-2f4dfbb8"><p class="cl-2f4df2ed"><span class="cl-2f4c9f96">Tysvær</span></p></th><th class="cl-2f4dfbb9"><p class="cl-2f4df2ed"><span class="cl-2f4c9f96">Sveio</span></p></th><th class="cl-2f4dfbc0"><p class="cl-2f4df2ed"><span class="cl-2f4c9f96">Bokn</span></p></th><th class="cl-2f4dfbc1"><p class="cl-2f4df2ed"><span class="cl-2f4c9f96">Vindafjord</span></p></th><th class="cl-2f4dfbc2"><p class="cl-2f4df2ed"><span class="cl-2f4c9f96">Sauda</span></p></th><th class="cl-2f4dfbca"><p class="cl-2f4df2ed"><span class="cl-2f4c9f96">Etne</span></p></th><th class="cl-2f4dfbcb"><p class="cl-2f4df2ed"><span class="cl-2f4c9f96">Andre</span></p></th></tr></thead><tbody><tr><td class="cl-2f4dfbcc"><p class="cl-2f4df2f6"><span class="cl-2f4c9f96">Haugesund</span></p></td><td class="cl-2f4dfbd4"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">10,157</span></p></td><td class="cl-2f4dfbd5"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">1,664</span></p></td><td class="cl-2f4dfbd6"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">593</span></p></td><td class="cl-2f4dfbde"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">97</span></p></td><td class="cl-2f4dfbdf"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">15</span></p></td><td class="cl-2f4dfbe0"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">121</span></p></td><td class="cl-2f4dfbe8"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">5</span></p></td><td class="cl-2f4dfbe9"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">11</span></p></td><td class="cl-2f4dfbea"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">1,906</span></p></td></tr><tr><td class="cl-2f4dfbcc"><p class="cl-2f4df2f6"><span class="cl-2f4c9f96">Karmøy</span></p></td><td class="cl-2f4dfbd4"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">4,081</span></p></td><td class="cl-2f4dfbd5"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">10,592</span></p></td><td class="cl-2f4dfbd6"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">351</span></p></td><td class="cl-2f4dfbde"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">20</span></p></td><td class="cl-2f4dfbdf"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">14</span></p></td><td class="cl-2f4dfbe0"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">56</span></p></td><td class="cl-2f4dfbe8"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">3</span></p></td><td class="cl-2f4dfbe9"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">6</span></p></td><td class="cl-2f4dfbea"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">2,158</span></p></td></tr><tr><td class="cl-2f4dfbcc"><p class="cl-2f4df2f6"><span class="cl-2f4c9f96">Tysvær</span></p></td><td class="cl-2f4dfbd4"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">1,234</span></p></td><td class="cl-2f4dfbd5"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">307</span></p></td><td class="cl-2f4dfbd6"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">2,165</span></p></td><td class="cl-2f4dfbde"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">19</span></p></td><td class="cl-2f4dfbdf"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">23</span></p></td><td class="cl-2f4dfbe0"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">104</span></p></td><td class="cl-2f4dfbe8"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">2</span></p></td><td class="cl-2f4dfbe9"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">5</span></p></td><td class="cl-2f4dfbea"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">545</span></p></td></tr><tr><td class="cl-2f4dfbcc"><p class="cl-2f4df2f6"><span class="cl-2f4c9f96">Sveio</span></p></td><td class="cl-2f4dfbd4"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">680</span></p></td><td class="cl-2f4dfbd5"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">121</span></p></td><td class="cl-2f4dfbd6"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">71</span></p></td><td class="cl-2f4dfbde"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">956</span></p></td><td class="cl-2f4dfbdf"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">3</span></p></td><td class="cl-2f4dfbe0"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">22</span></p></td><td class="cl-2f4dfbe8"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">1</span></p></td><td class="cl-2f4dfbe9"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">2</span></p></td><td class="cl-2f4dfbea"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">350</span></p></td></tr><tr><td class="cl-2f4dfbcc"><p class="cl-2f4df2f6"><span class="cl-2f4c9f96">Bokn</span></p></td><td class="cl-2f4dfbd4"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">34</span></p></td><td class="cl-2f4dfbd5"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">15</span></p></td><td class="cl-2f4dfbd6"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">38</span></p></td><td class="cl-2f4dfbde"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">0</span></p></td><td class="cl-2f4dfbdf"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">256</span></p></td><td class="cl-2f4dfbe0"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">3</span></p></td><td class="cl-2f4dfbe8"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">0</span></p></td><td class="cl-2f4dfbe9"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">0</span></p></td><td class="cl-2f4dfbea"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">64</span></p></td></tr><tr><td class="cl-2f4dfbcc"><p class="cl-2f4df2f6"><span class="cl-2f4c9f96">Vindafjord</span></p></td><td class="cl-2f4dfbd4"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">298</span></p></td><td class="cl-2f4dfbd5"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">68</span></p></td><td class="cl-2f4dfbd6"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">138</span></p></td><td class="cl-2f4dfbde"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">8</span></p></td><td class="cl-2f4dfbdf"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">3</span></p></td><td class="cl-2f4dfbe0"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">3,061</span></p></td><td class="cl-2f4dfbe8"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">12</span></p></td><td class="cl-2f4dfbe9"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">70</span></p></td><td class="cl-2f4dfbea"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">509</span></p></td></tr><tr><td class="cl-2f4dfbcc"><p class="cl-2f4df2f6"><span class="cl-2f4c9f96">Sauda</span></p></td><td class="cl-2f4dfbd4"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">60</span></p></td><td class="cl-2f4dfbd5"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">4</span></p></td><td class="cl-2f4dfbd6"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">2</span></p></td><td class="cl-2f4dfbde"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">0</span></p></td><td class="cl-2f4dfbdf"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">0</span></p></td><td class="cl-2f4dfbe0"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">13</span></p></td><td class="cl-2f4dfbe8"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">1,952</span></p></td><td class="cl-2f4dfbe9"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">8</span></p></td><td class="cl-2f4dfbea"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">280</span></p></td></tr><tr><td class="cl-2f4dfbcc"><p class="cl-2f4df2f6"><span class="cl-2f4c9f96">Etne</span></p></td><td class="cl-2f4dfbd4"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">56</span></p></td><td class="cl-2f4dfbd5"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">11</span></p></td><td class="cl-2f4dfbd6"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">20</span></p></td><td class="cl-2f4dfbde"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">2</span></p></td><td class="cl-2f4dfbdf"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">0</span></p></td><td class="cl-2f4dfbe0"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">255</span></p></td><td class="cl-2f4dfbe8"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">0</span></p></td><td class="cl-2f4dfbe9"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">1,317</span></p></td><td class="cl-2f4dfbea"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">296</span></p></td></tr><tr><td class="cl-2f4dfbf2"><p class="cl-2f4df2f6"><span class="cl-2f4c9f96">Andre</span></p></td><td class="cl-2f4dfbf3"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">926</span></p></td><td class="cl-2f4dfbfc"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">413</span></p></td><td class="cl-2f4dfbfd"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">104</span></p></td><td class="cl-2f4dfbfe"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">23</span></p></td><td class="cl-2f4dfc06"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">10</span></p></td><td class="cl-2f4dfc07"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">129</span></p></td><td class="cl-2f4dfc08"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">116</span></p></td><td class="cl-2f4dfc09"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96">93</span></p></td><td class="cl-2f4dfc0a"><p class="cl-2f4df2f7"><span class="cl-2f4c9f96"></span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</div>
+<p>Lag en tilsvarende tabell for dem som <em>bor</em> på Haugalandet som viser andelen som jobber i de ulike kommunene.</p>
+<div id="tbl-p2000-bo" class="cell tbl-parent quarto-layout-panel anchored" data-tbl-cap="Andel som jobbet i de ulike kommunene på Haugalandet for hver av bo-kommunene i år 2000.">
+
+</div>
+<p>Lag også en tilsvarende tabell for dem som <em>arbeider</em> på Haugalandet som viser andelen som bor i de ulike kommunene.</p>
+<div id="tbl-p2000-arb" class="cell tbl-parent quarto-layout-panel anchored" data-tbl-cap="Andel som bodde i de ulike kommunene på Haugalandet for hver av arbeidssted-kommunene i år 2000.">
+
+</div>
+</section>
+</section>
+<section id="spørsmål" class="level2">
+<h2 class="anchored" data-anchor-id="spørsmål">Spørsmål</h2>
+<section id="spørsmål-vedrørende-pendleandels-matrisene-for-2000" class="level3">
+<h3 class="anchored" data-anchor-id="spørsmål-vedrørende-pendleandels-matrisene-for-2000">Spørsmål vedrørende pendle/andels-matrisene for 2000</h3>
+<ol type="1">
+<li>Hvor mange pendlet fra Haugesund til Vindafjord?</li>
+<li>Hvor mange pendlet fra Bokn til Sveio?</li>
+<li>Hvor stor andel av arbeidstakerene som bodde i Karmøy kommune i 2000 jobbet i Bokn kommune?</li>
+<li>Hvor stor andel av arbeidstakerene som bodde i Bokn kommune i 2000 jobbet i Karmøy kommune?</li>
+<li>Hvor stor andel av arbeidstakerne som jobbet i Sveio i 2000 bodde i Haugesund kommune?</li>
+<li>Hvor stor andel av arbeidstakerne som jobbet i Sveio i 2000 bodde i Tysvær kommune?</li>
+<li>Hvor stor andel av arbeidstakerne som jobbet i Haugesund i 2000 bodde i Vindafjord kommune?</li>
+</ol>
+</section>
+<section id="spørsmål-vedrørende-pendleandels-matrisene-for-2012" class="level3">
+<h3 class="anchored" data-anchor-id="spørsmål-vedrørende-pendleandels-matrisene-for-2012">Spørsmål vedrørende pendle/andels-matrisene for 2012</h3>
+<p>Lag tilsvarende tre tabeller for 2012</p>
+<ol type="1">
+<li>Hvor mange pendlet fra Tysvær til Karmøy?</li>
+<li>Hvor mange pendlet fra Karmøy til Tysvær?</li>
+<li>Hvor mange pendlet fra Bokn til Karmøy?</li>
+<li>Hvor mange pendlet fra Karmøy til Bokn?</li>
+<li>Hvor mange pendlet fra Haugesund til Karmøy?</li>
+<li>Hvor mange pendlet fra Karmøy til Haugesund?</li>
+<li>Hvor stor andel av arbeidstakerene som bodde i Sveio kommune i 2012 jobbet i Tysvær kommune?</li>
+<li>Hvor stor andel av arbeidstakerene som bodde i Tysvær kommune i 2012 jobbet i Karmøy kommune?</li>
+<li>Hvor stor andel av arbeidstakerne som jobbet i Karmøy i 20112bodde i Haugesund kommune?</li>
+<li>Hvor stor andel av arbeidstakerne som jobbet i Haugesund i 2012 bodde i Karmøy kommune?</li>
+</ol>
+</section>
+<section id="spørsmål-vedrørende-pendleandels-matrisene-for-2022" class="level3">
+<h3 class="anchored" data-anchor-id="spørsmål-vedrørende-pendleandels-matrisene-for-2022">Spørsmål vedrørende pendle/andels-matrisene for 2022</h3>
+<p>Lag tilsvarende tre tabeller for 2022.</p>
+<ol type="1">
+<li>Hvor mange pendlet fra Tysvær til Karmøy?</li>
+<li>Hvor mange pendlet fra Karmøy til Tysvær?</li>
+<li>Hvor mange pendlet fra Bokn til Karmøy?</li>
+<li>Hvor mange pendlet fra Karmøy til Bokn?</li>
+<li>Hvor mange pendlet fra Haugesund til Karmøy?</li>
+<li>Hvor mange pendlet fra Karmøy til Haugesund?</li>
+<li>Hvor stor andel av arbeidstakerne som jobbet i Karmøy i 2011 bodde i Haugesund kommune?</li>
+<li>Hvor stor andel av arbeidstakerne som jobbet i Haugesund i 2011 bodde i Karmøy kommune?</li>
+</ol>
+</section>
+</section>
+<section id="plots" class="level2">
+<h2 class="anchored" data-anchor-id="plots">Plots</h2>
+<p>Vi skal så illustrere utviklingen i disse andelene (<code>bo_percent</code> og <code>arb_percent</code>) for et utvalg kommuner. Vi starter med Haugesund kommune og utvikling i pendling for arbeidstakere som <em>bor</em> i Haugesund.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>pmat_long <span class="sc">|&gt;</span> </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(arb_kom <span class="sc">==</span> <span class="st">"Haugesund"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># setter 31/12 siden pendledataene er for 4. kvartal</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    å<span class="at">r =</span> <span class="fu">ymd</span>(<span class="fu">str_c</span>(aar, <span class="st">"12"</span>, <span class="st">"31"</span>)),</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Bo andel</span><span class="st">`</span> <span class="ot">=</span> arb_percent,</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Bo kom.</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">fct</span>(bo_kom, <span class="at">levels =</span> ordKom[<span class="sc">!</span>ordKom <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"bo_kom"</span>)])</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span> </span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> år, </span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> <span class="st">`</span><span class="at">Bo andel</span><span class="st">`</span>, </span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">`</span><span class="at">Bo kom.</span><span class="st">`</span>,</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">`</span><span class="at">Bo kom.</span><span class="st">`</span>,</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="st">`</span><span class="at">Bo kom.</span><span class="st">`</span>)</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">+</span></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_discrete</span>(ordKom[<span class="sc">!</span>ordKom <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"bo_kom"</span>)]) <span class="sc">+</span></span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>( </span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="fu">guide_legend</span>(</span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Bo andel"</span>,</span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">title.position =</span> <span class="st">"top"</span></span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="fu">guide_legend</span>(</span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Bo andel"</span>,</span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">title.position =</span> <span class="st">"top"</span></span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="dv">2</span>,<span class="st">"line"</span>),</span>
+<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-arbHaug" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ass3-h23_files/figure-html/fig-arbHaug-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figur&nbsp;1: Andel av de som jobber i Haugesund som bor i de ulike kommunene på Haugalandet. Viser utviklingen for perioden 2000-2022. Det er andel av total arbeidsstyrke som vises på vertikal akse.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>For mange av kommunene kan intern-pendlingen dominere fullstendig. Tar man bort denne fra ordKom, f.eks hvis en vil ta bort internpendling fra Haugesund må en sette <code>levels = ordKom[!ordKom %in% c("bo_kom", "Haugesund")]</code> i <code>fct()</code> og også i <code>scale_fill_discrete()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>pmat_long <span class="sc">|&gt;</span> </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(arb_kom <span class="sc">==</span> <span class="st">"Haugesund"</span> <span class="sc">&amp;</span> <span class="sc">!</span>bo_kom <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Haugesund"</span>, <span class="st">"Karmøy"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># setter 31/12 siden pendledataene er for 4. kvartal</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    å<span class="at">r =</span> <span class="fu">ymd</span>(<span class="fu">str_c</span>(aar, <span class="st">"12"</span>, <span class="st">"31"</span>)),</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Bo andel</span><span class="st">`</span> <span class="ot">=</span> arb_percent,</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Bo kom.</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">fct</span>(bo_kom, <span class="at">levels =</span> ordKom[<span class="sc">!</span>ordKom <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"bo_kom"</span>, <span class="st">"Haugesund"</span>, <span class="st">"Karmøy"</span>)])</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span> </span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> år, </span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> <span class="st">`</span><span class="at">Bo andel</span><span class="st">`</span>, </span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">`</span><span class="at">Bo kom.</span><span class="st">`</span>,</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">`</span><span class="at">Bo kom.</span><span class="st">`</span>,</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> <span class="st">`</span><span class="at">Bo kom.</span><span class="st">`</span>)</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">+</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_discrete</span>(ordKom[<span class="sc">!</span>ordKom <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"bo_kom"</span>, <span class="st">"Haugesund"</span>, <span class="st">"Karmøy"</span>)]) <span class="sc">+</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>( </span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="fu">guide_legend</span>(</span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Bo andel"</span>,</span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">title.position =</span> <span class="st">"top"</span></span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="fu">guide_legend</span>(</span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Bo andel"</span>,</span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">title.position =</span> <span class="st">"top"</span></span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="dv">2</span>,<span class="st">"line"</span>),</span>
+<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-arbHaugB" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ass3-h23_files/figure-html/fig-arbHaugB-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figur&nbsp;2: Andel av dem som jobber i Haugesund som bor i de ulike kommunene på Haugalandet. Vi ser utviklingen for perioden 2000-2022. Det er andel av total arbeidsstyrke som vises på vertikal akse. Internpendling og pendling fra Karmøy er utelatt for ikke å dominere bildet.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="oppgave" class="level3">
+<h3 class="anchored" data-anchor-id="oppgave">Oppgave</h3>
+<p>Lag tilsvarende plot som det ovenfor, men for utviklingen for dem som <strong>bor</strong> i kommunene Haugesund, Karmøy, Tysvær og Bokn.</p>
+<p>Det såkalte T-sambandet åpnet i 2013. Bompengeinnkreving ble avviklet i 2021.</p>
+<p>Diskuter ut fra tabellene og plottene dere laget ovenfor om det er mulig å se noen effekt på pendlemønsteret mellom de fire kommunene fra dette prosjektet (T-sambandet).</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopiert!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopiert!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
