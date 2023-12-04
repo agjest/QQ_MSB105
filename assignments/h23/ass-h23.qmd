@@ -1,11 +1,8 @@
 ---
 title: "Assignments h23"
 editor: visual
+format: html
 ---
-
-The assignments for different years.
-
-## Different years
 
 -   [Assignment 1 h23](ass1/ass1-h23.qmd)
 -   [Assignment 2 h23](ass2/ass2-h23.qmd)
