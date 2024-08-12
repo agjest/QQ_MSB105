@@ -8,7 +8,7 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.353">
+  <meta name="generator" content="quarto-1.4.549">
 
   <meta name="author" content="ag">
   <title>MSB105 - Transforming Data</title>
@@ -31,7 +31,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -221,7 +221,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -405,11 +406,11 @@ ag
 <section class="slide level2">
 
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(nycflights13)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(ViewPipeSteps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb1-3"><a></a><span class="fu">library</span>(ViewPipeSteps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -493,11 +494,11 @@ ag
 <section id="function-in-function-in-function" class="slide level2">
 <h2>Function in function in function …</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a>res_mean_rnorm_3dig <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"Result:"</span>, <span class="fu">round</span>(<span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)), <span class="at">digits =</span> <span class="dv">3</span>), <span class="at">sep =</span> <span class="st">""</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a>res_mean_rnorm_3dig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb2-2"><a></a>res_mean_rnorm_3dig <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"Result:"</span>, <span class="fu">round</span>(<span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)), <span class="at">digits =</span> <span class="dv">3</span>), <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb2-3"><a></a>res_mean_rnorm_3dig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Result:-0.383"</code></pre>
@@ -511,23 +512,23 @@ ag
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb4-2"><a href="#cb4-2"></a>res_rnorm <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb4-3"><a href="#cb4-3"></a>res_mean_rnorm <span class="ot">&lt;-</span> <span class="fu">mean</span>(res_rnorm)</span>
-<span id="cb4-4"><a href="#cb4-4"></a>res_mean_rnorm_3dig <span class="ot">&lt;-</span> <span class="fu">round</span>(res_mean_rnorm, <span class="at">digits =</span> <span class="dv">3</span>)</span>
-<span id="cb4-5"><a href="#cb4-5"></a>res_mean_rnorm_3dig_string <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"Result:"</span>, res_mean_rnorm_3dig, <span class="at">sep =</span> <span class="st">""</span>)</span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="co"># print result</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a>res_mean_rnorm_3dig_string</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb4-2"><a></a>res_rnorm <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb4-3"><a></a>res_mean_rnorm <span class="ot">&lt;-</span> <span class="fu">mean</span>(res_rnorm)</span>
+<span id="cb4-4"><a></a>res_mean_rnorm_3dig <span class="ot">&lt;-</span> <span class="fu">round</span>(res_mean_rnorm, <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb4-5"><a></a>res_mean_rnorm_3dig_string <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"Result:"</span>, res_mean_rnorm_3dig, <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb4-6"><a></a><span class="co"># print result</span></span>
+<span id="cb4-7"><a></a>res_mean_rnorm_3dig_string</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Result:-0.383"</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># cleanup</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">rm</span>(res_rnorm, res_mean_rnorm, res_mean_rnorm_3dig, res_mean_rnorm_3dig_string)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co"># cleanup</span></span>
+<span id="cb6-2"><a></a><span class="fu">rm</span>(res_rnorm, res_mean_rnorm, res_mean_rnorm_3dig, res_mean_rnorm_3dig_string)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -539,23 +540,23 @@ ag
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb7-2"><a href="#cb7-2"></a>tmp <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb7-3"><a href="#cb7-3"></a>tmp1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(tmp)</span>
-<span id="cb7-4"><a href="#cb7-4"></a>tmp2 <span class="ot">&lt;-</span> <span class="fu">round</span>(tmp1, <span class="at">digits =</span> <span class="dv">3</span>)</span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="fu">paste</span>(<span class="st">"Result:"</span>, tmp2, <span class="at">sep =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb7-2"><a></a>tmp <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb7-3"><a></a>tmp1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(tmp)</span>
+<span id="cb7-4"><a></a>tmp2 <span class="ot">&lt;-</span> <span class="fu">round</span>(tmp1, <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb7-5"><a></a><span class="fu">paste</span>(<span class="st">"Result:"</span>, tmp2, <span class="at">sep =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Result:-0.383"</code></pre>
 </div>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># ^t, object names that start with 't' </span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">ls</span>(<span class="at">pattern =</span> <span class="st">"^t"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># ^t, object names that start with 't' </span></span>
+<span id="cb9-2"><a></a><span class="fu">ls</span>(<span class="at">pattern =</span> <span class="st">"^t"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "tmp"  "tmp1" "tmp2"</code></pre>
@@ -566,16 +567,16 @@ ag
 <section id="the-pipe-with-addin-viewpipesteps" class="slide level2">
 <h2><em>The pipe with addin viewpipesteps</em></h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb11-2"><a href="#cb11-2"></a>res_mean_rnorm_3dig_string <span class="ot">&lt;-</span> </span>
-<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">mean</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a>  <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb11-6"><a href="#cb11-6"></a>  <span class="co"># The dot '.' is to show where the content of the pipe should be put</span></span>
-<span id="cb11-7"><a href="#cb11-7"></a>  <span class="fu">paste</span>(<span class="st">"Result:"</span>, .)</span>
-<span id="cb11-8"><a href="#cb11-8"></a>res_mean_rnorm_3dig_string</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb11-2"><a></a>res_mean_rnorm_3dig_string <span class="ot">&lt;-</span> </span>
+<span id="cb11-3"><a></a>  <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a></a>  <span class="fu">mean</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a></a>  <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-6"><a></a>  <span class="co"># The dot '.' is to show where the content of the pipe should be put</span></span>
+<span id="cb11-7"><a></a>  <span class="fu">paste</span>(<span class="st">"Result:"</span>, .)</span>
+<span id="cb11-8"><a></a>res_mean_rnorm_3dig_string</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Result: -0.383"</code></pre>
@@ -589,16 +590,16 @@ ag
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb13-2"><a href="#cb13-2"></a>res_mean_rnorm_3dig_string <span class="ot">&lt;-</span> </span>
-<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">mean</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb13-6"><a href="#cb13-6"></a>  <span class="co"># The dot '.' is to show where the content of the pipe should be put</span></span>
-<span id="cb13-7"><a href="#cb13-7"></a>  <span class="fu">paste</span>(<span class="st">"Result:"</span>)</span>
-<span id="cb13-8"><a href="#cb13-8"></a>res_mean_rnorm_3dig_string</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb13-2"><a></a>res_mean_rnorm_3dig_string <span class="ot">&lt;-</span> </span>
+<span id="cb13-3"><a></a>  <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a></a>  <span class="fu">mean</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb13-5"><a></a>  <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-6"><a></a>  <span class="co"># The dot '.' is to show where the content of the pipe should be put</span></span>
+<span id="cb13-7"><a></a>  <span class="fu">paste</span>(<span class="st">"Result:"</span>)</span>
+<span id="cb13-8"><a></a>res_mean_rnorm_3dig_string</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "-0.383 Result:"</code></pre>
@@ -653,18 +654,18 @@ ag
 <section id="the-pipe-alternative-not-much-used" class="slide level2">
 <h2><em>The pipe</em>, alternative not much used</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">rnorm</span>(</span>
-<span id="cb15-3"><a href="#cb15-3"></a>  <span class="at">n =</span> <span class="dv">10</span>,</span>
-<span id="cb15-4"><a href="#cb15-4"></a>  <span class="at">mean =</span> <span class="dv">0</span>,</span>
-<span id="cb15-5"><a href="#cb15-5"></a>  <span class="at">sd =</span> <span class="dv">1</span></span>
-<span id="cb15-6"><a href="#cb15-6"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb15-7"><a href="#cb15-7"></a>  <span class="fu">mean</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb15-8"><a href="#cb15-8"></a>  <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-9"><a href="#cb15-9"></a>  <span class="fu">paste</span>(<span class="st">"Result:"</span>, .) <span class="ot">-&gt;</span> res_mean_rnorm_3dig_string</span>
-<span id="cb15-10"><a href="#cb15-10"></a>res_mean_rnorm_3dig_string</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb15-2"><a></a><span class="fu">rnorm</span>(</span>
+<span id="cb15-3"><a></a>  <span class="at">n =</span> <span class="dv">10</span>,</span>
+<span id="cb15-4"><a></a>  <span class="at">mean =</span> <span class="dv">0</span>,</span>
+<span id="cb15-5"><a></a>  <span class="at">sd =</span> <span class="dv">1</span></span>
+<span id="cb15-6"><a></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-7"><a></a>  <span class="fu">mean</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb15-8"><a></a>  <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-9"><a></a>  <span class="fu">paste</span>(<span class="st">"Result:"</span>, .) <span class="ot">-&gt;</span> res_mean_rnorm_3dig_string</span>
+<span id="cb15-10"><a></a>res_mean_rnorm_3dig_string</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Result: -0.383"</code></pre>
@@ -694,11 +695,11 @@ ag
 <section id="nycflights13" class="slide level2">
 <h2>nycflights13</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># see setup at the top for loading of </span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="co"># nycflights13 package</span></span>
-<span id="cb17-3"><a href="#cb17-3"></a>?nycflights13</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="co"># see setup at the top for loading of </span></span>
+<span id="cb17-2"><a></a><span class="co"># nycflights13 package</span></span>
+<span id="cb17-3"><a></a>?nycflights13</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>No documentation for 'nycflights13' in specified packages and libraries:
@@ -725,9 +726,9 @@ you could try '??nycflights13'</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>?flights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>?flights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -757,10 +758,10 @@ you could try '??nycflights13'</code></pre>
 <section id="a-first-look-on-flights" class="slide level2">
 <h2>A first look on <code>flights</code></h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># what size is it</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">dim</span>(flights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="co"># what size is it</span></span>
+<span id="cb20-2"><a></a><span class="fu">dim</span>(flights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 336776     19</code></pre>
@@ -768,10 +769,10 @@ you could try '??nycflights13'</code></pre>
 </div>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># what type; data.frame, tibble?</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="fu">class</span>(flights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="co"># what type; data.frame, tibble?</span></span>
+<span id="cb22-2"><a></a><span class="fu">class</span>(flights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "tbl_df"     "tbl"        "data.frame"</code></pre>
@@ -782,12 +783,12 @@ you could try '??nycflights13'</code></pre>
 <section id="a-first-look-on-flights-1" class="slide level2">
 <h2>A first look on <code>flights</code></h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">print</span>(</span>
-<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">head</span>(flights, <span class="at">n =</span> <span class="dv">5</span>),</span>
-<span id="cb24-3"><a href="#cb24-3"></a>  <span class="at">width =</span> <span class="dv">70</span></span>
-<span id="cb24-4"><a href="#cb24-4"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">print</span>(</span>
+<span id="cb24-2"><a></a>  <span class="fu">head</span>(flights, <span class="at">n =</span> <span class="dv">5</span>),</span>
+<span id="cb24-3"><a></a>  <span class="at">width =</span> <span class="dv">70</span></span>
+<span id="cb24-4"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 19
@@ -808,13 +809,13 @@ you could try '??nycflights13'</code></pre>
 <section id="using-filter-from-r4ds" class="slide level2">
 <h2>Using <code>filter()</code>, from <a href="r4ds.had.co.nz">r4ds</a></h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">print</span>(</span>
-<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">filter</span>(flights, month <span class="sc">==</span> <span class="dv">1</span>, day <span class="sc">==</span> <span class="dv">1</span>),</span>
-<span id="cb26-3"><a href="#cb26-3"></a>  <span class="at">n =</span> <span class="dv">5</span>, </span>
-<span id="cb26-4"><a href="#cb26-4"></a>  <span class="at">width =</span> <span class="dv">70</span></span>
-<span id="cb26-5"><a href="#cb26-5"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">print</span>(</span>
+<span id="cb26-2"><a></a>  <span class="fu">filter</span>(flights, month <span class="sc">==</span> <span class="dv">1</span>, day <span class="sc">==</span> <span class="dv">1</span>),</span>
+<span id="cb26-3"><a></a>  <span class="at">n =</span> <span class="dv">5</span>, </span>
+<span id="cb26-4"><a></a>  <span class="at">width =</span> <span class="dv">70</span></span>
+<span id="cb26-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 842 × 19
@@ -836,13 +837,13 @@ you could try '??nycflights13'</code></pre>
 <section id="more-filter-ex-1" class="slide level2">
 <h2>More filter-ex-1</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">print</span>(</span>
-<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">filter</span>(flights, month <span class="sc">==</span> <span class="dv">1</span>, day <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">15</span>, <span class="dv">30</span>)),</span>
-<span id="cb28-3"><a href="#cb28-3"></a>  <span class="at">n =</span> <span class="dv">5</span>,</span>
-<span id="cb28-4"><a href="#cb28-4"></a>  <span class="at">width =</span> <span class="dv">70</span></span>
-<span id="cb28-5"><a href="#cb28-5"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="fu">print</span>(</span>
+<span id="cb28-2"><a></a>  <span class="fu">filter</span>(flights, month <span class="sc">==</span> <span class="dv">1</span>, day <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">15</span>, <span class="dv">30</span>)),</span>
+<span id="cb28-3"><a></a>  <span class="at">n =</span> <span class="dv">5</span>,</span>
+<span id="cb28-4"><a></a>  <span class="at">width =</span> <span class="dv">70</span></span>
+<span id="cb28-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2,636 × 19
@@ -868,15 +869,15 @@ you could try '??nycflights13'</code></pre>
 <section id="more-filter-ex-1-1" class="slide level2">
 <h2>More filter-ex-1</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>flights_some_days_jan <span class="ot">&lt;-</span> <span class="fu">filter</span>(flights, month <span class="sc">==</span> <span class="dv">1</span>, day <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">15</span>, <span class="dv">30</span>))</span>
-<span id="cb30-2"><a href="#cb30-2"></a><span class="co"># tail(flights_some_days_jan, n = 5)</span></span>
-<span id="cb30-3"><a href="#cb30-3"></a><span class="co"># more control</span></span>
-<span id="cb30-4"><a href="#cb30-4"></a><span class="fu">print</span>(</span>
-<span id="cb30-5"><a href="#cb30-5"></a>  <span class="fu">slice_tail</span>(flights_some_days_jan, <span class="at">n =</span> <span class="dv">7</span>),</span>
-<span id="cb30-6"><a href="#cb30-6"></a>  <span class="at">width =</span> <span class="dv">70</span></span>
-<span id="cb30-7"><a href="#cb30-7"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>flights_some_days_jan <span class="ot">&lt;-</span> <span class="fu">filter</span>(flights, month <span class="sc">==</span> <span class="dv">1</span>, day <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">15</span>, <span class="dv">30</span>))</span>
+<span id="cb30-2"><a></a><span class="co"># tail(flights_some_days_jan, n = 5)</span></span>
+<span id="cb30-3"><a></a><span class="co"># more control</span></span>
+<span id="cb30-4"><a></a><span class="fu">print</span>(</span>
+<span id="cb30-5"><a></a>  <span class="fu">slice_tail</span>(flights_some_days_jan, <span class="at">n =</span> <span class="dv">7</span>),</span>
+<span id="cb30-6"><a></a>  <span class="at">width =</span> <span class="dv">70</span></span>
+<span id="cb30-7"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 7 × 19
@@ -899,12 +900,12 @@ you could try '??nycflights13'</code></pre>
 <section id="doing-it-with-a-pipe" class="slide level2">
 <h2>Doing it with a Pipe</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>  flights <span class="sc">%&gt;%</span> </span>
-<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">1</span>, day <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">15</span>, <span class="dv">30</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb32-3"><a href="#cb32-3"></a>  <span class="fu">slice_tail</span>(<span class="at">n =</span> <span class="dv">7</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb32-4"><a href="#cb32-4"></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">70</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>  flights <span class="sc">%&gt;%</span> </span>
+<span id="cb32-2"><a></a>  <span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">1</span>, day <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">15</span>, <span class="dv">30</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-3"><a></a>  <span class="fu">slice_tail</span>(<span class="at">n =</span> <span class="dv">7</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-4"><a></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">70</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 7 × 19
@@ -938,33 +939,33 @@ you could try '??nycflights13'</code></pre>
 <section id="use-near-not-for-doublenumeric" class="slide level2">
 <h2>Use <code>near()</code> not <code>==</code> for <code>double</code>/<code>numeric</code></h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>(<span class="dv">1</span><span class="sc">/</span><span class="dv">49</span>) <span class="sc">*</span> <span class="dv">49</span> <span class="sc">==</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>(<span class="dv">1</span><span class="sc">/</span><span class="dv">49</span>) <span class="sc">*</span> <span class="dv">49</span> <span class="sc">==</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="co"># and</span></span>
-<span id="cb36-2"><a href="#cb36-2"></a>(<span class="dv">1</span><span class="sc">/</span><span class="dv">49</span>) <span class="sc">*</span> <span class="dv">49</span> <span class="sc">==</span> <span class="dv">49</span><span class="sc">/</span><span class="dv">49</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="co"># and</span></span>
+<span id="cb36-2"><a></a>(<span class="dv">1</span><span class="sc">/</span><span class="dv">49</span>) <span class="sc">*</span> <span class="dv">49</span> <span class="sc">==</span> <span class="dv">49</span><span class="sc">/</span><span class="dv">49</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># but</span></span>
-<span id="cb38-2"><a href="#cb38-2"></a>(<span class="dv">1</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">*</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="co"># but</span></span>
+<span id="cb38-2"><a></a>(<span class="dv">1</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">*</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="co"># but</span></span>
-<span id="cb40-2"><a href="#cb40-2"></a>(<span class="dv">5</span><span class="sc">/</span><span class="dv">4</span>) <span class="sc">==</span> <span class="fl">1.25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="co"># but</span></span>
+<span id="cb40-2"><a></a>(<span class="dv">5</span><span class="sc">/</span><span class="dv">4</span>) <span class="sc">==</span> <span class="fl">1.25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
@@ -978,16 +979,16 @@ you could try '??nycflights13'</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">near</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">49</span> <span class="sc">*</span> <span class="dv">49</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a><span class="fu">near</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">49</span> <span class="sc">*</span> <span class="dv">49</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">near</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">5</span> <span class="sc">*</span> <span class="dv">5</span>, <span class="dv">5</span><span class="sc">/</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="fu">near</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">5</span> <span class="sc">*</span> <span class="dv">5</span>, <span class="dv">5</span><span class="sc">/</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
@@ -1041,13 +1042,13 @@ you could try '??nycflights13'</code></pre>
 <section id="arrange-sorts-rows" class="slide level2">
 <h2><code>arrange()</code> sorts rows</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">print</span>(</span>
-<span id="cb46-2"><a href="#cb46-2"></a>  <span class="fu">arrange</span>(flights, year, month, day),</span>
-<span id="cb46-3"><a href="#cb46-3"></a>  <span class="at">n =</span> <span class="dv">10</span>,</span>
-<span id="cb46-4"><a href="#cb46-4"></a>  <span class="at">width =</span> <span class="dv">70</span></span>
-<span id="cb46-5"><a href="#cb46-5"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a><span class="fu">print</span>(</span>
+<span id="cb46-2"><a></a>  <span class="fu">arrange</span>(flights, year, month, day),</span>
+<span id="cb46-3"><a></a>  <span class="at">n =</span> <span class="dv">10</span>,</span>
+<span id="cb46-4"><a></a>  <span class="at">width =</span> <span class="dv">70</span></span>
+<span id="cb46-5"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 336,776 × 19
@@ -1074,11 +1075,11 @@ you could try '??nycflights13'</code></pre>
 <section id="arrange-sorts-rows-as-pipe" class="slide level2">
 <h2><code>arrange()</code> sorts rows as pipe</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>flights <span class="sc">%&gt;%</span> </span>
-<span id="cb48-2"><a href="#cb48-2"></a>  <span class="fu">arrange</span>(year, month, day) <span class="sc">%&gt;%</span> </span>
-<span id="cb48-3"><a href="#cb48-3"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">width =</span> <span class="dv">70</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a>flights <span class="sc">%&gt;%</span> </span>
+<span id="cb48-2"><a></a>  <span class="fu">arrange</span>(year, month, day) <span class="sc">%&gt;%</span> </span>
+<span id="cb48-3"><a></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">width =</span> <span class="dv">70</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 336,776 × 19
@@ -1105,10 +1106,10 @@ you could try '??nycflights13'</code></pre>
 <section id="arrange-sort-rows-decending" class="slide level2">
 <h2><code>arrange()</code> sort rows decending</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="co">#dec. first</span></span>
-<span id="cb50-2"><a href="#cb50-2"></a><span class="fu">print</span>(<span class="fu">arrange</span>(flights, year, <span class="fu">desc</span>(month), day), <span class="at">n =</span> <span class="dv">10</span>, <span class="at">width =</span> <span class="dv">70</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a><span class="co">#dec. first</span></span>
+<span id="cb50-2"><a></a><span class="fu">print</span>(<span class="fu">arrange</span>(flights, year, <span class="fu">desc</span>(month), day), <span class="at">n =</span> <span class="dv">10</span>, <span class="at">width =</span> <span class="dv">70</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 336,776 × 19
@@ -1135,9 +1136,9 @@ you could try '??nycflights13'</code></pre>
 <section id="select-selects-the-variables-you-want" class="slide level2">
 <h2><code>select()</code> selects the variables you want</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>(my_vars <span class="ot">&lt;-</span> <span class="fu">select</span>(flights, day, month, year, arr_delay))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a>(my_vars <span class="ot">&lt;-</span> <span class="fu">select</span>(flights, day, month, year, arr_delay))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 336,776 × 4
@@ -1163,13 +1164,13 @@ you could try '??nycflights13'</code></pre>
 <section id="filter-and-select-in-pipe" class="slide level2">
 <h2><code>filter()</code> and <code>select()</code> in pipe</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="co"># Use a pipe</span></span>
-<span id="cb54-2"><a href="#cb54-2"></a>my_vars_May <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span></span>
-<span id="cb54-3"><a href="#cb54-3"></a>  <span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb54-4"><a href="#cb54-4"></a>  <span class="fu">select</span>(day, month, year, arr_delay)</span>
-<span id="cb54-5"><a href="#cb54-5"></a><span class="fu">head</span>(my_vars_May)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a><span class="co"># Use a pipe</span></span>
+<span id="cb54-2"><a></a>my_vars_May <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span></span>
+<span id="cb54-3"><a></a>  <span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb54-4"><a></a>  <span class="fu">select</span>(day, month, year, arr_delay)</span>
+<span id="cb54-5"><a></a><span class="fu">head</span>(my_vars_May)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
@@ -1190,14 +1191,14 @@ you could try '??nycflights13'</code></pre>
 <section id="filter-and-select-in-pipe-cont." class="slide level2">
 <h2><code>filter()</code> and <code>select()</code> in pipe cont.</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="co"># Use a pipe</span></span>
-<span id="cb56-2"><a href="#cb56-2"></a>my_vars_May <span class="ot">&lt;-</span>  flights <span class="sc">%&gt;%</span></span>
-<span id="cb56-3"><a href="#cb56-3"></a>  <span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb56-4"><a href="#cb56-4"></a>  <span class="fu">select</span>(arr_delay)</span>
-<span id="cb56-5"><a href="#cb56-5"></a></span>
-<span id="cb56-6"><a href="#cb56-6"></a><span class="fu">median</span>(my_vars_May<span class="sc">$</span>arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a></a><span class="co"># Use a pipe</span></span>
+<span id="cb56-2"><a></a>my_vars_May <span class="ot">&lt;-</span>  flights <span class="sc">%&gt;%</span></span>
+<span id="cb56-3"><a></a>  <span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb56-4"><a></a>  <span class="fu">select</span>(arr_delay)</span>
+<span id="cb56-5"><a></a></span>
+<span id="cb56-6"><a></a><span class="fu">median</span>(my_vars_May<span class="sc">$</span>arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -8</code></pre>
@@ -1210,17 +1211,17 @@ you could try '??nycflights13'</code></pre>
 <section id="new-variable-use-mutate" class="slide level2">
 <h2>New variable, use <code>mutate</code></h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>my_new_data <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span></span>
-<span id="cb58-2"><a href="#cb58-2"></a>  <span class="fu">select</span>(year<span class="sc">:</span>day, <span class="fu">ends_with</span>(<span class="st">"delay"</span>), distance, air_time) <span class="sc">%&gt;%</span></span>
-<span id="cb58-3"><a href="#cb58-3"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb58-4"><a href="#cb58-4"></a>    <span class="at">gain =</span> dep_delay <span class="sc">-</span> arr_delay,</span>
-<span id="cb58-5"><a href="#cb58-5"></a>    <span class="at">speed =</span> (distance<span class="sc">/</span>air_time) <span class="sc">*</span> <span class="dv">60</span></span>
-<span id="cb58-6"><a href="#cb58-6"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb58-7"><a href="#cb58-7"></a>  <span class="fu">select</span>(year<span class="sc">:</span>day, gain, <span class="fu">everything</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb58-8"><a href="#cb58-8"></a>  <span class="fu">arrange</span>(gain)</span>
-<span id="cb58-9"><a href="#cb58-9"></a><span class="fu">head</span>(my_new_data, <span class="at">n =</span> <span class="dv">5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a></a>my_new_data <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span></span>
+<span id="cb58-2"><a></a>  <span class="fu">select</span>(year<span class="sc">:</span>day, <span class="fu">ends_with</span>(<span class="st">"delay"</span>), distance, air_time) <span class="sc">%&gt;%</span></span>
+<span id="cb58-3"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb58-4"><a></a>    <span class="at">gain =</span> dep_delay <span class="sc">-</span> arr_delay,</span>
+<span id="cb58-5"><a></a>    <span class="at">speed =</span> (distance<span class="sc">/</span>air_time) <span class="sc">*</span> <span class="dv">60</span></span>
+<span id="cb58-6"><a></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb58-7"><a></a>  <span class="fu">select</span>(year<span class="sc">:</span>day, gain, <span class="fu">everything</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb58-8"><a></a>  <span class="fu">arrange</span>(gain)</span>
+<span id="cb58-9"><a></a><span class="fu">head</span>(my_new_data, <span class="at">n =</span> <span class="dv">5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 9
@@ -1247,17 +1248,17 @@ you could try '??nycflights13'</code></pre>
 <section id="new-variable-use-mutate-cont." class="slide level2">
 <h2>New variable, use <code>mutate</code> cont.</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a>my_new_data <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span></span>
-<span id="cb60-2"><a href="#cb60-2"></a>  <span class="fu">select</span>(year<span class="sc">:</span>day, <span class="fu">ends_with</span>(<span class="st">"delay"</span>), distance, air_time) <span class="sc">%&gt;%</span></span>
-<span id="cb60-3"><a href="#cb60-3"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb60-4"><a href="#cb60-4"></a>    <span class="at">gain =</span> dep_delay <span class="sc">-</span> arr_delay,</span>
-<span id="cb60-5"><a href="#cb60-5"></a>    <span class="at">speed =</span> (distance<span class="sc">/</span>air_time) <span class="sc">*</span> <span class="dv">60</span></span>
-<span id="cb60-6"><a href="#cb60-6"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb60-7"><a href="#cb60-7"></a>  <span class="fu">select</span>(year<span class="sc">:</span>day, gain, dep_delay, speed, <span class="fu">everything</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb60-8"><a href="#cb60-8"></a>  <span class="fu">arrange</span>(gain)</span>
-<span id="cb60-9"><a href="#cb60-9"></a><span class="fu">head</span>(my_new_data, <span class="at">n=</span><span class="dv">5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a></a>my_new_data <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span></span>
+<span id="cb60-2"><a></a>  <span class="fu">select</span>(year<span class="sc">:</span>day, <span class="fu">ends_with</span>(<span class="st">"delay"</span>), distance, air_time) <span class="sc">%&gt;%</span></span>
+<span id="cb60-3"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb60-4"><a></a>    <span class="at">gain =</span> dep_delay <span class="sc">-</span> arr_delay,</span>
+<span id="cb60-5"><a></a>    <span class="at">speed =</span> (distance<span class="sc">/</span>air_time) <span class="sc">*</span> <span class="dv">60</span></span>
+<span id="cb60-6"><a></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb60-7"><a></a>  <span class="fu">select</span>(year<span class="sc">:</span>day, gain, dep_delay, speed, <span class="fu">everything</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb60-8"><a></a>  <span class="fu">arrange</span>(gain)</span>
+<span id="cb60-9"><a></a><span class="fu">head</span>(my_new_data, <span class="at">n=</span><span class="dv">5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 9
@@ -1281,15 +1282,15 @@ you could try '??nycflights13'</code></pre>
 <section id="transmute-1" class="slide level2">
 <h2><code>transmute()</code></h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a>my_data <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span></span>
-<span id="cb62-2"><a href="#cb62-2"></a>    <span class="fu">transmute</span>(</span>
-<span id="cb62-3"><a href="#cb62-3"></a>    <span class="at">gain =</span> dep_delay <span class="sc">-</span> arr_delay,</span>
-<span id="cb62-4"><a href="#cb62-4"></a>    <span class="at">speed =</span> (distance<span class="sc">/</span>air_time) <span class="sc">*</span> <span class="dv">60</span></span>
-<span id="cb62-5"><a href="#cb62-5"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb62-6"><a href="#cb62-6"></a>  <span class="fu">arrange</span>(gain)</span>
-<span id="cb62-7"><a href="#cb62-7"></a><span class="fu">head</span>(my_data, <span class="at">n =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a></a>my_data <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span></span>
+<span id="cb62-2"><a></a>    <span class="fu">transmute</span>(</span>
+<span id="cb62-3"><a></a>    <span class="at">gain =</span> dep_delay <span class="sc">-</span> arr_delay,</span>
+<span id="cb62-4"><a></a>    <span class="at">speed =</span> (distance<span class="sc">/</span>air_time) <span class="sc">*</span> <span class="dv">60</span></span>
+<span id="cb62-5"><a></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb62-6"><a></a>  <span class="fu">arrange</span>(gain)</span>
+<span id="cb62-7"><a></a><span class="fu">head</span>(my_data, <span class="at">n =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
@@ -1304,16 +1305,16 @@ you could try '??nycflights13'</code></pre>
 <section id="transmute-alternative-to-mutate-and-then-select" class="slide level2">
 <h2><code>transmute()</code> alternative to <code>mutate()</code> and then <code>select()</code></h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a>my_data <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span></span>
-<span id="cb64-2"><a href="#cb64-2"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb64-3"><a href="#cb64-3"></a>    <span class="at">gain =</span> dep_delay <span class="sc">-</span> arr_delay,</span>
-<span id="cb64-4"><a href="#cb64-4"></a>    <span class="at">speed =</span> (distance<span class="sc">/</span>air_time) <span class="sc">*</span> <span class="dv">60</span></span>
-<span id="cb64-5"><a href="#cb64-5"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb64-6"><a href="#cb64-6"></a>  <span class="fu">select</span>(gain, speed) <span class="sc">%&gt;%</span></span>
-<span id="cb64-7"><a href="#cb64-7"></a>  <span class="fu">arrange</span>(gain)</span>
-<span id="cb64-8"><a href="#cb64-8"></a><span class="fu">head</span>(my_data, <span class="at">n =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a></a>my_data <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span></span>
+<span id="cb64-2"><a></a>    <span class="fu">mutate</span>(</span>
+<span id="cb64-3"><a></a>    <span class="at">gain =</span> dep_delay <span class="sc">-</span> arr_delay,</span>
+<span id="cb64-4"><a></a>    <span class="at">speed =</span> (distance<span class="sc">/</span>air_time) <span class="sc">*</span> <span class="dv">60</span></span>
+<span id="cb64-5"><a></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb64-6"><a></a>  <span class="fu">select</span>(gain, speed) <span class="sc">%&gt;%</span></span>
+<span id="cb64-7"><a></a>  <span class="fu">arrange</span>(gain)</span>
+<span id="cb64-8"><a></a><span class="fu">head</span>(my_data, <span class="at">n =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
@@ -1328,12 +1329,12 @@ you could try '??nycflights13'</code></pre>
 <section id="summarise-and-group_by" class="slide level2">
 <h2><code>summarise()</code> and <code>group_by()</code></h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a><span class="co"># note na.rm = TRUE, else everything will be NA </span></span>
-<span id="cb66-2"><a href="#cb66-2"></a><span class="co"># even if just one NA</span></span>
-<span id="cb66-3"><a href="#cb66-3"></a>flights <span class="sc">%&gt;%</span></span>
-<span id="cb66-4"><a href="#cb66-4"></a>  <span class="fu">summarise</span>(<span class="at">delay =</span> <span class="fu">median</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a></a><span class="co"># note na.rm = TRUE, else everything will be NA </span></span>
+<span id="cb66-2"><a></a><span class="co"># even if just one NA</span></span>
+<span id="cb66-3"><a></a>flights <span class="sc">%&gt;%</span></span>
+<span id="cb66-4"><a></a>  <span class="fu">summarise</span>(<span class="at">delay =</span> <span class="fu">median</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
@@ -1349,12 +1350,12 @@ you could try '??nycflights13'</code></pre>
 </div>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a>flights <span class="sc">%&gt;%</span></span>
-<span id="cb68-2"><a href="#cb68-2"></a>  <span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb68-3"><a href="#cb68-3"></a>  <span class="fu">select</span>(arr_delay) <span class="sc">%&gt;%</span></span>
-<span id="cb68-4"><a href="#cb68-4"></a>  <span class="fu">summarise</span>(<span class="at">median_arr_delay =</span> <span class="fu">median</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a></a>flights <span class="sc">%&gt;%</span></span>
+<span id="cb68-2"><a></a>  <span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb68-3"><a></a>  <span class="fu">select</span>(arr_delay) <span class="sc">%&gt;%</span></span>
+<span id="cb68-4"><a></a>  <span class="fu">summarise</span>(<span class="at">median_arr_delay =</span> <span class="fu">median</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
@@ -1372,11 +1373,11 @@ you could try '??nycflights13'</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a>flights <span class="sc">%&gt;%</span></span>
-<span id="cb70-2"><a href="#cb70-2"></a>  <span class="fu">group_by</span>(month) <span class="sc">%&gt;%</span></span>
-<span id="cb70-3"><a href="#cb70-3"></a>  <span class="fu">summarise</span>(<span class="at">median_arr_delay =</span> <span class="fu">median</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a></a>flights <span class="sc">%&gt;%</span></span>
+<span id="cb70-2"><a></a>  <span class="fu">group_by</span>(month) <span class="sc">%&gt;%</span></span>
+<span id="cb70-3"><a></a>  <span class="fu">summarise</span>(<span class="at">median_arr_delay =</span> <span class="fu">median</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 12 × 2
@@ -1397,14 +1398,16 @@ you could try '??nycflights13'</code></pre>
 </div>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a><span class="co">#siste</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a></a><span class="co">#siste</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="../../index.html">MSB105</a></p>
+</div>
 </div>
 </div>
 </section>
@@ -1434,7 +1437,6 @@ you could try '??nycflights13'</code></pre>
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': true,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1733,10 +1735,9 @@ you could try '??nycflights13'</code></pre>
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn) {
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1746,8 +1747,17 @@ you could try '??nycflights13'</code></pre>
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 

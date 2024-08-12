@@ -8,7 +8,7 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.353">
+  <meta name="generator" content="quarto-1.4.549">
 
   <meta name="author" content="ag">
   <title>MSB105 - Model building</title>
@@ -31,7 +31,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -98,6 +98,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+      margin-bottom: 0em;
     }
     .hanging-indent div.csl-entry {
       margin-left:2em;
@@ -240,7 +241,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -424,39 +426,39 @@ ag
 <section class="slide level2">
 
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">suppressPackageStartupMessages</span>({</span>
-<span id="cb1-2"><a href="#cb1-2"></a>  <span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3"></a>  <span class="fu">library</span>(modelr)</span>
-<span id="cb1-4"><a href="#cb1-4"></a>  <span class="fu">options</span>(<span class="at">na.action =</span> na.exclude)</span>
-<span id="cb1-5"><a href="#cb1-5"></a>  <span class="fu">library</span>(nycflights13)</span>
-<span id="cb1-6"><a href="#cb1-6"></a>  <span class="fu">library</span>(lubridate)</span>
-<span id="cb1-7"><a href="#cb1-7"></a>  <span class="fu">library</span>(tseries)</span>
-<span id="cb1-8"><a href="#cb1-8"></a>  <span class="fu">library</span>(patchwork)</span>
-<span id="cb1-9"><a href="#cb1-9"></a>  <span class="fu">library</span>(hexbin)</span>
-<span id="cb1-10"><a href="#cb1-10"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">suppressPackageStartupMessages</span>({</span>
+<span id="cb1-2"><a></a>  <span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a></a>  <span class="fu">library</span>(modelr)</span>
+<span id="cb1-4"><a></a>  <span class="fu">options</span>(<span class="at">na.action =</span> na.exclude)</span>
+<span id="cb1-5"><a></a>  <span class="fu">library</span>(nycflights13)</span>
+<span id="cb1-6"><a></a>  <span class="fu">library</span>(lubridate)</span>
+<span id="cb1-7"><a></a>  <span class="fu">library</span>(tseries)</span>
+<span id="cb1-8"><a></a>  <span class="fu">library</span>(patchwork)</span>
+<span id="cb1-9"><a></a>  <span class="fu">library</span>(hexbin)</span>
+<span id="cb1-10"><a></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># create a bib file for the R packages</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># used in this document</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># Note! Needs to do a touch ag_model_building.bib in terminal before first run</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># else stops when bibliography: "ag_model_building.bib" not found in YAML</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>knitr<span class="sc">::</span><span class="fu">write_bib</span>(</span>
-<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">c</span>(</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    <span class="st">"tidyverse"</span>,</span>
-<span id="cb2-8"><a href="#cb2-8"></a>    <span class="st">"modelr"</span>,</span>
-<span id="cb2-9"><a href="#cb2-9"></a>    <span class="st">"nycflights13"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10"></a>    <span class="st">"lubridate"</span>,</span>
-<span id="cb2-11"><a href="#cb2-11"></a>    <span class="st">"tseries"</span>,</span>
-<span id="cb2-12"><a href="#cb2-12"></a>    <span class="st">"patchwork"</span>,</span>
-<span id="cb2-13"><a href="#cb2-13"></a>    <span class="st">"hexbin"</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a>    ),</span>
-<span id="cb2-15"><a href="#cb2-15"></a>  <span class="at">file =</span> <span class="st">"ag_model_building.bib"</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co"># create a bib file for the R packages</span></span>
+<span id="cb2-2"><a></a><span class="co"># used in this document</span></span>
+<span id="cb2-3"><a></a><span class="co"># Note! Needs to do a touch ag_model_building.bib in terminal before first run</span></span>
+<span id="cb2-4"><a></a><span class="co"># else stops when bibliography: "ag_model_building.bib" not found in YAML</span></span>
+<span id="cb2-5"><a></a>knitr<span class="sc">::</span><span class="fu">write_bib</span>(</span>
+<span id="cb2-6"><a></a>  <span class="fu">c</span>(</span>
+<span id="cb2-7"><a></a>    <span class="st">"tidyverse"</span>,</span>
+<span id="cb2-8"><a></a>    <span class="st">"modelr"</span>,</span>
+<span id="cb2-9"><a></a>    <span class="st">"nycflights13"</span>,</span>
+<span id="cb2-10"><a></a>    <span class="st">"lubridate"</span>,</span>
+<span id="cb2-11"><a></a>    <span class="st">"tseries"</span>,</span>
+<span id="cb2-12"><a></a>    <span class="st">"patchwork"</span>,</span>
+<span id="cb2-13"><a></a>    <span class="st">"hexbin"</span></span>
+<span id="cb2-14"><a></a>    ),</span>
+<span id="cb2-15"><a></a>  <span class="at">file =</span> <span class="st">"ag_model_building.bib"</span></span>
+<span id="cb2-16"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -479,10 +481,10 @@ ag
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(cut, price)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">ggtitle</span>(<span class="st">"The connection between quality of cut and price"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(cut, price)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb3-2"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"The connection between quality of cut and price"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -494,10 +496,10 @@ ag
 <section id="diamonds-2" class="slide level2">
 <h2>Diamonds</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(color, price)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">ggtitle</span>(<span class="st">"The connection between quality of colour and price"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(color, price)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb4-2"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"The connection between quality of colour and price"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -508,10 +510,10 @@ ag
 <section id="diamonds-4" class="slide level2">
 <h2>Diamonds</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(clarity, price)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">ggtitle</span>(<span class="st">"The connection between clarity and price"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(clarity, price)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb5-2"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"The connection between clarity and price"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -534,27 +536,27 @@ ag
 <section id="diamonds-2-exclude-big-diamonds" class="slide level2">
 <h2>Diamonds 2; exclude big diamonds</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>diamonds2 <span class="ot">&lt;-</span> diamonds <span class="sc">%&gt;%</span> </span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">filter</span>(carat <span class="sc">&lt;=</span> <span class="fl">2.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>diamonds2 <span class="ot">&lt;-</span> diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a></a>  <span class="fu">filter</span>(carat <span class="sc">&lt;=</span> <span class="fl">2.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="connection-between-size-and-price" class="slide level2">
 <h2>Connection between size and price</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> diamonds2) <span class="sc">+</span> </span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price), </span>
-<span id="cb7-3"><a href="#cb7-3"></a>             <span class="at">size =</span> <span class="fl">0.3</span>,</span>
-<span id="cb7-4"><a href="#cb7-4"></a>             <span class="at">alpha =</span> <span class="fl">0.05</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a>             )</span>
-<span id="cb7-6"><a href="#cb7-6"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span> </span>
-<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">geom_hex</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="co"># made possible by patchwork</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a>g1 <span class="sc">+</span> g2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> diamonds2) <span class="sc">+</span> </span>
+<span id="cb7-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price), </span>
+<span id="cb7-3"><a></a>             <span class="at">size =</span> <span class="fl">0.3</span>,</span>
+<span id="cb7-4"><a></a>             <span class="at">alpha =</span> <span class="fl">0.05</span></span>
+<span id="cb7-5"><a></a>             )</span>
+<span id="cb7-6"><a></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span> </span>
+<span id="cb7-7"><a></a>  <span class="fu">geom_hex</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span>
+<span id="cb7-8"><a></a><span class="co"># made possible by patchwork</span></span>
+<span id="cb7-9"><a></a>g1 <span class="sc">+</span> g2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -574,16 +576,16 @@ ag
 <section id="non-linear-relationship-between-carat-and-price-1" class="slide level2">
 <h2>Non-linear relationship between carat and price</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>g3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> diamonds2) <span class="sc">+</span> </span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(carat), <span class="at">y =</span> <span class="fu">log</span>(price)), </span>
-<span id="cb8-3"><a href="#cb8-3"></a>             <span class="at">size =</span> <span class="fl">0.3</span>,</span>
-<span id="cb8-4"><a href="#cb8-4"></a>             <span class="at">alpha =</span> <span class="fl">0.05</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>  )</span>
-<span id="cb8-6"><a href="#cb8-6"></a>g4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(carat), <span class="at">y =</span> <span class="fu">log</span>(price))) <span class="sc">+</span> </span>
-<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">geom_hex</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span>
-<span id="cb8-8"><a href="#cb8-8"></a>g3 <span class="sc">+</span> g4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>g3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> diamonds2) <span class="sc">+</span> </span>
+<span id="cb8-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(carat), <span class="at">y =</span> <span class="fu">log</span>(price)), </span>
+<span id="cb8-3"><a></a>             <span class="at">size =</span> <span class="fl">0.3</span>,</span>
+<span id="cb8-4"><a></a>             <span class="at">alpha =</span> <span class="fl">0.05</span></span>
+<span id="cb8-5"><a></a>  )</span>
+<span id="cb8-6"><a></a>g4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(carat), <span class="at">y =</span> <span class="fu">log</span>(price))) <span class="sc">+</span> </span>
+<span id="cb8-7"><a></a>  <span class="fu">geom_hex</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span>
+<span id="cb8-8"><a></a>g3 <span class="sc">+</span> g4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -594,11 +596,11 @@ ag
 <section id="model-log-log" class="slide level2">
 <h2>Model log log</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>mod_ll <span class="ot">&lt;-</span> <span class="st">'log(price) ~ log(carat)'</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>lm_ll <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> mod_ll, <span class="at">data =</span> diamonds2)</span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="fu">coefficients</span>(lm_ll)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>mod_ll <span class="ot">&lt;-</span> <span class="st">'log(price) ~ log(carat)'</span></span>
+<span id="cb9-2"><a></a>lm_ll <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> mod_ll, <span class="at">data =</span> diamonds2)</span>
+<span id="cb9-3"><a></a><span class="fu">coefficients</span>(lm_ll)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(Intercept)  log(carat) 
@@ -622,19 +624,19 @@ ag
 <section id="checking-residuals-for-normality" class="slide level2">
 <h2>Checking residuals for normality</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>diamonds2 <span class="ot">&lt;-</span> diamonds2 <span class="sc">%&gt;%</span> </span>
-<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">add_residuals</span>(lm_ll, <span class="at">var =</span> <span class="st">"resid_lm_ll"</span>)</span>
-<span id="cb11-3"><a href="#cb11-3"></a></span>
-<span id="cb11-4"><a href="#cb11-4"></a>res_m <span class="ot">&lt;-</span> <span class="fu">mean</span>(diamonds2<span class="sc">$</span>resid_lm_ll)</span>
-<span id="cb11-5"><a href="#cb11-5"></a>res_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(diamonds2<span class="sc">$</span>resid_lm_ll)</span>
-<span id="cb11-6"><a href="#cb11-6"></a></span>
-<span id="cb11-7"><a href="#cb11-7"></a>diamonds2 <span class="sc">%&gt;%</span> </span>
-<span id="cb11-8"><a href="#cb11-8"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb11-9"><a href="#cb11-9"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> resid_lm_ll, <span class="at">y =</span> ..density..),</span>
-<span id="cb11-10"><a href="#cb11-10"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">binwidth =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
-<span id="cb11-11"><a href="#cb11-11"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> res_m, <span class="at">sd =</span> res_sd))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>diamonds2 <span class="ot">&lt;-</span> diamonds2 <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a></a>  <span class="fu">add_residuals</span>(lm_ll, <span class="at">var =</span> <span class="st">"resid_lm_ll"</span>)</span>
+<span id="cb11-3"><a></a></span>
+<span id="cb11-4"><a></a>res_m <span class="ot">&lt;-</span> <span class="fu">mean</span>(diamonds2<span class="sc">$</span>resid_lm_ll)</span>
+<span id="cb11-5"><a></a>res_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(diamonds2<span class="sc">$</span>resid_lm_ll)</span>
+<span id="cb11-6"><a></a></span>
+<span id="cb11-7"><a></a>diamonds2 <span class="sc">%&gt;%</span> </span>
+<span id="cb11-8"><a></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb11-9"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> resid_lm_ll, <span class="at">y =</span> ..density..),</span>
+<span id="cb11-10"><a></a>    <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">binwidth =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
+<span id="cb11-11"><a></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> res_m, <span class="at">sd =</span> res_sd))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -645,9 +647,9 @@ ag
 <section id="checking-residuals-for-normality-2" class="slide level2">
 <h2>Checking residuals for normality</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">jarque.bera.test</span>(diamonds2<span class="sc">$</span>resid_lm_ll)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">jarque.bera.test</span>(diamonds2<span class="sc">$</span>resid_lm_ll)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -704,12 +706,12 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>diamonds2 <span class="sc">%&gt;%</span> </span>
-<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">select</span>(carat, cut, color, clarity) <span class="sc">%&gt;%</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">200</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">pairs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>diamonds2 <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a></a>  <span class="fu">select</span>(carat, cut, color, clarity) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">200</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-4"><a></a>  <span class="fu">pairs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -727,12 +729,12 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>g7 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(cut, carat)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span>
-<span id="cb15-2"><a href="#cb15-2"></a>g8 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(color, carat)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span>
-<span id="cb15-3"><a href="#cb15-3"></a>g9 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(clarity, carat)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span>
-<span id="cb15-4"><a href="#cb15-4"></a>g7 <span class="sc">+</span> g8 <span class="sc">+</span> g9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>g7 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(cut, carat)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span>
+<span id="cb15-2"><a></a>g8 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(color, carat)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span>
+<span id="cb15-3"><a></a>g9 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(clarity, carat)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span>
+<span id="cb15-4"><a></a>g7 <span class="sc">+</span> g8 <span class="sc">+</span> g9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -750,15 +752,15 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># generate 20 data points on a grid</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="co"># to be used to draw the predictions</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a>grid <span class="ot">&lt;-</span> diamonds2 <span class="sc">%&gt;%</span> </span>
-<span id="cb16-4"><a href="#cb16-4"></a>  <span class="fu">data_grid</span>(<span class="at">carat =</span> <span class="fu">seq_range</span>(carat, <span class="dv">20</span>))  <span class="sc">%&gt;%</span> </span>
-<span id="cb16-5"><a href="#cb16-5"></a>  <span class="fu">add_predictions</span>(lm_ll, <span class="st">"log_price_p"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-6"><a href="#cb16-6"></a>  <span class="fu">mutate</span>(<span class="at">price =</span> <span class="fu">exp</span>(log_price_p))</span>
-<span id="cb16-7"><a href="#cb16-7"></a><span class="co">#View(grid)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="co"># generate 20 data points on a grid</span></span>
+<span id="cb16-2"><a></a><span class="co"># to be used to draw the predictions</span></span>
+<span id="cb16-3"><a></a>grid <span class="ot">&lt;-</span> diamonds2 <span class="sc">%&gt;%</span> </span>
+<span id="cb16-4"><a></a>  <span class="fu">data_grid</span>(<span class="at">carat =</span> <span class="fu">seq_range</span>(carat, <span class="dv">20</span>))  <span class="sc">%&gt;%</span> </span>
+<span id="cb16-5"><a></a>  <span class="fu">add_predictions</span>(lm_ll, <span class="st">"log_price_p"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-6"><a></a>  <span class="fu">mutate</span>(<span class="at">price =</span> <span class="fu">exp</span>(log_price_p))</span>
+<span id="cb16-7"><a></a><span class="co">#View(grid)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -766,15 +768,15 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 <section id="plot-of-price-against-carat-model-line-added" class="slide level2">
 <h2>Plot of price against carat, model line added</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>g5 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span> </span>
-<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span> </span>
-<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> grid,  <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb17-4"><a href="#cb17-4"></a>g6 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(carat, price)) <span class="sc">+</span> </span>
-<span id="cb17-5"><a href="#cb17-5"></a>  <span class="fu">geom_hex</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span> </span>
-<span id="cb17-6"><a href="#cb17-6"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> grid,  <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb17-7"><a href="#cb17-7"></a>g5 <span class="sc">+</span> g6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>g5 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span> </span>
+<span id="cb17-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>) <span class="sc">+</span> </span>
+<span id="cb17-3"><a></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> grid,  <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb17-4"><a></a>g6 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(carat, price)) <span class="sc">+</span> </span>
+<span id="cb17-5"><a></a>  <span class="fu">geom_hex</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span> </span>
+<span id="cb17-6"><a></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> grid,  <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb17-7"><a></a>g5 <span class="sc">+</span> g6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -789,12 +791,12 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>diamonds2 <span class="ot">&lt;-</span> diamonds2 <span class="sc">%&gt;%</span> </span>
-<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">add_residuals</span>(lm_ll, <span class="st">"log_resid"</span>)</span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(<span class="fu">log</span>(carat), log_resid)) <span class="sc">+</span> </span>
-<span id="cb18-4"><a href="#cb18-4"></a>  <span class="fu">geom_hex</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>diamonds2 <span class="ot">&lt;-</span> diamonds2 <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a></a>  <span class="fu">add_residuals</span>(lm_ll, <span class="st">"log_resid"</span>)</span>
+<span id="cb18-3"><a></a><span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(<span class="fu">log</span>(carat), log_resid)) <span class="sc">+</span> </span>
+<span id="cb18-4"><a></a>  <span class="fu">geom_hex</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -807,7 +809,11 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
+<div>
+<figure>
 <p><img data-src="model-building_files/figure-revealjs/unnamed-chunk-25-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -819,10 +825,10 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(cut, log_resid)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">ggtitle</span>(<span class="st">"Better cuts have higher prices (as we would suspect)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(cut, log_resid)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb19-2"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Better cuts have higher prices (as we would suspect)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -835,7 +841,11 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
+<div>
+<figure>
 <p><img data-src="model-building_files/figure-revealjs/unnamed-chunk-27-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -847,10 +857,10 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(color, log_resid)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">ggtitle</span>(<span class="st">"Better colour gives a higher price (as we would suspect)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(color, log_resid)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb20-2"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Better colour gives a higher price (as we would suspect)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -866,10 +876,10 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(clarity, log_resid)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">ggtitle</span>(<span class="st">"Better clarity give a higher price (as we would suspect)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(clarity, log_resid)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb21-2"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Better clarity give a higher price (as we would suspect)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -892,12 +902,12 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>mod2_ll <span class="ot">&lt;-</span> <span class="st">'log(price) ~ log(carat) + cut + color + clarity'</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a>lm2_ll <span class="ot">&lt;-</span> <span class="fu">lm</span>(mod2_ll, <span class="at">data =</span> diamonds2)</span>
-<span id="cb22-3"><a href="#cb22-3"></a>diamonds2 <span class="ot">&lt;-</span> diamonds2 <span class="sc">%&gt;%</span> </span>
-<span id="cb22-4"><a href="#cb22-4"></a>  <span class="fu">add_residuals</span>(lm2_ll, <span class="at">var =</span> <span class="st">"res_lm2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>mod2_ll <span class="ot">&lt;-</span> <span class="st">'log(price) ~ log(carat) + cut + color + clarity'</span></span>
+<span id="cb22-2"><a></a>lm2_ll <span class="ot">&lt;-</span> <span class="fu">lm</span>(mod2_ll, <span class="at">data =</span> diamonds2)</span>
+<span id="cb22-3"><a></a>diamonds2 <span class="ot">&lt;-</span> diamonds2 <span class="sc">%&gt;%</span> </span>
+<span id="cb22-4"><a></a>  <span class="fu">add_residuals</span>(lm2_ll, <span class="at">var =</span> <span class="st">"res_lm2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -905,15 +915,15 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 <section id="residuals-full-model" class="slide level2">
 <h2>Residuals full model</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>g10 <span class="ot">&lt;-</span> diamonds2 <span class="sc">%&gt;%</span> </span>
-<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(price), <span class="at">y =</span> res_lm2)) <span class="sc">+</span></span>
-<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>)</span>
-<span id="cb23-4"><a href="#cb23-4"></a>g11 <span class="ot">&lt;-</span> diamonds2 <span class="sc">%&gt;%</span> </span>
-<span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(carat), <span class="at">y =</span> res_lm2)) <span class="sc">+</span></span>
-<span id="cb23-6"><a href="#cb23-6"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>)</span>
-<span id="cb23-7"><a href="#cb23-7"></a>g10 <span class="sc">+</span> g11</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>g10 <span class="ot">&lt;-</span> diamonds2 <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2"><a></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(price), <span class="at">y =</span> res_lm2)) <span class="sc">+</span></span>
+<span id="cb23-3"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>)</span>
+<span id="cb23-4"><a></a>g11 <span class="ot">&lt;-</span> diamonds2 <span class="sc">%&gt;%</span> </span>
+<span id="cb23-5"><a></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(carat), <span class="at">y =</span> res_lm2)) <span class="sc">+</span></span>
+<span id="cb23-6"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>)</span>
+<span id="cb23-7"><a></a>g10 <span class="sc">+</span> g11</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -940,15 +950,15 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># uses nycflights13, lubridate and tidyverse packages</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="co"># options get rid of the warning about ungrouping, waste space here</span></span>
-<span id="cb24-3"><a href="#cb24-3"></a><span class="fu">options</span>(<span class="at">dplyr.summarise.inform =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb24-4"><a href="#cb24-4"></a>daily <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span> </span>
-<span id="cb24-5"><a href="#cb24-5"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">make_date</span>(year, month, day)) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-6"><a href="#cb24-6"></a>  <span class="fu">group_by</span>(date) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-7"><a href="#cb24-7"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="co"># uses nycflights13, lubridate and tidyverse packages</span></span>
+<span id="cb24-2"><a></a><span class="co"># options get rid of the warning about ungrouping, waste space here</span></span>
+<span id="cb24-3"><a></a><span class="fu">options</span>(<span class="at">dplyr.summarise.inform =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb24-4"><a></a>daily <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span> </span>
+<span id="cb24-5"><a></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">make_date</span>(year, month, day)) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-6"><a></a>  <span class="fu">group_by</span>(date) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-7"><a></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -956,11 +966,11 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 <section id="nyc-flight-data-cont." class="slide level2 smaller">
 <h2>NYC flight data cont.</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># OK in slide output</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="fu">options</span>(<span class="at">tibble.print_min =</span> <span class="dv">3</span>)</span>
-<span id="cb25-3"><a href="#cb25-3"></a><span class="fu">print</span>(daily, <span class="at">n =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="co"># OK in slide output</span></span>
+<span id="cb25-2"><a></a><span class="fu">options</span>(<span class="at">tibble.print_min =</span> <span class="dv">3</span>)</span>
+<span id="cb25-3"><a></a><span class="fu">print</span>(daily, <span class="at">n =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 365 × 2
@@ -976,11 +986,11 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 <section id="plotting-daily" class="slide level2">
 <h2>Plotting daily</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>daily <span class="sc">%&gt;%</span> </span>
-<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> n)) <span class="sc">+</span></span>
-<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>daily <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb27-3"><a></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -996,14 +1006,14 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>daily_no <span class="ot">&lt;-</span> daily <span class="sc">%&gt;%</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">mutate</span>(<span class="at">wday =</span> <span class="fu">wday</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">week_start =</span> <span class="dv">1</span>))</span>
-<span id="cb28-3"><a href="#cb28-3"></a></span>
-<span id="cb28-4"><a href="#cb28-4"></a><span class="fu">ggplot</span>(daily_no, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> wday, n)) <span class="sc">+</span></span>
-<span id="cb28-5"><a href="#cb28-5"></a>  <span class="fu">geom_boxplot</span>()</span>
-<span id="cb28-6"><a href="#cb28-6"></a><span class="fu">rm</span>(daily_no)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>daily_no <span class="ot">&lt;-</span> daily <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a></a>  <span class="fu">mutate</span>(<span class="at">wday =</span> <span class="fu">wday</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">week_start =</span> <span class="dv">1</span>))</span>
+<span id="cb28-3"><a></a></span>
+<span id="cb28-4"><a></a><span class="fu">ggplot</span>(daily_no, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> wday, n)) <span class="sc">+</span></span>
+<span id="cb28-5"><a></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb28-6"><a></a><span class="fu">rm</span>(daily_no)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -1019,12 +1029,12 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>daily <span class="ot">&lt;-</span> daily <span class="sc">%&gt;%</span> </span>
-<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">mutate</span>(<span class="at">wday =</span> <span class="fu">wday</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="fu">ggplot</span>(daily, <span class="fu">aes</span>(wday, n)) <span class="sc">+</span> </span>
-<span id="cb29-4"><a href="#cb29-4"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>daily <span class="ot">&lt;-</span> daily <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a></a>  <span class="fu">mutate</span>(<span class="at">wday =</span> <span class="fu">wday</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb29-3"><a></a><span class="fu">ggplot</span>(daily, <span class="fu">aes</span>(wday, n)) <span class="sc">+</span> </span>
+<span id="cb29-4"><a></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -1040,12 +1050,12 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(n <span class="sc">~</span> wday, <span class="at">data =</span> daily)</span>
-<span id="cb30-2"><a href="#cb30-2"></a>daily <span class="sc">%&gt;%</span> </span>
-<span id="cb30-3"><a href="#cb30-3"></a>  <span class="fu">model_matrix</span>(n <span class="sc">~</span> wday) <span class="sc">%&gt;%</span> </span>
-<span id="cb30-4"><a href="#cb30-4"></a>  .[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, ] <span class="co"># 3 first rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(n <span class="sc">~</span> wday, <span class="at">data =</span> daily)</span>
+<span id="cb30-2"><a></a>daily <span class="sc">%&gt;%</span> </span>
+<span id="cb30-3"><a></a>  <span class="fu">model_matrix</span>(n <span class="sc">~</span> wday) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-4"><a></a>  .[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, ] <span class="co"># 3 first rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 7
@@ -1065,12 +1075,12 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>grid <span class="ot">&lt;-</span> daily <span class="sc">%&gt;%</span> </span>
-<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">data_grid</span>(wday) <span class="sc">%&gt;%</span> </span>
-<span id="cb32-3"><a href="#cb32-3"></a>  <span class="fu">add_predictions</span>(mod, <span class="st">"n"</span>)</span>
-<span id="cb32-4"><a href="#cb32-4"></a>grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>grid <span class="ot">&lt;-</span> daily <span class="sc">%&gt;%</span> </span>
+<span id="cb32-2"><a></a>  <span class="fu">data_grid</span>(wday) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-3"><a></a>  <span class="fu">add_predictions</span>(mod, <span class="st">"n"</span>)</span>
+<span id="cb32-4"><a></a>grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 7 × 2
@@ -1094,11 +1104,11 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">ggplot</span>(daily, <span class="fu">aes</span>(wday, n)) <span class="sc">+</span> </span>
-<span id="cb34-2"><a href="#cb34-2"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb34-3"><a href="#cb34-3"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> grid, <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="fu">ggplot</span>(daily, <span class="fu">aes</span>(wday, n)) <span class="sc">+</span> </span>
+<span id="cb34-2"><a></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb34-3"><a></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> grid, <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -1115,14 +1125,14 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>daily <span class="ot">&lt;-</span> daily <span class="sc">%&gt;%</span> </span>
-<span id="cb35-2"><a href="#cb35-2"></a>  <span class="fu">add_residuals</span>(mod)</span>
-<span id="cb35-3"><a href="#cb35-3"></a>daily <span class="sc">%&gt;%</span> </span>
-<span id="cb35-4"><a href="#cb35-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(date, resid)) <span class="sc">+</span> </span>
-<span id="cb35-5"><a href="#cb35-5"></a>  <span class="fu">geom_ref_line</span>(<span class="at">h =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
-<span id="cb35-6"><a href="#cb35-6"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>daily <span class="ot">&lt;-</span> daily <span class="sc">%&gt;%</span> </span>
+<span id="cb35-2"><a></a>  <span class="fu">add_residuals</span>(mod)</span>
+<span id="cb35-3"><a></a>daily <span class="sc">%&gt;%</span> </span>
+<span id="cb35-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(date, resid)) <span class="sc">+</span> </span>
+<span id="cb35-5"><a></a>  <span class="fu">geom_ref_line</span>(<span class="at">h =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb35-6"><a></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -1134,11 +1144,11 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 <section id="residuals-for-each-week-day" class="slide level2">
 <h2>Residuals for each week day</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">ggplot</span>(daily, <span class="fu">aes</span>(date, resid, <span class="at">colour =</span> wday)) <span class="sc">+</span> </span>
-<span id="cb36-2"><a href="#cb36-2"></a>  <span class="fu">geom_ref_line</span>(<span class="at">h =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
-<span id="cb36-3"><a href="#cb36-3"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="fu">ggplot</span>(daily, <span class="fu">aes</span>(date, resid, <span class="at">colour =</span> wday)) <span class="sc">+</span> </span>
+<span id="cb36-2"><a></a>  <span class="fu">geom_ref_line</span>(<span class="at">h =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb36-3"><a></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -1149,13 +1159,13 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 <section id="residual-for-saturday" class="slide level2">
 <h2>Residual for Saturday</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>daily <span class="sc">%&gt;%</span> </span>
-<span id="cb37-2"><a href="#cb37-2"></a>  <span class="fu">filter</span>(wday <span class="sc">==</span> <span class="st">"Sat"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb37-3"><a href="#cb37-3"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> resid)) <span class="sc">+</span> </span>
-<span id="cb37-4"><a href="#cb37-4"></a>  <span class="fu">geom_ref_line</span>(<span class="at">h =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
-<span id="cb37-5"><a href="#cb37-5"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>daily <span class="sc">%&gt;%</span> </span>
+<span id="cb37-2"><a></a>  <span class="fu">filter</span>(wday <span class="sc">==</span> <span class="st">"Sat"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-3"><a></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> resid)) <span class="sc">+</span> </span>
+<span id="cb37-4"><a></a>  <span class="fu">geom_ref_line</span>(<span class="at">h =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb37-5"><a></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -1174,10 +1184,10 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 <section id="comments-regarding-residuals-cont." class="slide level2 smaller">
 <h2>Comments regarding residuals cont.</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>daily <span class="sc">%&gt;%</span> </span>
-<span id="cb38-2"><a href="#cb38-2"></a>  <span class="fu">filter</span>(resid <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>daily <span class="sc">%&gt;%</span> </span>
+<span id="cb38-2"><a></a>  <span class="fu">filter</span>(resid <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 11 × 4
@@ -1211,10 +1221,10 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 <section id="comments-regarding-residuals-cont.-2" class="slide level2 smaller">
 <h2>Comments regarding residuals cont.</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>daily <span class="sc">%&gt;%</span> </span>
-<span id="cb40-2"><a href="#cb40-2"></a>  <span class="fu">filter</span>(resid <span class="sc">&gt;</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>daily <span class="sc">%&gt;%</span> </span>
+<span id="cb40-2"><a></a>  <span class="fu">filter</span>(resid <span class="sc">&gt;</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 14 × 4
@@ -1248,10 +1258,12 @@ X-squared = 1345.4, df = 2, p-value &lt; 2.2e-16</code></pre>
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="../../index.html">MSB105</a></p>
 </div>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-R-hexbin" class="csl-entry" role="listitem">
 Carr, Dan, Nicholas Lewin-Koh, and Martin Maechler. 2023. <em>Hexbin: Hexagonal Binning Routines</em>. <a href="https://github.com/edzer/hexbin">https://github.com/edzer/hexbin</a>.
 </div>
@@ -1259,10 +1271,13 @@ Carr, Dan, Nicholas Lewin-Koh, and Martin Maechler. 2023. <em>Hexbin: Hexagonal 
 Grolemund, Garrett, and Hadley Wickham. 2011. <span>“Dates and Times Made Easy with <span class="nocase">lubridate</span>.”</span> <em>Journal of Statistical Software</em> 40 (3): 1–25. <a href="https://www.jstatsoft.org/v40/i03/">https://www.jstatsoft.org/v40/i03/</a>.
 </div>
 <div id="ref-R-patchwork" class="csl-entry" role="listitem">
-Pedersen, Thomas Lin. 2022. <em>Patchwork: The Composer of Plots</em>. <a href="https://patchwork.data-imaginist.com">https://patchwork.data-imaginist.com</a>.
+Pedersen, Thomas Lin. 2024. <em>Patchwork: The Composer of Plots</em>. <a href="https://patchwork.data-imaginist.com">https://patchwork.data-imaginist.com</a>.
 </div>
 <div id="ref-R-lubridate" class="csl-entry" role="listitem">
 Spinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2023. <em>Lubridate: Make Dealing with Dates a Little Easier</em>. <a href="https://lubridate.tidyverse.org">https://lubridate.tidyverse.org</a>.
+</div>
+<div id="ref-R-tseries" class="csl-entry" role="listitem">
+Trapletti, Adrian, and Kurt Hornik. 2024. <em>Tseries: Time Series Analysis and Computational Finance</em>. <a href="https://CRAN.R-project.org/package=tseries">https://CRAN.R-project.org/package=tseries</a>.
 </div>
 <div id="ref-R-nycflights13" class="csl-entry" role="listitem">
 Wickham, Hadley. 2021. <em>Nycflights13: Flights That Departed NYC in 2013</em>. <a href="https://github.com/hadley/nycflights13">https://github.com/hadley/nycflights13</a>.
@@ -1304,7 +1319,6 @@ Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino 
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': true,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1603,10 +1617,9 @@ Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino 
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn) {
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1616,8 +1629,17 @@ Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino 
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 

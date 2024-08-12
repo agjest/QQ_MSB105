@@ -8,7 +8,7 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.353">
+  <meta name="generator" content="quarto-1.4.549">
 
   <meta name="author" content="ag">
   <title>MSB105 - Tidy Data</title>
@@ -31,7 +31,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -221,7 +221,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -405,9 +406,9 @@ ag
 <section id="load-tidyverse" class="slide level2">
 <h2>Load tidyverse</h2>
 <div class="cell" data-messages="true">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ul>
@@ -433,20 +434,20 @@ ag
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>base<span class="sc">::</span>Filter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>base<span class="sc">::</span>Filter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>stats<span class="sc">::</span>lag</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>stats<span class="sc">::</span>lag</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
 </section>
-<section id="tidy-data" class="slide level2">
+<section id="tidy-data" class="slide level2 scrollable">
 <h2>Tidy data</h2>
 <ul>
 <li class="fragment"><p>“Happy families are all alike; every unhappy family is unhappy in its own way.” (Leo Tolstoy)</p></li>
@@ -473,9 +474,9 @@ ag
 <section id="tidy-data-table3" class="slide level2">
 <h2>Tidy Data; table3</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>table3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>table3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
@@ -503,9 +504,9 @@ ag
 <section id="tidy-data-table2" class="slide level2">
 <h2>Tidy Data; table2</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>table2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>table2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 12 × 4
@@ -539,9 +540,9 @@ ag
 <section id="tidy-data-table4" class="slide level2">
 <h2>Tidy Data; table4</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>table4a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>table4a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
@@ -551,9 +552,9 @@ ag
 2 Brazil       37737  80488
 3 China       212258 213766</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>table4b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>table4b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
@@ -576,12 +577,12 @@ ag
 </ul></li>
 </ul>
 </section>
-<section id="tidy-data-table1" class="slide level2">
+<section id="tidy-data-table1" class="slide level2 scrollable">
 <h2>Tidy Data; table1</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>table1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>table1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
@@ -635,7 +636,7 @@ ag
 </ul></li>
 </ul>
 </section>
-<section id="why-tidy-data" class="slide level2">
+<section id="why-tidy-data" class="slide level2 scrollable">
 <h2>Why tidy data?</h2>
 <ul>
 <li class="fragment">Wicham give the following two reasons:
@@ -649,14 +650,14 @@ ag
 <section id="some-ex.-of-working-with-tidy-data-1" class="slide level2">
 <h2>Some ex. of working with tidy data; 1</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># cases per 100.000</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>table1 <span class="ot">&lt;-</span> table1 <span class="sc">%&gt;%</span> </span>
-<span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb14-4"><a href="#cb14-4"></a>    <span class="at">rate =</span> <span class="fu">round</span>((cases<span class="sc">/</span>population) <span class="sc">*</span> <span class="dv">100000</span>,</span>
-<span id="cb14-5"><a href="#cb14-5"></a>                 <span class="at">digits =</span> <span class="dv">3</span>)</span>
-<span id="cb14-6"><a href="#cb14-6"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co"># cases per 100.000</span></span>
+<span id="cb14-2"><a></a>table1 <span class="ot">&lt;-</span> table1 <span class="sc">%&gt;%</span> </span>
+<span id="cb14-3"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-4"><a></a>    <span class="at">rate =</span> <span class="fu">round</span>((cases<span class="sc">/</span>population) <span class="sc">*</span> <span class="dv">100000</span>,</span>
+<span id="cb14-5"><a></a>                 <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb14-6"><a></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ul>
@@ -666,10 +667,10 @@ ag
 <section id="some-ex.-of-working-with-tidy-data-2" class="slide level2">
 <h2>Some ex. of working with tidy data; 2</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>table1 <span class="sc">%&gt;%</span> </span>
-<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">count</span>(year, <span class="at">wt =</span> cases)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>table1 <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a></a>  <span class="fu">count</span>(year, <span class="at">wt =</span> cases)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
@@ -698,25 +699,25 @@ ag
 <section id="some-ex.-of-working-with-tidy-data-3-code" class="slide level2">
 <h2>Some ex. of working with tidy data; 3 code</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># Some changes from Wicham</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="co"># embrace the pipe!</span></span>
-<span id="cb17-3"><a href="#cb17-3"></a>table1 <span class="sc">%&gt;%</span> </span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb17-5"><a href="#cb17-5"></a>  <span class="at">x =</span> <span class="fu">parse_date</span>(</span>
-<span id="cb17-6"><a href="#cb17-6"></a>    <span class="fu">as.character</span>(year),</span>
-<span id="cb17-7"><a href="#cb17-7"></a>    <span class="at">format =</span> <span class="st">"%Y"</span></span>
-<span id="cb17-8"><a href="#cb17-8"></a>    ),</span>
-<span id="cb17-9"><a href="#cb17-9"></a>  <span class="at">y =</span> rate,</span>
-<span id="cb17-10"><a href="#cb17-10"></a>  <span class="at">colour =</span> country</span>
-<span id="cb17-11"><a href="#cb17-11"></a>  )</span>
-<span id="cb17-12"><a href="#cb17-12"></a>  ) <span class="sc">+</span> </span>
-<span id="cb17-13"><a href="#cb17-13"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">group =</span> country)) <span class="sc">+</span> </span>
-<span id="cb17-14"><a href="#cb17-14"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb17-15"><a href="#cb17-15"></a>  <span class="fu">xlab</span>(<span class="st">"Time"</span>) <span class="sc">+</span></span>
-<span id="cb17-16"><a href="#cb17-16"></a>  <span class="fu">ylab</span>(<span class="st">"Rate per 100000"</span>) <span class="sc">+</span></span>
-<span id="cb17-17"><a href="#cb17-17"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="co"># Some changes from Wicham</span></span>
+<span id="cb17-2"><a></a><span class="co"># embrace the pipe!</span></span>
+<span id="cb17-3"><a></a>table1 <span class="sc">%&gt;%</span> </span>
+<span id="cb17-4"><a></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb17-5"><a></a>  <span class="at">x =</span> <span class="fu">parse_date</span>(</span>
+<span id="cb17-6"><a></a>    <span class="fu">as.character</span>(year),</span>
+<span id="cb17-7"><a></a>    <span class="at">format =</span> <span class="st">"%Y"</span></span>
+<span id="cb17-8"><a></a>    ),</span>
+<span id="cb17-9"><a></a>  <span class="at">y =</span> rate,</span>
+<span id="cb17-10"><a></a>  <span class="at">colour =</span> country</span>
+<span id="cb17-11"><a></a>  )</span>
+<span id="cb17-12"><a></a>  ) <span class="sc">+</span> </span>
+<span id="cb17-13"><a></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">group =</span> country)) <span class="sc">+</span> </span>
+<span id="cb17-14"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb17-15"><a></a>  <span class="fu">xlab</span>(<span class="st">"Time"</span>) <span class="sc">+</span></span>
+<span id="cb17-16"><a></a>  <span class="fu">ylab</span>(<span class="st">"Rate per 100000"</span>) <span class="sc">+</span></span>
+<span id="cb17-17"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -724,7 +725,7 @@ ag
 <h2>Some examples of working with tidy data; 3 plot</h2>
 
 <img data-src="tidy-data_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
-<section id="how-to-get-tidy-data" class="slide level2">
+<section id="how-to-get-tidy-data" class="slide level2 scrollable">
 <h2>How to get tidy data?</h2>
 <ul>
 <li class="fragment">Most common problems
@@ -753,12 +754,12 @@ ag
 </ul></li>
 </ul>
 </section>
-<section id="pivot_longer-example-problem" class="slide level2">
+<section id="pivot_longer-example-problem" class="slide level2 scrollable">
 <h2>pivot_longer() example; problem</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>table4a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>table4a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
@@ -782,13 +783,13 @@ ag
 <section id="pivot_longer-example-how-to-fix-it" class="slide level2">
 <h2>pivot_longer() example; how to fix it</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>tidy4a <span class="ot">&lt;-</span> table4a <span class="sc">%&gt;%</span> </span>
-<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>country,</span>
-<span id="cb20-3"><a href="#cb20-3"></a>               <span class="at">names_to =</span> <span class="st">"year"</span>, </span>
-<span id="cb20-4"><a href="#cb20-4"></a>               <span class="at">values_to =</span> <span class="st">"cases"</span>)</span>
-<span id="cb20-5"><a href="#cb20-5"></a>tidy4a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>tidy4a <span class="ot">&lt;-</span> table4a <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>country,</span>
+<span id="cb20-3"><a></a>               <span class="at">names_to =</span> <span class="st">"year"</span>, </span>
+<span id="cb20-4"><a></a>               <span class="at">values_to =</span> <span class="st">"cases"</span>)</span>
+<span id="cb20-5"><a></a>tidy4a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
@@ -810,15 +811,15 @@ ag
 <section id="pivot_longer-example.fix-table4b" class="slide level2">
 <h2>pivot_longer() example.fix table4b</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>tidy4b <span class="ot">&lt;-</span> table4b <span class="sc">%&gt;%</span> </span>
-<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb22-3"><a href="#cb22-3"></a>    <span class="at">cols =</span> <span class="sc">-</span>country,</span>
-<span id="cb22-4"><a href="#cb22-4"></a>    <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
-<span id="cb22-5"><a href="#cb22-5"></a>    <span class="at">values_to =</span> <span class="st">"pop"</span></span>
-<span id="cb22-6"><a href="#cb22-6"></a>  )</span>
-<span id="cb22-7"><a href="#cb22-7"></a>tidy4b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>tidy4b <span class="ot">&lt;-</span> table4b <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb22-3"><a></a>    <span class="at">cols =</span> <span class="sc">-</span>country,</span>
+<span id="cb22-4"><a></a>    <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
+<span id="cb22-5"><a></a>    <span class="at">values_to =</span> <span class="st">"pop"</span></span>
+<span id="cb22-6"><a></a>  )</span>
+<span id="cb22-7"><a></a>tidy4b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
@@ -836,11 +837,11 @@ ag
 <section id="make-tidy4-join" class="slide level2">
 <h2>Make tidy4 (join)</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>tidy4 <span class="ot">&lt;-</span> tidy4a <span class="sc">%&gt;%</span> </span>
-<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">left_join</span>(tidy4b, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"country"</span>, <span class="st">"year"</span>))</span>
-<span id="cb24-3"><a href="#cb24-3"></a>tidy4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>tidy4 <span class="ot">&lt;-</span> tidy4a <span class="sc">%&gt;%</span> </span>
+<span id="cb24-2"><a></a>  <span class="fu">left_join</span>(tidy4b, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"country"</span>, <span class="st">"year"</span>))</span>
+<span id="cb24-3"><a></a>tidy4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
@@ -872,9 +873,9 @@ ag
 <section id="pivot_longer-example.-fix-table2" class="slide level2">
 <h2>pivot_longer() example. Fix table2</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>table2[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>table2[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 4
@@ -884,11 +885,11 @@ ag
 2 Afghanistan  1999 population 19987071
 3 Afghanistan  2000 cases          2666</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>(tidy2 <span class="ot">&lt;-</span> table2 <span class="sc">%&gt;%</span> </span>
-<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> type,</span>
-<span id="cb28-3"><a href="#cb28-3"></a>              <span class="at">values_from =</span> count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>(tidy2 <span class="ot">&lt;-</span> table2 <span class="sc">%&gt;%</span> </span>
+<span id="cb28-2"><a></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> type,</span>
+<span id="cb28-3"><a></a>              <span class="at">values_from =</span> count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
@@ -933,9 +934,9 @@ ag
 <section id="separate-example.-fix-table3" class="slide level2">
 <h2>separate() example. Fix table3</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>table3[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>table3[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
@@ -945,14 +946,14 @@ ag
 2 Afghanistan  2000 2666/20595360  
 3 Brazil       1999 37737/172006362</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>tidy3 <span class="ot">&lt;-</span> table3 <span class="sc">%&gt;%</span> </span>
-<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">separate</span>(<span class="at">col =</span> rate,</span>
-<span id="cb32-3"><a href="#cb32-3"></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"cases"</span>, <span class="st">"pop"</span>),</span>
-<span id="cb32-4"><a href="#cb32-4"></a>           <span class="at">sep =</span> <span class="st">"/"</span></span>
-<span id="cb32-5"><a href="#cb32-5"></a>           )</span>
-<span id="cb32-6"><a href="#cb32-6"></a>tidy3[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>tidy3 <span class="ot">&lt;-</span> table3 <span class="sc">%&gt;%</span> </span>
+<span id="cb32-2"><a></a>  <span class="fu">separate</span>(<span class="at">col =</span> rate,</span>
+<span id="cb32-3"><a></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"cases"</span>, <span class="st">"pop"</span>),</span>
+<span id="cb32-4"><a></a>           <span class="at">sep =</span> <span class="st">"/"</span></span>
+<span id="cb32-5"><a></a>           )</span>
+<span id="cb32-6"><a></a>tidy3[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
@@ -969,9 +970,9 @@ ag
 <section id="separate-example.-fix-table3-convert-true" class="slide level2">
 <h2>separate() example. Fix table3, convert = TRUE</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>table3[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>table3[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
@@ -981,16 +982,16 @@ ag
 2 Afghanistan  2000 2666/20595360  
 3 Brazil       1999 37737/172006362</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>tidy3 <span class="ot">&lt;-</span> table3 <span class="sc">%&gt;%</span> </span>
-<span id="cb36-2"><a href="#cb36-2"></a>  <span class="fu">separate</span>(<span class="at">col =</span> rate,</span>
-<span id="cb36-3"><a href="#cb36-3"></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"cases"</span>, <span class="st">"pop"</span>),</span>
-<span id="cb36-4"><a href="#cb36-4"></a>           <span class="at">sep =</span> <span class="st">"/"</span>,</span>
-<span id="cb36-5"><a href="#cb36-5"></a>           <span class="at">convert =</span> <span class="cn">TRUE</span></span>
-<span id="cb36-6"><a href="#cb36-6"></a>           )</span>
-<span id="cb36-7"><a href="#cb36-7"></a><span class="co"># cases and pop now int, not chr</span></span>
-<span id="cb36-8"><a href="#cb36-8"></a>tidy3[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>tidy3 <span class="ot">&lt;-</span> table3 <span class="sc">%&gt;%</span> </span>
+<span id="cb36-2"><a></a>  <span class="fu">separate</span>(<span class="at">col =</span> rate,</span>
+<span id="cb36-3"><a></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"cases"</span>, <span class="st">"pop"</span>),</span>
+<span id="cb36-4"><a></a>           <span class="at">sep =</span> <span class="st">"/"</span>,</span>
+<span id="cb36-5"><a></a>           <span class="at">convert =</span> <span class="cn">TRUE</span></span>
+<span id="cb36-6"><a></a>           )</span>
+<span id="cb36-7"><a></a><span class="co"># cases and pop now int, not chr</span></span>
+<span id="cb36-8"><a></a>tidy3[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 4
@@ -1005,14 +1006,14 @@ ag
 <section id="separate-example.-fix-table3-sep-number" class="slide level2">
 <h2>separate() example. Fix table3, sep number</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>tidy3century <span class="ot">&lt;-</span> tidy3 <span class="sc">%&gt;%</span> </span>
-<span id="cb38-2"><a href="#cb38-2"></a>  <span class="fu">separate</span>(<span class="at">col =</span> year,</span>
-<span id="cb38-3"><a href="#cb38-3"></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"century"</span>, <span class="st">"year"</span>),</span>
-<span id="cb38-4"><a href="#cb38-4"></a>           <span class="at">sep =</span> <span class="dv">2</span></span>
-<span id="cb38-5"><a href="#cb38-5"></a>           )</span>
-<span id="cb38-6"><a href="#cb38-6"></a>tidy3century</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>tidy3century <span class="ot">&lt;-</span> tidy3 <span class="sc">%&gt;%</span> </span>
+<span id="cb38-2"><a></a>  <span class="fu">separate</span>(<span class="at">col =</span> year,</span>
+<span id="cb38-3"><a></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"century"</span>, <span class="st">"year"</span>),</span>
+<span id="cb38-4"><a></a>           <span class="at">sep =</span> <span class="dv">2</span></span>
+<span id="cb38-5"><a></a>           )</span>
+<span id="cb38-6"><a></a>tidy3century</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 5
@@ -1053,9 +1054,9 @@ ag
 <section id="unite-example.-fix-tidy3century" class="slide level2">
 <h2>unite() example. Fix tidy3century</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>tidy3century[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>tidy3century[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
@@ -1065,14 +1066,14 @@ ag
 2 Afghanistan 20      00     2666  20595360
 3 Brazil      19      99    37737 172006362</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>tidy3century <span class="sc">%&gt;%</span> </span>
-<span id="cb42-2"><a href="#cb42-2"></a>  <span class="fu">unite</span>(</span>
-<span id="cb42-3"><a href="#cb42-3"></a>    <span class="at">col =</span> <span class="st">"year"</span>,</span>
-<span id="cb42-4"><a href="#cb42-4"></a>    century, year, <span class="co"># the columns we want to unite</span></span>
-<span id="cb42-5"><a href="#cb42-5"></a>    <span class="at">sep =</span> <span class="st">""</span> <span class="co"># what happens witout sep?</span></span>
-<span id="cb42-6"><a href="#cb42-6"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>tidy3century <span class="sc">%&gt;%</span> </span>
+<span id="cb42-2"><a></a>  <span class="fu">unite</span>(</span>
+<span id="cb42-3"><a></a>    <span class="at">col =</span> <span class="st">"year"</span>,</span>
+<span id="cb42-4"><a></a>    century, year, <span class="co"># the columns we want to unite</span></span>
+<span id="cb42-5"><a></a>    <span class="at">sep =</span> <span class="st">""</span> <span class="co"># what happens witout sep?</span></span>
+<span id="cb42-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
@@ -1087,7 +1088,7 @@ ag
 </div>
 </div>
 </section>
-<section id="missing-values" class="slide level2">
+<section id="missing-values" class="slide level2 scrollable">
 <h2>Missing values</h2>
 <ul>
 <li class="fragment">Values can be missing in two ways
@@ -1100,17 +1101,17 @@ ag
 <section id="missing-values-example" class="slide level2">
 <h2>Missing values; example</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>stocks <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb44-2"><a href="#cb44-2"></a>  <span class="at">year   =</span> <span class="fu">c</span>(<span class="dv">2015</span>, <span class="dv">2015</span>, <span class="dv">2015</span>, </span>
-<span id="cb44-3"><a href="#cb44-3"></a>             <span class="dv">2015</span>, <span class="dv">2016</span>, <span class="dv">2016</span>, <span class="dv">2016</span>),</span>
-<span id="cb44-4"><a href="#cb44-4"></a>  <span class="at">qtr    =</span> <span class="fu">c</span>(   <span class="dv">1</span>,    <span class="dv">2</span>,    <span class="dv">3</span>,    </span>
-<span id="cb44-5"><a href="#cb44-5"></a>                <span class="dv">4</span>,    <span class="dv">2</span>,    <span class="dv">3</span>,    <span class="dv">4</span>),</span>
-<span id="cb44-6"><a href="#cb44-6"></a>  <span class="at">return =</span> <span class="fu">c</span>(<span class="fl">1.88</span>, <span class="fl">0.59</span>, <span class="fl">0.35</span>,</span>
-<span id="cb44-7"><a href="#cb44-7"></a>             <span class="cn">NA</span>, <span class="fl">0.92</span>, <span class="fl">0.17</span>, <span class="fl">2.66</span>)</span>
-<span id="cb44-8"><a href="#cb44-8"></a>)</span>
-<span id="cb44-9"><a href="#cb44-9"></a>stocks</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a>stocks <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb44-2"><a></a>  <span class="at">year   =</span> <span class="fu">c</span>(<span class="dv">2015</span>, <span class="dv">2015</span>, <span class="dv">2015</span>, </span>
+<span id="cb44-3"><a></a>             <span class="dv">2015</span>, <span class="dv">2016</span>, <span class="dv">2016</span>, <span class="dv">2016</span>),</span>
+<span id="cb44-4"><a></a>  <span class="at">qtr    =</span> <span class="fu">c</span>(   <span class="dv">1</span>,    <span class="dv">2</span>,    <span class="dv">3</span>,    </span>
+<span id="cb44-5"><a></a>                <span class="dv">4</span>,    <span class="dv">2</span>,    <span class="dv">3</span>,    <span class="dv">4</span>),</span>
+<span id="cb44-6"><a></a>  <span class="at">return =</span> <span class="fu">c</span>(<span class="fl">1.88</span>, <span class="fl">0.59</span>, <span class="fl">0.35</span>,</span>
+<span id="cb44-7"><a></a>             <span class="cn">NA</span>, <span class="fl">0.92</span>, <span class="fl">0.17</span>, <span class="fl">2.66</span>)</span>
+<span id="cb44-8"><a></a>)</span>
+<span id="cb44-9"><a></a>stocks</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 7 × 3
@@ -1132,14 +1133,14 @@ ag
 <section id="implecitly-missing-becomes-explicitly-missing" class="slide level2">
 <h2>Implecitly missing becomes explicitly missing</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>stocks_wider <span class="ot">&lt;-</span> stocks <span class="sc">%&gt;%</span> </span>
-<span id="cb46-2"><a href="#cb46-2"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb46-3"><a href="#cb46-3"></a>    <span class="at">names_from =</span> year,</span>
-<span id="cb46-4"><a href="#cb46-4"></a>    <span class="at">values_from =</span> return</span>
-<span id="cb46-5"><a href="#cb46-5"></a>    )</span>
-<span id="cb46-6"><a href="#cb46-6"></a>stocks_wider</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a>stocks_wider <span class="ot">&lt;-</span> stocks <span class="sc">%&gt;%</span> </span>
+<span id="cb46-2"><a></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb46-3"><a></a>    <span class="at">names_from =</span> year,</span>
+<span id="cb46-4"><a></a>    <span class="at">values_from =</span> return</span>
+<span id="cb46-5"><a></a>    )</span>
+<span id="cb46-6"><a></a>stocks_wider</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
@@ -1158,16 +1159,16 @@ ag
 <section id="missing-values_drop_na-true" class="slide level2">
 <h2>missing; <code>values_drop_na = TRUE</code></h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>stocks_wider <span class="sc">%&gt;%</span> </span>
-<span id="cb48-2"><a href="#cb48-2"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb48-3"><a href="#cb48-3"></a>    <span class="at">cols =</span> <span class="sc">-</span>qtr,</span>
-<span id="cb48-4"><a href="#cb48-4"></a>    <span class="at">names_to =</span> <span class="st">"year"</span>, <span class="co"># in quote since it does not exist yet</span></span>
-<span id="cb48-5"><a href="#cb48-5"></a>    <span class="at">values_to =</span> <span class="st">"return"</span>,</span>
-<span id="cb48-6"><a href="#cb48-6"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
-<span id="cb48-7"><a href="#cb48-7"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb48-8"><a href="#cb48-8"></a>  <span class="fu">arrange</span>(year, qtr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a>stocks_wider <span class="sc">%&gt;%</span> </span>
+<span id="cb48-2"><a></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb48-3"><a></a>    <span class="at">cols =</span> <span class="sc">-</span>qtr,</span>
+<span id="cb48-4"><a></a>    <span class="at">names_to =</span> <span class="st">"year"</span>, <span class="co"># in quote since it does not exist yet</span></span>
+<span id="cb48-5"><a></a>    <span class="at">values_to =</span> <span class="st">"return"</span>,</span>
+<span id="cb48-6"><a></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
+<span id="cb48-7"><a></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb48-8"><a></a>  <span class="fu">arrange</span>(year, qtr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
@@ -1185,10 +1186,10 @@ ag
 <section id="missing-complete" class="slide level2">
 <h2>missing; <code>complete()</code></h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>stocks <span class="sc">%&gt;%</span> </span>
-<span id="cb50-2"><a href="#cb50-2"></a>  <span class="fu">complete</span>(year, qtr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a>stocks <span class="sc">%&gt;%</span> </span>
+<span id="cb50-2"><a></a>  <span class="fu">complete</span>(year, qtr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8 × 3
@@ -1212,16 +1213,16 @@ ag
 <section id="missing-fill" class="slide level2">
 <h2>missing; <code>fill()</code></h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>treatment <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb52-2"><a href="#cb52-2"></a>  <span class="sc">~</span> person,           <span class="sc">~</span> treatment, <span class="sc">~</span>response,</span>
-<span id="cb52-3"><a href="#cb52-3"></a>  <span class="st">"Derrick Whitmore"</span>, <span class="dv">1</span>,           <span class="dv">7</span>,</span>
-<span id="cb52-4"><a href="#cb52-4"></a>  <span class="cn">NA</span>,                 <span class="dv">2</span>,           <span class="dv">10</span>,</span>
-<span id="cb52-5"><a href="#cb52-5"></a>  <span class="cn">NA</span>,                 <span class="dv">3</span>,           <span class="dv">9</span>,</span>
-<span id="cb52-6"><a href="#cb52-6"></a>  <span class="st">"Katherine Burke"</span>,  <span class="dv">1</span>,           <span class="dv">4</span></span>
-<span id="cb52-7"><a href="#cb52-7"></a>)</span>
-<span id="cb52-8"><a href="#cb52-8"></a>treatment</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a>treatment <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb52-2"><a></a>  <span class="sc">~</span> person,           <span class="sc">~</span> treatment, <span class="sc">~</span>response,</span>
+<span id="cb52-3"><a></a>  <span class="st">"Derrick Whitmore"</span>, <span class="dv">1</span>,           <span class="dv">7</span>,</span>
+<span id="cb52-4"><a></a>  <span class="cn">NA</span>,                 <span class="dv">2</span>,           <span class="dv">10</span>,</span>
+<span id="cb52-5"><a></a>  <span class="cn">NA</span>,                 <span class="dv">3</span>,           <span class="dv">9</span>,</span>
+<span id="cb52-6"><a></a>  <span class="st">"Katherine Burke"</span>,  <span class="dv">1</span>,           <span class="dv">4</span></span>
+<span id="cb52-7"><a></a>)</span>
+<span id="cb52-8"><a></a>treatment</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
@@ -1246,10 +1247,10 @@ ag
 <section id="missing-fill-example" class="slide level2">
 <h2>missing; fill() example</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a>treatment <span class="sc">%&gt;%</span> </span>
-<span id="cb54-2"><a href="#cb54-2"></a>  <span class="fu">fill</span>(person, <span class="at">.direction =</span> <span class="fu">c</span>(<span class="st">"down"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a>treatment <span class="sc">%&gt;%</span> </span>
+<span id="cb54-2"><a></a>  <span class="fu">fill</span>(person, <span class="at">.direction =</span> <span class="fu">c</span>(<span class="st">"down"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
@@ -1262,10 +1263,10 @@ ag
 </div>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>treatment <span class="sc">%&gt;%</span> </span>
-<span id="cb56-2"><a href="#cb56-2"></a>  <span class="fu">fill</span>(person, <span class="at">.direction =</span> <span class="fu">c</span>(<span class="st">"up"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a></a>treatment <span class="sc">%&gt;%</span> </span>
+<span id="cb56-2"><a></a>  <span class="fu">fill</span>(person, <span class="at">.direction =</span> <span class="fu">c</span>(<span class="st">"up"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
@@ -1281,18 +1282,18 @@ ag
 <section id="case-who" class="slide level2">
 <h2>Case; who</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="fu">dim</span>(who)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a></a><span class="fu">dim</span>(who)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7240   60</code></pre>
 </div>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a>who[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a></a>who[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 60
@@ -1314,14 +1315,14 @@ ag
 <section id="case-who-1" class="slide level2">
 <h2>Case; who</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="co"># find type of vector with a pipe</span></span>
-<span id="cb62-2"><a href="#cb62-2"></a>typeof_who <span class="ot">&lt;-</span> who <span class="sc">%&gt;%</span> </span>
-<span id="cb62-3"><a href="#cb62-3"></a>  <span class="fu">map</span>(typeof) <span class="sc">%&gt;%</span> </span>
-<span id="cb62-4"><a href="#cb62-4"></a>  <span class="fu">unlist</span>()</span>
-<span id="cb62-5"><a href="#cb62-5"></a><span class="co"># print typeof_who</span></span>
-<span id="cb62-6"><a href="#cb62-6"></a>typeof_who</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a></a><span class="co"># find type of vector with a pipe</span></span>
+<span id="cb62-2"><a></a>typeof_who <span class="ot">&lt;-</span> who <span class="sc">%&gt;%</span> </span>
+<span id="cb62-3"><a></a>  <span class="fu">map</span>(typeof) <span class="sc">%&gt;%</span> </span>
+<span id="cb62-4"><a></a>  <span class="fu">unlist</span>()</span>
+<span id="cb62-5"><a></a><span class="co"># print typeof_who</span></span>
+<span id="cb62-6"><a></a>typeof_who</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     country         iso2         iso3         year  new_sp_m014 new_sp_m1524 
@@ -1345,10 +1346,10 @@ newrel_m2534 newrel_m3544 newrel_m4554 newrel_m5564   newrel_m65  newrel_f014
 newrel_f1524 newrel_f2534 newrel_f3544 newrel_f4554 newrel_f5564   newrel_f65 
     "double"     "double"     "double"     "double"     "double"     "double" </code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a><span class="co"># tabulate typeof_who</span></span>
-<span id="cb64-2"><a href="#cb64-2"></a><span class="fu">table</span>(typeof_who)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a></a><span class="co"># tabulate typeof_who</span></span>
+<span id="cb64-2"><a></a><span class="fu">table</span>(typeof_who)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>typeof_who
@@ -1368,9 +1369,9 @@ character    double
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a>who[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="fu">c</span>(<span class="st">"country"</span>, <span class="st">"iso2"</span>, <span class="st">"iso3"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a></a>who[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="fu">c</span>(<span class="st">"country"</span>, <span class="st">"iso2"</span>, <span class="st">"iso3"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
@@ -1384,9 +1385,9 @@ character    double
 </div>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="fu">names</span>(who)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a></a><span class="fu">names</span>(who)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "country"      "iso2"         "iso3"         "year"         "new_sp_m014" 
@@ -1398,9 +1399,9 @@ character    double
 <section id="where-to-start-1" class="slide level2">
 <h2>Where to start?</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a><span class="fu">unique</span>(who<span class="sc">$</span>new_sp_m014)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a></a><span class="fu">unique</span>(who<span class="sc">$</span>new_sp_m014)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  NA   0  30   8  52 129  90 127 139 151</code></pre>
@@ -1411,9 +1412,9 @@ character    double
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a><span class="fu">names</span>(who)[<span class="dv">50</span><span class="sc">:</span><span class="dv">60</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a></a><span class="fu">names</span>(who)[<span class="dv">50</span><span class="sc">:</span><span class="dv">60</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "newrel_m3544" "newrel_m4554" "newrel_m5564" "newrel_m65"   "newrel_f014" 
@@ -1429,15 +1430,15 @@ character    double
 <section id="who-gather-variables" class="slide level2">
 <h2>who, gather variables</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a>who1 <span class="ot">&lt;-</span> who <span class="sc">%&gt;%</span> </span>
-<span id="cb74-2"><a href="#cb74-2"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> new_sp_m014<span class="sc">:</span>newrel_f65,</span>
-<span id="cb74-3"><a href="#cb74-3"></a>               <span class="at">names_to =</span> <span class="st">"key"</span>,</span>
-<span id="cb74-4"><a href="#cb74-4"></a>               <span class="at">values_to =</span> <span class="st">"cases"</span>,</span>
-<span id="cb74-5"><a href="#cb74-5"></a>               <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
-<span id="cb74-6"><a href="#cb74-6"></a>               )</span>
-<span id="cb74-7"><a href="#cb74-7"></a>who1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a></a>who1 <span class="ot">&lt;-</span> who <span class="sc">%&gt;%</span> </span>
+<span id="cb74-2"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> new_sp_m014<span class="sc">:</span>newrel_f65,</span>
+<span id="cb74-3"><a></a>               <span class="at">names_to =</span> <span class="st">"key"</span>,</span>
+<span id="cb74-4"><a></a>               <span class="at">values_to =</span> <span class="st">"cases"</span>,</span>
+<span id="cb74-5"><a></a>               <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
+<span id="cb74-6"><a></a>               )</span>
+<span id="cb74-7"><a></a>who1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 76,046 × 6
@@ -1472,9 +1473,9 @@ character    double
 <section id="who1" class="slide level2">
 <h2>who1</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a><span class="fu">head</span>(who1, <span class="at">n=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a></a><span class="fu">head</span>(who1, <span class="at">n=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 6
@@ -1495,12 +1496,12 @@ character    double
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a>who2 <span class="ot">&lt;-</span> who1 <span class="sc">%&gt;%</span> </span>
-<span id="cb78-2"><a href="#cb78-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb78-3"><a href="#cb78-3"></a>    <span class="at">key =</span> <span class="fu">str_replace</span>(key, <span class="st">"newrel"</span>, <span class="st">"new_rel"</span>)</span>
-<span id="cb78-4"><a href="#cb78-4"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a></a>who2 <span class="ot">&lt;-</span> who1 <span class="sc">%&gt;%</span> </span>
+<span id="cb78-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb78-3"><a></a>    <span class="at">key =</span> <span class="fu">str_replace</span>(key, <span class="st">"newrel"</span>, <span class="st">"new_rel"</span>)</span>
+<span id="cb78-4"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -1508,14 +1509,14 @@ character    double
 <section id="separate-out-values-from-key-variable" class="slide level2">
 <h2>Separate out values from “key” variable</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a>who3 <span class="ot">&lt;-</span> who2 <span class="sc">%&gt;%</span> </span>
-<span id="cb79-2"><a href="#cb79-2"></a>  <span class="fu">separate</span>(<span class="at">col =</span> key,</span>
-<span id="cb79-3"><a href="#cb79-3"></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"new"</span>, <span class="st">"type"</span>, <span class="st">"sexage"</span>),</span>
-<span id="cb79-4"><a href="#cb79-4"></a>           <span class="at">sep =</span> <span class="st">"_"</span></span>
-<span id="cb79-5"><a href="#cb79-5"></a>           )</span>
-<span id="cb79-6"><a href="#cb79-6"></a>who3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a></a>who3 <span class="ot">&lt;-</span> who2 <span class="sc">%&gt;%</span> </span>
+<span id="cb79-2"><a></a>  <span class="fu">separate</span>(<span class="at">col =</span> key,</span>
+<span id="cb79-3"><a></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"new"</span>, <span class="st">"type"</span>, <span class="st">"sexage"</span>),</span>
+<span id="cb79-4"><a></a>           <span class="at">sep =</span> <span class="st">"_"</span></span>
+<span id="cb79-5"><a></a>           )</span>
+<span id="cb79-6"><a></a>who3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 76,046 × 8
@@ -1538,15 +1539,15 @@ character    double
 <section id="drop-variables-and-split-sexage" class="slide level2">
 <h2>Drop variables and split sexage</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a>who5 <span class="ot">&lt;-</span> who3 <span class="sc">%&gt;%</span> </span>
-<span id="cb81-2"><a href="#cb81-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>new, <span class="sc">-</span>iso2, <span class="sc">-</span>iso3) <span class="sc">%&gt;%</span> </span>
-<span id="cb81-3"><a href="#cb81-3"></a>  <span class="fu">separate</span>(<span class="at">col =</span> sexage,</span>
-<span id="cb81-4"><a href="#cb81-4"></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"sex"</span>, <span class="st">"age"</span>),</span>
-<span id="cb81-5"><a href="#cb81-5"></a>           <span class="at">sep =</span> <span class="dv">1</span></span>
-<span id="cb81-6"><a href="#cb81-6"></a>           )</span>
-<span id="cb81-7"><a href="#cb81-7"></a>who5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a></a>who5 <span class="ot">&lt;-</span> who3 <span class="sc">%&gt;%</span> </span>
+<span id="cb81-2"><a></a>  <span class="fu">select</span>(<span class="sc">-</span>new, <span class="sc">-</span>iso2, <span class="sc">-</span>iso3) <span class="sc">%&gt;%</span> </span>
+<span id="cb81-3"><a></a>  <span class="fu">separate</span>(<span class="at">col =</span> sexage,</span>
+<span id="cb81-4"><a></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"sex"</span>, <span class="st">"age"</span>),</span>
+<span id="cb81-5"><a></a>           <span class="at">sep =</span> <span class="dv">1</span></span>
+<span id="cb81-6"><a></a>           )</span>
+<span id="cb81-7"><a></a>who5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 76,046 × 6
@@ -1569,18 +1570,18 @@ character    double
 <section id="split-age-into-age_start-and-age_end" class="slide level2">
 <h2>Split age into age_start and age_end</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1"></a>who6 <span class="ot">&lt;-</span> who5 <span class="sc">%&gt;%</span> </span>
-<span id="cb83-2"><a href="#cb83-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb83-3"><a href="#cb83-3"></a>    <span class="at">age =</span> <span class="fu">str_pad</span>(age, <span class="at">width =</span> <span class="dv">4</span>, <span class="at">side =</span> <span class="st">"left"</span>, <span class="at">pad =</span> <span class="st">"0"</span>),</span>
-<span id="cb83-4"><a href="#cb83-4"></a>    <span class="at">age =</span> <span class="fu">str_replace</span>(age, <span class="st">"0065"</span>, <span class="st">"6599"</span>)</span>
-<span id="cb83-5"><a href="#cb83-5"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb83-6"><a href="#cb83-6"></a>  <span class="fu">separate</span>(<span class="at">col =</span> age,</span>
-<span id="cb83-7"><a href="#cb83-7"></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"age_start"</span>, <span class="st">"age_end"</span>),</span>
-<span id="cb83-8"><a href="#cb83-8"></a>           <span class="at">sep =</span> <span class="dv">2</span></span>
-<span id="cb83-9"><a href="#cb83-9"></a>           )</span>
-<span id="cb83-10"><a href="#cb83-10"></a>who6[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a></a>who6 <span class="ot">&lt;-</span> who5 <span class="sc">%&gt;%</span> </span>
+<span id="cb83-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb83-3"><a></a>    <span class="at">age =</span> <span class="fu">str_pad</span>(age, <span class="at">width =</span> <span class="dv">4</span>, <span class="at">side =</span> <span class="st">"left"</span>, <span class="at">pad =</span> <span class="st">"0"</span>),</span>
+<span id="cb83-4"><a></a>    <span class="at">age =</span> <span class="fu">str_replace</span>(age, <span class="st">"0065"</span>, <span class="st">"6599"</span>)</span>
+<span id="cb83-5"><a></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb83-6"><a></a>  <span class="fu">separate</span>(<span class="at">col =</span> age,</span>
+<span id="cb83-7"><a></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"age_start"</span>, <span class="st">"age_end"</span>),</span>
+<span id="cb83-8"><a></a>           <span class="at">sep =</span> <span class="dv">2</span></span>
+<span id="cb83-9"><a></a>           )</span>
+<span id="cb83-10"><a></a>who6[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 7
@@ -1592,17 +1593,19 @@ character    double
 4 Afghanistan  1997 sp    m     35        44          3
 5 Afghanistan  1997 sp    m     45        54          5</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1"></a><span class="fu">dim</span>(who6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a></a><span class="fu">dim</span>(who6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 76046     7</code></pre>
 </div>
 </div>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="../../index.html">MSB105</a></p>
+</div>
 </div>
 </section>
     </div>
@@ -1631,7 +1634,6 @@ character    double
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': true,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1930,10 +1932,9 @@ character    double
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn) {
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1943,8 +1944,17 @@ character    double
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 

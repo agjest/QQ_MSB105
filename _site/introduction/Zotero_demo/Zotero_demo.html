@@ -8,7 +8,7 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.353">
+  <meta name="generator" content="quarto-1.4.549">
 
   <meta name="author" content="Arnstein Gjestland">
   <title>MSB105 - Zotero demo</title>
@@ -31,7 +31,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -98,6 +98,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+      margin-bottom: 0em;
     }
     .hanging-indent div.csl-entry {
       margin-left:2em;
@@ -240,7 +241,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -429,11 +431,11 @@ Arnstein Gjestland
 <section id="load-needed-libraries" class="slide level2">
 <h2>Load needed libraries</h2>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(rmarkdown)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(rmarkdown)</span>
+<span id="cb1-3"><a></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -545,11 +547,11 @@ Arnstein Gjestland
 <p>Library must be loaded before we can get citation information.</p>
 <p>We can easily get reference information for all the wonderful R packages we use.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># map functions over a list of packages</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># output result to a text file</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">map</span>(<span class="fu">map</span>(<span class="fu">c</span>(<span class="st">"knitr"</span>, <span class="st">"rmarkdown"</span>, <span class="st">"tidyverse"</span>), citation), toBibtex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co"># map functions over a list of packages</span></span>
+<span id="cb2-2"><a></a><span class="co"># output result to a text file</span></span>
+<span id="cb2-3"><a></a><span class="fu">map</span>(<span class="fu">map</span>(<span class="fu">c</span>(<span class="st">"knitr"</span>, <span class="st">"rmarkdown"</span>, <span class="st">"tidyverse"</span>), citation), toBibtex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Above we see function within function, which might be a bit hard to follow.</p>
@@ -558,27 +560,27 @@ Arnstein Gjestland
 <h2>Get citation information with a pipe</h2>
 <p>The following code that uses a pipe is probably far easier to follow.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Easier to understand with a pipe</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">c</span>(<span class="st">"knitr"</span>, <span class="st">"rmarkdown"</span>, <span class="st">"tidyverse"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="co"># use the R citation function on the package list</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">map</span>(citation) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-5"><a href="#cb3-5"></a>  <span class="co"># convert the reference info to bibtex format by using the toBibtex</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>  <span class="co"># function on each member of the reference list</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>  <span class="fu">map</span>(toBibtex) <span class="sc">%&gt;%</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a>  <span class="co"># print the list</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a>  <span class="fu">map</span>(print) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-10"><a href="#cb3-10"></a>  <span class="co"># only want the list elements combined, not each list item</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a>  <span class="co"># in addition, hence max.level=0 </span></span>
-<span id="cb3-12"><a href="#cb3-12"></a>  <span class="fu">str</span>(<span class="at">max.level=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># Easier to understand with a pipe</span></span>
+<span id="cb3-2"><a></a><span class="fu">c</span>(<span class="st">"knitr"</span>, <span class="st">"rmarkdown"</span>, <span class="st">"tidyverse"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a></a>  <span class="co"># use the R citation function on the package list</span></span>
+<span id="cb3-4"><a></a>  <span class="fu">map</span>(citation) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-5"><a></a>  <span class="co"># convert the reference info to bibtex format by using the toBibtex</span></span>
+<span id="cb3-6"><a></a>  <span class="co"># function on each member of the reference list</span></span>
+<span id="cb3-7"><a></a>  <span class="fu">map</span>(toBibtex) <span class="sc">%&gt;%</span></span>
+<span id="cb3-8"><a></a>  <span class="co"># print the list</span></span>
+<span id="cb3-9"><a></a>  <span class="fu">map</span>(print) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-10"><a></a>  <span class="co"># only want the list elements combined, not each list item</span></span>
+<span id="cb3-11"><a></a>  <span class="co"># in addition, hence max.level=0 </span></span>
+<span id="cb3-12"><a></a>  <span class="fu">str</span>(<span class="at">max.level=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>@Manual{,
   title = {knitr: A General-Purpose Package for Dynamic Report Generation in R},
   author = {Yihui Xie},
-  year = {2023},
-  note = {R package version 1.45},
+  year = {2024},
+  note = {R package version 1.46},
   url = {https://yihui.org/knitr/},
 }
 
@@ -605,8 +607,8 @@ Arnstein Gjestland
 @Manual{,
   title = {rmarkdown: Dynamic Documents for R},
   author = {JJ Allaire and Yihui Xie and Christophe Dervieux and Jonathan McPherson and Javier Luraschi and Kevin Ushey and Aron Atkins and Hadley Wickham and Joe Cheng and Winston Chang and Richard Iannone},
-  year = {2023},
-  note = {R package version 2.25},
+  year = {2024},
+  note = {R package version 2.26},
   url = {https://github.com/rstudio/rmarkdown},
 }
 
@@ -672,7 +674,7 @@ List of 3</code></pre>
 <li class="fragment">Edit to <code>bibliography: your_name.bib</code> in the YAML header</li>
 </ul>
 </section>
-<section id="exercise-1" class="slide level2">
+<section id="exercise-1" class="slide level2 scrollable">
 <h2>Exercise</h2>
 <ol type="1">
 <li class="fragment">Get the reference info. for the paper version of R for Data Science and add it to your library.</li>
@@ -697,7 +699,7 @@ List of 3</code></pre>
 <img data-src="insert-citations.png" width="522" class="r-stretch"></section>
 <section id="bibliography" class="slide level2 smaller scrollable">
 <h2>Bibliography</h2>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-grolemund2017" class="csl-entry" role="listitem">
 Grolemund, Garrett, and Hadley Wickham. 2017. <em>R for <span>Data Science</span>: <span>Import</span>, <span>Tidy</span>, <span>Transform</span>, <span>Visualize</span>, and <span>Model Data</span></em>. 1st edition. <span>Sebastopol, CA</span>: <span>O’Reilly Media</span>.
 </div>
@@ -735,8 +737,10 @@ Xie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. <em>R Markdown Cookbo
 <p>Change the citation style to Apa 7. ed. no ampersand.</p>
 <p>Change the citation style to Chicago Manual of Style 17th edition (author-date).</p>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="../index.html">MSB105</a></p>
+</div>
 </div>
 </section>
     </div>
@@ -765,7 +769,6 @@ Xie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. <em>R Markdown Cookbo
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': true,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1064,10 +1067,9 @@ Xie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. <em>R Markdown Cookbo
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn) {
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1077,8 +1079,17 @@ Xie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. <em>R Markdown Cookbo
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 

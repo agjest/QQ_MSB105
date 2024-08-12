@@ -8,7 +8,7 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.353">
+  <meta name="generator" content="quarto-1.4.549">
 
   <meta name="author" content="ag">
   <title>MSB105 - Functions</title>
@@ -31,7 +31,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -98,6 +98,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+      margin-bottom: 0em;
     }
     .hanging-indent div.csl-entry {
       margin-left:2em;
@@ -240,7 +241,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -424,27 +426,27 @@ ag
 <section id="load-tidyverse-and-magrittr" class="slide level2">
 <h2>Load <em>tidyverse</em> and <em>magrittr</em></h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># get tidyverse to shut up</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">suppressPackageStartupMessages</span>({</span>
-<span id="cb1-3"><a href="#cb1-3"></a>  <span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-4"><a href="#cb1-4"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># get tidyverse to shut up</span></span>
+<span id="cb1-2"><a></a><span class="fu">suppressPackageStartupMessages</span>({</span>
+<span id="cb1-3"><a></a>  <span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># create a bib file for the R packages</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># used in this document</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># Note! Needs to do a touch ag_functions.bib in terminal before first run</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># else stops when bibliography: "ag_functions.bib" not found in YAML</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>knitr<span class="sc">::</span><span class="fu">write_bib</span>(</span>
-<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">c</span>(</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    <span class="st">"tidyverse"</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>    ),</span>
-<span id="cb2-9"><a href="#cb2-9"></a>  <span class="at">file =</span> <span class="st">"ag_functions.bib"</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co"># create a bib file for the R packages</span></span>
+<span id="cb2-2"><a></a><span class="co"># used in this document</span></span>
+<span id="cb2-3"><a></a><span class="co"># Note! Needs to do a touch ag_functions.bib in terminal before first run</span></span>
+<span id="cb2-4"><a></a><span class="co"># else stops when bibliography: "ag_functions.bib" not found in YAML</span></span>
+<span id="cb2-5"><a></a>knitr<span class="sc">::</span><span class="fu">write_bib</span>(</span>
+<span id="cb2-6"><a></a>  <span class="fu">c</span>(</span>
+<span id="cb2-7"><a></a>    <span class="st">"tidyverse"</span></span>
+<span id="cb2-8"><a></a>    ),</span>
+<span id="cb2-9"><a></a>  <span class="at">file =</span> <span class="st">"ag_functions.bib"</span></span>
+<span id="cb2-10"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -532,20 +534,20 @@ ag
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>my_verb <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="cf">if</span>(some condition on x) {</span>
-<span id="cb3-3"><a href="#cb3-3"></a>    do alternative <span class="dv">1</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>  } <span class="cf">else</span> <span class="cf">if</span>(another condition on x) {</span>
-<span id="cb3-5"><a href="#cb3-5"></a>    do alternative <span class="dv">2</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>  } <span class="cf">else</span> <span class="cf">if</span>(another condition on x) {</span>
-<span id="cb3-7"><a href="#cb3-7"></a>    do alternative <span class="dv">3</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a>  } <span class="cf">else</span> {</span>
-<span id="cb3-9"><a href="#cb3-9"></a>    If none of the conditions is <span class="cn">TRUE</span>, do</span>
-<span id="cb3-10"><a href="#cb3-10"></a>    alternative <span class="dv">4</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a>  }</span>
-<span id="cb3-12"><a href="#cb3-12"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>my_verb <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb3-2"><a></a>  <span class="cf">if</span>(some condition on x) {</span>
+<span id="cb3-3"><a></a>    do alternative <span class="dv">1</span></span>
+<span id="cb3-4"><a></a>  } <span class="cf">else</span> <span class="cf">if</span>(another condition on x) {</span>
+<span id="cb3-5"><a></a>    do alternative <span class="dv">2</span></span>
+<span id="cb3-6"><a></a>  } <span class="cf">else</span> <span class="cf">if</span>(another condition on x) {</span>
+<span id="cb3-7"><a></a>    do alternative <span class="dv">3</span></span>
+<span id="cb3-8"><a></a>  } <span class="cf">else</span> {</span>
+<span id="cb3-9"><a></a>    If none of the conditions is <span class="cn">TRUE</span>, do</span>
+<span id="cb3-10"><a></a>    alternative <span class="dv">4</span></span>
+<span id="cb3-11"><a></a>  }</span>
+<span id="cb3-12"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -553,11 +555,11 @@ ag
 <section id="to-sum-up" class="slide level2">
 <h2>To sum up</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>my_verb <span class="ot">&lt;-</span> <span class="cf">function</span>(my_arguments) {</span>
-<span id="cb4-2"><a href="#cb4-2"></a>  My code</span>
-<span id="cb4-3"><a href="#cb4-3"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>my_verb <span class="ot">&lt;-</span> <span class="cf">function</span>(my_arguments) {</span>
+<span id="cb4-2"><a></a>  My code</span>
+<span id="cb4-3"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="fragment">
@@ -592,50 +594,50 @@ ag
 <section id="simple-example" class="slide level2">
 <h2>Simple example</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>decide_number <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="co">#  stopifnot(is.numeric(x) &amp; length(x) == 1)</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb5-4"><a href="#cb5-4"></a>    <span class="fu">paste</span>(x, <span class="st">"is greater than zero"</span>)</span>
-<span id="cb5-5"><a href="#cb5-5"></a>  } <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
-<span id="cb5-6"><a href="#cb5-6"></a>    <span class="fu">paste</span>(x, <span class="st">"is less than zero"</span>)</span>
-<span id="cb5-7"><a href="#cb5-7"></a>  } <span class="cf">else</span> {</span>
-<span id="cb5-8"><a href="#cb5-8"></a>    <span class="fu">paste</span>(x, <span class="st">"is zero"</span>)</span>
-<span id="cb5-9"><a href="#cb5-9"></a>  }</span>
-<span id="cb5-10"><a href="#cb5-10"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>decide_number <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb5-2"><a></a><span class="co">#  stopifnot(is.numeric(x) &amp; length(x) == 1)</span></span>
+<span id="cb5-3"><a></a>  <span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb5-4"><a></a>    <span class="fu">paste</span>(x, <span class="st">"is greater than zero"</span>)</span>
+<span id="cb5-5"><a></a>  } <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb5-6"><a></a>    <span class="fu">paste</span>(x, <span class="st">"is less than zero"</span>)</span>
+<span id="cb5-7"><a></a>  } <span class="cf">else</span> {</span>
+<span id="cb5-8"><a></a>    <span class="fu">paste</span>(x, <span class="st">"is zero"</span>)</span>
+<span id="cb5-9"><a></a>  }</span>
+<span id="cb5-10"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="simple-example-1" class="slide level2">
 <h2>Simple example</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>decide_number <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co">#  stopifnot(is.numeric(x) &amp; length(x) == 1)</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>  <span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb6-4"><a href="#cb6-4"></a>    <span class="fu">paste</span>(x, <span class="st">"is greater than zero"</span>)</span>
-<span id="cb6-5"><a href="#cb6-5"></a>  } <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
-<span id="cb6-6"><a href="#cb6-6"></a>    <span class="fu">paste</span>(x, <span class="st">"is less than zero"</span>)</span>
-<span id="cb6-7"><a href="#cb6-7"></a>  } <span class="cf">else</span> {</span>
-<span id="cb6-8"><a href="#cb6-8"></a>    <span class="fu">paste</span>(x, <span class="st">"is zero"</span>)</span>
-<span id="cb6-9"><a href="#cb6-9"></a>  }</span>
-<span id="cb6-10"><a href="#cb6-10"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>decide_number <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb6-2"><a></a><span class="co">#  stopifnot(is.numeric(x) &amp; length(x) == 1)</span></span>
+<span id="cb6-3"><a></a>  <span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb6-4"><a></a>    <span class="fu">paste</span>(x, <span class="st">"is greater than zero"</span>)</span>
+<span id="cb6-5"><a></a>  } <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb6-6"><a></a>    <span class="fu">paste</span>(x, <span class="st">"is less than zero"</span>)</span>
+<span id="cb6-7"><a></a>  } <span class="cf">else</span> {</span>
+<span id="cb6-8"><a></a>    <span class="fu">paste</span>(x, <span class="st">"is zero"</span>)</span>
+<span id="cb6-9"><a></a>  }</span>
+<span id="cb6-10"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># testing</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">decide_number</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># testing</span></span>
+<span id="cb7-2"><a></a><span class="fu">decide_number</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "10 is greater than zero"</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">decide_number</span>(<span class="sc">-</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">decide_number</span>(<span class="sc">-</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "-2 is less than zero"</code></pre>
@@ -645,18 +647,18 @@ ag
 <section id="testing-simple-function" class="slide level2">
 <h2>Testing simple function</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">decide_number</span>(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">decide_number</span>(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "0 is zero"</code></pre>
 </div>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">decide_number</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">decide_number</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><code>Returns: the condition has length &gt; 1 and only the first element will be usedthe condition has length &gt; 1 and only the first element will be used[1] "-2 is less than zero" "5 is less than zero"</code></p>
@@ -668,19 +670,19 @@ ag
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>decide_numvec <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.numeric</span>(x))</span>
-<span id="cb14-3"><a href="#cb14-3"></a>  x_g <span class="ot">&lt;-</span> x <span class="sc">&gt;</span> <span class="dv">0</span></span>
-<span id="cb14-4"><a href="#cb14-4"></a>  x_l <span class="ot">&lt;-</span> x <span class="sc">&lt;</span> <span class="dv">0</span></span>
-<span id="cb14-5"><a href="#cb14-5"></a>  x_ans <span class="ot">&lt;-</span> <span class="fu">case_when</span>(</span>
-<span id="cb14-6"><a href="#cb14-6"></a>    x_g <span class="sc">==</span> <span class="cn">TRUE</span><span class="sc">~</span> <span class="fu">paste</span>(x, <span class="st">"is greater than zero"</span>),</span>
-<span id="cb14-7"><a href="#cb14-7"></a>    x_l <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">paste</span>(x, <span class="st">"is less than zero"</span>),</span>
-<span id="cb14-8"><a href="#cb14-8"></a>    <span class="sc">!</span>(x_g <span class="sc">|</span> x_l) <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">paste</span>(x, <span class="st">"is zero"</span>)</span>
-<span id="cb14-9"><a href="#cb14-9"></a>  )</span>
-<span id="cb14-10"><a href="#cb14-10"></a>  x_ans</span>
-<span id="cb14-11"><a href="#cb14-11"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>decide_numvec <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb14-2"><a></a>  <span class="fu">stopifnot</span>(<span class="fu">is.numeric</span>(x))</span>
+<span id="cb14-3"><a></a>  x_g <span class="ot">&lt;-</span> x <span class="sc">&gt;</span> <span class="dv">0</span></span>
+<span id="cb14-4"><a></a>  x_l <span class="ot">&lt;-</span> x <span class="sc">&lt;</span> <span class="dv">0</span></span>
+<span id="cb14-5"><a></a>  x_ans <span class="ot">&lt;-</span> <span class="fu">case_when</span>(</span>
+<span id="cb14-6"><a></a>    x_g <span class="sc">==</span> <span class="cn">TRUE</span><span class="sc">~</span> <span class="fu">paste</span>(x, <span class="st">"is greater than zero"</span>),</span>
+<span id="cb14-7"><a></a>    x_l <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">paste</span>(x, <span class="st">"is less than zero"</span>),</span>
+<span id="cb14-8"><a></a>    <span class="sc">!</span>(x_g <span class="sc">|</span> x_l) <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">paste</span>(x, <span class="st">"is zero"</span>)</span>
+<span id="cb14-9"><a></a>  )</span>
+<span id="cb14-10"><a></a>  x_ans</span>
+<span id="cb14-11"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -688,31 +690,31 @@ ag
 <section id="testing-with-vectors" class="slide level2">
 <h2>Testing with vectors</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># testing</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">decide_numvec</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="co"># testing</span></span>
+<span id="cb15-2"><a></a><span class="fu">decide_numvec</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "10 is greater than zero"</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">decide_numvec</span>(<span class="sc">-</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">decide_numvec</span>(<span class="sc">-</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "-2 is less than zero"</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">decide_numvec</span>(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">decide_numvec</span>(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "0 is zero"</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">decide_numvec</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">decide_numvec</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "10 is greater than zero" "-2 is less than zero"   
@@ -731,29 +733,29 @@ ag
 <section id="define-my_df" class="slide level2">
 <h2>Define my_df</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">set.seed</span>(<span class="dv">333</span>)</span>
-<span id="cb23-2"><a href="#cb23-2"></a>my_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb23-3"><a href="#cb23-3"></a>  <span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">10</span>),</span>
-<span id="cb23-4"><a href="#cb23-4"></a>  <span class="at">y =</span> <span class="fu">runif</span>(<span class="dv">10</span>, <span class="at">min =</span> <span class="dv">30</span>, <span class="at">max =</span> <span class="dv">130</span>),</span>
-<span id="cb23-5"><a href="#cb23-5"></a>  <span class="at">z =</span> <span class="fu">rlnorm</span>(<span class="dv">10</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb23-6"><a href="#cb23-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">set.seed</span>(<span class="dv">333</span>)</span>
+<span id="cb23-2"><a></a>my_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb23-3"><a></a>  <span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">10</span>),</span>
+<span id="cb23-4"><a></a>  <span class="at">y =</span> <span class="fu">runif</span>(<span class="dv">10</span>, <span class="at">min =</span> <span class="dv">30</span>, <span class="at">max =</span> <span class="dv">130</span>),</span>
+<span id="cb23-5"><a></a>  <span class="at">z =</span> <span class="fu">rlnorm</span>(<span class="dv">10</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb23-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="example-show_head_tail-1" class="slide level2">
 <h2>Example; <code>show_head_tail()</code></h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># head and tail for dataframes</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a>show_head_tail <span class="ot">&lt;-</span> <span class="cf">function</span>(a_df) {</span>
-<span id="cb24-3"><a href="#cb24-3"></a>  h <span class="ot">=</span> <span class="fu">head</span>(a_df, <span class="at">n =</span> <span class="dv">3</span>)</span>
-<span id="cb24-4"><a href="#cb24-4"></a>  t <span class="ot">=</span> <span class="fu">tail</span>(a_df, <span class="at">n =</span> <span class="dv">3</span>)</span>
-<span id="cb24-5"><a href="#cb24-5"></a>  <span class="fu">rbind</span>(h, t)</span>
-<span id="cb24-6"><a href="#cb24-6"></a>}</span>
-<span id="cb24-7"><a href="#cb24-7"></a><span class="fu">show_head_tail</span>(my_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="co"># head and tail for dataframes</span></span>
+<span id="cb24-2"><a></a>show_head_tail <span class="ot">&lt;-</span> <span class="cf">function</span>(a_df) {</span>
+<span id="cb24-3"><a></a>  h <span class="ot">=</span> <span class="fu">head</span>(a_df, <span class="at">n =</span> <span class="dv">3</span>)</span>
+<span id="cb24-4"><a></a>  t <span class="ot">=</span> <span class="fu">tail</span>(a_df, <span class="at">n =</span> <span class="dv">3</span>)</span>
+<span id="cb24-5"><a></a>  <span class="fu">rbind</span>(h, t)</span>
+<span id="cb24-6"><a></a>}</span>
+<span id="cb24-7"><a></a><span class="fu">show_head_tail</span>(my_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
@@ -775,15 +777,15 @@ ag
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>show_head_tail <span class="ot">&lt;-</span> <span class="cf">function</span>(df_or_vec) {</span>
-<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.data.frame</span>(df_or_vec) <span class="sc">|</span> <span class="fu">is.vector</span>(df_or_vec))</span>
-<span id="cb26-3"><a href="#cb26-3"></a>  h <span class="ot">=</span> <span class="fu">head</span>(df_or_vec, <span class="at">n =</span> <span class="dv">3</span>)</span>
-<span id="cb26-4"><a href="#cb26-4"></a>  t <span class="ot">=</span> <span class="fu">tail</span>(df_or_vec, <span class="at">n =</span> <span class="dv">3</span>)</span>
-<span id="cb26-5"><a href="#cb26-5"></a>  <span class="fu">rbind</span>(<span class="at">vec_head =</span> h, <span class="at">vec_tail =</span> t)</span>
-<span id="cb26-6"><a href="#cb26-6"></a>}</span>
-<span id="cb26-7"><a href="#cb26-7"></a><span class="fu">show_head_tail</span>(my_df<span class="sc">$</span>x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>show_head_tail <span class="ot">&lt;-</span> <span class="cf">function</span>(df_or_vec) {</span>
+<span id="cb26-2"><a></a>  <span class="fu">stopifnot</span>(<span class="fu">is.data.frame</span>(df_or_vec) <span class="sc">|</span> <span class="fu">is.vector</span>(df_or_vec))</span>
+<span id="cb26-3"><a></a>  h <span class="ot">=</span> <span class="fu">head</span>(df_or_vec, <span class="at">n =</span> <span class="dv">3</span>)</span>
+<span id="cb26-4"><a></a>  t <span class="ot">=</span> <span class="fu">tail</span>(df_or_vec, <span class="at">n =</span> <span class="dv">3</span>)</span>
+<span id="cb26-5"><a></a>  <span class="fu">rbind</span>(<span class="at">vec_head =</span> h, <span class="at">vec_tail =</span> t)</span>
+<span id="cb26-6"><a></a>}</span>
+<span id="cb26-7"><a></a><span class="fu">show_head_tail</span>(my_df<span class="sc">$</span>x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>              [,1]     [,2]     [,3]
@@ -808,36 +810,36 @@ vec_tail 106.33608 103.5272 94.39518</code></pre>
 <section id="example-show_head_tail-4" class="slide level2">
 <h2>Example; <code class="smaller">show_head_tail()</code></h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>show_head_tail <span class="ot">&lt;-</span> <span class="cf">function</span>(df_or_vec, <span class="at">n =</span> <span class="dv">3</span>) {</span>
-<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.data.frame</span>(df_or_vec) <span class="sc">|</span> <span class="fu">is.vector</span>(df_or_vec))</span>
-<span id="cb28-3"><a href="#cb28-3"></a>  h <span class="ot">=</span> <span class="fu">head</span>(df_or_vec, <span class="at">n =</span> n)</span>
-<span id="cb28-4"><a href="#cb28-4"></a>  t <span class="ot">=</span> <span class="fu">tail</span>(df_or_vec, <span class="at">n =</span> n)</span>
-<span id="cb28-5"><a href="#cb28-5"></a>  <span class="cf">if</span>(<span class="fu">is.vector</span>(df_or_vec)){</span>
-<span id="cb28-6"><a href="#cb28-6"></a>    <span class="fu">rbind</span>(<span class="at">vec_head =</span> h, <span class="at">vec_tail =</span> t)</span>
-<span id="cb28-7"><a href="#cb28-7"></a>  } <span class="cf">else</span> {</span>
-<span id="cb28-8"><a href="#cb28-8"></a>        <span class="fu">rbind</span>(h, t)</span>
-<span id="cb28-9"><a href="#cb28-9"></a>  }</span>
-<span id="cb28-10"><a href="#cb28-10"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>show_head_tail <span class="ot">&lt;-</span> <span class="cf">function</span>(df_or_vec, <span class="at">n =</span> <span class="dv">3</span>) {</span>
+<span id="cb28-2"><a></a>  <span class="fu">stopifnot</span>(<span class="fu">is.data.frame</span>(df_or_vec) <span class="sc">|</span> <span class="fu">is.vector</span>(df_or_vec))</span>
+<span id="cb28-3"><a></a>  h <span class="ot">=</span> <span class="fu">head</span>(df_or_vec, <span class="at">n =</span> n)</span>
+<span id="cb28-4"><a></a>  t <span class="ot">=</span> <span class="fu">tail</span>(df_or_vec, <span class="at">n =</span> n)</span>
+<span id="cb28-5"><a></a>  <span class="cf">if</span>(<span class="fu">is.vector</span>(df_or_vec)){</span>
+<span id="cb28-6"><a></a>    <span class="fu">rbind</span>(<span class="at">vec_head =</span> h, <span class="at">vec_tail =</span> t)</span>
+<span id="cb28-7"><a></a>  } <span class="cf">else</span> {</span>
+<span id="cb28-8"><a></a>        <span class="fu">rbind</span>(h, t)</span>
+<span id="cb28-9"><a></a>  }</span>
+<span id="cb28-10"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="testing" class="slide level2">
 <h2>Testing</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">show_head_tail</span>(my_df<span class="sc">$</span>x, <span class="at">n =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">show_head_tail</span>(my_df<span class="sc">$</span>x, <span class="at">n =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>              [,1]      [,2]
 vec_head  99.17188 119.34681
 vec_tail 103.52717  94.39518</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">show_head_tail</span>(my_df, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">show_head_tail</span>(my_df, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 3
@@ -867,44 +869,44 @@ vec_tail 103.52717  94.39518</code></pre>
 <section id="example-full-show_head_tail-1" class="slide level2">
 <h2>Example; Full <code>show_head_tail()</code></h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>show_head_tail <span class="ot">&lt;-</span> <span class="cf">function</span>(df_or_vec, <span class="at">n =</span> <span class="dv">3</span>) {</span>
-<span id="cb33-2"><a href="#cb33-2"></a>    <span class="fu">stopifnot</span>(<span class="fu">is.data.frame</span>(df_or_vec) <span class="sc">|</span> <span class="fu">is.vector</span>(df_or_vec))</span>
-<span id="cb33-3"><a href="#cb33-3"></a>  h <span class="ot">=</span> <span class="fu">head</span>(df_or_vec, <span class="at">n =</span> n)</span>
-<span id="cb33-4"><a href="#cb33-4"></a>  t <span class="ot">=</span> <span class="fu">tail</span>(df_or_vec, <span class="at">n =</span> n)</span>
-<span id="cb33-5"><a href="#cb33-5"></a>  <span class="cf">if</span>(<span class="fu">is.vector</span>(df_or_vec)) {</span>
-<span id="cb33-6"><a href="#cb33-6"></a>    <span class="co"># vectors</span></span>
-<span id="cb33-7"><a href="#cb33-7"></a>    c <span class="ot">=</span> <span class="fu">length</span>(df_or_vec)</span>
-<span id="cb33-8"><a href="#cb33-8"></a>    snr_na <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(df_or_vec))</span>
-<span id="cb33-9"><a href="#cb33-9"></a>    nh <span class="ot">=</span> <span class="fu">as.character</span>(<span class="dv">1</span><span class="sc">:</span>n)</span>
-<span id="cb33-10"><a href="#cb33-10"></a>    nt <span class="ot">=</span> <span class="fu">as.character</span>((c<span class="sc">-</span>(n<span class="dv">-1</span>))<span class="sc">:</span>c)</span>
-<span id="cb33-11"><a href="#cb33-11"></a>    <span class="fu">rbind</span>(<span class="at">element_head =</span> nh, <span class="at">vec_head =</span> h, </span>
-<span id="cb33-12"><a href="#cb33-12"></a>          <span class="at">element_tail =</span> nt, <span class="at">vec_tail =</span> t, <span class="at">num._of_NAs =</span> <span class="fu">c</span>(snr_na, <span class="fu">rep</span>(<span class="st">"-"</span>, n <span class="sc">-</span> <span class="dv">1</span>)))</span>
-<span id="cb33-13"><a href="#cb33-13"></a>  } <span class="cf">else</span> {</span>
-<span id="cb33-14"><a href="#cb33-14"></a>    <span class="co"># dataframes</span></span>
-<span id="cb33-15"><a href="#cb33-15"></a>    c <span class="ot">=</span> <span class="fu">dim</span>(df_or_vec)[<span class="dv">2</span>]</span>
-<span id="cb33-16"><a href="#cb33-16"></a>    l <span class="ot">=</span> <span class="fu">dim</span>(df_or_vec)[<span class="dv">1</span>]</span>
-<span id="cb33-17"><a href="#cb33-17"></a>    rh <span class="ot">=</span> <span class="fu">rep</span>(<span class="st">"Head"</span>, c)</span>
-<span id="cb33-18"><a href="#cb33-18"></a>    rt <span class="ot">=</span> <span class="fu">rep</span>(<span class="st">"Tail"</span>, c)</span>
-<span id="cb33-19"><a href="#cb33-19"></a>    nna <span class="ot">=</span> <span class="fu">rep</span>(<span class="st">"NAs"</span>, c)</span>
-<span id="cb33-20"><a href="#cb33-20"></a>    snr_na <span class="ot">=</span> <span class="fu">apply</span>(df_or_vec, <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x)))</span>
-<span id="cb33-21"><a href="#cb33-21"></a>    ht <span class="ot">=</span> <span class="fu">rbind</span>(rh, h, rt, t, nna, snr_na)</span>
-<span id="cb33-22"><a href="#cb33-22"></a>    ht_row <span class="ot">=</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="dv">1</span><span class="sc">:</span>n, <span class="st">""</span>, (l <span class="sc">-</span> (n <span class="sc">-</span> <span class="dv">1</span>))<span class="sc">:</span>l, <span class="st">""</span>, <span class="st">""</span>)</span>
-<span id="cb33-23"><a href="#cb33-23"></a>    <span class="fu">cbind</span>(ht_row, ht)</span>
-<span id="cb33-24"><a href="#cb33-24"></a>  }</span>
-<span id="cb33-25"><a href="#cb33-25"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>show_head_tail <span class="ot">&lt;-</span> <span class="cf">function</span>(df_or_vec, <span class="at">n =</span> <span class="dv">3</span>) {</span>
+<span id="cb33-2"><a></a>    <span class="fu">stopifnot</span>(<span class="fu">is.data.frame</span>(df_or_vec) <span class="sc">|</span> <span class="fu">is.vector</span>(df_or_vec))</span>
+<span id="cb33-3"><a></a>  h <span class="ot">=</span> <span class="fu">head</span>(df_or_vec, <span class="at">n =</span> n)</span>
+<span id="cb33-4"><a></a>  t <span class="ot">=</span> <span class="fu">tail</span>(df_or_vec, <span class="at">n =</span> n)</span>
+<span id="cb33-5"><a></a>  <span class="cf">if</span>(<span class="fu">is.vector</span>(df_or_vec)) {</span>
+<span id="cb33-6"><a></a>    <span class="co"># vectors</span></span>
+<span id="cb33-7"><a></a>    c <span class="ot">=</span> <span class="fu">length</span>(df_or_vec)</span>
+<span id="cb33-8"><a></a>    snr_na <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(df_or_vec))</span>
+<span id="cb33-9"><a></a>    nh <span class="ot">=</span> <span class="fu">as.character</span>(<span class="dv">1</span><span class="sc">:</span>n)</span>
+<span id="cb33-10"><a></a>    nt <span class="ot">=</span> <span class="fu">as.character</span>((c<span class="sc">-</span>(n<span class="dv">-1</span>))<span class="sc">:</span>c)</span>
+<span id="cb33-11"><a></a>    <span class="fu">rbind</span>(<span class="at">element_head =</span> nh, <span class="at">vec_head =</span> h, </span>
+<span id="cb33-12"><a></a>          <span class="at">element_tail =</span> nt, <span class="at">vec_tail =</span> t, <span class="at">num._of_NAs =</span> <span class="fu">c</span>(snr_na, <span class="fu">rep</span>(<span class="st">"-"</span>, n <span class="sc">-</span> <span class="dv">1</span>)))</span>
+<span id="cb33-13"><a></a>  } <span class="cf">else</span> {</span>
+<span id="cb33-14"><a></a>    <span class="co"># dataframes</span></span>
+<span id="cb33-15"><a></a>    c <span class="ot">=</span> <span class="fu">dim</span>(df_or_vec)[<span class="dv">2</span>]</span>
+<span id="cb33-16"><a></a>    l <span class="ot">=</span> <span class="fu">dim</span>(df_or_vec)[<span class="dv">1</span>]</span>
+<span id="cb33-17"><a></a>    rh <span class="ot">=</span> <span class="fu">rep</span>(<span class="st">"Head"</span>, c)</span>
+<span id="cb33-18"><a></a>    rt <span class="ot">=</span> <span class="fu">rep</span>(<span class="st">"Tail"</span>, c)</span>
+<span id="cb33-19"><a></a>    nna <span class="ot">=</span> <span class="fu">rep</span>(<span class="st">"NAs"</span>, c)</span>
+<span id="cb33-20"><a></a>    snr_na <span class="ot">=</span> <span class="fu">apply</span>(df_or_vec, <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x)))</span>
+<span id="cb33-21"><a></a>    ht <span class="ot">=</span> <span class="fu">rbind</span>(rh, h, rt, t, nna, snr_na)</span>
+<span id="cb33-22"><a></a>    ht_row <span class="ot">=</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="dv">1</span><span class="sc">:</span>n, <span class="st">""</span>, (l <span class="sc">-</span> (n <span class="sc">-</span> <span class="dv">1</span>))<span class="sc">:</span>l, <span class="st">""</span>, <span class="st">""</span>)</span>
+<span id="cb33-23"><a></a>    <span class="fu">cbind</span>(ht_row, ht)</span>
+<span id="cb33-24"><a></a>  }</span>
+<span id="cb33-25"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="testing-1" class="slide level2">
 <h2>Testing</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>tmp <span class="ot">&lt;-</span> my_df</span>
-<span id="cb34-2"><a href="#cb34-2"></a>tmp[<span class="dv">3</span>, <span class="dv">1</span>] <span class="ot">=</span> <span class="cn">NA</span>; tmp[<span class="dv">2</span>, <span class="dv">2</span>] <span class="ot">=</span> <span class="cn">NA</span>; tmp[<span class="dv">3</span>, <span class="dv">2</span>] <span class="ot">=</span> <span class="cn">NA</span>; tmp[<span class="dv">8</span>, <span class="dv">2</span>] <span class="ot">=</span> <span class="cn">NA</span></span>
-<span id="cb34-3"><a href="#cb34-3"></a><span class="fu">show_head_tail</span>(tmp<span class="sc">$</span>y, <span class="at">n =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>tmp <span class="ot">&lt;-</span> my_df</span>
+<span id="cb34-2"><a></a>tmp[<span class="dv">3</span>, <span class="dv">1</span>] <span class="ot">=</span> <span class="cn">NA</span>; tmp[<span class="dv">2</span>, <span class="dv">2</span>] <span class="ot">=</span> <span class="cn">NA</span>; tmp[<span class="dv">3</span>, <span class="dv">2</span>] <span class="ot">=</span> <span class="cn">NA</span>; tmp[<span class="dv">8</span>, <span class="dv">2</span>] <span class="ot">=</span> <span class="cn">NA</span></span>
+<span id="cb34-3"><a></a><span class="fu">show_head_tail</span>(tmp<span class="sc">$</span>y, <span class="at">n =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>             [,1]               [,2]              
@@ -919,9 +921,9 @@ num._of_NAs  "3"                "-"               </code></pre>
 <section id="testing-2" class="slide level2">
 <h2>Testing</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">show_head_tail</span>(tmp, <span class="at">n =</span> <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="fu">show_head_tail</span>(tmp, <span class="at">n =</span> <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   ht_row                x                y                z
@@ -949,11 +951,11 @@ num._of_NAs  "3"                "-"               </code></pre>
 <section id="testing-3" class="slide level2">
 <h2>Testing</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># input something that is not vector or datafarme</span></span>
-<span id="cb38-2"><a href="#cb38-2"></a><span class="fu">show_head_tail</span>(show_head_tail)</span>
-<span id="cb38-3"><a href="#cb38-3"></a><span class="fu">show_head_tail</span>(<span class="fu">plot</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="co"># input something that is not vector or datafarme</span></span>
+<span id="cb38-2"><a></a><span class="fu">show_head_tail</span>(show_head_tail)</span>
+<span id="cb38-3"><a></a><span class="fu">show_head_tail</span>(<span class="fu">plot</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><code>Gives: Error in show_head_tail(show_head_tail) : is.data.frame(df_or_vec) | is.vector(df_or_vec) is not TRUE</code></p>
@@ -965,21 +967,21 @@ num._of_NAs  "3"                "-"               </code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>show_head_tail_vec <span class="ot">&lt;-</span> <span class="cf">function</span>(df_or_vec, n) {</span>
-<span id="cb39-2"><a href="#cb39-2"></a>  <span class="co"># vectors</span></span>
-<span id="cb39-3"><a href="#cb39-3"></a>  h <span class="ot">&lt;-</span> <span class="fu">head</span>(df_or_vec, <span class="at">n =</span> n)</span>
-<span id="cb39-4"><a href="#cb39-4"></a>  t <span class="ot">&lt;-</span> <span class="fu">tail</span>(df_or_vec, <span class="at">n =</span> n)</span>
-<span id="cb39-5"><a href="#cb39-5"></a>  c <span class="ot">&lt;-</span> <span class="fu">length</span>(df_or_vec)</span>
-<span id="cb39-6"><a href="#cb39-6"></a>  snr_na <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(df_or_vec))</span>
-<span id="cb39-7"><a href="#cb39-7"></a>  nh <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="dv">1</span><span class="sc">:</span>n)</span>
-<span id="cb39-8"><a href="#cb39-8"></a>  nt <span class="ot">&lt;-</span> <span class="fu">as.character</span>((c <span class="sc">-</span> (n <span class="sc">-</span> <span class="dv">1</span>))<span class="sc">:</span>c)</span>
-<span id="cb39-9"><a href="#cb39-9"></a>  <span class="fu">rbind</span>(</span>
-<span id="cb39-10"><a href="#cb39-10"></a>    <span class="at">element_head =</span> nh, <span class="at">vec_head =</span> h,</span>
-<span id="cb39-11"><a href="#cb39-11"></a>    <span class="at">element_tail =</span> nt, <span class="at">vec_tail =</span> t, <span class="at">num._of_NAs =</span> <span class="fu">c</span>(snr_na, <span class="fu">rep</span>(<span class="st">"-"</span>, n <span class="sc">-</span> <span class="dv">1</span>))</span>
-<span id="cb39-12"><a href="#cb39-12"></a>  )</span>
-<span id="cb39-13"><a href="#cb39-13"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>show_head_tail_vec <span class="ot">&lt;-</span> <span class="cf">function</span>(df_or_vec, n) {</span>
+<span id="cb39-2"><a></a>  <span class="co"># vectors</span></span>
+<span id="cb39-3"><a></a>  h <span class="ot">&lt;-</span> <span class="fu">head</span>(df_or_vec, <span class="at">n =</span> n)</span>
+<span id="cb39-4"><a></a>  t <span class="ot">&lt;-</span> <span class="fu">tail</span>(df_or_vec, <span class="at">n =</span> n)</span>
+<span id="cb39-5"><a></a>  c <span class="ot">&lt;-</span> <span class="fu">length</span>(df_or_vec)</span>
+<span id="cb39-6"><a></a>  snr_na <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(df_or_vec))</span>
+<span id="cb39-7"><a></a>  nh <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="dv">1</span><span class="sc">:</span>n)</span>
+<span id="cb39-8"><a></a>  nt <span class="ot">&lt;-</span> <span class="fu">as.character</span>((c <span class="sc">-</span> (n <span class="sc">-</span> <span class="dv">1</span>))<span class="sc">:</span>c)</span>
+<span id="cb39-9"><a></a>  <span class="fu">rbind</span>(</span>
+<span id="cb39-10"><a></a>    <span class="at">element_head =</span> nh, <span class="at">vec_head =</span> h,</span>
+<span id="cb39-11"><a></a>    <span class="at">element_tail =</span> nt, <span class="at">vec_tail =</span> t, <span class="at">num._of_NAs =</span> <span class="fu">c</span>(snr_na, <span class="fu">rep</span>(<span class="st">"-"</span>, n <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb39-12"><a></a>  )</span>
+<span id="cb39-13"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -991,22 +993,22 @@ num._of_NAs  "3"                "-"               </code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>show_head_tail_df <span class="ot">&lt;-</span> <span class="cf">function</span>(df_or_vec, n) {</span>
-<span id="cb40-2"><a href="#cb40-2"></a>  <span class="co"># dataframes</span></span>
-<span id="cb40-3"><a href="#cb40-3"></a>  h <span class="ot">&lt;-</span> <span class="fu">head</span>(df_or_vec, <span class="at">n =</span> n)</span>
-<span id="cb40-4"><a href="#cb40-4"></a>  t <span class="ot">&lt;-</span> <span class="fu">tail</span>(df_or_vec, <span class="at">n =</span> n)</span>
-<span id="cb40-5"><a href="#cb40-5"></a>  c <span class="ot">&lt;-</span> <span class="fu">dim</span>(df_or_vec)[<span class="dv">2</span>]</span>
-<span id="cb40-6"><a href="#cb40-6"></a>  l <span class="ot">&lt;-</span> <span class="fu">dim</span>(df_or_vec)[<span class="dv">1</span>]</span>
-<span id="cb40-7"><a href="#cb40-7"></a>  rh <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"Head"</span>, c)</span>
-<span id="cb40-8"><a href="#cb40-8"></a>  rt <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"Tail"</span>, c)</span>
-<span id="cb40-9"><a href="#cb40-9"></a>  nna <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"NAs"</span>, c)</span>
-<span id="cb40-10"><a href="#cb40-10"></a>  snr_na <span class="ot">&lt;-</span> <span class="fu">apply</span>(df_or_vec, <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x)))</span>
-<span id="cb40-11"><a href="#cb40-11"></a>  ht <span class="ot">&lt;-</span> <span class="fu">rbind</span>(rh, h, rt, t, nna, snr_na)</span>
-<span id="cb40-12"><a href="#cb40-12"></a>  ht_row <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="dv">1</span><span class="sc">:</span>n, <span class="st">""</span>, (l <span class="sc">-</span> (n <span class="sc">-</span> <span class="dv">1</span>))<span class="sc">:</span>l, <span class="st">""</span>, <span class="st">""</span>)</span>
-<span id="cb40-13"><a href="#cb40-13"></a>  <span class="fu">cbind</span>(ht_row, ht)</span>
-<span id="cb40-14"><a href="#cb40-14"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>show_head_tail_df <span class="ot">&lt;-</span> <span class="cf">function</span>(df_or_vec, n) {</span>
+<span id="cb40-2"><a></a>  <span class="co"># dataframes</span></span>
+<span id="cb40-3"><a></a>  h <span class="ot">&lt;-</span> <span class="fu">head</span>(df_or_vec, <span class="at">n =</span> n)</span>
+<span id="cb40-4"><a></a>  t <span class="ot">&lt;-</span> <span class="fu">tail</span>(df_or_vec, <span class="at">n =</span> n)</span>
+<span id="cb40-5"><a></a>  c <span class="ot">&lt;-</span> <span class="fu">dim</span>(df_or_vec)[<span class="dv">2</span>]</span>
+<span id="cb40-6"><a></a>  l <span class="ot">&lt;-</span> <span class="fu">dim</span>(df_or_vec)[<span class="dv">1</span>]</span>
+<span id="cb40-7"><a></a>  rh <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"Head"</span>, c)</span>
+<span id="cb40-8"><a></a>  rt <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"Tail"</span>, c)</span>
+<span id="cb40-9"><a></a>  nna <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"NAs"</span>, c)</span>
+<span id="cb40-10"><a></a>  snr_na <span class="ot">&lt;-</span> <span class="fu">apply</span>(df_or_vec, <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x)))</span>
+<span id="cb40-11"><a></a>  ht <span class="ot">&lt;-</span> <span class="fu">rbind</span>(rh, h, rt, t, nna, snr_na)</span>
+<span id="cb40-12"><a></a>  ht_row <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="dv">1</span><span class="sc">:</span>n, <span class="st">""</span>, (l <span class="sc">-</span> (n <span class="sc">-</span> <span class="dv">1</span>))<span class="sc">:</span>l, <span class="st">""</span>, <span class="st">""</span>)</span>
+<span id="cb40-13"><a></a>  <span class="fu">cbind</span>(ht_row, ht)</span>
+<span id="cb40-14"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -1018,18 +1020,18 @@ num._of_NAs  "3"                "-"               </code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>show_head_tail <span class="ot">&lt;-</span> <span class="cf">function</span>(df_or_vec, <span class="at">n =</span> <span class="dv">3</span>) {</span>
-<span id="cb41-2"><a href="#cb41-2"></a>  <span class="cf">if</span> (<span class="fu">is.vector</span>(df_or_vec)) {</span>
-<span id="cb41-3"><a href="#cb41-3"></a>    <span class="fu">show_head_tail_vec</span>(df_or_vec, n)</span>
-<span id="cb41-4"><a href="#cb41-4"></a>  } <span class="cf">else</span> <span class="cf">if</span>(<span class="fu">is.data.frame</span>(df_or_vec)) {</span>
-<span id="cb41-5"><a href="#cb41-5"></a>    <span class="fu">show_head_tail_df</span>(df_or_vec, n)</span>
-<span id="cb41-6"><a href="#cb41-6"></a>  } <span class="cf">else</span> {</span>
-<span id="cb41-7"><a href="#cb41-7"></a>    <span class="fu">paste</span>(<span class="st">"Input is of type "</span>, <span class="fu">class</span>(df_or_vec), <span class="st">". Only know</span></span>
-<span id="cb41-8"><a href="#cb41-8"></a><span class="st">          how to handle dataframes and vectors."</span>, <span class="at">sep =</span> <span class="st">""</span>)</span>
-<span id="cb41-9"><a href="#cb41-9"></a>  }</span>
-<span id="cb41-10"><a href="#cb41-10"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a>show_head_tail <span class="ot">&lt;-</span> <span class="cf">function</span>(df_or_vec, <span class="at">n =</span> <span class="dv">3</span>) {</span>
+<span id="cb41-2"><a></a>  <span class="cf">if</span> (<span class="fu">is.vector</span>(df_or_vec)) {</span>
+<span id="cb41-3"><a></a>    <span class="fu">show_head_tail_vec</span>(df_or_vec, n)</span>
+<span id="cb41-4"><a></a>  } <span class="cf">else</span> <span class="cf">if</span>(<span class="fu">is.data.frame</span>(df_or_vec)) {</span>
+<span id="cb41-5"><a></a>    <span class="fu">show_head_tail_df</span>(df_or_vec, n)</span>
+<span id="cb41-6"><a></a>  } <span class="cf">else</span> {</span>
+<span id="cb41-7"><a></a>    <span class="fu">paste</span>(<span class="st">"Input is of type "</span>, <span class="fu">class</span>(df_or_vec), <span class="st">". Only know</span></span>
+<span id="cb41-8"><a></a><span class="st">          how to handle dataframes and vectors."</span>, <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb41-9"><a></a>  }</span>
+<span id="cb41-10"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -1037,9 +1039,9 @@ num._of_NAs  "3"                "-"               </code></pre>
 <section id="final-testing" class="slide level2">
 <h2>Final testing</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">show_head_tail_vec</span>(tmp<span class="sc">$</span>y, <span class="at">n =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a><span class="fu">show_head_tail_vec</span>(tmp<span class="sc">$</span>y, <span class="at">n =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>             [,1]               [,2]              
@@ -1049,9 +1051,9 @@ element_tail "9"                "10"
 vec_tail     "50.5169109860435" "114.789783554152"
 num._of_NAs  "3"                "-"               </code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">show_head_tail_df</span>(tmp, <span class="at">n =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="fu">show_head_tail_df</span>(tmp, <span class="at">n =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  ht_row                x                y                z
@@ -1069,9 +1071,9 @@ num._of_NAs  "3"                "-"               </code></pre>
 <section id="final-testing-1" class="slide level2">
 <h2>Final testing</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">show_head_tail</span>(tmp, <span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a><span class="fu">show_head_tail</span>(tmp, <span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   ht_row                x                y                z
@@ -1093,10 +1095,12 @@ num._of_NAs  "3"                "-"               </code></pre>
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="../../index.html">MSB105</a></p>
 </div>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-R-tidyverse" class="csl-entry" role="listitem">
 Wickham, Hadley. 2023. <em>Tidyverse: Easily Install and Load the Tidyverse</em>. <a href="https://tidyverse.tidyverse.org">https://tidyverse.tidyverse.org</a>.
 </div>
@@ -1131,7 +1135,6 @@ Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino 
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': true,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1430,10 +1433,9 @@ Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino 
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn) {
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1443,8 +1445,17 @@ Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino 
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 

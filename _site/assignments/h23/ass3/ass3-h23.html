@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -23,7 +23,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -80,7 +80,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "Ingen resultater",
     "search-matching-documents-text": "Samsvarende dokumenter",
@@ -89,8 +95,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "annet resultat i dette dokumentet",
     "search-more-matches-text": "andre resultater i dette dokumentet",
     "search-clear-button-title": "Tøm",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Avbryt",
-    "search-submit-button-title": "Send inn"
+    "search-submit-button-title": "Send inn",
+    "search-label": "Søk"
   }
 }</script>
 <link href="../../../site_libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
@@ -104,51 +112,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">MSB105</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
+            <div id="quarto-search" class="" title="Søk"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Slå på navigering" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../introduction/introduction.html" rel="" target="">
- <span class="menu-text">Introduction</span></a>
+    <a class="nav-link" href="../../../introduction/introduction.html"> 
+<span class="menu-text">Introduction</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../explore-data/explore-data.html" rel="" target="">
- <span class="menu-text">Explore Data</span></a>
+    <a class="nav-link" href="../../../explore-data/explore-data.html"> 
+<span class="menu-text">Explore Data</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../wrangle-data/wrangle-data.html" rel="" target="">
- <span class="menu-text">Data Wrangling</span></a>
+    <a class="nav-link" href="../../../wrangle-data/wrangle-data.html"> 
+<span class="menu-text">Data Wrangling</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../program/program.html" rel="" target="">
- <span class="menu-text">Program</span></a>
+    <a class="nav-link" href="../../../program/program.html"> 
+<span class="menu-text">Program</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../model/model.html" rel="" target="">
- <span class="menu-text">Model</span></a>
+    <a class="nav-link" href="../../../model/model.html"> 
+<span class="menu-text">Model</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../assignments/assignments.html" rel="" target="">
- <span class="menu-text">Assignments</span></a>
+    <a class="nav-link" href="../../../assignments/assignments.html"> 
+<span class="menu-text">Assignments</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -209,7 +217,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <p>Pakker jeg brukte i min løsning.</p>
 <div class="cell">
@@ -235,14 +245,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>1106, 1135, 1145, 1149, 1154, 1159, 1160, 4611, 4612, 1211, 1216</code></pre>
 <p>Samlet i en tibble (<code>hland</code>) blir det slik:</p>
 <div class="cell">
+<div id="tbl-hland" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-hland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabell&nbsp;1: Kommunene på Haugalandet
+</figcaption>
+<div aria-describedby="tbl-hland-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-hland" class="anchored">
-
-<div class="tabwid"><style>.cl-e03d0b0c{}.cl-e038fa3a{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-e03add50{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-e03add5a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 0.3;background-color:transparent;}.cl-e03ae80e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e03ae80f{width:1.772in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e03ae810{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e03ae811{width:1.772in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e03ae818{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e03ae819{width:1.772in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-e03d0b0c"><caption>Tabell&nbsp;1:  <p>Kommunene på Haugalandet</p> </caption><thead><tr style="overflow-wrap:break-word;"><th class="cl-e03ae80e"><p class="cl-e03add50"><span class="cl-e038fa3a">knr</span></p></th><th class="cl-e03ae80f"><p class="cl-e03add50"><span class="cl-e038fa3a">kNavn</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-e03ae810"><p class="cl-e03add5a"><span class="cl-e038fa3a">1106</span></p></td><td class="cl-e03ae811"><p class="cl-e03add5a"><span class="cl-e038fa3a">Haugesund</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e03ae810"><p class="cl-e03add5a"><span class="cl-e038fa3a">1135</span></p></td><td class="cl-e03ae811"><p class="cl-e03add5a"><span class="cl-e038fa3a">Sauda</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e03ae810"><p class="cl-e03add5a"><span class="cl-e038fa3a">1145</span></p></td><td class="cl-e03ae811"><p class="cl-e03add5a"><span class="cl-e038fa3a">Bokn</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e03ae810"><p class="cl-e03add5a"><span class="cl-e038fa3a">1146</span></p></td><td class="cl-e03ae811"><p class="cl-e03add5a"><span class="cl-e038fa3a">Tysvær</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e03ae810"><p class="cl-e03add5a"><span class="cl-e038fa3a">1149</span></p></td><td class="cl-e03ae811"><p class="cl-e03add5a"><span class="cl-e038fa3a">Karmøy</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e03ae810"><p class="cl-e03add5a"><span class="cl-e038fa3a">1154</span></p></td><td class="cl-e03ae811"><p class="cl-e03add5a"><span class="cl-e038fa3a">Vindafjord (1965-2005)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e03ae810"><p class="cl-e03add5a"><span class="cl-e038fa3a">1159</span></p></td><td class="cl-e03ae811"><p class="cl-e03add5a"><span class="cl-e038fa3a">Ølen (2002-2005)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e03ae810"><p class="cl-e03add5a"><span class="cl-e038fa3a">1160</span></p></td><td class="cl-e03ae811"><p class="cl-e03add5a"><span class="cl-e038fa3a">Vindafjord</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e03ae810"><p class="cl-e03add5a"><span class="cl-e038fa3a">4611</span></p></td><td class="cl-e03ae811"><p class="cl-e03add5a"><span class="cl-e038fa3a">Etne</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e03ae810"><p class="cl-e03add5a"><span class="cl-e038fa3a">4612</span></p></td><td class="cl-e03ae811"><p class="cl-e03add5a"><span class="cl-e038fa3a">Sveio</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e03ae810"><p class="cl-e03add5a"><span class="cl-e038fa3a">1211</span></p></td><td class="cl-e03ae811"><p class="cl-e03add5a"><span class="cl-e038fa3a">Sveio (-2019)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-e03ae818"><p class="cl-e03add5a"><span class="cl-e038fa3a">1216</span></p></td><td class="cl-e03ae819"><p class="cl-e03add5a"><span class="cl-e038fa3a">Etne (-2019)</span></p></td></tr></tbody></table></div>
+<div class="tabwid"><style>.cl-200dc124{}.cl-200a9648{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-200be58e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-200be58f{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 0.3;background-color:transparent;}.cl-200beeda{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-200beee4{width:1.772in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-200beee5{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-200beee6{width:1.772in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-200beee7{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-200beeee{width:1.772in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-200dc124"><thead><tr style="overflow-wrap:break-word;"><th class="cl-200beeda"><p class="cl-200be58e"><span class="cl-200a9648">knr</span></p></th><th class="cl-200beee4"><p class="cl-200be58e"><span class="cl-200a9648">kNavn</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-200beee5"><p class="cl-200be58f"><span class="cl-200a9648">1106</span></p></td><td class="cl-200beee6"><p class="cl-200be58f"><span class="cl-200a9648">Haugesund</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-200beee5"><p class="cl-200be58f"><span class="cl-200a9648">1135</span></p></td><td class="cl-200beee6"><p class="cl-200be58f"><span class="cl-200a9648">Sauda</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-200beee5"><p class="cl-200be58f"><span class="cl-200a9648">1145</span></p></td><td class="cl-200beee6"><p class="cl-200be58f"><span class="cl-200a9648">Bokn</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-200beee5"><p class="cl-200be58f"><span class="cl-200a9648">1146</span></p></td><td class="cl-200beee6"><p class="cl-200be58f"><span class="cl-200a9648">Tysvær</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-200beee5"><p class="cl-200be58f"><span class="cl-200a9648">1149</span></p></td><td class="cl-200beee6"><p class="cl-200be58f"><span class="cl-200a9648">Karmøy</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-200beee5"><p class="cl-200be58f"><span class="cl-200a9648">1154</span></p></td><td class="cl-200beee6"><p class="cl-200be58f"><span class="cl-200a9648">Vindafjord (1965-2005)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-200beee5"><p class="cl-200be58f"><span class="cl-200a9648">1159</span></p></td><td class="cl-200beee6"><p class="cl-200be58f"><span class="cl-200a9648">Ølen (2002-2005)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-200beee5"><p class="cl-200be58f"><span class="cl-200a9648">1160</span></p></td><td class="cl-200beee6"><p class="cl-200be58f"><span class="cl-200a9648">Vindafjord</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-200beee5"><p class="cl-200be58f"><span class="cl-200a9648">4611</span></p></td><td class="cl-200beee6"><p class="cl-200be58f"><span class="cl-200a9648">Etne</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-200beee5"><p class="cl-200be58f"><span class="cl-200a9648">4612</span></p></td><td class="cl-200beee6"><p class="cl-200be58f"><span class="cl-200a9648">Sveio</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-200beee5"><p class="cl-200be58f"><span class="cl-200a9648">1211</span></p></td><td class="cl-200beee6"><p class="cl-200be58f"><span class="cl-200a9648">Sveio (-2019)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-200beee7"><p class="cl-200be58f"><span class="cl-200a9648">1216</span></p></td><td class="cl-200beeee"><p class="cl-200be58f"><span class="cl-200a9648">Etne (-2019)</span></p></td></tr></tbody></table></div>
 </div>
 </div>
+</figure>
 </div>
-<p>Legg kommunenummerene fra <a href="#tbl-hland">Tabell&nbsp;1</a> inn i en vektor <code>knr</code> som <code>character</code>.</p>
+</div>
+<p>Legg kommunenummerene fra <a href="#tbl-hland" class="quarto-xref">Tabell&nbsp;1</a> inn i en vektor <code>knr</code> som <code>character</code>.</p>
 </section>
 </section>
 <section id="hente-data-fra-ssb" class="level2">
@@ -270,33 +286,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Vi bryr oss altså ikke om kommunenummer i det videre arbeidet og jobber bare med kommunenavn som kategorivariabler.</p>
 <p>Da skal vi ha noe som ser slik ut:</p>
-<div class="cell" data-paged.print="false">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pend_00_22_boHland, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 203,688 × 4
-  aar   bo_kom    arb_kom pendlere
-  &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;      &lt;int&gt;
-1 2000  Haugesund Halden         0
-2 2001  Haugesund Halden         0
-3 2002  Haugesund Halden         0
-4 2003  Haugesund Halden         0
-5 2004  Haugesund Halden         0
+  aar   bo_kom    arb_kom            pendlere
+  &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;                 &lt;int&gt;
+1 2000  Haugesund Halden (2020-2023)        0
+2 2001  Haugesund Halden (2020-2023)        0
+3 2002  Haugesund Halden (2020-2023)        0
+4 2003  Haugesund Halden (2020-2023)        0
+5 2004  Haugesund Halden (2020-2023)        0
 # ℹ 203,683 more rows</code></pre>
 </div>
 </div>
 <p>Gjør tilsvarende for <code>pend_00_22_ssb_arbHland</code> og plasser resultatet i <code>pend_00_22_arbHland</code>.</p>
 <p>Da skal vi ende opp med noe som ser slik ut:</p>
-<div class="cell" data-paged.print="false">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pend_00_22_arbHland, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 203,688 × 4
-  aar   arb_kom   bo_kom pendlere
-  &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;int&gt;
-1 2000  Haugesund Halden        0
-2 2001  Haugesund Halden        0
-3 2002  Haugesund Halden        0
-4 2003  Haugesund Halden        0
-5 2004  Haugesund Halden        0
+  aar   arb_kom   bo_kom             pendlere
+  &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;                 &lt;int&gt;
+1 2000  Haugesund Halden (2020-2023)        0
+2 2001  Haugesund Halden (2020-2023)        0
+3 2002  Haugesund Halden (2020-2023)        0
+4 2003  Haugesund Halden (2020-2023)        0
+5 2004  Haugesund Halden (2020-2023)        0
 # ℹ 203,683 more rows</code></pre>
 </div>
 </div>
@@ -308,7 +324,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 203688      4</code></pre>
 </div>
 </div>
-<div class="cell" data-paged.print="false">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
   aar   arb_kom   bo_kom    pendlere
@@ -328,7 +344,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 203688      4</code></pre>
 </div>
 </div>
-<div class="cell" data-paged.print="false">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
   aar   bo_kom    arb_kom   pendlere
@@ -354,7 +370,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 1656    4</code></pre>
 </div>
 </div>
-<div class="cell" data-paged.print="false">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pend_00_22_arbHland <span class="sc">|&gt;</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -384,7 +400,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 1840    4</code></pre>
 </div>
 </div>
-<div class="cell" data-paged.print="false">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pmat_long <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
@@ -406,7 +422,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 1840    6</code></pre>
 </div>
 </div>
-<div class="cell" data-paged.print="false">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>pmat_long <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 6
@@ -440,7 +456,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">size =</span> <span class="dv">9</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-paged.print="false">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 9 × 3
@@ -468,7 +484,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># kolonnene ordnet som i ordning</span></span>
 <span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">all_of</span>(<span class="fu">c</span>(<span class="st">"o"</span>, ordning)))</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-paged.print="false">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>mat</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 4
@@ -493,7 +509,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="pendlematriser">Pendlematriser</h3>
 <p>Lag en pendlematrise for Haugalandet for år 2000. Filtrer først på år. Vi trenger så å velge ut de tre kolonnene vi trenger for å gjøre en pivot_wider() med <code>arb_kom</code> som <code>names_from</code> og <code>pendlere</code> som <code>values_from</code>. Vi må så sortere på <code>bo_kom</code> i en <code>arrange()</code> og så velge ut de kolonnene vi ønsker i en <code>select()</code>. Vi må også endre navnet på den første kolonnen til <code>Bo kom.\\ Arb. kom</code> for å få en fin tabell. Vi kan gjøre dette vha. funksjonen <code>rename()</code>. Merk at vi må bruke dobbel slash for å få en slash i R. Legg den resulterende pendlematrisen i variabelen p2000.</p>
 <p>Resultatet skal se slik ut</p>
-<div class="cell" data-paged.print="false">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>p2000</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 9 × 10
@@ -514,34 +530,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Her er litt tips til kode for å få en finere pendlematrise.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-p2000</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Pendlematrise for Haugalandet år 2000."</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>p2000 <span class="sc">|&gt;</span> </span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">flextable</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># a4 8.268 in - 1 in left margin - 1 in right margin = 6.268 in</span></span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit_to_width</span>(<span class="at">max_width =</span> <span class="fl">6.268</span>, <span class="at">inc =</span> 1L, <span class="at">max_iter =</span> <span class="dv">20</span>, <span class="at">unit =</span> <span class="st">"in"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">line_spacing</span>(<span class="at">space =</span> <span class="dv">0</span>,</span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">part =</span> <span class="st">"body"</span></span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>              ) <span class="sc">%&gt;%</span> </span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hrule</span>(<span class="at">rule =</span> <span class="st">"exact"</span>)  <span class="sc">%&gt;%</span> </span>
-<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">height_all</span>(<span class="at">height =</span> <span class="dv">5</span>, <span class="at">part =</span> <span class="st">"all"</span>, <span class="at">unit =</span> <span class="st">"mm"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">padding</span>(<span class="at">padding.top =</span> <span class="dv">1</span>, <span class="at">padding.bottom =</span> <span class="dv">2</span>, <span class="at">part =</span> <span class="st">"all"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_booktabs</span>()</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: tbl-p2000</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| tbl-cap: "Pendlematrise for Haugalandet år 2000."</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="in">p2000 |&gt; </span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="in">  flextable() |&gt; </span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="in">  # a4 8.268 in - 1 in left margin - 1 in right margin = 6.268 in</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="in">  fit_to_width(max_width = 6.268, inc = 1L, max_iter = 20, unit = "in") |&gt; </span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="in">  line_spacing(space = 0,</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="in">              part = "body"</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="in">              ) %&gt;% </span></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="in">  hrule(rule = "exact")  %&gt;% </span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="in">  height_all(height = 5, part = "all", unit = "mm") |&gt; </span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a><span class="in">  padding(padding.top = 1, padding.bottom = 2, part = "all") %&gt;% </span></span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_booktabs()</span></span>
 <span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="tbl-p2000" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-p2000-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabell&nbsp;2: Pendlematrise for Haugalandet år 2000.
+</figcaption>
+<div aria-describedby="tbl-p2000-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tbl-p2000" class="anchored">
-
-<div class="tabwid"><style>.cl-e0c2311a{}.cl-e0bef766{font-family:'Helvetica';font-size:8pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-e0c0404e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:1pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-e0c04058{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:1pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-e0c04059{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:1pt;padding-left:5pt;padding-right:5pt;line-height: 0;background-color:transparent;}.cl-e0c04062{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:1pt;padding-left:5pt;padding-right:5pt;line-height: 0;background-color:transparent;}.cl-e0c04986{width:1.099in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c04987{width:0.754in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c04990{width:0.574in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c04991{width:0.556in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c04992{width:0.463in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c0499a{width:0.438in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c0499b{width:0.686in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c0499c{width:0.506in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c0499d{width:0.463in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c049a4{width:0.482in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c049a5{width:1.099in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c049a6{width:0.754in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c049a7{width:0.574in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c049ae{width:0.556in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c049b8{width:0.463in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c049b9{width:0.438in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c049ba{width:0.686in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c049c2{width:0.506in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c049c3{width:0.463in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c049c4{width:0.482in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c049cc{width:1.099in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c049cd{width:0.754in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c049ce{width:0.574in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c049cf{width:0.556in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c049d6{width:0.463in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c049d7{width:0.438in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c049d8{width:0.686in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c049d9{width:0.506in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c049e0{width:0.463in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e0c049e1{width:0.482in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-e0c2311a"><caption>Tabell&nbsp;2:  <p>Pendlematrise for Haugalandet år 2000.</p> </caption><thead><tr style="overflow-wrap:break-word;"><th class="cl-e0c04986"><p class="cl-e0c0404e"><span class="cl-e0bef766">Bo kom.\ Arb. kom</span></p></th><th class="cl-e0c04987"><p class="cl-e0c04058"><span class="cl-e0bef766">Haugesund</span></p></th><th class="cl-e0c04990"><p class="cl-e0c04058"><span class="cl-e0bef766">Karmøy</span></p></th><th class="cl-e0c04991"><p class="cl-e0c04058"><span class="cl-e0bef766">Tysvær</span></p></th><th class="cl-e0c04992"><p class="cl-e0c04058"><span class="cl-e0bef766">Sveio</span></p></th><th class="cl-e0c0499a"><p class="cl-e0c04058"><span class="cl-e0bef766">Bokn</span></p></th><th class="cl-e0c0499b"><p class="cl-e0c04058"><span class="cl-e0bef766">Vindafjord</span></p></th><th class="cl-e0c0499c"><p class="cl-e0c04058"><span class="cl-e0bef766">Sauda</span></p></th><th class="cl-e0c0499d"><p class="cl-e0c04058"><span class="cl-e0bef766">Etne</span></p></th><th class="cl-e0c049a4"><p class="cl-e0c04058"><span class="cl-e0bef766">Andre</span></p></th></tr></thead><tbody><tr><td class="cl-e0c049a5"><p class="cl-e0c04059"><span class="cl-e0bef766">Haugesund</span></p></td><td class="cl-e0c049a6"><p class="cl-e0c04062"><span class="cl-e0bef766">10,157</span></p></td><td class="cl-e0c049a7"><p class="cl-e0c04062"><span class="cl-e0bef766">1,664</span></p></td><td class="cl-e0c049ae"><p class="cl-e0c04062"><span class="cl-e0bef766">593</span></p></td><td class="cl-e0c049b8"><p class="cl-e0c04062"><span class="cl-e0bef766">97</span></p></td><td class="cl-e0c049b9"><p class="cl-e0c04062"><span class="cl-e0bef766">15</span></p></td><td class="cl-e0c049ba"><p class="cl-e0c04062"><span class="cl-e0bef766">121</span></p></td><td class="cl-e0c049c2"><p class="cl-e0c04062"><span class="cl-e0bef766">5</span></p></td><td class="cl-e0c049c3"><p class="cl-e0c04062"><span class="cl-e0bef766">11</span></p></td><td class="cl-e0c049c4"><p class="cl-e0c04062"><span class="cl-e0bef766">1,906</span></p></td></tr><tr><td class="cl-e0c049a5"><p class="cl-e0c04059"><span class="cl-e0bef766">Karmøy</span></p></td><td class="cl-e0c049a6"><p class="cl-e0c04062"><span class="cl-e0bef766">4,081</span></p></td><td class="cl-e0c049a7"><p class="cl-e0c04062"><span class="cl-e0bef766">10,592</span></p></td><td class="cl-e0c049ae"><p class="cl-e0c04062"><span class="cl-e0bef766">351</span></p></td><td class="cl-e0c049b8"><p class="cl-e0c04062"><span class="cl-e0bef766">20</span></p></td><td class="cl-e0c049b9"><p class="cl-e0c04062"><span class="cl-e0bef766">14</span></p></td><td class="cl-e0c049ba"><p class="cl-e0c04062"><span class="cl-e0bef766">56</span></p></td><td class="cl-e0c049c2"><p class="cl-e0c04062"><span class="cl-e0bef766">3</span></p></td><td class="cl-e0c049c3"><p class="cl-e0c04062"><span class="cl-e0bef766">6</span></p></td><td class="cl-e0c049c4"><p class="cl-e0c04062"><span class="cl-e0bef766">2,158</span></p></td></tr><tr><td class="cl-e0c049a5"><p class="cl-e0c04059"><span class="cl-e0bef766">Tysvær</span></p></td><td class="cl-e0c049a6"><p class="cl-e0c04062"><span class="cl-e0bef766">1,234</span></p></td><td class="cl-e0c049a7"><p class="cl-e0c04062"><span class="cl-e0bef766">307</span></p></td><td class="cl-e0c049ae"><p class="cl-e0c04062"><span class="cl-e0bef766">2,165</span></p></td><td class="cl-e0c049b8"><p class="cl-e0c04062"><span class="cl-e0bef766">19</span></p></td><td class="cl-e0c049b9"><p class="cl-e0c04062"><span class="cl-e0bef766">23</span></p></td><td class="cl-e0c049ba"><p class="cl-e0c04062"><span class="cl-e0bef766">104</span></p></td><td class="cl-e0c049c2"><p class="cl-e0c04062"><span class="cl-e0bef766">2</span></p></td><td class="cl-e0c049c3"><p class="cl-e0c04062"><span class="cl-e0bef766">5</span></p></td><td class="cl-e0c049c4"><p class="cl-e0c04062"><span class="cl-e0bef766">545</span></p></td></tr><tr><td class="cl-e0c049a5"><p class="cl-e0c04059"><span class="cl-e0bef766">Sveio</span></p></td><td class="cl-e0c049a6"><p class="cl-e0c04062"><span class="cl-e0bef766">680</span></p></td><td class="cl-e0c049a7"><p class="cl-e0c04062"><span class="cl-e0bef766">121</span></p></td><td class="cl-e0c049ae"><p class="cl-e0c04062"><span class="cl-e0bef766">71</span></p></td><td class="cl-e0c049b8"><p class="cl-e0c04062"><span class="cl-e0bef766">956</span></p></td><td class="cl-e0c049b9"><p class="cl-e0c04062"><span class="cl-e0bef766">3</span></p></td><td class="cl-e0c049ba"><p class="cl-e0c04062"><span class="cl-e0bef766">22</span></p></td><td class="cl-e0c049c2"><p class="cl-e0c04062"><span class="cl-e0bef766">1</span></p></td><td class="cl-e0c049c3"><p class="cl-e0c04062"><span class="cl-e0bef766">2</span></p></td><td class="cl-e0c049c4"><p class="cl-e0c04062"><span class="cl-e0bef766">350</span></p></td></tr><tr><td class="cl-e0c049a5"><p class="cl-e0c04059"><span class="cl-e0bef766">Bokn</span></p></td><td class="cl-e0c049a6"><p class="cl-e0c04062"><span class="cl-e0bef766">34</span></p></td><td class="cl-e0c049a7"><p class="cl-e0c04062"><span class="cl-e0bef766">15</span></p></td><td class="cl-e0c049ae"><p class="cl-e0c04062"><span class="cl-e0bef766">38</span></p></td><td class="cl-e0c049b8"><p class="cl-e0c04062"><span class="cl-e0bef766">0</span></p></td><td class="cl-e0c049b9"><p class="cl-e0c04062"><span class="cl-e0bef766">256</span></p></td><td class="cl-e0c049ba"><p class="cl-e0c04062"><span class="cl-e0bef766">3</span></p></td><td class="cl-e0c049c2"><p class="cl-e0c04062"><span class="cl-e0bef766">0</span></p></td><td class="cl-e0c049c3"><p class="cl-e0c04062"><span class="cl-e0bef766">0</span></p></td><td class="cl-e0c049c4"><p class="cl-e0c04062"><span class="cl-e0bef766">64</span></p></td></tr><tr><td class="cl-e0c049a5"><p class="cl-e0c04059"><span class="cl-e0bef766">Vindafjord</span></p></td><td class="cl-e0c049a6"><p class="cl-e0c04062"><span class="cl-e0bef766">298</span></p></td><td class="cl-e0c049a7"><p class="cl-e0c04062"><span class="cl-e0bef766">68</span></p></td><td class="cl-e0c049ae"><p class="cl-e0c04062"><span class="cl-e0bef766">138</span></p></td><td class="cl-e0c049b8"><p class="cl-e0c04062"><span class="cl-e0bef766">8</span></p></td><td class="cl-e0c049b9"><p class="cl-e0c04062"><span class="cl-e0bef766">3</span></p></td><td class="cl-e0c049ba"><p class="cl-e0c04062"><span class="cl-e0bef766">3,061</span></p></td><td class="cl-e0c049c2"><p class="cl-e0c04062"><span class="cl-e0bef766">12</span></p></td><td class="cl-e0c049c3"><p class="cl-e0c04062"><span class="cl-e0bef766">70</span></p></td><td class="cl-e0c049c4"><p class="cl-e0c04062"><span class="cl-e0bef766">509</span></p></td></tr><tr><td class="cl-e0c049a5"><p class="cl-e0c04059"><span class="cl-e0bef766">Sauda</span></p></td><td class="cl-e0c049a6"><p class="cl-e0c04062"><span class="cl-e0bef766">60</span></p></td><td class="cl-e0c049a7"><p class="cl-e0c04062"><span class="cl-e0bef766">4</span></p></td><td class="cl-e0c049ae"><p class="cl-e0c04062"><span class="cl-e0bef766">2</span></p></td><td class="cl-e0c049b8"><p class="cl-e0c04062"><span class="cl-e0bef766">0</span></p></td><td class="cl-e0c049b9"><p class="cl-e0c04062"><span class="cl-e0bef766">0</span></p></td><td class="cl-e0c049ba"><p class="cl-e0c04062"><span class="cl-e0bef766">13</span></p></td><td class="cl-e0c049c2"><p class="cl-e0c04062"><span class="cl-e0bef766">1,952</span></p></td><td class="cl-e0c049c3"><p class="cl-e0c04062"><span class="cl-e0bef766">8</span></p></td><td class="cl-e0c049c4"><p class="cl-e0c04062"><span class="cl-e0bef766">280</span></p></td></tr><tr><td class="cl-e0c049a5"><p class="cl-e0c04059"><span class="cl-e0bef766">Etne</span></p></td><td class="cl-e0c049a6"><p class="cl-e0c04062"><span class="cl-e0bef766">56</span></p></td><td class="cl-e0c049a7"><p class="cl-e0c04062"><span class="cl-e0bef766">11</span></p></td><td class="cl-e0c049ae"><p class="cl-e0c04062"><span class="cl-e0bef766">20</span></p></td><td class="cl-e0c049b8"><p class="cl-e0c04062"><span class="cl-e0bef766">2</span></p></td><td class="cl-e0c049b9"><p class="cl-e0c04062"><span class="cl-e0bef766">0</span></p></td><td class="cl-e0c049ba"><p class="cl-e0c04062"><span class="cl-e0bef766">255</span></p></td><td class="cl-e0c049c2"><p class="cl-e0c04062"><span class="cl-e0bef766">0</span></p></td><td class="cl-e0c049c3"><p class="cl-e0c04062"><span class="cl-e0bef766">1,317</span></p></td><td class="cl-e0c049c4"><p class="cl-e0c04062"><span class="cl-e0bef766">296</span></p></td></tr><tr><td class="cl-e0c049cc"><p class="cl-e0c04059"><span class="cl-e0bef766">Andre</span></p></td><td class="cl-e0c049cd"><p class="cl-e0c04062"><span class="cl-e0bef766">926</span></p></td><td class="cl-e0c049ce"><p class="cl-e0c04062"><span class="cl-e0bef766">413</span></p></td><td class="cl-e0c049cf"><p class="cl-e0c04062"><span class="cl-e0bef766">104</span></p></td><td class="cl-e0c049d6"><p class="cl-e0c04062"><span class="cl-e0bef766">23</span></p></td><td class="cl-e0c049d7"><p class="cl-e0c04062"><span class="cl-e0bef766">10</span></p></td><td class="cl-e0c049d8"><p class="cl-e0c04062"><span class="cl-e0bef766">129</span></p></td><td class="cl-e0c049d9"><p class="cl-e0c04062"><span class="cl-e0bef766">116</span></p></td><td class="cl-e0c049e0"><p class="cl-e0c04062"><span class="cl-e0bef766">93</span></p></td><td class="cl-e0c049e1"><p class="cl-e0c04062"><span class="cl-e0bef766"></span></p></td></tr></tbody></table></div>
+<div class="tabwid"><style>.cl-208504f0{}.cl-2081bebc{font-family:'Helvetica';font-size:8pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-20833b0c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:1pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-20833b16{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:1pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-20833b17{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:1pt;padding-left:5pt;padding-right:5pt;line-height: 0;background-color:transparent;}.cl-20833b18{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:1pt;padding-left:5pt;padding-right:5pt;line-height: 0;background-color:transparent;}.cl-20834354{width:1.099in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20834355{width:0.754in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20834356{width:0.574in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2083435e{width:0.556in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2083435f{width:0.463in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20834360{width:0.438in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20834361{width:0.686in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20834362{width:0.506in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20834368{width:0.463in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20834369{width:0.482in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2083436a{width:1.099in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2083436b{width:0.754in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20834372{width:0.574in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20834373{width:0.556in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20834374{width:0.463in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20834375{width:0.438in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20834376{width:0.686in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20834377{width:0.506in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2083437c{width:0.463in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2083437d{width:0.482in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2083437e{width:1.099in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2083437f{width:0.754in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20834380{width:0.574in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20834381{width:0.556in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20834386{width:0.463in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20834387{width:0.438in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20834388{width:0.686in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20834389{width:0.506in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20834390{width:0.463in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20834391{width:0.482in;height:0.197in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-208504f0"><thead><tr style="overflow-wrap:break-word;"><th class="cl-20834354"><p class="cl-20833b0c"><span class="cl-2081bebc">Bo kom.\ Arb. kom</span></p></th><th class="cl-20834355"><p class="cl-20833b16"><span class="cl-2081bebc">Haugesund</span></p></th><th class="cl-20834356"><p class="cl-20833b16"><span class="cl-2081bebc">Karmøy</span></p></th><th class="cl-2083435e"><p class="cl-20833b16"><span class="cl-2081bebc">Tysvær</span></p></th><th class="cl-2083435f"><p class="cl-20833b16"><span class="cl-2081bebc">Sveio</span></p></th><th class="cl-20834360"><p class="cl-20833b16"><span class="cl-2081bebc">Bokn</span></p></th><th class="cl-20834361"><p class="cl-20833b16"><span class="cl-2081bebc">Vindafjord</span></p></th><th class="cl-20834362"><p class="cl-20833b16"><span class="cl-2081bebc">Sauda</span></p></th><th class="cl-20834368"><p class="cl-20833b16"><span class="cl-2081bebc">Etne</span></p></th><th class="cl-20834369"><p class="cl-20833b16"><span class="cl-2081bebc">Andre</span></p></th></tr></thead><tbody><tr><td class="cl-2083436a"><p class="cl-20833b17"><span class="cl-2081bebc">Haugesund</span></p></td><td class="cl-2083436b"><p class="cl-20833b18"><span class="cl-2081bebc">10,157</span></p></td><td class="cl-20834372"><p class="cl-20833b18"><span class="cl-2081bebc">1,664</span></p></td><td class="cl-20834373"><p class="cl-20833b18"><span class="cl-2081bebc">593</span></p></td><td class="cl-20834374"><p class="cl-20833b18"><span class="cl-2081bebc">97</span></p></td><td class="cl-20834375"><p class="cl-20833b18"><span class="cl-2081bebc">15</span></p></td><td class="cl-20834376"><p class="cl-20833b18"><span class="cl-2081bebc">121</span></p></td><td class="cl-20834377"><p class="cl-20833b18"><span class="cl-2081bebc">5</span></p></td><td class="cl-2083437c"><p class="cl-20833b18"><span class="cl-2081bebc">11</span></p></td><td class="cl-2083437d"><p class="cl-20833b18"><span class="cl-2081bebc">1,906</span></p></td></tr><tr><td class="cl-2083436a"><p class="cl-20833b17"><span class="cl-2081bebc">Karmøy</span></p></td><td class="cl-2083436b"><p class="cl-20833b18"><span class="cl-2081bebc">4,081</span></p></td><td class="cl-20834372"><p class="cl-20833b18"><span class="cl-2081bebc">10,592</span></p></td><td class="cl-20834373"><p class="cl-20833b18"><span class="cl-2081bebc">351</span></p></td><td class="cl-20834374"><p class="cl-20833b18"><span class="cl-2081bebc">20</span></p></td><td class="cl-20834375"><p class="cl-20833b18"><span class="cl-2081bebc">14</span></p></td><td class="cl-20834376"><p class="cl-20833b18"><span class="cl-2081bebc">56</span></p></td><td class="cl-20834377"><p class="cl-20833b18"><span class="cl-2081bebc">3</span></p></td><td class="cl-2083437c"><p class="cl-20833b18"><span class="cl-2081bebc">6</span></p></td><td class="cl-2083437d"><p class="cl-20833b18"><span class="cl-2081bebc">2,158</span></p></td></tr><tr><td class="cl-2083436a"><p class="cl-20833b17"><span class="cl-2081bebc">Tysvær</span></p></td><td class="cl-2083436b"><p class="cl-20833b18"><span class="cl-2081bebc">1,234</span></p></td><td class="cl-20834372"><p class="cl-20833b18"><span class="cl-2081bebc">307</span></p></td><td class="cl-20834373"><p class="cl-20833b18"><span class="cl-2081bebc">2,165</span></p></td><td class="cl-20834374"><p class="cl-20833b18"><span class="cl-2081bebc">19</span></p></td><td class="cl-20834375"><p class="cl-20833b18"><span class="cl-2081bebc">23</span></p></td><td class="cl-20834376"><p class="cl-20833b18"><span class="cl-2081bebc">104</span></p></td><td class="cl-20834377"><p class="cl-20833b18"><span class="cl-2081bebc">2</span></p></td><td class="cl-2083437c"><p class="cl-20833b18"><span class="cl-2081bebc">5</span></p></td><td class="cl-2083437d"><p class="cl-20833b18"><span class="cl-2081bebc">545</span></p></td></tr><tr><td class="cl-2083436a"><p class="cl-20833b17"><span class="cl-2081bebc">Sveio</span></p></td><td class="cl-2083436b"><p class="cl-20833b18"><span class="cl-2081bebc">680</span></p></td><td class="cl-20834372"><p class="cl-20833b18"><span class="cl-2081bebc">121</span></p></td><td class="cl-20834373"><p class="cl-20833b18"><span class="cl-2081bebc">71</span></p></td><td class="cl-20834374"><p class="cl-20833b18"><span class="cl-2081bebc">956</span></p></td><td class="cl-20834375"><p class="cl-20833b18"><span class="cl-2081bebc">3</span></p></td><td class="cl-20834376"><p class="cl-20833b18"><span class="cl-2081bebc">22</span></p></td><td class="cl-20834377"><p class="cl-20833b18"><span class="cl-2081bebc">1</span></p></td><td class="cl-2083437c"><p class="cl-20833b18"><span class="cl-2081bebc">2</span></p></td><td class="cl-2083437d"><p class="cl-20833b18"><span class="cl-2081bebc">350</span></p></td></tr><tr><td class="cl-2083436a"><p class="cl-20833b17"><span class="cl-2081bebc">Bokn</span></p></td><td class="cl-2083436b"><p class="cl-20833b18"><span class="cl-2081bebc">34</span></p></td><td class="cl-20834372"><p class="cl-20833b18"><span class="cl-2081bebc">15</span></p></td><td class="cl-20834373"><p class="cl-20833b18"><span class="cl-2081bebc">38</span></p></td><td class="cl-20834374"><p class="cl-20833b18"><span class="cl-2081bebc">0</span></p></td><td class="cl-20834375"><p class="cl-20833b18"><span class="cl-2081bebc">256</span></p></td><td class="cl-20834376"><p class="cl-20833b18"><span class="cl-2081bebc">3</span></p></td><td class="cl-20834377"><p class="cl-20833b18"><span class="cl-2081bebc">0</span></p></td><td class="cl-2083437c"><p class="cl-20833b18"><span class="cl-2081bebc">0</span></p></td><td class="cl-2083437d"><p class="cl-20833b18"><span class="cl-2081bebc">64</span></p></td></tr><tr><td class="cl-2083436a"><p class="cl-20833b17"><span class="cl-2081bebc">Vindafjord</span></p></td><td class="cl-2083436b"><p class="cl-20833b18"><span class="cl-2081bebc">298</span></p></td><td class="cl-20834372"><p class="cl-20833b18"><span class="cl-2081bebc">68</span></p></td><td class="cl-20834373"><p class="cl-20833b18"><span class="cl-2081bebc">138</span></p></td><td class="cl-20834374"><p class="cl-20833b18"><span class="cl-2081bebc">8</span></p></td><td class="cl-20834375"><p class="cl-20833b18"><span class="cl-2081bebc">3</span></p></td><td class="cl-20834376"><p class="cl-20833b18"><span class="cl-2081bebc">3,061</span></p></td><td class="cl-20834377"><p class="cl-20833b18"><span class="cl-2081bebc">12</span></p></td><td class="cl-2083437c"><p class="cl-20833b18"><span class="cl-2081bebc">70</span></p></td><td class="cl-2083437d"><p class="cl-20833b18"><span class="cl-2081bebc">509</span></p></td></tr><tr><td class="cl-2083436a"><p class="cl-20833b17"><span class="cl-2081bebc">Sauda</span></p></td><td class="cl-2083436b"><p class="cl-20833b18"><span class="cl-2081bebc">60</span></p></td><td class="cl-20834372"><p class="cl-20833b18"><span class="cl-2081bebc">4</span></p></td><td class="cl-20834373"><p class="cl-20833b18"><span class="cl-2081bebc">2</span></p></td><td class="cl-20834374"><p class="cl-20833b18"><span class="cl-2081bebc">0</span></p></td><td class="cl-20834375"><p class="cl-20833b18"><span class="cl-2081bebc">0</span></p></td><td class="cl-20834376"><p class="cl-20833b18"><span class="cl-2081bebc">13</span></p></td><td class="cl-20834377"><p class="cl-20833b18"><span class="cl-2081bebc">1,952</span></p></td><td class="cl-2083437c"><p class="cl-20833b18"><span class="cl-2081bebc">8</span></p></td><td class="cl-2083437d"><p class="cl-20833b18"><span class="cl-2081bebc">280</span></p></td></tr><tr><td class="cl-2083436a"><p class="cl-20833b17"><span class="cl-2081bebc">Etne</span></p></td><td class="cl-2083436b"><p class="cl-20833b18"><span class="cl-2081bebc">56</span></p></td><td class="cl-20834372"><p class="cl-20833b18"><span class="cl-2081bebc">11</span></p></td><td class="cl-20834373"><p class="cl-20833b18"><span class="cl-2081bebc">20</span></p></td><td class="cl-20834374"><p class="cl-20833b18"><span class="cl-2081bebc">2</span></p></td><td class="cl-20834375"><p class="cl-20833b18"><span class="cl-2081bebc">0</span></p></td><td class="cl-20834376"><p class="cl-20833b18"><span class="cl-2081bebc">255</span></p></td><td class="cl-20834377"><p class="cl-20833b18"><span class="cl-2081bebc">0</span></p></td><td class="cl-2083437c"><p class="cl-20833b18"><span class="cl-2081bebc">1,317</span></p></td><td class="cl-2083437d"><p class="cl-20833b18"><span class="cl-2081bebc">296</span></p></td></tr><tr><td class="cl-2083437e"><p class="cl-20833b17"><span class="cl-2081bebc">Andre</span></p></td><td class="cl-2083437f"><p class="cl-20833b18"><span class="cl-2081bebc">926</span></p></td><td class="cl-20834380"><p class="cl-20833b18"><span class="cl-2081bebc">413</span></p></td><td class="cl-20834381"><p class="cl-20833b18"><span class="cl-2081bebc">104</span></p></td><td class="cl-20834386"><p class="cl-20833b18"><span class="cl-2081bebc">23</span></p></td><td class="cl-20834387"><p class="cl-20833b18"><span class="cl-2081bebc">10</span></p></td><td class="cl-20834388"><p class="cl-20833b18"><span class="cl-2081bebc">129</span></p></td><td class="cl-20834389"><p class="cl-20833b18"><span class="cl-2081bebc">116</span></p></td><td class="cl-20834390"><p class="cl-20833b18"><span class="cl-2081bebc">93</span></p></td><td class="cl-20834391"><p class="cl-20833b18"><span class="cl-2081bebc"></span></p></td></tr></tbody></table></div>
 </div>
+</div>
+</figure>
 </div>
 </div>
 <p>Lag en tilsvarende tabell for dem som <em>bor</em> på Haugalandet som viser andelen som jobber i de ulike kommunene.</p>
-<div id="tbl-p2000-bo" class="cell tbl-parent quarto-layout-panel anchored" data-tbl-cap="Andel som jobbet i de ulike kommunene på Haugalandet for hver av bo-kommunene i år 2000.">
+<div id="tbl-p2000-bo" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-p2000-bo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabell&nbsp;3: Andel som jobbet i de ulike kommunene på Haugalandet for hver av bo-kommunene i år 2000.
+</figcaption>
+<div aria-describedby="tbl-p2000-bo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 
 </div>
+</figure>
+</div>
 <p>Lag også en tilsvarende tabell for dem som <em>arbeider</em> på Haugalandet som viser andelen som bor i de ulike kommunene.</p>
-<div id="tbl-p2000-arb" class="cell tbl-parent quarto-layout-panel anchored" data-tbl-cap="Andel som bodde i de ulike kommunene på Haugalandet for hver av arbeidssted-kommunene i år 2000.">
+<div id="tbl-p2000-arb" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-p2000-arb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabell&nbsp;4: Andel som bodde i de ulike kommunene på Haugalandet for hver av arbeidssted-kommunene i år 2000.
+</figcaption>
+<div aria-describedby="tbl-p2000-arb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 
+</div>
+</figure>
 </div>
 </section>
 </section>
@@ -625,10 +661,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
 <span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-arbHaug" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ass3-h23_files/figure-html/fig-arbHaug-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figur&nbsp;1: Andel av de som jobber i Haugesund som bor i de ulike kommunene på Haugalandet. Viser utviklingen for perioden 2000-2022. Det er andel av total arbeidsstyrke som vises på vertikal akse.</figcaption>
+<div id="fig-arbHaug" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-arbHaug-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ass3-h23_files/figure-html/fig-arbHaug-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-arbHaug-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figur&nbsp;1: Andel av de som jobber i Haugesund som bor i de ulike kommunene på Haugalandet. Viser utviklingen for perioden 2000-2022. Det er andel av total arbeidsstyrke som vises på vertikal akse.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -666,10 +706,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
 <span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-arbHaugB" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ass3-h23_files/figure-html/fig-arbHaugB-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figur&nbsp;2: Andel av dem som jobber i Haugesund som bor i de ulike kommunene på Haugalandet. Vi ser utviklingen for perioden 2000-2022. Det er andel av total arbeidsstyrke som vises på vertikal akse. Internpendling og pendling fra Karmøy er utelatt for ikke å dominere bildet.</figcaption>
+<div id="fig-arbHaugB" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-arbHaugB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ass3-h23_files/figure-html/fig-arbHaugB-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-arbHaugB-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figur&nbsp;2: Andel av dem som jobber i Haugesund som bor i de ulike kommunene på Haugalandet. Vi ser utviklingen for perioden 2000-2022. Det er andel av total arbeidsstyrke som vises på vertikal akse. Internpendling og pendling fra Karmøy er utelatt for ikke å dominere bildet.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -764,10 +808,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -777,8 +820,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -791,6 +843,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -834,6 +1005,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -859,6 +1031,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -919,6 +1117,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

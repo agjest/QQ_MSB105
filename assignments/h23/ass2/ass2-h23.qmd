@@ -110,7 +110,7 @@ hoyde <- hoyde %>%
 Vi forenkler også variabelen `education` s.a.
 vi bare skiller mellom kategorien `not_hs` («Not High School Exam»; 0 ≤ education \<12), `not_cc` («Not Community College»; 12 ≤ education \<14) `not_col` («Not College»; 14 ≤ education \< 16) og `col_plus` («4 years College or more»; education ≥ 16)
 
-``` {#lst-edu_fac .R lst-cap="I samme mutate lager vi også variablen `edu_fac` ved å kutte `education` opp i fire intervaller"}
+``` {#lst-edu-fac .R lst-cap="I samme mutate lager vi også variablen edu_fac ved å kutte education opp i fire intervaller"}
 edu_fac = cut(
       x = education,
       breaks = c(0, 12, 14, 16, 21),
@@ -118,7 +118,6 @@ edu_fac = cut(
                     "not_col", "col_plus"),
       right = FALSE
     )
-  )
 ```
 
 Det kan være hensiktmessig å samle kategorivariablene lengst til høyre i datasettet (f.eks blir resultatet av `st()`en noe ryddigere tabell).

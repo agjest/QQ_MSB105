@@ -8,7 +8,7 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.353">
+  <meta name="generator" content="quarto-1.4.549">
 
   <title>MSB105 - Undervisningsplan</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -30,7 +30,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -220,7 +220,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -399,10 +400,10 @@
 <section id="loading-some-r-libraries" class="slide level2">
 <h2>Loading some R libraries</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(readr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(readr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -467,7 +468,7 @@
 </div><div class="column" style="width:40%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="trump.png"></p>
+<p><img data-src="trump.png" class="quarto-figure quarto-figure-center"></p>
 <figcaption>TFG</figcaption>
 </figure>
 </div>
@@ -495,7 +496,7 @@
 </div><div class="column" style="width:40%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="benito.png"></p>
+<p><img data-src="benito.png" class="quarto-figure quarto-figure-center"></p>
 <figcaption>Benito</figcaption>
 </figure>
 </div>
@@ -506,7 +507,7 @@
 <h2>Pensum</h2>
 <p>Vi vil i hovedsak benytte <a href="https://r4ds.had.co.nz">R for Data Science</a>.</p>
 
-<img data-src="cover.png" width="308" class="r-stretch quarto-figure-left"><p class="caption">Cover R for Data Science</p></section>
+<img data-src="cover.png" class="quarto-figure quarto-figure-left r-stretch" width="308"><p class="caption">Cover R for Data Science</p></section>
 <section id="undervisningsplan-quarto-document" class="slide level2">
 <h2>Undervisningsplan; Quarto Document</h2>
 <p>Jeg vil komme tilbake med en mer detaljert undervisningsplan når vi har kommet skikkelig i gang</p>
@@ -620,14 +621,14 @@
 <li class="fragment">Må konverteres til long format for å kunne brukes i statistiske rutiner</li>
 </ul>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Leser inn csv fil med data</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>RegHeltLedige_w <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"RegHeltLedige_w.csv"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># Heller dataene inn i en pipe</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>RegHeltLedige_w <span class="sc">%&gt;%</span> </span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="co"># Plukker ut tre måneder rundt årsskiftet</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">select</span>(knrNavn, <span class="st">`</span><span class="at">2013M12</span><span class="st">`</span>, <span class="st">`</span><span class="at">2014M01</span><span class="st">`</span>, <span class="st">`</span><span class="at">2014M02</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co"># Leser inn csv fil med data</span></span>
+<span id="cb2-2"><a></a>RegHeltLedige_w <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"RegHeltLedige_w.csv"</span>)</span>
+<span id="cb2-3"><a></a><span class="co"># Heller dataene inn i en pipe</span></span>
+<span id="cb2-4"><a></a>RegHeltLedige_w <span class="sc">%&gt;%</span> </span>
+<span id="cb2-5"><a></a><span class="co"># Plukker ut tre måneder rundt årsskiftet</span></span>
+<span id="cb2-6"><a></a>  <span class="fu">select</span>(knrNavn, <span class="st">`</span><span class="at">2013M12</span><span class="st">`</span>, <span class="st">`</span><span class="at">2014M01</span><span class="st">`</span>, <span class="st">`</span><span class="at">2014M02</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 18 × 4
@@ -657,17 +658,17 @@
 <section id="eksempel-long-format" class="slide level2">
 <h2>Eksempel long format</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Leser inn csv fil med data</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>RegHeltLedige_l <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"RegHeltLedige_l.csv"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="co"># Heller dataene inn i en pipe</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>RegHeltLedige_l <span class="sc">%&gt;%</span> </span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co"># Plukker ut tre måneder rundt årsskiftet</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a>  <span class="fu">filter</span>(</span>
-<span id="cb4-7"><a href="#cb4-7"></a>    (year <span class="sc">==</span> <span class="dv">2013</span> <span class="sc">&amp;</span> month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"12"</span>)) <span class="sc">|</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a>      (year <span class="sc">==</span> <span class="dv">2014</span> <span class="sc">&amp;</span> month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"01"</span>, <span class="st">"02"</span>))</span>
-<span id="cb4-9"><a href="#cb4-9"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co"># Leser inn csv fil med data</span></span>
+<span id="cb4-2"><a></a>RegHeltLedige_l <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"RegHeltLedige_l.csv"</span>)</span>
+<span id="cb4-3"><a></a><span class="co"># Heller dataene inn i en pipe</span></span>
+<span id="cb4-4"><a></a>RegHeltLedige_l <span class="sc">%&gt;%</span> </span>
+<span id="cb4-5"><a></a><span class="co"># Plukker ut tre måneder rundt årsskiftet</span></span>
+<span id="cb4-6"><a></a>  <span class="fu">filter</span>(</span>
+<span id="cb4-7"><a></a>    (year <span class="sc">==</span> <span class="dv">2013</span> <span class="sc">&amp;</span> month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"12"</span>)) <span class="sc">|</span></span>
+<span id="cb4-8"><a></a>      (year <span class="sc">==</span> <span class="dv">2014</span> <span class="sc">&amp;</span> month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"01"</span>, <span class="st">"02"</span>))</span>
+<span id="cb4-9"><a></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 54 × 5
@@ -746,8 +747,10 @@
 </ul></li>
 </ul>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="../../index.html">MSB105</a></p>
+</div>
 </div>
 </section>
     </div>
@@ -776,7 +779,6 @@
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': true,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1075,10 +1077,9 @@
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn) {
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1088,8 +1089,17 @@
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 

@@ -8,7 +8,7 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.353">
+  <meta name="generator" content="quarto-1.4.549">
 
   <meta name="author" content="ag">
   <title>MSB105 - Time Data</title>
@@ -31,7 +31,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -98,6 +98,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+      margin-bottom: 0em;
     }
     .hanging-indent div.csl-entry {
       margin-left:2em;
@@ -240,7 +241,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -424,27 +426,27 @@ ag
 <section id="load-tidyverse-and-lubridate" class="slide level2">
 <h2>Load <code>tidyverse</code> and <code>lubridate</code></h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(lubridate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(lubridate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># create a bib file for the R packages</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># used in this document</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># Note! Needs to do a touch ag_date.bib in terminal before first run</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># else stops when bibliography: "ag_date.bib" not found in YAML</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="co"># first time run</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>knitr<span class="sc">::</span><span class="fu">write_bib</span>(</span>
-<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">c</span>(</span>
-<span id="cb2-8"><a href="#cb2-8"></a>    <span class="st">"tidyverse"</span>,</span>
-<span id="cb2-9"><a href="#cb2-9"></a>    <span class="st">"lubridate"</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>    ),</span>
-<span id="cb2-11"><a href="#cb2-11"></a>  <span class="at">file =</span> <span class="st">"ag_date.bib"</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co"># create a bib file for the R packages</span></span>
+<span id="cb2-2"><a></a><span class="co"># used in this document</span></span>
+<span id="cb2-3"><a></a><span class="co"># Note! Needs to do a touch ag_date.bib in terminal before first run</span></span>
+<span id="cb2-4"><a></a><span class="co"># else stops when bibliography: "ag_date.bib" not found in YAML</span></span>
+<span id="cb2-5"><a></a><span class="co"># first time run</span></span>
+<span id="cb2-6"><a></a>knitr<span class="sc">::</span><span class="fu">write_bib</span>(</span>
+<span id="cb2-7"><a></a>  <span class="fu">c</span>(</span>
+<span id="cb2-8"><a></a>    <span class="st">"tidyverse"</span>,</span>
+<span id="cb2-9"><a></a>    <span class="st">"lubridate"</span></span>
+<span id="cb2-10"><a></a>    ),</span>
+<span id="cb2-11"><a></a>  <span class="at">file =</span> <span class="st">"ag_date.bib"</span></span>
+<span id="cb2-12"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -457,7 +459,7 @@ ag
 <li class="fragment">Since time probably will be of less importance for the data that you will handle we will concentrate on dates</li>
 </ul>
 </section>
-<section id="creating-datetimes" class="slide level2">
+<section id="creating-datetimes" class="slide level2 scrollable">
 <h2>Creating date/times</h2>
 <p>Tibbles prints them as:</p>
 <ul>
@@ -486,19 +488,19 @@ ag
 <section id="example" class="slide level2">
 <h2>Example</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># nine eleven</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>us_date <span class="ot">&lt;-</span> <span class="st">"9-11-2001"</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>no_date <span class="ot">&lt;-</span> <span class="st">"11/9/2001"</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">typeof</span>(us_date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># nine eleven</span></span>
+<span id="cb3-2"><a></a>us_date <span class="ot">&lt;-</span> <span class="st">"9-11-2001"</span></span>
+<span id="cb3-3"><a></a>no_date <span class="ot">&lt;-</span> <span class="st">"11/9/2001"</span></span>
+<span id="cb3-4"><a></a><span class="fu">typeof</span>(us_date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "character"</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">typeof</span>(no_date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">typeof</span>(no_date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "character"</code></pre>
@@ -508,25 +510,25 @@ ag
 <section id="to-date-object-us" class="slide level2">
 <h2>To date object; us</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># us date</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>us_date</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># us date</span></span>
+<span id="cb7-2"><a></a>us_date</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "9-11-2001"</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>us_d <span class="ot">&lt;-</span> <span class="fu">mdy</span>(us_date) <span class="co"># note mdy</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">typeof</span>(us_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>us_d <span class="ot">&lt;-</span> <span class="fu">mdy</span>(us_date) <span class="co"># note mdy</span></span>
+<span id="cb9-2"><a></a><span class="fu">typeof</span>(us_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "double"</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">class</span>(us_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">class</span>(us_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Date"</code></pre>
@@ -536,25 +538,25 @@ ag
 <section id="to-date-object-no" class="slide level2">
 <h2>To date object; no</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># no date</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>no_date</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># no date</span></span>
+<span id="cb13-2"><a></a>no_date</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "11/9/2001"</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>no_d <span class="ot">&lt;-</span> <span class="fu">dmy</span>(no_date) <span class="co">#note dmy</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">typeof</span>(no_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>no_d <span class="ot">&lt;-</span> <span class="fu">dmy</span>(no_date) <span class="co">#note dmy</span></span>
+<span id="cb15-2"><a></a><span class="fu">typeof</span>(no_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "double"</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">class</span>(no_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">class</span>(no_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Date"</code></pre>
@@ -564,31 +566,31 @@ ag
 <section id="some-important-years" class="slide level2">
 <h2>Some important years</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># some important years </span></span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="fu">as.numeric</span>(<span class="fu">dmy</span>(<span class="st">"01-01-1970"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="co"># some important years </span></span>
+<span id="cb19-2"><a></a><span class="fu">as.numeric</span>(<span class="fu">dmy</span>(<span class="st">"01-01-1970"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">as.numeric</span>(<span class="fu">dmy</span>(<span class="st">"01-01-1971"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">as.numeric</span>(<span class="fu">dmy</span>(<span class="st">"01-01-1971"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 365</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">as.numeric</span>(<span class="fu">dmy</span>(<span class="st">"01-01-1900"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">as.numeric</span>(<span class="fu">dmy</span>(<span class="st">"01-01-1900"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -25567</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">as.numeric</span>(<span class="fu">dmy</span>(<span class="st">"01-01-0001"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">as.numeric</span>(<span class="fu">dmy</span>(<span class="st">"01-01-0001"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -719162</code></pre>
@@ -598,30 +600,30 @@ ag
 <section id="to-date-object" class="slide level2">
 <h2>To date object</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">str</span>(no_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">str</span>(no_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> Date[1:1], format: "2001-09-11"</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">str</span>(us_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">str</span>(us_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> Date[1:1], format: "2001-09-11"</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">as.numeric</span>(no_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">as.numeric</span>(no_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 11576</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">as.numeric</span>(us_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">as.numeric</span>(us_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 11576</code></pre>
@@ -631,31 +633,31 @@ ag
 <section id="to-date-object-cont." class="slide level2">
 <h2>To date object cont.</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>us_d <span class="sc">-</span> no_d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>us_d <span class="sc">-</span> no_d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Time difference of 0 days</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">month</span>(us_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="fu">month</span>(us_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 9</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">month</span>(us_d, <span class="at">label =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="fu">month</span>(us_d, <span class="at">label =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] Sep
 12 Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; Sep &lt; ... &lt; Dec</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">month</span>(us_d, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a><span class="fu">month</span>(us_d, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] Sep
@@ -666,9 +668,9 @@ ag
 <section id="to-date-object-cont.-1" class="slide level2">
 <h2>To date object cont.</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">month</span>(us_d, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a><span class="fu">month</span>(us_d, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] September
@@ -676,12 +678,12 @@ ag
 </div>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="co"># Get code for locale with command </span></span>
-<span id="cb45-2"><a href="#cb45-2"></a><span class="co"># locale -a </span></span>
-<span id="cb45-3"><a href="#cb45-3"></a><span class="co"># in Terminal</span></span>
-<span id="cb45-4"><a href="#cb45-4"></a><span class="fu">month</span>(no_d, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span>, <span class="at">locale =</span> <span class="st">"no_NO"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a><span class="co"># Get code for locale with command </span></span>
+<span id="cb45-2"><a></a><span class="co"># locale -a </span></span>
+<span id="cb45-3"><a></a><span class="co"># in Terminal</span></span>
+<span id="cb45-4"><a></a><span class="fu">month</span>(no_d, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span>, <span class="at">locale =</span> <span class="st">"no_NO"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] september
@@ -689,9 +691,9 @@ ag
 </div>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">month</span>(no_d, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">TRUE</span>, <span class="at">locale =</span> <span class="st">"no_NO"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a><span class="fu">month</span>(no_d, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">TRUE</span>, <span class="at">locale =</span> <span class="st">"no_NO"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] sep
@@ -702,16 +704,16 @@ ag
 <section id="date-object-math" class="slide level2">
 <h2>Date object math</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>no_d <span class="sc">==</span> us_d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a>no_d <span class="sc">==</span> us_d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="fu">as.numeric</span>(no_d) <span class="sc">==</span> <span class="fu">as.numeric</span>(us_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a><span class="fu">as.numeric</span>(no_d) <span class="sc">==</span> <span class="fu">as.numeric</span>(us_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
@@ -721,32 +723,32 @@ ag
 <section id="date-time" class="slide level2 smaller">
 <h2>date-time</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>us_date_time <span class="ot">&lt;-</span> <span class="dv">09112001202020</span></span>
-<span id="cb53-2"><a href="#cb53-2"></a>no_date_time <span class="ot">&lt;-</span> <span class="st">"11/9/2001 20:20:20"</span></span>
-<span id="cb53-3"><a href="#cb53-3"></a><span class="fu">mdy_hms</span>(us_date_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a>us_date_time <span class="ot">&lt;-</span> <span class="dv">09112001202020</span></span>
+<span id="cb53-2"><a></a>no_date_time <span class="ot">&lt;-</span> <span class="st">"11/9/2001 20:20:20"</span></span>
+<span id="cb53-3"><a></a><span class="fu">mdy_hms</span>(us_date_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2001-09-11 20:20:20 UTC"</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="fu">dmy_hms</span>(no_date_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a><span class="fu">dmy_hms</span>(no_date_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2001-09-11 20:20:20 UTC"</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a><span class="fu">as.numeric</span>(<span class="fu">mdy_hms</span>(us_date_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a></a><span class="fu">as.numeric</span>(<span class="fu">mdy_hms</span>(us_date_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1000239620</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a><span class="fu">as.numeric</span>(<span class="fu">dmy_hms</span>(no_date_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a></a><span class="fu">as.numeric</span>(<span class="fu">dmy_hms</span>(no_date_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1000239620</code></pre>
@@ -756,9 +758,9 @@ ag
 <section id="date-time-cont." class="slide level2 smaller">
 <h2>date-time cont.</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a><span class="fu">as.numeric</span>(<span class="fu">dmy_hms</span>(<span class="dv">01011970000001</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a></a><span class="fu">as.numeric</span>(<span class="fu">dmy_hms</span>(<span class="dv">01011970000001</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1</code></pre>
@@ -776,16 +778,16 @@ ag
 <section id="date-from-combining-elements" class="slide level2">
 <h2>Date from combining elements</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb63-2"><a href="#cb63-2"></a>my_dates <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb63-3"><a href="#cb63-3"></a>  <span class="at">y =</span> <span class="dv">1999</span><span class="sc">:</span><span class="dv">2008</span>,</span>
-<span id="cb63-4"><a href="#cb63-4"></a>  <span class="at">m =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb63-5"><a href="#cb63-5"></a>  <span class="co"># make it simple, seed 1234 gives no impossible date</span></span>
-<span id="cb63-6"><a href="#cb63-6"></a>  <span class="at">d =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">31</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb63-7"><a href="#cb63-7"></a>)</span>
-<span id="cb63-8"><a href="#cb63-8"></a>my_dates</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb63-2"><a></a>my_dates <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb63-3"><a></a>  <span class="at">y =</span> <span class="dv">1999</span><span class="sc">:</span><span class="dv">2008</span>,</span>
+<span id="cb63-4"><a></a>  <span class="at">m =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb63-5"><a></a>  <span class="co"># make it simple, seed 1234 gives no impossible date</span></span>
+<span id="cb63-6"><a></a>  <span class="at">d =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">31</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb63-7"><a></a>)</span>
+<span id="cb63-8"><a></a>my_dates</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 3
@@ -807,16 +809,16 @@ ag
 <section id="date-from-combining-elements-1" class="slide level2 smaller">
 <h2>Date from combining elements</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a>my_dates <span class="ot">&lt;-</span> my_dates <span class="sc">%&gt;%</span> </span>
-<span id="cb65-2"><a href="#cb65-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb65-3"><a href="#cb65-3"></a>    <span class="at">date =</span> <span class="fu">make_date</span>(<span class="at">year =</span> y, <span class="at">month =</span> m, <span class="at">day =</span> d),</span>
-<span id="cb65-4"><a href="#cb65-4"></a>    <span class="co"># order do not matter</span></span>
-<span id="cb65-5"><a href="#cb65-5"></a>    <span class="at">rev_date =</span> <span class="fu">make_date</span>(<span class="at">day =</span> d,  <span class="at">month =</span> m, <span class="at">year =</span> y),</span>
-<span id="cb65-6"><a href="#cb65-6"></a>    <span class="at">rev_date2 =</span> <span class="fu">format</span>(date, <span class="st">"%d-%m-%y"</span>) <span class="co"># now &lt;chr&gt; not date</span></span>
-<span id="cb65-7"><a href="#cb65-7"></a>    )</span>
-<span id="cb65-8"><a href="#cb65-8"></a>my_dates</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a></a>my_dates <span class="ot">&lt;-</span> my_dates <span class="sc">%&gt;%</span> </span>
+<span id="cb65-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb65-3"><a></a>    <span class="at">date =</span> <span class="fu">make_date</span>(<span class="at">year =</span> y, <span class="at">month =</span> m, <span class="at">day =</span> d),</span>
+<span id="cb65-4"><a></a>    <span class="co"># order do not matter</span></span>
+<span id="cb65-5"><a></a>    <span class="at">rev_date =</span> <span class="fu">make_date</span>(<span class="at">day =</span> d,  <span class="at">month =</span> m, <span class="at">year =</span> y),</span>
+<span id="cb65-6"><a></a>    <span class="at">rev_date2 =</span> <span class="fu">format</span>(date, <span class="st">"%d-%m-%y"</span>) <span class="co"># now &lt;chr&gt; not date</span></span>
+<span id="cb65-7"><a></a>    )</span>
+<span id="cb65-8"><a></a>my_dates</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 6
@@ -833,45 +835,45 @@ ag
  9  2007     4    30 2007-04-30 2007-04-30 30-04-07 
 10  2008     2    24 2008-02-24 2008-02-24 24-02-08 </code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a><span class="co">#clean up</span></span>
-<span id="cb67-2"><a href="#cb67-2"></a>my_dates <span class="ot">&lt;-</span> my_dates <span class="sc">%&gt;%</span> </span>
-<span id="cb67-3"><a href="#cb67-3"></a>  <span class="fu">select</span>(<span class="sc">-</span>rev_date, <span class="sc">-</span>rev_date2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a></a><span class="co">#clean up</span></span>
+<span id="cb67-2"><a></a>my_dates <span class="ot">&lt;-</span> my_dates <span class="sc">%&gt;%</span> </span>
+<span id="cb67-3"><a></a>  <span class="fu">select</span>(<span class="sc">-</span>rev_date, <span class="sc">-</span>rev_date2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="change-type" class="slide level2">
 <h2>Change type</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="fu">today</span>() <span class="co"># date</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a></a><span class="fu">today</span>() <span class="co"># date</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2023-12-04"</code></pre>
+<pre><code>[1] "2024-08-12"</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a><span class="fu">now</span>() <span class="co"># date time</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a></a><span class="fu">now</span>() <span class="co"># date time</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2023-12-04 13:43:52 CET"</code></pre>
+<pre><code>[1] "2024-08-12 15:16:07 CEST"</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a><span class="co"># change type</span></span>
-<span id="cb72-2"><a href="#cb72-2"></a><span class="fu">as_date</span>(<span class="fu">now</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a></a><span class="co"># change type</span></span>
+<span id="cb72-2"><a></a><span class="fu">as_date</span>(<span class="fu">now</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2023-12-04"</code></pre>
+<pre><code>[1] "2024-08-12"</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a><span class="fu">as_datetime</span>(<span class="fu">today</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a></a><span class="fu">as_datetime</span>(<span class="fu">today</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2023-12-04 UTC"</code></pre>
+<pre><code>[1] "2024-08-12 UTC"</code></pre>
 </div>
 </div>
 </section>
@@ -883,18 +885,18 @@ ag
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a>my_dato <span class="ot">&lt;-</span> <span class="st">"11_9_01"</span></span>
-<span id="cb76-2"><a href="#cb76-2"></a><span class="fu">dmy</span>(my_dato)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a></a>my_dato <span class="ot">&lt;-</span> <span class="st">"11_9_01"</span></span>
+<span id="cb76-2"><a></a><span class="fu">dmy</span>(my_dato)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2001-09-11"</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a>my_dato <span class="ot">&lt;-</span> <span class="st">"11:9:01"</span></span>
-<span id="cb78-2"><a href="#cb78-2"></a><span class="fu">dmy</span>(my_dato)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a></a>my_dato <span class="ot">&lt;-</span> <span class="st">"11:9:01"</span></span>
+<span id="cb78-2"><a></a><span class="fu">dmy</span>(my_dato)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2001-09-11"</code></pre>
@@ -905,13 +907,13 @@ ag
 <section id="what-lubridate-cant-help-us-with" class="slide level2">
 <h2>What <em>lubridate</em> can’t help us with</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1"></a>my_dates <span class="ot">&lt;-</span> my_dates <span class="sc">%&gt;%</span> </span>
-<span id="cb80-2"><a href="#cb80-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb80-3"><a href="#cb80-3"></a>    <span class="at">DMY_rubbish =</span> <span class="fu">paste</span>(d, m, <span class="fu">str_sub</span>(y,<span class="dv">3</span>,<span class="dv">4</span>), <span class="at">sep =</span> <span class="st">""</span>)</span>
-<span id="cb80-4"><a href="#cb80-4"></a>  )</span>
-<span id="cb80-5"><a href="#cb80-5"></a>my_dates</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a></a>my_dates <span class="ot">&lt;-</span> my_dates <span class="sc">%&gt;%</span> </span>
+<span id="cb80-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb80-3"><a></a>    <span class="at">DMY_rubbish =</span> <span class="fu">paste</span>(d, m, <span class="fu">str_sub</span>(y,<span class="dv">3</span>,<span class="dv">4</span>), <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb80-4"><a></a>  )</span>
+<span id="cb80-5"><a></a>my_dates</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 5
@@ -933,9 +935,9 @@ ag
 <section id="what-lubridate-cant-help-us-with-1" class="slide level2">
 <h2>What <em>lubridate</em> can’t help us with</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1"></a>my_dates <span class="sc">%&gt;%</span> <span class="fu">select</span>(DMY_rubbish) <span class="sc">%&gt;%</span> <span class="fu">dmy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a></a>my_dates <span class="sc">%&gt;%</span> <span class="fu">select</span>(DMY_rubbish) <span class="sc">%&gt;%</span> <span class="fu">dmy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA</code></pre>
@@ -959,12 +961,12 @@ ag
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1"></a>my_dates[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,]</span>
-<span id="cb84-2"><a href="#cb84-2"></a>my_dates <span class="sc">%&gt;%</span> </span>
-<span id="cb84-3"><a href="#cb84-3"></a>  <span class="fu">select</span>(date) <span class="sc">%&gt;%</span> </span>
-<span id="cb84-4"><a href="#cb84-4"></a>  <span class="fu">floor_date</span>(<span class="st">"month"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a></a>my_dates[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,]</span>
+<span id="cb84-2"><a></a>my_dates <span class="sc">%&gt;%</span> </span>
+<span id="cb84-3"><a></a>  <span class="fu">select</span>(date) <span class="sc">%&gt;%</span> </span>
+<span id="cb84-4"><a></a>  <span class="fu">floor_date</span>(<span class="st">"month"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ul>
@@ -979,18 +981,18 @@ ag
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1"></a>my_dates <span class="sc">%&gt;%</span></span>
-<span id="cb85-2"><a href="#cb85-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb85-3"><a href="#cb85-3"></a>    <span class="at">date_dt =</span> <span class="fu">as_datetime</span>(date, <span class="at">tz =</span> <span class="st">"UTC"</span>),</span>
-<span id="cb85-4"><a href="#cb85-4"></a>    <span class="at">date_dt_fl_y =</span> <span class="fu">floor_date</span>(date_dt, <span class="st">"year"</span>),</span>
-<span id="cb85-5"><a href="#cb85-5"></a>    <span class="at">date_dt_fl_m =</span> <span class="fu">floor_date</span>(date_dt, <span class="st">"month"</span>),</span>
-<span id="cb85-6"><a href="#cb85-6"></a>    <span class="at">date_dt_cl_m =</span> <span class="fu">ceiling_date</span>(date_dt, <span class="st">"month"</span>)</span>
-<span id="cb85-7"><a href="#cb85-7"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb85-8"><a href="#cb85-8"></a>  <span class="fu">select</span>(date_dt, date_dt_fl_y,</span>
-<span id="cb85-9"><a href="#cb85-9"></a>         date_dt_fl_m, date_dt_cl_m) <span class="sc">%&gt;%</span> </span>
-<span id="cb85-10"><a href="#cb85-10"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a></a>my_dates <span class="sc">%&gt;%</span></span>
+<span id="cb85-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb85-3"><a></a>    <span class="at">date_dt =</span> <span class="fu">as_datetime</span>(date, <span class="at">tz =</span> <span class="st">"UTC"</span>),</span>
+<span id="cb85-4"><a></a>    <span class="at">date_dt_fl_y =</span> <span class="fu">floor_date</span>(date_dt, <span class="st">"year"</span>),</span>
+<span id="cb85-5"><a></a>    <span class="at">date_dt_fl_m =</span> <span class="fu">floor_date</span>(date_dt, <span class="st">"month"</span>),</span>
+<span id="cb85-6"><a></a>    <span class="at">date_dt_cl_m =</span> <span class="fu">ceiling_date</span>(date_dt, <span class="st">"month"</span>)</span>
+<span id="cb85-7"><a></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb85-8"><a></a>  <span class="fu">select</span>(date_dt, date_dt_fl_y,</span>
+<span id="cb85-9"><a></a>         date_dt_fl_m, date_dt_cl_m) <span class="sc">%&gt;%</span> </span>
+<span id="cb85-10"><a></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 10
@@ -1025,18 +1027,18 @@ $ date_dt_cl_m &lt;dttm&gt; 2000-01-01, 2000-11-01, 2001-07-01, 2002-06-01, 2004
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1"></a>my_dates <span class="sc">%&gt;%</span></span>
-<span id="cb87-2"><a href="#cb87-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb87-3"><a href="#cb87-3"></a>    <span class="at">date_dt =</span> <span class="fu">as_datetime</span>(date, <span class="at">tz =</span> <span class="st">"UTC"</span>),</span>
-<span id="cb87-4"><a href="#cb87-4"></a>    <span class="co"># round to start of week Sunday</span></span>
-<span id="cb87-5"><a href="#cb87-5"></a>    <span class="at">date_dt_fl_w_s =</span> <span class="fu">floor_date</span>(date_dt, <span class="st">"week"</span>, <span class="at">week_start =</span> <span class="fu">getOption</span>(<span class="st">"lubridate.week.start"</span>, <span class="dv">7</span>)),</span>
-<span id="cb87-6"><a href="#cb87-6"></a>    <span class="co"># round to start of week Monday</span></span>
-<span id="cb87-7"><a href="#cb87-7"></a>    <span class="at">date_dt_fl_w_m =</span> <span class="fu">floor_date</span>(date_dt, <span class="st">"week"</span>, <span class="at">week_start =</span> <span class="fu">getOption</span>(<span class="st">"lubridate.week.start"</span>, <span class="dv">1</span>))</span>
-<span id="cb87-8"><a href="#cb87-8"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb87-9"><a href="#cb87-9"></a>  <span class="fu">select</span>(date_dt, date_dt_fl_w_s, date_dt_fl_w_m) <span class="sc">%&gt;%</span></span>
-<span id="cb87-10"><a href="#cb87-10"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a></a>my_dates <span class="sc">%&gt;%</span></span>
+<span id="cb87-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb87-3"><a></a>    <span class="at">date_dt =</span> <span class="fu">as_datetime</span>(date, <span class="at">tz =</span> <span class="st">"UTC"</span>),</span>
+<span id="cb87-4"><a></a>    <span class="co"># round to start of week Sunday</span></span>
+<span id="cb87-5"><a></a>    <span class="at">date_dt_fl_w_s =</span> <span class="fu">floor_date</span>(date_dt, <span class="st">"week"</span>, <span class="at">week_start =</span> <span class="fu">getOption</span>(<span class="st">"lubridate.week.start"</span>, <span class="dv">7</span>)),</span>
+<span id="cb87-6"><a></a>    <span class="co"># round to start of week Monday</span></span>
+<span id="cb87-7"><a></a>    <span class="at">date_dt_fl_w_m =</span> <span class="fu">floor_date</span>(date_dt, <span class="st">"week"</span>, <span class="at">week_start =</span> <span class="fu">getOption</span>(<span class="st">"lubridate.week.start"</span>, <span class="dv">1</span>))</span>
+<span id="cb87-8"><a></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb87-9"><a></a>  <span class="fu">select</span>(date_dt, date_dt_fl_w_s, date_dt_fl_w_m) <span class="sc">%&gt;%</span></span>
+<span id="cb87-10"><a></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
@@ -1061,12 +1063,12 @@ $ date_dt_cl_m &lt;dttm&gt; 2000-01-01, 2000-11-01, 2001-07-01, 2002-06-01, 2004
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1"></a><span class="co"># Does not work</span></span>
-<span id="cb89-2"><a href="#cb89-2"></a>my_dates <span class="sc">%&gt;%</span> </span>
-<span id="cb89-3"><a href="#cb89-3"></a>  <span class="fu">select</span>(date) <span class="sc">%&gt;%</span></span>
-<span id="cb89-4"><a href="#cb89-4"></a>  <span class="fu">update</span>(<span class="at">year =</span> <span class="fu">year</span>(my_dates<span class="sc">$</span>date) <span class="sc">+</span> <span class="dv">10</span>, <span class="at">month =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a></a><span class="co"># Does not work</span></span>
+<span id="cb89-2"><a></a>my_dates <span class="sc">%&gt;%</span> </span>
+<span id="cb89-3"><a></a>  <span class="fu">select</span>(date) <span class="sc">%&gt;%</span></span>
+<span id="cb89-4"><a></a>  <span class="fu">update</span>(<span class="at">year =</span> <span class="fu">year</span>(my_dates<span class="sc">$</span>date) <span class="sc">+</span> <span class="dv">10</span>, <span class="at">month =</span> <span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -1074,18 +1076,18 @@ $ date_dt_cl_m &lt;dttm&gt; 2000-01-01, 2000-11-01, 2001-07-01, 2002-06-01, 2004
 <section id="setting-components-1" class="slide level2">
 <h2>Setting components</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1"></a><span class="co"># This does work</span></span>
-<span id="cb90-2"><a href="#cb90-2"></a>my_dates <span class="ot">&lt;-</span> my_dates <span class="sc">%&gt;%</span> </span>
-<span id="cb90-3"><a href="#cb90-3"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb90-4"><a href="#cb90-4"></a>    <span class="at">date_dt =</span> <span class="fu">as_datetime</span>(date, <span class="at">tz =</span> <span class="st">"Europe/Oslo"</span>),</span>
-<span id="cb90-5"><a href="#cb90-5"></a>    <span class="at">date_dt_new =</span> <span class="fu">update</span>(date_dt, <span class="at">year =</span> <span class="dv">2015</span>)</span>
-<span id="cb90-6"><a href="#cb90-6"></a>  )</span>
-<span id="cb90-7"><a href="#cb90-7"></a></span>
-<span id="cb90-8"><a href="#cb90-8"></a>my_dates <span class="sc">%&gt;%</span> </span>
-<span id="cb90-9"><a href="#cb90-9"></a>  <span class="fu">select</span>(date, date_dt, date_dt_new) <span class="sc">%&gt;%</span> </span>
-<span id="cb90-10"><a href="#cb90-10"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a></a><span class="co"># This does work</span></span>
+<span id="cb90-2"><a></a>my_dates <span class="ot">&lt;-</span> my_dates <span class="sc">%&gt;%</span> </span>
+<span id="cb90-3"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb90-4"><a></a>    <span class="at">date_dt =</span> <span class="fu">as_datetime</span>(date, <span class="at">tz =</span> <span class="st">"Europe/Oslo"</span>),</span>
+<span id="cb90-5"><a></a>    <span class="at">date_dt_new =</span> <span class="fu">update</span>(date_dt, <span class="at">year =</span> <span class="dv">2015</span>)</span>
+<span id="cb90-6"><a></a>  )</span>
+<span id="cb90-7"><a></a></span>
+<span id="cb90-8"><a></a>my_dates <span class="sc">%&gt;%</span> </span>
+<span id="cb90-9"><a></a>  <span class="fu">select</span>(date, date_dt, date_dt_new) <span class="sc">%&gt;%</span> </span>
+<span id="cb90-10"><a></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
@@ -1110,10 +1112,10 @@ $ date_dt_cl_m &lt;dttm&gt; 2000-01-01, 2000-11-01, 2001-07-01, 2002-06-01, 2004
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1"></a>my_dates <span class="sc">%&gt;%</span> </span>
-<span id="cb92-2"><a href="#cb92-2"></a>  <span class="fu">select</span>(date, date_dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a></a>my_dates <span class="sc">%&gt;%</span> </span>
+<span id="cb92-2"><a></a>  <span class="fu">select</span>(date, date_dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 2
@@ -1150,24 +1152,24 @@ $ date_dt_cl_m &lt;dttm&gt; 2000-01-01, 2000-11-01, 2001-07-01, 2002-06-01, 2004
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1"></a>my_life <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">birthday =</span> <span class="st">"25121964"</span>, <span class="at">unit =</span> <span class="st">"weeks"</span>) {</span>
-<span id="cb94-2"><a href="#cb94-2"></a><span class="co"># find the difference between today and birthday measured in unit</span></span>
-<span id="cb94-3"><a href="#cb94-3"></a>life <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">today</span>(), <span class="fu">dmy</span>(birthday), <span class="at">units =</span> unit))</span>
-<span id="cb94-4"><a href="#cb94-4"></a><span class="co"># one case for each unit</span></span>
-<span id="cb94-5"><a href="#cb94-5"></a><span class="fu">case_when</span>(</span>
-<span id="cb94-6"><a href="#cb94-6"></a> unit <span class="sc">==</span> <span class="st">"weeks"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"weeks old."</span>),</span>
-<span id="cb94-7"><a href="#cb94-7"></a> unit <span class="sc">==</span> <span class="st">"days"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life , <span class="st">"days old."</span>),</span>
-<span id="cb94-8"><a href="#cb94-8"></a> unit <span class="sc">==</span> <span class="st">"hours"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"hours old."</span>),</span>
-<span id="cb94-9"><a href="#cb94-9"></a> unit <span class="sc">==</span> <span class="st">"mins"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"minutes old."</span>),</span>
-<span id="cb94-10"><a href="#cb94-10"></a> unit <span class="sc">==</span> <span class="st">"secs"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"seconds old."</span>)</span>
-<span id="cb94-11"><a href="#cb94-11"></a>  )</span>
-<span id="cb94-12"><a href="#cb94-12"></a>}</span>
-<span id="cb94-13"><a href="#cb94-13"></a><span class="fu">my_life</span>() <span class="co"># with default values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a></a>my_life <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">birthday =</span> <span class="st">"25121964"</span>, <span class="at">unit =</span> <span class="st">"weeks"</span>) {</span>
+<span id="cb94-2"><a></a><span class="co"># find the difference between today and birthday measured in unit</span></span>
+<span id="cb94-3"><a></a>life <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">today</span>(), <span class="fu">dmy</span>(birthday), <span class="at">units =</span> unit))</span>
+<span id="cb94-4"><a></a><span class="co"># one case for each unit</span></span>
+<span id="cb94-5"><a></a><span class="fu">case_when</span>(</span>
+<span id="cb94-6"><a></a> unit <span class="sc">==</span> <span class="st">"weeks"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"weeks old."</span>),</span>
+<span id="cb94-7"><a></a> unit <span class="sc">==</span> <span class="st">"days"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life , <span class="st">"days old."</span>),</span>
+<span id="cb94-8"><a></a> unit <span class="sc">==</span> <span class="st">"hours"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"hours old."</span>),</span>
+<span id="cb94-9"><a></a> unit <span class="sc">==</span> <span class="st">"mins"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"minutes old."</span>),</span>
+<span id="cb94-10"><a></a> unit <span class="sc">==</span> <span class="st">"secs"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"seconds old."</span>)</span>
+<span id="cb94-11"><a></a>  )</span>
+<span id="cb94-12"><a></a>}</span>
+<span id="cb94-13"><a></a><span class="fu">my_life</span>() <span class="co"># with default values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 3075.42857142857 weeks old."</code></pre>
+<pre><code>[1] "You are about 3111.42857142857 weeks old."</code></pre>
 </div>
 </div>
 </div>
@@ -1179,33 +1181,33 @@ $ date_dt_cl_m &lt;dttm&gt; 2000-01-01, 2000-11-01, 2001-07-01, 2002-06-01, 2004
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1"></a>my_life <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">birthday =</span> <span class="st">"25121964"</span>, <span class="at">unit =</span> <span class="st">"weeks"</span>) {</span>
-<span id="cb96-2"><a href="#cb96-2"></a><span class="co"># too young to play with R, week as unit</span></span>
-<span id="cb96-3"><a href="#cb96-3"></a><span class="cf">if</span> (<span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">today</span>(), <span class="fu">dmy</span>(birthday), <span class="at">units =</span> <span class="st">"weeks"</span>))<span class="sc">/</span><span class="fl">52.25</span> <span class="sc">&lt;</span> <span class="dv">5</span>) {</span>
-<span id="cb96-4"><a href="#cb96-4"></a><span class="fu">return</span>(<span class="st">"You are far too young to play with R!"</span>)</span>
-<span id="cb96-5"><a href="#cb96-5"></a>}</span>
-<span id="cb96-6"><a href="#cb96-6"></a><span class="co"># find the difference between today and birthday measured in unit</span></span>
-<span id="cb96-7"><a href="#cb96-7"></a>life <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">today</span>(), <span class="fu">dmy</span>(birthday), <span class="at">units =</span> unit))</span>
-<span id="cb96-8"><a href="#cb96-8"></a><span class="co"># one case for each unit</span></span>
-<span id="cb96-9"><a href="#cb96-9"></a><span class="fu">case_when</span>(</span>
-<span id="cb96-10"><a href="#cb96-10"></a> unit <span class="sc">==</span> <span class="st">"weeks"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"weeks old."</span>),</span>
-<span id="cb96-11"><a href="#cb96-11"></a> unit <span class="sc">==</span> <span class="st">"days"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life , <span class="st">"days old."</span>),</span>
-<span id="cb96-12"><a href="#cb96-12"></a> unit <span class="sc">==</span> <span class="st">"hours"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"hours old."</span>),</span>
-<span id="cb96-13"><a href="#cb96-13"></a> unit <span class="sc">==</span> <span class="st">"mins"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"minutes old."</span>),</span>
-<span id="cb96-14"><a href="#cb96-14"></a> unit <span class="sc">==</span> <span class="st">"secs"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"seconds old."</span>)</span>
-<span id="cb96-15"><a href="#cb96-15"></a>  )</span>
-<span id="cb96-16"><a href="#cb96-16"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a></a>my_life <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">birthday =</span> <span class="st">"25121964"</span>, <span class="at">unit =</span> <span class="st">"weeks"</span>) {</span>
+<span id="cb96-2"><a></a><span class="co"># too young to play with R, week as unit</span></span>
+<span id="cb96-3"><a></a><span class="cf">if</span> (<span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">today</span>(), <span class="fu">dmy</span>(birthday), <span class="at">units =</span> <span class="st">"weeks"</span>))<span class="sc">/</span><span class="fl">52.25</span> <span class="sc">&lt;</span> <span class="dv">5</span>) {</span>
+<span id="cb96-4"><a></a><span class="fu">return</span>(<span class="st">"You are far too young to play with R!"</span>)</span>
+<span id="cb96-5"><a></a>}</span>
+<span id="cb96-6"><a></a><span class="co"># find the difference between today and birthday measured in unit</span></span>
+<span id="cb96-7"><a></a>life <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">today</span>(), <span class="fu">dmy</span>(birthday), <span class="at">units =</span> unit))</span>
+<span id="cb96-8"><a></a><span class="co"># one case for each unit</span></span>
+<span id="cb96-9"><a></a><span class="fu">case_when</span>(</span>
+<span id="cb96-10"><a></a> unit <span class="sc">==</span> <span class="st">"weeks"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"weeks old."</span>),</span>
+<span id="cb96-11"><a></a> unit <span class="sc">==</span> <span class="st">"days"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life , <span class="st">"days old."</span>),</span>
+<span id="cb96-12"><a></a> unit <span class="sc">==</span> <span class="st">"hours"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"hours old."</span>),</span>
+<span id="cb96-13"><a></a> unit <span class="sc">==</span> <span class="st">"mins"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"minutes old."</span>),</span>
+<span id="cb96-14"><a></a> unit <span class="sc">==</span> <span class="st">"secs"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"seconds old."</span>)</span>
+<span id="cb96-15"><a></a>  )</span>
+<span id="cb96-16"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1"></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"weeks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"weeks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 3075.42857142857 weeks old."</code></pre>
+<pre><code>[1] "You are about 3111.42857142857 weeks old."</code></pre>
 </div>
 </div>
 </div>
@@ -1217,31 +1219,31 @@ $ date_dt_cl_m &lt;dttm&gt; 2000-01-01, 2000-11-01, 2001-07-01, 2002-06-01, 2004
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1"></a>my_life <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">birthday =</span> <span class="st">"01012020"</span>, <span class="at">unit =</span> <span class="st">"weeks"</span>) {</span>
-<span id="cb99-2"><a href="#cb99-2"></a>  <span class="co"># find the difference between today and birthday with week as unit</span></span>
-<span id="cb99-3"><a href="#cb99-3"></a>  life_w <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">today</span>(), <span class="fu">dmy</span>(birthday), <span class="at">units =</span> <span class="st">"weeks"</span>))</span>
-<span id="cb99-4"><a href="#cb99-4"></a>  <span class="co"># too young to play with R, week as unit</span></span>
-<span id="cb99-5"><a href="#cb99-5"></a>  <span class="cf">if</span> (life_w <span class="sc">/</span> <span class="fl">52.25</span> <span class="sc">&lt;</span> <span class="dv">5</span>) {</span>
-<span id="cb99-6"><a href="#cb99-6"></a>    <span class="fu">return</span>(<span class="st">"You are far too young to play with R!"</span>)</span>
-<span id="cb99-7"><a href="#cb99-7"></a>  } <span class="cf">else</span> {</span>
-<span id="cb99-8"><a href="#cb99-8"></a>    <span class="co"># find the difference between today and birthday measured in unit</span></span>
-<span id="cb99-9"><a href="#cb99-9"></a>    life <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">today</span>(), <span class="fu">dmy</span>(birthday), <span class="at">units =</span> unit)), <span class="dv">0</span>)</span>
-<span id="cb99-10"><a href="#cb99-10"></a>    <span class="co"># one case for each unit</span></span>
-<span id="cb99-11"><a href="#cb99-11"></a>    <span class="fu">case_when</span>(</span>
-<span id="cb99-12"><a href="#cb99-12"></a>      unit <span class="sc">==</span> <span class="st">"weeks"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"weeks old."</span>),</span>
-<span id="cb99-13"><a href="#cb99-13"></a>      unit <span class="sc">==</span> <span class="st">"days"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"days old."</span>),</span>
-<span id="cb99-14"><a href="#cb99-14"></a>      unit <span class="sc">==</span> <span class="st">"hours"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"hours old."</span>),</span>
-<span id="cb99-15"><a href="#cb99-15"></a>      unit <span class="sc">==</span> <span class="st">"mins"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"minutes old."</span>),</span>
-<span id="cb99-16"><a href="#cb99-16"></a>      unit <span class="sc">==</span> <span class="st">"secs"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"seconds old."</span>)</span>
-<span id="cb99-17"><a href="#cb99-17"></a>    )</span>
-<span id="cb99-18"><a href="#cb99-18"></a>  }</span>
-<span id="cb99-19"><a href="#cb99-19"></a>}</span>
-<span id="cb99-20"><a href="#cb99-20"></a><span class="fu">my_life</span>(<span class="dv">01032016</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a></a>my_life <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">birthday =</span> <span class="st">"01012020"</span>, <span class="at">unit =</span> <span class="st">"weeks"</span>) {</span>
+<span id="cb99-2"><a></a>  <span class="co"># find the difference between today and birthday with week as unit</span></span>
+<span id="cb99-3"><a></a>  life_w <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">today</span>(), <span class="fu">dmy</span>(birthday), <span class="at">units =</span> <span class="st">"weeks"</span>))</span>
+<span id="cb99-4"><a></a>  <span class="co"># too young to play with R, week as unit</span></span>
+<span id="cb99-5"><a></a>  <span class="cf">if</span> (life_w <span class="sc">/</span> <span class="fl">52.25</span> <span class="sc">&lt;</span> <span class="dv">5</span>) {</span>
+<span id="cb99-6"><a></a>    <span class="fu">return</span>(<span class="st">"You are far too young to play with R!"</span>)</span>
+<span id="cb99-7"><a></a>  } <span class="cf">else</span> {</span>
+<span id="cb99-8"><a></a>    <span class="co"># find the difference between today and birthday measured in unit</span></span>
+<span id="cb99-9"><a></a>    life <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">today</span>(), <span class="fu">dmy</span>(birthday), <span class="at">units =</span> unit)), <span class="dv">0</span>)</span>
+<span id="cb99-10"><a></a>    <span class="co"># one case for each unit</span></span>
+<span id="cb99-11"><a></a>    <span class="fu">case_when</span>(</span>
+<span id="cb99-12"><a></a>      unit <span class="sc">==</span> <span class="st">"weeks"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"weeks old."</span>),</span>
+<span id="cb99-13"><a></a>      unit <span class="sc">==</span> <span class="st">"days"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"days old."</span>),</span>
+<span id="cb99-14"><a></a>      unit <span class="sc">==</span> <span class="st">"hours"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"hours old."</span>),</span>
+<span id="cb99-15"><a></a>      unit <span class="sc">==</span> <span class="st">"mins"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"minutes old."</span>),</span>
+<span id="cb99-16"><a></a>      unit <span class="sc">==</span> <span class="st">"secs"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"seconds old."</span>)</span>
+<span id="cb99-17"><a></a>    )</span>
+<span id="cb99-18"><a></a>  }</span>
+<span id="cb99-19"><a></a>}</span>
+<span id="cb99-20"><a></a><span class="fu">my_life</span>(<span class="dv">01032016</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 405 weeks old."</code></pre>
+<pre><code>[1] "You are about 441 weeks old."</code></pre>
 </div>
 </div>
 </div>
@@ -1249,33 +1251,33 @@ $ date_dt_cl_m &lt;dttm&gt; 2000-01-01, 2000-11-01, 2001-07-01, 2002-06-01, 2004
 <section id="testing-my_life" class="slide level2">
 <h2>Testing my_life()</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1"></a><span class="fu">my_life</span>(<span class="st">"01032005"</span>, <span class="at">unit =</span> <span class="st">"weeks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a></a><span class="fu">my_life</span>(<span class="st">"01032005"</span>, <span class="at">unit =</span> <span class="st">"weeks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 979 weeks old."</code></pre>
+<pre><code>[1] "You are about 1015 weeks old."</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1"></a><span class="fu">my_life</span>(<span class="st">"01032005"</span>, <span class="at">unit =</span> <span class="st">"days"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a></a><span class="fu">my_life</span>(<span class="st">"01032005"</span>, <span class="at">unit =</span> <span class="st">"days"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 6852 days old."</code></pre>
+<pre><code>[1] "You are about 7104 days old."</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1"></a><span class="fu">my_life</span>(<span class="st">"01032005"</span>, <span class="at">unit =</span> <span class="st">"mins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a></a><span class="fu">my_life</span>(<span class="st">"01032005"</span>, <span class="at">unit =</span> <span class="st">"mins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 9866880 minutes old."</code></pre>
+<pre><code>[1] "You are about 10229760 minutes old."</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1"></a><span class="fu">my_life</span>(<span class="st">"01032005"</span>, <span class="at">unit =</span> <span class="st">"secs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a></a><span class="fu">my_life</span>(<span class="st">"01032005"</span>, <span class="at">unit =</span> <span class="st">"secs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 592012800 seconds old."</code></pre>
+<pre><code>[1] "You are about 613785600 seconds old."</code></pre>
 </div>
 </div>
 </section>
@@ -1290,101 +1292,103 @@ $ date_dt_cl_m &lt;dttm&gt; 2000-01-01, 2000-11-01, 2001-07-01, 2002-06-01, 2004
 <section id="full-function" class="slide level2">
 <h2>Full function</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1"></a>my_life <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">birthday =</span> <span class="fu">today</span>(), <span class="at">unit =</span> <span class="st">"years"</span>) {</span>
-<span id="cb109-2"><a href="#cb109-2"></a>  <span class="fu">stopifnot</span>(unit <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"years"</span>, <span class="st">"months"</span>, <span class="st">"weeks"</span>, <span class="st">"days"</span>, <span class="st">"hours"</span>, <span class="st">"mins"</span>, <span class="st">"secs"</span>))</span>
-<span id="cb109-3"><a href="#cb109-3"></a>  life_w <span class="ot">=</span> <span class="fu">difftime</span>(<span class="fu">today</span>(), <span class="fu">dmy</span>(birthday), <span class="at">units =</span> <span class="st">"weeks"</span>)</span>
-<span id="cb109-4"><a href="#cb109-4"></a><span class="cf">if</span> (<span class="fu">as.numeric</span>(life_w)<span class="sc">/</span><span class="fl">52.25</span> <span class="sc">&lt;</span> <span class="dv">5</span>) {</span>
-<span id="cb109-5"><a href="#cb109-5"></a><span class="fu">return</span>(<span class="st">"You are far too young to learn R!"</span>)</span>
-<span id="cb109-6"><a href="#cb109-6"></a>} <span class="cf">else</span> <span class="cf">if</span> (unit <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"years"</span>, <span class="st">"months"</span>)) {</span>
-<span id="cb109-7"><a href="#cb109-7"></a>  <span class="fu">case_when</span>(</span>
-<span id="cb109-8"><a href="#cb109-8"></a> unit <span class="sc">==</span> <span class="st">"years"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, <span class="fu">round</span>(<span class="fu">as.numeric</span>(life_w)<span class="sc">/</span><span class="fl">52.25</span>, <span class="dv">2</span>), <span class="st">"years old."</span>),</span>
-<span id="cb109-9"><a href="#cb109-9"></a> unit <span class="sc">==</span> <span class="st">"months"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, <span class="fu">round</span>(<span class="fu">as.numeric</span>(life_w)<span class="sc">/</span>(<span class="fl">52.25</span><span class="sc">/</span><span class="dv">12</span>), <span class="dv">2</span>), <span class="st">"months old."</span>)</span>
-<span id="cb109-10"><a href="#cb109-10"></a>)</span>
-<span id="cb109-11"><a href="#cb109-11"></a>} <span class="cf">else</span> {</span>
-<span id="cb109-12"><a href="#cb109-12"></a>life <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">today</span>(), <span class="fu">dmy</span>(birthday), <span class="at">units =</span> unit)), <span class="dv">0</span>)</span>
-<span id="cb109-13"><a href="#cb109-13"></a><span class="fu">case_when</span>(</span>
-<span id="cb109-14"><a href="#cb109-14"></a> unit <span class="sc">==</span> <span class="st">"weeks"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"weeks old."</span>),</span>
-<span id="cb109-15"><a href="#cb109-15"></a> unit <span class="sc">==</span> <span class="st">"days"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life , <span class="st">"days old."</span>),</span>
-<span id="cb109-16"><a href="#cb109-16"></a> unit <span class="sc">==</span> <span class="st">"hours"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"hours old."</span>),</span>
-<span id="cb109-17"><a href="#cb109-17"></a> unit <span class="sc">==</span> <span class="st">"mins"</span> <span class="sc">~</span> <span class="fu">paste</span>(</span>
-<span id="cb109-18"><a href="#cb109-18"></a>   <span class="st">"You are about"</span>, </span>
-<span id="cb109-19"><a href="#cb109-19"></a>   <span class="fu">formatC</span>(life, <span class="at">format =</span> <span class="st">"f"</span>, <span class="at">big.mark =</span> <span class="st">"."</span>,</span>
-<span id="cb109-20"><a href="#cb109-20"></a>           <span class="at">digits =</span> <span class="dv">0</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>),</span>
-<span id="cb109-21"><a href="#cb109-21"></a>   <span class="st">"minutes old."</span>),</span>
-<span id="cb109-22"><a href="#cb109-22"></a> unit <span class="sc">==</span> <span class="st">"secs"</span> <span class="sc">~</span> <span class="fu">paste</span>(</span>
-<span id="cb109-23"><a href="#cb109-23"></a>   <span class="st">"You are about"</span>,</span>
-<span id="cb109-24"><a href="#cb109-24"></a>   <span class="fu">formatC</span>(life, <span class="at">format =</span> <span class="st">"f"</span>, <span class="at">big.mark =</span> <span class="st">"."</span>,</span>
-<span id="cb109-25"><a href="#cb109-25"></a>           <span class="at">digits =</span> <span class="dv">0</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>),</span>
-<span id="cb109-26"><a href="#cb109-26"></a>   <span class="st">"seconds old."</span>)</span>
-<span id="cb109-27"><a href="#cb109-27"></a>  )</span>
-<span id="cb109-28"><a href="#cb109-28"></a>}</span>
-<span id="cb109-29"><a href="#cb109-29"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a></a>my_life <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">birthday =</span> <span class="fu">today</span>(), <span class="at">unit =</span> <span class="st">"years"</span>) {</span>
+<span id="cb109-2"><a></a>  <span class="fu">stopifnot</span>(unit <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"years"</span>, <span class="st">"months"</span>, <span class="st">"weeks"</span>, <span class="st">"days"</span>, <span class="st">"hours"</span>, <span class="st">"mins"</span>, <span class="st">"secs"</span>))</span>
+<span id="cb109-3"><a></a>  life_w <span class="ot">=</span> <span class="fu">difftime</span>(<span class="fu">today</span>(), <span class="fu">dmy</span>(birthday), <span class="at">units =</span> <span class="st">"weeks"</span>)</span>
+<span id="cb109-4"><a></a><span class="cf">if</span> (<span class="fu">as.numeric</span>(life_w)<span class="sc">/</span><span class="fl">52.25</span> <span class="sc">&lt;</span> <span class="dv">5</span>) {</span>
+<span id="cb109-5"><a></a><span class="fu">return</span>(<span class="st">"You are far too young to learn R!"</span>)</span>
+<span id="cb109-6"><a></a>} <span class="cf">else</span> <span class="cf">if</span> (unit <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"years"</span>, <span class="st">"months"</span>)) {</span>
+<span id="cb109-7"><a></a>  <span class="fu">case_when</span>(</span>
+<span id="cb109-8"><a></a> unit <span class="sc">==</span> <span class="st">"years"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, <span class="fu">round</span>(<span class="fu">as.numeric</span>(life_w)<span class="sc">/</span><span class="fl">52.25</span>, <span class="dv">2</span>), <span class="st">"years old."</span>),</span>
+<span id="cb109-9"><a></a> unit <span class="sc">==</span> <span class="st">"months"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, <span class="fu">round</span>(<span class="fu">as.numeric</span>(life_w)<span class="sc">/</span>(<span class="fl">52.25</span><span class="sc">/</span><span class="dv">12</span>), <span class="dv">2</span>), <span class="st">"months old."</span>)</span>
+<span id="cb109-10"><a></a>)</span>
+<span id="cb109-11"><a></a>} <span class="cf">else</span> {</span>
+<span id="cb109-12"><a></a>life <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">today</span>(), <span class="fu">dmy</span>(birthday), <span class="at">units =</span> unit)), <span class="dv">0</span>)</span>
+<span id="cb109-13"><a></a><span class="fu">case_when</span>(</span>
+<span id="cb109-14"><a></a> unit <span class="sc">==</span> <span class="st">"weeks"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"weeks old."</span>),</span>
+<span id="cb109-15"><a></a> unit <span class="sc">==</span> <span class="st">"days"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life , <span class="st">"days old."</span>),</span>
+<span id="cb109-16"><a></a> unit <span class="sc">==</span> <span class="st">"hours"</span> <span class="sc">~</span> <span class="fu">paste</span>(<span class="st">"You are about"</span>, life, <span class="st">"hours old."</span>),</span>
+<span id="cb109-17"><a></a> unit <span class="sc">==</span> <span class="st">"mins"</span> <span class="sc">~</span> <span class="fu">paste</span>(</span>
+<span id="cb109-18"><a></a>   <span class="st">"You are about"</span>, </span>
+<span id="cb109-19"><a></a>   <span class="fu">formatC</span>(life, <span class="at">format =</span> <span class="st">"f"</span>, <span class="at">big.mark =</span> <span class="st">"."</span>,</span>
+<span id="cb109-20"><a></a>           <span class="at">digits =</span> <span class="dv">0</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>),</span>
+<span id="cb109-21"><a></a>   <span class="st">"minutes old."</span>),</span>
+<span id="cb109-22"><a></a> unit <span class="sc">==</span> <span class="st">"secs"</span> <span class="sc">~</span> <span class="fu">paste</span>(</span>
+<span id="cb109-23"><a></a>   <span class="st">"You are about"</span>,</span>
+<span id="cb109-24"><a></a>   <span class="fu">formatC</span>(life, <span class="at">format =</span> <span class="st">"f"</span>, <span class="at">big.mark =</span> <span class="st">"."</span>,</span>
+<span id="cb109-25"><a></a>           <span class="at">digits =</span> <span class="dv">0</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>),</span>
+<span id="cb109-26"><a></a>   <span class="st">"seconds old."</span>)</span>
+<span id="cb109-27"><a></a>  )</span>
+<span id="cb109-28"><a></a>}</span>
+<span id="cb109-29"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="final-testing" class="slide level2 smaller">
 <h2>Final testing</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1"></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"years"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"years"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 58.86 years old."</code></pre>
+<pre><code>[1] "You are about 59.55 years old."</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1"></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"months"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"months"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 706.32 months old."</code></pre>
+<pre><code>[1] "You are about 714.59 months old."</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1"></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"weeks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"weeks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 3075 weeks old."</code></pre>
+<pre><code>[1] "You are about 3111 weeks old."</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1"></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"days"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"days"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 21528 days old."</code></pre>
+<pre><code>[1] "You are about 21780 days old."</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1"></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"hours"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"hours"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 516672 hours old."</code></pre>
+<pre><code>[1] "You are about 522720 hours old."</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1"></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"mins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"mins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 31.000.320 minutes old."</code></pre>
+<pre><code>[1] "You are about 31.363.200 minutes old."</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1"></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"secs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"secs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 1.860.019.200 seconds old."</code></pre>
+<pre><code>[1] "You are about 1.881.792.000 seconds old."</code></pre>
 </div>
 </div>
 </section>
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="../../index.html">MSB105</a></p>
 </div>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-lubridate2011" class="csl-entry" role="listitem">
 Grolemund, Garrett, and Hadley Wickham. 2011. <span>“Dates and Times Made Easy with <span class="nocase">lubridate</span>.”</span> <em>Journal of Statistical Software</em> 40 (3): 1–25. <a href="https://www.jstatsoft.org/v40/i03/">https://www.jstatsoft.org/v40/i03/</a>.
 </div>
@@ -1425,7 +1429,6 @@ Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino 
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': true,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1724,10 +1727,9 @@ Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino 
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn) {
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1737,8 +1739,17 @@ Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino 
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 

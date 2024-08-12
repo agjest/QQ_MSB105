@@ -14,7 +14,7 @@ It will try to give you an idea of what Data Sciences is and also teach you some
 -   [Structured Dynamic Documents](s-d-d/Structured-Dynamic-Documents.qmd)
     -   Documents:
         -   [Preferences RStudio](pref-setup-2022/ps2022.qmd)
-        -   [Install R packages](install-R-packages/install-R-packages.qmd)
+        -   [Install R packages](install-r-packages/install-R-packages.qmd)
         -   [Illustrate Markdown](illustrate-markdown/illustrate-markdown.qmd)
         -   [Regression Tables](reg-tables/reg-tables.qmd)
     -   Other:

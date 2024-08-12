@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -58,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -98,7 +99,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "Ingen resultater",
     "search-matching-documents-text": "Samsvarende dokumenter",
@@ -107,11 +114,12 @@ div.csl-indent {
     "search-more-match-text": "annet resultat i dette dokumentet",
     "search-more-matches-text": "andre resultater i dette dokumentet",
     "search-clear-button-title": "Tøm",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Avbryt",
-    "search-submit-button-title": "Send inn"
+    "search-submit-button-title": "Send inn",
+    "search-label": "Søk"
   }
 }</script>
-
 <script src="../../../site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="../../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
@@ -123,51 +131,51 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">MSB105</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
+            <div id="quarto-search" class="" title="Søk"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Slå på navigering" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../introduction/introduction.html" rel="" target="">
- <span class="menu-text">Introduction</span></a>
+    <a class="nav-link" href="../../../introduction/introduction.html"> 
+<span class="menu-text">Introduction</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../explore-data/explore-data.html" rel="" target="">
- <span class="menu-text">Explore Data</span></a>
+    <a class="nav-link" href="../../../explore-data/explore-data.html"> 
+<span class="menu-text">Explore Data</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../wrangle-data/wrangle-data.html" rel="" target="">
- <span class="menu-text">Data Wrangling</span></a>
+    <a class="nav-link" href="../../../wrangle-data/wrangle-data.html"> 
+<span class="menu-text">Data Wrangling</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../program/program.html" rel="" target="">
- <span class="menu-text">Program</span></a>
+    <a class="nav-link" href="../../../program/program.html"> 
+<span class="menu-text">Program</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../model/model.html" rel="" target="">
- <span class="menu-text">Model</span></a>
+    <a class="nav-link" href="../../../model/model.html"> 
+<span class="menu-text">Model</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../assignments/assignments.html" rel="" target="">
- <span class="menu-text">Assignments</span></a>
+    <a class="nav-link" href="../../../assignments/assignments.html"> 
+<span class="menu-text">Assignments</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -228,7 +236,9 @@ div.csl-indent {
   </div>
   
 
+
 </header>
+
 
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vtable)</span>
@@ -279,14 +289,26 @@ div.csl-indent {
 <h2 data-number="3" class="anchored" data-anchor-id="gjennomgang-av-koden"><span class="header-section-number">3</span> Gjennomgang av koden</h2>
 <p>Her følger en gjennomgang av koden ovenfor steg for steg. I tillegg gis noen eksempler på bruk av <code>vt()</code> og <code>st()</code> fra pakken <code>vtable</code>.</p>
 <p>Vi starter med å lese inn datasettet.</p>
-<div id="lst-leser-inn-data" class="listing">
-<p>Liste&nbsp;1: Leser inn heights datasettet fra pakken modelr og gir datasettet navnet hoyde.</p>
-<div class="sourceCode" id="lst-leser-inn-data" data-lst-cap="Leser inn heights datasettet fra pakken modelr og gir datasettet navnet hoyde."><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-leser-inn-data-1"><a href="#lst-leser-inn-data-1" aria-hidden="true" tabindex="-1"></a>hoyde <span class="ot">&lt;-</span> modelr<span class="sc">::</span>heights</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="lst-leser-inn-data" class="R listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-leser-inn-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Liste&nbsp;1: Leser inn heights datasettet fra pakken modelr og gir datasettet navnet hoyde.
+</figcaption>
+<div aria-describedby="lst-leser-inn-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-leser-inn-data"><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-leser-inn-data-1"><a href="#lst-leser-inn-data-1" aria-hidden="true" tabindex="-1"></a>hoyde <span class="ot">&lt;-</span> modelr<span class="sc">::</span>heights</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
 </div>
 <p>Vi kan så bruke <code>st()</code> fra <code>vtable</code> for å sjekke datasettet (merk at dere vil se en annen tabell hvis dere har kjørt hele kode-blokken ovenfor).</p>
-<div id="lst-sjekker-data-vha-vt" class="listing">
-<p>Liste&nbsp;2: Sjekker innleste data vha. st().</p>
-<div class="sourceCode" id="lst-sjekker-data-vha-vt" data-lst-cap="Sjekker innleste data vha. st()."><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-sjekker-data-vha-vt-1"><a href="#lst-sjekker-data-vha-vt-1" aria-hidden="true" tabindex="-1"></a>hoyde <span class="sc">|&gt;</span>  <span class="fu">st</span>()</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="lst-sjekker-data-vha-vt" class="R listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-sjekker-data-vha-vt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Liste&nbsp;2: Sjekker innleste data vha. st().
+</figcaption>
+<div aria-describedby="lst-sjekker-data-vha-vt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-sjekker-data-vha-vt"><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-sjekker-data-vha-vt-1"><a href="#lst-sjekker-data-vha-vt-1" aria-hidden="true" tabindex="-1"></a>hoyde <span class="sc">|&gt;</span>  <span class="fu">st</span>()</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -463,9 +485,13 @@ div.csl-indent {
 </div>
 <p>Vi har altså 7006 observasjoner og 8 variabler. For variablene <code>weight</code>, <code>education</code> og <code>afqt</code> har vi NA-er.</p>
 <p>Det har vært spekulert om observert lønnsmessig «høyde premium» egentlig er en skjult «vekt straff». Tanken er at det er en negativ sammenheng mellom høyde og overvekt og at arbeidsgivere er redd for at personer som strever med overvekt har større sjanse for å ha eller få alvorlig helseproblemer og at arbeidsgivere derfor anser disse arbeidstakerne som mindre produktive og derfor tilbyr lavere lønn. For å se om dette er tilfelle lager vi en ny variabel <code>bmi</code> («body mass index»). I tillegg lager vi en forenklet versjon av variabelen <code>marital</code> der vi bare skiller mellom <code>married</code> (TRUE) og <code>not_married</code> (FALSE).</p>
-<div id="lst-bmi-married" class="listing">
-<p>Liste&nbsp;3: Bruker mutate til å lage variabelen <code>bmi</code>. I tillegg bruker vi funksjonen <code>fct_collapse</code> til å «klappe sammen» de fem kategorien i marital til bare to kategorier i variabelen <code>married</code>.</p>
-<div class="sourceCode" id="lst-bmi-married" data-lst-cap="Bruker mutate til å lage variabelen `bmi`. I tillegg bruker vi funksjonen `fct_collapse` til å «klappe sammen» de fem kategorien i marital til bare to kategorier i variabelen `married`."><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-bmi-married-1"><a href="#lst-bmi-married-1" aria-hidden="true" tabindex="-1"></a>hoyde <span class="ot">&lt;-</span> hoyde <span class="sc">%&gt;%</span> </span>
+<div id="lst-bmi-married" class="R listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-bmi-married-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Liste&nbsp;3: Bruker mutate til å lage variabelen <code>bmi</code>. I tillegg bruker vi funksjonen <code>fct_collapse</code> til å «klappe sammen» de fem kategorien i marital til bare to kategorier i variabelen <code>married</code>.
+</figcaption>
+<div aria-describedby="lst-bmi-married-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-bmi-married"><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-bmi-married-1"><a href="#lst-bmi-married-1" aria-hidden="true" tabindex="-1"></a>hoyde <span class="ot">&lt;-</span> hoyde <span class="sc">%&gt;%</span> </span>
 <span id="lst-bmi-married-2"><a href="#lst-bmi-married-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="lst-bmi-married-3"><a href="#lst-bmi-married-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">bmi =</span> weight <span class="sc">*</span> <span class="fl">0.4536</span><span class="sc">/</span>(height <span class="sc">*</span> <span class="fl">2.54</span><span class="sc">/</span><span class="dv">100</span>)<span class="sc">^</span><span class="dv">2</span>,</span>
 <span id="lst-bmi-married-4"><a href="#lst-bmi-married-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">married =</span> <span class="fu">fct_collapse</span>(</span>
@@ -474,27 +500,46 @@ div.csl-indent {
 <span id="lst-bmi-married-7"><a href="#lst-bmi-married-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">other_level =</span> <span class="st">"not married"</span></span>
 <span id="lst-bmi-married-8"><a href="#lst-bmi-married-8" aria-hidden="true" tabindex="-1"></a>    ),</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</figure>
+</div>
 <p>Vi forenkler også variabelen <code>education</code> s.a. vi bare skiller mellom kategorien <code>not_hs</code> («Not High School Exam»; 0 ≤ education &lt;12), <code>not_cc</code> («Not Community College»; 12 ≤ education &lt;14) <code>not_col</code> («Not College»; 14 ≤ education &lt; 16) og <code>col_plus</code> («4 years College or more»; education ≥ 16)</p>
-<div id="lst-edu_fac" class="listing">
-<p>Liste&nbsp;4: I samme mutate lager vi også variablen <code>edu_fac</code> ved å kutte <code>education</code> opp i fire intervaller</p>
-<div class="sourceCode" id="lst-edu_fac" data-lst-cap="I samme mutate lager vi også variablen `edu_fac` ved å kutte `education` opp i fire intervaller"><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-edu_fac-1"><a href="#lst-edu_fac-1" aria-hidden="true" tabindex="-1"></a>edu_fac <span class="ot">=</span> <span class="fu">cut</span>(</span>
-<span id="lst-edu_fac-2"><a href="#lst-edu_fac-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> education,</span>
-<span id="lst-edu_fac-3"><a href="#lst-edu_fac-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>),</span>
-<span id="lst-edu_fac-4"><a href="#lst-edu_fac-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"not_hs"</span>, <span class="st">"not_cc"</span>, </span>
-<span id="lst-edu_fac-5"><a href="#lst-edu_fac-5" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"not_col"</span>, <span class="st">"col_plus"</span>),</span>
-<span id="lst-edu_fac-6"><a href="#lst-edu_fac-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">right =</span> <span class="cn">FALSE</span></span>
-<span id="lst-edu_fac-7"><a href="#lst-edu_fac-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="lst-edu_fac-8"><a href="#lst-edu_fac-8" aria-hidden="true" tabindex="-1"></a>  <span class="er">)</span></span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="lst-edu-fac" class="R listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-edu-fac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Liste&nbsp;4: I samme mutate lager vi også variablen edu_fac ved å kutte education opp i fire intervaller
+</figcaption>
+<div aria-describedby="lst-edu-fac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-edu-fac"><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-edu-fac-1"><a href="#lst-edu-fac-1" aria-hidden="true" tabindex="-1"></a>edu_fac <span class="ot">=</span> <span class="fu">cut</span>(</span>
+<span id="lst-edu-fac-2"><a href="#lst-edu-fac-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> education,</span>
+<span id="lst-edu-fac-3"><a href="#lst-edu-fac-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>),</span>
+<span id="lst-edu-fac-4"><a href="#lst-edu-fac-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"not_hs"</span>, <span class="st">"not_cc"</span>, </span>
+<span id="lst-edu-fac-5"><a href="#lst-edu-fac-5" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"not_col"</span>, <span class="st">"col_plus"</span>),</span>
+<span id="lst-edu-fac-6"><a href="#lst-edu-fac-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">right =</span> <span class="cn">FALSE</span></span>
+<span id="lst-edu-fac-7"><a href="#lst-edu-fac-7" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
 </div>
 <p>Det kan være hensiktmessig å samle kategorivariablene lengst til høyre i datasettet (f.eks blir resultatet av <code>st()</code>en noe ryddigere tabell).</p>
-<div id="lst-move-vars" class="listing">
-<p>Liste&nbsp;5: Endrer rekkefølgen på variablene s.a. kategorivariablene samles lengst til høyre i datasettet.</p>
-<div class="sourceCode" id="lst-move-vars" data-lst-cap="Endrer rekkefølgen på variablene s.a. kategorivariablene samles lengst til høyre i datasettet."><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-move-vars-1"><a href="#lst-move-vars-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(income<span class="sc">:</span>age, education<span class="sc">:</span>bmi, <span class="fu">everything</span>())</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="lst-move-vars" class="R listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-move-vars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Liste&nbsp;5: Endrer rekkefølgen på variablene s.a. kategorivariablene samles lengst til høyre i datasettet.
+</figcaption>
+<div aria-describedby="lst-move-vars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-move-vars"><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-move-vars-1"><a href="#lst-move-vars-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(income<span class="sc">:</span>age, education<span class="sc">:</span>bmi, <span class="fu">everything</span>())</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
 </div>
 <p>Vi kommer ikke til å bruke variablene <code>education</code> og <code>marital</code> så disse dropper vi.</p>
-<div id="lst-drop-vars" class="listing">
-<p>Liste&nbsp;6: Vi skal ikke benytte variablene <code>marital</code> og <code>education</code> så disse droppes fra datasettet.</p>
-<div class="sourceCode" id="lst-drop-vars" data-lst-cap="Vi skal ikke benytte variablene `marital` og `education` så disse droppes fra datasettet."><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-drop-vars-1"><a href="#lst-drop-vars-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>education, <span class="sc">-</span>marital)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="lst-drop-vars" class="R listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-drop-vars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Liste&nbsp;6: Vi skal ikke benytte variablene <code>marital</code> og <code>education</code> så disse droppes fra datasettet.
+</figcaption>
+<div aria-describedby="lst-drop-vars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-drop-vars"><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-drop-vars-1"><a href="#lst-drop-vars-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>education, <span class="sc">-</span>marital)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
 </div>
 <p>Hoyde med nye variabler:</p>
 <div class="cell">
@@ -575,9 +620,13 @@ div.csl-indent {
 <section id="splitter-i-tre-datasett" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="splitter-i-tre-datasett"><span class="header-section-number">4</span> Splitter i tre datasett</h2>
 <p>Til slutt deler vi hoyde inn i tre datasett, hhv. <code>hoyde_inc_zero</code>, <code>hoyde_inc_norm</code> og <code>hoyde_inc_high</code>. Vi vil analysere <code>hoyde_inc_norm</code> grundigst og så sjekke eventuelle funn opp mot <code>hoyde_inc_zero</code> og <code>hoyde_inc_high</code>.</p>
-<div id="lst-3-subsets" class="listing">
-<p>Liste&nbsp;7: Vi deler <code>hoyde</code> inn i tre «subsets». Datasettet <code>hoydeNormInc</code> er det vi vil konsentrere oss om.</p>
-<div class="sourceCode" id="lst-3-subsets" data-lst-cap="Vi deler `hoyde` inn i tre «subsets». Datasettet `hoydeNormInc` er det vi vil konsentrere oss om."><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-3-subsets-1"><a href="#lst-3-subsets-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inntekt lik 0</span></span>
+<div id="lst-3-subsets" class="R listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-3-subsets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Liste&nbsp;7: Vi deler <code>hoyde</code> inn i tre «subsets». Datasettet <code>hoydeNormInc</code> er det vi vil konsentrere oss om.
+</figcaption>
+<div aria-describedby="lst-3-subsets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-3-subsets"><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-3-subsets-1"><a href="#lst-3-subsets-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inntekt lik 0</span></span>
 <span id="lst-3-subsets-2"><a href="#lst-3-subsets-2" aria-hidden="true" tabindex="-1"></a>hoydeZeroInc <span class="ot">&lt;-</span> hoyde <span class="sc">|&gt;</span> </span>
 <span id="lst-3-subsets-3"><a href="#lst-3-subsets-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(income <span class="sc">==</span> <span class="dv">0</span>)</span>
 <span id="lst-3-subsets-4"><a href="#lst-3-subsets-4" aria-hidden="true" tabindex="-1"></a><span class="co"># «Normal» inntekt</span></span>
@@ -586,6 +635,8 @@ div.csl-indent {
 <span id="lst-3-subsets-7"><a href="#lst-3-subsets-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Høy inntekt</span></span>
 <span id="lst-3-subsets-8"><a href="#lst-3-subsets-8" aria-hidden="true" tabindex="-1"></a>hoydeHighInc <span class="ot">&lt;-</span> hoyde <span class="sc">|&gt;</span> </span>
 <span id="lst-3-subsets-9"><a href="#lst-3-subsets-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(income <span class="sc">==</span> <span class="dv">343830</span>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
 </div>
 </section>
 <section id="beskrivende-statistikk-for-de-tre-datasettene" class="level2" data-number="5">
@@ -1403,7 +1454,7 @@ div.csl-indent {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="ass2-h23_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Vi ser ut til å få høyere inntekt dess høyere vi er.</figcaption>
+<figcaption>Vi ser ut til å få høyere inntekt dess høyere vi er.</figcaption>
 </figure>
 </div>
 </div>
@@ -1431,7 +1482,7 @@ div.csl-indent {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="ass2-h23_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Sammenhengen synes å være den samme når vi studerer normale inntekter.</figcaption>
+<figcaption>Sammenhengen synes å være den samme når vi studerer normale inntekter.</figcaption>
 </figure>
 </div>
 </div>
@@ -1442,9 +1493,13 @@ div.csl-indent {
 <h2 data-number="7" class="anchored" data-anchor-id="lage-histogram-for-to-subsets"><span class="header-section-number">7</span> Lage histogram for to subsets</h2>
 <p>En teknikk som kan være aktuell i en EDA anlyse er å lage histogram av datene der dataene er delt opp i undrgrupper. Plasserer vi histogrammene i samme figur er de lettere å sammenligne.</p>
 <p>Her illustreres denne teknikken ved å studere fordelingen av høyde for hhv. kvinner og menn. Vi starter med å regne ut gjennomsnittlig høyde og standardavvik for hhv. menn og kvinner. Disse parametrene vil vi bruke for å tegne inn normalfordelingskurver i samme plot.</p>
-<div id="lst-mean-sd" class="listing">
-<p>Liste&nbsp;8: Beregner gjennomsnittlig høyde og standardavvik for hhv. kvinner og menn. Merk at her har vi benyttet data fra hele datasettet, dvs. 7006 observasjoner.</p>
-<div class="sourceCode" id="lst-mean-sd" data-lst-cap="Beregner gjennomsnittlig høyde og standardavvik for hhv. kvinner og menn. Merk at her har vi benyttet data fra hele datasettet, dvs. 7006 observasjoner."><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-mean-sd-1"><a href="#lst-mean-sd-1" aria-hidden="true" tabindex="-1"></a>meanHeightMale <span class="ot">&lt;-</span> hoyde <span class="sc">|&gt;</span> </span>
+<div id="lst-mean-sd" class="R listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-mean-sd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Liste&nbsp;8: Beregner gjennomsnittlig høyde og standardavvik for hhv. kvinner og menn. Merk at her har vi benyttet data fra hele datasettet, dvs. 7006 observasjoner.
+</figcaption>
+<div aria-describedby="lst-mean-sd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-mean-sd"><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-mean-sd-1"><a href="#lst-mean-sd-1" aria-hidden="true" tabindex="-1"></a>meanHeightMale <span class="ot">&lt;-</span> hoyde <span class="sc">|&gt;</span> </span>
 <span id="lst-mean-sd-2"><a href="#lst-mean-sd-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">'male'</span>) <span class="sc">%&gt;%</span> </span>
 <span id="lst-mean-sd-3"><a href="#lst-mean-sd-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(height) <span class="sc">|&gt;</span> </span>
 <span id="lst-mean-sd-4"><a href="#lst-mean-sd-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># konverterer en tibble med 3402 rekker og 1 kolonne</span></span>
@@ -1473,10 +1528,16 @@ div.csl-indent {
 <span id="lst-mean-sd-27"><a href="#lst-mean-sd-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>() <span class="sc">|&gt;</span> </span>
 <span id="lst-mean-sd-28"><a href="#lst-mean-sd-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd</span>()</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</figure>
+</div>
 <p>Så genererer vi histogram og overliggende empirisk fordeling tegnet utfra gjennomsnittlig høyde og tilhørende standardavvik som vi har regnet ut ovenfor.</p>
-<div id="lst-hist" class="listing">
-<p>Liste&nbsp;9: Histogrammer for høyde for hhv. menn og kvinner med inntegnet normalfordelingskurve (tetthetsfunksjon). Normalfordelingskurvene er tegnet ut fra gjennomsnitt og standardavvik beregnet ovenfor. Dataene er fra hele datasettet <code>heights</code>.</p>
-<div class="sourceCode" id="lst-hist" data-lst-cap="Histogrammer for høyde for hhv. menn og kvinner med inntegnet normalfordelingskurve (tetthetsfunksjon). Normalfordelingskurvene er tegnet ut fra gjennomsnitt og standardavvik beregnet ovenfor. Dataene er fra hele datasettet `heights`."><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-hist-1"><a href="#lst-hist-1" aria-hidden="true" tabindex="-1"></a>hoyde <span class="sc">%&gt;%</span></span>
+<div id="lst-hist" class="R listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Liste&nbsp;9: Histogrammer for høyde for hhv. menn og kvinner med inntegnet normalfordelingskurve (tetthetsfunksjon). Normalfordelingskurvene er tegnet ut fra gjennomsnitt og standardavvik beregnet ovenfor. Dataene er fra hele datasettet <code>heights</code>.
+</figcaption>
+<div aria-describedby="lst-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-hist"><pre class="sourceCode R code-with-copy"><code class="sourceCode r"><span id="lst-hist-1"><a href="#lst-hist-1" aria-hidden="true" tabindex="-1"></a>hoyde <span class="sc">%&gt;%</span></span>
 <span id="lst-hist-2"><a href="#lst-hist-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="lst-hist-3"><a href="#lst-hist-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">### male </span><span class="al">###</span></span>
 <span id="lst-hist-4"><a href="#lst-hist-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(</span>
@@ -1507,12 +1568,18 @@ div.csl-indent {
 <span id="lst-hist-29"><a href="#lst-hist-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">xintercept =</span> meanHeightFemale, <span class="at">colour =</span> <span class="st">'grey40'</span>, <span class="at">lwd =</span> <span class="fl">0.75</span>, <span class="at">linetype =</span> <span class="dv">3</span></span>
 <span id="lst-hist-30"><a href="#lst-hist-30" aria-hidden="true" tabindex="-1"></a>    ) </span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</figure>
+</div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-hist" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="ass2-h23_files/figure-html/fig-hist-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figur&nbsp;1: Histogram av høyde fordelt på kjønn. I tillegg er normalfordeling for observert gjennomsnitt og standard-avvik, også fordelt på kjønn, tegnet inn.</figcaption>
+<div id="fig-hist" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ass2-h23_files/figure-html/fig-hist-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figur&nbsp;1: Histogram av høyde fordelt på kjønn. I tillegg er normalfordeling for observert gjennomsnitt og standard-avvik, også fordelt på kjønn, tegnet inn.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1633,7 +1700,7 @@ div.csl-indent {
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">10 Referanser</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">10 Referanser</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-aragao" class="csl-entry" role="listitem">
 Aragão, Carolina. n.d. <span>“Gender Pay Gap in <span>U</span>.<span>S</span>. Hasn’t Changed Much in Two Decades.”</span> <em>Pew Research Center</em>. Accessed October 6, 2023.
 </div>
@@ -1834,10 +1901,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1847,8 +1913,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1861,6 +1936,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1904,6 +2098,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1929,6 +2124,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1989,6 +2210,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

@@ -8,7 +8,7 @@
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.353">
+  <meta name="generator" content="quarto-1.4.549">
 
   <meta name="author" content="ag">
   <title>MSB105 - Model basics</title>
@@ -31,7 +31,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -98,6 +98,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+      margin-bottom: 0em;
     }
     .hanging-indent div.csl-entry {
       margin-left:2em;
@@ -240,7 +241,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -424,30 +426,30 @@ ag
 <section class="slide level2">
 
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># get tidyverse to shut up</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">suppressPackageStartupMessages</span>({</span>
-<span id="cb1-3"><a href="#cb1-3"></a>  <span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-4"><a href="#cb1-4"></a>  <span class="fu">library</span>(modelr)</span>
-<span id="cb1-5"><a href="#cb1-5"></a>  <span class="fu">options</span>(<span class="at">na.action =</span> na.warn)</span>
-<span id="cb1-6"><a href="#cb1-6"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># get tidyverse to shut up</span></span>
+<span id="cb1-2"><a></a><span class="fu">suppressPackageStartupMessages</span>({</span>
+<span id="cb1-3"><a></a>  <span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a></a>  <span class="fu">library</span>(modelr)</span>
+<span id="cb1-5"><a></a>  <span class="fu">options</span>(<span class="at">na.action =</span> na.warn)</span>
+<span id="cb1-6"><a></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># create a bib file for the R packages</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># used in this document</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># Note! Needs to do a touch ag_model_basics.bib in terminal before first run</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># else stops when bibliography: "ag_model_basics.bib" not found in YAML</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>knitr<span class="sc">::</span><span class="fu">write_bib</span>(</span>
-<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">c</span>(</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    <span class="st">"tidyverse"</span>,</span>
-<span id="cb2-8"><a href="#cb2-8"></a>    <span class="st">"modelr"</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>    ),</span>
-<span id="cb2-10"><a href="#cb2-10"></a>  <span class="at">file =</span> <span class="st">"ag_model_basics.bib"</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co"># create a bib file for the R packages</span></span>
+<span id="cb2-2"><a></a><span class="co"># used in this document</span></span>
+<span id="cb2-3"><a></a><span class="co"># Note! Needs to do a touch ag_model_basics.bib in terminal before first run</span></span>
+<span id="cb2-4"><a></a><span class="co"># else stops when bibliography: "ag_model_basics.bib" not found in YAML</span></span>
+<span id="cb2-5"><a></a>knitr<span class="sc">::</span><span class="fu">write_bib</span>(</span>
+<span id="cb2-6"><a></a>  <span class="fu">c</span>(</span>
+<span id="cb2-7"><a></a>    <span class="st">"tidyverse"</span>,</span>
+<span id="cb2-8"><a></a>    <span class="st">"modelr"</span></span>
+<span id="cb2-9"><a></a>    ),</span>
+<span id="cb2-10"><a></a>  <span class="at">file =</span> <span class="st">"ag_model_basics.bib"</span></span>
+<span id="cb2-11"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -476,11 +478,11 @@ ag
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>s1_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> sim1)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="co"># Pick out the coefficients</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">coef</span>(s1_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>s1_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> sim1)</span>
+<span id="cb3-2"><a></a><span class="co"># Pick out the coefficients</span></span>
+<span id="cb3-3"><a></a><span class="fu">coef</span>(s1_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(Intercept)           x 
@@ -492,13 +494,13 @@ ag
 <section id="predictions" class="slide level2">
 <h2>Predictions</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>g1 <span class="ot">&lt;-</span> sim1 <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">geom_smooth</span>(<span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb5-5"><a href="#cb5-5"></a>g1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>g1 <span class="ot">&lt;-</span> sim1 <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb5-3"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb5-4"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-5"><a></a>g1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -521,12 +523,12 @@ ag
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>sim1a <span class="ot">&lt;-</span> sim1 <span class="sc">%&gt;%</span> </span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">add_predictions</span>(<span class="at">model =</span> s1_mod)</span>
-<span id="cb6-3"><a href="#cb6-3"></a></span>
-<span id="cb6-4"><a href="#cb6-4"></a>g1 <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">data =</span> sim1a, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> pred), <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>sim1a <span class="ot">&lt;-</span> sim1 <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a></a>  <span class="fu">add_predictions</span>(<span class="at">model =</span> s1_mod)</span>
+<span id="cb6-3"><a></a></span>
+<span id="cb6-4"><a></a>g1 <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">data =</span> sim1a, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> pred), <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -538,11 +540,11 @@ ag
 <section id="adding-residuals-to-sim1a" class="slide level2">
 <h2>Adding residuals to sim1a</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>sim1a <span class="ot">&lt;-</span> sim1a <span class="sc">%&gt;%</span> </span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">add_residuals</span>(s1_mod)</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">head</span>(sim1a, <span class="at">n =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>sim1a <span class="ot">&lt;-</span> sim1a <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a></a>  <span class="fu">add_residuals</span>(s1_mod)</span>
+<span id="cb7-3"><a></a><span class="fu">head</span>(sim1a, <span class="at">n =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 4
@@ -557,12 +559,12 @@ ag
 <section id="plotting-x-values-against-residuals-points" class="slide level2">
 <h2>Plotting x-values against residuals; points</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>sim1a <span class="sc">%&gt;%</span> </span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> resid)) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>sim1a <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> resid)) <span class="sc">+</span></span>
+<span id="cb9-3"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb9-4"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -573,12 +575,12 @@ ag
 <section id="plotting-x-values-against-residuals-frequency" class="slide level2">
 <h2>Plotting x-values against residuals; frequency</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>sim1a <span class="sc">%&gt;%</span> </span>
-<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> resid)) <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>  <span class="co"># experiment with binwidth = 1 and binwidth = 0.25</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">binwidth =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>sim1a <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> resid)) <span class="sc">+</span></span>
+<span id="cb10-3"><a></a>  <span class="co"># experiment with binwidth = 1 and binwidth = 0.25</span></span>
+<span id="cb10-4"><a></a>  <span class="fu">geom_freqpoly</span>(<span class="at">binwidth =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -634,10 +636,10 @@ t(M) * M =
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>M <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">4</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">t</span>(M) <span class="sc">%*%</span> M <span class="co"># 2 X 3 3 x 2, 3 3 ok, result 2 x 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>M <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">4</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-2"><a></a><span class="fu">t</span>(M) <span class="sc">%*%</span> M <span class="co"># 2 X 3 3 x 2, 3 3 ok, result 2 x 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2]
@@ -669,9 +671,9 @@ t(M) * M =
 20 &amp; 100 &amp; 80
 \end{bmatrix}\]</span></p>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>M <span class="sc">%*%</span> <span class="fu">t</span>(M)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>M <span class="sc">%*%</span> <span class="fu">t</span>(M)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3]
@@ -727,10 +729,10 @@ t(M) * M =
 <section id="multiplication-by-vector-2" class="slide level2">
 <h2>Multiplication by vector</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>y <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">4</span>), <span class="at">nrow =</span> <span class="dv">3</span>)</span>
-<span id="cb15-2"><a href="#cb15-2"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>y <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">4</span>), <span class="at">nrow =</span> <span class="dv">3</span>)</span>
+<span id="cb15-2"><a></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1]
@@ -740,9 +742,9 @@ t(M) * M =
 </div>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>(M <span class="sc">%*%</span> <span class="fu">t</span>(M)) <span class="sc">%*%</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>(M <span class="sc">%*%</span> <span class="fu">t</span>(M)) <span class="sc">%*%</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1]
@@ -763,11 +765,11 @@ t(M) * M =
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1a, <span class="at">formula =</span> y <span class="sc">~</span> x)</span>
-<span id="cb19-2"><a href="#cb19-2"></a>X_mod <span class="ot">&lt;-</span> X_mod <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">"a_1"</span> <span class="ot">=</span> <span class="st">"(Intercept)"</span>)</span>
-<span id="cb19-3"><a href="#cb19-3"></a><span class="fu">dim</span>(X_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1a, <span class="at">formula =</span> y <span class="sc">~</span> x)</span>
+<span id="cb19-2"><a></a>X_mod <span class="ot">&lt;-</span> X_mod <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">"a_1"</span> <span class="ot">=</span> <span class="st">"(Intercept)"</span>)</span>
+<span id="cb19-3"><a></a><span class="fu">dim</span>(X_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 30  2</code></pre>
@@ -778,9 +780,9 @@ t(M) * M =
 <section id="model-matrix-1" class="slide level2">
 <h2>Model matrix</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">head</span>(X_mod, <span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">head</span>(X_mod, <span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 2
@@ -791,9 +793,9 @@ t(M) * M =
 3     1     1
 4     1     2</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">tail</span>(X_mod, <span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">tail</span>(X_mod, <span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 2
@@ -813,30 +815,30 @@ t(M) * M =
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span>
-<span id="cb25-2"><a href="#cb25-2"></a>y <span class="ot">&lt;-</span> sim1a<span class="sc">$</span>y</span>
-<span id="cb25-3"><a href="#cb25-3"></a>(XTX <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="co"># 2 x 30 * 30 x 2, result 2 x 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span>
+<span id="cb25-2"><a></a>y <span class="ot">&lt;-</span> sim1a<span class="sc">$</span>y</span>
+<span id="cb25-3"><a></a>(XTX <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="co"># 2 x 30 * 30 x 2, result 2 x 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>    a_1    x
 a_1  30  165
 x   165 1155</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>(XTXinv <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X)) <span class="co"># invert</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>(XTXinv <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X)) <span class="co"># invert</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>            a_1            x
 a_1  0.15555556 -0.022222222
 x   -0.02222222  0.004040404</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># check, should give I 2 x 2</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="fu">round</span>(XTX <span class="sc">%*%</span> XTXinv, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="co"># check, should give I 2 x 2</span></span>
+<span id="cb29-2"><a></a><span class="fu">round</span>(XTX <span class="sc">%*%</span> XTXinv, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>    a_1 x
@@ -849,10 +851,10 @@ x     0 1</code></pre>
 <section id="model-matrix-3" class="slide level2 smaller">
 <h2>Model matrix</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>M <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="co"># 2 x 2 * 2 x 30, result 2 x 30</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a><span class="fu">round</span>(M, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>M <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="co"># 2 x 2 * 2 x 30, result 2 x 30</span></span>
+<span id="cb31-2"><a></a><span class="fu">round</span>(M, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      [,1]   [,2]   [,3]   [,4]   [,5]   [,6]   [,7]   [,8]   [,9]  [,10]
@@ -867,9 +869,9 @@ x    0.010  0.010  0.010  0.014  0.014  0.014  0.018  0.018  0.018</code></pre>
 </div>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y <span class="co"># 2 x 30 * 30 x 1 result 2 x 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y <span class="co"># 2 x 30 * 30 x 1 result 2 x 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>        [,1]
@@ -892,12 +894,12 @@ x   2.051533</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">set.seed</span>(<span class="dv">444</span>)</span>
-<span id="cb35-2"><a href="#cb35-2"></a>s <span class="ot">&lt;-</span> <span class="fu">seq_along</span>(<span class="fu">t</span>(sim1<span class="sc">$</span>x))</span>
-<span id="cb35-3"><a href="#cb35-3"></a>sim1b <span class="ot">&lt;-</span> sim1[<span class="fu">sample</span>(s,<span class="at">size =</span> <span class="dv">6</span>),]</span>
-<span id="cb35-4"><a href="#cb35-4"></a>sim1b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">set.seed</span>(<span class="dv">444</span>)</span>
+<span id="cb35-2"><a></a>s <span class="ot">&lt;-</span> <span class="fu">seq_along</span>(<span class="fu">t</span>(sim1<span class="sc">$</span>x))</span>
+<span id="cb35-3"><a></a>sim1b <span class="ot">&lt;-</span> sim1[<span class="fu">sample</span>(s,<span class="at">size =</span> <span class="dv">6</span>),]</span>
+<span id="cb35-4"><a></a>sim1b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 2
@@ -916,12 +918,12 @@ x   2.051533</code></pre>
 <section id="small-dataset-1" class="slide level2">
 <h2>Small dataset</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1b, <span class="at">formula =</span> y <span class="sc">~</span> x)</span>
-<span id="cb37-2"><a href="#cb37-2"></a>X_mod <span class="ot">&lt;-</span> X_mod <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">"a_1"</span> <span class="ot">=</span> <span class="st">"(Intercept)"</span>)</span>
-<span id="cb37-3"><a href="#cb37-3"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span>
-<span id="cb37-4"><a href="#cb37-4"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1b, <span class="at">formula =</span> y <span class="sc">~</span> x)</span>
+<span id="cb37-2"><a></a>X_mod <span class="ot">&lt;-</span> X_mod <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">"a_1"</span> <span class="ot">=</span> <span class="st">"(Intercept)"</span>)</span>
+<span id="cb37-3"><a></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span>
+<span id="cb37-4"><a></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     a_1  x
@@ -934,9 +936,9 @@ x   2.051533</code></pre>
 </div>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X), <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X), <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>        a_1       x
@@ -948,9 +950,9 @@ x   -0.0728  0.0132</code></pre>
 <section id="small-dataset-2" class="slide level2">
 <h2>Small dataset</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X), <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X), <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>       [,1]    [,2]    [,3]   [,4]    [,5]    [,6]
@@ -959,9 +961,9 @@ x   -0.0464 -0.0596  0.0596 0.0066  0.0596 -0.0199</code></pre>
 </div>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>(y <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(sim1b<span class="sc">$</span>y, <span class="at">nrow =</span> <span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a>(y <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(sim1b<span class="sc">$</span>y, <span class="at">nrow =</span> <span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>          [,1]
@@ -977,9 +979,9 @@ x   -0.0464 -0.0596  0.0596 0.0066  0.0596 -0.0199</code></pre>
 <section id="small-dataset-3" class="slide level2">
 <h2>Small dataset</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      [,1]
@@ -988,9 +990,9 @@ x   2.0879</code></pre>
 </div>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">coefficients</span>(<span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> sim1b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a><span class="fu">coefficients</span>(<span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> sim1b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(Intercept)           x 
@@ -1006,11 +1008,11 @@ x   2.0879</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1b, <span class="at">formula =</span> y <span class="sc">~</span> x <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb49-2"><a href="#cb49-2"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span>
-<span id="cb49-3"><a href="#cb49-3"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1b, <span class="at">formula =</span> y <span class="sc">~</span> x <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb49-2"><a></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span>
+<span id="cb49-3"><a></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      x
@@ -1027,9 +1029,9 @@ x   2.0879</code></pre>
 <section id="small-dataset-no-constant-1" class="slide level2">
 <h2>small dataset, no constant</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X), <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X), <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>    [,1]   [,2]   [,3]   [,4]   [,5]   [,6]
@@ -1037,9 +1039,9 @@ x 0.0078 0.0039 0.0389 0.0233 0.0389 0.0156</code></pre>
 </div>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>    [,1]
@@ -1047,9 +1049,9 @@ x 2.5422</code></pre>
 </div>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="fu">coefficients</span>(<span class="fu">lm</span>(y <span class="sc">~</span> x <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> sim1b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a><span class="fu">coefficients</span>(<span class="fu">lm</span>(y <span class="sc">~</span> x <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> sim1b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>       x 
@@ -1060,19 +1062,19 @@ x 2.5422</code></pre>
 <section id="small-dataset-perfect-multicolinearity" class="slide level2 smaller">
 <h2>Small dataset, perfect multicolinearity</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a>sim1c <span class="ot">&lt;-</span> sim1b <span class="sc">%&gt;%</span> </span>
-<span id="cb57-2"><a href="#cb57-2"></a><span class="fu">rename</span>(<span class="at">x_1 =</span> x) <span class="sc">%&gt;%</span> </span>
-<span id="cb57-3"><a href="#cb57-3"></a><span class="fu">mutate</span>(<span class="at">x_2 =</span> <span class="fl">2.25</span> <span class="sc">*</span> x_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a></a>sim1c <span class="ot">&lt;-</span> sim1b <span class="sc">%&gt;%</span> </span>
+<span id="cb57-2"><a></a><span class="fu">rename</span>(<span class="at">x_1 =</span> x) <span class="sc">%&gt;%</span> </span>
+<span id="cb57-3"><a></a><span class="fu">mutate</span>(<span class="at">x_2 =</span> <span class="fl">2.25</span> <span class="sc">*</span> x_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1c, <span class="at">formula =</span> y <span class="sc">~</span> x_1 <span class="sc">+</span> x_2)</span>
-<span id="cb58-2"><a href="#cb58-2"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span>
-<span id="cb58-3"><a href="#cb58-3"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1c, <span class="at">formula =</span> y <span class="sc">~</span> x_1 <span class="sc">+</span> x_2)</span>
+<span id="cb58-2"><a></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span>
+<span id="cb58-3"><a></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     (Intercept) x_1   x_2
@@ -1085,9 +1087,9 @@ x 2.5422</code></pre>
 </div>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="fu">t</span>(X) <span class="sc">%*%</span> X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a></a><span class="fu">t</span>(X) <span class="sc">%*%</span> X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>            (Intercept)    x_1      x_2
@@ -1100,9 +1102,9 @@ x_2               74.25 578.25 1301.062</code></pre>
 <section id="small-dataset-perfect-multicolinearity-1" class="slide level2">
 <h2>Small dataset, perfect multicolinearity</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a></a><span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="fragment">
@@ -1120,19 +1122,19 @@ x_2               74.25 578.25 1301.062</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a>l <span class="ot">=</span> <span class="fu">length</span>(sim1c<span class="sc">$</span>x_2)</span>
-<span id="cb63-2"><a href="#cb63-2"></a>sim1c<span class="sc">$</span>x_3  <span class="ot">=</span> sim1c<span class="sc">$</span>x_2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> l, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.001</span>)</span>
-<span id="cb63-3"><a href="#cb63-3"></a><span class="fu">rm</span>(l)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a></a>l <span class="ot">=</span> <span class="fu">length</span>(sim1c<span class="sc">$</span>x_2)</span>
+<span id="cb63-2"><a></a>sim1c<span class="sc">$</span>x_3  <span class="ot">=</span> sim1c<span class="sc">$</span>x_2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> l, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.001</span>)</span>
+<span id="cb63-3"><a></a><span class="fu">rm</span>(l)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1c, <span class="at">formula =</span> y <span class="sc">~</span> x_1 <span class="sc">+</span> x_3)</span>
-<span id="cb64-2"><a href="#cb64-2"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span>
-<span id="cb64-3"><a href="#cb64-3"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1c, <span class="at">formula =</span> y <span class="sc">~</span> x_1 <span class="sc">+</span> x_3)</span>
+<span id="cb64-2"><a></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span>
+<span id="cb64-3"><a></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     (Intercept) x_1       x_3
@@ -1149,9 +1151,9 @@ x_2               74.25 578.25 1301.062</code></pre>
 <section id="small-dataset-near-multicolinearity-case-1-1" class="slide level2">
 <h2>Small dataset, near multicolinearity, case 1</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a><span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a></a><span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>            (Intercept)          x_1           x_3
@@ -1161,9 +1163,9 @@ x_3         -480.431149 -1020602.238   453639.0556</code></pre>
 </div>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                  [,1]
@@ -1180,19 +1182,19 @@ x_3         -1011.8724</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a>l <span class="ot">=</span> <span class="fu">length</span>(sim1c<span class="sc">$</span>x_2)</span>
-<span id="cb70-2"><a href="#cb70-2"></a>sim1c<span class="sc">$</span>x_3  <span class="ot">=</span> sim1c<span class="sc">$</span>x_2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> l, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.001</span>)</span>
-<span id="cb70-3"><a href="#cb70-3"></a><span class="fu">rm</span>(l)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a></a>l <span class="ot">=</span> <span class="fu">length</span>(sim1c<span class="sc">$</span>x_2)</span>
+<span id="cb70-2"><a></a>sim1c<span class="sc">$</span>x_3  <span class="ot">=</span> sim1c<span class="sc">$</span>x_2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> l, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.001</span>)</span>
+<span id="cb70-3"><a></a><span class="fu">rm</span>(l)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1c, <span class="at">formula =</span> y <span class="sc">~</span> x_1 <span class="sc">+</span> x_3)</span>
-<span id="cb71-2"><a href="#cb71-2"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span>
-<span id="cb71-3"><a href="#cb71-3"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1c, <span class="at">formula =</span> y <span class="sc">~</span> x_1 <span class="sc">+</span> x_3)</span>
+<span id="cb71-2"><a></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span>
+<span id="cb71-3"><a></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     (Intercept) x_1       x_3
@@ -1209,9 +1211,9 @@ x_3         -1011.8724</code></pre>
 <section id="small-dataset-near-multicolinearity-case-2-1" class="slide level2">
 <h2>Small dataset, near multicolinearity, case 2</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a><span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a></a><span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>            (Intercept)           x_1           x_3
@@ -1221,9 +1223,9 @@ x_3          206.439167 -1016771.9424   451883.1103</code></pre>
 </div>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                  [,1]
@@ -1243,16 +1245,16 @@ x_3          2412.1871</code></pre>
 <section id="small-dataset-factor-variable" class="slide level2">
 <h2>Small dataset, factor variable</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1"></a>sim1c <span class="ot">&lt;-</span> sim1c <span class="sc">%&gt;%</span> </span>
-<span id="cb77-2"><a href="#cb77-2"></a><span class="fu">mutate</span>(<span class="at">x_4 =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"M"</span>, <span class="st">"F"</span>),</span>
-<span id="cb77-3"><a href="#cb77-3"></a>                    <span class="at">size =</span> <span class="dv">6</span>, </span>
-<span id="cb77-4"><a href="#cb77-4"></a>                    <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>), </span>
-<span id="cb77-5"><a href="#cb77-5"></a>                    <span class="at">replace =</span> <span class="cn">TRUE</span></span>
-<span id="cb77-6"><a href="#cb77-6"></a>                    )</span>
-<span id="cb77-7"><a href="#cb77-7"></a>       )</span>
-<span id="cb77-8"><a href="#cb77-8"></a>sim1c[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a></a>sim1c <span class="ot">&lt;-</span> sim1c <span class="sc">%&gt;%</span> </span>
+<span id="cb77-2"><a></a><span class="fu">mutate</span>(<span class="at">x_4 =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"M"</span>, <span class="st">"F"</span>),</span>
+<span id="cb77-3"><a></a>                    <span class="at">size =</span> <span class="dv">6</span>, </span>
+<span id="cb77-4"><a></a>                    <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>), </span>
+<span id="cb77-5"><a></a>                    <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb77-6"><a></a>                    )</span>
+<span id="cb77-7"><a></a>       )</span>
+<span id="cb77-8"><a></a>sim1c[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
@@ -1267,11 +1269,11 @@ x_3          2412.1871</code></pre>
 <section id="small-dataset-factor-variable-1" class="slide level2">
 <h2>Small dataset, factor variable</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1c, <span class="at">formula =</span> y <span class="sc">~</span> x_1 <span class="sc">+</span> x_4)</span>
-<span id="cb79-2"><a href="#cb79-2"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span>
-<span id="cb79-3"><a href="#cb79-3"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1c, <span class="at">formula =</span> y <span class="sc">~</span> x_1 <span class="sc">+</span> x_4)</span>
+<span id="cb79-2"><a></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span>
+<span id="cb79-3"><a></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     (Intercept) x_1 x_4M
@@ -1287,9 +1289,9 @@ x_3          2412.1871</code></pre>
 <section id="small-dataset-factor-variable-2" class="slide level2">
 <h2>Small dataset, factor variable</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a><span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a></a><span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>            (Intercept)         x_1       x_4M
@@ -1299,9 +1301,9 @@ x_4M         -1.3859649  0.13157895  1.3245614</code></pre>
 </div>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1"></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a></a><span class="fu">round</span>(<span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>               [,1]
@@ -1311,9 +1313,9 @@ x_4M        -0.0345</code></pre>
 </div>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1"></a><span class="fu">coefficients</span>(<span class="fu">lm</span>(y <span class="sc">~</span> x_1 <span class="sc">+</span> x_4, <span class="at">data =</span> sim1c))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a></a><span class="fu">coefficients</span>(<span class="fu">lm</span>(y <span class="sc">~</span> x_1 <span class="sc">+</span> x_4, <span class="at">data =</span> sim1c))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(Intercept)         x_1        x_4M 
@@ -1329,10 +1331,10 @@ x_4M        -0.0345</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1"></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1c, <span class="at">formula =</span> y <span class="sc">~</span> x_1 <span class="sc">*</span> x_4)</span>
-<span id="cb87-2"><a href="#cb87-2"></a>X_mod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a></a>X_mod <span class="ot">&lt;-</span> <span class="fu">model_matrix</span>(<span class="at">data =</span> sim1c, <span class="at">formula =</span> y <span class="sc">~</span> x_1 <span class="sc">*</span> x_4)</span>
+<span id="cb87-2"><a></a>X_mod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
@@ -1345,9 +1347,9 @@ x_4M        -0.0345</code></pre>
 5             1    10     0          0
 6             1     4     0          0</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -1355,9 +1357,9 @@ x_4M        -0.0345</code></pre>
 <section id="small-dataset-interaction-1" class="slide level2">
 <h2>Small dataset, interaction</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1"></a><span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a></a><span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>            (Intercept)         x_1       x_4M    x_1:x_4M
@@ -1368,10 +1370,10 @@ x_1:x_4M      0.3333333 -0.04166667 -0.5476190  0.11309524</code></pre>
 </div>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y</span>
-<span id="cb92-2"><a href="#cb92-2"></a><span class="fu">round</span>(beta, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a></a>beta <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y</span>
+<span id="cb92-2"><a></a><span class="fu">round</span>(beta, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>               [,1]
@@ -1385,29 +1387,29 @@ x_1:x_4M     0.3548</code></pre>
 <section id="small-dataset-interaction-2" class="slide level2">
 <h2>Small dataset, interaction</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x_1 <span class="sc">*</span> x_4, <span class="at">data =</span> sim1c)</span>
-<span id="cb94-2"><a href="#cb94-2"></a><span class="fu">coefficients</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x_1 <span class="sc">*</span> x_4, <span class="at">data =</span> sim1c)</span>
+<span id="cb94-2"><a></a><span class="fu">coefficients</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(Intercept)         x_1        x_4M    x_1:x_4M 
    4.619475    1.953779   -1.752465    0.354804 </code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1"></a>sim1c <span class="ot">&lt;-</span> sim1c <span class="sc">%&gt;%</span> </span>
-<span id="cb96-2"><a href="#cb96-2"></a>    <span class="fu">select</span>(y, x_1, x_2, x_4) <span class="sc">%&gt;%</span> </span>
-<span id="cb96-3"><a href="#cb96-3"></a>  <span class="fu">add_predictions</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a></a>sim1c <span class="ot">&lt;-</span> sim1c <span class="sc">%&gt;%</span> </span>
+<span id="cb96-2"><a></a>    <span class="fu">select</span>(y, x_1, x_2, x_4) <span class="sc">%&gt;%</span> </span>
+<span id="cb96-3"><a></a>  <span class="fu">add_predictions</span>(mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1"></a><span class="co"># Predicton for x_1 = 0 and x_1 = 10</span></span>
-<span id="cb97-2"><a href="#cb97-2"></a>x_0 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>); x_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">10</span>); x_4 <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb97-3"><a href="#cb97-3"></a>new_data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(x_0, x_1, x_4, x_1<span class="sc">*</span>x_4), <span class="at">ncol =</span> <span class="dv">4</span>)</span>
-<span id="cb97-4"><a href="#cb97-4"></a>new_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a></a><span class="co"># Predicton for x_1 = 0 and x_1 = 10</span></span>
+<span id="cb97-2"><a></a>x_0 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>); x_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">10</span>); x_4 <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb97-3"><a></a>new_data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(x_0, x_1, x_4, x_1<span class="sc">*</span>x_4), <span class="at">ncol =</span> <span class="dv">4</span>)</span>
+<span id="cb97-4"><a></a>new_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3] [,4]
@@ -1421,19 +1423,19 @@ x_1:x_4M     0.3548</code></pre>
 <section id="small-dataset-interaction-3" class="slide level2 smaller">
 <h2>Small dataset, interaction</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1"></a>new_pred <span class="ot">&lt;-</span> new_data <span class="sc">%*%</span> beta</span>
-<span id="cb99-2"><a href="#cb99-2"></a><span class="fu">t</span>(new_pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a></a>new_pred <span class="ot">&lt;-</span> new_data <span class="sc">%*%</span> beta</span>
+<span id="cb99-2"><a></a><span class="fu">t</span>(new_pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>         [,1]     [,2]     [,3]     [,4]
 [1,] 4.619475 24.15726 2.867009 25.95284</code></pre>
 </div>
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1"></a>new_pred_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x_1 =</span> new_data[,<span class="dv">2</span>], <span class="at">x_4 =</span> <span class="fu">c</span>(<span class="st">"F"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"M"</span>), <span class="at">pred =</span> new_pred)</span>
-<span id="cb101-2"><a href="#cb101-2"></a>new_pred_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a></a>new_pred_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x_1 =</span> new_data[,<span class="dv">2</span>], <span class="at">x_4 =</span> <span class="fu">c</span>(<span class="st">"F"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"M"</span>), <span class="at">pred =</span> new_pred)</span>
+<span id="cb101-2"><a></a>new_pred_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  x_1 x_4      pred
@@ -1454,12 +1456,12 @@ x_1:x_4M     0.3548</code></pre>
 <section id="small-dataset-interaction-4" class="slide level2">
 <h2>Small dataset, interaction</h2>
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x_1, <span class="at">y =</span> y, <span class="at">colour =</span> x_4), <span class="at">data =</span> sim1c) <span class="sc">+</span></span>
-<span id="cb103-2"><a href="#cb103-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb103-3"><a href="#cb103-3"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> pred), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb103-4"><a href="#cb103-4"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> new_pred_data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x_1, <span class="at">y =</span> pred), <span class="at">lwd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x_1, <span class="at">y =</span> y, <span class="at">colour =</span> x_4), <span class="at">data =</span> sim1c) <span class="sc">+</span></span>
+<span id="cb103-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb103-3"><a></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> pred), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb103-4"><a></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> new_pred_data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x_1, <span class="at">y =</span> pred), <span class="at">lwd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -1476,14 +1478,14 @@ x_1:x_4M     0.3548</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1"></a><span class="co"># log transform x_2</span></span>
-<span id="cb104-2"><a href="#cb104-2"></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x_1 <span class="sc">+</span> <span class="fu">log</span>(x_2), <span class="at">data =</span> sim1c)</span>
-<span id="cb104-3"><a href="#cb104-3"></a>sim1c <span class="sc">%&gt;%</span> </span>
-<span id="cb104-4"><a href="#cb104-4"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x_1, <span class="at">y =</span> <span class="fu">log</span>(x_2))) <span class="sc">+</span></span>
-<span id="cb104-5"><a href="#cb104-5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb104-6"><a href="#cb104-6"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> <span class="st">'y ~ x'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a></a><span class="co"># log transform x_2</span></span>
+<span id="cb104-2"><a></a>mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x_1 <span class="sc">+</span> <span class="fu">log</span>(x_2), <span class="at">data =</span> sim1c)</span>
+<span id="cb104-3"><a></a>sim1c <span class="sc">%&gt;%</span> </span>
+<span id="cb104-4"><a></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x_1, <span class="at">y =</span> <span class="fu">log</span>(x_2))) <span class="sc">+</span></span>
+<span id="cb104-5"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb104-6"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> <span class="st">'y ~ x'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -1509,10 +1511,10 @@ x_1:x_4M     0.3548</code></pre>
 </ul>
 <div class="fragment">
 <div class="cell">
-<details open="">
+<details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1"></a><span class="fu">options</span>(<span class="at">na.action =</span> na.warn)</span>
-<span id="cb105-2"><a href="#cb105-2"></a><span class="fu">options</span>(<span class="at">na.action =</span> na.exclude)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a></a><span class="fu">options</span>(<span class="at">na.action =</span> na.warn)</span>
+<span id="cb105-2"><a></a><span class="fu">options</span>(<span class="at">na.action =</span> na.exclude)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
@@ -1520,10 +1522,12 @@ x_1:x_4M     0.3548</code></pre>
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="../../index.html">MSB105</a></p>
 </div>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-R-modelr" class="csl-entry" role="listitem">
 Wickham, Hadley. 2023a. <em>Modelr: Modelling Functions That Work with the Pipe</em>. <a href="https://modelr.tidyverse.org">https://modelr.tidyverse.org</a>.
 </div>
@@ -1561,7 +1565,6 @@ Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino 
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': true,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1860,10 +1863,9 @@ Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino 
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn) {
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1873,8 +1875,17 @@ Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino 
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
