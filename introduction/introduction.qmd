@@ -29,6 +29,6 @@ It will try to give you an idea of what Data Sciences is and also teach you some
 ## Datasets
 
 R has a lot of available datasets to practise with.
-The following document explains how to find what´s available.
+The following document explains how to find what's available.
 
 -   [Available Datasets](available-datasets/available_datasets.qmd)
