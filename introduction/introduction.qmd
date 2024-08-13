@@ -24,11 +24,11 @@ It will try to give you an idea of what Data Sciences is and also teach you some
 -   [Very Short Intro to R](very-short-intro-r/very-short-intro-r.qmd)
     -   [Very Short Intro to R (as document)](very-short-intro-r/very-short-intro-r-document.qmd)
     -   [Notater fra forelesning (in Norwegian)](very-short-intro-r/Innledende-R-notater-forelesning.qmd)
--   [Zotero demo](Zotero_demo/Zotero_demo.qmd)
+-   [Zotero demo](Zotero_demo/Zotero_demo.qmd) 
 
 ## Datasets
 
 R has a lot of available datasets to practise with.
-The following document explains how to find what's available.
+The following document explains how to find what´s available.
 
 -   [Available Datasets](available-datasets/available_datasets.qmd)
