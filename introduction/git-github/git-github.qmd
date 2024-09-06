@@ -180,7 +180,9 @@ mens den til høyre er mer sentrert om hele prosjektet.
 
 ## Git branches in RStudio
 
--   ![newbranch](new-branch.png)
+-   
+
+    ![newbranch](new-branch.png)
 
 -   Click the small icon, left of master/main, in the upper right corner
     ![](branch-icon.png)
@@ -190,7 +192,9 @@ mens den til høyre er mer sentrert om hele prosjektet.
 
 ## Git branches in RStudio
 
--   ![branching](branch.png){width="70%"}
+-   
+
+    ![branching](branch.png){width="70%"}
 
 -   Note that Rstudio does:
     `/usr/bin/git checkout -B Update-Introduction` which is the same as:
@@ -274,18 +278,20 @@ mens den til høyre er mer sentrert om hele prosjektet.
 
 ------------------------------------------------------------------------
 
-    ---
-    title: "new paper"
-    editor: visual
-    bibliography: new-paper.bib
-    ---
-    ## Introduction
-    ## Review of literature
-    ## Description of data
-    ## Analysis
-    ## Results
-    ## Conclusion
-    ## References
+```         
+---
+title: "new paper"
+editor: visual
+bibliography: new-paper.bib
+---
+## Introduction
+## Review of literature
+## Description of data
+## Analysis
+## Results
+## Conclusion
+## References
+```
 
 ## Workflow stud. A and B working together
 

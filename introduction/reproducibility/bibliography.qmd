@@ -1,0 +1,9 @@
+---
+title: "Bibliography"
+format: pdf
+bibliography: reproducibility.bib
+nocite: |
+  @*
+---
+
+## Bibliography

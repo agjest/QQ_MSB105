@@ -2314,7 +2314,7 @@
     "href": "introduction/introduction.html#presentations",
     "title": "Introduction",
     "section": "Presentations",
-    "text": "Presentations\n\nIntro\nUndervisningsplan\nInstall Software\nStructured Dynamic Documents\n\nDocuments:\n\nPreferences RStudio\nInstall R packages\nIllustrate Markdown\nRegression Tables\n\nOther:\n\nStuff from lecture “Innledning R”\nConnect RStudio to Github on mac\n\n\nGit and Github\nVery Short Intro to R\n\nVery Short Intro to R (as document)\nNotater fra forelesning (in Norwegian)\n\nZotero demo"
+    "text": "Presentations\n\nIntro\nUndervisningsplan\nInstall Software\nStructured Dynamic Documents\n\nDocuments:\n\nPreferences RStudio\nInstall R packages\nIllustrate Markdown\nRegression Tables\n\nOther:\n\nStuff from lecture “Innledning R”\nConnect RStudio to Github on mac\n\n\nGit and Github\nVery Short Intro to R\n\nVery Short Intro to R (as document)\nNotater fra forelesning (in Norwegian)\n\nZotero demo\nReproducibility"
   },
   {
     "objectID": "introduction/introduction.html#datasets",
@@ -6387,57 +6387,57 @@
     "objectID": "introduction/git-github/git-github.html#register-on-github",
     "href": "introduction/git-github/git-github.html#register-on-github",
     "title": "Git and Github",
-    "section": "Register on Github",
-    "text": "Register on Github\n\nuse same email as git\n\ncheck with git config --global --list in terminal\n\nsome good advice for selecting user_name on Github\n\nNo …,\n\nBigSexyThing should probably not be your username on Github\nand before you ask …\n\nneither should big_sexy_thing\n\n\n\nGo to www.github.com"
+    "section": "",
+    "text": "use same email as git\n\ncheck with git config --global --list in terminal\n\nsome good advice for selecting user_name on Github\n\nNo …,\n\nBigSexyThing should probably not be your username on Github\nand before you ask …\n\nneither should big_sexy_thing\n\n\n\nGo to www.github.com"
   },
   {
     "objectID": "introduction/git-github/git-github.html#register-on-github-cont.",
     "href": "introduction/git-github/git-github.html#register-on-github-cont.",
     "title": "Git and Github",
     "section": "Register on Github cont.",
-    "text": "Register on Github cont.\nThis is taken from https://gist.github.com/Z3tt/\n\nWe have to connect RStudio to Github securely, with a token.\nIf you haven’t registered yourself in git do:\n\n\n\n\nCode\n# You have probably allready done this\nusethis::use_git_config(user.name = \"YourName\", user.email = \"your@mail.com\")\n\n\n\nMake sure that you have installed the packages:\n\nusethis\ncredential"
+    "text": "Register on Github cont.\nThis is taken from https://gist.github.com/Z3tt/\n\nWe have to connect RStudio to Github securely, with a token.\nIf you haven’t registered yourself in git do:\n\n. . .\n\n# You have probably allready done this\nusethis::use_git_config(user.name = \"YourName\", user.email = \"your@mail.com\")\n\n\nMake sure that you have installed the packages:\n\nusethis\ncredential"
   },
   {
     "objectID": "introduction/git-github/git-github.html#register-on-github-cont.-1",
     "href": "introduction/git-github/git-github.html#register-on-github-cont.-1",
     "title": "Git and Github",
     "section": "Register on Github cont.",
-    "text": "Register on Github cont.\n\nGenerate a token on Github\nSelect 90 days unless you enjoy this so much that you want to do it more often.\n\n\n\n\nCode\n## create a personal access token for authentication:\nusethis::create_github_token()"
+    "text": "Register on Github cont.\n\nGenerate a token on Github\nSelect 90 days unless you enjoy this so much that you want to do it more often.\n\n. . .\n\n## create a personal access token for authentication:\nusethis::create_github_token()"
   },
   {
     "objectID": "introduction/git-github/git-github.html#register-on-github-cont.-2",
     "href": "introduction/git-github/git-github.html#register-on-github-cont.-2",
     "title": "Git and Github",
     "section": "Register on Github cont.",
-    "text": "Register on Github cont.\n\nNew toke 90 days."
+    "text": "Register on Github cont.\n\n\n\nNew toke 90 days."
   },
   {
     "objectID": "introduction/git-github/git-github.html#register-on-github-cont.-3",
     "href": "introduction/git-github/git-github.html#register-on-github-cont.-3",
     "title": "Git and Github",
     "section": "Register on Github cont.",
-    "text": "Register on Github cont.\n\nScroll down an click Generate.\n\n\n\n\n\nClick Generate token.\n\n\n\nCopy the new token.\n\n\n\n\n\n\nCopy the new token."
+    "text": "Register on Github cont.\n\nScroll down an click Generate.\n\n. . .\n\n\n\nClick Generate token.\n\n\n\nCopy the new token.\n\n. . .\n\n\n\nCopy the new token."
   },
   {
     "objectID": "introduction/git-github/git-github.html#register-on-github-cont.-4",
     "href": "introduction/git-github/git-github.html#register-on-github-cont.-4",
     "title": "Git and Github",
     "section": "Register on Github cont.",
-    "text": "Register on Github cont.\n\nRun the command below.\npaste your new token into YourPAT\n\n\n\n\nCode\n# set personal access token:\ncredentials::set_github_pat(\"YourPAT\")\n\n\n\nIf asked by your local security system; paste the PAT and click OK"
+    "text": "Register on Github cont.\n\nRun the command below.\npaste your new token into YourPAT\n\n. . .\n\n# set personal access token:\ncredentials::set_github_pat(\"YourPAT\")\n\n\nIf asked by your local security system; paste the PAT and click OK"
   },
   {
     "objectID": "introduction/git-github/git-github.html#register-on-github-cont.-5",
     "href": "introduction/git-github/git-github.html#register-on-github-cont.-5",
     "title": "Git and Github",
     "section": "Register on Github cont.",
-    "text": "Register on Github cont.\n\nVerify your settings.\n\n\n\n\nCode\n#### 4. Verify settings ######################################################\nusethis::git_sitrep()\n\n\n\nNow RStudio should be connected to Github for 90 days.\nDO NOT SAVE A DOCUMENT WITH YOUR PAT IN IT!"
+    "text": "Register on Github cont.\n\nVerify your settings.\n\n. . .\n\n#### 4. Verify settings ######################################################\nusethis::git_sitrep()\n\n\nNow RStudio should be connected to Github for 90 days.\nDO NOT SAVE A DOCUMENT WITH YOUR PAT IN IT!"
   },
   {
     "objectID": "introduction/git-github/git-github.html#git-in-rstudio",
     "href": "introduction/git-github/git-github.html#git-in-rstudio",
     "title": "Git and Github",
     "section": "Git in RStudio",
-    "text": "Git in RStudio\n\ngit in RStudioDen til venstre dreier seg i hovedsak om dokumentet jeg arbeider på nå, mens den til høyre er mer sentrert om hele prosjektet."
+    "text": "Git in RStudio\n\n\n\ngit in RStudio\n\n\nDen til venstre dreier seg i hovedsak om dokumentet jeg arbeider på nå, mens den til høyre er mer sentrert om hele prosjektet."
   },
   {
     "objectID": "introduction/git-github/git-github.html#git-in-rstudio-1",
@@ -6486,7 +6486,7 @@
     "href": "introduction/git-github/git-github.html#git-branches-in-rstudio-2",
     "title": "Git and Github",
     "section": "Git branches in RStudio",
-    "text": "Git branches in RStudio\n\nWork and commit on branch Update-Introduction\nWhen finished:\n\nSelect Terminal in lower left paneGit branches in RStudio\n\n\n\nTerminal tab in lower left pane\nThen give the commandl\n\ngit checkout master or git checkout main\n\nthis command switch back to the branch master or main (local)\n\ngit merge Update-Introduction\n\nmerge the branch Update-Introduction into master or main branch"
+    "text": "Git branches in RStudio\n\nWork and commit on branch Update-Introduction\nWhen finished:\n\nSelect Terminal in lower left paneGit branches in RStudio\n\n\n\n\n\nTerminal tab in lower left pane\n\n\n\nThen give the commandl\n\ngit checkout master or git checkout main\n\nthis command switch back to the branch master or main (local)\n\ngit merge Update-Introduction\n\nmerge the branch Update-Introduction into master or main branch"
   },
   {
     "objectID": "introduction/git-github/git-github.html#git-branches-in-rstudio-3",
@@ -6514,14 +6514,14 @@
     "href": "introduction/git-github/git-github.html#workflow-stud.-a-and-b-working-together-2",
     "title": "Git and Github",
     "section": "Workflow stud. A and B working together",
-    "text": "Workflow stud. A and B working together\n\nStud. A gives stud. B access to repository\nStud. B clones repository\nStud. B edits the Quarto Document"
+    "text": "Workflow stud. A and B working together\n\nStud. A gives stud. B access to repository\nStud. B clones repository\nStud. B edits the Quarto Document\n\n\n---\ntitle: \"new paper\"\neditor: visual\nbibliography: new-paper.bib\n---\n## Introduction\n## Review of literature\n## Description of data\n## Analysis\n## Results\n## Conclusion\n## References"
   },
   {
     "objectID": "introduction/git-github/git-github.html#workflow-stud.-a-and-b-working-together-3",
     "href": "introduction/git-github/git-github.html#workflow-stud.-a-and-b-working-together-3",
     "title": "Git and Github",
     "section": "Workflow stud. A and B working together",
-    "text": "Workflow stud. A and B working together\n\nStud. B\nsave Quarto Document\n\nCommit\nPull\nPush\n\nTime to discuss who do what\n\nIssues at Github might be useful\n\n\n\n\n\nMSB105"
+    "text": "Workflow stud. A and B working together\n\nStud. B\nsave Quarto Document\n\nCommit\nPull\nPush\n\nTime to discuss who do what\n\nIssues at Github might be useful"
   },
   {
     "objectID": "introduction/install-sw/install-sw.html#r-from-r-project.org",
@@ -8790,5 +8790,894 @@
     "title": "Introduksjon Data Science",
     "section": "Ønsket format",
     "text": "Ønsket format\n\nDokumentformatene .pdf, .html og .docx er de mest relevante alternativene\nDet er også mulighet for å generere rapporter vha. en mal og parametre.\nFor en presentasjon ville vi hatt andre alternativer (som Powerpoint) og revealjs. Ønsket format blir angitt i YAML, f.eks. format: revealjs.\n\n\n\n\nMSB105"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#reproducibility",
+    "href": "rr-science/rr-science_h24.html#reproducibility",
+    "title": "Robust and Reliable Science",
+    "section": "1 Reproducibility",
+    "text": "1 Reproducibility\nStart of the editorial in Science January 2014\n\n“Science advances on a foundation of trusted discoveries.\nReproducing an experiment is one important approach that scientists use to gain confidence in their conclusions.\nRecently, the scientific community was shaken by reports that a troubling proportion of peer-reviewed preclinical studies are not reproducible”.(McNutt 2014)\n\nadvances on a foundation of trusted discoveries\nscientists try to reproduce results to gain confidence in conclusions\nmany peer-reviewed studies not reproducible"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#replicability-and-reproducibility",
+    "href": "rr-science/rr-science_h24.html#replicability-and-reproducibility",
+    "title": "Robust and Reliable Science",
+    "section": "2 Replicability and Reproducibility",
+    "text": "2 Replicability and Reproducibility\n\n“Replication—The confirmation of results and conclusions from one study obtained independently in another—is considered the scientific gold standard.”(Jasny et al. 2011)\n\nReproducibility is a necessary, but not sufficient, condition for Replicability.\nShould Reproducibility be a minimal requirement for publication? (Peng (2011) discusses this with regard to Computational Science)"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#nsf-robust-and-reliable-science",
+    "href": "rr-science/rr-science_h24.html#nsf-robust-and-reliable-science",
+    "title": "Robust and Reliable Science",
+    "section": "3 NSF: Robust and Reliable Science",
+    "text": "3 NSF: Robust and Reliable Science\n\nThere seems to have been some confusion regarding the terms.\nAt least the NSF1 felt a need to define the following (Bollen et al. 2015):\n“robust and reliable” science refers to: research that is reproducible, replicable, and generalizable.\nReproducibility refers to: the ability of a researcher to duplicate the results of a prior study using the same materials and procedures used by the original investigator.\nReplicability refers to: the ability of a researcher to duplicate the results of a prior study if the same procedures are followed but new data are collected.\nGeneralizability refers to: whether the results of a study apply in other contexts or populations that differ from the originals.\n\nSubcommittee on Replicability in Science Advisory Committee to the National Science Foundation Directorate for Social, Behavioural, and Economic Sciences"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#what-does-research-reproducibility-mean",
+    "href": "rr-science/rr-science_h24.html#what-does-research-reproducibility-mean",
+    "title": "Robust and Reliable Science",
+    "section": "5 What does research reproducibility mean?",
+    "text": "5 What does research reproducibility mean?\n\nWhat does research reproducibility mean? (Goodman, Fanelli, and Ioannidis 2016)\n\nMethods reproducibility: “Methods reproducibility refers to the provision of enough detail about study procedures and data so the same procedures could, in theory or in actuality, be exactly repeated.”\nResults reproducibility: “Results reproducibility (previously described as replicability) refers to obtaining the same results from the conduct of an independent study whose procedures are as closely matched to the original experiment as possible.”\nRobustness and generalizability: “We briefly introduce these terms because they are sometimes used in lieu of the term reproducibility. Robustness refers to the stability of experimental conclusions to variations in either baseline assumptions or experimental procedures. It is somewhat related to the concept of generalizability (also known as transportability), which refers to the persistence of an effect in settings different from and outside of an experimental framework.”"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#publication-bias",
+    "href": "rr-science/rr-science_h24.html#publication-bias",
+    "title": "Robust and Reliable Science",
+    "section": "6 Publication bias",
+    "text": "6 Publication bias\n\nPublication bias refers to: the likelihood of a study being published based on the findings of the study.\n\nThere are few published studies with a negative conclusion (can not reject H0),\n\nex.: The treatment has no effect\n\nWorst case, Scientific journals are big collections of type 1 error"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#problem-type-1-error",
+    "href": "rr-science/rr-science_h24.html#problem-type-1-error",
+    "title": "Robust and Reliable Science",
+    "section": "7 Problem: Type 1 error",
+    "text": "7 Problem: Type 1 error\n\nType 1 error: reject H0 when H0 is true\nH0 is the conservative hypothesis, i.e. “no effect”\nwith \\(\\alpha = 0,05\\) we accept that in 1 of 20 cases we will reject H0 even if it`s true\n\ni.e. we conclude that there is an effect when in reality there is none (all because we were unlucky, or perhaps lucky if we want to be published, and got an unfortunate sample)\n\nSo even if there are 100 similar studies that find no effect, there is a risk that the wrong one is what you will find in the literature\nThis is often called the “File Drawer Problem” after Rosenthal (1979)\n\nstudies where H0 can not be rejected go to the filing cabinet\nstudies where H0 can be rejected will be sendt to the journals"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#problem-type-1-error-1",
+    "href": "rr-science/rr-science_h24.html#problem-type-1-error-1",
+    "title": "Robust and Reliable Science",
+    "section": "8 Problem: Type 1 error",
+    "text": "8 Problem: Type 1 error\n\nPerhaps the most costly error is a false positive, the incorrect rejection of a null hypothesis.\nFirst, once they appear in the literature, false positives are particularly persistent.\nBecause null results have many possible causes, failures to replicate previous findings are never conclusive.\nFurthermore, because it is uncommon for prestigious journals to publish null findings or exact replications, researchers have little incentive to even attempt them.\nSecond, false positives waste resources: They inspire investment in fruitless research programs and can lead to ineffective policy changes.\nFinally, a field known for publishing false positives risks losing its credibility.(Simmons, Nelson, and Simonsohn 2011)"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#publication-bias-and-meta-analysis",
+    "href": "rr-science/rr-science_h24.html#publication-bias-and-meta-analysis",
+    "title": "Robust and Reliable Science",
+    "section": "9 Publication bias and meta-analysis",
+    "text": "9 Publication bias and meta-analysis\n\n“More alarming is the general paucity in the literature of negative data. In some fields, almost all published studies show formally significant results so that statistical significance no longer appears discriminating” (Young, Ioannidis, and Al-Ubaydli 2008)\n\nYoung, Ioannidis, and Al-Ubaydli (2008) analyses scientific information as an economic commodity\n\nA meta-analysis is a statistical analysis that combines the results of multiple scientific studies.(wikipedia 2020)\nIf there is a publication bias this will also influence meta-analysis’\nIyengar and Greenhouse (1988) discusses techniques to deal with this problem"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#the-replication-crisis",
+    "href": "rr-science/rr-science_h24.html#the-replication-crisis",
+    "title": "Robust and Reliable Science",
+    "section": "10 The Replication Crisis",
+    "text": "10 The Replication Crisis\n\nThe last Replication Crisis seems to have started in Psychology, but spread fast to other branches of science\nSimmons, Nelson, and Simonsohn (2011) “proves” that you will get, or at least feel, younger by listening to “When I’m Sixty-Four” by The Beatles.\n\nSimmons, Nelson, and Simonsohn (2011) suggest a solution to the problem\n\nlist of requirements for authers (6) and guidelines for editors (4)"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#the-replication-crisis-1",
+    "href": "rr-science/rr-science_h24.html#the-replication-crisis-1",
+    "title": "Robust and Reliable Science",
+    "section": "11 The Replication Crisis",
+    "text": "11 The Replication Crisis\n\nWhy Most Published Research Findings Are False Ioannidis (2005)\n\n“There is increasing concern that in modern research, false findings may be the majority or even the vast majority of published research claims [6–8]. However, this should not be surprising. It can be proven that most claimed research findings are false.”\n\nAgain, and again, and again Jasny et al. (2011)\n\nHow do we promote the publication of replicable data?\nIntroduction to Science special section on Data Replication & Reproducibility\nPromoting an open research culture B. A. Nosek et al. (2015)\n\nAuthor guidelines for journals could help to promote transparency, openness, and reproducibility"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#big-replication-studies-in-psychology",
+    "href": "rr-science/rr-science_h24.html#big-replication-studies-in-psychology",
+    "title": "Robust and Reliable Science",
+    "section": "12 Big replication studies in psychology",
+    "text": "12 Big replication studies in psychology\n\nEstimating the reproducibility of psychological science Brian A. Nosek and et al (2015)\n\ntotalt 270 forskere involvert\nTried to replicate 100 studies from the last 3 years taken from 3 of the most respected journals in the field\nResults: Replication effects were half the magnitude of original effects\nResults: Ninety­seven percent of original studies had significant results (p​​&lt; .05). Thirty­six percent of replications had significant results\nResults: In sum, a large portion of replications did not reproduce evidence supporting the original results despite using high­powered designs and original materials when available."
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#what-about-economics",
+    "href": "rr-science/rr-science_h24.html#what-about-economics",
+    "title": "Robust and Reliable Science",
+    "section": "14 What about economics?",
+    "text": "14 What about economics?\n\nGood intentions!\n\n(Frisch 1933)\n\n\n\nfrich in econometrica"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#what-about-economics-1",
+    "href": "rr-science/rr-science_h24.html#what-about-economics-1",
+    "title": "Robust and Reliable Science",
+    "section": "15 What about economics?",
+    "text": "15 What about economics?\n\nExample of such a dataset (Ezekiel 1933)\n\n\ndata set"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#what-about-economics-2",
+    "href": "rr-science/rr-science_h24.html#what-about-economics-2",
+    "title": "Robust and Reliable Science",
+    "section": "16 What about economics?",
+    "text": "16 What about economics?\n\n1960, big economic models\n\ndifficult to move from one mainframe to another, see Dewald, Thursby, and Anderson (1986).\nonly results published, replication/reproduction nearly impossible"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#the-jmcb-project-1982",
+    "href": "rr-science/rr-science_h24.html#the-jmcb-project-1982",
+    "title": "Robust and Reliable Science",
+    "section": "17 The JMCB project (1982)",
+    "text": "17 The JMCB project (1982)\n\n1982 The Journal of Money, Credit and Banking Project (NSF sponsored)\n\nReplication (with submitted data sets) so in a modern sense more of an attempt at testing reproducibility\nResults: Managed full replication for 2 out of more than 70\nResults: Some more with nearly the original results\nResults: Many was impossible to replicate because of missing data, faulty computer programs, no documentation e.t.c.\nMany authers just ingored request for data and code\n“It would be embarrassing to reveal the findings of the Project save for our belief that the findings would be little different from any other major economics journal”"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#the-solution",
+    "href": "rr-science/rr-science_h24.html#the-solution",
+    "title": "Robust and Reliable Science",
+    "section": "18 “The Solution”",
+    "text": "18 “The Solution”\n\nCode and data archives at the journals\nAmerican Economic Association data archive, (“American Economic Association,” n.d. )\nDid the solution work?\nDo economics journal archives promote replicable research? (McCullough, McGeary, and Harrison 2008)\nAbstract. All the long-standing archives at economics journals do not facilitate the re-production of published results. The data-only archives at Journal of Business and Economic Statistics and Economic Journal fail in part because most authors do not contribute data. Results published in the FRB St. Louis Review can rarely be reproduced using the data+code in the journal archive.\nThe solution does not seem to work very well"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#extension-of-the-solution",
+    "href": "rr-science/rr-science_h24.html#extension-of-the-solution",
+    "title": "Robust and Reliable Science",
+    "section": "19 “Extension of the solution”",
+    "text": "19 “Extension of the solution”\n\nResearch Objects, (Bechhofer et al. 2013)\n\n“Research Objects, semantically rich aggregations of resources that provide the “units of knowledge” which supply structure for delivery of information as Linked Data.”\nDataCite - A global registration agency for research data, Brase (2009)\n\nInternational co-operations to register data sets and give them a unique DOI (Document Object Indentifier)\n\nEU initiative Access to and Preservation of Scientific Information in Europe: Report on the Implementation of Commission Recommendation C(2012) 4890 Final. (2015)\n\n“This report provides an overview on access to and preservation of scientific information in the EU Member States as well as Norway and Turkey.”"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#another-solution-computable-documents",
+    "href": "rr-science/rr-science_h24.html#another-solution-computable-documents",
+    "title": "Robust and Reliable Science",
+    "section": "20 Another solution, “computable documents”",
+    "text": "20 Another solution, “computable documents”\n\nWhat if the code is an integral part of the article?\n\nWhat is to be sent to the Journal is one document containing the text and\nthe code to read in the data and\nthe code to calculate the different models and\nthe code to test them and\nthe code to report the results.\nWhat would be submitted would be, together with the data, a fully reproducible document\n\nThe main idea is often attributed to Donald E. Knuth (1992), although Knuth explicitly points out that it was not his idea (D. E. Knuth 1984)\nKnuths main goal seems to be to improve the quality of the program documentation (and indirectly the quality of the code) with WEB.\nNoweb, Ramsey (n.d.)\n\n“noweb is designed to meet the needs of literate programmers while remaining as simple as possible. Its primary advantages are simplicity, extensibility, and language-independence—especially noticeable when compared with other literate-programming tools. noweb uses 5 control sequences to WEB’s 27.”"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#another-solution-computable-documents-1",
+    "href": "rr-science/rr-science_h24.html#another-solution-computable-documents-1",
+    "title": "Robust and Reliable Science",
+    "section": "21 Another solution, “computable documents”",
+    "text": "21 Another solution, “computable documents”\n\n“In the mid 1980’s, researchers at our laboratory noticed that a few months after completing a project, the researchers were usually unable to reproduce their own computational work without considerable agony. In 1991, the concept of electronic documents solved this problem by making scientific computations reproducible.”(Schwab, Karrenbach, and Claerbout 1995)\n\nunix makefiles\n\nConnection between code and reproducibility. All code necessary to generate figures freely avaiable (WaveLab a Matlab (Matlab is proprietary software) library).(Buckheit and Donoho 1995)\n“solutions for practical reproducible research systems”, (Fomel and Claerbout 2009)\n\nIntroduction to special issue of Computing in Science & Engineering ( Volume: 11 , Issue: 1 , Jan.-Feb. 2009 )"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#another-solution-computable-documents-2",
+    "href": "rr-science/rr-science_h24.html#another-solution-computable-documents-2",
+    "title": "Robust and Reliable Science",
+    "section": "22 Another solution, “computable documents”",
+    "text": "22 Another solution, “computable documents”\n\n“It is important, if not essential, to integrate the computations and code used in data analyses, methodological descriptions, simulations, and so on with the documents that describe and rely on them.” (Gentleman and Lang 2007)1\n“We introduce the concept of a compendium as both a container for the different elements that make up the document and its computations (i.e. text, code, data, …), and as a means for distributing, managing and updating the collection.”\n“The step from disseminating analyses via a compendium to reproducible research is a small one. By reproducible research, we mean research papers with accom- panying software tools that allow the reader to directly reproduce the results and employ the methods that are presented in the research paper.”\n“a compendium has one, or more, self-contained live documents that can be regenerated in absolute detail by others, and that can often be used in contexts other than the author’s original work.”\n\nRobert Gentleman and Ross Ihaka, “the fathers” of R, R Core Team (2020)"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#another-solution-computable-documents-3",
+    "href": "rr-science/rr-science_h24.html#another-solution-computable-documents-3",
+    "title": "Robust and Reliable Science",
+    "section": "23 Another solution, “computable documents”",
+    "text": "23 Another solution, “computable documents”\n\n“We define a dynamic document as an ordered composition of code chunks and text chunks that describe and discuss a problem and its solution. The ordering of the chunks need not be simply sequential but can support rich and complex document structures.”\n“The mechanism or system used to transform a dynamic document into some desired output or view will be called a transformer.”\nIn Gentleman (2005) parts of Golub et al. (1999) is reproduced as a computable compendium."
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#implementations",
+    "href": "rr-science/rr-science_h24.html#implementations",
+    "title": "Robust and Reliable Science",
+    "section": "25 Implementations",
+    "text": "25 Implementations\n\nSweave, executable code (R or Splus) in LaTex documents, (Leisch 2002)\nKnitr, (Xie 2014), (Xie 2015) and (Xie 2020)\n\nR code in LaTex documents (like Sweave), but also support for R Markdown (Allaire et al. 2020), (Tierney, n.d.), (Xie, Allaire, and Grolemund 2018) and (Riederer, n.d.)\nMarkdown Gruber and Swartz (n.d.), plain text with simple markup. Intended for Grubers web site.\nR Markdown, markdown with R code-chuncks\n\nRStudio (RStudio Team 2020), IDE for R supporting R Markdown and knitr\nR Notebook, document type supported by RStudio that implements a notebook interface, i.e. output is returned to the notebook when it is run\n\nCode should be run sequentially, but each code-chunck can be run individually\nSupport LaTex code for mathematical typesetting\npandoc, (zotero-382?), functions as the transformer (from Gentleman and Lang (2007)) and can transform a R Markdown document into many different formats.\nincluding MS Word, html and pdf (via LaTex)"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#implementations-1",
+    "href": "rr-science/rr-science_h24.html#implementations-1",
+    "title": "Robust and Reliable Science",
+    "section": "26 Implementations",
+    "text": "26 Implementations\n\nIntroductory books on R, (Lander 2017) and Data Science, (Grolemund and Wickham, n.d.) often includes chapters on how to write dynamic computable documents in R Studio"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#references",
+    "href": "rr-science/rr-science_h24.html#references",
+    "title": "Robust and Reliable Science",
+    "section": "27 References",
+    "text": "27 References\n\n\n\nhttps://www.hvl.no\n\n\n\n\nAccess to and Preservation of Scientific Information in Europe: Report on the Implementation of Commission Recommendation C(2012) 4890 Final. 2015. LU: Publications Office.\n\n\nAllaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, Winston Chang, and Richard Iannone. 2020. Rmarkdown: Dynamic Documents for r.\n\n\n“American Economic Association.” n.d. https://www.aeaweb.org/journals/data.\n\n\nBechhofer, Sean, Iain Buchan, David De Roure, Paolo Missier, John Ainsworth, Jiten Bhagat, Philip Couch, et al. 2013. “Why Linked Data Is Not Enough for Scientists.” Future Generation Computer Systems 29 (2): 599–611. https://doi.org/10.1016/j.future.2011.08.004.\n\n\nBollen, Kenneth, John T. Cacioppo, Jon A. Krosnick, James L. Olds, and Robert M. Kaplan. 2015. “Social, Behavioral, and Economic Sciences Perspectives on Robust and Reliable Science.” Report of the Subcommittee on Replicability in Science Advisory Committee to the National Science Foundation Directorate for Social, Behavioral, and Economic Sciences. NSF.\n\n\nBrase, Jan. 2009. “DataCite - A Global Registration Agency for Research Data.” In 2009 Fourth International Conference on Cooperation and Promotion of Information Resources in Science and Technology, 257–61. Beijing, China: IEEE. https://doi.org/10.1109/COINFO.2009.66.\n\n\nBuckheit, Jonathan B., and David L. Donoho. 1995. “WaveLab and Reproducible Research.” In Wavelets and Statistics, edited by P. Bickel, P. Diggle, S. Fienberg, K. Krickeberg, I. Olkin, N. Wermuth, S. Zeger, Anestis Antoniadis, and Georges Oppenheim, 103:55–81. New York, NY: Springer New York. https://doi.org/10.1007/978-1-4612-2544-7_5.\n\n\nCollaboration, Open Science. 2015. “Estimating the Reproducibility of Psychological Science.” Science 349 (6251). https://doi.org/10.1126/science.aac4716.\n\n\n“Dear Colleague Letter: Robust and Reliable Research in the Social, Behavioral, and Economic Sciences (Nsf16137) | NSF - National Science Foundation.” n.d. https://www.nsf.gov/pubs/2016/nsf16137/nsf16137.jsp.\n\n\nDewald, William G., Jerry G. Thursby, and Richard G. Anderson. 1986. “Replication in Empirical Economics: The Journal of Money, Credit and Banking Project.” The American Economic Review 76 (4): 587–603.\n\n\nEzekiel, Mordecai. 1933. “Some Considerations on the Analysis of the Prices of Competing or Substitute Commodities.” Econometrica 1 (2): 172–80.\n\n\nFomel, S., and J. F. Claerbout. 2009. “Guest Editors’ Introduction: Reproducible Research.” Computing in Science Engineering 11 (1): 5–7.\n\n\nFrisch, Ragnar. 1933. “Editor’s Note.” Econometrica 1 (1): 1–4.\n\n\nGentleman, Robert. 2005. “Reproducible Research: A Bioinformatics Case Study.” Statistical Applications in Genetics and Molecular Biology 4 (1). https://doi.org/10.2202/1544-6115.1034.\n\n\nGentleman, Robert, and Duncan Temple Lang. 2007. “Statistical Analyses and Reproducible Research.” Journal of Computational and Graphical Statistics 16 (1): 1–23. https://doi.org/10.1198/106186007X178663.\n\n\nGolub, T. R., D. K. Slonim, P. Tamayo, C. Huard, M. Gaasenbeek, J. P. Mesirov, H. Coller, et al. 1999. “Molecular Classification of Cancer: Class Discovery and Class Prediction by Gene Expression Monitoring.” Science (New York, N.Y.) 286 (5439): 531–37. https://doi.org/10.1126/science.286.5439.531.\n\n\nGoodman, Steven N., Daniele Fanelli, and John P. A. Ioannidis. 2016. “What Does Research Reproducibility Mean?” Science Translational Medicine 8 (341): 341ps12–12. https://doi.org/10.1126/scitranslmed.aaf5027.\n\n\nGrolemund, Garrett, and Hadley Wickham. n.d. R for Data Science.\n\n\nGruber, John, and Aron Swartz. n.d. “Daring Fireball: Markdown.” https://daringfireball.net/projects/markdown/.\n\n\nIoannidis, John P. A. 2005. “Why Most Published Research Findings Are False.” PLOS Medicine 2 (8): e124. https://doi.org/10.1371/journal.pmed.0020124.\n\n\nIyengar, Satish, and Joel B. Greenhouse. 1988. “Selection Models and the File Drawer Problem.” Statistical Science 3 (1): 109–17.\n\n\nJasny, Barbara R., Gilbert Chin, Lisa Chong, and Sacha Vignieri. 2011. “Again, and Again, and Again.” Science 334 (6060): 1225–25. https://doi.org/10.1126/science.334.6060.1225.\n\n\nKlein, Richard A., Michelangelo Vianello, Fred Hasselman, Byron G. Adams, Jr. Reginald B. Adams, Sinan Alper, Mark Aveyard, et al. 2018. “Many Labs 2: Investigating Variation in Replicability Across Samples and Settings.” Advances in Methods and Practices in Psychological Science 1 (4): 443–90. https://doi.org/10.1177/2515245918810225.\n\n\nKnuth, D. E. 1984. “Literate Programming.” The Computer Journal 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.\n\n\nKnuth, Donald E. 1992. Literate Programming. Cambridge University Press.\n\n\nLander, Jared P. 2017. R for Everyone: Advanced Analytics and Graphics. 2nd Edition. Boston: Addison-Wesley Professional.\n\n\nLeisch, Friedrich. 2002. “Sweave: Dynamic Generation of Statistical Reports Using Literate Data Analysis.” In Compstat, edited by Wolfgang Härdle and Bernd Rönz, 575–80. Heidelberg: Physica-Verlag HD. https://doi.org/10.1007/978-3-642-57489-4_89.\n\n\nMcCullough, B. D., Kerry Anne McGeary, and Teresa D. Harrison. 2008. “Do Economics Journal Archives Promote Replicable Research?” Canadian Journal of Economics/Revue Canadienne d’économique 41 (4): 1406–20. https://doi.org/10.1111/j.1540-5982.2008.00509.x.\n\n\nMcNutt, Marcia. 2014. “Reproducibility.” Science 343 (6168): 229–29. https://doi.org/10.1126/science.1250475.\n\n\nNosek, B. A., G. Alter, G. C. Banks, D. Borsboom, S. D. Bowman, S. J. Breckler, S. Buck, et al. 2015. “Promoting an Open Research Culture.” Science 348 (6242): 1422–25. https://doi.org/10.1126/science.aab2374.\n\n\nNosek, Brian A., and et al. 2015. “Estimating the Reproducibility of Psychological Science.” Science 349 (6251). https://doi.org/10.1126/science.aac4716.\n\n\n“Pandoc - Pandoc User’s Guide.” n.d. https://pandoc.org/MANUAL.html.\n\n\nPeng, Roger D. 2011. “Reproducible Research in Computational Science.” Science 334 (6060): 1226–27. https://doi.org/10.1126/science.1213847.\n\n\nR Core Team. 2020. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing.\n\n\nRamsey, Norman. n.d. “Noweb Home Page.” https://www.cs.tufts.edu/~nr/noweb/.\n\n\nRiederer, Emily, Christophe Dervieux. n.d. R Markdown Cookbook.\n\n\nRosenthal, R. 1979. “The File Drawer Problem and Tolerance for Null Results.” In, 86:638–41. Psychological Bulletin.\n\n\nRStudio Team. 2020. RStudio: Integrated Development Environment for r. Boston, MA: RStudio, PBC.\n\n\nSchwab, Matthias, Martin Karrenbach, and Jon Claerbout. 1995. “Reproducible Electronic Documents,” 14.\n\n\nSimmons, Joseph P., Leif D. Nelson, and Uri Simonsohn. 2011. “False-Positive Psychology: Undisclosed Flexibility in Data Collection and Analysis Allows Presenting Anything as Significant.” Psychological Science 22 (11): 1359–66. https://doi.org/10.1177/0956797611417632.\n\n\nTierney, Nicholas. n.d. RMarkdown for Scientists.\n\n\nwikipedia. 2020. “Meta-Analysis.” Wikipedia, August.\n\n\nXie, Yihui. 2014. “Knitr: A Comprehensive Tool for Reproducible Research in R.” In Implementing Reproducible Computational Research, edited by Victoria Stodden, Friedrich Leisch, and Roger D. Peng. Chapman and Hall/CRC.\n\n\n———. 2015. Dynamic Documents with R and Knitr. Second. Boca Raton, Florida: Chapman and Hall/CRC.\n\n\n———. 2020. Knitr: A General-Purpose Package for Dynamic Report Generation in r. Manual.\n\n\nXie, Yihui, J. J. Allaire, and Garrett Grolemund. 2018. R Markdown: The Definitive Guide. Boca Raton, Florida: Chapman and Hall/CRC.\n\n\nYoung, Neal S, John P. A Ioannidis, and Omar Al-Ubaydli. 2008. “Why Current Publication Practices May Distort Science.” PLoS Medicine 5 (10): e201. https://doi.org/10.1371/journal.pmed.0050201."
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#nsf-robust-and-reliable-science-cont.",
+    "href": "rr-science/rr-science_h24.html#nsf-robust-and-reliable-science-cont.",
+    "title": "Robust and Reliable Science",
+    "section": "4 NSF: Robust and Reliable Science cont.",
+    "text": "4 NSF: Robust and Reliable Science cont.\n\nSee also “Dear Colleague Letter: Robust and Reliable Research in the Social, Behavioral, and Economic Sciences (Nsf16137) | NSF - National Science Foundation” (n.d.)\nRobust and reliable research is the foundation of all scientific development and progress, which depends critically on the ability of investigators to build on prior work."
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#big-replication-studies-in-psychology-cont.",
+    "href": "rr-science/rr-science_h24.html#big-replication-studies-in-psychology-cont.",
+    "title": "Robust and Reliable Science",
+    "section": "13 Big replication studies in psychology cont.",
+    "text": "13 Big replication studies in psychology cont.\n\nMany labs 2: Investigating variation in replicability across samples and settings Klein et al. (2018). See Collaboration (2015) for abstract.\n\n“We conducted preregistered replications of 28 classic and contemporary published findings, with protocols that were peer reviewed in advance, to examine variation in effect magnitudes across samples and settings.”\n“Using the conventional criterion of statistical significance (p &lt; .05), we found that 15 (54%) of the replications provided evidence of a statistically significant effect in the same direction as the original finding.”"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#what-is-research-reproducibility",
+    "href": "rr-science/rr-science_h24.html#what-is-research-reproducibility",
+    "title": "Robust and Reliable Science",
+    "section": "5 What is research reproducibility?",
+    "text": "5 What is research reproducibility?\n\nWhat does research reproducibility mean? (Goodman, Fanelli, and Ioannidis 2016)\n\nMethods reproducibility: “Methods reproducibility refers to the provision of enough detail about study procedures and data so the same procedures could, in theory or in actuality, be exactly repeated.”\nResults reproducibility: “Results reproducibility (previously described as replicability) refers to obtaining the same results from the conduct of an independent study whose procedures are as closely matched to the original experiment as possible.”\nRobustness and generalizability: “We briefly introduce these terms because they are sometimes used in lieu of the term reproducibility. Robustness refers to the stability of experimental conclusions to variations in either baseline assumptions or experimental procedures. It is somewhat related to the concept of generalizability (also known as transportability), which refers to the persistence of an effect in settings different from and outside of an experimental framework.”"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#another-solution-computable-documents-i",
+    "href": "rr-science/rr-science_h24.html#another-solution-computable-documents-i",
+    "title": "Robust and Reliable Science",
+    "section": "20 Another solution, “computable documents” I",
+    "text": "20 Another solution, “computable documents” I\n\nWhat if the code is an integral part of the article?\nWhat is to be sent to the Journal is:\n\none document containing the text and\nthe code to read in the data and\nthe code to calculate the different models and\nthe code to test them and\nthe code to report the results.\n\nWhat would be submitted would be, together with the data, a fully reproducible document"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#another-solution-computable-documents-ii",
+    "href": "rr-science/rr-science_h24.html#another-solution-computable-documents-ii",
+    "title": "Robust and Reliable Science",
+    "section": "21 Another solution, “computable documents” II",
+    "text": "21 Another solution, “computable documents” II\n\nThe main idea is often attributed to Donald E. Knuth (1992), although Knuth explicitly points out that it was not his idea (D. E. Knuth 1984)\nKnuths main goal seems to be to improve the quality of the program documentation (and indirectly the quality of the code) with WEB.\nNoweb, Ramsey (n.d.)\n\n“noweb is designed to meet the needs of literate programmers while remaining as simple as possible. Its primary advantages are simplicity, extensibility, and language-independence—especially noticeable when compared with other literate-programming tools. noweb uses 5 control sequences to WEB’s 27.”"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#another-solution-computable-documents-iii",
+    "href": "rr-science/rr-science_h24.html#another-solution-computable-documents-iii",
+    "title": "Robust and Reliable Science",
+    "section": "22 Another solution, “computable documents” III",
+    "text": "22 Another solution, “computable documents” III\n\n“In the mid 1980’s, researchers at our laboratory noticed that a few months after completing a project, the researchers were usually unable to reproduce their own computational work without considerable agony. In 1991, the concept of electronic documents solved this problem by making scientific computations reproducible.”(Schwab, Karrenbach, and Claerbout 1995)\n\nunix makefiles\n\nConnection between code and reproducibility. All code necessary to generate figures freely avaiable (WaveLab a Matlab (Matlab is proprietary software) library).(Buckheit and Donoho 1995)\n“solutions for practical reproducible research systems”, (Fomel and Claerbout 2009)\n\nIntroduction to special issue of Computing in Science & Engineering ( Volume: 11 , Issue: 1 , Jan.-Feb. 2009 )"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#another-solution-computable-documents-iv",
+    "href": "rr-science/rr-science_h24.html#another-solution-computable-documents-iv",
+    "title": "Robust and Reliable Science",
+    "section": "23 Another solution, “computable documents” IV",
+    "text": "23 Another solution, “computable documents” IV\n\n“It is important, if not essential, to integrate the computations and code used in data analyses, methodological descriptions, simulations, and so on with the documents that describe and rely on them.” (Gentleman and Lang 2007)1\n“We introduce the concept of a compendium as both a container for the different elements that make up the document and its computations (i.e. text, code, data, …), and as a means for distributing, managing and updating the collection.”\n“The step from disseminating analyses via a compendium to reproducible research is a small one. By reproducible research, we mean research papers with accom- panying software tools that allow the reader to directly reproduce the results and employ the methods that are presented in the research paper.”\n\nRobert Gentleman and Ross Ihaka, “the fathers” of R, R Core Team (2020)"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#another-solution-computable-documents-v",
+    "href": "rr-science/rr-science_h24.html#another-solution-computable-documents-v",
+    "title": "Robust and Reliable Science",
+    "section": "24 Another solution, “computable documents” V",
+    "text": "24 Another solution, “computable documents” V\n\n“a compendium has one, or more, self-contained live documents that can be regenerated in absolute detail by others, and that can often be used in contexts other than the author’s original work.”\n“We define a dynamic document as an ordered composition of code chunks and text chunks that describe and discuss a problem and its solution. The ordering of the chunks need not be simply sequential but can support rich and complex document structures.”\n“The mechanism or system used to transform a dynamic document into some desired output or view will be called a transformer.”\nIn Gentleman (2005) parts of Golub et al. (1999) is reproduced as a computable compendium."
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#implementations-i",
+    "href": "rr-science/rr-science_h24.html#implementations-i",
+    "title": "Robust and Reliable Science",
+    "section": "25 Implementations I",
+    "text": "25 Implementations I\n\nSweave, executable code (R or Splus) in LaTex documents, (Leisch 2002)\nKnitr, (Xie 2014), (Xie 2015) and (Xie 2020)\n\nR code in LaTex documents (like Sweave), but also support for R Markdown (Allaire et al. 2020), (Tierney, n.d.), (Xie, Allaire, and Grolemund 2018) and (Riederer, n.d.)\nMarkdown Gruber and Swartz (n.d.), plain text with simple markup. Intended for Grubers web site.\nR Markdown, markdown with R code-chuncks\n\nRStudio (RStudio Team 2020), IDE for R supporting R Markdown and knitr"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24.html#implementations-ii",
+    "href": "rr-science/rr-science_h24.html#implementations-ii",
+    "title": "Robust and Reliable Science",
+    "section": "26 Implementations II",
+    "text": "26 Implementations II\n\nR Notebook, document type supported by RStudio that implements a notebook interface, i.e. output is returned to the notebook when it is run\n\nCode should be run sequentially, but each code-chunck can be run individually\nSupport LaTex code for mathematical typesetting\npandoc, (“Pandoc - Pandoc User’s Guide,” n.d. ), functions as the transformer (from Gentleman and Lang (2007)) and can transform a R Markdown document into many different formats.\nincluding MS Word, html and pdf (via LaTex)\n\nIntroductory books on R, (Lander 2017) and Data Science, (Grolemund and Wickham, n.d.) often includes chapters on how to write dynamic computable documents in R Studio"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#reproducibility",
+    "href": "rr-science/rr-science_h24_document.html#reproducibility",
+    "title": "Robust and Reliable Science",
+    "section": "1 Reproducibility",
+    "text": "1 Reproducibility\nStart of the editorial in Science January 2014\n\n“Science advances on a foundation of trusted discoveries.\nReproducing an experiment is one important approach that scientists use to gain confidence in their conclusions.\nRecently, the scientific community was shaken by reports that a troubling proportion of peer-reviewed preclinical studies are not reproducible”.(McNutt 2014)\n\nadvances on a foundation of trusted discoveries\nscientists try to reproduce results to gain confidence in conclusions\nmany peer-reviewed studies not reproducible"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#replicability-and-reproducibility",
+    "href": "rr-science/rr-science_h24_document.html#replicability-and-reproducibility",
+    "title": "Robust and Reliable Science",
+    "section": "2 Replicability and Reproducibility",
+    "text": "2 Replicability and Reproducibility\n\n“Replication—The confirmation of results and conclusions from one study obtained independently in another—is considered the scientific gold standard.”(Jasny et al. 2011)\n\nReproducibility is a necessary, but not sufficient, condition for Replicability.\nShould Reproducibility be a minimal requirement for publication? (Peng (2011) discusses this with regard to Computational Science)"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#nsf-robust-and-reliable-science",
+    "href": "rr-science/rr-science_h24_document.html#nsf-robust-and-reliable-science",
+    "title": "Robust and Reliable Science",
+    "section": "3 NSF: Robust and Reliable Science",
+    "text": "3 NSF: Robust and Reliable Science\n\nThere seems to have been some confusion regarding the terms.\nAt least the NSF1 felt a need to define the following (Bollen et al. 2015):\n“robust and reliable” science refers to: research that is reproducible, replicable, and generalizable.\nReproducibility refers to: the ability of a researcher to duplicate the results of a prior study using the same materials and procedures used by the original investigator.\nReplicability refers to: the ability of a researcher to duplicate the results of a prior study if the same procedures are followed but new data are collected.\nGeneralizability refers to: whether the results of a study apply in other contexts or populations that differ from the originals.\n\nSubcommittee on Replicability in Science Advisory Committee to the National Science Foundation Directorate for Social, Behavioural, and Economic Sciences"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#nsf-robust-and-reliable-science-cont.",
+    "href": "rr-science/rr-science_h24_document.html#nsf-robust-and-reliable-science-cont.",
+    "title": "Robust and Reliable Science",
+    "section": "4 NSF: Robust and Reliable Science cont.",
+    "text": "4 NSF: Robust and Reliable Science cont.\n\nSee also “Dear Colleague Letter: Robust and Reliable Research in the Social, Behavioral, and Economic Sciences (Nsf16137) | NSF - National Science Foundation” (n.d.)\nRobust and reliable research is the foundation of all scientific development and progress, which depends critically on the ability of investigators to build on prior work."
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#what-is-research-reproducibility",
+    "href": "rr-science/rr-science_h24_document.html#what-is-research-reproducibility",
+    "title": "Robust and Reliable Science",
+    "section": "5 What is research reproducibility?",
+    "text": "5 What is research reproducibility?\n\nWhat does research reproducibility mean? (Goodman, Fanelli, and Ioannidis 2016)\n\nMethods reproducibility: “Methods reproducibility refers to the provision of enough detail about study procedures and data so the same procedures could, in theory or in actuality, be exactly repeated.”\nResults reproducibility: “Results reproducibility (previously described as replicability) refers to obtaining the same results from the conduct of an independent study whose procedures are as closely matched to the original experiment as possible.”\nRobustness and generalizability: “We briefly introduce these terms because they are sometimes used in lieu of the term reproducibility. Robustness refers to the stability of experimental conclusions to variations in either baseline assumptions or experimental procedures. It is somewhat related to the concept of generalizability (also known as transportability), which refers to the persistence of an effect in settings different from and outside of an experimental framework.”"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#publication-bias",
+    "href": "rr-science/rr-science_h24_document.html#publication-bias",
+    "title": "Robust and Reliable Science",
+    "section": "6 Publication bias",
+    "text": "6 Publication bias\n\nPublication bias refers to: the likelihood of a study being published based on the findings of the study.\n\nThere are few published studies with a negative conclusion (can not reject H0),\n\nex.: The treatment has no effect\n\nWorst case, Scientific journals are big collections of type 1 error"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#problem-type-1-error",
+    "href": "rr-science/rr-science_h24_document.html#problem-type-1-error",
+    "title": "Robust and Reliable Science",
+    "section": "7 Problem: Type 1 error",
+    "text": "7 Problem: Type 1 error\n\nType 1 error: reject H0 when H0 is true\nH0 is the conservative hypothesis, i.e. “no effect”\nwith \\(\\alpha = 0,05\\) we accept that in 1 of 20 cases we will reject H0 even if it`s true\n\ni.e. we conclude that there is an effect when in reality there is none (all because we were unlucky, or perhaps lucky if we want to be published, and got an unfortunate sample)\n\nSo even if there are 100 similar studies that find no effect, there is a risk that the wrong one is what you will find in the literature\nThis is often called the “File Drawer Problem” after Rosenthal (1979)\n\nstudies where H0 can not be rejected go to the filing cabinet\nstudies where H0 can be rejected will be sendt to the journals"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#problem-type-1-error-1",
+    "href": "rr-science/rr-science_h24_document.html#problem-type-1-error-1",
+    "title": "Robust and Reliable Science",
+    "section": "8 Problem: Type 1 error",
+    "text": "8 Problem: Type 1 error\n\nPerhaps the most costly error is a false positive, the incorrect rejection of a null hypothesis.\nFirst, once they appear in the literature, false positives are particularly persistent.\nBecause null results have many possible causes, failures to replicate previous findings are never conclusive.\nFurthermore, because it is uncommon for prestigious journals to publish null findings or exact replications, researchers have little incentive to even attempt them.\nSecond, false positives waste resources: They inspire investment in fruitless research programs and can lead to ineffective policy changes.\nFinally, a field known for publishing false positives risks losing its credibility.(Simmons, Nelson, and Simonsohn 2011)"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#publication-bias-and-meta-analysis",
+    "href": "rr-science/rr-science_h24_document.html#publication-bias-and-meta-analysis",
+    "title": "Robust and Reliable Science",
+    "section": "9 Publication bias and meta-analysis",
+    "text": "9 Publication bias and meta-analysis\n\n“More alarming is the general paucity in the literature of negative data. In some fields, almost all published studies show formally significant results so that statistical significance no longer appears discriminating” (Young, Ioannidis, and Al-Ubaydli 2008)\n\nYoung, Ioannidis, and Al-Ubaydli (2008) analyses scientific information as an economic commodity\n\nA meta-analysis is a statistical analysis that combines the results of multiple scientific studies.(wikipedia 2020)\nIf there is a publication bias this will also influence meta-analysis’\nIyengar and Greenhouse (1988) discusses techniques to deal with this problem"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#the-replication-crisis",
+    "href": "rr-science/rr-science_h24_document.html#the-replication-crisis",
+    "title": "Robust and Reliable Science",
+    "section": "10 The Replication Crisis",
+    "text": "10 The Replication Crisis\n\nThe last Replication Crisis seems to have started in Psychology, but spread fast to other branches of science\nSimmons, Nelson, and Simonsohn (2011) “proves” that you will get, or at least feel, younger by listening to “When I’m Sixty-Four” by The Beatles.\n\nSimmons, Nelson, and Simonsohn (2011) suggest a solution to the problem\n\nlist of requirements for authers (6) and guidelines for editors (4)"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#the-replication-crisis-1",
+    "href": "rr-science/rr-science_h24_document.html#the-replication-crisis-1",
+    "title": "Robust and Reliable Science",
+    "section": "11 The Replication Crisis",
+    "text": "11 The Replication Crisis\n\nWhy Most Published Research Findings Are False Ioannidis (2005)\n\n“There is increasing concern that in modern research, false findings may be the majority or even the vast majority of published research claims [6–8]. However, this should not be surprising. It can be proven that most claimed research findings are false.”\n\nAgain, and again, and again Jasny et al. (2011)\n\nHow do we promote the publication of replicable data?\nIntroduction to Science special section on Data Replication & Reproducibility\nPromoting an open research culture B. A. Nosek et al. (2015)\n\nAuthor guidelines for journals could help to promote transparency, openness, and reproducibility"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#big-replication-studies-in-psychology",
+    "href": "rr-science/rr-science_h24_document.html#big-replication-studies-in-psychology",
+    "title": "Robust and Reliable Science",
+    "section": "12 Big replication studies in psychology",
+    "text": "12 Big replication studies in psychology\n\nEstimating the reproducibility of psychological science Brian A. Nosek and et al (2015)\n\ntotalt 270 forskere involvert\nTried to replicate 100 studies from the last 3 years taken from 3 of the most respected journals in the field\nResults: Replication effects were half the magnitude of original effects\nResults: Ninety­seven percent of original studies had significant results (p​​&lt; .05). Thirty­six percent of replications had significant results\nResults: In sum, a large portion of replications did not reproduce evidence supporting the original results despite using high­powered designs and original materials when available."
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#big-replication-studies-in-psychology-cont.",
+    "href": "rr-science/rr-science_h24_document.html#big-replication-studies-in-psychology-cont.",
+    "title": "Robust and Reliable Science",
+    "section": "13 Big replication studies in psychology cont.",
+    "text": "13 Big replication studies in psychology cont.\n\nMany labs 2: Investigating variation in replicability across samples and settings Klein et al. (2018). See Collaboration (2015) for abstract.\n\n“We conducted preregistered replications of 28 classic and contemporary published findings, with protocols that were peer reviewed in advance, to examine variation in effect magnitudes across samples and settings.”\n“Using the conventional criterion of statistical significance (p &lt; .05), we found that 15 (54%) of the replications provided evidence of a statistically significant effect in the same direction as the original finding.”"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#what-about-economics",
+    "href": "rr-science/rr-science_h24_document.html#what-about-economics",
+    "title": "Robust and Reliable Science",
+    "section": "14 What about economics?",
+    "text": "14 What about economics?\n\nGood intentions!\n\n(Frisch 1933)\n\n\n\nfrich in econometrica"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#what-about-economics-1",
+    "href": "rr-science/rr-science_h24_document.html#what-about-economics-1",
+    "title": "Robust and Reliable Science",
+    "section": "15 What about economics?",
+    "text": "15 What about economics?\n\nExample of such a dataset (Ezekiel 1933)\n\n\ndata set"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#what-about-economics-2",
+    "href": "rr-science/rr-science_h24_document.html#what-about-economics-2",
+    "title": "Robust and Reliable Science",
+    "section": "16 What about economics?",
+    "text": "16 What about economics?\n\n1960, big economic models\n\ndifficult to move from one mainframe to another, see Dewald, Thursby, and Anderson (1986).\nonly results published, replication/reproduction nearly impossible"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#the-jmcb-project-1982",
+    "href": "rr-science/rr-science_h24_document.html#the-jmcb-project-1982",
+    "title": "Robust and Reliable Science",
+    "section": "17 The JMCB project (1982)",
+    "text": "17 The JMCB project (1982)\n\n1982 The Journal of Money, Credit and Banking Project (NSF sponsored)\n\nReplication (with submitted data sets) so in a modern sense more of an attempt at testing reproducibility\nResults: Managed full replication for 2 out of more than 70\nResults: Some more with nearly the original results\nResults: Many was impossible to replicate because of missing data, faulty computer programs, no documentation e.t.c.\nMany authers just ingored request for data and code\n“It would be embarrassing to reveal the findings of the Project save for our belief that the findings would be little different from any other major economics journal”"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#the-solution",
+    "href": "rr-science/rr-science_h24_document.html#the-solution",
+    "title": "Robust and Reliable Science",
+    "section": "18 “The Solution”",
+    "text": "18 “The Solution”\n\nCode and data archives at the journals\nAmerican Economic Association data archive, (“American Economic Association,” n.d. )\nDid the solution work?\nDo economics journal archives promote replicable research? (McCullough, McGeary, and Harrison 2008)\nAbstract. All the long-standing archives at economics journals do not facilitate the re-production of published results. The data-only archives at Journal of Business and Economic Statistics and Economic Journal fail in part because most authors do not contribute data. Results published in the FRB St. Louis Review can rarely be reproduced using the data+code in the journal archive.\nThe solution does not seem to work very well"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#extension-of-the-solution",
+    "href": "rr-science/rr-science_h24_document.html#extension-of-the-solution",
+    "title": "Robust and Reliable Science",
+    "section": "19 “Extension of the solution”",
+    "text": "19 “Extension of the solution”\n\nResearch Objects, (Bechhofer et al. 2013)\n\n“Research Objects, semantically rich aggregations of resources that provide the “units of knowledge” which supply structure for delivery of information as Linked Data.”\nDataCite - A global registration agency for research data, Brase (2009)\n\nInternational co-operations to register data sets and give them a unique DOI (Document Object Indentifier)\n\nEU initiative Access to and Preservation of Scientific Information in Europe: Report on the Implementation of Commission Recommendation C(2012) 4890 Final. (2015)\n\n“This report provides an overview on access to and preservation of scientific information in the EU Member States as well as Norway and Turkey.”"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#another-solution-computable-documents-i",
+    "href": "rr-science/rr-science_h24_document.html#another-solution-computable-documents-i",
+    "title": "Robust and Reliable Science",
+    "section": "20 Another solution, “computable documents” I",
+    "text": "20 Another solution, “computable documents” I\n\nWhat if the code is an integral part of the article?\nWhat is to be sent to the Journal is:\n\none document containing the text and\nthe code to read in the data and\nthe code to calculate the different models and\nthe code to test them and\nthe code to report the results.\n\nWhat would be submitted would be, together with the data, a fully reproducible document"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#another-solution-computable-documents-ii",
+    "href": "rr-science/rr-science_h24_document.html#another-solution-computable-documents-ii",
+    "title": "Robust and Reliable Science",
+    "section": "21 Another solution, “computable documents” II",
+    "text": "21 Another solution, “computable documents” II\n\nThe main idea is often attributed to Donald E. Knuth (1992), although Knuth explicitly points out that it was not his idea (D. E. Knuth 1984)\nKnuths main goal seems to be to improve the quality of the program documentation (and indirectly the quality of the code) with WEB.\nNoweb, Ramsey (n.d.)\n\n“noweb is designed to meet the needs of literate programmers while remaining as simple as possible. Its primary advantages are simplicity, extensibility, and language-independence—especially noticeable when compared with other literate-programming tools. noweb uses 5 control sequences to WEB’s 27.”"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#another-solution-computable-documents-iii",
+    "href": "rr-science/rr-science_h24_document.html#another-solution-computable-documents-iii",
+    "title": "Robust and Reliable Science",
+    "section": "22 Another solution, “computable documents” III",
+    "text": "22 Another solution, “computable documents” III\n\n“In the mid 1980’s, researchers at our laboratory noticed that a few months after completing a project, the researchers were usually unable to reproduce their own computational work without considerable agony. In 1991, the concept of electronic documents solved this problem by making scientific computations reproducible.”(Schwab, Karrenbach, and Claerbout 1995)\n\nunix makefiles\n\nConnection between code and reproducibility. All code necessary to generate figures freely avaiable (WaveLab a Matlab (Matlab is proprietary software) library).(Buckheit and Donoho 1995)\n“solutions for practical reproducible research systems”, (Fomel and Claerbout 2009)\n\nIntroduction to special issue of Computing in Science & Engineering ( Volume: 11 , Issue: 1 , Jan.-Feb. 2009 )"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#another-solution-computable-documents-iv",
+    "href": "rr-science/rr-science_h24_document.html#another-solution-computable-documents-iv",
+    "title": "Robust and Reliable Science",
+    "section": "23 Another solution, “computable documents” IV",
+    "text": "23 Another solution, “computable documents” IV\n\n“It is important, if not essential, to integrate the computations and code used in data analyses, methodological descriptions, simulations, and so on with the documents that describe and rely on them.” (Gentleman and Lang 2007)1\n“We introduce the concept of a compendium as both a container for the different elements that make up the document and its computations (i.e. text, code, data, …), and as a means for distributing, managing and updating the collection.”\n“The step from disseminating analyses via a compendium to reproducible research is a small one. By reproducible research, we mean research papers with accom- panying software tools that allow the reader to directly reproduce the results and employ the methods that are presented in the research paper.”\n\nRobert Gentleman and Ross Ihaka, “the fathers” of R, R Core Team (2020)"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#another-solution-computable-documents-v",
+    "href": "rr-science/rr-science_h24_document.html#another-solution-computable-documents-v",
+    "title": "Robust and Reliable Science",
+    "section": "24 Another solution, “computable documents” V",
+    "text": "24 Another solution, “computable documents” V\n\n“a compendium has one, or more, self-contained live documents that can be regenerated in absolute detail by others, and that can often be used in contexts other than the author’s original work.”\n“We define a dynamic document as an ordered composition of code chunks and text chunks that describe and discuss a problem and its solution. The ordering of the chunks need not be simply sequential but can support rich and complex document structures.”\n“The mechanism or system used to transform a dynamic document into some desired output or view will be called a transformer.”\nIn Gentleman (2005) parts of Golub et al. (1999) is reproduced as a computable compendium."
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#implementations-i",
+    "href": "rr-science/rr-science_h24_document.html#implementations-i",
+    "title": "Robust and Reliable Science",
+    "section": "25 Implementations I",
+    "text": "25 Implementations I\n\nSweave, executable code (R or Splus) in LaTex documents, (Leisch 2002)\nKnitr, (Xie 2014), (Xie 2015) and (Xie 2020)\n\nR code in LaTex documents (like Sweave), but also support for R Markdown (Allaire et al. 2020), (Tierney, n.d.), (Xie, Allaire, and Grolemund 2018) and (Riederer, n.d.)\nMarkdown Gruber and Swartz (n.d.), plain text with simple markup. Intended for Grubers web site.\nR Markdown, markdown with R code-chuncks\n\nRStudio (RStudio Team 2020), IDE for R supporting R Markdown and knitr"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#implementations-ii",
+    "href": "rr-science/rr-science_h24_document.html#implementations-ii",
+    "title": "Robust and Reliable Science",
+    "section": "26 Implementations II",
+    "text": "26 Implementations II\n\nR Notebook, document type supported by RStudio that implements a notebook interface, i.e. output is returned to the notebook when it is run\n\nCode should be run sequentially, but each code-chunck can be run individually\nSupport LaTex code for mathematical typesetting\npandoc, (“Pandoc - Pandoc User’s Guide,” n.d. ), functions as the transformer (from Gentleman and Lang (2007)) and can transform a R Markdown document into many different formats.\nincluding MS Word, html and pdf (via LaTex)\n\nIntroductory books on R, (Lander 2017) and Data Science, (Grolemund and Wickham, n.d.) often includes chapters on how to write dynamic computable documents in R Studio"
+  },
+  {
+    "objectID": "rr-science/rr-science_h24_document.html#references",
+    "href": "rr-science/rr-science_h24_document.html#references",
+    "title": "Robust and Reliable Science",
+    "section": "27 References",
+    "text": "27 References\n\n\n\nhttps://www.hvl.no\n\n\n\n\nAccess to and Preservation of Scientific Information in Europe: Report on the Implementation of Commission Recommendation C(2012) 4890 Final. 2015. LU: Publications Office.\n\n\nAllaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, Winston Chang, and Richard Iannone. 2020. Rmarkdown: Dynamic Documents for r.\n\n\n“American Economic Association.” n.d. https://www.aeaweb.org/journals/data.\n\n\nBechhofer, Sean, Iain Buchan, David De Roure, Paolo Missier, John Ainsworth, Jiten Bhagat, Philip Couch, et al. 2013. “Why Linked Data Is Not Enough for Scientists.” Future Generation Computer Systems 29 (2): 599–611. https://doi.org/10.1016/j.future.2011.08.004.\n\n\nBollen, Kenneth, John T. Cacioppo, Jon A. Krosnick, James L. Olds, and Robert M. Kaplan. 2015. “Social, Behavioral, and Economic Sciences Perspectives on Robust and Reliable Science.” Report of the Subcommittee on Replicability in Science Advisory Committee to the National Science Foundation Directorate for Social, Behavioral, and Economic Sciences. NSF.\n\n\nBrase, Jan. 2009. “DataCite - A Global Registration Agency for Research Data.” In 2009 Fourth International Conference on Cooperation and Promotion of Information Resources in Science and Technology, 257–61. Beijing, China: IEEE. https://doi.org/10.1109/COINFO.2009.66.\n\n\nBuckheit, Jonathan B., and David L. Donoho. 1995. “WaveLab and Reproducible Research.” In Wavelets and Statistics, edited by P. Bickel, P. Diggle, S. Fienberg, K. Krickeberg, I. Olkin, N. Wermuth, S. Zeger, Anestis Antoniadis, and Georges Oppenheim, 103:55–81. New York, NY: Springer New York. https://doi.org/10.1007/978-1-4612-2544-7_5.\n\n\nCollaboration, Open Science. 2015. “Estimating the Reproducibility of Psychological Science.” Science 349 (6251). https://doi.org/10.1126/science.aac4716.\n\n\n“Dear Colleague Letter: Robust and Reliable Research in the Social, Behavioral, and Economic Sciences (Nsf16137) | NSF - National Science Foundation.” n.d. https://www.nsf.gov/pubs/2016/nsf16137/nsf16137.jsp.\n\n\nDewald, William G., Jerry G. Thursby, and Richard G. Anderson. 1986. “Replication in Empirical Economics: The Journal of Money, Credit and Banking Project.” The American Economic Review 76 (4): 587–603.\n\n\nEzekiel, Mordecai. 1933. “Some Considerations on the Analysis of the Prices of Competing or Substitute Commodities.” Econometrica 1 (2): 172–80.\n\n\nFomel, S., and J. F. Claerbout. 2009. “Guest Editors’ Introduction: Reproducible Research.” Computing in Science Engineering 11 (1): 5–7.\n\n\nFrisch, Ragnar. 1933. “Editor’s Note.” Econometrica 1 (1): 1–4.\n\n\nGentleman, Robert. 2005. “Reproducible Research: A Bioinformatics Case Study.” Statistical Applications in Genetics and Molecular Biology 4 (1). https://doi.org/10.2202/1544-6115.1034.\n\n\nGentleman, Robert, and Duncan Temple Lang. 2007. “Statistical Analyses and Reproducible Research.” Journal of Computational and Graphical Statistics 16 (1): 1–23. https://doi.org/10.1198/106186007X178663.\n\n\nGolub, T. R., D. K. Slonim, P. Tamayo, C. Huard, M. Gaasenbeek, J. P. Mesirov, H. Coller, et al. 1999. “Molecular Classification of Cancer: Class Discovery and Class Prediction by Gene Expression Monitoring.” Science (New York, N.Y.) 286 (5439): 531–37. https://doi.org/10.1126/science.286.5439.531.\n\n\nGoodman, Steven N., Daniele Fanelli, and John P. A. Ioannidis. 2016. “What Does Research Reproducibility Mean?” Science Translational Medicine 8 (341): 341ps12–12. https://doi.org/10.1126/scitranslmed.aaf5027.\n\n\nGrolemund, Garrett, and Hadley Wickham. n.d. R for Data Science.\n\n\nGruber, John, and Aron Swartz. n.d. “Daring Fireball: Markdown.” https://daringfireball.net/projects/markdown/.\n\n\nIoannidis, John P. A. 2005. “Why Most Published Research Findings Are False.” PLOS Medicine 2 (8): e124. https://doi.org/10.1371/journal.pmed.0020124.\n\n\nIyengar, Satish, and Joel B. Greenhouse. 1988. “Selection Models and the File Drawer Problem.” Statistical Science 3 (1): 109–17.\n\n\nJasny, Barbara R., Gilbert Chin, Lisa Chong, and Sacha Vignieri. 2011. “Again, and Again, and Again.” Science 334 (6060): 1225–25. https://doi.org/10.1126/science.334.6060.1225.\n\n\nKlein, Richard A., Michelangelo Vianello, Fred Hasselman, Byron G. Adams, Jr. Reginald B. Adams, Sinan Alper, Mark Aveyard, et al. 2018. “Many Labs 2: Investigating Variation in Replicability Across Samples and Settings.” Advances in Methods and Practices in Psychological Science 1 (4): 443–90. https://doi.org/10.1177/2515245918810225.\n\n\nKnuth, D. E. 1984. “Literate Programming.” The Computer Journal 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.\n\n\nKnuth, Donald E. 1992. Literate Programming. Cambridge University Press.\n\n\nLander, Jared P. 2017. R for Everyone: Advanced Analytics and Graphics. 2nd Edition. Boston: Addison-Wesley Professional.\n\n\nLeisch, Friedrich. 2002. “Sweave: Dynamic Generation of Statistical Reports Using Literate Data Analysis.” In Compstat, edited by Wolfgang Härdle and Bernd Rönz, 575–80. Heidelberg: Physica-Verlag HD. https://doi.org/10.1007/978-3-642-57489-4_89.\n\n\nMcCullough, B. D., Kerry Anne McGeary, and Teresa D. Harrison. 2008. “Do Economics Journal Archives Promote Replicable Research?” Canadian Journal of Economics/Revue Canadienne d’économique 41 (4): 1406–20. https://doi.org/10.1111/j.1540-5982.2008.00509.x.\n\n\nMcNutt, Marcia. 2014. “Reproducibility.” Science 343 (6168): 229–29. https://doi.org/10.1126/science.1250475.\n\n\nNosek, B. A., G. Alter, G. C. Banks, D. Borsboom, S. D. Bowman, S. J. Breckler, S. Buck, et al. 2015. “Promoting an Open Research Culture.” Science 348 (6242): 1422–25. https://doi.org/10.1126/science.aab2374.\n\n\nNosek, Brian A., and et al. 2015. “Estimating the Reproducibility of Psychological Science.” Science 349 (6251). https://doi.org/10.1126/science.aac4716.\n\n\n“Pandoc - Pandoc User’s Guide.” n.d. https://pandoc.org/MANUAL.html.\n\n\nPeng, Roger D. 2011. “Reproducible Research in Computational Science.” Science 334 (6060): 1226–27. https://doi.org/10.1126/science.1213847.\n\n\nR Core Team. 2020. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing.\n\n\nRamsey, Norman. n.d. “Noweb Home Page.” https://www.cs.tufts.edu/~nr/noweb/.\n\n\nRiederer, Emily, Christophe Dervieux. n.d. R Markdown Cookbook.\n\n\nRosenthal, R. 1979. “The File Drawer Problem and Tolerance for Null Results.” In, 86:638–41. Psychological Bulletin.\n\n\nRStudio Team. 2020. RStudio: Integrated Development Environment for r. Boston, MA: RStudio, PBC.\n\n\nSchwab, Matthias, Martin Karrenbach, and Jon Claerbout. 1995. “Reproducible Electronic Documents,” 14.\n\n\nSimmons, Joseph P., Leif D. Nelson, and Uri Simonsohn. 2011. “False-Positive Psychology: Undisclosed Flexibility in Data Collection and Analysis Allows Presenting Anything as Significant.” Psychological Science 22 (11): 1359–66. https://doi.org/10.1177/0956797611417632.\n\n\nTierney, Nicholas. n.d. RMarkdown for Scientists.\n\n\nwikipedia. 2020. “Meta-Analysis.” Wikipedia, August.\n\n\nXie, Yihui. 2014. “Knitr: A Comprehensive Tool for Reproducible Research in R.” In Implementing Reproducible Computational Research, edited by Victoria Stodden, Friedrich Leisch, and Roger D. Peng. Chapman and Hall/CRC.\n\n\n———. 2015. Dynamic Documents with R and Knitr. Second. Boca Raton, Florida: Chapman and Hall/CRC.\n\n\n———. 2020. Knitr: A General-Purpose Package for Dynamic Report Generation in r. Manual.\n\n\nXie, Yihui, J. J. Allaire, and Garrett Grolemund. 2018. R Markdown: The Definitive Guide. Boca Raton, Florida: Chapman and Hall/CRC.\n\n\nYoung, Neal S, John P. A Ioannidis, and Omar Al-Ubaydli. 2008. “Why Current Publication Practices May Distort Science.” PLoS Medicine 5 (10): e201. https://doi.org/10.1371/journal.pmed.0050201."
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#reproducibility",
+    "href": "reproducibility/rr-science_h24.html#reproducibility",
+    "title": "Robust and Reliable Science",
+    "section": "1 Reproducibility",
+    "text": "1 Reproducibility\nStart of the editorial in Science January 2014\n\n“Science advances on a foundation of trusted discoveries.\nReproducing an experiment is one important approach that scientists use to gain confidence in their conclusions.\nRecently, the scientific community was shaken by reports that a troubling proportion of peer-reviewed preclinical studies are not reproducible”.(McNutt 2014)\n\nadvances on a foundation of trusted discoveries\nscientists try to reproduce results to gain confidence in conclusions\nmany peer-reviewed studies not reproducible"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#replicability-and-reproducibility",
+    "href": "reproducibility/rr-science_h24.html#replicability-and-reproducibility",
+    "title": "Robust and Reliable Science",
+    "section": "2 Replicability and Reproducibility",
+    "text": "2 Replicability and Reproducibility\n\n“Replication—The confirmation of results and conclusions from one study obtained independently in another—is considered the scientific gold standard.”(Jasny et al. 2011)\n\nReproducibility is a necessary, but not sufficient, condition for Replicability.\nShould Reproducibility be a minimal requirement for publication? (Peng (2011) discusses this with regard to Computational Science)"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#nsf-robust-and-reliable-science",
+    "href": "reproducibility/rr-science_h24.html#nsf-robust-and-reliable-science",
+    "title": "Robust and Reliable Science",
+    "section": "3 NSF: Robust and Reliable Science",
+    "text": "3 NSF: Robust and Reliable Science\n\nThere seems to have been some confusion regarding the terms.\nAt least the NSF1 felt a need to define the following (Bollen et al. 2015):\n“robust and reliable” science refers to: research that is reproducible, replicable, and generalizable.\nReproducibility refers to: the ability of a researcher to duplicate the results of a prior study using the same materials and procedures used by the original investigator.\nReplicability refers to: the ability of a researcher to duplicate the results of a prior study if the same procedures are followed but new data are collected.\nGeneralizability refers to: whether the results of a study apply in other contexts or populations that differ from the originals.\n\nSubcommittee on Replicability in Science Advisory Committee to the National Science Foundation Directorate for Social, Behavioural, and Economic Sciences"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#nsf-robust-and-reliable-science-cont.",
+    "href": "reproducibility/rr-science_h24.html#nsf-robust-and-reliable-science-cont.",
+    "title": "Robust and Reliable Science",
+    "section": "4 NSF: Robust and Reliable Science cont.",
+    "text": "4 NSF: Robust and Reliable Science cont.\n\nSee also “Dear Colleague Letter: Robust and Reliable Research in the Social, Behavioral, and Economic Sciences (Nsf16137) | NSF - National Science Foundation” (n.d.)\nRobust and reliable research is the foundation of all scientific development and progress, which depends critically on the ability of investigators to build on prior work."
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#what-is-research-reproducibility",
+    "href": "reproducibility/rr-science_h24.html#what-is-research-reproducibility",
+    "title": "Robust and Reliable Science",
+    "section": "5 What is research reproducibility?",
+    "text": "5 What is research reproducibility?\n\nWhat does research reproducibility mean? (Goodman, Fanelli, and Ioannidis 2016)\n\nMethods reproducibility: “Methods reproducibility refers to the provision of enough detail about study procedures and data so the same procedures could, in theory or in actuality, be exactly repeated.”\nResults reproducibility: “Results reproducibility (previously described as replicability) refers to obtaining the same results from the conduct of an independent study whose procedures are as closely matched to the original experiment as possible.”\nRobustness and generalizability: “We briefly introduce these terms because they are sometimes used in lieu of the term reproducibility. Robustness refers to the stability of experimental conclusions to variations in either baseline assumptions or experimental procedures. It is somewhat related to the concept of generalizability (also known as transportability), which refers to the persistence of an effect in settings different from and outside of an experimental framework.”"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#publication-bias",
+    "href": "reproducibility/rr-science_h24.html#publication-bias",
+    "title": "Robust and Reliable Science",
+    "section": "6 Publication bias",
+    "text": "6 Publication bias\n\nPublication bias refers to: the likelihood of a study being published based on the findings of the study.\n\nThere are few published studies with a negative conclusion (can not reject H0),\n\nex.: The treatment has no effect\n\nWorst case, Scientific journals are big collections of type 1 error"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#problem-type-1-error",
+    "href": "reproducibility/rr-science_h24.html#problem-type-1-error",
+    "title": "Robust and Reliable Science",
+    "section": "7 Problem: Type 1 error",
+    "text": "7 Problem: Type 1 error\n\nType 1 error: reject H0 when H0 is true\nH0 is the conservative hypothesis, i.e. “no effect”\nwith \\(\\alpha = 0,05\\) we accept that in 1 of 20 cases we will reject H0 even if it`s true\n\ni.e. we conclude that there is an effect when in reality there is none (all because we were unlucky, or perhaps lucky if we want to be published, and got an unfortunate sample)\n\nSo even if there are 100 similar studies that find no effect, there is a risk that the wrong one is what you will find in the literature\nThis is often called the “File Drawer Problem” after Rosenthal (1979)\n\nstudies where H0 can not be rejected go to the filing cabinet\nstudies where H0 can be rejected will be sendt to the journals"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#problem-type-1-error-1",
+    "href": "reproducibility/rr-science_h24.html#problem-type-1-error-1",
+    "title": "Robust and Reliable Science",
+    "section": "8 Problem: Type 1 error",
+    "text": "8 Problem: Type 1 error\n\nPerhaps the most costly error is a false positive, the incorrect rejection of a null hypothesis.\nFirst, once they appear in the literature, false positives are particularly persistent.\nBecause null results have many possible causes, failures to replicate previous findings are never conclusive.\nFurthermore, because it is uncommon for prestigious journals to publish null findings or exact replications, researchers have little incentive to even attempt them.\nSecond, false positives waste resources: They inspire investment in fruitless research programs and can lead to ineffective policy changes.\nFinally, a field known for publishing false positives risks losing its credibility.(Simmons, Nelson, and Simonsohn 2011)"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#publication-bias-and-meta-analysis",
+    "href": "reproducibility/rr-science_h24.html#publication-bias-and-meta-analysis",
+    "title": "Robust and Reliable Science",
+    "section": "9 Publication bias and meta-analysis",
+    "text": "9 Publication bias and meta-analysis\n\n“More alarming is the general paucity in the literature of negative data. In some fields, almost all published studies show formally significant results so that statistical significance no longer appears discriminating” (Young, Ioannidis, and Al-Ubaydli 2008)\n\nYoung, Ioannidis, and Al-Ubaydli (2008) analyses scientific information as an economic commodity\n\nA meta-analysis is a statistical analysis that combines the results of multiple scientific studies.(wikipedia 2020)\nIf there is a publication bias this will also influence meta-analysis’\nIyengar and Greenhouse (1988) discusses techniques to deal with this problem"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#the-replication-crisis",
+    "href": "reproducibility/rr-science_h24.html#the-replication-crisis",
+    "title": "Robust and Reliable Science",
+    "section": "10 The Replication Crisis",
+    "text": "10 The Replication Crisis\n\nThe last Replication Crisis seems to have started in Psychology, but spread fast to other branches of science\nSimmons, Nelson, and Simonsohn (2011) “proves” that you will get, or at least feel, younger by listening to “When I’m Sixty-Four” by The Beatles.\n\nSimmons, Nelson, and Simonsohn (2011) suggest a solution to the problem\n\nlist of requirements for authers (6) and guidelines for editors (4)"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#the-replication-crisis-1",
+    "href": "reproducibility/rr-science_h24.html#the-replication-crisis-1",
+    "title": "Robust and Reliable Science",
+    "section": "11 The Replication Crisis",
+    "text": "11 The Replication Crisis\n\nWhy Most Published Research Findings Are False Ioannidis (2005)\n\n“There is increasing concern that in modern research, false findings may be the majority or even the vast majority of published research claims [6–8]. However, this should not be surprising. It can be proven that most claimed research findings are false.”\n\nAgain, and again, and again Jasny et al. (2011)\n\nHow do we promote the publication of replicable data?\nIntroduction to Science special section on Data Replication & Reproducibility\nPromoting an open research culture B. A. Nosek et al. (2015)\n\nAuthor guidelines for journals could help to promote transparency, openness, and reproducibility"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#big-replication-studies-in-psychology",
+    "href": "reproducibility/rr-science_h24.html#big-replication-studies-in-psychology",
+    "title": "Robust and Reliable Science",
+    "section": "12 Big replication studies in psychology",
+    "text": "12 Big replication studies in psychology\n\nEstimating the reproducibility of psychological science Brian A. Nosek and et al (2015)\n\ntotalt 270 forskere involvert\nTried to replicate 100 studies from the last 3 years taken from 3 of the most respected journals in the field\nResults: Replication effects were half the magnitude of original effects\nResults: Ninety­seven percent of original studies had significant results (p​​&lt; .05). Thirty­six percent of replications had significant results\nResults: In sum, a large portion of replications did not reproduce evidence supporting the original results despite using high­powered designs and original materials when available."
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#big-replication-studies-in-psychology-cont.",
+    "href": "reproducibility/rr-science_h24.html#big-replication-studies-in-psychology-cont.",
+    "title": "Robust and Reliable Science",
+    "section": "13 Big replication studies in psychology cont.",
+    "text": "13 Big replication studies in psychology cont.\n\nMany labs 2: Investigating variation in replicability across samples and settings Klein et al. (2018). See Collaboration (2015) for abstract.\n\n“We conducted preregistered replications of 28 classic and contemporary published findings, with protocols that were peer reviewed in advance, to examine variation in effect magnitudes across samples and settings.”\n“Using the conventional criterion of statistical significance (p &lt; .05), we found that 15 (54%) of the replications provided evidence of a statistically significant effect in the same direction as the original finding.”"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#what-about-economics",
+    "href": "reproducibility/rr-science_h24.html#what-about-economics",
+    "title": "Robust and Reliable Science",
+    "section": "15 What about economics?",
+    "text": "15 What about economics?\n\nGood intentions!\n\n(Frisch 1933)\n\n\n\nfrich in econometrica"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#what-about-economics-1",
+    "href": "reproducibility/rr-science_h24.html#what-about-economics-1",
+    "title": "Robust and Reliable Science",
+    "section": "16 What about economics?",
+    "text": "16 What about economics?\n\nExample of such a dataset (Ezekiel 1933)\n\n\ndata set"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#what-about-economics-2",
+    "href": "reproducibility/rr-science_h24.html#what-about-economics-2",
+    "title": "Robust and Reliable Science",
+    "section": "17 What about economics?",
+    "text": "17 What about economics?\n\n1960, big economic models\n\ndifficult to move from one mainframe to another, see\n\n\n\nonly results published, replication/reproduction nearly impossible"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#the-jmcb-project-1982",
+    "href": "reproducibility/rr-science_h24.html#the-jmcb-project-1982",
+    "title": "Robust and Reliable Science",
+    "section": "14 The JMCB project (1982)",
+    "text": "14 The JMCB project (1982)\n\n1982 The Journal of Money, Credit and Banking Project (NSF sponsored)\n\nReplication (with submitted data sets) so in a modern sense more of an attempt at testing reproducibility\nResults: Managed full replication for 2 out of more than 70\nResults: Some more with nearly the original results\nResults: Many was impossible to replicate because of missing data, faulty computer programs, no documentation e.t.c.\nMany authers just ingored request for data and code\n“It would be embarrassing to reveal the findings of the Project save for our belief that the findings would be little different from any other major economics journal”"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#the-solution",
+    "href": "reproducibility/rr-science_h24.html#the-solution",
+    "title": "Robust and Reliable Science",
+    "section": "18 “The Solution”",
+    "text": "18 “The Solution”\n\nCode and data archives at the journals\nAmerican Economic Association data archive, (“American Economic Association,” n.d. )\nDid the solution work?\nDo economics journal archives promote replicable research? (McCullough, McGeary, and Harrison 2008)\nAbstract. All the long-standing archives at economics journals do not facilitate the re-production of published results. The data-only archives at Journal of Business and Economic Statistics and Economic Journal fail in part because most authors do not contribute data. Results published in the FRB St. Louis Review can rarely be reproduced using the data+code in the journal archive.\nThe solution does not seem to work very well"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#extension-of-the-solution",
+    "href": "reproducibility/rr-science_h24.html#extension-of-the-solution",
+    "title": "Robust and Reliable Science",
+    "section": "19 “Extension of the solution”",
+    "text": "19 “Extension of the solution”\n\nResearch Objects, (Bechhofer et al. 2013)\n\n“Research Objects, semantically rich aggregations of resources that provide the “units of knowledge” which supply structure for delivery of information as Linked Data.”\nDataCite - A global registration agency for research data, Brase (2009)\n\nInternational co-operations to register data sets and give them a unique DOI (Document Object Indentifier)\n\nEU initiative Access to and Preservation of Scientific Information in Europe: Report on the Implementation of Commission Recommendation C(2012) 4890 Final. (2015)\n\n“This report provides an overview on access to and preservation of scientific information in the EU Member States as well as Norway and Turkey.”"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#another-solution-computable-documents-i",
+    "href": "reproducibility/rr-science_h24.html#another-solution-computable-documents-i",
+    "title": "Robust and Reliable Science",
+    "section": "20 Another solution, “computable documents” I",
+    "text": "20 Another solution, “computable documents” I\n\nWhat if the code is an integral part of the article?\nWhat is to be sent to the Journal is:\n\none document containing the text and\nthe code to read in the data and\nthe code to calculate the different models and\nthe code to test them and\nthe code to report the results.\n\nWhat would be submitted would be, together with the data, a fully reproducible document"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#another-solution-computable-documents-ii",
+    "href": "reproducibility/rr-science_h24.html#another-solution-computable-documents-ii",
+    "title": "Robust and Reliable Science",
+    "section": "21 Another solution, “computable documents” II",
+    "text": "21 Another solution, “computable documents” II\n\nThe main idea is often attributed to Donald E. Knuth (1992), although Knuth explicitly points out that it was not his idea (D. E. Knuth 1984)\nKnuths main goal seems to be to improve the quality of the program documentation (and indirectly the quality of the code) with WEB.\nNoweb, Ramsey (n.d.)\n\n“noweb is designed to meet the needs of literate programmers while remaining as simple as possible. Its primary advantages are simplicity, extensibility, and language-independence—especially noticeable when compared with other literate-programming tools. noweb uses 5 control sequences to WEB’s 27.”"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#another-solution-computable-documents-iii",
+    "href": "reproducibility/rr-science_h24.html#another-solution-computable-documents-iii",
+    "title": "Robust and Reliable Science",
+    "section": "22 Another solution, “computable documents” III",
+    "text": "22 Another solution, “computable documents” III\n\n“In the mid 1980’s, researchers at our laboratory noticed that a few months after completing a project, the researchers were usually unable to reproduce their own computational work without considerable agony. In 1991, the concept of electronic documents solved this problem by making scientific computations reproducible.”(Schwab, Karrenbach, and Claerbout 1995)\n\nunix makefiles\n\nConnection between code and reproducibility. All code necessary to generate figures freely avaiable (WaveLab a Matlab (Matlab is proprietary software) library).(Buckheit and Donoho 1995)\n“solutions for practical reproducible research systems”, (Fomel and Claerbout 2009)\n\nIntroduction to special issue of Computing in Science & Engineering ( Volume: 11 , Issue: 1 , Jan.-Feb. 2009 )"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#another-solution-computable-documents-iv",
+    "href": "reproducibility/rr-science_h24.html#another-solution-computable-documents-iv",
+    "title": "Robust and Reliable Science",
+    "section": "23 Another solution, “computable documents” IV",
+    "text": "23 Another solution, “computable documents” IV\n\n“It is important, if not essential, to integrate the computations and code used in data analyses, methodological descriptions, simulations, and so on with the documents that describe and rely on them.” (Gentleman and Lang 2007)[^2]\n“We introduce the concept of a compendium as both a container for the different elements that make up the document and its computations (i.e. text, code, data, …), and as a means for distributing, managing and updating the collection.”\n“The step from disseminating analyses via a compendium to reproducible research is a small one. By reproducible research, we mean research papers with accom- panying software tools that allow the reader to directly reproduce the results and employ the methods that are presented in the research paper.”"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#another-solution-computable-documents-v",
+    "href": "reproducibility/rr-science_h24.html#another-solution-computable-documents-v",
+    "title": "Robust and Reliable Science",
+    "section": "24 Another solution, “computable documents” V",
+    "text": "24 Another solution, “computable documents” V\n\n“a compendium has one, or more, self-contained live documents that can be regenerated in absolute detail by others, and that can often be used in contexts other than the author’s original work.”\n“We define a dynamic document as an ordered composition of code chunks and text chunks that describe and discuss a problem and its solution. The ordering of the chunks need not be simply sequential but can support rich and complex document structures.”\n“The mechanism or system used to transform a dynamic document into some desired output or view will be called a transformer.”\nIn Gentleman (2005) parts of Golub et al. (1999) is reproduced as a computable compendium."
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#implementations-i",
+    "href": "reproducibility/rr-science_h24.html#implementations-i",
+    "title": "Robust and Reliable Science",
+    "section": "25 Implementations I",
+    "text": "25 Implementations I\n\nSweave, executable code (R or Splus) in LaTex documents, (Leisch 2002)\nKnitr, (Xie 2014), (Xie 2015) and (Xie 2020)\n\nR code in LaTex documents (like Sweave), but also support for R Markdown (Allaire et al. 2020), (Tierney, n.d.), (Xie, Allaire, and Grolemund 2018) and (Riederer, n.d.)\nMarkdown Gruber and Swartz (n.d.), plain text with simple markup. Intended for Grubers web site.\nR Markdown, markdown with R code-chuncks\n\nRStudio (RStudio Team 2020), IDE for R supporting R Markdown and knitr"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#implementations-ii",
+    "href": "reproducibility/rr-science_h24.html#implementations-ii",
+    "title": "Robust and Reliable Science",
+    "section": "26 Implementations II",
+    "text": "26 Implementations II\n\nR Notebook, document type supported by RStudio that implements a notebook interface, i.e. output is returned to the notebook when it is run\n\nCode should be run sequentially, but each code-chunck can be run individually\nSupport LaTex code for mathematical typesetting\npandoc, (“Pandoc - Pandoc User’s Guide,” n.d. ), functions as the transformer (from\n\nand can transform a R Markdown document into many different formats.\n\nincluding MS Word, html and pdf (via LaTex)\n\nIntroductory books on R, (Lander 2017) and Data Science, (Grolemund and Wickham, n.d.) often includes chapters on how to write dynamic computable documents in R Studio"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#references",
+    "href": "reproducibility/rr-science_h24.html#references",
+    "title": "Robust and Reliable Science",
+    "section": "32 References",
+    "text": "32 References\n\n\n\nhttps://www.hvl.no\n\n\n\n\nAccess to and Preservation of Scientific Information in Europe: Report on the Implementation of Commission Recommendation C(2012) 4890 Final. 2015. LU: Publications Office.\n\n\nAllaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, Winston Chang, and Richard Iannone. 2020. Rmarkdown: Dynamic Documents for r.\n\n\n“American Economic Association.” n.d. https://www.aeaweb.org/journals/data.\n\n\nBechhofer, Sean, Iain Buchan, David De Roure, Paolo Missier, John Ainsworth, Jiten Bhagat, Philip Couch, et al. 2013. “Why Linked Data Is Not Enough for Scientists.” Future Generation Computer Systems 29 (2): 599–611. https://doi.org/10.1016/j.future.2011.08.004.\n\n\nBollen, Kenneth, John T. Cacioppo, Jon A. Krosnick, James L. Olds, and Robert M. Kaplan. 2015. “Social, Behavioral, and Economic Sciences Perspectives on Robust and Reliable Science.” Report of the Subcommittee on Replicability in Science Advisory Committee to the National Science Foundation Directorate for Social, Behavioral, and Economic Sciences. NSF.\n\n\nBrase, Jan. 2009. “DataCite - A Global Registration Agency for Research Data.” In 2009 Fourth International Conference on Cooperation and Promotion of Information Resources in Science and Technology, 257–61. Beijing, China: IEEE. https://doi.org/10.1109/COINFO.2009.66.\n\n\nBuckheit, Jonathan B., and David L. Donoho. 1995. “WaveLab and Reproducible Research.” In Wavelets and Statistics, edited by P. Bickel, P. Diggle, S. Fienberg, K. Krickeberg, I. Olkin, N. Wermuth, S. Zeger, Anestis Antoniadis, and Georges Oppenheim, 103:55–81. New York, NY: Springer New York. https://doi.org/10.1007/978-1-4612-2544-7_5.\n\n\nCollaboration, Open Science. 2015. “Estimating the Reproducibility of Psychological Science.” Science 349 (6251). https://doi.org/10.1126/science.aac4716.\n\n\n“Dear Colleague Letter: Robust and Reliable Research in the Social, Behavioral, and Economic Sciences (Nsf16137) | NSF - National Science Foundation.” n.d. https://www.nsf.gov/pubs/2016/nsf16137/nsf16137.jsp.\n\n\nEzekiel, Mordecai. 1933. “Some Considerations on the Analysis of the Prices of Competing or Substitute Commodities.” Econometrica 1 (2): 172–80.\n\n\nFomel, S., and J. F. Claerbout. 2009. “Guest Editors’ Introduction: Reproducible Research.” Computing in Science Engineering 11 (1): 5–7.\n\n\nFrisch, Ragnar. 1933. “Editor’s Note.” Econometrica 1 (1): 1–4.\n\n\nGentleman, Robert. 2005. “Reproducible Research: A Bioinformatics Case Study.” Statistical Applications in Genetics and Molecular Biology 4 (1). https://doi.org/10.2202/1544-6115.1034.\n\n\nGentleman, Robert, and Duncan Temple Lang. 2007. “Statistical Analyses and Reproducible Research.” Journal of Computational and Graphical Statistics 16 (1): 1–23. https://doi.org/10.1198/106186007X178663.\n\n\nGolub, T. R., D. K. Slonim, P. Tamayo, C. Huard, M. Gaasenbeek, J. P. Mesirov, H. Coller, et al. 1999. “Molecular Classification of Cancer: Class Discovery and Class Prediction by Gene Expression Monitoring.” Science (New York, N.Y.) 286 (5439): 531–37. https://doi.org/10.1126/science.286.5439.531.\n\n\nGoodman, Steven N., Daniele Fanelli, and John P. A. Ioannidis. 2016. “What Does Research Reproducibility Mean?” Science Translational Medicine 8 (341): 341ps12–12. https://doi.org/10.1126/scitranslmed.aaf5027.\n\n\nGrolemund, Garrett, and Hadley Wickham. n.d. R for Data Science.\n\n\nGruber, John, and Aron Swartz. n.d. “Daring Fireball: Markdown.” https://daringfireball.net/projects/markdown/.\n\n\nIoannidis, John P. A. 2005. “Why Most Published Research Findings Are False.” PLOS Medicine 2 (8): e124. https://doi.org/10.1371/journal.pmed.0020124.\n\n\nIyengar, Satish, and Joel B. Greenhouse. 1988. “Selection Models and the File Drawer Problem.” Statistical Science 3 (1): 109–17.\n\n\nJasny, Barbara R., Gilbert Chin, Lisa Chong, and Sacha Vignieri. 2011. “Again, and Again, and Again.” Science 334 (6060): 1225–25. https://doi.org/10.1126/science.334.6060.1225.\n\n\nKlein, Richard A., Michelangelo Vianello, Fred Hasselman, Byron G. Adams, Jr. Reginald B. Adams, Sinan Alper, Mark Aveyard, et al. 2018. “Many Labs 2: Investigating Variation in Replicability Across Samples and Settings.” Advances in Methods and Practices in Psychological Science 1 (4): 443–90. https://doi.org/10.1177/2515245918810225.\n\n\nKnuth, D. E. 1984. “Literate Programming.” The Computer Journal 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.\n\n\nKnuth, Donald E. 1992. Literate Programming. Cambridge University Press.\n\n\nLander, Jared P. 2017. R for Everyone: Advanced Analytics and Graphics. 2nd Edition. Boston: Addison-Wesley Professional.\n\n\nLeisch, Friedrich. 2002. “Sweave: Dynamic Generation of Statistical Reports Using Literate Data Analysis.” In Compstat, edited by Wolfgang Härdle and Bernd Rönz, 575–80. Heidelberg: Physica-Verlag HD. https://doi.org/10.1007/978-3-642-57489-4_89.\n\n\nMcCullough, B. D., Kerry Anne McGeary, and Teresa D. Harrison. 2008. “Do Economics Journal Archives Promote Replicable Research?” Canadian Journal of Economics/Revue Canadienne d’économique 41 (4): 1406–20. https://doi.org/10.1111/j.1540-5982.2008.00509.x.\n\n\nMcNutt, Marcia. 2014. “Reproducibility.” Science 343 (6168): 229–29. https://doi.org/10.1126/science.1250475.\n\n\nNosek, B. A., G. Alter, G. C. Banks, D. Borsboom, S. D. Bowman, S. J. Breckler, S. Buck, et al. 2015. “Promoting an Open Research Culture.” Science 348 (6242): 1422–25. https://doi.org/10.1126/science.aab2374.\n\n\nNosek, Brian A., and et al. 2015. “Estimating the Reproducibility of Psychological Science.” Science 349 (6251). https://doi.org/10.1126/science.aac4716.\n\n\n“Pandoc - Pandoc User’s Guide.” n.d. https://pandoc.org/MANUAL.html.\n\n\nPeng, Roger D. 2011. “Reproducible Research in Computational Science.” Science 334 (6060): 1226–27. https://doi.org/10.1126/science.1213847.\n\n\nRamsey, Norman. n.d. “Noweb Home Page.” https://www.cs.tufts.edu/~nr/noweb/.\n\n\nRiederer, Emily, Christophe Dervieux. n.d. R Markdown Cookbook.\n\n\nRosenthal, R. 1979. “The File Drawer Problem and Tolerance for Null Results.” In, 86:638–41. Psychological Bulletin.\n\n\nRStudio Team. 2020. RStudio: Integrated Development Environment for r. Boston, MA: RStudio, PBC.\n\n\nSchwab, Matthias, Martin Karrenbach, and Jon Claerbout. 1995. “Reproducible Electronic Documents,” 14.\n\n\nSimmons, Joseph P., Leif D. Nelson, and Uri Simonsohn. 2011. “False-Positive Psychology: Undisclosed Flexibility in Data Collection and Analysis Allows Presenting Anything as Significant.” Psychological Science 22 (11): 1359–66. https://doi.org/10.1177/0956797611417632.\n\n\nTierney, Nicholas. n.d. RMarkdown for Scientists.\n\n\nwikipedia. 2020. “Meta-Analysis.” Wikipedia, August.\n\n\nXie, Yihui. 2014. “Knitr: A Comprehensive Tool for Reproducible Research in R.” In Implementing Reproducible Computational Research, edited by Victoria Stodden, Friedrich Leisch, and Roger D. Peng. Chapman and Hall/CRC.\n\n\n———. 2015. Dynamic Documents with R and Knitr. Second. Boca Raton, Florida: Chapman and Hall/CRC.\n\n\n———. 2020. Knitr: A General-Purpose Package for Dynamic Report Generation in r. Manual.\n\n\nXie, Yihui, J. J. Allaire, and Garrett Grolemund. 2018. R Markdown: The Definitive Guide. Boca Raton, Florida: Chapman and Hall/CRC.\n\n\nYoung, Neal S, John P. A Ioannidis, and Omar Al-Ubaydli. 2008. “Why Current Publication Practices May Distort Science.” PLoS Medicine 5 (10): e201. https://doi.org/10.1371/journal.pmed.0050201."
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#implementations-iii",
+    "href": "reproducibility/rr-science_h24.html#implementations-iii",
+    "title": "Robust and Reliable Science",
+    "section": "27 Implementations III",
+    "text": "27 Implementations III\n\nQuarto documents\n\nThe updated and more robust version of R Notebook/.Rmd documents\nStill uses pandoc, output to html, pdf, docx and other formats\nSupports LaTeX for mathematics\nSupport Zotero/BiBTeX for citations and references\nR-code in code-chuncks"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#reproducible.-to-what-degree",
+    "href": "reproducibility/rr-science_h24.html#reproducible.-to-what-degree",
+    "title": "Robust and Reliable Science",
+    "section": "28 Reproducible. To what degree?",
+    "text": "28 Reproducible. To what degree?\n\nReproducible with\n\nsame hardware,\nsame system,\nsame version of system libraries,\nsame R-version,\nsame package versions\n\n\nIs this really reproducibility?"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#how-serious",
+    "href": "reproducibility/rr-science_h24.html#how-serious",
+    "title": "Robust and Reliable Science",
+    "section": "29 How serious?",
+    "text": "29 How serious?\n\nHardware, system, system libraries, R-version\n\nCause for less concern, but good practice to include output of sessionInfo().\n\nPackage versions\n\nProbably what we should be most concerned about\nRapid development\nUse of packages under development\nPossible solution: use renv for project"
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#enable-renv",
+    "href": "reproducibility/rr-science_h24.html#enable-renv",
+    "title": "Robust and Reliable Science",
+    "section": "30 Enable renv",
+    "text": "30 Enable renv\nSelect Project Options … and enable renv.\n\nProject Options …Keep local versions of packages used in project."
+  },
+  {
+    "objectID": "reproducibility/rr-science_h24.html#still-concerned-about-hardware-system-system-libraries-r-version",
+    "href": "reproducibility/rr-science_h24.html#still-concerned-about-hardware-system-system-libraries-r-version",
+    "title": "Robust and Reliable Science",
+    "section": "31 Still concerned about Hardware, system, system libraries, R-version?",
+    "text": "31 Still concerned about Hardware, system, system libraries, R-version?\n\nCheck out \n\n\n\nLearn to use Docker"
+  },
+  {
+    "objectID": "introduction/git-github/git-github.html",
+    "href": "introduction/git-github/git-github.html",
+    "title": "Git and Github",
+    "section": "",
+    "text": "use same email as git\n\ncheck with git config --global --list in terminal\n\nsome good advice for selecting user_name on Github\n\nNo …,\n\nBigSexyThing should probably not be your username on Github\nand before you ask …\n\nneither should big_sexy_thing\n\n\n\nGo to www.github.com"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html",
+    "href": "introduction/reproducibility/rr-science_h24.html",
+    "title": "Robust and Reliable Science",
+    "section": "",
+    "text": "Start of the editorial in Science January 2014\n\n“Science advances on a foundation of trusted discoveries.\nReproducing an experiment is one important approach that scientists use to gain confidence in their conclusions.\nRecently, the scientific community was shaken by reports that a troubling proportion of peer-reviewed preclinical studies are not reproducible”.(McNutt 2014)\n\nadvances on a foundation of trusted discoveries\nscientists try to reproduce results to gain confidence in conclusions\nmany peer-reviewed studies not reproducible"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#reproducibility",
+    "href": "introduction/reproducibility/rr-science_h24.html#reproducibility",
+    "title": "Robust and Reliable Science",
+    "section": "",
+    "text": "Start of the editorial in Science January 2014\n\n“Science advances on a foundation of trusted discoveries.\nReproducing an experiment is one important approach that scientists use to gain confidence in their conclusions.\nRecently, the scientific community was shaken by reports that a troubling proportion of peer-reviewed preclinical studies are not reproducible”.(McNutt 2014)\n\nadvances on a foundation of trusted discoveries\nscientists try to reproduce results to gain confidence in conclusions\nmany peer-reviewed studies not reproducible"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#replicability-and-reproducibility",
+    "href": "introduction/reproducibility/rr-science_h24.html#replicability-and-reproducibility",
+    "title": "Robust and Reliable Science",
+    "section": "Replicability and Reproducibility",
+    "text": "Replicability and Reproducibility\n\n“Replication—The confirmation of results and conclusions from one study obtained independently in another—is considered the scientific gold standard.”(Jasny et al. 2011)\n\nReproducibility is a necessary, but not sufficient, condition for Replicability.\nShould Reproducibility be a minimal requirement for publication? (Peng (2011) discusses this with regard to Computational Science)"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#nsf-robust-and-reliable-science",
+    "href": "introduction/reproducibility/rr-science_h24.html#nsf-robust-and-reliable-science",
+    "title": "Robust and Reliable Science",
+    "section": "NSF: Robust and Reliable Science",
+    "text": "NSF: Robust and Reliable Science\n\nThere seems to have been some confusion regarding the terms.\nAt least the NSF1 felt a need to define the following (Bollen et al. 2015):\n“robust and reliable” science refers to: research that is reproducible, replicable, and generalizable.\nReproducibility refers to: the ability of a researcher to duplicate the results of a prior study using the same materials and procedures used by the original investigator.\nReplicability refers to: the ability of a researcher to duplicate the results of a prior study if the same procedures are followed but new data are collected.\nGeneralizability refers to: whether the results of a study apply in other contexts or populations that differ from the originals."
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#nsf-robust-and-reliable-science-cont.",
+    "href": "introduction/reproducibility/rr-science_h24.html#nsf-robust-and-reliable-science-cont.",
+    "title": "Robust and Reliable Science",
+    "section": "NSF: Robust and Reliable Science cont.",
+    "text": "NSF: Robust and Reliable Science cont.\n\nSee also “Dear Colleague Letter: Robust and Reliable Research in the Social, Behavioral, and Economic Sciences (Nsf16137) | NSF - National Science Foundation” (n.d.)\nRobust and reliable research is the foundation of all scientific development and progress, which depends critically on the ability of investigators to build on prior work."
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#what-is-research-reproducibility",
+    "href": "introduction/reproducibility/rr-science_h24.html#what-is-research-reproducibility",
+    "title": "Robust and Reliable Science",
+    "section": "What is research reproducibility?",
+    "text": "What is research reproducibility?\n\nWhat does research reproducibility mean? (Goodman, Fanelli, and Ioannidis 2016)\n\nMethods reproducibility: “Methods reproducibility refers to the provision of enough detail about study procedures and data so the same procedures could, in theory or in actuality, be exactly repeated.”\nResults reproducibility: “Results reproducibility (previously described as replicability) refers to obtaining the same results from the conduct of an independent study whose procedures are as closely matched to the original experiment as possible.”\nRobustness and generalizability: “We briefly introduce these terms because they are sometimes used in lieu of the term reproducibility. Robustness refers to the stability of experimental conclusions to variations in either baseline assumptions or experimental procedures. It is somewhat related to the concept of generalizability (also known as transportability), which refers to the persistence of an effect in settings different from and outside of an experimental framework.”"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#publication-bias",
+    "href": "introduction/reproducibility/rr-science_h24.html#publication-bias",
+    "title": "Robust and Reliable Science",
+    "section": "Publication bias",
+    "text": "Publication bias\n\nPublication bias refers to: the likelihood of a study being published based on the findings of the study.\n\nThere are few published studies with a negative conclusion (can not reject H0),\n\nex.: The treatment has no effect\n\nWorst case, Scientific journals are big collections of type 1 error"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#problem-type-1-error",
+    "href": "introduction/reproducibility/rr-science_h24.html#problem-type-1-error",
+    "title": "Robust and Reliable Science",
+    "section": "Problem: Type 1 error",
+    "text": "Problem: Type 1 error\n\nType 1 error: reject H0 when H0 is true\nH0 is the conservative hypothesis, i.e. “no effect”\nwith \\(\\alpha = 0,05\\) we accept that in 1 of 20 cases we will reject H0 even if it`s true\n\ni.e. we conclude that there is an effect when in reality there is none (all because we were unlucky, or perhaps lucky if we want to be published, and got an unfortunate sample)\n\nSo even if there are 100 similar studies that find no effect, there is a risk that the wrong one is what you will find in the literature\nThis is often called the “File Drawer Problem” after Rosenthal (1979)\n\nstudies where H0 can not be rejected go to the filing cabinet\nstudies where H0 can be rejected will be sendt to the journals"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#problem-type-1-error-1",
+    "href": "introduction/reproducibility/rr-science_h24.html#problem-type-1-error-1",
+    "title": "Robust and Reliable Science",
+    "section": "Problem: Type 1 error",
+    "text": "Problem: Type 1 error\n\nPerhaps the most costly error is a false positive, the incorrect rejection of a null hypothesis.\nFirst, once they appear in the literature, false positives are particularly persistent.\nBecause null results have many possible causes, failures to replicate previous findings are never conclusive.\nFurthermore, because it is uncommon for prestigious journals to publish null findings or exact replications, researchers have little incentive to even attempt them.\nSecond, false positives waste resources: They inspire investment in fruitless research programs and can lead to ineffective policy changes.\nFinally, a field known for publishing false positives risks losing its credibility.(Simmons, Nelson, and Simonsohn 2011)"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#publication-bias-and-meta-analysis",
+    "href": "introduction/reproducibility/rr-science_h24.html#publication-bias-and-meta-analysis",
+    "title": "Robust and Reliable Science",
+    "section": "Publication bias and meta-analysis",
+    "text": "Publication bias and meta-analysis\n\n“More alarming is the general paucity in the literature of negative data. In some fields, almost all published studies show formally significant results so that statistical significance no longer appears discriminating” (Young, Ioannidis, and Al-Ubaydli 2008)\n\nYoung, Ioannidis, and Al-Ubaydli (2008) analyses scientific information as an economic commodity\n\nA meta-analysis is a statistical analysis that combines the results of multiple scientific studies.(wikipedia 2020)\nIf there is a publication bias this will also influence meta-analysis’\nIyengar and Greenhouse (1988) discusses techniques to deal with this problem"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#the-replication-crisis",
+    "href": "introduction/reproducibility/rr-science_h24.html#the-replication-crisis",
+    "title": "Robust and Reliable Science",
+    "section": "The Replication Crisis",
+    "text": "The Replication Crisis\n\nThe last Replication Crisis seems to have started in Psychology, but spread fast to other branches of science\nSimmons, Nelson, and Simonsohn (2011) “proves” that you will get, or at least feel, younger by listening to “When I’m Sixty-Four” by The Beatles.\n\nSimmons, Nelson, and Simonsohn (2011) suggest a solution to the problem\n\nlist of requirements for authers (6) and guidelines for editors (4)"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#the-replication-crisis-1",
+    "href": "introduction/reproducibility/rr-science_h24.html#the-replication-crisis-1",
+    "title": "Robust and Reliable Science",
+    "section": "The Replication Crisis",
+    "text": "The Replication Crisis\n\nWhy Most Published Research Findings Are False Ioannidis (2005)\n\n“There is increasing concern that in modern research, false findings may be the majority or even the vast majority of published research claims [6–8]. However, this should not be surprising. It can be proven that most claimed research findings are false.”\n\nAgain, and again, and again Jasny et al. (2011)\n\nHow do we promote the publication of replicable data?\nIntroduction to Science special section on Data Replication & Reproducibility\nPromoting an open research culture B. A. Nosek et al. (2015)\n\nAuthor guidelines for journals could help to promote transparency, openness, and reproducibility"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#big-replication-studies-in-psychology",
+    "href": "introduction/reproducibility/rr-science_h24.html#big-replication-studies-in-psychology",
+    "title": "Robust and Reliable Science",
+    "section": "Big replication studies in psychology",
+    "text": "Big replication studies in psychology\n\nEstimating the reproducibility of psychological science Brian A. Nosek and et al (2015)\n\ntotalt 270 forskere involvert\nTried to replicate 100 studies from the last 3 years taken from 3 of the most respected journals in the field\nResults: Replication effects were half the magnitude of original effects\nResults: Ninety­seven percent of original studies had significant results (p​​&lt; .05). Thirty­six percent of replications had significant results\nResults: In sum, a large portion of replications did not reproduce evidence supporting the original results despite using high­powered designs and original materials when available."
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#big-replication-studies-in-psychology-cont.",
+    "href": "introduction/reproducibility/rr-science_h24.html#big-replication-studies-in-psychology-cont.",
+    "title": "Robust and Reliable Science",
+    "section": "Big replication studies in psychology cont.",
+    "text": "Big replication studies in psychology cont.\n\nMany labs 2: Investigating variation in replicability across samples and settings Klein et al. (2018). See Collaboration (2015) for abstract.\n\n“We conducted preregistered replications of 28 classic and contemporary published findings, with protocols that were peer reviewed in advance, to examine variation in effect magnitudes across samples and settings.”\n“Using the conventional criterion of statistical significance (p &lt; .05), we found that 15 (54%) of the replications provided evidence of a statistically significant effect in the same direction as the original finding.”"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#the-jmcb-project-1982",
+    "href": "introduction/reproducibility/rr-science_h24.html#the-jmcb-project-1982",
+    "title": "Robust and Reliable Science",
+    "section": "The JMCB project (1982)",
+    "text": "The JMCB project (1982)\n\n1982 The Journal of Money, Credit and Banking Project (NSF sponsored)\n\nReplication (with submitted data sets) so in a modern sense more of an attempt at testing reproducibility\nResults: Managed full replication for 2 out of more than 70\nResults: Some more with nearly the original results\nResults: Many was impossible to replicate because of missing data, faulty computer programs, no documentation e.t.c.\nMany authers just ingored request for data and code\n“It would be embarrassing to reveal the findings of the Project save for our belief that the findings would be little different from any other major economics journal”"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#what-about-economics",
+    "href": "introduction/reproducibility/rr-science_h24.html#what-about-economics",
+    "title": "Robust and Reliable Science",
+    "section": "What about economics?",
+    "text": "What about economics?\n\nGood intentions!\n\n(Frisch 1933)\n\n\n\n\n\nfrich in econometrica"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#what-about-economics-1",
+    "href": "introduction/reproducibility/rr-science_h24.html#what-about-economics-1",
+    "title": "Robust and Reliable Science",
+    "section": "What about economics?",
+    "text": "What about economics?\n\nExample of such a dataset (Ezekiel 1933)\n\n\n\n\ndata set"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#what-about-economics-2",
+    "href": "introduction/reproducibility/rr-science_h24.html#what-about-economics-2",
+    "title": "Robust and Reliable Science",
+    "section": "What about economics?",
+    "text": "What about economics?\n\n1960, big economic models\n\ndifficult to move from one mainframe to another, see\n\n\n\nonly results published, replication/reproduction nearly impossible"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#the-solution",
+    "href": "introduction/reproducibility/rr-science_h24.html#the-solution",
+    "title": "Robust and Reliable Science",
+    "section": "“The Solution”",
+    "text": "“The Solution”\n\nCode and data archives at the journals\nAmerican Economic Association data archive, (“American Economic Association,” n.d. )\nDid the solution work?\nDo economics journal archives promote replicable research? (McCullough, McGeary, and Harrison 2008)\nAbstract. All the long-standing archives at economics journals do not facilitate the re-production of published results. The data-only archives at Journal of Business and Economic Statistics and Economic Journal fail in part because most authors do not contribute data. Results published in the FRB St. Louis Review can rarely be reproduced using the data+code in the journal archive.\nThe solution does not seem to work very well"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#extension-of-the-solution",
+    "href": "introduction/reproducibility/rr-science_h24.html#extension-of-the-solution",
+    "title": "Robust and Reliable Science",
+    "section": "“Extension of the solution”",
+    "text": "“Extension of the solution”\n\nResearch Objects, (Bechhofer et al. 2013)\n\n“Research Objects, semantically rich aggregations of resources that provide the “units of knowledge” which supply structure for delivery of information as Linked Data.”\nDataCite - A global registration agency for research data, Brase (2009)\n\nInternational co-operations to register data sets and give them a unique DOI (Document Object Indentifier)\n\nEU initiative Access to and Preservation of Scientific Information in Europe: Report on the Implementation of Commission Recommendation C(2012) 4890 Final. (2015)\n\n“This report provides an overview on access to and preservation of scientific information in the EU Member States as well as Norway and Turkey.”"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#another-solution-computable-documents-i",
+    "href": "introduction/reproducibility/rr-science_h24.html#another-solution-computable-documents-i",
+    "title": "Robust and Reliable Science",
+    "section": "Another solution, “computable documents” I",
+    "text": "Another solution, “computable documents” I\n\nWhat if the code is an integral part of the article?\nWhat is to be sent to the Journal is:\n\none document containing the text and\nthe code to read in the data and\nthe code to calculate the different models and\nthe code to test them and\nthe code to report the results.\n\nWhat would be submitted would be, together with the data, a fully reproducible document"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#another-solution-computable-documents-ii",
+    "href": "introduction/reproducibility/rr-science_h24.html#another-solution-computable-documents-ii",
+    "title": "Robust and Reliable Science",
+    "section": "Another solution, “computable documents” II",
+    "text": "Another solution, “computable documents” II\n\nThe main idea is often attributed to Donald E. Knuth (1992), although Knuth explicitly points out that it was not his idea (D. E. Knuth 1984)\nKnuths main goal seems to be to improve the quality of the program documentation (and indirectly the quality of the code) with WEB.\nNoweb, Ramsey (n.d.)\n\n“noweb is designed to meet the needs of literate programmers while remaining as simple as possible. Its primary advantages are simplicity, extensibility, and language-independence—especially noticeable when compared with other literate-programming tools. noweb uses 5 control sequences to WEB’s 27.”"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#another-solution-computable-documents-iii",
+    "href": "introduction/reproducibility/rr-science_h24.html#another-solution-computable-documents-iii",
+    "title": "Robust and Reliable Science",
+    "section": "Another solution, “computable documents” III",
+    "text": "Another solution, “computable documents” III\n\n“In the mid 1980’s, researchers at our laboratory noticed that a few months after completing a project, the researchers were usually unable to reproduce their own computational work without considerable agony. In 1991, the concept of electronic documents solved this problem by making scientific computations reproducible.”(Schwab, Karrenbach, and Claerbout 1995)\n\nunix makefiles\n\nConnection between code and reproducibility. All code necessary to generate figures freely avaiable (WaveLab a Matlab (Matlab is proprietary software) library).(Buckheit and Donoho 1995)\n“solutions for practical reproducible research systems”, (Fomel and Claerbout 2009)\n\nIntroduction to special issue of Computing in Science & Engineering ( Volume: 11 , Issue: 1 , Jan.-Feb. 2009 )"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#another-solution-computable-documents-iv",
+    "href": "introduction/reproducibility/rr-science_h24.html#another-solution-computable-documents-iv",
+    "title": "Robust and Reliable Science",
+    "section": "Another solution, “computable documents” IV",
+    "text": "Another solution, “computable documents” IV\n\n“It is important, if not essential, to integrate the computations and code used in data analyses, methodological descriptions, simulations, and so on with the documents that describe and rely on them.” (Gentleman and Lang 2007)[^2]\n“We introduce the concept of a compendium as both a container for the different elements that make up the document and its computations (i.e. text, code, data, …), and as a means for distributing, managing and updating the collection.”\n“The step from disseminating analyses via a compendium to reproducible research is a small one. By reproducible research, we mean research papers with accom- panying software tools that allow the reader to directly reproduce the results and employ the methods that are presented in the research paper.”"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#another-solution-computable-documents-v",
+    "href": "introduction/reproducibility/rr-science_h24.html#another-solution-computable-documents-v",
+    "title": "Robust and Reliable Science",
+    "section": "Another solution, “computable documents” V",
+    "text": "Another solution, “computable documents” V\n\n“a compendium has one, or more, self-contained live documents that can be regenerated in absolute detail by others, and that can often be used in contexts other than the author’s original work.”\n“We define a dynamic document as an ordered composition of code chunks and text chunks that describe and discuss a problem and its solution. The ordering of the chunks need not be simply sequential but can support rich and complex document structures.”\n“The mechanism or system used to transform a dynamic document into some desired output or view will be called a transformer.”\nIn Gentleman (2005) parts of Golub et al. (1999) is reproduced as a computable compendium."
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#implementations-i",
+    "href": "introduction/reproducibility/rr-science_h24.html#implementations-i",
+    "title": "Robust and Reliable Science",
+    "section": "Implementations I",
+    "text": "Implementations I\n\nSweave, executable code (R or Splus) in LaTex documents, (Leisch 2002)\nKnitr, (Xie 2014), (Xie 2015) and (Xie 2020)\n\nR code in LaTex documents (like Sweave), but also support for R Markdown (Allaire et al. 2020), (Tierney, n.d.), (Xie, Allaire, and Grolemund 2018) and (Riederer, n.d.)\nMarkdown Gruber and Swartz (n.d.), plain text with simple markup. Intended for Grubers web site.\nR Markdown, markdown with R code-chuncks\n\nRStudio (RStudio Team 2020), IDE for R supporting R Markdown and knitr"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#implementations-ii",
+    "href": "introduction/reproducibility/rr-science_h24.html#implementations-ii",
+    "title": "Robust and Reliable Science",
+    "section": "Implementations II",
+    "text": "Implementations II\n\nR Notebook, document type supported by RStudio that implements a notebook interface, i.e. output is returned to the notebook when it is run\n\nCode should be run sequentially, but each code-chunck can be run individually\nSupport LaTex code for mathematical typesetting\npandoc, (“Pandoc - Pandoc User’s Guide,” n.d. ), functions as the transformer (from\n\nand can transform a R Markdown document into many different formats.\n\nincluding MS Word, html and pdf (via LaTex)\n\nIntroductory books on R, (Lander 2017) and Data Science, (Grolemund and Wickham, n.d.) often includes chapters on how to write dynamic computable documents in R Studio"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#implementations-iii",
+    "href": "introduction/reproducibility/rr-science_h24.html#implementations-iii",
+    "title": "Robust and Reliable Science",
+    "section": "Implementations III",
+    "text": "Implementations III\n\nQuarto documents\n\nThe updated and more robust version of R Notebook/.Rmd documents\nStill uses pandoc, output to html, pdf, docx and other formats\nSupports LaTeX for mathematics\nSupport Zotero/BiBTeX for citations and references\nR-code in code-chuncks"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#reproducible.-to-what-degree",
+    "href": "introduction/reproducibility/rr-science_h24.html#reproducible.-to-what-degree",
+    "title": "Robust and Reliable Science",
+    "section": "Reproducible. To what degree?",
+    "text": "Reproducible. To what degree?\n\nReproducible with\n\nsame hardware,\nsame system,\nsame version of system libraries,\nsame R-version,\nsame package versions\n\n\nIs this really reproducibility?"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#how-serious",
+    "href": "introduction/reproducibility/rr-science_h24.html#how-serious",
+    "title": "Robust and Reliable Science",
+    "section": "How serious?",
+    "text": "How serious?\n\nHardware, system, system libraries, R-version\n\nCause for less concern, but good practice to include output of sessionInfo().\n\nPackage versions\n\nProbably what we should be most concerned about\nRapid development\nUse of packages under development\nPossible solution: use renv for project"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#enable-renv",
+    "href": "introduction/reproducibility/rr-science_h24.html#enable-renv",
+    "title": "Robust and Reliable Science",
+    "section": "Enable renv",
+    "text": "Enable renv\nSelect Project Options … and enable renv.\n\n\n\nProject Options …\n\n\nKeep local versions of packages used in project."
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#still-concerned-about-hardware-system-system-libraries-r-version",
+    "href": "introduction/reproducibility/rr-science_h24.html#still-concerned-about-hardware-system-system-libraries-r-version",
+    "title": "Robust and Reliable Science",
+    "section": "Still concerned about Hardware, system, system libraries, R-version?",
+    "text": "Still concerned about Hardware, system, system libraries, R-version?\n\nCheck out \n\n\n\nLearn to use Docker"
+  },
+  {
+    "objectID": "introduction/reproducibility/rr-science_h24.html#footnotes",
+    "href": "introduction/reproducibility/rr-science_h24.html#footnotes",
+    "title": "Robust and Reliable Science",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nSubcommittee on Replicability in Science Advisory Committee to the National Science Foundation Directorate for Social, Behavioural, and Economic Sciences↩︎"
   }
 ]
