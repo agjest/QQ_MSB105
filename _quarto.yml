@@ -1,5 +1,7 @@
 project:
   type: website
+  resources: 
+    - introduction/reproducibility/reproducibility.bib
 
 website:
   title: "MSB105"

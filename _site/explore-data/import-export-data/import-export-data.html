@@ -1132,164 +1132,46 @@ ag@hvl.no
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>unemp99to02 <span class="ot">&lt;-</span> <span class="fu">ApiData</span>(</span>
-<span id="cb23-2"><a></a>  <span class="st">"http://data.ssb.no/api/v0/en/table/10540"</span>,</span>
-<span id="cb23-3"><a></a>  <span class="co"># Have not been able to specify more complex regions</span></span>
-<span id="cb23-4"><a></a>  <span class="at">Region =</span> <span class="fu">list</span>(<span class="st">"11*"</span>),</span>
-<span id="cb23-5"><a></a>  <span class="at">Tid =</span> <span class="fu">c</span>(<span class="fu">paste</span>(</span>
-<span id="cb23-6"><a></a>    <span class="fu">rep</span>(<span class="dv">1999</span><span class="sc">:</span><span class="dv">2002</span>, <span class="at">each =</span> <span class="dv">12</span>), </span>
-<span id="cb23-7"><a></a>    <span class="st">"M"</span>,</span>
-<span id="cb23-8"><a></a>    <span class="fu">sprintf</span>(<span class="st">"%02d"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>), </span>
-<span id="cb23-9"><a></a>    <span class="at">sep =</span> <span class="st">""</span>)</span>
-<span id="cb23-10"><a></a>    )</span>
-<span id="cb23-11"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>unemp99to02 <span class="ot">&lt;-</span> <span class="fu">ApiData12</span>(</span>
+<span id="cb23-2"><a></a>  <span class="at">urlToData =</span> <span class="st">"https://data.ssb.no/api/v0/en/table/10540/"</span>,</span>
+<span id="cb23-3"><a></a>  <span class="co"># or</span></span>
+<span id="cb23-4"><a></a>  <span class="co"># urlToData = "10540"</span></span>
+<span id="cb23-5"><a></a>  <span class="co"># Select all municipalities in Vest-Agder and Rogaland</span></span>
+<span id="cb23-6"><a></a>  <span class="at">Region =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"10*"</span>,<span class="st">"11*"</span>)),</span>
+<span id="cb23-7"><a></a>  <span class="co"># Select two age groups</span></span>
+<span id="cb23-8"><a></a>  <span class="at">Alder =</span> <span class="fu">c</span>(<span class="st">"15-74"</span>, <span class="st">"15-29"</span>),</span>
+<span id="cb23-9"><a></a>  <span class="co"># select 1999M01:2002M12</span></span>
+<span id="cb23-10"><a></a>  <span class="at">Tid =</span> <span class="fu">c</span>(<span class="fu">paste</span>(</span>
+<span id="cb23-11"><a></a>    <span class="fu">rep</span>(<span class="dv">1999</span><span class="sc">:</span><span class="dv">2002</span>, <span class="at">each =</span> <span class="dv">12</span>), </span>
+<span id="cb23-12"><a></a>    <span class="st">"M"</span>,</span>
+<span id="cb23-13"><a></a>    <span class="fu">sprintf</span>(<span class="st">"%02d"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>), </span>
+<span id="cb23-14"><a></a>    <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb23-15"><a></a>    )</span>
+<span id="cb23-16"><a></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb23-17"><a></a>  <span class="co"># convert from dataframe to tibble</span></span>
+<span id="cb23-18"><a></a>  <span class="fu">as_tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="read-10540-table-1" class="slide level2">
-<h2>Read 10540 table</h2>
-<p>What is returned by <code>Region = list("11*")</code>?</p>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="co"># Note the two $ signs</span></span>
-<span id="cb24-2"><a></a><span class="fu">unique</span>(unemp99to02<span class="sc">$</span><span class="st">`</span><span class="at">10540: Unemployed persons registered at the Employment Office (per cent), by region, age, contents and month</span><span class="st">`</span><span class="sc">$</span>region)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] "Rogaland"        "Eigersund"       "Sandnes (-2019)" "Stavanger"      
- [5] "Haugesund"       "Sandnes"         "Sokndal"         "Lund"           
- [9] "Bjerkreim"       "Hå"             </code></pre>
-</div>
-</div>
-</section>
-<section id="read-10540-table-2" class="slide level2">
-<h2>Read 10540 table</h2>
-<ul>
-<li class="fragment">Check structure of result</li>
-</ul>
-<div class="fragment">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="structure-result.png"></p>
-<figcaption>Structure of the answer from SSB server.</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="bind-dataframes" class="slide level2">
-<h2>Bind dataframes</h2>
-<ul>
-<li class="fragment">We see that what’s returned is a list with two element</li>
-<li class="fragment">The elements are</li>
-</ul>
-<div class="fragment">
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">is.data.frame</span>(unemp99to02<span class="sc">$</span><span class="st">`</span><span class="at">10540: Unemployed persons registered at the Employment Office (per cent), by region, age, contents and month</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
-</div>
-</div>
-<div class="fragment">
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="fu">is.data.frame</span>(unemp99to02<span class="sc">$</span>dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
-</div>
-</div>
-</section>
-<section id="bind-dataframes-1" class="slide level2">
-<h2>Bind dataframes</h2>
-<ul>
-<li class="fragment">Bind the two dataframes together.</li>
-<li class="fragment">Each row is for the same observation (in both dataframes).</li>
-</ul>
-<div class="fragment">
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="co"># one labels df and one values df, cbind them</span></span>
-<span id="cb30-2"><a></a>unemp99to02_df <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
-<span id="cb30-3"><a></a>  unemp99to02[[<span class="dv">1</span>]], </span>
-<span id="cb30-4"><a></a>  unemp99to02[[<span class="dv">2</span>]]</span>
-<span id="cb30-5"><a></a>  )</span>
-<span id="cb30-6"><a></a><span class="fu">head</span>(unemp99to02_df, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>    region         age                                               contents
-1 Rogaland 15-74 years Unemployed persons registered at the Employment Office
-2 Rogaland 15-74 years Unemployed persons registered at the Employment Office
-3 Rogaland 15-74 years Unemployed persons registered at the Employment Office
-4 Rogaland 15-74 years Unemployed persons registered at the Employment Office
-5 Rogaland 15-74 years Unemployed persons registered at the Employment Office
-    month value NAstatus Region Alder  ContentsCode     Tid value NAstatus
-1 1999M01   2.1     &lt;NA&gt;     11 15-74 RegHeltLedige 1999M01   2.1     &lt;NA&gt;
-2 1999M02   2.0     &lt;NA&gt;     11 15-74 RegHeltLedige 1999M02   2.0     &lt;NA&gt;
-3 1999M03   2.0     &lt;NA&gt;     11 15-74 RegHeltLedige 1999M03   2.0     &lt;NA&gt;
-4 1999M04   2.0     &lt;NA&gt;     11 15-74 RegHeltLedige 1999M04   2.0     &lt;NA&gt;
-5 1999M05   1.8     &lt;NA&gt;     11 15-74 RegHeltLedige 1999M05   1.8     &lt;NA&gt;</code></pre>
-</div>
-</div>
-</div>
-</section>
-<section id="bind-dataframes-2" class="slide level2">
-<h2>Bind dataframes</h2>
-
-<img data-src="structure-df.png" class="r-stretch quarto-figure-center"><p class="caption">Structure of the new dataframe.</p></section>
-<section id="bind-dataframes-3" class="slide level2">
-<h2>Bind dataframes</h2>
+<section id="select-variables" class="slide level2 smaller">
+<h2>Select variables</h2>
 <ul>
 <li class="fragment">We pick the variables we need in the order we want them.</li>
+<li class="fragment">We pick them by name and change names where warranted</li>
 </ul>
-<div class="fragment">
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="co">#pick and order variables. Pick them by name.</span></span>
-<span id="cb32-2"><a></a>unemp99to02 <span class="ot">&lt;-</span> unemp99to02_df[, <span class="fu">c</span>(</span>
-<span id="cb32-3"><a></a>  <span class="st">"Region"</span>,</span>
-<span id="cb32-4"><a></a>  <span class="st">"region"</span>,</span>
-<span id="cb32-5"><a></a>  <span class="st">"month"</span>,</span>
-<span id="cb32-6"><a></a>  <span class="st">"age"</span>,</span>
-<span id="cb32-7"><a></a>  <span class="st">"value"</span></span>
-<span id="cb32-8"><a></a>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="co"># pick and order variables. </span></span>
+<span id="cb24-2"><a></a>unemp99to02 <span class="ot">&lt;-</span> unemp99to02 <span class="sc">|&gt;</span> </span>
+<span id="cb24-3"><a></a>  <span class="fu">select</span>(</span>
+<span id="cb24-4"><a></a>    <span class="at">knr =</span> Region, </span>
+<span id="cb24-5"><a></a>    <span class="at">kname =</span> region,  </span>
+<span id="cb24-6"><a></a>    month, </span>
+<span id="cb24-7"><a></a>    age, </span>
+<span id="cb24-8"><a></a>    <span class="at">unemp =</span> value</span>
+<span id="cb24-9"><a></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-</div>
-</div>
-</section>
-<section id="set-the-names-we-want" class="slide level2">
-<h2>Set the names we want</h2>
-<ul>
-<li class="fragment">Give the variables names we like.</li>
-</ul>
-<div class="fragment">
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">names</span>(unemp99to02)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Region" "region" "month"  "age"    "value" </code></pre>
-</div>
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="co"># new variable names</span></span>
-<span id="cb35-2"><a></a><span class="fu">names</span>(unemp99to02) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb35-3"><a></a>  <span class="st">"knr"</span>,</span>
-<span id="cb35-4"><a></a>  <span class="st">"knavn"</span>,</span>
-<span id="cb35-5"><a></a>  <span class="st">"y_m"</span>,</span>
-<span id="cb35-6"><a></a>  <span class="st">"age"</span>,</span>
-<span id="cb35-7"><a></a>  <span class="st">"unemp"</span></span>
-<span id="cb35-8"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
 </div>
 </section>
 <section id="write-the-data-as-a-csv-file." class="slide level2">
@@ -1303,16 +1185,18 @@ ag@hvl.no
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="co"># Check that it looks OK</span></span>
-<span id="cb36-2"><a></a><span class="fu">head</span>(unemp99to02, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="co"># Check that it looks OK</span></span>
+<span id="cb25-2"><a></a><span class="fu">head</span>(unemp99to02, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>  knr    knavn     y_m         age unemp
-1  11 Rogaland 1999M01 15-74 years   2.1
-2  11 Rogaland 1999M02 15-74 years   2.0
-3  11 Rogaland 1999M03 15-74 years   2.0
-4  11 Rogaland 1999M04 15-74 years   2.0
-5  11 Rogaland 1999M05 15-74 years   1.8</code></pre>
+<pre><code># A tibble: 5 × 5
+  knr   kname              month   age         unemp
+  &lt;chr&gt; &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;
+1 10    Vest-Agder (-2019) 1999M01 15-74 years   2.9
+2 10    Vest-Agder (-2019) 1999M02 15-74 years   2.6
+3 10    Vest-Agder (-2019) 1999M03 15-74 years   2.4
+4 10    Vest-Agder (-2019) 1999M04 15-74 years   2.4
+5 10    Vest-Agder (-2019) 1999M05 15-74 years   2  </code></pre>
 </div>
 </div>
 </div>
@@ -1326,10 +1210,10 @@ ag@hvl.no
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">dim</span>(unemp99to02)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">dim</span>(unemp99to02)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 4464    5</code></pre>
+<pre><code>[1] 4608    5</code></pre>
 </div>
 </div>
 <ul>
@@ -1344,12 +1228,12 @@ ag@hvl.no
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="co"># save it as csv</span></span>
-<span id="cb40-2"><a></a><span class="fu">write.table</span>(unemp99to02,</span>
-<span id="cb40-3"><a></a>  <span class="at">file =</span> <span class="st">"tmp.csv"</span>,</span>
-<span id="cb40-4"><a></a>  <span class="at">dec =</span> <span class="st">"."</span>,</span>
-<span id="cb40-5"><a></a>  <span class="at">sep =</span> <span class="st">","</span></span>
-<span id="cb40-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="co"># save it as csv</span></span>
+<span id="cb29-2"><a></a><span class="fu">write.table</span>(unemp99to02,</span>
+<span id="cb29-3"><a></a>  <span class="at">file =</span> <span class="st">"tmp.csv"</span>,</span>
+<span id="cb29-4"><a></a>  <span class="at">dec =</span> <span class="st">"."</span>,</span>
+<span id="cb29-5"><a></a>  <span class="at">sep =</span> <span class="st">","</span></span>
+<span id="cb29-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>

@@ -215,7 +215,9 @@ head(as.data.frame(RegHeltLedige), n =200)
     variable names
 -   SSB seems to be serving the files with iso-8859-1 encoding (or is it
     CP-1252?).
-    -   ![File -I command in Terminal](Terminal-File-I.png)
+    -   
+
+        ![File -I command in Terminal](Terminal-File-I.png)
 
     -   The command might be `file -i` on linux and windows
 
@@ -339,106 +341,41 @@ returnApiQuery = TRUE
 ## Read 10540 table
 
 ```{r}
-unemp99to02 <- ApiData(
-  "http://data.ssb.no/api/v0/en/table/10540",
-  # Have not been able to specify more complex regions
-  Region = list("11*"),
+unemp99to02 <- ApiData12(
+  urlToData = "https://data.ssb.no/api/v0/en/table/10540/",
+  # or
+  # urlToData = "10540"
+  # Select all municipalities in Vest-Agder and Rogaland
+  Region = list(c("10*","11*")),
+  # Select two age groups
+  Alder = c("15-74", "15-29"),
+  # select 1999M01:2002M12
   Tid = c(paste(
     rep(1999:2002, each = 12), 
     "M",
     sprintf("%02d", 1:12), 
     sep = "")
     )
-  )
+  ) |> 
+  # convert from dataframe to tibble
+  as_tibble()
 ```
 
-## Read 10540 table
-
-What is returned by `Region = list("11*")`?
-
-```{r}
-# Note the two $ signs
-unique(unemp99to02$`10540: Unemployed persons registered at the Employment Office (per cent), by region, age, contents and month`$region)[1:10]
-```
-
-## Read 10540 table
-
--   Check structure of result
-
-. . .
-
-![Structure of the answer from SSB server.](structure-result.png)
-
-## Bind dataframes
-
--   We see that what's returned is a list with two element
--   The elements are
-
-. . .
-
-```{r}
-is.data.frame(unemp99to02$`10540: Unemployed persons registered at the Employment Office (per cent), by region, age, contents and month`)
-```
-
-. . .
-
-```{r}
-is.data.frame(unemp99to02$dataset)
-```
-
-## Bind dataframes
-
--   Bind the two dataframes together.
--   Each row is for the same observation (in both dataframes).
-
-. . .
-
-```{r}
-# one labels df and one values df, cbind them
-unemp99to02_df <- cbind(
-  unemp99to02[[1]], 
-  unemp99to02[[2]]
-  )
-head(unemp99to02_df, n = 5)
-```
-
-## Bind dataframes
-
-![Structure of the new dataframe.](structure-df.png)
-
-## Bind dataframes
+## Select variables {.smaller}
 
 -   We pick the variables we need in the order we want them.
-
-. . .
-
-```{r}
-#pick and order variables. Pick them by name.
-unemp99to02 <- unemp99to02_df[, c(
-  "Region",
-  "region",
-  "month",
-  "age",
-  "value"
-)]
-```
-
-## Set the names we want
-
--   Give the variables names we like.
-
-. . .
+-   We pick them by name and change names where warranted
 
 ```{r}
-names(unemp99to02)
-# new variable names
-names(unemp99to02) <- c(
-  "knr",
-  "knavn",
-  "y_m",
-  "age",
-  "unemp"
-)
+# pick and order variables. 
+unemp99to02 <- unemp99to02 |> 
+  select(
+    knr = Region, 
+    kname = region,  
+    month, 
+    age, 
+    unemp = value
+    )
 ```
 
 ## Write the data as a csv file.
@@ -463,7 +400,6 @@ head(unemp99to02, n = 5)
 
 ```{r}
 dim(unemp99to02)
-
 ```
 
 -   Write the data in international CSV format.
@@ -480,7 +416,6 @@ write.table(unemp99to02,
   dec = ".",
   sep = ","
 )
-
 ```
 
 ```{r}

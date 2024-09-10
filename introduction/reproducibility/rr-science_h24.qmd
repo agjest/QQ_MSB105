@@ -411,18 +411,19 @@ Is this really reproducibility?
     -   Use of packages under development
     -   Possible solution: use `renv` for project
 
-## Enable `renv` 
+## Enable `renv` {.smaller}
 
 Select `Project Options …` and enable `renv`.
 
 ![`Project Options …`](renv_option.png)
 
-Keep local versions of packages used in project. 
+Keeps local versions of packages used in project. 
 
-## Still concerned about Hardware, system, system libraries, R-version?
+## Still concerned about Hardware, system, system libraries, R-version? {.smaller}
 
-- Check out ![Docker](https://github.com/microsoft/docker)
-- ![Learn to use Docker](https://reproducibility.rocks/materials/day4/)
+- Check out [Docker](https://github.com/microsoft/docker)
+- [Learn to use Docker](https://reproducibility.rocks/materials/day4/)
+- [Docker Desktop](https://docs.docker.com/desktop/)
 
 ## References {.smaller}
 

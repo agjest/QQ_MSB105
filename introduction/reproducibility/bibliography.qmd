@@ -1,9 +1,15 @@
 ---
 title: "Bibliography"
-format: pdf
+format: 
+  pdf:
+    papersize: "a4"
+  html: default
 bibliography: reproducibility.bib
 nocite: |
   @*
 ---
+
+This is a collection of some references to get you started.
+Get the `.bib` file with [this link](./reproducibility.bib).
 
 ## Bibliography
