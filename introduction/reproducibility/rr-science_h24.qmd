@@ -12,7 +12,7 @@ format:
     toc: true
     toc-depth: 1
     preview-links: auto
-    footer: <https://www.hvl.no> 
+    footer: <https://msb105.netlify.app> 
 editor_options: 
   markdown: 
     wrap: 72
