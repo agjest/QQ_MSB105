@@ -10,35 +10,28 @@ nocite: '@*'
 
 ## Packages used
 
-```{r setup}
-packs <- suppressPackageStartupMessages(
-  c(
-    library(tidyverse),
-    library(nycflights13),
-    library(gridExtra),
-    library(modelr),
-    library(grid),
-    library(ggplotify),
-    library(vtable)
-    )
-)
-```
-
 ```{r}
-unique(packs)
+#| label: setup
+#| include: false
+library(tidyverse)
+library(nycflights13)
+library(gridExtra)
+library(modelr)
+library(grid)
+library(ggplotify)
+library(vtable)
+library(flextable)
 ```
 
 ## Generate References for Packages used
-
--   References for used packages will be found at the end of document.
-
-. . .
 
 ```{r bib}
 # create a bib file for the R packages 
 # used in this document
 # Note! Needs to do a touch(eda.bib) in terminal before first run
 # else stops when bibliography: "eda.bib" not found in YAML
+packs <- c("tidyverse", "nycflights13", "gridExtra",
+           "modelr", "grid", "ggplotify", "vtable", "flextable")
 knitr::write_bib(
   packs,
   file = "eda.bib"
@@ -50,8 +43,10 @@ rm(packs)
 
 -   Not all to relevant for us since we use Quarto Documents,
 -   but some important points
--   **Cmd + Return/Ctrl + Enter** runs *current* statement and jumps to next statement
--   Selecting some statements and hitting **Cmd + Return/Ctrl + Enter** will run the selected statements.
+-   **Cmd + Return/Ctrl + Enter** runs *current* statement and jumps to
+    next statement
+-   Selecting some statements and hitting **Cmd + Return/Ctrl + Enter**
+    will run the selected statements.
     -   Nice for debugging pipes
     -   Be very careful when you select the statements
     -   Missing a ')' or a '"' can bring a lot of hurt.
@@ -59,8 +54,9 @@ rm(packs)
 
 ## Exploratory Data Analysis (r4ds chap. 7)
 
-General reflection up on the concept of *Exploratory Data Analysis*.
-You will find details and more code in [chapter 7 of r4ds](https://r4ds.had.co.nz/exploratory-data-analysis.html).
+General reflection up on the concept of *Exploratory Data Analysis*. You
+will find details and more code in [chapter 7 of
+r4ds](https://r4ds.had.co.nz/exploratory-data-analysis.html).
 
 -   Getting to know your data
     -   Variation **in** variables
@@ -68,8 +64,10 @@ You will find details and more code in [chapter 7 of r4ds](https://r4ds.had.co.n
 
 ## Some definitions
 
--   **Variable:** some quality of the underlying phenomenon that one can measure
--   **Value:** the recorded number or category resulting from the measurement
+-   **Variable:** some quality of the underlying phenomenon that one can
+    measure
+-   **Value:** the recorded number or category resulting from the
+    measurement
 -   **Observation:** a set of measurements of the underlying phenomenon
     -   same time
     -   same object
@@ -79,26 +77,70 @@ You will find details and more code in [chapter 7 of r4ds](https://r4ds.had.co.n
     -   each observation in a row and
     -   each cell in the table contains **one** value
 
-## Single variable, load data
+## Single variable, load data {.smaller}
 
+::: columns
+::: {.column width="50%"}
 -   Load the data
-
-. . .
 
 ```{r load-data}
 my_heights <- modelr::heights
 ```
 
-. . .
+-   Any NAs?
 
-Any NAs?
+```{r}
+#| paged.print: false
+# NAs in my_heights?
+my_heights %>% 
+  apply(MARGIN = 2, FUN = is.na) %>% 
+  apply(MARGIN = 2, FUN = sum) |> 
+  print(width = 40)
+```
+:::
+
+::: {.column width="50%"}
+-   or
 
 ```{r}
 # NAs in my_heights?
 my_heights %>% 
-  apply(MARGIN = 2, FUN = is.na) %>% 
-  apply(MARGIN = 2, FUN = sum) 
+  is.na() %>% 
+  apply(MARGIN = 2, FUN = sum)  |> 
+  print(width = 40)
 ```
+:::
+:::
+
+## Single variable, load data cont.
+
+::: columns
+::: {.column width="50%"}
+Nicer solution
+
+```{r}
+# number of NAs in each variable
+# drop variables with no NA
+my_heights %>% 
+  is.na() %>% 
+  colSums() |> 
+  print(width = 40)
+```
+:::
+
+::: {.column width="50%"}
+or
+
+```{r}
+# number of NAs in each variable
+# drop variables with no NA
+my_heights %>% 
+  is.na() %>% 
+  colSums() %>% 
+  .[. > 0]
+```
+:::
+:::
 
 ## Descriptive Statistics
 
@@ -106,21 +148,13 @@ Describe data by tables showing:
 
 -   Different statistics (characteristics) of the data
     -   Number of obs.
-
     -   Number of missing values
-
     -   Minimum value
-
     -   Maximum value
-
     -   Mean
-
     -   Dispersion
-
         -   Standard deviation
-
         -   Variance
-
         -   Percentiles
 
 ## Descriptive Statistics ex. my_heights
@@ -129,86 +163,447 @@ Describe data by tables showing:
 
 . . .
 
+::: columns
+::: {.column width="30%"}
 ```{r}
-# package vtable must be installed
-my_heights %>% 
-  select(-marital, -sex) %>% 
-  # . to stop RStudio complaining about no data
-  vtable::st(.)
-```
-
-## Descriptive Statistics ex. my_heights
-
-```{r}
+#| echo: true
 #| eval: false
-# package vtable must be installed
+# package vtable 
+# must be installed
+my_heights %>% 
+  select(
+    -marital, 
+    -sex
+    ) %>% 
+  # . to stop RStudio 
+  # complaining about 
+  # no data
+  vtable::st(data = ., out = "return") |> 
+  as_flextable()
+```
+:::
+
+::: {.column width="70%"}
+```{r}
+#| label: tbl-first
+#| tbl-cap: "Numeric variables."
+#| echo: false
+#| eval: true
+# package vtable 
+# must be installed
+my_heights %>% 
+  select(
+    -marital, 
+    -sex
+    ) %>% 
+  # . to stop RStudio 
+  # complaining about 
+  # no data
+  vtable::st(data = ., out = "return") |> 
+  as_flextable()
+```
+:::
+:::
+
+## Descriptive Statistics ex. my_heights {.smaller}
+
+::: columns
+::: {.column width="30%"}
+```{r}
+#| echo: true
+#| eval: false
+# package vtable must 
+# be installed
 my_heights %>% 
   select(marital, sex) %>% 
-  vtable::st(.)
+  vtable::st(
+    data = ., 
+    out = "return"
+    ) |> 
+  as_flextable()
 ```
+:::
 
-## Descriptive Statistics ex. my_heights
-
+::: {.column width="70%"}
 ```{r}
+#| label: tbl-second
+#| tbl-cap: "Category variables."
 #| echo: false
 #| eval: true
 # package vtable must be installed
 my_heights %>% 
   select(marital, sex) %>% 
-  vtable::st(.)
+  vtable::st(
+    data = ., 
+    out = "return"
+    ) |> 
+  as_flextable()
 ```
+:::
+:::
 
-## Descriptive Statistics ex. my_heights
+## A simpler alternative
 
-```{r}
-my_heights %>% 
-  select(-marital) %>% 
-  vtable::st(group = 'sex')
-```
-
-## Descriptive Statistics ex. my_heights
-
-```{r}
-# package vtable must be installed
-my_heights %>% 
-  mutate(married = if_else(marital == 'married', TRUE, FALSE)) %>% 
-  filter(sex == 'female') %>% 
-  select(-sex, -marital) %>% 
-  vtable::st(group = 'married')
-```
-
-## Descriptive Statistics ex. my_heights
-
-```{r}
-# package vtable must be installed
-my_heights %>% 
-  mutate(married = if_else(marital == 'married', TRUE, FALSE)) %>% 
-  filter(sex == 'male') %>% 
-  select(-sex, -marital) %>% 
-  vtable::st(group = 'married')
-```
-
-## Single variable graphical description, bar chart
-
--   Simplest, bar-chart
+-   use `use_df_printer()` from the `flextable` package
+-   will print `dataframes/tibbles` nicely
+-   the option `out = "return"` to `st()` ensures that a `dataframe` is
+    returned
 
 . . .
 
-```{r bar-chart-edu}
-#| echo: true
-#| eval: false
-ggplot(data = my_heights) +
-  geom_bar(mapping = aes(x = education), na.rm = TRUE)
+```{r}
+#| output-location: column
+# next line gives dataframe/tibble
+# as flextable
+use_df_printer()
+my_heights %>% 
+  select(marital, sex) %>% 
+  vtable::st(out = "return") 
 ```
+
+## Descriptive Statistics ex. my_heights
+
+::: columns
+::: {.column width="35%"}
+```{r}
+#| eval: false
+#| echo: fenced
+#| ft_max_row: 15
+# Default for ft_max_row is 10
+# so just first 10 lines will
+# be printed
+use_df_printer()
+my_heights %>% 
+  select(-marital) %>% 
+  vtable::st(
+    group = 'sex',
+    group.long = TRUE,
+    out = "return"
+    )
+```
+:::
+
+::: {.column width="65%"}
+```{r}
+#| eval: true
+#| echo: false
+#| ft_max_row: 15
+# Default for ft_max_row is 10
+# so just first 10 lines will
+# be printed
+use_df_printer()
+my_heights %>% 
+  select(-marital) %>% 
+  vtable::st(
+    group = 'sex',
+    group.long = TRUE,
+    out = "return"
+    )
+```
+:::
+:::
+
+## Desc. Stat. ex. my_heights {.smaller}
+
+::: columns
+::: {.column width="35%"}
+married/unmarried women
+
+```{r}
+#| eval: false
+#| echo: fenced
+#| ft_max_row: 15
+# Default for ft_max_row is 10
+# so just first 10 lines will
+# be printed
+use_df_printer()
+my_heights %>% 
+  mutate(
+    married = if_else(
+      marital == 'married', 
+      TRUE, 
+      FALSE
+      )
+    ) %>% 
+  filter(sex == 'female') %>% 
+  select(-sex, -marital) %>% 
+  vtable::st(
+    group = "married",
+    group.long = TRUE,
+    out = "return"
+    )
+```
+:::
+
+::: {.column width="65%"}
+```{r}
+#| label: tbl-married-women
+#| tbl-cap: "Difference between married an unmarried women."
+#| echo: false
+#| ft_max_row: 15
+# Default for ft_max_row is 10
+# so just first 10 lines will
+# be printed
+use_df_printer()
+my_heights %>% 
+  mutate(
+    married = if_else(
+      marital == 'married', 
+      TRUE, 
+      FALSE
+      )
+    ) %>% 
+  filter(sex == 'female') %>% 
+  select(-sex, -marital) %>% 
+  vtable::st(
+    group = "married",
+    group.long = TRUE,
+    # summ = c("notNA(x)" ,"mean(x)", "sd(x)"),
+    # summ.names = c("N", "Mean", "SD"),
+    # factor.numeric = TRUE,
+    out = "return"
+    )
+```
+:::
+:::
+
+## Less info. married/unmarried women
+
+::: columns
+::: {.column width="45%"}
+```{r}
+#| eval: false
+#| echo: fenced
+#| ft_max_row: 15
+# Default for ft_max_row is 10
+# so just first 10 lines will
+# be printed
+use_df_printer()
+my_heights %>% 
+  mutate(
+    married = if_else(
+      marital == 'married', 
+      TRUE, 
+      FALSE
+      )
+    ) %>% 
+  filter(sex == 'female') %>% 
+  select(-sex, -marital) %>% 
+  vtable::st(
+    group = "married",
+    group.long = TRUE,
+    summ = c("notNA(x)" , "mean(x)", 
+             "sd(x)"),
+    summ.names = c("N", "Mean", "SD"),
+    out = "return"
+    )
+```
+:::
+
+::: {.column width="55%"}
+```{r}
+#| label: tbl-married-women-simple
+#| tbl-cap: "Difference between married an unmarried women. Simplified table."
+#| echo: false
+#| ft_max_row: 15
+use_df_printer()
+my_heights %>% 
+  mutate(
+    married = if_else(
+      marital == 'married', 
+      TRUE, 
+      FALSE
+      )
+    ) %>% 
+  filter(sex == 'female') %>% 
+  select(-sex, -marital) %>% 
+  vtable::st(
+    group = "married",
+    group.long = TRUE,
+    summ = c("notNA(x)" ,"mean(x)", "sd(x)"),
+    summ.names = c("N", "Mean", "SD"),
+    out = "return"
+    )
+```
+:::
+:::
+
+## Desc. Stat. ex. my_heights {.smaller}
+
+::: columns
+::: {.column width="35%"}
+married/unmarried men
+
+```{r}
+#| eval: false
+#| echo: fenced
+#| ft_max_row: 15
+# Default for ft_max_row is 10
+# so just first 10 lines will
+# be printed
+use_df_printer()
+my_heights %>% 
+  mutate(
+    married = if_else(
+      marital == 'married', 
+      TRUE, 
+      FALSE
+      )
+    ) %>% 
+  filter(sex == 'male') %>% 
+  select(-sex, -marital) %>% 
+  vtable::st(
+    group = "married",
+    group.long = TRUE,
+    out = "return"
+    )
+```
+:::
+
+::: {.column width="65%"}
+```{r}
+#| label: tbl-married-men
+#| tbl-cap: "Difference between married an unmarried men."
+#| echo: false
+#| ft_max_row: 15
+# Default for ft_max_row is 10
+# so just first 10 lines will
+# be printed
+use_df_printer()
+my_heights %>% 
+  mutate(
+    married = if_else(
+      marital == 'married', 
+      TRUE, 
+      FALSE
+      )
+    ) %>% 
+  filter(sex == 'male') %>% 
+  select(-sex, -marital) %>% 
+  vtable::st(
+    group = "married",
+    group.long = TRUE,
+    # summ = c("notNA(x)" ,"mean(x)", "sd(x)"),
+    # summ.names = c("N", "Mean", "SD"),
+    # factor.numeric = TRUE,
+    out = "return"
+    )
+```
+:::
+:::
+
+## Less info. married/unmarried men
+
+::: columns
+::: {.column width="45%"}
+```{r}
+#| eval: false
+#| echo: fenced
+#| ft_max_row: 15
+# Default for ft_max_row is 10
+# so just first 10 lines will
+# be printed
+use_df_printer()
+my_heights %>% 
+  mutate(
+    married = if_else(
+      marital == 'married', 
+      TRUE, 
+      FALSE
+      )
+    ) %>% 
+  filter(sex == 'male') %>% 
+  select(-sex, -marital) %>% 
+  vtable::st(
+    group = "married",
+    group.long = TRUE,
+    summ = c("notNA(x)" , "mean(x)", 
+             "sd(x)"),
+    summ.names = c("N", "Mean", "SD"),
+    out = "return"
+    )
+```
+:::
+
+::: {.column width="55%"}
+```{r}
+#| label: tbl-married-men-simple
+#| tbl-cap: "Difference between married an unmarried men. Simplified table."
+#| echo: false
+#| ft_max_row: 15
+use_df_printer()
+my_heights %>% 
+  mutate(
+    married = if_else(
+      marital == 'married', 
+      TRUE, 
+      FALSE
+      )
+    ) %>% 
+  filter(sex == 'male') %>% 
+  select(-sex, -marital) %>% 
+  vtable::st(
+    group = "married",
+    group.long = TRUE,
+    summ = c("notNA(x)" ,"mean(x)", "sd(x)"),
+    summ.names = c("N", "Mean", "SD"),
+    out = "return"
+    )
+```
+:::
+:::
 
 ## Single variable graphical description, bar chart
 
+Simplest is bar-chart
+
+::: columns
+::: {.column width="40%"}
 ```{r}
+#| echo: true
+#| eval: false
+ggplot(data = my_heights) +
+  geom_bar(
+    mapping = aes(
+      x = education
+      ), 
+    na.rm = TRUE
+    ) +
+   theme(
+     axis.text = element_text(
+       size = 15
+       ),
+    axis.title = element_text(
+       size = 15
+       )
+   )
+```
+:::
+
+::: {.column width="60%"}
+```{r}
+#| label: fig-bar-chart-edu
+#| fig-cap: "Bar chart of education."
 #| echo: false
 #| eval: true
 ggplot(data = my_heights) +
-  geom_bar(mapping = aes(x = education), na.rm = TRUE)
+  geom_bar(
+    mapping = aes(
+      x = education
+      ), 
+    na.rm = TRUE
+    ) +
+   theme(
+     axis.text = element_text(
+       size = 15
+       ),
+    axis.title = element_text(
+       size = 15
+       )
+   )
 ```
+:::
+:::
 
 ## The peaks?
 
@@ -223,13 +618,18 @@ ggplot(data = my_heights) +
 
 -   Example: How does income vary in the `modelr::heights` dataset?
     -   Does someone have zero income?
-    -   How to display the variable? \> - histogram; `hist(my_df$var_name, breaks = 20)` or `geom_histogram()` from ggplot \> - density/violin plot
+    -   How to display the variable?
+        -   histogram;
+            -   `hist(my_df$var_name, breaks = 20)` or
+                `geom_histogram()` from ggplot
+            -   density/violin plot
 -   Be aware of outliers?
     -   Might be difficult to spot in a histogram
 
 ## `hist()` and `geom_histogram()`
 
-```{r two-hist}
+```{r}
+#| label: fig-two-hist
 hist1 <- ggplotify::as.ggplot(~hist(my_heights$income, breaks = 20))
 hist2 <- ggplot(my_heights, mapping = aes(x = income)) +
   geom_histogram(bins = 20)
@@ -239,7 +639,9 @@ gridExtra::grid.arrange(hist1, hist2, ncol = 2)
 
 ## `geom_histogram()` other variables
 
-```{r, echo=TRUE,eval = FALSE}
+```{r}
+#| echo: true
+#| eval: false
 hist3 <- ggplot(my_heights, mapping = aes(x = income)) +
   geom_histogram(bins = 40, na.rm = TRUE)
 hist4 <- ggplot(my_heights, mapping = aes(x = height)) +
@@ -251,7 +653,8 @@ gridExtra::grid.arrange(hist3, hist4, hist5, nrow = 1)
 
 ## `geom_histogram()` other variables
 
-```{r, echo=FALSE}
+```{r}
+#| echo: false
 hist3 <- ggplot(my_heights, mapping = aes(x = income)) +
   geom_histogram(bins = 40, na.rm = TRUE)
 hist4 <- ggplot(my_heights, mapping = aes(x = height)) +
@@ -292,14 +695,19 @@ gridExtra::grid.arrange(hist6, hist7, hist8, nrow = 1)
 ## `geom_density()`; faceted on sex
 
 -   Distribution of income
-    -   Three levels of education (\[0-12) "NotHS", \[12-14) "NotTC", \[14-16) "NotC", \[16-21\] "C+")
+    -   Three levels of education
+        -   \[0-12) "NotHS",
+        -   \[12-14) "NotTC",
+        -   \[14-16) "NotC",
+        -   \[16-21\] "C+")
     -   Faceted on the `sex` variable
     -   Use the `cut` function to make the categories
     -   Have to use `right = FALSE` to get open interval on the right
 
 ## `geom_density()`; faceted on sex
 
-```{r facet-sex-code, eval = FALSE}
+```{r}
+#| eval: false
 my_heights %>% 
   mutate(
     edu_fac = cut(education, 
@@ -315,7 +723,9 @@ my_heights %>%
 
 ## `geom_density()`; faceted on sex
 
-```{r facet-sex-plot, echo = FALSE}
+```{r}
+#| label: fig-facet-sex-code
+#| echo: false
 my_heights %>% 
   mutate(
     edu_fac = cut(education, 
@@ -335,7 +745,9 @@ my_heights %>%
 
 . . .
 
-```{r facet_edu_fac_code, eval = FALSE}
+```{r}
+#| label: fig-facet-edu-fac-code
+#| eval: false
 my_heights %>% 
   mutate(
     edu_fac = cut(education, 
@@ -351,7 +763,9 @@ my_heights %>%
 
 ## `geom_density()`; facet edu_fac
 
-```{r facet_edu_fac_plot, echo = FALSE}
+```{r}
+#| label: fig-facet-edu-fac-plot
+#| echo: false
 my_heights %>% 
   mutate(
     edu_fac = cut(education, 
@@ -362,7 +776,7 @@ my_heights %>%
   filter(!is.na(edu_fac) & income > 0) %>%
   ggplot(mapping = aes(x = income, fill = sex, colour = sex)) +
   geom_density(alpha = 0.2, na.rm = TRUE) + 
-  facet_wrap(~edu_fac)
+  facet_wrap(~edu_fac) 
 ```
 
 ## Income equal to 0?
@@ -383,11 +797,12 @@ my_heights %>%
 ## Income equal to 0?
 
 ```{r}
+#| output-location: column
 my_heights %>% 
   filter(income < 1) %>%
   select(sex) %>%
   group_by(sex) %>%
-  table()
+  table() 
 ```
 
 ## Income equal to 0?
@@ -497,27 +912,32 @@ my_heights %>%
         -   can give a very plausible explanation for the faulty entry.
             Document **very** carefully.
 
-        -   Ex.
-            percentage unemployed timeseries: 2,3%, 3,7% ... 270% ... 4,1%.
+        -   Ex. percentage unemployed timeseries: 2,3%, 3,7% ... 270%
+            ... 4,1%.
 
-            -   If you can argue that 2,7 probably has been entered instead of 0,027 it **might** be defensible to edit the observation, but normally you should change it to NA and document your edit.
+            -   If you can argue that 2,7 probably has been entered
+                instead of 0,027 it **might** be defensible to edit the
+                observation, but normally you should change it to NA and
+                document your edit.
 
     -   Do not use `na.rm = TRUE` in `ggplot` before last edit.
 
-        -   Make sure that you have thoroughly documented the missing values.
+        -   Make sure that you have thoroughly documented the missing
+            values.
 
-        -   `ggplot` is nice and warns you about missing values and tells you how many there are.
+        -   `ggplot` is nice and warns you about missing values and
+            tells you how many there are.
 
 ## How to treat bad data cont.
 
 -   With real outliers
     -   Explanation. Is there a missing variable?
-    -   Do the analysis with and without the outliers. If similar results not to much of a problem, if not ...
+    -   Do the analysis with and without the outliers. If similar
+        results not to much of a problem, if not ...
 
 ## Quiz
 
-From r4ds.
-Use help (?)
+From r4ds. Use help (?)
 
 > 1)  How are NAs handled in `geom_histogram()`?
 > 2)  How are NAs handled in `geom_bar()`?
@@ -600,9 +1020,10 @@ sum(my_data$val, na.rm = TRUE); mean(my_data$val, na.rm = TRUE)
 
 ## Answer Quiz
 
--   Now the two seems handle NAs the same way.
+-   Now the two seems to handle NAs the same way.
 -   Normal rule: One NA =\> result NA
--   For `sum()` and `mean()` `na.rm = TRUE` returns the result of the calculation when NAs are removed
+-   For `sum()` and `mean()` `na.rm = TRUE` returns the result of the
+    calculation when NAs are removed
 
 ## Covariation
 
