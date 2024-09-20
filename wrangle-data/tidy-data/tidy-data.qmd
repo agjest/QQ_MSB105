@@ -560,7 +560,7 @@ dim(who)
 who[1:3, ]
 ```
 
-## Case; who
+## Case; who {.smaller}
 
 ```{r}
 # find type of vector with a pipe
