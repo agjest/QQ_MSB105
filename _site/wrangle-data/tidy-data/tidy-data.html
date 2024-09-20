@@ -1318,11 +1318,9 @@ ag
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a></a><span class="co"># find type of vector with a pipe</span></span>
-<span id="cb62-2"><a></a>typeof_who <span class="ot">&lt;-</span> who <span class="sc">%&gt;%</span> </span>
-<span id="cb62-3"><a></a>  <span class="fu">map</span>(typeof) <span class="sc">%&gt;%</span> </span>
-<span id="cb62-4"><a></a>  <span class="fu">unlist</span>()</span>
-<span id="cb62-5"><a></a><span class="co"># print typeof_who</span></span>
-<span id="cb62-6"><a></a>typeof_who</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb62-2"><a></a>typeof_who <span class="ot">&lt;-</span> who <span class="sc">%&gt;%</span> <span class="fu">map</span>(typeof) <span class="sc">%&gt;%</span> <span class="fu">unlist</span>()</span>
+<span id="cb62-3"><a></a><span class="co"># print typeof_who</span></span>
+<span id="cb62-4"><a></a>typeof_who</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     country         iso2         iso3         year  new_sp_m014 new_sp_m1524 
@@ -1346,6 +1344,8 @@ newrel_m2534 newrel_m3544 newrel_m4554 newrel_m5564   newrel_m65  newrel_f014
 newrel_f1524 newrel_f2534 newrel_f3544 newrel_f4554 newrel_f5564   newrel_f65 
     "double"     "double"     "double"     "double"     "double"     "double" </code></pre>
 </div>
+</div>
+<div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a></a><span class="co"># tabulate typeof_who</span></span>

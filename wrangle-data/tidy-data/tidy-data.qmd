@@ -564,11 +564,12 @@ who[1:3, ]
 
 ```{r}
 # find type of vector with a pipe
-typeof_who <- who %>% 
-  map(typeof) %>% 
-  unlist()
+typeof_who <- who %>% map(typeof) %>% unlist()
 # print typeof_who
 typeof_who
+```
+
+```{r}
 # tabulate typeof_who
 table(typeof_who)
 ```
