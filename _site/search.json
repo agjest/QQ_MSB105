@@ -8923,5 +8923,19 @@
     "title": "Exploratory Data Analysis (EDA)",
     "section": "References",
     "text": "References\n\n\n\nMSB105\n\n\n\n\nAuguie, Baptiste. 2017. gridExtra: Miscellaneous Functions for \"Grid\" Graphics. https://CRAN.R-project.org/package=gridExtra.\n\n\nGohel, David, and Panagiotis Skintzos. 2024. Flextable: Functions for Tabular Reporting. https://ardata-fr.github.io/flextable-book/.\n\n\nHuntington-Klein, Nick. 2023. Vtable: Variable Table for Variable Documentation. https://nickch-k.github.io/vtable/.\n\n\nWickham, Hadley. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2023a. Modelr: Modelling Functions That Work with the Pipe. https://modelr.tidyverse.org.\n\n\n———. 2023b. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686.\n\n\nYu, Guangchuang. 2023. Ggplotify: Convert Plot to Grob or Ggplot Object. https://github.com/GuangchuangYu/ggplotify."
+  },
+  {
+    "objectID": "wrangle-data/tidy-data/tidy-data.html#case-who-cont.",
+    "href": "wrangle-data/tidy-data/tidy-data.html#case-who-cont.",
+    "title": "Tidy Data",
+    "section": "Case; who cont.",
+    "text": "Case; who cont.\n\n\nCode\n# find type of vector with a pipe\ntypeof_who &lt;- who %&gt;% map(typeof) %&gt;% unlist()\n# print typeof_who\ntypeof_who\n\n\n     country         iso2         iso3         year  new_sp_m014 new_sp_m1524 \n \"character\"  \"character\"  \"character\"     \"double\"     \"double\"     \"double\" \nnew_sp_m2534 new_sp_m3544 new_sp_m4554 new_sp_m5564   new_sp_m65  new_sp_f014 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_sp_f1524 new_sp_f2534 new_sp_f3544 new_sp_f4554 new_sp_f5564   new_sp_f65 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \n new_sn_m014 new_sn_m1524 new_sn_m2534 new_sn_m3544 new_sn_m4554 new_sn_m5564 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \n  new_sn_m65  new_sn_f014 new_sn_f1524 new_sn_f2534 new_sn_f3544 new_sn_f4554 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_sn_f5564   new_sn_f65  new_ep_m014 new_ep_m1524 new_ep_m2534 new_ep_m3544 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_ep_m4554 new_ep_m5564   new_ep_m65  new_ep_f014 new_ep_f1524 new_ep_f2534 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_ep_f3544 new_ep_f4554 new_ep_f5564   new_ep_f65  newrel_m014 newrel_m1524 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnewrel_m2534 newrel_m3544 newrel_m4554 newrel_m5564   newrel_m65  newrel_f014 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnewrel_f1524 newrel_f2534 newrel_f3544 newrel_f4554 newrel_f5564   newrel_f65 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\""
+  },
+  {
+    "objectID": "wrangle-data/tidy-data/tidy-data.html#case-who-cont.-1",
+    "href": "wrangle-data/tidy-data/tidy-data.html#case-who-cont.-1",
+    "title": "Tidy Data",
+    "section": "Case; who cont.",
+    "text": "Case; who cont.\n\n\nCode\n# tabulate typeof_who\ntable(typeof_who)\n\n\ntypeof_who\ncharacter    double \n        3        57 \n\n\n\nThree variables are of type character, 57 of type integer\nVariable names might be values"
   }
 ]
