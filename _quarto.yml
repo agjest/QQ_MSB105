@@ -10,7 +10,7 @@ website:
     left:
 
       - href: index.qmd
-        text: "Home"      
+      - file: about.qmd    
       - file: introduction/introduction.qmd
       - file: explore-data/explore-data.qmd
       - file: wrangle-data/wrangle-data.qmd
