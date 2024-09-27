@@ -3924,7 +3924,7 @@
     "href": "wrangle-data/string-data/string-data.html#regexp-character-classes",
     "title": "Strings and regular expressions",
     "section": "regexp; Character classes",
-    "text": "regexp; Character classes\n\n: matches word character (Alphanumeric characters, ex. “sd34fgg2K”)\n: matches anything that’s not a word character\n\\d: matches any digit.\n: matches anything that’s not a number\n\\s: matches any whitespace (e.g. space, tab, newline).\n\\S: matches anything that’s not whitespace\n[abc]: matches a, b, or c.\n[^abc]: matches anything except a, b, or c.\n\n\n\nx &lt;- c(\"apple pie\", \"apple tart\", \"apple cake\")\nstr_view(x, \"\\\\s[cp]\")\n\n[1] │ apple&lt; p&gt;ie\n[3] │ apple&lt; c&gt;ake"
+    "text": "regexp; Character classes\n\n\\w: matches word character (Alphanumeric characters, ex. “sd34fgg2K”)\n\\W: matches anything that’s not a word character\n\\d: matches any digit.\n: matches anything that’s not a number\n\\s: matches any whitespace (e.g. space, tab, newline).\n\\S: matches anything that’s not whitespace\n[abc]: matches a, b, or c.\n[^abc]: matches anything except a, b, or c.\n\n\n\nx &lt;- c(\"apple pie\", \"apple tart\", \"apple cake\")\nstr_view(x, \"\\\\s[cp]\")\n\n[1] │ apple&lt; p&gt;ie\n[3] │ apple&lt; c&gt;ake"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#regexp-character-classes-cont.",
