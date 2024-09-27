@@ -317,9 +317,13 @@ str_view(x, "^apple")
 
 ## regexp; Character classes
 
+-   \w: matches word character (Alphanumeric characters, ex.
+    "sd34fgg2K")
+-   \W: matches anything that's *not* a word character
 -   `\d`: matches any digit.
+-   \D: matches anything that's *not* a number
 -   `\s`: matches any whitespace (e.g. space, tab, newline).
--   `\S`: matches any whitespace except newline
+-   `\S`: matches anything that's *not* whitespace
 -   `[abc]`: matches a, b, or c.
 -   `[^abc]`: matches anything except a, b, or c.
 
