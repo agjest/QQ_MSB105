@@ -60,7 +60,7 @@
     "href": "program/iteration/iteration.html#for-loop-tibble-2",
     "title": "Iteration",
     "section": "For loop, tibble",
-    "text": "For loop, tibble\n\ntesting\n\n\n\n\nCode\nmyT(my_df)\n\n\n# A tibble: 3 × 10\n    V_1   V_2   V_3   V_4   V_5   V_6   V_7    V_8    V_9   V_10\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 99.2  119.  79.5  103.  84.7  97.3  112.  106.   104.    94.4 \n2 43.0   37.1 49.1   56.8 81.7  43.2   58.0  48.7   50.5  115.  \n3  9.22  15.3  8.23 114.   3.45  1.80  51.1   1.79   6.56   4.66\n\n\nCode\ntest &lt;- matrix(sample(1:10, 10000, replace = TRUE), \n               nrow = 100, ncol = 100)\n# checking speed\nmicrobenchmark(myT(test), t(test))\n\n\nUnit: microseconds\n      expr     min       lq      mean   median      uq     max neval cld\n myT(test) 644.930 659.8745 676.88950 670.6985 686.668 792.899   100  a \n   t(test)  13.161  16.2565  17.49142  16.8100  17.302  38.007   100   b\n\n\n\nOur routine is about 40 times slower than Rs t(). Why so much slower? See Efficient R programming."
+    "text": "For loop, tibble\n\ntesting\n\n\n\n\nCode\nmyT(my_df)\n\n\n# A tibble: 3 × 10\n    V_1   V_2   V_3   V_4   V_5   V_6   V_7    V_8    V_9   V_10\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1 99.2  119.  79.5  103.  84.7  97.3  112.  106.   104.    94.4 \n2 43.0   37.1 49.1   56.8 81.7  43.2   58.0  48.7   50.5  115.  \n3  9.22  15.3  8.23 114.   3.45  1.80  51.1   1.79   6.56   4.66\n\n\nCode\ntest &lt;- matrix(sample(1:10, 10000, replace = TRUE), \n               nrow = 100, ncol = 100)\n# checking speed\nmicrobenchmark(myT(test), t(test))\n\n\nUnit: microseconds\n      expr     min       lq      mean   median      uq     max neval cld\n myT(test) 650.752 659.0750 680.76851 669.9195 692.613 798.762   100  a \n   t(test)  13.366  14.8625  16.47134  15.3955  17.261  41.082   100   b\n\n\n\nOur routine is about 40 times slower than Rs t(). Why so much slower? See Efficient R programming."
   },
   {
     "objectID": "program/iteration/iteration.html#myt-with-other-input",
@@ -1617,6 +1617,13 @@
     "text": "Descriptive Statistics ex. my_heights\n\n\n\n\nCode\n# package vtable must \n# be installed\nmy_heights %&gt;% \n  select(marital, sex) %&gt;% \n  vtable::st(\n    data = ., \n    out = \"return\"\n    ) |&gt; \n  as_flextable()\n\n\n\n\n\n\n\nTable 2: Category variables.\n\n\n\nVariableNPercentcharactercharactercharactermarital7006... single112416%... married380654%... separated3665%... divorced154922%... widowed1612%sex7006... male340249%... female360451%n: 9"
   },
   {
+    "objectID": "explore-data/eda/eda.html#a-simpler-alternative",
+    "href": "explore-data/eda/eda.html#a-simpler-alternative",
+    "title": "Exploratory Data Analysis (EDA)",
+    "section": "A simpler alternative",
+    "text": "A simpler alternative\n\nuse use_df_printer() from the flextable package\nwill print dataframes/tibbles nicely\nthe option out = \"return\" to st() ensures that a dataframe is returned\n\n\n\n\n\nCode\n# next line gives dataframe/tibble\n# as flextable\nuse_df_printer()\nmy_heights %&gt;% \n  select(marital, sex) %&gt;% \n  vtable::st(out = \"return\") \n\n\n\nVariableNPercentcharactercharactercharactermarital7006... single112416%... married380654%... separated3665%... divorced154922%... widowed1612%sex7006... male340249%... female360451%n: 9"
+  },
+  {
     "objectID": "explore-data/eda/eda.html#descriptive-statistics-ex.-my_heights-2",
     "href": "explore-data/eda/eda.html#descriptive-statistics-ex.-my_heights-2",
     "title": "Exploratory Data Analysis (EDA)",
@@ -1624,25 +1631,32 @@
     "text": "Descriptive Statistics ex. my_heights\n\n\n\n\nCode\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  select(-marital) %&gt;% \n  vtable::st(\n    group = 'sex',\n    group.long = TRUE,\n    out = \"return\"\n    )\n```\n\n\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxcharactercharactercharactercharactercharactercharactercharactercharactersex: maleincome340253510693990500068000343830height340270355687284weight33922044194176225524age3402512.247495356education3396132.61121420afqt3248423001567100sex: femaleincome360429588353470045000343830height3604642.752626679weight35191734376143195430age3604512.247505356education3600132.62121520afqt3496412801563100n: 15"
   },
   {
-    "objectID": "explore-data/eda/eda.html#descriptive-statistics-ex.-my_heights-3",
-    "href": "explore-data/eda/eda.html#descriptive-statistics-ex.-my_heights-3",
+    "objectID": "explore-data/eda/eda.html#desc.-stat.-ex.-my_heights",
+    "href": "explore-data/eda/eda.html#desc.-stat.-ex.-my_heights",
     "title": "Exploratory Data Analysis (EDA)",
-    "section": "Descriptive Statistics ex. my_heights",
-    "text": "Descriptive Statistics ex. my_heights\n\n\nCode\n# package vtable must be installed\nmy_heights %&gt;% \n  mutate(married = if_else(marital == 'married', TRUE, FALSE)) %&gt;% \n  filter(sex == 'male') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(group = 'married', out = \"return\")"
+    "section": "Desc. Stat. ex. my_heights",
+    "text": "Desc. Stat. ex. my_heights\n\n\nmarried/unmarried women\n\n\nCode\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'female') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\n\nTable 3: Difference between married an unmarried women.\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxcharactercharactercharactercharactercharactercharactercharactercharactermarried: Noincome170326682309620041500343830height1703642.852626675weight16621774576145200410age1703512.347495356education1701132.62121420afqt1647332601151100married: Yesincome190132190386800047000343830height1901642.754626679weight18571694082140190430age1901512.247505356education1899142.63121620afqt1849472802372100n: 15"
   },
   {
-    "objectID": "explore-data/eda/eda.html#descriptive-statistics-ex.-my_heights-4",
-    "href": "explore-data/eda/eda.html#descriptive-statistics-ex.-my_heights-4",
+    "objectID": "explore-data/eda/eda.html#less-info.-marriedunmarried-women",
+    "href": "explore-data/eda/eda.html#less-info.-marriedunmarried-women",
     "title": "Exploratory Data Analysis (EDA)",
-    "section": "Descriptive Statistics ex. my_heights",
-    "text": "Descriptive Statistics ex. my_heights\n\n\nCode\n# package vtable must be installed\nmy_heights %&gt;% \n  mutate(married = if_else(marital == 'married', TRUE, FALSE)) %&gt;% \n  filter(sex == 'male') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(group = 'married', out = \"return\")"
+    "section": "Less info. married/unmarried women",
+    "text": "Less info. married/unmarried women\n\n\n\n\nCode\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'female') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    summ = c(\"notNA(x)\" , \"mean(x)\", \n             \"sd(x)\"),\n    summ.names = c(\"N\", \"Mean\", \"SD\"),\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\n\nTable 4: Difference between married an unmarried women. Simplified table.\n\n\n\nVariableNMeanSDcharactercharactercharactercharactermarried: Noincome17032668230962height1703642.8weight166217745age1703512.3education1701132.6afqt16473326married: Yesincome19013219038680height1901642.7weight185716940age1901512.2education1899142.6afqt18494728n: 15"
   },
   {
-    "objectID": "explore-data/eda/eda.html#descriptive-statistics-ex.-my_heights-5",
-    "href": "explore-data/eda/eda.html#descriptive-statistics-ex.-my_heights-5",
+    "objectID": "explore-data/eda/eda.html#desc.-stat.-ex.-my_heights-1",
+    "href": "explore-data/eda/eda.html#desc.-stat.-ex.-my_heights-1",
     "title": "Exploratory Data Analysis (EDA)",
-    "section": "Descriptive Statistics ex. my_heights",
-    "text": "Descriptive Statistics ex. my_heights\n\n\nCode\n# package vtable must be installed\nmy_heights %&gt;% \n  mutate(married = if_else(marital == 'married', TRUE, FALSE)) %&gt;% \n  filter(sex == 'male') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(group = 'married')\n\n\n\nSummary Statistics\n\n\n\n\n\n\n\n\n\n\n\n\nmarried\n\n\nNo\n\n\nYes\n\n\n\nVariable\nN\nMean\nSD\nN\nMean\nSD\n\n\n\n\nincome\n1497\n32122\n50520\n1905\n70317\n77171\n\n\nheight\n1497\n70\n3.1\n1905\n70\n2.9\n\n\nweight\n1492\n200\n42\n1900\n207\n39\n\n\nage\n1497\n51\n2.2\n1905\n51\n2.3\n\n\neducation\n1494\n12\n2.2\n1902\n14\n2.7\n\n\nafqt\n1426\n34\n28\n1822\n48\n30"
+    "section": "Desc. Stat. ex. my_heights",
+    "text": "Desc. Stat. ex. my_heights\n\n\nmarried/unmarried men\n\n\nCode\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'male') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\n\nTable 5: Difference between married an unmarried men.\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxcharactercharactercharactercharactercharactercharactercharactercharactermarried: Noincome149732122505200045000343830height1497703.155687284weight14922004294170222524age1497512.247495356education1494122.21121420afqt1426342801055100married: Yesincome1905703177717102800083000343830height1905702.957687281weight190020739103180228480age1905512.347495356education1902142.72121620afqt1822483002174100n: 15"
+  },
+  {
+    "objectID": "explore-data/eda/eda.html#less-info.-marriedunmarried-men",
+    "href": "explore-data/eda/eda.html#less-info.-marriedunmarried-men",
+    "title": "Exploratory Data Analysis (EDA)",
+    "section": "Less info. married/unmarried men",
+    "text": "Less info. married/unmarried men\n\n\n\n\nCode\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'male') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    summ = c(\"notNA(x)\" , \"mean(x)\", \n             \"sd(x)\"),\n    summ.names = c(\"N\", \"Mean\", \"SD\"),\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\n\nTable 6: Difference between married an unmarried men. Simplified table.\n\n\n\nVariableNMeanSDcharactercharactercharactercharactermarried: Noincome14973212250520height1497703.1weight149220042age1497512.2education1494122.2afqt14263428married: Yesincome19057031777171height1905702.9weight190020739age1905512.3education1902142.7afqt18224830n: 15"
   },
   {
     "objectID": "explore-data/eda/eda.html#single-variable-graphical-description-bar-chart",
@@ -1650,13 +1664,6 @@
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Single variable graphical description, bar chart",
     "text": "Single variable graphical description, bar chart\nSimplest is bar-chart\n\n\n\n\nCode\nggplot(data = my_heights) +\n  geom_bar(\n    mapping = aes(\n      x = education\n      ), \n    na.rm = TRUE\n    ) +\n   theme(\n     axis.text = element_text(\n       size = 15\n       ),\n    axis.title = element_text(\n       size = 15\n       )\n   )\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Bar chart of education."
-  },
-  {
-    "objectID": "explore-data/eda/eda.html#single-variable-graphical-description-bar-chart-1",
-    "href": "explore-data/eda/eda.html#single-variable-graphical-description-bar-chart-1",
-    "title": "Exploratory Data Analysis (EDA)",
-    "section": "Single variable graphical description, bar chart",
-    "text": "Single variable graphical description, bar chart"
   },
   {
     "objectID": "explore-data/eda/eda.html#the-peaks",
@@ -3175,28 +3182,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx &lt;- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d1 &lt;- t2 - t1)\n\nTime difference of 0.5299981 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx &lt;- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d1 &lt;- t2 - t1)\n\nTime difference of 0.512815 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nx &lt;- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d2 &lt;- t2 - t1)\n\nTime difference of 0.6748319 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nx &lt;- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d2 &lt;- t2 - t1)\n\nTime difference of 0.646455 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 27.33"
+    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 26.06"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\nset.seed(666)\nt1 &lt;- Sys.time()\nx &lt;- rnorm(1000000)\nt2 &lt;- Sys.time()\n(d3 &lt;- t2 - t1)\n\nTime difference of 0.02746105 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 2357.41"
+    "text": "The R way\n\nset.seed(666)\nt1 &lt;- Sys.time()\nx &lt;- rnorm(1000000)\nt2 &lt;- Sys.time()\n(d3 &lt;- t2 - t1)\n\nTime difference of 0.02769613 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 2234.1"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#other-types-of-vectors-logical",
@@ -4176,7 +4183,7 @@
     "href": "wrangle-data/time-data/time-data.html#change-type",
     "title": "Time Data",
     "section": "Change type",
-    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2024-09-10\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2024-09-10 11:04:26 CEST\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2024-09-10\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2024-09-10 UTC\""
+    "text": "Change type\n\n\nCode\ntoday() # date\n\n\n[1] \"2024-09-26\"\n\n\nCode\nnow() # date time\n\n\n[1] \"2024-09-26 14:16:26 CEST\"\n\n\nCode\n# change type\nas_date(now())\n\n\n[1] \"2024-09-26\"\n\n\nCode\nas_datetime(today())\n\n\n[1] \"2024-09-26 UTC\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#different-inputs",
@@ -4260,28 +4267,28 @@
     "href": "wrangle-data/time-data/time-data.html#an-example-my_life",
     "title": "Time Data",
     "section": "An example: my_life",
-    "text": "An example: my_life\n\nPlaying with time and writing a function\n\n\n\n\nCode\nmy_life &lt;- function(birthday = \"25121964\", unit = \"weeks\") {\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\nmy_life() # with default values\n\n\n[1] \"You are about 3115.57142857143 weeks old.\""
+    "text": "An example: my_life\n\nPlaying with time and writing a function\n\n\n\n\nCode\nmy_life &lt;- function(birthday = \"25121964\", unit = \"weeks\") {\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\nmy_life() # with default values\n\n\n[1] \"You are about 3117.85714285714 weeks old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#an-example-my_life-1",
     "href": "wrangle-data/time-data/time-data.html#an-example-my_life-1",
     "title": "Time Data",
     "section": "An example: my_life",
-    "text": "An example: my_life\n\nsome are just too young to play with R\n\n\n\n\nCode\nmy_life &lt;- function(birthday = \"25121964\", unit = \"weeks\") {\n# too young to play with R, week as unit\nif (as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))/52.25 &lt; 5) {\nreturn(\"You are far too young to play with R!\")\n}\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\n\n\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3115.57142857143 weeks old.\""
+    "text": "An example: my_life\n\nsome are just too young to play with R\n\n\n\n\nCode\nmy_life &lt;- function(birthday = \"25121964\", unit = \"weeks\") {\n# too young to play with R, week as unit\nif (as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))/52.25 &lt; 5) {\nreturn(\"You are far too young to play with R!\")\n}\n# find the difference between today and birthday measured in unit\nlife = as.numeric(difftime(today(), dmy(birthday), units = unit))\n# one case for each unit\ncase_when(\n unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n unit == \"days\" ~ paste(\"You are about\", life , \"days old.\"),\n unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n  )\n}\n\n\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3117.85714285714 weeks old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#an-example-my_life-2",
     "href": "wrangle-data/time-data/time-data.html#an-example-my_life-2",
     "title": "Time Data",
     "section": "An example: my_life",
-    "text": "An example: my_life\n\nPerhaps we should round off our answer.\n\n\n\n\nCode\nmy_life &lt;- function(birthday = \"01012020\", unit = \"weeks\") {\n  # find the difference between today and birthday with week as unit\n  life_w &lt;- as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))\n  # too young to play with R, week as unit\n  if (life_w / 52.25 &lt; 5) {\n    return(\"You are far too young to play with R!\")\n  } else {\n    # find the difference between today and birthday measured in unit\n    life = round(as.numeric(difftime(today(), dmy(birthday), units = unit)), 0)\n    # one case for each unit\n    case_when(\n      unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n      unit == \"days\" ~ paste(\"You are about\", life, \"days old.\"),\n      unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n      unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n      unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n    )\n  }\n}\nmy_life(01032016)\n\n\n[1] \"You are about 445 weeks old.\""
+    "text": "An example: my_life\n\nPerhaps we should round off our answer.\n\n\n\n\nCode\nmy_life &lt;- function(birthday = \"01012020\", unit = \"weeks\") {\n  # find the difference between today and birthday with week as unit\n  life_w &lt;- as.numeric(difftime(today(), dmy(birthday), units = \"weeks\"))\n  # too young to play with R, week as unit\n  if (life_w / 52.25 &lt; 5) {\n    return(\"You are far too young to play with R!\")\n  } else {\n    # find the difference between today and birthday measured in unit\n    life = round(as.numeric(difftime(today(), dmy(birthday), units = unit)), 0)\n    # one case for each unit\n    case_when(\n      unit == \"weeks\" ~ paste(\"You are about\", life, \"weeks old.\"),\n      unit == \"days\" ~ paste(\"You are about\", life, \"days old.\"),\n      unit == \"hours\" ~ paste(\"You are about\", life, \"hours old.\"),\n      unit == \"mins\" ~ paste(\"You are about\", life, \"minutes old.\"),\n      unit == \"secs\" ~ paste(\"You are about\", life, \"seconds old.\")\n    )\n  }\n}\nmy_life(01032016)\n\n\n[1] \"You are about 447 weeks old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#testing-my_life",
     "href": "wrangle-data/time-data/time-data.html#testing-my_life",
     "title": "Time Data",
     "section": "Testing my_life()",
-    "text": "Testing my_life()\n\n\nCode\nmy_life(\"01032005\", unit = \"weeks\")\n\n\n[1] \"You are about 1019 weeks old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"days\")\n\n\n[1] \"You are about 7133 days old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"mins\")\n\n\n[1] \"You are about 10271520 minutes old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"secs\")\n\n\n[1] \"You are about 616291200 seconds old.\""
+    "text": "Testing my_life()\n\n\nCode\nmy_life(\"01032005\", unit = \"weeks\")\n\n\n[1] \"You are about 1021 weeks old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"days\")\n\n\n[1] \"You are about 7149 days old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"mins\")\n\n\n[1] \"You are about 10294560 minutes old.\"\n\n\nCode\nmy_life(\"01032005\", unit = \"secs\")\n\n\n[1] \"You are about 617673600 seconds old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#an-example-my_life-3",
@@ -4302,7 +4309,7 @@
     "href": "wrangle-data/time-data/time-data.html#final-testing",
     "title": "Time Data",
     "section": "Final testing",
-    "text": "Final testing\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"years\")\n\n\n[1] \"You are about 59.63 years old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"months\")\n\n\n[1] \"You are about 715.54 months old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3116 weeks old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"days\")\n\n\n[1] \"You are about 21809 days old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"hours\")\n\n\n[1] \"You are about 523416 hours old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"mins\")\n\n\n[1] \"You are about 31.404.960 minutes old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"secs\")\n\n\n[1] \"You are about 1.884.297.600 seconds old.\""
+    "text": "Final testing\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"years\")\n\n\n[1] \"You are about 59.67 years old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"months\")\n\n\n[1] \"You are about 716.06 months old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"weeks\")\n\n\n[1] \"You are about 3118 weeks old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"days\")\n\n\n[1] \"You are about 21825 days old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"hours\")\n\n\n[1] \"You are about 523800 hours old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"mins\")\n\n\n[1] \"You are about 31.428.000 minutes old.\"\n\n\nCode\nmy_life(\"25-12-1964\", unit = \"secs\")\n\n\n[1] \"You are about 1.885.680.000 seconds old.\""
   },
   {
     "objectID": "wrangle-data/time-data/time-data.html#references",
@@ -5082,11 +5089,18 @@
     "text": "Case; who\n\n\nCode\ndim(who)\n\n\n[1] 7240   60\n\n\n\n\nCode\nwho[1:3, ]\n\n\n# A tibble: 3 × 60\n  country   iso2  iso3   year new_sp_m014 new_sp_m1524 new_sp_m2534 new_sp_m3544\n  &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;\n1 Afghanis… AF    AFG    1980          NA           NA           NA           NA\n2 Afghanis… AF    AFG    1981          NA           NA           NA           NA\n3 Afghanis… AF    AFG    1982          NA           NA           NA           NA\n# ℹ 52 more variables: new_sp_m4554 &lt;dbl&gt;, new_sp_m5564 &lt;dbl&gt;,\n#   new_sp_m65 &lt;dbl&gt;, new_sp_f014 &lt;dbl&gt;, new_sp_f1524 &lt;dbl&gt;,\n#   new_sp_f2534 &lt;dbl&gt;, new_sp_f3544 &lt;dbl&gt;, new_sp_f4554 &lt;dbl&gt;,\n#   new_sp_f5564 &lt;dbl&gt;, new_sp_f65 &lt;dbl&gt;, new_sn_m014 &lt;dbl&gt;,\n#   new_sn_m1524 &lt;dbl&gt;, new_sn_m2534 &lt;dbl&gt;, new_sn_m3544 &lt;dbl&gt;,\n#   new_sn_m4554 &lt;dbl&gt;, new_sn_m5564 &lt;dbl&gt;, new_sn_m65 &lt;dbl&gt;,\n#   new_sn_f014 &lt;dbl&gt;, new_sn_f1524 &lt;dbl&gt;, new_sn_f2534 &lt;dbl&gt;, …"
   },
   {
-    "objectID": "wrangle-data/tidy-data/tidy-data.html#case-who-1",
-    "href": "wrangle-data/tidy-data/tidy-data.html#case-who-1",
+    "objectID": "wrangle-data/tidy-data/tidy-data.html#case-who-cont.",
+    "href": "wrangle-data/tidy-data/tidy-data.html#case-who-cont.",
     "title": "Tidy Data",
-    "section": "Case; who",
-    "text": "Case; who\n\n\nCode\n# find type of vector with a pipe\ntypeof_who &lt;- who %&gt;% map(typeof) %&gt;% unlist()\n# print typeof_who\ntypeof_who\n\n\n     country         iso2         iso3         year  new_sp_m014 new_sp_m1524 \n \"character\"  \"character\"  \"character\"     \"double\"     \"double\"     \"double\" \nnew_sp_m2534 new_sp_m3544 new_sp_m4554 new_sp_m5564   new_sp_m65  new_sp_f014 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_sp_f1524 new_sp_f2534 new_sp_f3544 new_sp_f4554 new_sp_f5564   new_sp_f65 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \n new_sn_m014 new_sn_m1524 new_sn_m2534 new_sn_m3544 new_sn_m4554 new_sn_m5564 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \n  new_sn_m65  new_sn_f014 new_sn_f1524 new_sn_f2534 new_sn_f3544 new_sn_f4554 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_sn_f5564   new_sn_f65  new_ep_m014 new_ep_m1524 new_ep_m2534 new_ep_m3544 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_ep_m4554 new_ep_m5564   new_ep_m65  new_ep_f014 new_ep_f1524 new_ep_f2534 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_ep_f3544 new_ep_f4554 new_ep_f5564   new_ep_f65  newrel_m014 newrel_m1524 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnewrel_m2534 newrel_m3544 newrel_m4554 newrel_m5564   newrel_m65  newrel_f014 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnewrel_f1524 newrel_f2534 newrel_f3544 newrel_f4554 newrel_f5564   newrel_f65 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \n\n\n\n\nCode\n# tabulate typeof_who\ntable(typeof_who)\n\n\ntypeof_who\ncharacter    double \n        3        57 \n\n\n\nThree variables are of type character, 57 of type integer\nVariable names might be values"
+    "section": "Case; who cont.",
+    "text": "Case; who cont.\n\n\nCode\n# find type of vector with a pipe\ntypeof_who &lt;- who %&gt;% map(typeof) %&gt;% unlist()\n# print typeof_who\ntypeof_who\n\n\n     country         iso2         iso3         year  new_sp_m014 new_sp_m1524 \n \"character\"  \"character\"  \"character\"     \"double\"     \"double\"     \"double\" \nnew_sp_m2534 new_sp_m3544 new_sp_m4554 new_sp_m5564   new_sp_m65  new_sp_f014 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_sp_f1524 new_sp_f2534 new_sp_f3544 new_sp_f4554 new_sp_f5564   new_sp_f65 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \n new_sn_m014 new_sn_m1524 new_sn_m2534 new_sn_m3544 new_sn_m4554 new_sn_m5564 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \n  new_sn_m65  new_sn_f014 new_sn_f1524 new_sn_f2534 new_sn_f3544 new_sn_f4554 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_sn_f5564   new_sn_f65  new_ep_m014 new_ep_m1524 new_ep_m2534 new_ep_m3544 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_ep_m4554 new_ep_m5564   new_ep_m65  new_ep_f014 new_ep_f1524 new_ep_f2534 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_ep_f3544 new_ep_f4554 new_ep_f5564   new_ep_f65  newrel_m014 newrel_m1524 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnewrel_m2534 newrel_m3544 newrel_m4554 newrel_m5564   newrel_m65  newrel_f014 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnewrel_f1524 newrel_f2534 newrel_f3544 newrel_f4554 newrel_f5564   newrel_f65 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\""
+  },
+  {
+    "objectID": "wrangle-data/tidy-data/tidy-data.html#case-who-cont.-1",
+    "href": "wrangle-data/tidy-data/tidy-data.html#case-who-cont.-1",
+    "title": "Tidy Data",
+    "section": "Case; who cont.",
+    "text": "Case; who cont.\n\n\nCode\n# tabulate typeof_who\ntable(typeof_who)\n\n\ntypeof_who\ncharacter    double \n        3        57 \n\n\n\nThree variables are of type character, 57 of type integer\nVariable names might be values"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#where-to-start",
@@ -5170,14 +5184,14 @@
     "href": "assignments/h23/ass4/ass4-h23.html#gdp-nuts-3",
     "title": "Assignment 4 2023 msb105",
     "section": "GDP NUTS 3",
-    "text": "GDP NUTS 3\nVi søker i toc_txt etter tabeller med GDP på nivå NUTS 3 vha. funksjonen str_detect(). Denne funksjonen skiller mellom store og små bokstaver. Siden vi ikke vet hvilken skrivemåte som er brukt for gdp og NUTS 3 benytter vi regex for å matche både små og store bokstaver. Vi benytter filter() for å finne de tabellene vi ønsker. Vi benytter select() for å velge ut kolonnene title og code som vi ønsker å se på. Vi benytter flextable() for å vise tabellen. Vi benytter til slutt autofit() for å tilpasse tabellen til siden. Detaljer om regex finner dere i Slides: Strings and regular expressions og i r4ds ed. 1 chp. 14.\nVi ønsker å finne tabellbeskrivelser som både inneholder gdp og nuts 3. Trikset for enkelt å få dette til er å ha AND (&) utenfor str_detect(). Det går an å få til en AND inne i en regexp, men dette kan fort bli kronglete og komplisert.\n\ngdp_tabs &lt;- toc_txt |&gt; \n# Regex AND external to regex\n   filter(\n     str_detect(\n       string = title,\n       # For å matche både små og store bokstaver\n       pattern = '[Gg][Dd][Pp]'\n       # AND vha. &\n       ) &\n     str_detect(\n       string = title,\n       # For å matche både små og store bokstaver og\n       # space eller ikke før 3\n       pattern = '[Nn][Uu][Tt][Ss]\\\\s*3'\n       )\n     ) |&gt; \n  select(title, code)\n\nVi finner fire tabeller listet i toc_txt.\n\ngdp_tabs |&gt; \n  select(title, code) |&gt; \n  flextable()  |&gt; \n  width(1, width = 3.5) |&gt; \n  width(2, width = 1.5)\n\n\n\nTabell 1: Tabeller med GDP på NUTS 3 nivå.\n\n\n\ntitlecodeAverage annual population to calculate regional GDP data (thousand persons) by NUTS 3 regionsnama_10r_3popgdpGross domestic product (GDP) at current market prices by NUTS 3 regionsnama_10r_3gdpEuropean Union trade mark (EUTM) applications per billion GDP by NUTS 3 regions (2000-2014)ipr_ta_gdprCommunity design (CD) applications per billion GDP by NUTS 3 regions (2003-2014)ipr_da_gdpr\n\n\n\n\n\nVi velger å benytte tabellen med kode nama_10r_3gdp som har forklarende tekst «Gross domestic product (GDP) at current market prices by NUTS 3 regions». Vi henter «Data Structure Definition» for å finne hva som finnes i dette datasettet. Informasjonen benyttes for å definer «filters» for spørringen mot eurostat.\nMERK! Merk bruken av nuts_level = “3” i filters for å få data på NUTS 3 nivå. Denne parameteren var ikke så lett å finne.\nVi laster så ned «Data Structure Definition (DSD)» for tabellen med code nama_10r_3gdp.\n\n# description nama_10r_3gdp\ndsd_gdp &lt;- get_eurostat_dsd(\"nama_10r_3gdp\")\n\n\ndsd_gdp |&gt; \n  head(n = 15) |&gt; \n  flextable()  |&gt; \n  width(1, width = 1) |&gt; \n  width(2, width = 1) |&gt; \n  width(3, width = 3.5)\n\nconceptcodenamefreqAAnnualunitMIO_EURMillion eurounitEUR_HABEuro per inhabitantunitEUR_HAB_EU27_2020Euro per inhabitant in percentage of the EU27 (from 2020) averageunitMIO_NACMillion units of national currencyunitMIO_PPS_EU27_2020Million purchasing power standards (PPS, EU27 from 2020)unitPPS_EU27_2020_HABPurchasing power standard (PPS, EU27 from 2020), per inhabitantunitPPS_HAB_EU27_2020Purchasing power standard (PPS, EU27 from 2020), per inhabitant in percentage of the EU27 (from 2020) averagegeoEU27_2020European Union - 27 countries (from 2020)geoBEBelgiumgeoBE1Région de Bruxelles-Capitale/Brussels Hoofdstedelijk GewestgeoBE10Région de Bruxelles-Capitale/Brussels Hoofdstedelijk GewestgeoBE100Arr. de Bruxelles-Capitale/Arr. Brussel-HoofdstadgeoBE2Vlaams GewestgeoBE21Prov. Antwerpen\n\n\nUtfra kodene i dsd_gdpkan vi da formulere følgende spørring mot Eurostat:\n\n# Gross domestic product (GDP) at current market prices by NUTS 3 regions \n# id: nama_10r_3gdp\nnama_10r_3gdp &lt;- get_eurostat_data(\n  id = \"nama_10r_3gdp\",\n  filters = list(\n    geo = c(\"AT\", \"DE\", \"DK\", \"FR\", \"EL\", \"ES\", \n            \"IT\", \"NL\", \"BE\", \"IE\", \"PL\", \"PT\", \"NO\", \"SE\", \"FI\", \"CH\"),\n    nuts_level = \"3\",\n    unit = \"MIO_PPS_EU27_2020\"\n  ),\n  exact_match = FALSE,\n  date_filter = 2000:2020,\n  stringsAsFactors = FALSE\n  ) |&gt; \n  mutate(\n    gdp = 1000000 * values\n  ) |&gt; \n  select(-c(unit, values)) |&gt; \n  # Vil bare ha NUTS 3 nivå (5 karakterer). Vil aggregere selv til NUTS2,\n  # NUTS1 og NUTSc  \n  filter(str_length(geo) == 5)\n\nVi velger å benytte MIO_PPS_EU27_2020 som mål på GNP. Dette er GNP i løpende priser (million Euro). Det kunne vært aktuelt å benytte PPS_EU27_2020_HAB som skal være GNP målt i konstant kjøpekraft. Det synes imidlertid som om PPS_EU27_2020_HAB har urimelige/åpenbart feil verdier for en del regioner."
+    "text": "GDP NUTS 3\nVi søker i toc_txt etter tabeller med GDP på nivå NUTS 3 vha. funksjonen str_detect(). Denne funksjonen skiller mellom store og små bokstaver. Siden vi ikke vet hvilken skrivemåte som er brukt for gdp og NUTS 3 benytter vi regex for å matche både små og store bokstaver. Vi benytter filter() for å finne de tabellene vi ønsker. Vi benytter select() for å velge ut kolonnene title og code som vi ønsker å se på. Vi benytter flextable() for å vise tabellen. Vi benytter til slutt autofit() for å tilpasse tabellen til siden. Detaljer om regex finner dere i Slides: Strings and regular expressions og i r4ds ed. 1 chp. 14.\nVi ønsker å finne tabellbeskrivelser som både inneholder gdp og nuts 3. Trikset for enkelt å få dette til er å ha AND (&) utenfor str_detect(). Det går an å få til en AND inne i en regexp, men dette kan fort bli kronglete og komplisert.\n\ngdp_tabs &lt;- toc_txt |&gt; \n# Regex AND external to regex\n   filter(\n     str_detect(\n       string = title,\n       # For å matche både små og store bokstaver\n       pattern = '[Gg][Dd][Pp]'\n       # AND vha. &\n       ) &\n     str_detect(\n       string = title,\n       # For å matche både små og store bokstaver og\n       # space eller ikke før 3\n       pattern = '[Nn][Uu][Tt][Ss]\\\\s*3'\n       )\n     ) |&gt; \n  select(title, code)\n\nVi finner fire tabeller listet i toc_txt.\n\ngdp_tabs |&gt; \n  select(title, code) |&gt; \n  flextable()  |&gt; \n  width(1, width = 3.5) |&gt; \n  width(2, width = 1.5)\n\n\n\nTabell 1: Tabeller med GDP på NUTS 3 nivå.\n\n\n\ntitlecodeAverage annual population to calculate regional GDP data (thousand persons) by NUTS 3 regionnama_10r_3popgdpGross domestic product (GDP) at current market prices by NUTS 3 regionnama_10r_3gdpEuropean Union trade mark (EUTM) applications per billion GDP by NUTS 3 region (2000-2014)ipr_ta_gdprCommunity design (CD) applications per billion GDP by NUTS 3 region (2003-2014)ipr_da_gdpr\n\n\n\n\n\nVi velger å benytte tabellen med kode nama_10r_3gdp som har forklarende tekst «Gross domestic product (GDP) at current market prices by NUTS 3 regions». Vi henter «Data Structure Definition» for å finne hva som finnes i dette datasettet. Informasjonen benyttes for å definer «filters» for spørringen mot eurostat.\nMERK! Merk bruken av nuts_level = “3” i filters for å få data på NUTS 3 nivå. Denne parameteren var ikke så lett å finne.\nVi laster så ned «Data Structure Definition (DSD)» for tabellen med code nama_10r_3gdp.\n\n# description nama_10r_3gdp\ndsd_gdp &lt;- get_eurostat_dsd(\"nama_10r_3gdp\")\n\n\ndsd_gdp |&gt; \n  head(n = 15) |&gt; \n  flextable()  |&gt; \n  width(1, width = 1) |&gt; \n  width(2, width = 1) |&gt; \n  width(3, width = 3.5)\n\nconceptcodenamefreqAAnnualunitMIO_EURMillion eurounitEUR_HABEuro per inhabitantunitEUR_HAB_EU27_2020Euro per inhabitant in percentage of the EU27 (from 2020) averageunitMIO_NACMillion units of national currencyunitMIO_PPS_EU27_2020Million purchasing power standards (PPS, EU27 from 2020)unitPPS_EU27_2020_HABPurchasing power standard (PPS, EU27 from 2020), per inhabitantunitPPS_HAB_EU27_2020Purchasing power standard (PPS, EU27 from 2020), per inhabitant in percentage of the EU27 (from 2020) averagegeoEU27_2020European Union - 27 countries (from 2020)geoBEBelgiumgeoBE1Région de Bruxelles-Capitale/Brussels Hoofdstedelijk GewestgeoBE10Région de Bruxelles-Capitale/Brussels Hoofdstedelijk GewestgeoBE100Arr. de Bruxelles-Capitale/Arr. Brussel-HoofdstadgeoBE2Vlaams GewestgeoBE21Prov. Antwerpen\n\n\nUtfra kodene i dsd_gdpkan vi da formulere følgende spørring mot Eurostat:\n\n# Gross domestic product (GDP) at current market prices by NUTS 3 regions \n# id: nama_10r_3gdp\nnama_10r_3gdp &lt;- get_eurostat_data(\n  id = \"nama_10r_3gdp\",\n  filters = list(\n    geo = c(\"AT\", \"DE\", \"DK\", \"FR\", \"EL\", \"ES\", \n            \"IT\", \"NL\", \"BE\", \"IE\", \"PL\", \"PT\", \"NO\", \"SE\", \"FI\", \"CH\"),\n    nuts_level = \"3\",\n    unit = \"MIO_PPS_EU27_2020\"\n  ),\n  exact_match = FALSE,\n  date_filter = 2000:2020,\n  stringsAsFactors = FALSE\n  ) |&gt; \n  mutate(\n    gdp = 1000000 * values\n  ) |&gt; \n  select(-c(unit, values)) |&gt; \n  # Vil bare ha NUTS 3 nivå (5 karakterer). Vil aggregere selv til NUTS2,\n  # NUTS1 og NUTSc  \n  filter(str_length(geo) == 5)\n\nVi velger å benytte MIO_PPS_EU27_2020 som mål på GNP. Dette er GNP i løpende priser (million Euro). Det kunne vært aktuelt å benytte PPS_EU27_2020_HAB som skal være GNP målt i konstant kjøpekraft. Det synes imidlertid som om PPS_EU27_2020_HAB har urimelige/åpenbart feil verdier for en del regioner."
   },
   {
     "objectID": "assignments/h23/ass4/ass4-h23.html#population-demo_r_pjanaggr3",
     "href": "assignments/h23/ass4/ass4-h23.html#population-demo_r_pjanaggr3",
     "title": "Assignment 4 2023 msb105",
     "section": "Population demo_r_pjanaggr3",
-    "text": "Population demo_r_pjanaggr3\n\nOppgave\n\nSøk i toc_txt for tabeller med population og NUTS 3. Pass på at dere dekker både population og Population og ulike skrivemåter for NUTS 3.\n\n\n\ntitlecodePopulation density by NUTS 3 regiondemo_r_d3densPopulation on 1 January by age group, sex and NUTS 3 regiondemo_r_pjangrp3Population on 1 January by broad age group, sex and NUTS 3 regiondemo_r_pjanaggr3Population structure indicators by NUTS 3 regiondemo_r_pjanind3Population change - Demographic balance and crude rates at regional level (NUTS 3) demo_r_gind3Population by single year of age and NUTS 3 regioncens_11ag_r3Population by marital status and NUTS 3 regioncens_11ms_r3Population by family status and NUTS 3 regioncens_11fs_r3Population by sex, citizenship and NUTS 3 regionscens_01rsctzPopulation by sex, age group, current activity status and NUTS 3 regionscens_01rapopTotal and active population by sex, age, employment status, residence one year prior to the census and NUTS 3 regionscens_01ramigrPopulation by sex, age group, educational attainment level, current activity status and NUTS 3 regionscens_01rewsPopulation by sex, age group, household status and NUTS 3 regionscens_01rhtypePopulation by sex, age group, size of household and NUTS 3 regionscens_01rhsizeAverage annual population to calculate regional GDP data (thousand persons) by NUTS 3 regionsnama_10r_3popgdpEuropean Union trade mark (EUTM) applications per million population by NUTS 3 regions (1996-2015)ipr_ta_poprCommunity design (CD) applications per million population by NUTS 3 regions (2003-2015)ipr_da_poprPopulation with Ukrainian citizenship by 5-year age group and NUTS3 regionscens_21ua_a5r3Population with Ukrainian citizenship by age and NUTS 3 regionscens_21ua_ar3Population with Ukrainian citizenship by 5-year age group, marital status and NUTS3 regionscens_21ua_msr3Population by broad age group and NUTS 3 regionscens_21agr3Population on 1st January by age, sex, type of projection and NUTS 3 regionproj_19rp3\n\n\nVi vil i hovedsak bruke befolkningstabellen som har teksten: «Average annual population to calculate regional GDP data (thousand persons) by NUTS 3 regions», men siden denne synes å ha manglende data for noen regioner vil vi supplere med data fra tabellen med teksten «Population on 1 January by broad age group, sex and NUTS 3 region».\n\n\nOppgave\n\n\nFinn koden for tabellen med forklarende tekst «Average annual population to calculate regional GDP data (thousand persons) by NUTS 3 regions».\nLast ned Data Structure Definition (DSD) for denne tabellen.\nBruk opplysningene i DSD for å formulere en spørring mot Eurostat og last ned dataene. Gi dataene lastet ned samme navn som Eurostat sin kode for tabellen. Vi er bare interessert i totalbefolkning og ignorerer derfor både kjønn og alder. Vi ønsker data for årene 2000-2020.\nBruk filter(str_length(geo) == 5) for å begrense datasettet til NUTS3 regioner. Vi vil gjøre vår egen aggregering.\nHent data for landene:\n\n\n\nc(\"AT\", \"DE\", \"DK\", \"FR\", \"EL\",\"ES\", \"IT\", \"NL\", \"BE\", \n  \"IE\", \"PL\", \"PT\", \"NO\", \"SE\", \"FI\", \"CH\")"
+    "text": "Population demo_r_pjanaggr3\n\nOppgave\n\nSøk i toc_txt for tabeller med population og NUTS 3. Pass på at dere dekker både population og Population og ulike skrivemåter for NUTS 3.\n\n\n\ntitlecodePopulation density by NUTS 3 regiondemo_r_d3densPopulation on 1 January by age group, sex and NUTS 3 regiondemo_r_pjangrp3Population on 1 January by broad age group, sex and NUTS 3 regiondemo_r_pjanaggr3Population structure indicators by NUTS 3 regiondemo_r_pjanind3Population change - Demographic balance and crude rates at regional level (NUTS 3) demo_r_gind3Population by single year of age and NUTS 3 regioncens_11ag_r3Population by marital status and NUTS 3 regioncens_11ms_r3Population by family status and NUTS 3 regioncens_11fs_r3Population by sex, citizenship and NUTS 3 regioncens_01rsctzPopulation by sex, age group, current activity status and NUTS 3 regioncens_01rapopTotal and active population by sex, age, employment status, residence one year prior to the census and NUTS 3 regioncens_01ramigrPopulation by sex, age group, educational attainment level, current activity status and NUTS 3 regioncens_01rewsPopulation by sex, age group, household status and NUTS 3 regioncens_01rhtypePopulation by sex, age group, size of household and NUTS 3 regioncens_01rhsizeAverage annual population to calculate regional GDP data (thousand persons) by NUTS 3 regionnama_10r_3popgdpEuropean Union trade mark (EUTM) applications per million population by NUTS 3 region (1996-2015)ipr_ta_poprCommunity design (CD) applications per million population by NUTS 3 region (2003-2015)ipr_da_poprPopulation with Ukrainian citizenship by 5-year age group and NUTS3 regioncens_21ua_a5r3Population with Ukrainian citizenship by age and NUTS 3 regioncens_21ua_ar3Population with Ukrainian citizenship by 5-year age group, marital status and NUTS3 regioncens_21ua_msr3Population by broad age group and NUTS 3 regioncens_21agr3Population on 1st January by age, sex, type of projection and NUTS 3 regionproj_19rp3\n\n\nVi vil i hovedsak bruke befolkningstabellen som har teksten: «Average annual population to calculate regional GDP data (thousand persons) by NUTS 3 regions», men siden denne synes å ha manglende data for noen regioner vil vi supplere med data fra tabellen med teksten «Population on 1 January by broad age group, sex and NUTS 3 region».\n\n\nOppgave\n\n\nFinn koden for tabellen med forklarende tekst «Average annual population to calculate regional GDP data (thousand persons) by NUTS 3 regions».\nLast ned Data Structure Definition (DSD) for denne tabellen.\nBruk opplysningene i DSD for å formulere en spørring mot Eurostat og last ned dataene. Gi dataene lastet ned samme navn som Eurostat sin kode for tabellen. Vi er bare interessert i totalbefolkning og ignorerer derfor både kjønn og alder. Vi ønsker data for årene 2000-2020.\nBruk filter(str_length(geo) == 5) for å begrense datasettet til NUTS3 regioner. Vi vil gjøre vår egen aggregering.\nHent data for landene:\n\n\n\nc(\"AT\", \"DE\", \"DK\", \"FR\", \"EL\",\"ES\", \"IT\", \"NL\", \"BE\", \n  \"IE\", \"PL\", \"PT\", \"NO\", \"SE\", \"FI\", \"CH\")"
   },
   {
     "objectID": "assignments/h23/ass4/ass4-h23.html#alternative-populasjonsdata",
@@ -5422,28 +5436,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx &lt;- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d1 &lt;- t2 - t1)\n\n\nTime difference of 0.520699 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx &lt;- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d1 &lt;- t2 - t1)\n\n\nTime difference of 0.5135288 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nx &lt;- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d2 &lt;- t2 - t1)\n\n\nTime difference of 0.655782 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nx &lt;- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d2 &lt;- t2 - t1)\n\n\nTime difference of 0.648016 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n\nCode\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n\n[1] 25.94"
+    "text": "Speed Difference\n\n\nCode\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n\n[1] 26.19"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 &lt;- Sys.time()\nx &lt;- rnorm(1000000)\nt2 &lt;- Sys.time()\n(d3 &lt;- t2 - t1)\n\n\nTime difference of 0.03069615 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 2036.37"
+    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 &lt;- Sys.time()\nx &lt;- rnorm(1000000)\nt2 &lt;- Sys.time()\n(d3 &lt;- t2 - t1)\n\n\nTime difference of 0.02915406 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 2122.73"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#other-types-of-vectors-logical",
@@ -7147,20 +7161,6 @@
     "text": "References\n\n\n\nMSB105\n\n\n\n\nAllaire, JJ, Yihui Xie, Christophe Dervieux, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, et al. 2024. Rmarkdown: Dynamic Documents for r. https://github.com/rstudio/rmarkdown.\n\n\nLangsrud, Øyvind, and Jan Bruusgaard. 2024. PxWebApiData: PX-Web Data by API. https://github.com/statisticsnorway/PxWebApiData.\n\n\nR Core Team. 2024. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. https://www.R-project.org/.\n\n\nWickham, Hadley. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686.\n\n\nWickham, Hadley, and Jennifer Bryan. 2023. Readxl: Read Excel Files. https://readxl.tidyverse.org.\n\n\nWickham, Hadley, Jim Hester, and Jennifer Bryan. 2024. Readr: Read Rectangular Text Data. https://readr.tidyverse.org.\n\n\nXie, Yihui, J. J. Allaire, and Garrett Grolemund. 2018. R Markdown: The Definitive Guide. Boca Raton, Florida: Chapman; Hall/CRC. https://bookdown.org/yihui/rmarkdown.\n\n\nXie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. R Markdown Cookbook. Boca Raton, Florida: Chapman; Hall/CRC. https://bookdown.org/yihui/rmarkdown-cookbook."
   },
   {
-    "objectID": "explore-data/eda/eda-doc.html",
-    "href": "explore-data/eda/eda-doc.html",
-    "title": "Exploratory Data Analysis (EDA)",
-    "section": "",
-    "text": "packs &lt;- suppressPackageStartupMessages(\n  c(\n    library(tidyverse),\n    library(nycflights13),\n    library(gridExtra),\n    library(modelr),\n    library(grid),\n    library(ggplotify),\n    library(vtable)\n    )\n)\n\n\nunique(packs)\n\n [1] \"lubridate\"    \"forcats\"      \"stringr\"      \"dplyr\"        \"purrr\"       \n [6] \"readr\"        \"tidyr\"        \"tibble\"       \"ggplot2\"      \"tidyverse\"   \n[11] \"stats\"        \"graphics\"     \"grDevices\"    \"utils\"        \"datasets\"    \n[16] \"methods\"      \"base\"         \"nycflights13\" \"gridExtra\"    \"modelr\"      \n[21] \"grid\"         \"ggplotify\"    \"vtable\"       \"kableExtra\""
-  },
-  {
-    "objectID": "explore-data/eda/eda-doc.html#packages-used",
-    "href": "explore-data/eda/eda-doc.html#packages-used",
-    "title": "Exploratory Data Analysis (EDA)",
-    "section": "Packages used",
-    "text": "Packages used"
-  },
-  {
     "objectID": "explore-data/eda/eda-doc.html#generate-references-for-packages-used",
     "href": "explore-data/eda/eda-doc.html#generate-references-for-packages-used",
     "title": "Exploratory Data Analysis (EDA)",
@@ -7196,6 +7196,13 @@
     "text": "Single variable, load data\n\n\n\nLoad the data\n\n\nmy_heights &lt;- modelr::heights\n\n\nAny NAs?\n\n\n# NAs in my_heights?\nmy_heights %&gt;% \n  apply(MARGIN = 2, FUN = is.na) %&gt;% \n  apply(MARGIN = 2, FUN = sum) |&gt; \n  print(width = 40)\n\n   income    height    weight       age \n        0         0        95         0 \n  marital       sex education      afqt \n        0         0        10       262 \n\n\n\n\nor\n\n\n# NAs in my_heights?\nmy_heights %&gt;% \n  is.na() %&gt;% \n  apply(MARGIN = 2, FUN = sum)  |&gt; \n  print(width = 40)\n\n   income    height    weight       age \n        0         0        95         0 \n  marital       sex education      afqt \n        0         0        10       262"
   },
   {
+    "objectID": "explore-data/eda/eda-doc.html#single-variable-load-data-cont.",
+    "href": "explore-data/eda/eda-doc.html#single-variable-load-data-cont.",
+    "title": "Exploratory Data Analysis (EDA)",
+    "section": "Single variable, load data cont.",
+    "text": "Single variable, load data cont.\n\n\nNicer solution\n\n# number of NAs in each variable\n# drop variables with no NA\nmy_heights %&gt;% \n  is.na() %&gt;% \n  colSums() |&gt; \n  print(width = 40)\n\n   income    height    weight       age \n        0         0        95         0 \n  marital       sex education      afqt \n        0         0        10       262 \n\n\n\nor\n\n# number of NAs in each variable\n# drop variables with no NA\nmy_heights %&gt;% \n  is.na() %&gt;% \n  colSums() %&gt;% \n  .[. &gt; 0]\n\n   weight education      afqt \n       95        10       262"
+  },
+  {
     "objectID": "explore-data/eda/eda-doc.html#descriptive-statistics",
     "href": "explore-data/eda/eda-doc.html#descriptive-statistics",
     "title": "Exploratory Data Analysis (EDA)",
@@ -7217,6 +7224,13 @@
     "text": "Descriptive Statistics ex. my_heights\n\n\n\n# package vtable must \n# be installed\nmy_heights %&gt;% \n  select(marital, sex) %&gt;% \n  vtable::st(\n    data = ., \n    out = \"return\"\n    ) |&gt; \n  as_flextable()\n\n\n\n\n\n\nTable 2: Category variables.\n\n\n\nVariableNPercentcharactercharactercharactermarital7006... single112416%... married380654%... separated3665%... divorced154922%... widowed1612%sex7006... male340249%... female360451%n: 9"
   },
   {
+    "objectID": "explore-data/eda/eda-doc.html#a-simpler-alternative",
+    "href": "explore-data/eda/eda-doc.html#a-simpler-alternative",
+    "title": "Exploratory Data Analysis (EDA)",
+    "section": "A simpler alternative",
+    "text": "A simpler alternative\n\nuse use_df_printer() from the flextable package\nwill print dataframes/tibbles nicely\nthe option out = \"return\" to st() ensures that a dataframe is returned\n\n. . .\n\n# next line gives dataframe/tibble\n# as flextable\nuse_df_printer()\nmy_heights %&gt;% \n  select(marital, sex) %&gt;% \n  vtable::st(out = \"return\") \n\nVariableNPercentcharactercharactercharactermarital7006... single112416%... married380654%... separated3665%... divorced154922%... widowed1612%sex7006... male340249%... female360451%n: 9"
+  },
+  {
     "objectID": "explore-data/eda/eda-doc.html#descriptive-statistics-ex.-my_heights-2",
     "href": "explore-data/eda/eda-doc.html#descriptive-statistics-ex.-my_heights-2",
     "title": "Exploratory Data Analysis (EDA)",
@@ -7224,25 +7238,32 @@
     "text": "Descriptive Statistics ex. my_heights\n\n\n\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  select(-marital) %&gt;% \n  vtable::st(\n    group = 'sex',\n    group.long = TRUE,\n    out = \"return\"\n    )\n```\n\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxcharactercharactercharactercharactercharactercharactercharactercharactersex: maleincome340253510693990500068000343830height340270355687284weight33922044194176225524age3402512.247495356education3396132.61121420afqt3248423001567100sex: femaleincome360429588353470045000343830height3604642.752626679weight35191734376143195430age3604512.247505356education3600132.62121520afqt3496412801563100n: 15"
   },
   {
-    "objectID": "explore-data/eda/eda-doc.html#descriptive-statistics-ex.-my_heights-3",
-    "href": "explore-data/eda/eda-doc.html#descriptive-statistics-ex.-my_heights-3",
+    "objectID": "explore-data/eda/eda-doc.html#desc.-stat.-ex.-my_heights",
+    "href": "explore-data/eda/eda-doc.html#desc.-stat.-ex.-my_heights",
     "title": "Exploratory Data Analysis (EDA)",
-    "section": "Descriptive Statistics ex. my_heights",
-    "text": "Descriptive Statistics ex. my_heights\n\nmy_heights %&gt;% \n  select(-marital) %&gt;% \n  vtable::st(group = 'sex')\n\n\nSummary Statistics\n\n\n\n\n\n\n\n\n\n\n\n\nsex\n\n\nmale\n\n\nfemale\n\n\n\nVariable\nN\nMean\nSD\nN\nMean\nSD\n\n\n\n\nincome\n3402\n53510\n69399\n3604\n29588\n35347\n\n\nheight\n3402\n70\n3\n3604\n64\n2.7\n\n\nweight\n3392\n204\n41\n3519\n173\n43\n\n\nage\n3402\n51\n2.2\n3604\n51\n2.2\n\n\neducation\n3396\n13\n2.6\n3600\n13\n2.6\n\n\nafqt\n3248\n42\n30\n3496\n41\n28"
+    "section": "Desc. Stat. ex. my_heights",
+    "text": "Desc. Stat. ex. my_heights\n\n\nmarried/unmarried women\n\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'female') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\nTable 3: Difference between married an unmarried women.\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxcharactercharactercharactercharactercharactercharactercharactercharactermarried: Noincome170326682309620041500343830height1703642.852626675weight16621774576145200410age1703512.347495356education1701132.62121420afqt1647332601151100married: Yesincome190132190386800047000343830height1901642.754626679weight18571694082140190430age1901512.247505356education1899142.63121620afqt1849472802372100n: 15"
   },
   {
-    "objectID": "explore-data/eda/eda-doc.html#descriptive-statistics-ex.-my_heights-4",
-    "href": "explore-data/eda/eda-doc.html#descriptive-statistics-ex.-my_heights-4",
+    "objectID": "explore-data/eda/eda-doc.html#less-info.-marriedunmarried-women",
+    "href": "explore-data/eda/eda-doc.html#less-info.-marriedunmarried-women",
     "title": "Exploratory Data Analysis (EDA)",
-    "section": "Descriptive Statistics ex. my_heights",
-    "text": "Descriptive Statistics ex. my_heights\n\n# package vtable must be installed\nmy_heights %&gt;% \n  mutate(married = if_else(marital == 'married', TRUE, FALSE)) %&gt;% \n  filter(sex == 'female') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(group = 'married')\n\n\nSummary Statistics\n\n\n\n\n\n\n\n\n\n\n\n\nmarried\n\n\nNo\n\n\nYes\n\n\n\nVariable\nN\nMean\nSD\nN\nMean\nSD\n\n\n\n\nincome\n1703\n26682\n30962\n1901\n32190\n38680\n\n\nheight\n1703\n64\n2.8\n1901\n64\n2.7\n\n\nweight\n1662\n177\n45\n1857\n169\n40\n\n\nage\n1703\n51\n2.3\n1901\n51\n2.2\n\n\neducation\n1701\n13\n2.6\n1899\n14\n2.6\n\n\nafqt\n1647\n33\n26\n1849\n47\n28"
+    "section": "Less info. married/unmarried women",
+    "text": "Less info. married/unmarried women\n\n\n\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'female') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    summ = c(\"notNA(x)\" , \"mean(x)\", \n             \"sd(x)\"),\n    summ.names = c(\"N\", \"Mean\", \"SD\"),\n    out = \"return\"\n    )\n```\n\n\n\n\nWarning in vtable::st(., group = \"married\", group.long = TRUE, summ = c(\"notNA(x)\", : Factor variables ignore custom summ options. Cols 1 and 2 are count and percentage.\nBeware combining factors with a custom summ unless factor.numeric = TRUE.\n\n\n\n\nTable 4: Difference between married an unmarried women. Simplified table.\n\n\n\nVariableNMeanSDcharactercharactercharactercharactermarried: Noincome17032668230962height1703642.8weight166217745age1703512.3education1701132.6afqt16473326married: Yesincome19013219038680height1901642.7weight185716940age1901512.2education1899142.6afqt18494728n: 15"
   },
   {
-    "objectID": "explore-data/eda/eda-doc.html#descriptive-statistics-ex.-my_heights-5",
-    "href": "explore-data/eda/eda-doc.html#descriptive-statistics-ex.-my_heights-5",
+    "objectID": "explore-data/eda/eda-doc.html#desc.-stat.-ex.-my_heights-1",
+    "href": "explore-data/eda/eda-doc.html#desc.-stat.-ex.-my_heights-1",
     "title": "Exploratory Data Analysis (EDA)",
-    "section": "Descriptive Statistics ex. my_heights",
-    "text": "Descriptive Statistics ex. my_heights\n\n# package vtable must be installed\nmy_heights %&gt;% \n  mutate(married = if_else(marital == 'married', TRUE, FALSE)) %&gt;% \n  filter(sex == 'male') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(group = 'married')\n\n\nSummary Statistics\n\n\n\n\n\n\n\n\n\n\n\n\nmarried\n\n\nNo\n\n\nYes\n\n\n\nVariable\nN\nMean\nSD\nN\nMean\nSD\n\n\n\n\nincome\n1497\n32122\n50520\n1905\n70317\n77171\n\n\nheight\n1497\n70\n3.1\n1905\n70\n2.9\n\n\nweight\n1492\n200\n42\n1900\n207\n39\n\n\nage\n1497\n51\n2.2\n1905\n51\n2.3\n\n\neducation\n1494\n12\n2.2\n1902\n14\n2.7\n\n\nafqt\n1426\n34\n28\n1822\n48\n30"
+    "section": "Desc. Stat. ex. my_heights",
+    "text": "Desc. Stat. ex. my_heights\n\n\nmarried/unmarried men\n\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'male') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\nTable 5: Difference between married an unmarried men.\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxcharactercharactercharactercharactercharactercharactercharactercharactermarried: Noincome149732122505200045000343830height1497703.155687284weight14922004294170222524age1497512.247495356education1494122.21121420afqt1426342801055100married: Yesincome1905703177717102800083000343830height1905702.957687281weight190020739103180228480age1905512.347495356education1902142.72121620afqt1822483002174100n: 15"
+  },
+  {
+    "objectID": "explore-data/eda/eda-doc.html#less-info.-marriedunmarried-men",
+    "href": "explore-data/eda/eda-doc.html#less-info.-marriedunmarried-men",
+    "title": "Exploratory Data Analysis (EDA)",
+    "section": "Less info. married/unmarried men",
+    "text": "Less info. married/unmarried men\n\n\n\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'male') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    summ = c(\"notNA(x)\" , \"mean(x)\", \n             \"sd(x)\"),\n    summ.names = c(\"N\", \"Mean\", \"SD\"),\n    out = \"return\"\n    )\n```\n\n\n\n\nWarning in vtable::st(., group = \"married\", group.long = TRUE, summ = c(\"notNA(x)\", : Factor variables ignore custom summ options. Cols 1 and 2 are count and percentage.\nBeware combining factors with a custom summ unless factor.numeric = TRUE.\n\n\n\n\nTable 6: Difference between married an unmarried men. Simplified table.\n\n\n\nVariableNMeanSDcharactercharactercharactercharactermarried: Noincome14973212250520height1497703.1weight149220042age1497512.2education1494122.2afqt14263428married: Yesincome19057031777171height1905702.9weight190020739age1905512.3education1902142.7afqt18224830n: 15"
   },
   {
     "objectID": "explore-data/eda/eda-doc.html#single-variable-graphical-description-bar-chart",
@@ -7250,13 +7271,6 @@
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Single variable graphical description, bar chart",
     "text": "Single variable graphical description, bar chart\nSimplest is bar-chart\n\n\n\nggplot(data = my_heights) +\n  geom_bar(\n    mapping = aes(\n      x = education\n      ), \n    na.rm = TRUE\n    ) +\n   theme(\n     axis.text = element_text(\n       size = 15\n       ),\n    axis.title = element_text(\n       size = 15\n       )\n   )\n\n\n\n\n\n\n\n\n\n\nFigure 1: Bar chart of education."
-  },
-  {
-    "objectID": "explore-data/eda/eda-doc.html#single-variable-graphical-description-bar-chart-1",
-    "href": "explore-data/eda/eda-doc.html#single-variable-graphical-description-bar-chart-1",
-    "title": "Exploratory Data Analysis (EDA)",
-    "section": "Single variable graphical description, bar chart",
-    "text": "Single variable graphical description, bar chart"
   },
   {
     "objectID": "explore-data/eda/eda-doc.html#the-peaks",
@@ -8047,7 +8061,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "MSB105 is a course in Data Science at HVL. It’s part of our master program (“Siviløkonom”) in Regional Economics and Innovations. The course is taught in parallel with MSB104 which is a course in applied econometrics. Both courses serve as a foundation for the applied part (50%) of the course MSB205 (second year) which covers some applied spatial data science and spatial econometrics. Both MSB104 and MSB205 uses the same language, R, and style of coding as MSB105 which implies that nearly 30% (25/90) of the courses thought in our master is applied Data Science.\nWe (still) use R for Data Science 1e as our syllabus. The slides at MSB105 are what we cover in lectures. In addition we run code from the slides, and updated versions, in lectures. These sketches are synced against a public repo at Github. The current one for autumn 2024 is here."
   },
   {
     "objectID": "model/many-models/many-models.html#introduction",
@@ -8811,131 +8825,5 @@
     "title": "Functions",
     "section": "References",
     "text": "References\n\n\n\nMSB105\n\n\n\n\nWickham, Hadley. 2023. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686."
-  },
-  {
-    "objectID": "explore-data/eda/eda.html#test",
-    "href": "explore-data/eda/eda.html#test",
-    "title": "Exploratory Data Analysis (EDA)",
-    "section": "test",
-    "text": "test\n\n\n\nCode\nuse_df_printer()\nmy_heights %&gt;% \n  select(marital, sex) %&gt;% \n  vtable::st(out = \"return\")\n\n\n\nVariableNPercentcharactercharactercharactermarital7006... single112416%... married380654%... separated3665%... divorced154922%... widowed1612%sex7006... male340249%... female360451%n: 9"
-  },
-  {
-    "objectID": "explore-data/eda/eda.html#a-simpler-alternative",
-    "href": "explore-data/eda/eda.html#a-simpler-alternative",
-    "title": "Exploratory Data Analysis (EDA)",
-    "section": "A simpler alternative",
-    "text": "A simpler alternative\n\nuse use_df_printer() from the flextable package\nwill print dataframes/tibbles nicely\nthe option out = \"return\" to st() ensures that a dataframe is returned\n\n\n\n\n\nCode\n# next line gives dataframe/tibble\n# as flextable\nuse_df_printer()\nmy_heights %&gt;% \n  select(marital, sex) %&gt;% \n  vtable::st(out = \"return\") \n\n\n\nVariableNPercentcharactercharactercharactermarital7006... single112416%... married380654%... separated3665%... divorced154922%... widowed1612%sex7006... male340249%... female360451%n: 9"
-  },
-  {
-    "objectID": "explore-data/eda/eda.html#less-info.",
-    "href": "explore-data/eda/eda.html#less-info.",
-    "title": "Exploratory Data Analysis (EDA)",
-    "section": "Less info.",
-    "text": "Less info.\n\n\n\n\nCode\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'female') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    summ = c(\"notNA(x)\" , \"mean(x)\", \n             \"sd(x)\"),\n    summ.names = c(\"N\", \"Mean\", \"SD\"),\n    out = \"return\"\n    )\n```\n\n\n\n\n\nVariableNMeanSDcharactercharactercharactercharactermarried: Noincome17032668230962height1703642.8weight166217745age1703512.3education1701132.6afqt16473326married: Yesincome19013219038680height1901642.7weight185716940age1901512.2education1899142.6afqt18494728n: 15"
-  },
-  {
-    "objectID": "explore-data/eda/eda.html#desc.-stat.-ex.-my_heights-marriedunmarried-women",
-    "href": "explore-data/eda/eda.html#desc.-stat.-ex.-my_heights-marriedunmarried-women",
-    "title": "Exploratory Data Analysis (EDA)",
-    "section": "Desc. Stat. ex. my_heights; married/unmarried women",
-    "text": "Desc. Stat. ex. my_heights; married/unmarried women\n\n\n\n\nCode\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'female') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\n\nTable 3: Difference between married an unmarried women.\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxcharactercharactercharactercharactercharactercharactercharactercharactermarried: Noincome170326682309620041500343830height1703642.852626675weight16621774576145200410age1703512.347495356education1701132.62121420afqt1647332601151100married: Yesincome190132190386800047000343830height1901642.754626679weight18571694082140190430age1901512.247505356education1899142.63121620afqt1849472802372100n: 15"
-  },
-  {
-    "objectID": "explore-data/eda/eda.html#less-info.-marriedunmarried-women",
-    "href": "explore-data/eda/eda.html#less-info.-marriedunmarried-women",
-    "title": "Exploratory Data Analysis (EDA)",
-    "section": "Less info. married/unmarried women",
-    "text": "Less info. married/unmarried women\n\n\n\n\nCode\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'female') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    summ = c(\"notNA(x)\" , \"mean(x)\", \n             \"sd(x)\"),\n    summ.names = c(\"N\", \"Mean\", \"SD\"),\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\n\nTable 4: Difference between married an unmarried women. Simplified table.\n\n\n\nVariableNMeanSDcharactercharactercharactercharactermarried: Noincome17032668230962height1703642.8weight166217745age1703512.3education1701132.6afqt16473326married: Yesincome19013219038680height1901642.7weight185716940age1901512.2education1899142.6afqt18494728n: 15"
-  },
-  {
-    "objectID": "explore-data/eda/eda.html#desc.-stat.-ex.-my_heights-marriedunmarried-men",
-    "href": "explore-data/eda/eda.html#desc.-stat.-ex.-my_heights-marriedunmarried-men",
-    "title": "Exploratory Data Analysis (EDA)",
-    "section": "Desc. Stat. ex. my_heights; married/unmarried men",
-    "text": "Desc. Stat. ex. my_heights; married/unmarried men\n\n\n\n\nCode\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'male') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\n\nTable 5: Difference between married an unmarried men.\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxcharactercharactercharactercharactercharactercharactercharactercharactermarried: Noincome149732122505200045000343830height1497703.155687284weight14922004294170222524age1497512.247495356education1494122.21121420afqt1426342801055100married: Yesincome1905703177717102800083000343830height1905702.957687281weight190020739103180228480age1905512.347495356education1902142.72121620afqt1822483002174100n: 15"
-  },
-  {
-    "objectID": "explore-data/eda/eda.html#less-info.-marriedunmarried-men",
-    "href": "explore-data/eda/eda.html#less-info.-marriedunmarried-men",
-    "title": "Exploratory Data Analysis (EDA)",
-    "section": "Less info. married/unmarried men",
-    "text": "Less info. married/unmarried men\n\n\n\n\nCode\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'male') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    summ = c(\"notNA(x)\" , \"mean(x)\", \n             \"sd(x)\"),\n    summ.names = c(\"N\", \"Mean\", \"SD\"),\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\n\nTable 6: Difference between married an unmarried men. Simplified table.\n\n\n\nVariableNMeanSDcharactercharactercharactercharactermarried: Noincome14973212250520height1497703.1weight149220042age1497512.2education1494122.2afqt14263428married: Yesincome19057031777171height1905702.9weight190020739age1905512.3education1902142.7afqt18224830n: 15"
-  },
-  {
-    "objectID": "explore-data/eda/eda.html#desc.-stat.-ex.-my_heights",
-    "href": "explore-data/eda/eda.html#desc.-stat.-ex.-my_heights",
-    "title": "Exploratory Data Analysis (EDA)",
-    "section": "Desc. Stat. ex. my_heights",
-    "text": "Desc. Stat. ex. my_heights\n\n\nmarried/unmarried women\n\n\nCode\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'female') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\n\nTable 3: Difference between married an unmarried women.\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxcharactercharactercharactercharactercharactercharactercharactercharactermarried: Noincome170326682309620041500343830height1703642.852626675weight16621774576145200410age1703512.347495356education1701132.62121420afqt1647332601151100married: Yesincome190132190386800047000343830height1901642.754626679weight18571694082140190430age1901512.247505356education1899142.63121620afqt1849472802372100n: 15"
-  },
-  {
-    "objectID": "explore-data/eda/eda.html#desc.-stat.-ex.-my_heights-1",
-    "href": "explore-data/eda/eda.html#desc.-stat.-ex.-my_heights-1",
-    "title": "Exploratory Data Analysis (EDA)",
-    "section": "Desc. Stat. ex. my_heights",
-    "text": "Desc. Stat. ex. my_heights\n\n\nmarried/unmarried men\n\n\nCode\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'male') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\n\nTable 5: Difference between married an unmarried men.\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxcharactercharactercharactercharactercharactercharactercharactercharactermarried: Noincome149732122505200045000343830height1497703.155687284weight14922004294170222524age1497512.247495356education1494122.21121420afqt1426342801055100married: Yesincome1905703177717102800083000343830height1905702.957687281weight190020739103180228480age1905512.347495356education1902142.72121620afqt1822483002174100n: 15"
-  },
-  {
-    "objectID": "explore-data/eda/eda-doc.html#single-variable-load-data-cont.",
-    "href": "explore-data/eda/eda-doc.html#single-variable-load-data-cont.",
-    "title": "Exploratory Data Analysis (EDA)",
-    "section": "Single variable, load data cont.",
-    "text": "Single variable, load data cont.\n\n\nNicer solution\n\n# number of NAs in each variable\n# drop variables with no NA\nmy_heights %&gt;% \n  is.na() %&gt;% \n  colSums() |&gt; \n  print(width = 40)\n\n   income    height    weight       age \n        0         0        95         0 \n  marital       sex education      afqt \n        0         0        10       262 \n\n\n\nor\n\n# number of NAs in each variable\n# drop variables with no NA\nmy_heights %&gt;% \n  is.na() %&gt;% \n  colSums() %&gt;% \n  .[. &gt; 0]\n\n   weight education      afqt \n       95        10       262"
-  },
-  {
-    "objectID": "explore-data/eda/eda-doc.html#a-simpler-alternative",
-    "href": "explore-data/eda/eda-doc.html#a-simpler-alternative",
-    "title": "Exploratory Data Analysis (EDA)",
-    "section": "A simpler alternative",
-    "text": "A simpler alternative\n\nuse use_df_printer() from the flextable package\nwill print dataframes/tibbles nicely\nthe option out = \"return\" to st() ensures that a dataframe is returned\n\n. . .\n\n# next line gives dataframe/tibble\n# as flextable\nuse_df_printer()\nmy_heights %&gt;% \n  select(marital, sex) %&gt;% \n  vtable::st(out = \"return\") \n\nVariableNPercentcharactercharactercharactermarital7006... single112416%... married380654%... separated3665%... divorced154922%... widowed1612%sex7006... male340249%... female360451%n: 9"
-  },
-  {
-    "objectID": "explore-data/eda/eda-doc.html#desc.-stat.-ex.-my_heights",
-    "href": "explore-data/eda/eda-doc.html#desc.-stat.-ex.-my_heights",
-    "title": "Exploratory Data Analysis (EDA)",
-    "section": "Desc. Stat. ex. my_heights",
-    "text": "Desc. Stat. ex. my_heights\n\n\nmarried/unmarried women\n\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'female') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\nTable 3: Difference between married an unmarried women.\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxcharactercharactercharactercharactercharactercharactercharactercharactermarried: Noincome170326682309620041500343830height1703642.852626675weight16621774576145200410age1703512.347495356education1701132.62121420afqt1647332601151100married: Yesincome190132190386800047000343830height1901642.754626679weight18571694082140190430age1901512.247505356education1899142.63121620afqt1849472802372100n: 15"
-  },
-  {
-    "objectID": "explore-data/eda/eda-doc.html#less-info.-marriedunmarried-women",
-    "href": "explore-data/eda/eda-doc.html#less-info.-marriedunmarried-women",
-    "title": "Exploratory Data Analysis (EDA)",
-    "section": "Less info. married/unmarried women",
-    "text": "Less info. married/unmarried women\n\n\n\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'female') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    summ = c(\"notNA(x)\" , \"mean(x)\", \n             \"sd(x)\"),\n    summ.names = c(\"N\", \"Mean\", \"SD\"),\n    out = \"return\"\n    )\n```\n\n\n\n\nWarning in vtable::st(., group = \"married\", group.long = TRUE, summ = c(\"notNA(x)\", : Factor variables ignore custom summ options. Cols 1 and 2 are count and percentage.\nBeware combining factors with a custom summ unless factor.numeric = TRUE.\n\n\n\n\nTable 4: Difference between married an unmarried women. Simplified table.\n\n\n\nVariableNMeanSDcharactercharactercharactercharactermarried: Noincome17032668230962height1703642.8weight166217745age1703512.3education1701132.6afqt16473326married: Yesincome19013219038680height1901642.7weight185716940age1901512.2education1899142.6afqt18494728n: 15"
-  },
-  {
-    "objectID": "explore-data/eda/eda-doc.html#desc.-stat.-ex.-my_heights-1",
-    "href": "explore-data/eda/eda-doc.html#desc.-stat.-ex.-my_heights-1",
-    "title": "Exploratory Data Analysis (EDA)",
-    "section": "Desc. Stat. ex. my_heights",
-    "text": "Desc. Stat. ex. my_heights\n\n\nmarried/unmarried men\n\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'male') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\nTable 5: Difference between married an unmarried men.\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxcharactercharactercharactercharactercharactercharactercharactercharactermarried: Noincome149732122505200045000343830height1497703.155687284weight14922004294170222524age1497512.247495356education1494122.21121420afqt1426342801055100married: Yesincome1905703177717102800083000343830height1905702.957687281weight190020739103180228480age1905512.347495356education1902142.72121620afqt1822483002174100n: 15"
-  },
-  {
-    "objectID": "explore-data/eda/eda-doc.html#less-info.-marriedunmarried-men",
-    "href": "explore-data/eda/eda-doc.html#less-info.-marriedunmarried-men",
-    "title": "Exploratory Data Analysis (EDA)",
-    "section": "Less info. married/unmarried men",
-    "text": "Less info. married/unmarried men\n\n\n\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'male') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    summ = c(\"notNA(x)\" , \"mean(x)\", \n             \"sd(x)\"),\n    summ.names = c(\"N\", \"Mean\", \"SD\"),\n    out = \"return\"\n    )\n```\n\n\n\n\nWarning in vtable::st(., group = \"married\", group.long = TRUE, summ = c(\"notNA(x)\", : Factor variables ignore custom summ options. Cols 1 and 2 are count and percentage.\nBeware combining factors with a custom summ unless factor.numeric = TRUE.\n\n\n\n\nTable 6: Difference between married an unmarried men. Simplified table.\n\n\n\nVariableNMeanSDcharactercharactercharactercharactermarried: Noincome14973212250520height1497703.1weight149220042age1497512.2education1494122.2afqt14263428married: Yesincome19057031777171height1905702.9weight190020739age1905512.3education1902142.7afqt18224830n: 15"
-  },
-  {
-    "objectID": "explore-data/eda/eda-doc.html#references",
-    "href": "explore-data/eda/eda-doc.html#references",
-    "title": "Exploratory Data Analysis (EDA)",
-    "section": "References",
-    "text": "References\n\n\n\nMSB105\n\n\n\n\nAuguie, Baptiste. 2017. gridExtra: Miscellaneous Functions for \"Grid\" Graphics. https://CRAN.R-project.org/package=gridExtra.\n\n\nGohel, David, and Panagiotis Skintzos. 2024. Flextable: Functions for Tabular Reporting. https://ardata-fr.github.io/flextable-book/.\n\n\nHuntington-Klein, Nick. 2023. Vtable: Variable Table for Variable Documentation. https://nickch-k.github.io/vtable/.\n\n\nWickham, Hadley. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2023a. Modelr: Modelling Functions That Work with the Pipe. https://modelr.tidyverse.org.\n\n\n———. 2023b. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686.\n\n\nYu, Guangchuang. 2023. Ggplotify: Convert Plot to Grob or Ggplot Object. https://github.com/GuangchuangYu/ggplotify."
-  },
-  {
-    "objectID": "wrangle-data/tidy-data/tidy-data.html#case-who-cont.",
-    "href": "wrangle-data/tidy-data/tidy-data.html#case-who-cont.",
-    "title": "Tidy Data",
-    "section": "Case; who cont.",
-    "text": "Case; who cont.\n\n\nCode\n# find type of vector with a pipe\ntypeof_who &lt;- who %&gt;% map(typeof) %&gt;% unlist()\n# print typeof_who\ntypeof_who\n\n\n     country         iso2         iso3         year  new_sp_m014 new_sp_m1524 \n \"character\"  \"character\"  \"character\"     \"double\"     \"double\"     \"double\" \nnew_sp_m2534 new_sp_m3544 new_sp_m4554 new_sp_m5564   new_sp_m65  new_sp_f014 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_sp_f1524 new_sp_f2534 new_sp_f3544 new_sp_f4554 new_sp_f5564   new_sp_f65 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \n new_sn_m014 new_sn_m1524 new_sn_m2534 new_sn_m3544 new_sn_m4554 new_sn_m5564 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \n  new_sn_m65  new_sn_f014 new_sn_f1524 new_sn_f2534 new_sn_f3544 new_sn_f4554 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_sn_f5564   new_sn_f65  new_ep_m014 new_ep_m1524 new_ep_m2534 new_ep_m3544 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_ep_m4554 new_ep_m5564   new_ep_m65  new_ep_f014 new_ep_f1524 new_ep_f2534 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_ep_f3544 new_ep_f4554 new_ep_f5564   new_ep_f65  newrel_m014 newrel_m1524 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnewrel_m2534 newrel_m3544 newrel_m4554 newrel_m5564   newrel_m65  newrel_f014 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnewrel_f1524 newrel_f2534 newrel_f3544 newrel_f4554 newrel_f5564   newrel_f65 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\""
-  },
-  {
-    "objectID": "wrangle-data/tidy-data/tidy-data.html#case-who-cont.-1",
-    "href": "wrangle-data/tidy-data/tidy-data.html#case-who-cont.-1",
-    "title": "Tidy Data",
-    "section": "Case; who cont.",
-    "text": "Case; who cont.\n\n\nCode\n# tabulate typeof_who\ntable(typeof_who)\n\n\ntypeof_who\ncharacter    double \n        3        57 \n\n\n\nThree variables are of type character, 57 of type integer\nVariable names might be values"
   }
 ]

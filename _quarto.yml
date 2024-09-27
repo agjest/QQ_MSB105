@@ -4,7 +4,7 @@ project:
     - introduction/reproducibility/reproducibility.bib
 
 website:
-  title: "MSB105"
+  title: "Data Science"
   navbar:
     background: primary
     left:
