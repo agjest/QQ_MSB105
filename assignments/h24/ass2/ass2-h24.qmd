@@ -196,10 +196,11 @@ Vi kan så bruke `st()` fra `vtable` og `as_flextable()` fra `flextable` for å 
 #| label: tbl-desc-stat
 #| tbl-cap: "Deskreptiv statistikk for datasettet `modelr::heights`."
 #| lst-label: lst-heights-st
-#| lst-cap: "Kode for å generere deskreptiv-statistikk tabell vha. funksjonene 
-#| `st()` og `as_flextable()`. Merk bruken av «hash pipes». Her setter vi 
-#| label og caption for både kode-listing og resulterende tabell. Hvis 
-#| det var en figur vi genererte ville vi byttet ut `tbl-` med `fig-`."
+#| lst-cap: "Kode for å generere deskreptiv-statistikk tabell vha. 
+#| funksjonene `st()` og `as_flextable()`. Merk bruken av 
+#| «hash pipes». Her setter vi label og caption for både kode-listing
+#|  og resulterende tabell. Hvis det var en figur vi genererte 
+#|  ville vi byttet ut `tbl-` med `fig-`."
 #| echo: fenced
 heights |> 
   st(out = "return") |> 
@@ -243,7 +244,8 @@ vi bare skiller mellom kategorien `not_hs` («Not High School Exam»; 0 $\leq$ e
 
 ```{r}
 #| lst-label: lst-edu-fac
-#| lst-cap: "I samme mutate lager vi også variabelen edu_fac ved å kutte education opp i fire intervaller"
+#| lst-cap: "I samme mutate lager vi også variabelen edu_fac ved 
+#| å kutte education opp i fire intervaller"
 #| echo: true
 #| eval: false
 edu_fac = cut_interval(
@@ -259,7 +261,8 @@ Det kan være hensiktmessig å samle kategorivariablene lengst til høyre i data
 
 ```{r}
 #| lst-label: lst-move-vars
-#| lst-cap: "Endrer rekkefølgen på variablene s.a. kategorivariablene samles lengst til høyre i datasettet."
+#| lst-cap: "Endrer rekkefølgen på variablene s.a. 
+#| kategorivariablene samles lengst til høyre i datasettet."
 #| echo: true
 #| eval: false
 select(income:age, education:bmi, everything())
@@ -269,7 +272,8 @@ Vi kommer ikke til å bruke variablene `education` og `marital` så disse droppe
 
 ```{r}
 #| lst-label: lst-drop-vars
-#| lst-cap: "Vi skal ikke benytte variablene `marital` og `education` så disse droppes fra datasettet."
+#| lst-cap: "Vi skal ikke benytte variablene `marital` og `education`
+#|  så disse droppes fra datasettet."
 #| echo: true
 #| eval: false
 select(-education, -marital)
@@ -305,7 +309,8 @@ Vi vil analysere `heights_inc_norm` grundigst og så sjekke eventuelle funn opp 
 
 ```{r}
 #| lst-label: lst-3-subsets
-#| lst-cap: "Vi deler `hoyde` inn i tre «subsets». Datasettet `hoydeNormInc` er det vi vil konsentrere oss om."
+#| lst-cap: "Vi deler `hoyde` inn i tre «subsets». Datasettet 
+#| `hoydeNormInc` er det vi vil konsentrere oss om."
 #| echo: true
 # Inntekt lik 0
 heightsZeroInc <- heights |> 
@@ -428,8 +433,10 @@ Så genererer vi histogram og overliggende empirisk fordeling tegnet utfra gjenn
 ```{r}
 #| echo: fenced
 #| label: fig-hist
-#| fig-cap: "Histogram av høyde fordelt på kjønn, kvinner er mørk grå mens menn er lysere grå. I tillegg er normalfordeling 
-#| for observert gjennomsnitt og standard-avvik, også fordelt på kjønn, tegnet inn."
+#| fig-cap: "Histogram av høyde fordelt på kjønn, kvinner er mørk grå 
+#| mens menn er lysere grå. I tillegg er normalfordeling 
+#| for observert gjennomsnitt og standard-avvik, også fordelt på 
+#| kjønn, tegnet inn."
 #| lst-label: st-hist
 #| lst-cap: "Kode for å generer histogrammer for høyde for hhv. menn og 
 #| kvinner med inntegnet normalfordelingskurve (tetthetsfunksjon). 
