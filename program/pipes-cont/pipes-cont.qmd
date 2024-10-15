@@ -55,7 +55,7 @@ knitr::write_bib(
 -   Comes from the package `magrittr`
     -   `%>%` also defined in `tidyverse`
     -   `magrittr` also define `%$%` and `%T>%` (must do
-        `libray(magrittr)` to use them)
+        `library(magrittr)` to use them)
 
 ## Define *my_df*
 
