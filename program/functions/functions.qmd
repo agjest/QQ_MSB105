@@ -98,7 +98,7 @@ pasted a block of code more than twice"
 -   Inside function all variables defined are local
 -   If variable is not defined R will look outside function (the
     environment where function was defined)
-    -   Most programming language would give an error
+    -   Most programming languages would give an error
     -   Why we in the heights assignment could calculate mean and sd for
         male and female and then use them in a pipe to draw different
         distributions for male and female.
@@ -326,16 +326,16 @@ show_head_tail <- function(df_or_vec, n = 3) {
     stopifnot(is.data.frame(df_or_vec) | is.vector(df_or_vec))
   h = head(df_or_vec, n = n)
   t = tail(df_or_vec, n = n)
-  if(is.vector(df_or_vec)) {
-    # vectors
+  if (is.vector(df_or_vec)) {
+    # vector
     c = length(df_or_vec)
     snr_na = sum(is.na(df_or_vec))
     nh = as.character(1:n)
-    nt = as.character((c-(n-1)):c)
+    nt = as.character((c - (n - 1)):c)
     rbind(element_head = nh, vec_head = h, 
           element_tail = nt, vec_tail = t, num._of_NAs = c(snr_na, rep("-", n - 1)))
   } else {
-    # dataframes
+    # dataframe
     c = dim(df_or_vec)[2]
     l = dim(df_or_vec)[1]
     rh = rep("Head", c)
@@ -450,5 +450,11 @@ show_head_tail_df(tmp, n = 2)
 ```{r}
 show_head_tail(tmp, n = 4)
 ```
+
+## Further developments
+
+-   Add an argument to select how many digits should be printed
+-   Use the `round(digits = )` function to do the job
+-   Add argument to select output as a nice flextable
 
 ## References

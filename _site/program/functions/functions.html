@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.549">
 
   <meta name="author" content="ag">
-  <title>MSB105 - Functions</title>
+  <title>Data Science - Functions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -520,7 +520,7 @@ ag
 <li class="fragment">Inside function all variables defined are local</li>
 <li class="fragment">If variable is not defined R will look outside function (the environment where function was defined)
 <ul>
-<li class="fragment">Most programming language would give an error</li>
+<li class="fragment">Most programming languages would give an error</li>
 <li class="fragment">Why we in the heights assignment could calculate mean and sd for male and female and then use them in a pipe to draw different distributions for male and female.</li>
 <li class="fragment">The values for mean and sd was not available in the pipe, but when R could not find them it looked outside the pipe.</li>
 </ul></li>
@@ -875,16 +875,16 @@ vec_tail 103.52717  94.39518</code></pre>
 <span id="cb33-2"><a></a>    <span class="fu">stopifnot</span>(<span class="fu">is.data.frame</span>(df_or_vec) <span class="sc">|</span> <span class="fu">is.vector</span>(df_or_vec))</span>
 <span id="cb33-3"><a></a>  h <span class="ot">=</span> <span class="fu">head</span>(df_or_vec, <span class="at">n =</span> n)</span>
 <span id="cb33-4"><a></a>  t <span class="ot">=</span> <span class="fu">tail</span>(df_or_vec, <span class="at">n =</span> n)</span>
-<span id="cb33-5"><a></a>  <span class="cf">if</span>(<span class="fu">is.vector</span>(df_or_vec)) {</span>
-<span id="cb33-6"><a></a>    <span class="co"># vectors</span></span>
+<span id="cb33-5"><a></a>  <span class="cf">if</span> (<span class="fu">is.vector</span>(df_or_vec)) {</span>
+<span id="cb33-6"><a></a>    <span class="co"># vector</span></span>
 <span id="cb33-7"><a></a>    c <span class="ot">=</span> <span class="fu">length</span>(df_or_vec)</span>
 <span id="cb33-8"><a></a>    snr_na <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(df_or_vec))</span>
 <span id="cb33-9"><a></a>    nh <span class="ot">=</span> <span class="fu">as.character</span>(<span class="dv">1</span><span class="sc">:</span>n)</span>
-<span id="cb33-10"><a></a>    nt <span class="ot">=</span> <span class="fu">as.character</span>((c<span class="sc">-</span>(n<span class="dv">-1</span>))<span class="sc">:</span>c)</span>
+<span id="cb33-10"><a></a>    nt <span class="ot">=</span> <span class="fu">as.character</span>((c <span class="sc">-</span> (n <span class="sc">-</span> <span class="dv">1</span>))<span class="sc">:</span>c)</span>
 <span id="cb33-11"><a></a>    <span class="fu">rbind</span>(<span class="at">element_head =</span> nh, <span class="at">vec_head =</span> h, </span>
 <span id="cb33-12"><a></a>          <span class="at">element_tail =</span> nt, <span class="at">vec_tail =</span> t, <span class="at">num._of_NAs =</span> <span class="fu">c</span>(snr_na, <span class="fu">rep</span>(<span class="st">"-"</span>, n <span class="sc">-</span> <span class="dv">1</span>)))</span>
 <span id="cb33-13"><a></a>  } <span class="cf">else</span> {</span>
-<span id="cb33-14"><a></a>    <span class="co"># dataframes</span></span>
+<span id="cb33-14"><a></a>    <span class="co"># dataframe</span></span>
 <span id="cb33-15"><a></a>    c <span class="ot">=</span> <span class="fu">dim</span>(df_or_vec)[<span class="dv">2</span>]</span>
 <span id="cb33-16"><a></a>    l <span class="ot">=</span> <span class="fu">dim</span>(df_or_vec)[<span class="dv">1</span>]</span>
 <span id="cb33-17"><a></a>    rh <span class="ot">=</span> <span class="fu">rep</span>(<span class="st">"Head"</span>, c)</span>
@@ -1091,6 +1091,14 @@ num._of_NAs  "3"                "-"               </code></pre>
 12                       1                3                0</code></pre>
 </div>
 </div>
+</section>
+<section id="further-developments" class="slide level2">
+<h2>Further developments</h2>
+<ul>
+<li class="fragment">Add an argument to select how many digits should be printed</li>
+<li class="fragment">Use the <code>round(digits = )</code> function to do the job</li>
+<li class="fragment">Add argument to select output as a nice flextable</li>
+</ul>
 </section>
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>

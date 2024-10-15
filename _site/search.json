@@ -8642,7 +8642,7 @@
     "href": "program/functions/functions.html#environment",
     "title": "Functions",
     "section": "Environment",
-    "text": "Environment\n\nInside function all variables defined are local\nIf variable is not defined R will look outside function (the environment where function was defined)\n\nMost programming language would give an error\nWhy we in the heights assignment could calculate mean and sd for male and female and then use them in a pipe to draw different distributions for male and female.\nThe values for mean and sd was not available in the pipe, but when R could not find them it looked outside the pipe."
+    "text": "Environment\n\nInside function all variables defined are local\nIf variable is not defined R will look outside function (the environment where function was defined)\n\nMost programming languages would give an error\nWhy we in the heights assignment could calculate mean and sd for male and female and then use them in a pipe to draw different distributions for male and female.\nThe values for mean and sd was not available in the pipe, but when R could not find them it looked outside the pipe."
   },
   {
     "objectID": "program/functions/functions.html#if-else-if-and-else",
@@ -8761,7 +8761,7 @@
     "href": "program/functions/functions.html#example-full-show_head_tail-1",
     "title": "Functions",
     "section": "Example; Full show_head_tail()",
-    "text": "Example; Full show_head_tail()\n\n\nCode\nshow_head_tail &lt;- function(df_or_vec, n = 3) {\n    stopifnot(is.data.frame(df_or_vec) | is.vector(df_or_vec))\n  h = head(df_or_vec, n = n)\n  t = tail(df_or_vec, n = n)\n  if(is.vector(df_or_vec)) {\n    # vectors\n    c = length(df_or_vec)\n    snr_na = sum(is.na(df_or_vec))\n    nh = as.character(1:n)\n    nt = as.character((c-(n-1)):c)\n    rbind(element_head = nh, vec_head = h, \n          element_tail = nt, vec_tail = t, num._of_NAs = c(snr_na, rep(\"-\", n - 1)))\n  } else {\n    # dataframes\n    c = dim(df_or_vec)[2]\n    l = dim(df_or_vec)[1]\n    rh = rep(\"Head\", c)\n    rt = rep(\"Tail\", c)\n    nna = rep(\"NAs\", c)\n    snr_na = apply(df_or_vec, MARGIN = 2, FUN = function(x) sum(is.na(x)))\n    ht = rbind(rh, h, rt, t, nna, snr_na)\n    ht_row = c(\"\", 1:n, \"\", (l - (n - 1)):l, \"\", \"\")\n    cbind(ht_row, ht)\n  }\n}"
+    "text": "Example; Full show_head_tail()\n\n\nCode\nshow_head_tail &lt;- function(df_or_vec, n = 3) {\n    stopifnot(is.data.frame(df_or_vec) | is.vector(df_or_vec))\n  h = head(df_or_vec, n = n)\n  t = tail(df_or_vec, n = n)\n  if (is.vector(df_or_vec)) {\n    # vector\n    c = length(df_or_vec)\n    snr_na = sum(is.na(df_or_vec))\n    nh = as.character(1:n)\n    nt = as.character((c - (n - 1)):c)\n    rbind(element_head = nh, vec_head = h, \n          element_tail = nt, vec_tail = t, num._of_NAs = c(snr_na, rep(\"-\", n - 1)))\n  } else {\n    # dataframe\n    c = dim(df_or_vec)[2]\n    l = dim(df_or_vec)[1]\n    rh = rep(\"Head\", c)\n    rt = rep(\"Tail\", c)\n    nna = rep(\"NAs\", c)\n    snr_na = apply(df_or_vec, MARGIN = 2, FUN = function(x) sum(is.na(x)))\n    ht = rbind(rh, h, rt, t, nna, snr_na)\n    ht_row = c(\"\", 1:n, \"\", (l - (n - 1)):l, \"\", \"\")\n    cbind(ht_row, ht)\n  }\n}"
   },
   {
     "objectID": "program/functions/functions.html#testing-1",
@@ -8979,5 +8979,12 @@
     "title": "Assignments h23",
     "section": "",
     "text": "Assignment 2 h24"
+  },
+  {
+    "objectID": "program/functions/functions.html#further-developments",
+    "href": "program/functions/functions.html#further-developments",
+    "title": "Functions",
+    "section": "Further developments",
+    "text": "Further developments\n\nAdd an argument to select how many digits should be printed\nUse the round(digits = ) function to do the job\nAdd argument to select output as a nice flextable"
   }
 ]
