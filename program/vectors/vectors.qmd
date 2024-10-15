@@ -51,7 +51,7 @@ knitr::write_bib(
 
 ## Define *my_df* and *my_dates*
 
--   define `my_df` and `my_dates` from previous lecture (code not shown)
+-   define `my_df` and `my_dates` from previous lecture
 
 . . .
 
@@ -95,7 +95,7 @@ my_dates <- tibble(
     -   Date and date-times built on double
     -   dataframes/tibbles built on lists
 -   dataframes/tibbles are lists of vectors of the same length. The
-    vectors can be of different type
+    vectors can be of different types.
 
 ## Vector properties; code
 
@@ -117,10 +117,13 @@ str(my_df)
     -   Classic example: `sum(is.na(x))`. `is.na(x)` returns TRUE or
         FALSE. `sum()` expect numeric input. TRUE and FALSE are
         converted on the fly to their numeric representations 1 and 0.
+
+## More about vectors cont.
+
 -   Do not use implicit conversion from integer to logical.
     -   Example: `if (length(x)) {}`
     -   Means: do something if length of x is not 0
-    -   It works, but harder to understand
+    -   It works, but is harder to understand
     -   Instead use: `if (length(x) > 0) {}`
 -   General rule: **The most complex type wins.**
 
@@ -152,12 +155,15 @@ x
 # remove the names with set_names
 x <- purrr::set_names(x, nm = NULL)
 x
+```
+
+## Naming elements in vector cont.
+
+```{r}
 # set names again
 x <- purrr::set_names(x, nm = c("a", "b", "c", "d"))
 x
 ```
-
-## Naming elements in vector
 
 ```{r}
 # remove names
@@ -167,6 +173,11 @@ x
 x <- set_names(x, letters[1:4])
 x
 names(x) # get the names
+```
+
+## Naming elements in vector cont.
+
+```{r}
 # change one name
 names(x)[[2]] <- "B"
 x

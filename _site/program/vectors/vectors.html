@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.549">
 
   <meta name="author" content="ag">
-  <title>MSB105 - Vectors</title>
+  <title>Data Science - Vectors</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -457,7 +457,7 @@ ag
 <section id="define-my_df-and-my_dates" class="slide level2">
 <h2>Define <em>my_df</em> and <em>my_dates</em></h2>
 <ul>
-<li class="fragment">define <code>my_df</code> and <code>my_dates</code> from previous lecture (code not shown)</li>
+<li class="fragment">define <code>my_df</code> and <code>my_dates</code> from previous lecture</li>
 </ul>
 <div class="fragment">
 <div class="cell">
@@ -511,7 +511,7 @@ ag
 <li class="fragment">Date and date-times built on double</li>
 <li class="fragment">dataframes/tibbles built on lists</li>
 </ul></li>
-<li class="fragment">dataframes/tibbles are lists of vectors of the same length. The vectors can be of different type</li>
+<li class="fragment">dataframes/tibbles are lists of vectors of the same length. The vectors can be of different types.</li>
 </ul>
 </section>
 <section id="vector-properties-code" class="slide level2">
@@ -556,11 +556,16 @@ ag
 <ul>
 <li class="fragment">Classic example: <code>sum(is.na(x))</code>. <code>is.na(x)</code> returns TRUE or FALSE. <code>sum()</code> expect numeric input. TRUE and FALSE are converted on the fly to their numeric representations 1 and 0.</li>
 </ul></li>
+</ul>
+</section>
+<section id="more-about-vectors-cont." class="slide level2">
+<h2>More about vectors cont.</h2>
+<ul>
 <li class="fragment">Do not use implicit conversion from integer to logical.
 <ul>
 <li class="fragment">Example: <code>if (length(x)) {}</code></li>
 <li class="fragment">Means: do something if length of x is not 0</li>
-<li class="fragment">It works, but harder to understand</li>
+<li class="fragment">It works, but is harder to understand</li>
 <li class="fragment">Instead use: <code>if (length(x) &gt; 0) {}</code></li>
 </ul></li>
 <li class="fragment">General rule: <strong>The most complex type wins.</strong></li>
@@ -638,6 +643,12 @@ ag
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 2 3 4</code></pre>
 </div>
+</div>
+</div>
+</section>
+<section id="naming-elements-in-vector-cont." class="slide level2">
+<h2>Naming elements in vector cont.</h2>
+<div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="co"># set names again</span></span>
@@ -649,10 +660,6 @@ ag
 1 2 3 4 </code></pre>
 </div>
 </div>
-</div>
-</section>
-<section id="naming-elements-in-vector-1" class="slide level2">
-<h2>Naming elements in vector</h2>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -680,6 +687,11 @@ ag
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "a" "b" "c" "d"</code></pre>
 </div>
+</div>
+</section>
+<section id="naming-elements-in-vector-cont.-1" class="slide level2">
+<h2>Naming elements in vector cont.</h2>
+<div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="co"># change one name</span></span>

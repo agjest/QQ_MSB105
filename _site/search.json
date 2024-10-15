@@ -291,7 +291,7 @@
     "href": "program/vectors/vectors.html#define-my_df-and-my_dates",
     "title": "Vectors",
     "section": "Define my_df and my_dates",
-    "text": "Define my_df and my_dates\n\ndefine my_df and my_dates from previous lecture (code not shown)\n\n\n\n\nCode\nset.seed(333)\nmy_df &lt;- tibble(\n  x = rnorm(10, mean = 100, sd = 10),\n  y = runif(10, min = 30, max = 130),\n  z = rlnorm(10, 2, 2)\n)\nset.seed(1234)\nmy_dates &lt;- tibble(\n  y = 1999:2008,\n  m = sample(1:12, size = 10, replace = TRUE),\n  # make it simple, seed 1234 gives no impossible date\n  d = sample(1:31, size = 10, replace = TRUE),\n  date = make_date(year = y, month = m, day = d)\n)"
+    "text": "Define my_df and my_dates\n\ndefine my_df and my_dates from previous lecture\n\n\n\n\nCode\nset.seed(333)\nmy_df &lt;- tibble(\n  x = rnorm(10, mean = 100, sd = 10),\n  y = runif(10, min = 30, max = 130),\n  z = rlnorm(10, 2, 2)\n)\nset.seed(1234)\nmy_dates &lt;- tibble(\n  y = 1999:2008,\n  m = sample(1:12, size = 10, replace = TRUE),\n  # make it simple, seed 1234 gives no impossible date\n  d = sample(1:31, size = 10, replace = TRUE),\n  date = make_date(year = y, month = m, day = d)\n)"
   },
   {
     "objectID": "program/vectors/vectors.html#vectors",
@@ -305,7 +305,7 @@
     "href": "program/vectors/vectors.html#vector-properties",
     "title": "Vectors",
     "section": "Vector properties",
-    "text": "Vector properties\n\ntype, check type with typeof(my_df$x)\nlength, get length with length(my_df$x) &gt; - has no dimension so dim(my_df$x) will give an error\naugmented vectors, attributes used to give additional behaviour\n\nfactors built on integer\nDate and date-times built on double\ndataframes/tibbles built on lists\n\ndataframes/tibbles are lists of vectors of the same length. The vectors can be of different type"
+    "text": "Vector properties\n\ntype, check type with typeof(my_df$x)\nlength, get length with length(my_df$x) &gt; - has no dimension so dim(my_df$x) will give an error\naugmented vectors, attributes used to give additional behaviour\n\nfactors built on integer\nDate and date-times built on double\ndataframes/tibbles built on lists\n\ndataframes/tibbles are lists of vectors of the same length. The vectors can be of different types."
   },
   {
     "objectID": "program/vectors/vectors.html#vector-properties-code",
@@ -319,7 +319,7 @@
     "href": "program/vectors/vectors.html#more-about-vectors",
     "title": "Vectors",
     "section": "More about vectors",
-    "text": "More about vectors\n\nCoercion, conversion from one type to another\nExplicit: we convert with functions lik as.logical(), as.integer(), as.numeric(), as.double() and as.character()\n\nNote! Many also have a new implementation in tidyverse.\ntidyverse versions start with as_, i.e. _ instead of .\n\nImplicit: use a vector in a context that demands a certain type of vector.\n\nClassic example: sum(is.na(x)). is.na(x) returns TRUE or FALSE. sum() expect numeric input. TRUE and FALSE are converted on the fly to their numeric representations 1 and 0.\n\nDo not use implicit conversion from integer to logical.\n\nExample: if (length(x)) {}\nMeans: do something if length of x is not 0\nIt works, but harder to understand\nInstead use: if (length(x) &gt; 0) {}\n\nGeneral rule: The most complex type wins."
+    "text": "More about vectors\n\nCoercion, conversion from one type to another\nExplicit: we convert with functions lik as.logical(), as.integer(), as.numeric(), as.double() and as.character()\n\nNote! Many also have a new implementation in tidyverse.\ntidyverse versions start with as_, i.e. _ instead of .\n\nImplicit: use a vector in a context that demands a certain type of vector.\n\nClassic example: sum(is.na(x)). is.na(x) returns TRUE or FALSE. sum() expect numeric input. TRUE and FALSE are converted on the fly to their numeric representations 1 and 0."
   },
   {
     "objectID": "program/vectors/vectors.html#some-examples",
@@ -333,7 +333,7 @@
     "href": "program/vectors/vectors.html#naming-elements-in-vector",
     "title": "Vectors",
     "section": "Naming elements in vector",
-    "text": "Naming elements in vector\n\nClassic R names()\nMore modern: purrr:set_names() (imported from rlang)\n\n\n\n\nCode\n(x &lt;- 1:4)\n\n\n[1] 1 2 3 4\n\n\nCode\n# set names by naming the element\nx &lt;- c(a = 1, b = 2, c = 3, d = 4)\nx\n\n\na b c d \n1 2 3 4 \n\n\nCode\n# remove the names with set_names\nx &lt;- purrr::set_names(x, nm = NULL)\nx\n\n\n[1] 1 2 3 4\n\n\nCode\n# set names again\nx &lt;- purrr::set_names(x, nm = c(\"a\", \"b\", \"c\", \"d\"))\nx\n\n\na b c d \n1 2 3 4"
+    "text": "Naming elements in vector\n\nClassic R names()\nMore modern: purrr:set_names() (imported from rlang)\n\n\n\n\nCode\n(x &lt;- 1:4)\n\n\n[1] 1 2 3 4\n\n\nCode\n# set names by naming the element\nx &lt;- c(a = 1, b = 2, c = 3, d = 4)\nx\n\n\na b c d \n1 2 3 4 \n\n\nCode\n# remove the names with set_names\nx &lt;- purrr::set_names(x, nm = NULL)\nx\n\n\n[1] 1 2 3 4"
   },
   {
     "objectID": "program/vectors/vectors.html#naming-elements-in-vector-1",
@@ -8986,5 +8986,26 @@
     "title": "Functions",
     "section": "Further developments",
     "text": "Further developments\n\nAdd an argument to select how many digits should be printed\nUse the round(digits = ) function to do the job\nAdd argument to select output as a nice flextable"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#more-about-vectors-cont.",
+    "href": "program/vectors/vectors.html#more-about-vectors-cont.",
+    "title": "Vectors",
+    "section": "More about vectors cont.",
+    "text": "More about vectors cont.\n\nDo not use implicit conversion from integer to logical.\n\nExample: if (length(x)) {}\nMeans: do something if length of x is not 0\nIt works, but is harder to understand\nInstead use: if (length(x) &gt; 0) {}\n\nGeneral rule: The most complex type wins."
+  },
+  {
+    "objectID": "program/vectors/vectors.html#naming-elements-in-vector-cont.",
+    "href": "program/vectors/vectors.html#naming-elements-in-vector-cont.",
+    "title": "Vectors",
+    "section": "Naming elements in vector cont.",
+    "text": "Naming elements in vector cont.\n\n\nCode\n# set names again\nx &lt;- purrr::set_names(x, nm = c(\"a\", \"b\", \"c\", \"d\"))\nx\n\n\na b c d \n1 2 3 4 \n\n\n\n\nCode\n# remove names\nnames(x) &lt;- NULL\nx\n\n\n[1] 1 2 3 4\n\n\nCode\n# set names again\nx &lt;- set_names(x, letters[1:4])\nx\n\n\na b c d \n1 2 3 4 \n\n\nCode\nnames(x) # get the names\n\n\n[1] \"a\" \"b\" \"c\" \"d\""
+  },
+  {
+    "objectID": "program/vectors/vectors.html#naming-elements-in-vector-cont.-1",
+    "href": "program/vectors/vectors.html#naming-elements-in-vector-cont.-1",
+    "title": "Vectors",
+    "section": "Naming elements in vector cont.",
+    "text": "Naming elements in vector cont.\n\n\nCode\n# change one name\nnames(x)[[2]] &lt;- \"B\"\nx\n\n\na B c d \n1 2 3 4"
   }
 ]
