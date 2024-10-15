@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nb-no" xml:lang="nb-no"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Science - Er det høyde som bestemmer inntekt?</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Ingen resultater",
+    "search-matching-documents-text": "Samsvarende dokumenter",
+    "search-copy-link-title": "Kopier link for å søke",
+    "search-hide-matches-text": "Skjul ytterlige resultater",
+    "search-more-match-text": "annet resultat i dette dokumentet",
+    "search-more-matches-text": "andre resultater i dette dokumentet",
+    "search-clear-button-title": "Tøm",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Avbryt",
+    "search-submit-button-title": "Send inn",
+    "search-label": "Søk"
+  }
+}</script>
+<link href="../../../site_libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="../../../site_libs/tabwid-1.1.3/tabwid.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Data Science</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Søk"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Slå på navigering" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">MSB105</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../introduction/introduction.html"> 
+<span class="menu-text">Introduction</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../explore-data/explore-data.html"> 
+<span class="menu-text">Explore Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../wrangle-data/wrangle-data.html"> 
+<span class="menu-text">Data Wrangling</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../program/program.html"> 
+<span class="menu-text">Program</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../model/model.html"> 
+<span class="menu-text">Model</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../assignments/assignments.html"> 
+<span class="menu-text">Assignments</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">På denne siden</h2>
+   
+  <ul>
+  <li><a href="#oppgaven" id="toc-oppgaven" class="nav-link active" data-scroll-target="#oppgaven"><span class="header-section-number">1</span> Oppgaven</a>
+  <ul class="collapse">
+  <li><a href="#arbeidsform" id="toc-arbeidsform" class="nav-link" data-scroll-target="#arbeidsform"><span class="header-section-number">1.0.1</span> Arbeidsform</a></li>
+  <li><a href="#levering" id="toc-levering" class="nav-link" data-scroll-target="#levering"><span class="header-section-number">1.0.2</span> Levering</a></li>
+  <li><a href="#her-er-noe-litteratur-som-kan-være-et-utgangspunkt" id="toc-her-er-noe-litteratur-som-kan-være-et-utgangspunkt" class="nav-link" data-scroll-target="#her-er-noe-litteratur-som-kan-være-et-utgangspunkt"><span class="header-section-number">1.1</span> Her er noe litteratur som kan være et utgangspunkt:</a>
+  <ul class="collapse">
+  <li><a href="#sammenhengen-mellom-inntekt-og-høyde-og-mellom-inntekt-og-utdanning" id="toc-sammenhengen-mellom-inntekt-og-høyde-og-mellom-inntekt-og-utdanning" class="nav-link" data-scroll-target="#sammenhengen-mellom-inntekt-og-høyde-og-mellom-inntekt-og-utdanning"><span class="header-section-number">1.1.1</span> Sammenhengen mellom inntekt og høyde og mellom inntekt og utdanning</a></li>
+  <li><a href="#sammenhengen-mellom-inntekt-og-kjønn" id="toc-sammenhengen-mellom-inntekt-og-kjønn" class="nav-link" data-scroll-target="#sammenhengen-mellom-inntekt-og-kjønn"><span class="header-section-number">1.1.2</span> Sammenhengen mellom inntekt og kjønn</a></li>
+  <li><a href="#sammenhengen-mellom-inntekt-og-ansiennitet-alder" id="toc-sammenhengen-mellom-inntekt-og-ansiennitet-alder" class="nav-link" data-scroll-target="#sammenhengen-mellom-inntekt-og-ansiennitet-alder"><span class="header-section-number">1.1.3</span> Sammenhengen mellom inntekt og ansiennitet (alder):</a></li>
+  <li><a href="#sammenhengen-inntekt-og-evnenivå-afqt" id="toc-sammenhengen-inntekt-og-evnenivå-afqt" class="nav-link" data-scroll-target="#sammenhengen-inntekt-og-evnenivå-afqt"><span class="header-section-number">1.1.4</span> Sammenhengen inntekt og evnenivå (afqt):</a></li>
+  <li><a href="#sammenhengen-mellom-inntekt-og-sivilstand-giftugift" id="toc-sammenhengen-mellom-inntekt-og-sivilstand-giftugift" class="nav-link" data-scroll-target="#sammenhengen-mellom-inntekt-og-sivilstand-giftugift"><span class="header-section-number">1.1.5</span> Sammenhengen mellom inntekt og sivilstand (gift/ugift ):</a></li>
+  <li><a href="#sammenheng-mellom-inntekt-og-bmi-body-mass-index" id="toc-sammenheng-mellom-inntekt-og-bmi-body-mass-index" class="nav-link" data-scroll-target="#sammenheng-mellom-inntekt-og-bmi-body-mass-index"><span class="header-section-number">1.1.6</span> Sammenheng mellom inntekt og bmi (body mass index):</a></li>
+  </ul></li>
+  <li><a href="#beskrivelse-av-data" id="toc-beskrivelse-av-data" class="nav-link" data-scroll-target="#beskrivelse-av-data"><span class="header-section-number">1.2</span> Beskrivelse av data</a></li>
+  </ul></li>
+  <li><a href="#kode" id="toc-kode" class="nav-link" data-scroll-target="#kode"><span class="header-section-number">2</span> Kode</a>
+  <ul class="collapse">
+  <li><a href="#gjennomgang-av-koden" id="toc-gjennomgang-av-koden" class="nav-link" data-scroll-target="#gjennomgang-av-koden"><span class="header-section-number">2.1</span> Gjennomgang av koden</a></li>
+  <li><a href="#splitter-i-tre-datasett" id="toc-splitter-i-tre-datasett" class="nav-link" data-scroll-target="#splitter-i-tre-datasett"><span class="header-section-number">2.2</span> Splitter i tre datasett</a></li>
+  <li><a href="#scatterplot-for-høyde-og-inntekt" id="toc-scatterplot-for-høyde-og-inntekt" class="nav-link" data-scroll-target="#scatterplot-for-høyde-og-inntekt"><span class="header-section-number">2.3</span> Scatterplot for høyde og inntekt</a></li>
+  <li><a href="#lage-histogram-for-to-subsets" id="toc-lage-histogram-for-to-subsets" class="nav-link" data-scroll-target="#lage-histogram-for-to-subsets"><span class="header-section-number">2.4</span> Lage histogram for to subsets</a></li>
+  <li><a href="#referanser" id="toc-referanser" class="nav-link" data-scroll-target="#referanser"><span class="header-section-number">2.5</span> Referanser</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Andre formater</h2><ul><li><a href="ass2-h24.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="ass2-h24.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Er det høyde som bestemmer inntekt?</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="oppgaven" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Oppgaven</h1>
+<p>Hver gruppe skal skrive et «mini-paper» over lesten:</p>
+<ol type="1">
+<li>Innledning</li>
+<li>Litteraturgjennomgang.
+<ul>
+<li>Hva sier litteraturen om sammenhengen mellom:
+<ul>
+<li>lønn og høyde</li>
+<li>lønn og bmi</li>
+<li>lønn og sivilstatus (gift/ugift)</li>
+<li>lønn og utdanning</li>
+<li>lønn og kjønn</li>
+</ul></li>
+</ul></li>
+<li>Utfør en «EDA» av datasettet heights med utgangspunkt i forklaringsvariablene høyde, bmi, sivilstatus, utdanning og kjønn.
+<ul>
+<li>Bruk tabeller for deskreptiv statistikk
+<ul>
+<li>Bruk label og caption (forklarende tekst) for tabellene</li>
+<li>Når tabellen diskuteres i tekst, benytt kryssreferanser (vha. label satt vha. «hash-pipen» #| label: tbl-EtEllerAnnet)</li>
+<li>Med utgangspunkt i tabellen generert vha. av funksjonen <code>vtable::st()</code> i <a href="#lst-heights-st" class="quarto-xref">Liste&nbsp;2</a>. Lag tilsvarende tabeller for (legg inn en <code>filter()</code> kommando i pipe-en):
+<ul>
+<li>Ingen inntekt (heightsZeroInc)</li>
+<li>Normal inntekt (heightsNormInc)</li>
+<li>Høy inntekt (heightsHighInc)
+<ul>
+<li>Diskuter forskjellen mellom de tre inntektsgruppene (null inntekt, normal inntekt og høy inntekt)</li>
+</ul></li>
+</ul></li>
+<li>Splitt så datasettet også mht. kjønn, (legg inn en <code>filter()</code> kommando i pipe-en i koden fra <a href="#lst-heights-st" class="quarto-xref">Liste&nbsp;2</a>) dvs. lag tilsvarende tabeller for
+<ul>
+<li>Menn med inntekt 0</li>
+<li>Kvinner med inntekt 0</li>
+<li>Menn med normal inntekt</li>
+<li>Kvinner med normal inntekt</li>
+<li>Menn med høy inntekt</li>
+<li>Kvinner med høy inntekt
+<ul>
+<li>Diskuter forskjellene mellom disse seks gruppene.</li>
+</ul></li>
+</ul></li>
+<li>For datasettet <em>normal inntekt</em>
+<ul>
+<li>Er det noen interessante sammenhenger mht. noen av de andre variablene?</li>
+<li>Diskuter eventuelle funn</li>
+</ul></li>
+<li>Diskuter om det som fremkommer fra den deskreptive statistikken dere har generert ovenfor samsvar med funn i literaturen.</li>
+</ul></li>
+<li>Generer grafikk vha. <code>ggplot2</code>.
+<ul>
+<li>Se koden i <a href="#lst-height-inc-plot" class="quarto-xref">Liste&nbsp;9</a> og lag et tilsvarende plot men for normale inntekteter</li>
+<li>Bruke farge for å angi kjønn for punktene</li>
+<li>Legg inn regresjonslinjer for hele datasettet og for menn og kvinner separat.
+<ul>
+<li>Diskuter hva plotet viser</li>
+</ul></li>
+<li>Bruk <code>geom_histogram()</code> og <code>geom_density()</code> for å undersøke fordelingen til enkelt-variabler.</li>
+<li>Bruk <code>pairs()</code> eller tilsvarende for å undersøke korrelasjon mellom relevante variabler</li>
+<li>Bruk <code>facet_wrap()</code>, <code>geom_point()</code> og <code>geom_smooth()</code> for nærmere undersøkelse av sammenhengen mellom variabler.</li>
+</ul></li>
+<li>Dere vil finne flere eksempler som bruker dette datasettet i «slidene» <a href="https://msb105.netlify.app/explore-data/eda/eda#/title-slide">Exploratory Data Analysis (EDA)</a>. - Disse kan fungere som et utgangspunkt, men dere må også finne egne måter (tabeller/plots) for å studere dataene.</li>
+</ul></li>
+<li>Konklusjon
+<ul>
+<li>Er det virkelig høyde som bestemmer inntekt, eller har EDA-en avslørt at andre variabler kan spille en rolle.</li>
+</ul></li>
+<li>Referanser</li>
+</ol>
+<p>Mot slutten av dette dokumentet vil dere finne litt innledene kode for å hjelpe dere igang.</p>
+<section id="arbeidsform" class="level3" data-number="1.0.1">
+<h3 data-number="1.0.1" class="anchored" data-anchor-id="arbeidsform"><span class="header-section-number">1.0.1</span> Arbeidsform</h3>
+<p>Gruppene skal jobbe i et RStudio prosjekt koblet mot et Github repo.</p>
+</section>
+<section id="levering" class="level3" data-number="1.0.2">
+<h3 data-number="1.0.2" class="anchored" data-anchor-id="levering"><span class="header-section-number">1.0.2</span> Levering</h3>
+<p>Når dere er ferdig inviterer dere meg (agjest) inn i repo-et.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="settings.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<figcaption>Settings</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="collaborators.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<figcaption>Collaborators</figcaption>
+</figure>
+</div>
+<p>Jeg vil så:</p>
+<ul>
+<li>Lage en «fork» og så gjøre en «pull»,</li>
+<li>lage en ny gren <code>ag,</code></li>
+<li>gjøre eventuelle «fix» for å få dokumentet til å kjøre
+<ul>
+<li>dokumentet bør være reproduserbart i utgangspunktet</li>
+</ul></li>
+<li>foreslå eventuelle endringer og forbedringer</li>
+<li>opprette et nytt dokument <code>ag_comments.qmd</code> med mer generelle kommentarer</li>
+</ul>
+<p>Dette vil jeg gjøre tilgjengelig som en «pull request» på Github. Dere kan da se hva jeg forslår og eventuelt akseptere mine endringer.</p>
+</section>
+<section id="her-er-noe-litteratur-som-kan-være-et-utgangspunkt" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="her-er-noe-litteratur-som-kan-være-et-utgangspunkt"><span class="header-section-number">1.1</span> Her er noe litteratur som kan være et utgangspunkt:</h2>
+<section id="sammenhengen-mellom-inntekt-og-høyde-og-mellom-inntekt-og-utdanning" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="sammenhengen-mellom-inntekt-og-høyde-og-mellom-inntekt-og-utdanning"><span class="header-section-number">1.1.1</span> Sammenhengen mellom inntekt og høyde og mellom inntekt og utdanning</h3>
+<p><span class="citation" data-cites="bureau">Bureau (<a href="#ref-bureau" role="doc-biblioref">u.å.</a>)</span>; <span class="citation" data-cites="case2008">Case og Paxson (<a href="#ref-case2008" role="doc-biblioref">2008</a>)</span>; <span class="citation" data-cites="case2009">Case, Paxson, og Islam (<a href="#ref-case2009" role="doc-biblioref">2009</a>)</span>; <span class="citation" data-cites="deaton2009">Deaton og Arora (<a href="#ref-deaton2009" role="doc-biblioref">2009</a>)</span>; <span class="citation" data-cites="hubler2015">Hübler (<a href="#ref-hubler2015" role="doc-biblioref">2015</a>)</span>; <span class="citation" data-cites="mitchell2020">Mitchell (<a href="#ref-mitchell2020" role="doc-biblioref">2020</a>)</span>; <span class="citation" data-cites="ochsenfeld2016">Ochsenfeld (<a href="#ref-ochsenfeld2016" role="doc-biblioref">2016</a>)</span> og <span class="citation" data-cites="published2009">published (<a href="#ref-published2009" role="doc-biblioref">2009</a>)</span></p>
+</section>
+<section id="sammenhengen-mellom-inntekt-og-kjønn" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="sammenhengen-mellom-inntekt-og-kjønn"><span class="header-section-number">1.1.2</span> Sammenhengen mellom inntekt og kjønn</h3>
+<p><span class="citation" data-cites="aragao">Aragão (<a href="#ref-aragao" role="doc-biblioref">u.å.</a>)</span>; <span class="citation" data-cites="bobbitt-zeher2007">Bobbitt-Zeher (<a href="#ref-bobbitt-zeher2007" role="doc-biblioref">2007</a>)</span>; <span class="citation" data-cites="bureau">Bureau (<a href="#ref-bureau" role="doc-biblioref">u.å.</a>)</span>; <span class="citation" data-cites="card2016">Card, Cardoso, og Kline (<a href="#ref-card2016" role="doc-biblioref">2016</a>)</span>; <span class="citation" data-cites="hejase2020">Hejase og Hejase (<a href="#ref-hejase2020" role="doc-biblioref">2020</a>)</span>; <span class="citation" data-cites="mitchell2020">Mitchell (<a href="#ref-mitchell2020" role="doc-biblioref">2020</a>)</span>; <span class="citation" data-cites="nyirongo">Nyirongo (<a href="#ref-nyirongo" role="doc-biblioref">u.å.</a>)</span>; <span class="citation" data-cites="ochsenfeld2016">Ochsenfeld (<a href="#ref-ochsenfeld2016" role="doc-biblioref">2016</a>)</span>; <span class="citation" data-cites="petersen1995">Petersen og Morgan (<a href="#ref-petersen1995" role="doc-biblioref">1995</a>)</span>; <span class="citation" data-cites="santossilva2021">Santos Silva og Klasen (<a href="#ref-santossilva2021" role="doc-biblioref">2021</a>)</span>; <span class="citation" data-cites="on-the-economy-blog2020">On-The-Economy-Blog (<a href="#ref-on-the-economy-blog2020" role="doc-biblioref">2020</a>)</span> og <span class="citation" data-cites="gould2016">Gould, Schieder, og Geier (<a href="#ref-gould2016" role="doc-biblioref">2016</a>)</span>.</p>
+</section>
+<section id="sammenhengen-mellom-inntekt-og-ansiennitet-alder" class="level3" data-number="1.1.3">
+<h3 data-number="1.1.3" class="anchored" data-anchor-id="sammenhengen-mellom-inntekt-og-ansiennitet-alder"><span class="header-section-number">1.1.3</span> Sammenhengen mellom inntekt og ansiennitet (alder):</h3>
+<p><span class="citation" data-cites="medoff1980">Medoff og Abraham (<a href="#ref-medoff1980" role="doc-biblioref">1980</a>)</span>, <span class="citation" data-cites="dash2017">Dash, Bakshi, og Chugh (<a href="#ref-dash2017" role="doc-biblioref">2017</a>)</span> og <span class="citation" data-cites="mincer1974">Mincer (<a href="#ref-mincer1974" role="doc-biblioref">1974</a>)</span></p>
+</section>
+<section id="sammenhengen-inntekt-og-evnenivå-afqt" class="level3" data-number="1.1.4">
+<h3 data-number="1.1.4" class="anchored" data-anchor-id="sammenhengen-inntekt-og-evnenivå-afqt"><span class="header-section-number">1.1.4</span> Sammenhengen inntekt og evnenivå (afqt):</h3>
+<p><span class="citation" data-cites="zagorsky2007">Zagorsky (<a href="#ref-zagorsky2007" role="doc-biblioref">2007</a>)</span>; <span class="citation" data-cites="bound1986">Bound, Griliches, og Hall (<a href="#ref-bound1986" role="doc-biblioref">1986</a>)</span>, <span class="citation" data-cites="wolfinger2019">Wolfinger (<a href="#ref-wolfinger2019" role="doc-biblioref">2019</a>)</span>, <span class="citation" data-cites="kanarek2013">Kanarek (<a href="#ref-kanarek2013" role="doc-biblioref">2013</a>)</span>, <span class="citation" data-cites="nls2023">NLS (<a href="#ref-nls2023" role="doc-biblioref">2023</a>)</span> og <span class="citation" data-cites="iii1996">Iii og Spriggs (<a href="#ref-iii1996" role="doc-biblioref">1996</a>)</span></p>
+</section>
+<section id="sammenhengen-mellom-inntekt-og-sivilstand-giftugift" class="level3" data-number="1.1.5">
+<h3 data-number="1.1.5" class="anchored" data-anchor-id="sammenhengen-mellom-inntekt-og-sivilstand-giftugift"><span class="header-section-number">1.1.5</span> Sammenhengen mellom inntekt og sivilstand (gift/ugift ):</h3>
+<p><span class="citation" data-cites="on-the-economy-blog2020">On-The-Economy-Blog (<a href="#ref-on-the-economy-blog2020" role="doc-biblioref">2020</a>)</span>; <span class="citation" data-cites="vandenbroucke">Vandenbroucke (<a href="#ref-vandenbroucke" role="doc-biblioref">u.å.</a>)</span> og <span class="citation" data-cites="case2008">Case og Paxson (<a href="#ref-case2008" role="doc-biblioref">2008</a>)</span></p>
+</section>
+<section id="sammenheng-mellom-inntekt-og-bmi-body-mass-index" class="level3" data-number="1.1.6">
+<h3 data-number="1.1.6" class="anchored" data-anchor-id="sammenheng-mellom-inntekt-og-bmi-body-mass-index"><span class="header-section-number">1.1.6</span> Sammenheng mellom inntekt og bmi (body mass index):</h3>
+<p><span class="citation" data-cites="bockerman2019">Böckerman mfl. (<a href="#ref-bockerman2019" role="doc-biblioref">2019</a>)</span>; <span class="citation" data-cites="caliendo2016">Caliendo og Gehrsitz (<a href="#ref-caliendo2016" role="doc-biblioref">2016</a>)</span>; <span class="citation" data-cites="cawley2015">Cawley (<a href="#ref-cawley2015" role="doc-biblioref">2015</a>)</span>; <span class="citation" data-cites="edwards2021">Edwards, Bjørngaard, og Minet Kinge (<a href="#ref-edwards2021" role="doc-biblioref">2021</a>)</span>; <span class="citation" data-cites="han2009">Han, Norton, og Stearns (<a href="#ref-han2009" role="doc-biblioref">2009</a>)</span>; <span class="citation" data-cites="hildebrand2010">Hildebrand og Kerm (<a href="#ref-hildebrand2010" role="doc-biblioref">2010</a>)</span>; <span class="citation" data-cites="kan2012">Kan og Lee (<a href="#ref-kan2012" role="doc-biblioref">2012</a>)</span>; <span class="citation" data-cites="lee2017">Lee (<a href="#ref-lee2017" role="doc-biblioref">2017</a>)</span>; <span class="citation" data-cites="sargent1994">Sargent og Blanchflower (<a href="#ref-sargent1994" role="doc-biblioref">1994</a>)</span>; <span class="citation" data-cites="zotero-1832"><span>«The <span>Impact</span> of <span>Obesity</span> on <span>Wages</span> | <span>Journal</span> of <span>Human Resources</span>»</span> (<a href="#ref-zotero-1832" role="doc-biblioref">u.å.</a>)</span> og <span class="citation" data-cites="zotero-1833"><span>«The Wage Effects of Obesity: A Longitudinal Study - <span>Baum</span> - 2004 - <span>Health Economics</span> - <span>Wiley Online Library</span>»</span> (<a href="#ref-zotero-1833" role="doc-biblioref">u.å.</a>)</span></p>
+</section>
+</section>
+<section id="beskrivelse-av-data" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="beskrivelse-av-data"><span class="header-section-number">1.2</span> Beskrivelse av data</h2>
+<p>Datasettet er kalt <em>heights</em> og er en del av pakken modelr, <span class="citation" data-cites="modelr">Wickham (<a href="#ref-modelr" role="doc-biblioref">2020</a>)</span>, som er en utvidelspakke for statistikksystemet R, <span class="citation" data-cites="Rcore">R Core Team (<a href="#ref-Rcore" role="doc-biblioref">2021</a>)</span>.</p>
+</section>
+</section>
+<section id="kode" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Kode</h1>
+<p>Koden i <a href="#lst-read-in-data" class="quarto-xref">Liste&nbsp;1</a> er kode som samtlige grupper bør kjøre rett etter setup chunk-en slik at vi jobber med samme data og har samme variabelnavn. Merk bruken av «hash-pipene» <code>lst-label</code> og <code>lst-cap</code> som gjør det mulig å ha kryssreferanser til kode-listinger og også «caption» på en kode-listing.</p>
+<div class="cell">
+<div id="lst-read-in-data" class="cell-code listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-read-in-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Liste&nbsp;1: Kode for å lese inn data og definere noen nye variabler.
+</figcaption>
+<div aria-describedby="lst-read-in-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="lst-read-in-data"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="lst-read-in-data-1"><a href="#lst-read-in-data-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="lst-read-in-data-2"><a href="#lst-read-in-data-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-label: lst-read-in-data</span></span>
+<span id="lst-read-in-data-3"><a href="#lst-read-in-data-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-cap: "Kode for å lese inn data og definere noen nye variabler."</span></span>
+<span id="lst-read-in-data-4"><a href="#lst-read-in-data-4" aria-hidden="true" tabindex="-1"></a><span class="in">heights &lt;- modelr::heights</span></span>
+<span id="lst-read-in-data-5"><a href="#lst-read-in-data-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-read-in-data-6"><a href="#lst-read-in-data-6" aria-hidden="true" tabindex="-1"></a><span class="in">heights &lt;- heights %&gt;% </span></span>
+<span id="lst-read-in-data-7"><a href="#lst-read-in-data-7" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(</span></span>
+<span id="lst-read-in-data-8"><a href="#lst-read-in-data-8" aria-hidden="true" tabindex="-1"></a><span class="in">    bmi = weight * 0.4536/(height * 2.54/100)^2,</span></span>
+<span id="lst-read-in-data-9"><a href="#lst-read-in-data-9" aria-hidden="true" tabindex="-1"></a><span class="in">    married = fct_collapse(</span></span>
+<span id="lst-read-in-data-10"><a href="#lst-read-in-data-10" aria-hidden="true" tabindex="-1"></a><span class="in">      .f = marital,</span></span>
+<span id="lst-read-in-data-11"><a href="#lst-read-in-data-11" aria-hidden="true" tabindex="-1"></a><span class="in">      married = "married",</span></span>
+<span id="lst-read-in-data-12"><a href="#lst-read-in-data-12" aria-hidden="true" tabindex="-1"></a><span class="in">      other_level = "not married"</span></span>
+<span id="lst-read-in-data-13"><a href="#lst-read-in-data-13" aria-hidden="true" tabindex="-1"></a><span class="in">    ),</span></span>
+<span id="lst-read-in-data-14"><a href="#lst-read-in-data-14" aria-hidden="true" tabindex="-1"></a><span class="in">    edu_fac = cut(</span></span>
+<span id="lst-read-in-data-15"><a href="#lst-read-in-data-15" aria-hidden="true" tabindex="-1"></a><span class="in">      x = education,</span></span>
+<span id="lst-read-in-data-16"><a href="#lst-read-in-data-16" aria-hidden="true" tabindex="-1"></a><span class="in">      breaks = c(0, 12, 14, 16, 21),</span></span>
+<span id="lst-read-in-data-17"><a href="#lst-read-in-data-17" aria-hidden="true" tabindex="-1"></a><span class="in">      labels = c("not_hs", "not_cc", "not_col", "col_plus"),</span></span>
+<span id="lst-read-in-data-18"><a href="#lst-read-in-data-18" aria-hidden="true" tabindex="-1"></a><span class="in">      right = FALSE</span></span>
+<span id="lst-read-in-data-19"><a href="#lst-read-in-data-19" aria-hidden="true" tabindex="-1"></a><span class="in">    )</span></span>
+<span id="lst-read-in-data-20"><a href="#lst-read-in-data-20" aria-hidden="true" tabindex="-1"></a><span class="in">  ) |&gt; </span></span>
+<span id="lst-read-in-data-21"><a href="#lst-read-in-data-21" aria-hidden="true" tabindex="-1"></a><span class="in">  # reorganiserer data s.a. de fire faktor-variablerne kommer</span></span>
+<span id="lst-read-in-data-22"><a href="#lst-read-in-data-22" aria-hidden="true" tabindex="-1"></a><span class="in">  # lengst til høyre</span></span>
+<span id="lst-read-in-data-23"><a href="#lst-read-in-data-23" aria-hidden="true" tabindex="-1"></a><span class="in">  select(income:age, education:bmi, everything()) |&gt;</span></span>
+<span id="lst-read-in-data-24"><a href="#lst-read-in-data-24" aria-hidden="true" tabindex="-1"></a><span class="in">  # Dropper marital og education siden disse ikke skal brukes</span></span>
+<span id="lst-read-in-data-25"><a href="#lst-read-in-data-25" aria-hidden="true" tabindex="-1"></a><span class="in">  select(-education, -marital)</span></span>
+<span id="lst-read-in-data-26"><a href="#lst-read-in-data-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-read-in-data-27"><a href="#lst-read-in-data-27" aria-hidden="true" tabindex="-1"></a><span class="in"># Inntekt lik 0</span></span>
+<span id="lst-read-in-data-28"><a href="#lst-read-in-data-28" aria-hidden="true" tabindex="-1"></a><span class="in">heightsZeroInc &lt;- heights |&gt; </span></span>
+<span id="lst-read-in-data-29"><a href="#lst-read-in-data-29" aria-hidden="true" tabindex="-1"></a><span class="in">  filter(income == 0)</span></span>
+<span id="lst-read-in-data-30"><a href="#lst-read-in-data-30" aria-hidden="true" tabindex="-1"></a><span class="in"># «Normal» inntekt</span></span>
+<span id="lst-read-in-data-31"><a href="#lst-read-in-data-31" aria-hidden="true" tabindex="-1"></a><span class="in">heightsNormInc &lt;- heights |&gt; </span></span>
+<span id="lst-read-in-data-32"><a href="#lst-read-in-data-32" aria-hidden="true" tabindex="-1"></a><span class="in">  filter(income &gt; 0 &amp; income &lt; 343830)</span></span>
+<span id="lst-read-in-data-33"><a href="#lst-read-in-data-33" aria-hidden="true" tabindex="-1"></a><span class="in">heightsHighInc &lt;- heights |&gt; </span></span>
+<span id="lst-read-in-data-34"><a href="#lst-read-in-data-34" aria-hidden="true" tabindex="-1"></a><span class="in">  filter(income == 343830)</span></span>
+<span id="lst-read-in-data-35"><a href="#lst-read-in-data-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+</div>
+<section id="gjennomgang-av-koden" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="gjennomgang-av-koden"><span class="header-section-number">2.1</span> Gjennomgang av koden</h2>
+<p>Her følger en gjennomgang av koden ovenfor steg for steg. I tillegg gis noen eksempler på bruk av <code>vt()</code> og <code>st()</code> fra pakken <code>vtable</code> kombinert med funksjonen <code>as_flextable()</code> fra <code>flextable</code> pakken.. Sjekk også kode fra «slidene» i <a href="https://msb104.netlify.app/regression/mlr/msb104_05_chp03#/contr.for-confounders-interaction-by-hand">msb104.netlify.app</a> for hvordan man kan generere tabeller vha. funksjonen <code>as_flextable()</code>.</p>
+<p>Vi starter med å lese inn datasettet.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>heights <span class="ot">&lt;-</span> modelr<span class="sc">::</span>heights</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vi kan så bruke <code>st()</code> fra <code>vtable</code> og <code>as_flextable()</code> fra <code>flextable</code> for å generere deskreptive statistikk for hele datasettet.</p>
+<div class="cell">
+<div id="lst-heights-st" class="cell-code listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-heights-st-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Liste&nbsp;2: Kode for å generere deskreptiv-statistikk tabell vha. funksjonene <code>st()</code> og <code>as_flextable()</code>. Merk bruken av «hash pipes». Her setter vi label og caption for både kode-listing og resulterende tabell. Hvis det var en figur vi genererte ville vi byttet ut <code>tbl-</code> med <code>fig-</code>.
+</figcaption>
+<div aria-describedby="lst-heights-st-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="lst-heights-st"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="lst-heights-st-1"><a href="#lst-heights-st-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="lst-heights-st-2"><a href="#lst-heights-st-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: tbl-desc-stat</span></span>
+<span id="lst-heights-st-3"><a href="#lst-heights-st-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| tbl-cap: "Deskreptiv statistikk for datasettet `modelr::heights`."</span></span>
+<span id="lst-heights-st-4"><a href="#lst-heights-st-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-label: lst-heights-st</span></span>
+<span id="lst-heights-st-5"><a href="#lst-heights-st-5" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-cap: "Kode for å generere deskreptiv-statistikk tabell vha. funksjonene</span></span>
+<span id="lst-heights-st-6"><a href="#lst-heights-st-6" aria-hidden="true" tabindex="-1"></a><span class="in">#| `st()` og `as_flextable()`. Merk bruken av «hash pipes». Her setter vi</span></span>
+<span id="lst-heights-st-7"><a href="#lst-heights-st-7" aria-hidden="true" tabindex="-1"></a><span class="in">#| label og caption for både kode-listing og resulterende tabell. Hvis</span></span>
+<span id="lst-heights-st-8"><a href="#lst-heights-st-8" aria-hidden="true" tabindex="-1"></a><span class="in">#| det var en figur vi genererte ville vi byttet ut `tbl-` med `fig-`."</span></span>
+<span id="lst-heights-st-9"><a href="#lst-heights-st-9" aria-hidden="true" tabindex="-1"></a><span class="in">heights |&gt; </span></span>
+<span id="lst-heights-st-10"><a href="#lst-heights-st-10" aria-hidden="true" tabindex="-1"></a><span class="in">  st(out = "return") |&gt; </span></span>
+<span id="lst-heights-st-11"><a href="#lst-heights-st-11" aria-hidden="true" tabindex="-1"></a><span class="in">  as_flextable(max_row = 20) |&gt; </span></span>
+<span id="lst-heights-st-12"><a href="#lst-heights-st-12" aria-hidden="true" tabindex="-1"></a><span class="in">  line_spacing(space = 0.3, part = "all") |&gt; </span></span>
+<span id="lst-heights-st-13"><a href="#lst-heights-st-13" aria-hidden="true" tabindex="-1"></a><span class="in">  fontsize(size = 9, part = "body") |&gt; </span></span>
+<span id="lst-heights-st-14"><a href="#lst-heights-st-14" aria-hidden="true" tabindex="-1"></a><span class="in">  fontsize(size = 10, part = "header") |&gt; </span></span>
+<span id="lst-heights-st-15"><a href="#lst-heights-st-15" aria-hidden="true" tabindex="-1"></a><span class="in">  width(width = 16, unit = "mm") |&gt; </span></span>
+<span id="lst-heights-st-16"><a href="#lst-heights-st-16" aria-hidden="true" tabindex="-1"></a><span class="in">  delete_part("footer")</span></span>
+<span id="lst-heights-st-17"><a href="#lst-heights-st-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+<div id="tbl-desc-stat" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-desc-stat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabell&nbsp;1: Deskreptiv statistikk for datasettet <code>modelr::heights</code>.
+</figcaption>
+<div aria-describedby="tbl-desc-stat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-c09b7452{}.cl-c0521424{font-family:'Helvetica';font-size:10pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-c052142e{font-family:'Helvetica';font-size:10pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(153, 153, 153, 1.00);background-color:transparent;}.cl-c052142f{font-family:'Helvetica';font-size:9pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-c0994308{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 0.3;background-color:transparent;}.cl-c0994cf4{width:0.63in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0994cf5{width:0.63in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0994cfe{width:0.63in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0994cff{width:0.63in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0994d08{width:0.63in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0994d09{width:0.63in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0994d12{width:0.63in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0994d13{width:0.63in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0994d14{width:0.63in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0994d15{width:0.63in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0994d1c{width:0.63in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0994d1d{width:0.63in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0994d1e{width:0.63in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0994d26{width:0.63in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0994d27{width:0.63in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0994d28{width:0.63in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-c09b7452"><thead><tr style="overflow-wrap:break-word;"><th class="cl-c0994cf4"><p class="cl-c0994308"><span class="cl-c0521424">Variable</span></p></th><th class="cl-c0994cf4"><p class="cl-c0994308"><span class="cl-c0521424">N</span></p></th><th class="cl-c0994cf4"><p class="cl-c0994308"><span class="cl-c0521424">Mean</span></p></th><th class="cl-c0994cf4"><p class="cl-c0994308"><span class="cl-c0521424">Std. Dev.</span></p></th><th class="cl-c0994cf4"><p class="cl-c0994308"><span class="cl-c0521424">Min</span></p></th><th class="cl-c0994cf4"><p class="cl-c0994308"><span class="cl-c0521424">Pctl. 25</span></p></th><th class="cl-c0994cf4"><p class="cl-c0994308"><span class="cl-c0521424">Pctl. 75</span></p></th><th class="cl-c0994cf4"><p class="cl-c0994308"><span class="cl-c0521424">Max</span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-c0994cf5"><p class="cl-c0994308"><span class="cl-c052142e">character</span></p></th><th class="cl-c0994cf5"><p class="cl-c0994308"><span class="cl-c052142e">character</span></p></th><th class="cl-c0994cf5"><p class="cl-c0994308"><span class="cl-c052142e">character</span></p></th><th class="cl-c0994cf5"><p class="cl-c0994308"><span class="cl-c052142e">character</span></p></th><th class="cl-c0994cf5"><p class="cl-c0994308"><span class="cl-c052142e">character</span></p></th><th class="cl-c0994cf5"><p class="cl-c0994308"><span class="cl-c052142e">character</span></p></th><th class="cl-c0994cf5"><p class="cl-c0994308"><span class="cl-c052142e">character</span></p></th><th class="cl-c0994cf5"><p class="cl-c0994308"><span class="cl-c052142e">character</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-c0994cfe"><p class="cl-c0994308"><span class="cl-c052142f">income</span></p></td><td class="cl-c0994cfe"><p class="cl-c0994308"><span class="cl-c052142f">7006</span></p></td><td class="cl-c0994cfe"><p class="cl-c0994308"><span class="cl-c052142f">41204</span></p></td><td class="cl-c0994cfe"><p class="cl-c0994308"><span class="cl-c052142f">55892</span></p></td><td class="cl-c0994cfe"><p class="cl-c0994308"><span class="cl-c052142f">0</span></p></td><td class="cl-c0994cfe"><p class="cl-c0994308"><span class="cl-c052142f">166</span></p></td><td class="cl-c0994cfe"><p class="cl-c0994308"><span class="cl-c052142f">55000</span></p></td><td class="cl-c0994cfe"><p class="cl-c0994308"><span class="cl-c052142f">343830</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0994cff"><p class="cl-c0994308"><span class="cl-c052142f">height</span></p></td><td class="cl-c0994cff"><p class="cl-c0994308"><span class="cl-c052142f">7006</span></p></td><td class="cl-c0994cff"><p class="cl-c0994308"><span class="cl-c052142f">67</span></p></td><td class="cl-c0994cff"><p class="cl-c0994308"><span class="cl-c052142f">4.1</span></p></td><td class="cl-c0994cff"><p class="cl-c0994308"><span class="cl-c052142f">52</span></p></td><td class="cl-c0994cff"><p class="cl-c0994308"><span class="cl-c052142f">64</span></p></td><td class="cl-c0994cff"><p class="cl-c0994308"><span class="cl-c052142f">70</span></p></td><td class="cl-c0994cff"><p class="cl-c0994308"><span class="cl-c052142f">84</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0994cff"><p class="cl-c0994308"><span class="cl-c052142f">weight</span></p></td><td class="cl-c0994cff"><p class="cl-c0994308"><span class="cl-c052142f">6911</span></p></td><td class="cl-c0994cff"><p class="cl-c0994308"><span class="cl-c052142f">188</span></p></td><td class="cl-c0994cff"><p class="cl-c0994308"><span class="cl-c052142f">44</span></p></td><td class="cl-c0994cff"><p class="cl-c0994308"><span class="cl-c052142f">76</span></p></td><td class="cl-c0994cff"><p class="cl-c0994308"><span class="cl-c052142f">157</span></p></td><td class="cl-c0994cff"><p class="cl-c0994308"><span class="cl-c052142f">212</span></p></td><td class="cl-c0994cff"><p class="cl-c0994308"><span class="cl-c052142f">524</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0994d08"><p class="cl-c0994308"><span class="cl-c052142f">age</span></p></td><td class="cl-c0994d08"><p class="cl-c0994308"><span class="cl-c052142f">7006</span></p></td><td class="cl-c0994d08"><p class="cl-c0994308"><span class="cl-c052142f">51</span></p></td><td class="cl-c0994d08"><p class="cl-c0994308"><span class="cl-c052142f">2.2</span></p></td><td class="cl-c0994d08"><p class="cl-c0994308"><span class="cl-c052142f">47</span></p></td><td class="cl-c0994d08"><p class="cl-c0994308"><span class="cl-c052142f">49</span></p></td><td class="cl-c0994d08"><p class="cl-c0994308"><span class="cl-c052142f">53</span></p></td><td class="cl-c0994d08"><p class="cl-c0994308"><span class="cl-c052142f">56</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0994d09"><p class="cl-c0994308"><span class="cl-c052142f">afqt</span></p></td><td class="cl-c0994d09"><p class="cl-c0994308"><span class="cl-c052142f">6744</span></p></td><td class="cl-c0994d09"><p class="cl-c0994308"><span class="cl-c052142f">41</span></p></td><td class="cl-c0994d09"><p class="cl-c0994308"><span class="cl-c052142f">29</span></p></td><td class="cl-c0994d09"><p class="cl-c0994308"><span class="cl-c052142f">0</span></p></td><td class="cl-c0994d09"><p class="cl-c0994308"><span class="cl-c052142f">15</span></p></td><td class="cl-c0994d09"><p class="cl-c0994308"><span class="cl-c052142f">65</span></p></td><td class="cl-c0994d09"><p class="cl-c0994308"><span class="cl-c052142f">100</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0994cfe"><p class="cl-c0994308"><span class="cl-c052142f">bmi</span></p></td><td class="cl-c0994cfe"><p class="cl-c0994308"><span class="cl-c052142f">6911</span></p></td><td class="cl-c0994cfe"><p class="cl-c0994308"><span class="cl-c052142f">29</span></p></td><td class="cl-c0994cfe"><p class="cl-c0994308"><span class="cl-c052142f">6.2</span></p></td><td class="cl-c0994cfe"><p class="cl-c0994308"><span class="cl-c052142f">13</span></p></td><td class="cl-c0994cfe"><p class="cl-c0994308"><span class="cl-c052142f">25</span></p></td><td class="cl-c0994cfe"><p class="cl-c0994308"><span class="cl-c052142f">32</span></p></td><td class="cl-c0994cfe"><p class="cl-c0994308"><span class="cl-c052142f">75</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0994d12"><p class="cl-c0994308"><span class="cl-c052142f">sex</span></p></td><td class="cl-c0994d12"><p class="cl-c0994308"><span class="cl-c052142f">7006</span></p></td><td class="cl-c0994d12"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d12"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d12"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d12"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d12"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d12"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0994d13"><p class="cl-c0994308"><span class="cl-c052142f">... male</span></p></td><td class="cl-c0994d13"><p class="cl-c0994308"><span class="cl-c052142f">3402</span></p></td><td class="cl-c0994d13"><p class="cl-c0994308"><span class="cl-c052142f">49%</span></p></td><td class="cl-c0994d13"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d13"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d13"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d13"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d13"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0994d14"><p class="cl-c0994308"><span class="cl-c052142f">... female</span></p></td><td class="cl-c0994d14"><p class="cl-c0994308"><span class="cl-c052142f">3604</span></p></td><td class="cl-c0994d14"><p class="cl-c0994308"><span class="cl-c052142f">51%</span></p></td><td class="cl-c0994d14"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d14"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d14"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d14"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d14"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0994d15"><p class="cl-c0994308"><span class="cl-c052142f">married</span></p></td><td class="cl-c0994d15"><p class="cl-c0994308"><span class="cl-c052142f">7006</span></p></td><td class="cl-c0994d15"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d15"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d15"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d15"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d15"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d15"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0994d15"><p class="cl-c0994308"><span class="cl-c052142f">... married</span></p></td><td class="cl-c0994d15"><p class="cl-c0994308"><span class="cl-c052142f">3806</span></p></td><td class="cl-c0994d15"><p class="cl-c0994308"><span class="cl-c052142f">54%</span></p></td><td class="cl-c0994d15"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d15"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d15"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d15"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d15"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0994d1c"><p class="cl-c0994308"><span class="cl-c052142f">... not married</span></p></td><td class="cl-c0994d1c"><p class="cl-c0994308"><span class="cl-c052142f">3200</span></p></td><td class="cl-c0994d1c"><p class="cl-c0994308"><span class="cl-c052142f">46%</span></p></td><td class="cl-c0994d1c"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d1c"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d1c"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d1c"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d1c"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0994d1d"><p class="cl-c0994308"><span class="cl-c052142f">edu_fac</span></p></td><td class="cl-c0994d1d"><p class="cl-c0994308"><span class="cl-c052142f">6996</span></p></td><td class="cl-c0994d1d"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d1d"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d1d"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d1d"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d1d"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d1d"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0994d1e"><p class="cl-c0994308"><span class="cl-c052142f">... not_hs</span></p></td><td class="cl-c0994d1e"><p class="cl-c0994308"><span class="cl-c052142f">1058</span></p></td><td class="cl-c0994d1e"><p class="cl-c0994308"><span class="cl-c052142f">15%</span></p></td><td class="cl-c0994d1e"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d1e"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d1e"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d1e"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d1e"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0994d26"><p class="cl-c0994308"><span class="cl-c052142f">... not_cc</span></p></td><td class="cl-c0994d26"><p class="cl-c0994308"><span class="cl-c052142f">3195</span></p></td><td class="cl-c0994d26"><p class="cl-c0994308"><span class="cl-c052142f">46%</span></p></td><td class="cl-c0994d26"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d26"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d26"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d26"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d26"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0994d27"><p class="cl-c0994308"><span class="cl-c052142f">... not_col</span></p></td><td class="cl-c0994d27"><p class="cl-c0994308"><span class="cl-c052142f">1110</span></p></td><td class="cl-c0994d27"><p class="cl-c0994308"><span class="cl-c052142f">16%</span></p></td><td class="cl-c0994d27"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d27"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d27"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d27"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d27"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0994d28"><p class="cl-c0994308"><span class="cl-c052142f">... col_plus</span></p></td><td class="cl-c0994d28"><p class="cl-c0994308"><span class="cl-c052142f">1633</span></p></td><td class="cl-c0994d28"><p class="cl-c0994308"><span class="cl-c052142f">23%</span></p></td><td class="cl-c0994d28"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d28"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d28"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d28"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td><td class="cl-c0994d28"><p class="cl-c0994308"><span class="cl-c052142f"></span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Vi har altså 7006 observasjoner og 8 variabler. For variablene <code>weight</code>, <code>education</code> og <code>afqt</code> har vi noen NA-verdier.</p>
+<p>Det har vært spekulert om observert lønnsmessig «høyde premium» egentlig er en skjult «vekt straff». Tanken er at det er en negativ sammenheng mellom høyde og overvekt og at arbeidsgivere er redd for at personer som strever med overvekt har større sjanse for å ha eller få alvorlig helseproblemer og at arbeidsgivere derfor anser disse arbeidstakerne som mindre produktive og derfor tilbyr lavere lønn. For å se om dette er tilfelle lager vi en ny variabel <code>bmi</code> («body mass index»). I tillegg lager vi en forenklet versjon av variabelen <code>marital</code> der vi bare skiller mellom <code>married</code> (TRUE) og <code>not_married</code> (FALSE).</p>
+<div class="cell">
+<div id="lst-bmi-married" class="cell-code listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-bmi-married-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Liste&nbsp;3: Bruker mutate til å lage variabelen <code>bmi</code>. I tillegg bruker vi funksjonen <code>fct_collapse()</code> til å «klappe sammen» de fem kategorien i marital til bare to kategorier i variabelen <code>married</code>.
+</figcaption>
+<div aria-describedby="lst-bmi-married-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="lst-bmi-married"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="lst-bmi-married-1"><a href="#lst-bmi-married-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="lst-bmi-married-2"><a href="#lst-bmi-married-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-label: lst-bmi-married</span></span>
+<span id="lst-bmi-married-3"><a href="#lst-bmi-married-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-cap: "Bruker mutate til å lage variabelen `bmi`. I tillegg</span></span>
+<span id="lst-bmi-married-4"><a href="#lst-bmi-married-4" aria-hidden="true" tabindex="-1"></a><span class="in">#|  bruker vi funksjonen `fct_collapse()` til å «klappe sammen» de</span></span>
+<span id="lst-bmi-married-5"><a href="#lst-bmi-married-5" aria-hidden="true" tabindex="-1"></a><span class="in">#|  fem kategorien i marital til bare to kategorier i variabelen</span></span>
+<span id="lst-bmi-married-6"><a href="#lst-bmi-married-6" aria-hidden="true" tabindex="-1"></a><span class="in">#|  `married`."</span></span>
+<span id="lst-bmi-married-7"><a href="#lst-bmi-married-7" aria-hidden="true" tabindex="-1"></a><span class="in">#| eval: false</span></span>
+<span id="lst-bmi-married-8"><a href="#lst-bmi-married-8" aria-hidden="true" tabindex="-1"></a><span class="in">heights &lt;- heights %&gt;% </span></span>
+<span id="lst-bmi-married-9"><a href="#lst-bmi-married-9" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(</span></span>
+<span id="lst-bmi-married-10"><a href="#lst-bmi-married-10" aria-hidden="true" tabindex="-1"></a><span class="in">    bmi = weight * 0.4536/(height * 2.54/100)^2,</span></span>
+<span id="lst-bmi-married-11"><a href="#lst-bmi-married-11" aria-hidden="true" tabindex="-1"></a><span class="in">    married = fct_collapse(</span></span>
+<span id="lst-bmi-married-12"><a href="#lst-bmi-married-12" aria-hidden="true" tabindex="-1"></a><span class="in">      .f = marital,</span></span>
+<span id="lst-bmi-married-13"><a href="#lst-bmi-married-13" aria-hidden="true" tabindex="-1"></a><span class="in">      married = "married",</span></span>
+<span id="lst-bmi-married-14"><a href="#lst-bmi-married-14" aria-hidden="true" tabindex="-1"></a><span class="in">      other_level = "not married"</span></span>
+<span id="lst-bmi-married-15"><a href="#lst-bmi-married-15" aria-hidden="true" tabindex="-1"></a><span class="in">    )</span></span>
+<span id="lst-bmi-married-16"><a href="#lst-bmi-married-16" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="lst-bmi-married-17"><a href="#lst-bmi-married-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+</div>
+<p>Vi forenkler også variabelen <code>education</code> s.a. vi bare skiller mellom kategorien <code>not_hs</code> («Not High School Exam»; 0 <span class="math inline">\(\leq\)</span> education &lt; 12), <code>not_cc</code> («Not Community College»; 12 <span class="math inline">\(\leq\)</span> education &lt; 14) <code>not_col</code> («Not College»; 14 <span class="math inline">\(\leq\)</span> education &lt; 16) og <code>col_plus</code> («4 years College or more»; education <span class="math inline">\(\geq\)</span> 16)</p>
+<div class="cell">
+<div id="lst-edu-fac" class="r cell-code listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-edu-fac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Liste&nbsp;4: I samme mutate lager vi også variabelen edu_fac ved å kutte education opp i fire intervaller
+</figcaption>
+<div aria-describedby="lst-edu-fac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="lst-edu-fac"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="lst-edu-fac-1"><a href="#lst-edu-fac-1" aria-hidden="true" tabindex="-1"></a>edu_fac <span class="ot">=</span> <span class="fu">cut_interval</span>(</span>
+<span id="lst-edu-fac-2"><a href="#lst-edu-fac-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> education,</span>
+<span id="lst-edu-fac-3"><a href="#lst-edu-fac-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">21</span>),</span>
+<span id="lst-edu-fac-4"><a href="#lst-edu-fac-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"not_hs"</span>, <span class="st">"not_cc"</span>, </span>
+<span id="lst-edu-fac-5"><a href="#lst-edu-fac-5" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"not_col"</span>, <span class="st">"col_plus"</span>),</span>
+<span id="lst-edu-fac-6"><a href="#lst-edu-fac-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">right =</span> <span class="cn">FALSE</span></span>
+<span id="lst-edu-fac-7"><a href="#lst-edu-fac-7" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+</div>
+<p>Det kan være hensiktmessig å samle kategorivariablene lengst til høyre i datasettet (f.eks blir resultatet av <code>st()</code>en noe ryddigere tabell).</p>
+<div class="cell">
+<div id="lst-move-vars" class="r cell-code listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-move-vars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Liste&nbsp;5: Endrer rekkefølgen på variablene s.a. kategorivariablene samles lengst til høyre i datasettet.
+</figcaption>
+<div aria-describedby="lst-move-vars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="lst-move-vars"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="lst-move-vars-1"><a href="#lst-move-vars-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(income<span class="sc">:</span>age, education<span class="sc">:</span>bmi, <span class="fu">everything</span>())</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+</div>
+<p>Vi kommer ikke til å bruke variablene <code>education</code> og <code>marital</code> så disse dropper vi.</p>
+<div class="cell">
+<div id="lst-drop-vars" class="r cell-code listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-drop-vars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Liste&nbsp;6: Vi skal ikke benytte variablene <code>marital</code> og <code>education</code> så disse droppes fra datasettet.
+</figcaption>
+<div aria-describedby="lst-drop-vars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="lst-drop-vars"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="lst-drop-vars-1"><a href="#lst-drop-vars-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(<span class="sc">-</span>education, <span class="sc">-</span>marital)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+</div>
+<p>Oversikt over <code>heights</code> med nye variabler:</p>
+<div class="cell">
+<div id="lst-height-vt" class="r cell-code listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-height-vt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Liste&nbsp;7: Kode for å generer en mer kortfattet tabell enn <code>st()</code>. Merk bruken av argumentet <code>missing = TRUE</code> slik at vi klart ser hvor mange <code>NA</code> verdier vi har for de ulike variablene.
+</figcaption>
+<div aria-describedby="lst-height-vt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="lst-height-vt"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="lst-height-vt-1"><a href="#lst-height-vt-1" aria-hidden="true" tabindex="-1"></a>heights <span class="sc">|&gt;</span> </span>
+<span id="lst-height-vt-2"><a href="#lst-height-vt-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vt</span>(<span class="at">missing =</span> <span class="cn">TRUE</span>, <span class="at">out =</span> <span class="st">"return"</span>) <span class="sc">|&gt;</span> </span>
+<span id="lst-height-vt-3"><a href="#lst-height-vt-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_flextable</span>(</span>
+<span id="lst-height-vt-4"><a href="#lst-height-vt-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_row =</span> <span class="dv">20</span>,</span>
+<span id="lst-height-vt-5"><a href="#lst-height-vt-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">spacing =</span> <span class="fl">0.3</span>,</span>
+<span id="lst-height-vt-6"><a href="#lst-height-vt-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">part =</span> <span class="st">"all"</span></span>
+<span id="lst-height-vt-7"><a href="#lst-height-vt-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="lst-height-vt-8"><a href="#lst-height-vt-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">delete_part</span>(<span class="st">"footer"</span>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+<div id="tbl-new-height" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-new-height-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabell&nbsp;2: Oversikt over oppdatert <code>height</code> datasett. Har benyttet argumentet <code>missing = TRUE</code> i <code>vt()</code> funksjonen.
+</figcaption>
+<div aria-describedby="tbl-new-height-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-c0ac239c{}.cl-c0a94d8e{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-c0a94d8f{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(153, 153, 153, 1.00);background-color:transparent;}.cl-c0aa7b46{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c0aa8398{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0aa83a2{width:2.608in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0aa83a3{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0aa83c0{width:2.608in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0aa83c1{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0aa83ca{width:2.608in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0aa83cb{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0aa83d4{width:2.608in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0aa83d5{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0aa83d6{width:2.608in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0aa83d7{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0aa83de{width:2.608in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0aa83e8{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0aa83e9{width:2.608in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0aa83ea{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0aa83f2{width:2.608in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-c0ac239c"><thead><tr style="overflow-wrap:break-word;"><th class="cl-c0aa8398"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">Name</span></p></th><th class="cl-c0aa8398"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">Class</span></p></th><th class="cl-c0aa83a2"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">Values</span></p></th><th class="cl-c0aa8398"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">Missing</span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-c0aa83a3"><p class="cl-c0aa7b46"><span class="cl-c0a94d8f">character</span></p></th><th class="cl-c0aa83a3"><p class="cl-c0aa7b46"><span class="cl-c0a94d8f">character</span></p></th><th class="cl-c0aa83c0"><p class="cl-c0aa7b46"><span class="cl-c0a94d8f">character</span></p></th><th class="cl-c0aa83a3"><p class="cl-c0aa7b46"><span class="cl-c0a94d8f">character</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-c0aa83c1"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">income</span></p></td><td class="cl-c0aa83c1"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">integer</span></p></td><td class="cl-c0aa83ca"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">Num: 0 to 343830</span></p></td><td class="cl-c0aa83c1"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0aa83cb"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">height</span></p></td><td class="cl-c0aa83cb"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">numeric</span></p></td><td class="cl-c0aa83d4"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">Num: 52 to 84</span></p></td><td class="cl-c0aa83cb"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0aa83cb"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">weight</span></p></td><td class="cl-c0aa83cb"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">integer</span></p></td><td class="cl-c0aa83d4"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">Num: 76 to 524</span></p></td><td class="cl-c0aa83cb"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">95</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0aa83c1"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">age</span></p></td><td class="cl-c0aa83c1"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">integer</span></p></td><td class="cl-c0aa83ca"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">Num: 47 to 56</span></p></td><td class="cl-c0aa83c1"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0aa83d5"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">afqt</span></p></td><td class="cl-c0aa83d5"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">numeric</span></p></td><td class="cl-c0aa83d6"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">Num: 0 to 100</span></p></td><td class="cl-c0aa83d5"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">262</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0aa83d7"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">bmi</span></p></td><td class="cl-c0aa83d7"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">numeric</span></p></td><td class="cl-c0aa83de"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">Num: 12.874 to 74.99</span></p></td><td class="cl-c0aa83d7"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">95</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0aa83e8"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">sex</span></p></td><td class="cl-c0aa83e8"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">factor</span></p></td><td class="cl-c0aa83e9"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">'male' 'female'</span></p></td><td class="cl-c0aa83e8"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0aa83e8"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">married</span></p></td><td class="cl-c0aa83e8"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">factor</span></p></td><td class="cl-c0aa83e9"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">'married' 'not married'</span></p></td><td class="cl-c0aa83e8"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c0aa83ea"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">edu_fac</span></p></td><td class="cl-c0aa83ea"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">factor</span></p></td><td class="cl-c0aa83f2"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">'not_hs' 'not_cc' 'not_col' 'col_plus'</span></p></td><td class="cl-c0aa83ea"><p class="cl-c0aa7b46"><span class="cl-c0a94d8e">10</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="splitter-i-tre-datasett" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="splitter-i-tre-datasett"><span class="header-section-number">2.2</span> Splitter i tre datasett</h2>
+<p>Til slutt deler vi heights inn i tre datasett, hhv. <code>heights_inc_zero</code>, <code>heights_inc_norm</code> og <code>heights_inc_high</code>. Se <a href="#lst-3-subsets" class="quarto-xref">Liste&nbsp;8</a> for detaljer. Vi vil analysere <code>heights_inc_norm</code> grundigst og så sjekke eventuelle funn opp mot <code>heights_inc_zero</code> og <code>heights_inc_high</code>.</p>
+<div class="cell">
+<div id="lst-3-subsets" class="r cell-code listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-3-subsets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Liste&nbsp;8: Vi deler <code>hoyde</code> inn i tre «subsets». Datasettet <code>hoydeNormInc</code> er det vi vil konsentrere oss om.
+</figcaption>
+<div aria-describedby="lst-3-subsets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="lst-3-subsets"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="lst-3-subsets-1"><a href="#lst-3-subsets-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inntekt lik 0</span></span>
+<span id="lst-3-subsets-2"><a href="#lst-3-subsets-2" aria-hidden="true" tabindex="-1"></a>heightsZeroInc <span class="ot">&lt;-</span> heights <span class="sc">|&gt;</span> </span>
+<span id="lst-3-subsets-3"><a href="#lst-3-subsets-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(income <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="lst-3-subsets-4"><a href="#lst-3-subsets-4" aria-hidden="true" tabindex="-1"></a><span class="co"># «Normal» inntekt</span></span>
+<span id="lst-3-subsets-5"><a href="#lst-3-subsets-5" aria-hidden="true" tabindex="-1"></a>heightsNormInc <span class="ot">&lt;-</span> heights <span class="sc">|&gt;</span> </span>
+<span id="lst-3-subsets-6"><a href="#lst-3-subsets-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(income <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> income <span class="sc">&lt;</span> <span class="dv">343830</span>)</span>
+<span id="lst-3-subsets-7"><a href="#lst-3-subsets-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Høy inntekt</span></span>
+<span id="lst-3-subsets-8"><a href="#lst-3-subsets-8" aria-hidden="true" tabindex="-1"></a>heightsHighInc <span class="ot">&lt;-</span> heights <span class="sc">|&gt;</span> </span>
+<span id="lst-3-subsets-9"><a href="#lst-3-subsets-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(income <span class="sc">==</span> <span class="dv">343830</span>)</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="scatterplot-for-høyde-og-inntekt" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="scatterplot-for-høyde-og-inntekt"><span class="header-section-number">2.3</span> Scatterplot for høyde og inntekt</h2>
+<p>I <a href="#lst-height-inc-plot" class="quarto-xref">Liste&nbsp;9</a> er gjengitt kode for et «scatter plot» av høyde mot inntekt. Vi har benyttet <code>geom_jitter()</code> som er en variant av <code>geom_point()</code>.</p>
+<div class="cell">
+<div id="lst-height-inc-plot" class="cell-code listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-height-inc-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Liste&nbsp;9: Kode for å generere «scatterplot» vha. <code>ggplot2</code>.
+</figcaption>
+<div aria-describedby="lst-height-inc-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="lst-height-inc-plot"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="lst-height-inc-plot-1"><a href="#lst-height-inc-plot-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="lst-height-inc-plot-2"><a href="#lst-height-inc-plot-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fig-height-inc</span></span>
+<span id="lst-height-inc-plot-3"><a href="#lst-height-inc-plot-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "Plot av inntekt mot høyde. Fra modell-linjen som er</span></span>
+<span id="lst-height-inc-plot-4"><a href="#lst-height-inc-plot-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| lagt inn ser vi at det ser ut til å være en positiv sammenheng</span></span>
+<span id="lst-height-inc-plot-5"><a href="#lst-height-inc-plot-5" aria-hidden="true" tabindex="-1"></a><span class="in">#|  mellom høyde og inntekt. Vi merker oss også de horisontale</span></span>
+<span id="lst-height-inc-plot-6"><a href="#lst-height-inc-plot-6" aria-hidden="true" tabindex="-1"></a><span class="in">#|  båndene for inntekt lik 0 og en inntekt litt over 300000."</span></span>
+<span id="lst-height-inc-plot-7"><a href="#lst-height-inc-plot-7" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-label: lst-height-inc-plot</span></span>
+<span id="lst-height-inc-plot-8"><a href="#lst-height-inc-plot-8" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-cap: "Kode for å generere «scatterplot» vha. `ggplot2`."</span></span>
+<span id="lst-height-inc-plot-9"><a href="#lst-height-inc-plot-9" aria-hidden="true" tabindex="-1"></a><span class="in">heights  |&gt; </span></span>
+<span id="lst-height-inc-plot-10"><a href="#lst-height-inc-plot-10" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(</span></span>
+<span id="lst-height-inc-plot-11"><a href="#lst-height-inc-plot-11" aria-hidden="true" tabindex="-1"></a><span class="in">  mapping = aes(</span></span>
+<span id="lst-height-inc-plot-12"><a href="#lst-height-inc-plot-12" aria-hidden="true" tabindex="-1"></a><span class="in">    x = height,</span></span>
+<span id="lst-height-inc-plot-13"><a href="#lst-height-inc-plot-13" aria-hidden="true" tabindex="-1"></a><span class="in">    y = income</span></span>
+<span id="lst-height-inc-plot-14"><a href="#lst-height-inc-plot-14" aria-hidden="true" tabindex="-1"></a><span class="in">    )</span></span>
+<span id="lst-height-inc-plot-15"><a href="#lst-height-inc-plot-15" aria-hidden="true" tabindex="-1"></a><span class="in">  ) + </span></span>
+<span id="lst-height-inc-plot-16"><a href="#lst-height-inc-plot-16" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_jitter(</span></span>
+<span id="lst-height-inc-plot-17"><a href="#lst-height-inc-plot-17" aria-hidden="true" tabindex="-1"></a><span class="in">    size = 1,</span></span>
+<span id="lst-height-inc-plot-18"><a href="#lst-height-inc-plot-18" aria-hidden="true" tabindex="-1"></a><span class="in">    alpha = 0.40</span></span>
+<span id="lst-height-inc-plot-19"><a href="#lst-height-inc-plot-19" aria-hidden="true" tabindex="-1"></a><span class="in">    ) +</span></span>
+<span id="lst-height-inc-plot-20"><a href="#lst-height-inc-plot-20" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_smooth(</span></span>
+<span id="lst-height-inc-plot-21"><a href="#lst-height-inc-plot-21" aria-hidden="true" tabindex="-1"></a><span class="in">    formula = y ~ x,</span></span>
+<span id="lst-height-inc-plot-22"><a href="#lst-height-inc-plot-22" aria-hidden="true" tabindex="-1"></a><span class="in">    method = "lm",</span></span>
+<span id="lst-height-inc-plot-23"><a href="#lst-height-inc-plot-23" aria-hidden="true" tabindex="-1"></a><span class="in">    colour = "black",</span></span>
+<span id="lst-height-inc-plot-24"><a href="#lst-height-inc-plot-24" aria-hidden="true" tabindex="-1"></a><span class="in">    lwd = 0.75,</span></span>
+<span id="lst-height-inc-plot-25"><a href="#lst-height-inc-plot-25" aria-hidden="true" tabindex="-1"></a><span class="in">    se = FALSE</span></span>
+<span id="lst-height-inc-plot-26"><a href="#lst-height-inc-plot-26" aria-hidden="true" tabindex="-1"></a><span class="in">    )</span></span>
+<span id="lst-height-inc-plot-27"><a href="#lst-height-inc-plot-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+<div class="cell-output-display">
+<div id="fig-height-inc" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-height-inc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ass2-h24_files/figure-html/fig-height-inc-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-height-inc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figur&nbsp;1: Plot av inntekt mot høyde. Fra modell-linjen som er lagt inn ser vi at det ser ut til å være en positiv sammenheng mellom høyde og inntekt. Vi merker oss også de horisontale båndene for inntekt lik 0 og en inntekt litt over 300000.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="lage-histogram-for-to-subsets" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="lage-histogram-for-to-subsets"><span class="header-section-number">2.4</span> Lage histogram for to subsets</h2>
+<p>En teknikk som kan være aktuell i en EDA anlyse er å lage histogram av datene der dataene er delt opp i undrgrupper. Plasserer vi histogrammene i samme figur er de lettere å sammenligne.</p>
+<p>Her illustreres denne teknikken ved å studere fordelingen av høyde for hhv. kvinner og menn. Se kode i <a href="#lst-mean-sd" class="quarto-xref">Liste&nbsp;10</a>. Vi starter med å regne ut gjennomsnittlig høyde og standardavvik for hhv. menn og kvinner. Disse parametrene vil vi bruke for å tegne inn normalfordelingskurver i samme plot.</p>
+<div class="cell">
+<div id="lst-mean-sd" class="r cell-code listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-mean-sd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Liste&nbsp;10: Beregner gjennomsnittlig høyde og standardavvik for hhv. kvinner og menn. Merk at her har vi benyttet data fra hele datasettet, dvs. 7006 observasjoner.
+</figcaption>
+<div aria-describedby="lst-mean-sd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="lst-mean-sd"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="lst-mean-sd-1"><a href="#lst-mean-sd-1" aria-hidden="true" tabindex="-1"></a>meanHeightMale <span class="ot">&lt;-</span> heights <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-2"><a href="#lst-mean-sd-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">'male'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="lst-mean-sd-3"><a href="#lst-mean-sd-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(height) <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-4"><a href="#lst-mean-sd-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># konverterer en tibble med 3402 rekker og 1 kolonne</span></span>
+<span id="lst-mean-sd-5"><a href="#lst-mean-sd-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># til en vektor med 3402 elementer siden mean() forlanger en</span></span>
+<span id="lst-mean-sd-6"><a href="#lst-mean-sd-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># vektor som input</span></span>
+<span id="lst-mean-sd-7"><a href="#lst-mean-sd-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>() <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-8"><a href="#lst-mean-sd-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># finner gjennomsnittet av verdiene i vektoren</span></span>
+<span id="lst-mean-sd-9"><a href="#lst-mean-sd-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>()</span>
+<span id="lst-mean-sd-10"><a href="#lst-mean-sd-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-mean-sd-11"><a href="#lst-mean-sd-11" aria-hidden="true" tabindex="-1"></a>meanHeightFemale <span class="ot">&lt;-</span> heights <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-12"><a href="#lst-mean-sd-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">'female'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="lst-mean-sd-13"><a href="#lst-mean-sd-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(height) <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-14"><a href="#lst-mean-sd-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>() <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-15"><a href="#lst-mean-sd-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>()</span>
+<span id="lst-mean-sd-16"><a href="#lst-mean-sd-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-mean-sd-17"><a href="#lst-mean-sd-17" aria-hidden="true" tabindex="-1"></a><span class="co"># standard deviation</span></span>
+<span id="lst-mean-sd-18"><a href="#lst-mean-sd-18" aria-hidden="true" tabindex="-1"></a>sdHeightMale <span class="ot">&lt;-</span> heights <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-19"><a href="#lst-mean-sd-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">'male'</span>) <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-20"><a href="#lst-mean-sd-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(height) <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-21"><a href="#lst-mean-sd-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>() <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-22"><a href="#lst-mean-sd-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd</span>()</span>
+<span id="lst-mean-sd-23"><a href="#lst-mean-sd-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-mean-sd-24"><a href="#lst-mean-sd-24" aria-hidden="true" tabindex="-1"></a>sdHeightFemale <span class="ot">&lt;-</span> heights <span class="sc">|&gt;</span></span>
+<span id="lst-mean-sd-25"><a href="#lst-mean-sd-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">'female'</span>) <span class="sc">|&gt;</span></span>
+<span id="lst-mean-sd-26"><a href="#lst-mean-sd-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(height) <span class="sc">|&gt;</span></span>
+<span id="lst-mean-sd-27"><a href="#lst-mean-sd-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>() <span class="sc">|&gt;</span> </span>
+<span id="lst-mean-sd-28"><a href="#lst-mean-sd-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd</span>()</span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+</div>
+<p>Så genererer vi histogram og overliggende empirisk fordeling tegnet utfra gjennomsnittlig høyde og tilhørende standardavvik som vi har regnet ut ovenfor.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="st-hist" data-lst-cap="Kode for å generer histogrammer for høyde for hhv. menn og kvinner med inntegnet normalfordelingskurve (tetthetsfunksjon). Normalfordelingskurvene er tegnet ut fra gjennomsnitt og standardavvik beregnet ovenfor. Dataene er fra hele datasettet `heights`."><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="st-hist-1"><a href="#st-hist-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="st-hist-2"><a href="#st-hist-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fig-hist</span></span>
+<span id="st-hist-3"><a href="#st-hist-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "Histogram av høyde fordelt på kjønn, kvinner er mørk grå mens menn er lysere grå. I tillegg er normalfordeling</span></span>
+<span id="st-hist-4"><a href="#st-hist-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| for observert gjennomsnitt og standard-avvik, også fordelt på kjønn, tegnet inn."</span></span>
+<span id="st-hist-5"><a href="#st-hist-5" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-label: st-hist</span></span>
+<span id="st-hist-6"><a href="#st-hist-6" aria-hidden="true" tabindex="-1"></a><span class="in">#| lst-cap: "Kode for å generer histogrammer for høyde for hhv. menn og</span></span>
+<span id="st-hist-7"><a href="#st-hist-7" aria-hidden="true" tabindex="-1"></a><span class="in">#| kvinner med inntegnet normalfordelingskurve (tetthetsfunksjon).</span></span>
+<span id="st-hist-8"><a href="#st-hist-8" aria-hidden="true" tabindex="-1"></a><span class="in">#| Normalfordelingskurvene er tegnet ut fra gjennomsnitt og standardavvik</span></span>
+<span id="st-hist-9"><a href="#st-hist-9" aria-hidden="true" tabindex="-1"></a><span class="in">#| beregnet ovenfor. Dataene er fra hele datasettet `heights`."</span></span>
+<span id="st-hist-10"><a href="#st-hist-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="st-hist-11"><a href="#st-hist-11" aria-hidden="true" tabindex="-1"></a><span class="in">heights %&gt;%</span></span>
+<span id="st-hist-12"><a href="#st-hist-12" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot() +</span></span>
+<span id="st-hist-13"><a href="#st-hist-13" aria-hidden="true" tabindex="-1"></a><span class="in">  ### male ###</span></span>
+<span id="st-hist-14"><a href="#st-hist-14" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_histogram(</span></span>
+<span id="st-hist-15"><a href="#st-hist-15" aria-hidden="true" tabindex="-1"></a><span class="in">    data = filter(heights, sex == "male"),</span></span>
+<span id="st-hist-16"><a href="#st-hist-16" aria-hidden="true" tabindex="-1"></a><span class="in">    mapping = aes(x = height, y = after_stat(density)),</span></span>
+<span id="st-hist-17"><a href="#st-hist-17" aria-hidden="true" tabindex="-1"></a><span class="in">    binwidth = 1,</span></span>
+<span id="st-hist-18"><a href="#st-hist-18" aria-hidden="true" tabindex="-1"></a><span class="in">    alpha = 0.3,</span></span>
+<span id="st-hist-19"><a href="#st-hist-19" aria-hidden="true" tabindex="-1"></a><span class="in">    colour = 'grey40',</span></span>
+<span id="st-hist-20"><a href="#st-hist-20" aria-hidden="true" tabindex="-1"></a><span class="in">    fill = 'grey40'</span></span>
+<span id="st-hist-21"><a href="#st-hist-21" aria-hidden="true" tabindex="-1"></a><span class="in">    ) + </span></span>
+<span id="st-hist-22"><a href="#st-hist-22" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_vline(</span></span>
+<span id="st-hist-23"><a href="#st-hist-23" aria-hidden="true" tabindex="-1"></a><span class="in">    xintercept = meanHeightMale,</span></span>
+<span id="st-hist-24"><a href="#st-hist-24" aria-hidden="true" tabindex="-1"></a><span class="in">    colour = 'grey40', </span></span>
+<span id="st-hist-25"><a href="#st-hist-25" aria-hidden="true" tabindex="-1"></a><span class="in">    lwd = 0.75,</span></span>
+<span id="st-hist-26"><a href="#st-hist-26" aria-hidden="true" tabindex="-1"></a><span class="in">    linetype = 3</span></span>
+<span id="st-hist-27"><a href="#st-hist-27" aria-hidden="true" tabindex="-1"></a><span class="in">    ) +</span></span>
+<span id="st-hist-28"><a href="#st-hist-28" aria-hidden="true" tabindex="-1"></a><span class="in">  stat_function(</span></span>
+<span id="st-hist-29"><a href="#st-hist-29" aria-hidden="true" tabindex="-1"></a><span class="in">    fun = dnorm,</span></span>
+<span id="st-hist-30"><a href="#st-hist-30" aria-hidden="true" tabindex="-1"></a><span class="in">    args = list(</span></span>
+<span id="st-hist-31"><a href="#st-hist-31" aria-hidden="true" tabindex="-1"></a><span class="in">      mean = meanHeightMale, </span></span>
+<span id="st-hist-32"><a href="#st-hist-32" aria-hidden="true" tabindex="-1"></a><span class="in">      sd = sdHeightMale</span></span>
+<span id="st-hist-33"><a href="#st-hist-33" aria-hidden="true" tabindex="-1"></a><span class="in">      ),</span></span>
+<span id="st-hist-34"><a href="#st-hist-34" aria-hidden="true" tabindex="-1"></a><span class="in">    colour = 'grey40'</span></span>
+<span id="st-hist-35"><a href="#st-hist-35" aria-hidden="true" tabindex="-1"></a><span class="in">    ) +</span></span>
+<span id="st-hist-36"><a href="#st-hist-36" aria-hidden="true" tabindex="-1"></a><span class="in">  # female</span></span>
+<span id="st-hist-37"><a href="#st-hist-37" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_histogram(</span></span>
+<span id="st-hist-38"><a href="#st-hist-38" aria-hidden="true" tabindex="-1"></a><span class="in">    data = filter(heights, sex == "female"),</span></span>
+<span id="st-hist-39"><a href="#st-hist-39" aria-hidden="true" tabindex="-1"></a><span class="in">    mapping = aes(x = height, y = after_stat(density)),</span></span>
+<span id="st-hist-40"><a href="#st-hist-40" aria-hidden="true" tabindex="-1"></a><span class="in">    binwidth = 1,</span></span>
+<span id="st-hist-41"><a href="#st-hist-41" aria-hidden="true" tabindex="-1"></a><span class="in">    alpha = 0.7,</span></span>
+<span id="st-hist-42"><a href="#st-hist-42" aria-hidden="true" tabindex="-1"></a><span class="in">    colour = 'black',</span></span>
+<span id="st-hist-43"><a href="#st-hist-43" aria-hidden="true" tabindex="-1"></a><span class="in">    fill = 'grey40'</span></span>
+<span id="st-hist-44"><a href="#st-hist-44" aria-hidden="true" tabindex="-1"></a><span class="in">    ) +</span></span>
+<span id="st-hist-45"><a href="#st-hist-45" aria-hidden="true" tabindex="-1"></a><span class="in">  stat_function(</span></span>
+<span id="st-hist-46"><a href="#st-hist-46" aria-hidden="true" tabindex="-1"></a><span class="in">    fun = dnorm,</span></span>
+<span id="st-hist-47"><a href="#st-hist-47" aria-hidden="true" tabindex="-1"></a><span class="in">    args = list(</span></span>
+<span id="st-hist-48"><a href="#st-hist-48" aria-hidden="true" tabindex="-1"></a><span class="in">      mean = meanHeightFemale,</span></span>
+<span id="st-hist-49"><a href="#st-hist-49" aria-hidden="true" tabindex="-1"></a><span class="in">      sd = sdHeightFemale</span></span>
+<span id="st-hist-50"><a href="#st-hist-50" aria-hidden="true" tabindex="-1"></a><span class="in">      ), </span></span>
+<span id="st-hist-51"><a href="#st-hist-51" aria-hidden="true" tabindex="-1"></a><span class="in">    colour = 'black'</span></span>
+<span id="st-hist-52"><a href="#st-hist-52" aria-hidden="true" tabindex="-1"></a><span class="in">    ) +</span></span>
+<span id="st-hist-53"><a href="#st-hist-53" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_vline(</span></span>
+<span id="st-hist-54"><a href="#st-hist-54" aria-hidden="true" tabindex="-1"></a><span class="in">    xintercept = meanHeightFemale,</span></span>
+<span id="st-hist-55"><a href="#st-hist-55" aria-hidden="true" tabindex="-1"></a><span class="in">    colour = 'grey40',</span></span>
+<span id="st-hist-56"><a href="#st-hist-56" aria-hidden="true" tabindex="-1"></a><span class="in">    lwd = 0.75,</span></span>
+<span id="st-hist-57"><a href="#st-hist-57" aria-hidden="true" tabindex="-1"></a><span class="in">    linetype = 3</span></span>
+<span id="st-hist-58"><a href="#st-hist-58" aria-hidden="true" tabindex="-1"></a><span class="in">    ) </span></span>
+<span id="st-hist-59"><a href="#st-hist-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Kopier til utklipstavle" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-hist" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ass2-h24_files/figure-html/fig-hist-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figur&nbsp;2: Histogram av høyde fordelt på kjønn, kvinner er mørk grå mens menn er lysere grå. I tillegg er normalfordeling for observert gjennomsnitt og standard-avvik, også fordelt på kjønn, tegnet inn.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="referanser" class="level2" data-number="2.5">
+
+
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">2.5 Referanser</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-aragao" class="csl-entry" role="listitem">
+Aragão, Carolina. u.å. <span>«Gender Pay Gap in <span>U</span>.<span>S</span>. Hasn’t Changed Much in Two Decades»</span>. <em>Pew Research Center</em>. Åpnet 6. oktober 2023.
+</div>
+<div id="ref-bobbitt-zeher2007" class="csl-entry" role="listitem">
+Bobbitt-Zeher, Donna. 2007. <span>«The <span>Gender Income Gap</span> and the <span>Role</span> of <span>Education</span>»</span>. <em>Sociology of Education</em> 80 (1): 1–22.
+</div>
+<div id="ref-bound1986" class="csl-entry" role="listitem">
+Bound, John, Zvi Griliches, og Bronwyn H. Hall. 1986. <span>«Wages, <span>Schooling</span> and <span>IQ</span> of <span>Brothers</span> and <span>Sisters</span>: <span>Do</span> the <span>Family Factors Differ</span>?»</span> <em>International Economic Review</em> 27 (1): 77–105.
+</div>
+<div id="ref-bureau" class="csl-entry" role="listitem">
+Bureau, US Census. u.å. <span>«Among the <span>Educated</span>, <span>Women Earn</span> 74 <span>Cents</span> for <span>Every Dollar Men Make</span>»</span>. <em>Census.gov</em>. https://www.census.gov/library/stories/2019/05/college-degree-widens-gender-earnings-gap.html. Åpnet 6. oktober 2023.
+</div>
+<div id="ref-bockerman2019" class="csl-entry" role="listitem">
+Böckerman, Petri, John Cawley, Jutta Viinikainen, Terho Lehtimäki, Suvi Rovio, Ilkka Seppälä, Jaakko Pehkonen, og Olli Raitakari. 2019. <span>«<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6585973">The Effect of Weight on Labor Market Outcomes: <span>An</span> Application of Genetic Instrumental Variables</a>»</span>. <em>Health Economics</em> 28 (1): 65–77.
+</div>
+<div id="ref-caliendo2016" class="csl-entry" role="listitem">
+Caliendo, Marco, og Markus Gehrsitz. 2016. <span>«Obesity and the Labor Market: <span>A</span> Fresh Look at the Weight Penalty»</span>. <em>Economics &amp; Human Biology</em> 23 (desember): 209–25.
+</div>
+<div id="ref-card2016" class="csl-entry" role="listitem">
+Card, David, Ana Rute Cardoso, og Patrick Kline. 2016. <span>«Bargaining, <span>Sorting</span>, and the <span>Gender Wage Gap</span>: <span>Quantifying</span> the <span>Impact</span> of <span>Firms</span> on the <span>Relative Pay</span> of <span>Women</span> *»</span>. <em>The Quarterly Journal of Economics</em> 131 (2): 633–86.
+</div>
+<div id="ref-case2008" class="csl-entry" role="listitem">
+Case, Anne, og Christina Paxson. 2008. <span>«Stature and <span>Status</span>: <span>Height</span>, <span>Ability</span>, and <span>Labor Market Outcomes</span>»</span>. <em>Journal of Political Economy</em> 116 (3): 499–532.
+</div>
+<div id="ref-case2009" class="csl-entry" role="listitem">
+Case, Anne, Christina Paxson, og Mahnaz Islam. 2009. <span>«Making Sense of the Labor Market Height Premium: <span>Evidence</span> from the <span>British Household Panel Survey</span>»</span>. <em>Economics Letters</em> 102 (3): 174–76.
+</div>
+<div id="ref-cawley2015" class="csl-entry" role="listitem">
+Cawley, John. 2015. <span>«An Economy of Scales: <span>A</span> Selective Review of Obesity’s Economic Causes, Consequences, and Solutions»</span>. <em>Journal of Health Economics</em> 43 (september): 244–68.
+</div>
+<div id="ref-dash2017" class="csl-entry" role="listitem">
+Dash, Mihir, Suprabha Bakshi, og Aarushi Chugh. 2017. <span>«The <span>Relationship Between Work Experience</span> and <span>Employee Compensation</span>: <span>A Case Study</span> of the <span>Indian IT Industry</span>»</span>. <em>Journal of Applied Management and Investments</em> 6 (1): 5–10.
+</div>
+<div id="ref-deaton2009" class="csl-entry" role="listitem">
+Deaton, Angus, og Raksha Arora. 2009. <span>«Life at the Top: <span>The</span> Benefits of Height»</span>. <em>Economics &amp; Human Biology</em> 7 (2): 133–36.
+</div>
+<div id="ref-edwards2021" class="csl-entry" role="listitem">
+Edwards, Christina Hansen, Johan Håkon Bjørngaard, og Jonas Minet Kinge. 2021. <span>«<a href="https://www.ncbi.nlm.nih.gov/pubmed/33993584">The Relationship Between Body Mass Index and Income: <span>Using</span> Genetic Variants from <span>HUNT</span> as Instrumental Variables</a>»</span>. <em>Health Economics</em> 30 (8): 1933–49.
+</div>
+<div id="ref-gould2016" class="csl-entry" role="listitem">
+Gould, Elise, Jessica Schieder, og Kathleen Geier. 2016. <span>«What Is the Gender Pay Gap and Is It Real?: <span>The</span> Complete Guide to How Women Are Paid Less Than Men and Why It Can&amp;#8217;t Be Explained Away»</span>. <em>Economic Policy Institute</em>. https://www.epi.org/publication/what-is-the-gender-pay-gap-and-is-it-real/.
+</div>
+<div id="ref-han2009" class="csl-entry" role="listitem">
+Han, Euna, Edward C. Norton, og Sally C. Stearns. 2009. <span>«Weight and Wages: Fat Versus Lean Paychecks»</span>. <em>Health Economics</em> 18 (5): 535–48.
+</div>
+<div id="ref-hejase2020" class="csl-entry" role="listitem">
+Hejase, Hussin J., og Ale J. Hejase. 2020. <span>«Gender <span>Discrimination</span>: <span>The Gender Wage Gap</span>»</span>. <em>Journal of Economics and Economic Education Research</em> 21 (1S): 1–4.
+</div>
+<div id="ref-hildebrand2010" class="csl-entry" role="listitem">
+Hildebrand, Vincent, og Philippe Van Kerm. 2010. <span>«Body Size and Wages in <span>Europe</span>: <span>A</span> Semi-Parametric Analysis»</span>.
+</div>
+<div id="ref-hubler2015" class="csl-entry" role="listitem">
+Hübler, Olaf. 2015. <span>«Height and <span>Wages</span>»</span>. I.
+</div>
+<div id="ref-iii1996" class="csl-entry" role="listitem">
+Iii, William, og William Spriggs. 1996. <span>«What Does the <span>AFQT</span> Really Measure: <span>Race</span>, Wages, Schooling and the <span>AFQT</span> Score»</span>. <em>The Review of Black Political Economy</em> 24 (juni): 13–46.
+</div>
+<div id="ref-kan2012" class="csl-entry" role="listitem">
+Kan, Kamhon, og Myoung-Jae Lee. 2012. <span>«Lose Weight for a Raise Only If Overweight: <span>Marginal</span> Integration for Semi-Linear Panel Models»</span>. <em>Journal of Applied Econometrics</em> 27 (4): 666–85.
+</div>
+<div id="ref-kanarek2013" class="csl-entry" role="listitem">
+Kanarek, Jaret. 2013. <span>«Youth <span>Aptitude</span> as a <span>Predictor</span> of <span>Adulthood Income</span> - <span>CORE</span>»</span>. <em>Undergaduate Economic Review</em>, 1. serie, 10.
+</div>
+<div id="ref-lee2017" class="csl-entry" role="listitem">
+Lee, Wang-Sheng. 2017. <span>«Big and Tall: <span>Does</span> a Height Premium Dwarf an Obesity Penalty in the Labor Market?»</span> <em>Economics &amp; Human Biology</em> 27 (november): 289–304.
+</div>
+<div id="ref-medoff1980" class="csl-entry" role="listitem">
+Medoff, James L., og Katharine G. Abraham. 1980. <span>«Experience, <span>Performance</span>, and <span>Earnings</span>»</span>. <em>The Quarterly Journal of Economics</em> 95 (4): 703–36.
+</div>
+<div id="ref-mincer1974" class="csl-entry" role="listitem">
+Mincer, Jacob A. 1974. <span>«Schooling, <span>Experience</span>, and <span>Earnings</span>»</span>. <em>NBER Books</em>.
+</div>
+<div id="ref-mitchell2020" class="csl-entry" role="listitem">
+Mitchell, Travis. 2020. <span>«2. <span>Women</span>’s Lead in Skills and Education Is Helping Narrow the Gender Wage Gap»</span>. <em>Pew Research Center’s Social &amp; Demographic Trends Project</em>.
+</div>
+<div id="ref-nls2023" class="csl-entry" role="listitem">
+NLS. 2023. <span>«Aptitude, <span>Achievement</span> &amp; <span>Intelligence Scores</span> | <span>National Longitudinal Surveys</span>»</span>. https://www.nlsinfo.org/content/cohorts/nlsy79/topical-guide/education/aptitude-achievement-intelligence-scores.
+</div>
+<div id="ref-nyirongo" class="csl-entry" role="listitem">
+Nyirongo, Venge. u.å. <span>«Tackling <span>Discriminatory Labour Practices</span>, <span>Labour Market Segmentation</span> and <span>Gender Pay Gaps</span>»</span>.
+</div>
+<div id="ref-ochsenfeld2016" class="csl-entry" role="listitem">
+Ochsenfeld, Fabian. 2016. <span>«The <span>Gender Income Gap</span> and the <span>Roles</span> of <span>Education</span> and <span>Family Formation</span>: <span>A Scientific Replication</span> of <span>Bobbitt-Zeher</span> (2007)»</span>. {{SSRN Scholarly Paper}}. <span>Rochester, NY</span>.
+</div>
+<div id="ref-on-the-economy-blog2020" class="csl-entry" role="listitem">
+On-The-Economy-Blog. 2020. <span>«Taking a <span>Closer Look</span> at <span>Marital Status</span> and the <span>Earnings Gap</span>»</span>. https://www.stlouisfed.org/on-the-economy/2020/september/taking-closer-look-marital-status-earnings-gap.
+</div>
+<div id="ref-petersen1995" class="csl-entry" role="listitem">
+Petersen, Trond, og Laurie A. Morgan. 1995. <span>«Separate and <span>Unequal</span>: <span>Occupation-Establishment Sex Segregation</span> and the <span>Gender Wage Gap</span>»</span>. <em>American Journal of Sociology</em> 101 (2): 329–65.
+</div>
+<div id="ref-published2009" class="csl-entry" role="listitem">
+published, Robert Roy Britt. 2009. <span>«Taller <span>People Earn More Money</span>»</span>. <em>Livescience.com</em>. https://www.livescience.com/5552-taller-people-earn-money.html.
+</div>
+<div id="ref-Rcore" class="csl-entry" role="listitem">
+R Core Team. 2021. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
+</div>
+<div id="ref-santossilva2021" class="csl-entry" role="listitem">
+Santos Silva, Manuel, og Stephan Klasen. 2021. <span>«Gender Inequality as a Barrier to Economic Growth: A Review of the Theoretical Literature»</span>. <em>Review of Economics of the Household</em> 19 (3): 581–614.
+</div>
+<div id="ref-sargent1994" class="csl-entry" role="listitem">
+Sargent, James D., og David G. Blanchflower. 1994. <span>«Obesity and <span>Stature</span> in <span>Adolescence</span> and <span>Earnings</span> in <span>Young Adulthood</span>: <span>Analysis</span> of a <span>British Birth Cohort</span>»</span>. <em>Archives of Pediatrics &amp; Adolescent Medicine</em> 148 (7): 681–87.
+</div>
+<div id="ref-zotero-1832" class="csl-entry" role="listitem">
+<span>«The <span>Impact</span> of <span>Obesity</span> on <span>Wages</span> | <span>Journal</span> of <span>Human Resources</span>»</span>. u.å. https://jhr.uwpress.org/content/XXXIX/2/451.short. Åpnet 6. oktober 2023.
+</div>
+<div id="ref-zotero-1833" class="csl-entry" role="listitem">
+<span>«The Wage Effects of Obesity: A Longitudinal Study - <span>Baum</span> - 2004 - <span>Health Economics</span> - <span>Wiley Online Library</span>»</span>. u.å. https://onlinelibrary.wiley.com/doi/abs/10.1002/hec.881. Åpnet 6. oktober 2023.
+</div>
+<div id="ref-vandenbroucke" class="csl-entry" role="listitem">
+Vandenbroucke, Guillaume. u.å. <span>«Married <span>Men Sit Atop</span> the <span>Wage Ladder</span>»</span>. https://research.stlouisfed.org/publications/economic-synopses/2018/09/14/married-men-sit-atop-the-wage-ladder. Åpnet 6. oktober 2023.
+</div>
+<div id="ref-modelr" class="csl-entry" role="listitem">
+Wickham, Hadley. 2020. <em>modelr: Modelling Functions that Work with the Pipe</em>. <a href="https://CRAN.R-project.org/package=modelr">https://CRAN.R-project.org/package=modelr</a>.
+</div>
+<div id="ref-wolfinger2019" class="csl-entry" role="listitem">
+Wolfinger, Nicholas H. 2019. <span>«Can <span>Intelligence Predict Income</span>?»</span> <em>Institute for Family Studies</em>. https://ifstudies.org/blog/can-intelligence-predict-income.
+</div>
+<div id="ref-zagorsky2007" class="csl-entry" role="listitem">
+Zagorsky, Jay L. 2007. <span>«Do You Have to Be Smart to Be Rich? <span>The</span> Impact of <span>IQ</span> on Wealth, Income and Financial Distress»</span>. <em>Intelligence</em> 35 (5): 489–501.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopiert!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopiert!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

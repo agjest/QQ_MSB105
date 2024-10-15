@@ -1,0 +1,491 @@
+---
+title: "Er det høyde som bestemmer inntekt?"
+format:
+  html: default
+  pdf:
+    papersize: a4
+    toc: false
+    top-level-division: section
+  docx: default
+df_print: tibble
+bibliography: [heights.bib, ag.bib]
+lang: nb-no
+number-sections: true
+execute: 
+  echo: true
+code-overflow: wrap
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(vtable)
+library(flextable)
+library(tidyverse)
+```
+
+# Oppgaven
+
+Hver gruppe skal skrive et «mini-paper» over lesten:
+
+1.  Innledning
+2.  Litteraturgjennomgang.
+    -   Hva sier litteraturen om sammenhengen mellom:
+        -   lønn og høyde
+        -   lønn og bmi
+        -   lønn og sivilstatus (gift/ugift)
+        -   lønn og utdanning
+        -   lønn og kjønn
+3.  Utfør en «EDA» av datasettet heights med utgangspunkt i forklaringsvariablene høyde, bmi, sivilstatus, utdanning og kjønn.
+    -   Bruk tabeller for deskreptiv statistikk
+        -   Bruk label og caption (forklarende tekst) for tabellene
+        -   Når tabellen diskuteres i tekst, benytt kryssreferanser (vha. label satt vha. «hash-pipen» #\| label: tbl-EtEllerAnnet)
+        -   Med utgangspunkt i tabellen generert vha. av funksjonen `vtable::st()` i @lst-heights-st. Lag tilsvarende tabeller for (legg inn en `filter()` kommando i pipe-en):
+            -   Ingen inntekt (heightsZeroInc)
+            -   Normal inntekt (heightsNormInc)
+            -   Høy inntekt (heightsHighInc)
+                -   Diskuter forskjellen mellom de tre inntektsgruppene (null inntekt, normal inntekt og høy inntekt)
+        -   Splitt så datasettet også mht. kjønn, (legg inn en `filter()` kommando i pipe-en i koden fra @lst-heights-st) dvs. lag tilsvarende tabeller for
+            -   Menn med inntekt 0
+            -   Kvinner med inntekt 0
+            -   Menn med normal inntekt
+            -   Kvinner med normal inntekt
+            -   Menn med høy inntekt
+            -   Kvinner med høy inntekt
+                -   Diskuter forskjellene mellom disse seks gruppene.
+        -   For datasettet *normal inntekt*
+            -   Er det noen interessante sammenhenger mht. noen av de andre variablene?
+            -   Diskuter eventuelle funn
+        -   Diskuter om det som fremkommer fra den deskreptive statistikken dere har generert ovenfor samsvar med funn i literaturen.
+    -   Generer grafikk vha. `ggplot2`.
+        -   Se koden i @lst-height-inc-plot og lag et tilsvarende plot men for normale inntekteter
+        -   Bruke farge for å angi kjønn for punktene
+        -   Legg inn regresjonslinjer for hele datasettet og for menn og kvinner separat.
+            -   Diskuter hva plotet viser
+        -   Bruk `geom_histogram()` og `geom_density()` for å undersøke fordelingen til enkelt-variabler.
+        -   Bruk `pairs()` eller tilsvarende for å undersøke korrelasjon mellom relevante variabler
+        -   Bruk `facet_wrap()`, `geom_point()` og `geom_smooth()` for nærmere undersøkelse av sammenhengen mellom variabler.
+    -   Dere vil finne flere eksempler som bruker dette datasettet i «slidene» [Exploratory Data Analysis (EDA)](https://msb105.netlify.app/explore-data/eda/eda#/title-slide). - Disse kan fungere som et utgangspunkt, men dere må også finne egne måter (tabeller/plots) for å studere dataene.
+4.  Konklusjon
+    -   Er det virkelig høyde som bestemmer inntekt, eller har EDA-en avslørt at andre variabler kan spille en rolle.
+5.  Referanser
+
+Mot slutten av dette dokumentet vil dere finne litt innledene kode for å hjelpe dere igang.
+
+\clearpage
+
+### Arbeidsform
+
+Gruppene skal jobbe i et RStudio prosjekt koblet mot et Github repo.
+
+### Levering
+
+Når dere er ferdig inviterer dere meg (agjest) inn i repo-et.
+
+![Settings](settings.png){fig-align="center"}
+
+![Collaborators](collaborators.png){fig-align="center"}
+
+Jeg vil så:
+
+-   Lage en «fork» og så gjøre en «pull»,
+-   lage en ny gren `ag,`
+-   gjøre eventuelle «fix» for å få dokumentet til å kjøre
+    -   dokumentet bør være reproduserbart i utgangspunktet
+-   foreslå eventuelle endringer og forbedringer
+-   opprette et nytt dokument `ag_comments.qmd` med mer generelle kommentarer
+
+Dette vil jeg gjøre tilgjengelig som en «pull request» på Github.
+Dere kan da se hva jeg forslår og eventuelt akseptere mine endringer.
+
+\clearpage
+
+## Her er noe litteratur som kan være et utgangspunkt:
+
+### Sammenhengen mellom inntekt og høyde og mellom inntekt og utdanning
+
+@bureau; @case2008; @case2009; @deaton2009; @hubler2015; @mitchell2020; @ochsenfeld2016 og @published2009
+
+### Sammenhengen mellom inntekt og kjønn
+
+@aragao; @bobbitt-zeher2007; @bureau; @card2016; @hejase2020; @mitchell2020; @nyirongo; @ochsenfeld2016; @petersen1995; @santossilva2021; @on-the-economy-blog2020 og @gould2016.
+
+### Sammenhengen mellom inntekt og ansiennitet (alder):
+
+@medoff1980, @dash2017 og @mincer1974
+
+### Sammenhengen inntekt og evnenivå (afqt):
+
+@zagorsky2007; @bound1986, @wolfinger2019, @kanarek2013, @nls2023 og @iii1996
+
+### Sammenhengen mellom inntekt og sivilstand (gift/ugift ):
+
+@on-the-economy-blog2020; @vandenbroucke og @case2008
+
+### Sammenheng mellom inntekt og bmi (body mass index):
+
+@bockerman2019; @caliendo2016; @cawley2015; @edwards2021; @han2009; @hildebrand2010; @kan2012; @lee2017; @sargent1994; @zotero-1832 og @zotero-1833
+
+## Beskrivelse av data
+
+Datasettet er kalt *heights* og er en del av pakken modelr, @modelr, som er en utvidelspakke for statistikksystemet R, @Rcore.
+
+\clearpage
+
+# Kode
+
+Koden i @lst-read-in-data er kode som samtlige grupper bør kjøre rett etter setup chunk-en slik at vi jobber med samme data og har samme variabelnavn.
+Merk bruken av «hash-pipene» `lst-label` og `lst-cap` som gjør det mulig å ha kryssreferanser til kode-listinger og også «caption» på en kode-listing.
+
+```{r}
+#| lst-label: lst-read-in-data
+#| lst-cap: "Kode for å lese inn data og definere noen nye variabler."
+#| echo: fenced
+heights <- modelr::heights
+
+heights <- heights %>% 
+  mutate(
+    bmi = weight * 0.4536/(height * 2.54/100)^2,
+    married = fct_collapse(
+      .f = marital,
+      married = "married",
+      other_level = "not married"
+    ),
+    edu_fac = cut(
+      x = education,
+      breaks = c(0, 12, 14, 16, 21),
+      labels = c("not_hs", "not_cc", "not_col", "col_plus"),
+      right = FALSE
+    )
+  ) |> 
+  # reorganiserer data s.a. de fire faktor-variablerne kommer
+  # lengst til høyre
+  select(income:age, education:bmi, everything()) |>
+  # Dropper marital og education siden disse ikke skal brukes
+  select(-education, -marital)
+
+# Inntekt lik 0
+heightsZeroInc <- heights |> 
+  filter(income == 0)
+# «Normal» inntekt
+heightsNormInc <- heights |> 
+  filter(income > 0 & income < 343830)
+heightsHighInc <- heights |> 
+  filter(income == 343830)
+```
+
+\clearpage
+
+## Gjennomgang av koden
+
+Her følger en gjennomgang av koden ovenfor steg for steg.
+I tillegg gis noen eksempler på bruk av `vt()` og `st()` fra pakken `vtable` kombinert med funksjonen `as_flextable()` fra `flextable` pakken..
+Sjekk også kode fra «slidene» i [msb104.netlify.app](https://msb104.netlify.app/regression/mlr/msb104_05_chp03#/contr.for-confounders-interaction-by-hand) for hvordan man kan generere tabeller vha.
+funksjonen `as_flextable()`.
+
+Vi starter med å lese inn datasettet.
+
+```{r}
+#| eval: false
+heights <- modelr::heights
+```
+
+Vi kan så bruke `st()` fra `vtable` og `as_flextable()` fra `flextable` for å generere deskreptive statistikk for hele datasettet.
+
+```{r}
+#| label: tbl-desc-stat
+#| tbl-cap: "Deskreptiv statistikk for datasettet `modelr::heights`."
+#| lst-label: lst-heights-st
+#| lst-cap: "Kode for å generere deskreptiv-statistikk tabell vha. funksjonene 
+#| `st()` og `as_flextable()`. Merk bruken av «hash pipes». Her setter vi 
+#| label og caption for både kode-listing og resulterende tabell. Hvis 
+#| det var en figur vi genererte ville vi byttet ut `tbl-` med `fig-`."
+#| echo: fenced
+heights |> 
+  st(out = "return") |> 
+  as_flextable(max_row = 20) |> 
+  line_spacing(space = 0.3, part = "all") |> 
+  fontsize(size = 9, part = "body") |> 
+  fontsize(size = 10, part = "header") |> 
+  width(width = 16, unit = "mm") |> 
+  delete_part("footer")
+```
+
+Vi har altså 7006 observasjoner og 8 variabler.
+For variablene `weight`, `education` og `afqt` har vi noen NA-verdier.
+
+Det har vært spekulert om observert lønnsmessig «høyde premium» egentlig er en skjult «vekt straff».
+Tanken er at det er en negativ sammenheng mellom høyde og overvekt og at arbeidsgivere er redd for at personer som strever med overvekt har større sjanse for å ha eller få alvorlig helseproblemer og at arbeidsgivere derfor anser disse arbeidstakerne som mindre produktive og derfor tilbyr lavere lønn.
+For å se om dette er tilfelle lager vi en ny variabel `bmi` («body mass index»).
+I tillegg lager vi en forenklet versjon av variabelen `marital` der vi bare skiller mellom `married` (TRUE) og `not_married` (FALSE).
+
+```{r}
+#| lst-label: lst-bmi-married
+#| lst-cap: "Bruker mutate til å lage variabelen `bmi`. I tillegg
+#|  bruker vi funksjonen `fct_collapse()` til å «klappe sammen» de 
+#|  fem kategorien i marital til bare to kategorier i variabelen 
+#|  `married`."
+#| echo: fenced
+#| eval: false
+heights <- heights %>% 
+  mutate(
+    bmi = weight * 0.4536/(height * 2.54/100)^2,
+    married = fct_collapse(
+      .f = marital,
+      married = "married",
+      other_level = "not married"
+    )
+  )
+```
+
+Vi forenkler også variabelen `education` s.a.
+vi bare skiller mellom kategorien `not_hs` («Not High School Exam»; 0 $\leq$ education \< 12), `not_cc` («Not Community College»; 12 $\leq$ education \< 14) `not_col` («Not College»; 14 $\leq$ education \< 16) og `col_plus` («4 years College or more»; education $\geq$ 16)
+
+```{r}
+#| lst-label: lst-edu-fac
+#| lst-cap: "I samme mutate lager vi også variabelen edu_fac ved å kutte education opp i fire intervaller"
+#| echo: true
+#| eval: false
+edu_fac = cut_interval(
+      x = education,
+      breaks = c(0, 12, 14, 16, 21),
+      labels = c("not_hs", "not_cc", 
+                    "not_col", "col_plus"),
+      right = FALSE
+    )
+```
+
+Det kan være hensiktmessig å samle kategorivariablene lengst til høyre i datasettet (f.eks blir resultatet av `st()`en noe ryddigere tabell).
+
+```{r}
+#| lst-label: lst-move-vars
+#| lst-cap: "Endrer rekkefølgen på variablene s.a. kategorivariablene samles lengst til høyre i datasettet."
+#| echo: true
+#| eval: false
+select(income:age, education:bmi, everything())
+```
+
+Vi kommer ikke til å bruke variablene `education` og `marital` så disse dropper vi.
+
+```{r}
+#| lst-label: lst-drop-vars
+#| lst-cap: "Vi skal ikke benytte variablene `marital` og `education` så disse droppes fra datasettet."
+#| echo: true
+#| eval: false
+select(-education, -marital)
+```
+
+Oversikt over `heights` med nye variabler:
+
+```{r}
+#| label: tbl-new-height
+#| tbl-cap: "Oversikt over oppdatert `height` datasett. Har benyttet
+#| argumentet `missing = TRUE` i `vt()` funksjonen."
+#| lst-label: lst-height-vt
+#| lst-cap: "Kode for å generer en mer kortfattet tabell enn `st()`. 
+#| Merk bruken av argumentet `missing = TRUE` slik at vi klart 
+#| ser hvor mange `NA` verdier vi har for de ulike variablene."
+#| echo: true
+heights |> 
+  vt(missing = TRUE, out = "return") |> 
+  as_flextable(
+    max_row = 20,
+    spacing = 0.3,
+    part = "all"
+  ) |> 
+  delete_part("footer")
+```
+
+## Splitter i tre datasett
+
+Til slutt deler vi heights inn i tre datasett, hhv.
+`heights_inc_zero`, `heights_inc_norm` og `heights_inc_high`.
+Se @lst-3-subsets for detaljer.
+Vi vil analysere `heights_inc_norm` grundigst og så sjekke eventuelle funn opp mot `heights_inc_zero` og `heights_inc_high`.
+
+```{r}
+#| lst-label: lst-3-subsets
+#| lst-cap: "Vi deler `hoyde` inn i tre «subsets». Datasettet `hoydeNormInc` er det vi vil konsentrere oss om."
+#| echo: true
+# Inntekt lik 0
+heightsZeroInc <- heights |> 
+  filter(income == 0)
+# «Normal» inntekt
+heightsNormInc <- heights |> 
+  filter(income > 0 & income < 343830)
+# Høy inntekt
+heightsHighInc <- heights |> 
+  filter(income == 343830)
+```
+
+## Scatterplot for høyde og inntekt
+
+I @lst-height-inc-plot er gjengitt kode for et «scatter plot» av høyde mot inntekt.
+Vi har benyttet `geom_jitter()` som er en variant av `geom_point()`.
+
+```{r}
+#| label: fig-height-inc
+#| fig-cap: "Plot av inntekt mot høyde. Fra modell-linjen som er 
+#| lagt inn ser vi at det ser ut til å være en positiv sammenheng
+#|  mellom høyde og inntekt. Vi merker oss også de horisontale 
+#|  båndene for inntekt lik 0 og en inntekt litt over 300000."
+#| lst-label: lst-height-inc-plot
+#| lst-cap: "Kode for å generere «scatterplot» vha. `ggplot2`."
+#| echo: fenced
+heights  |> 
+  ggplot(
+  mapping = aes(
+    x = height,
+    y = income
+    )
+  ) + 
+  geom_jitter(
+    size = 1,
+    alpha = 0.40
+    ) +
+  geom_smooth(
+    formula = y ~ x,
+    method = "lm",
+    colour = "black",
+    lwd = 0.75,
+    se = FALSE
+    )
+```
+
+```{r}
+#| echo: false
+#| eval: false
+#| fig-cap: Sammenhengen synes å være den samme når vi studerer normale inntekter.
+heightsNormInc  |> 
+  ggplot(
+  mapping = aes(
+    x = height,
+    y = income
+    )
+  ) + 
+  geom_jitter(
+    size = 1,
+    alpha = 0.40
+    ) +
+  geom_smooth(
+    formula = y ~ x,
+    method = "lm",
+    colour = "black",
+    lwd = 0.75,
+    se = FALSE
+    )
+```
+
+## Lage histogram for to subsets
+
+En teknikk som kan være aktuell i en EDA anlyse er å lage histogram av datene der dataene er delt opp i undrgrupper.
+Plasserer vi histogrammene i samme figur er de lettere å sammenligne.
+
+Her illustreres denne teknikken ved å studere fordelingen av høyde for hhv.
+kvinner og menn.
+Se kode i @lst-mean-sd.
+Vi starter med å regne ut gjennomsnittlig høyde og standardavvik for hhv.
+menn og kvinner.
+Disse parametrene vil vi bruke for å tegne inn normalfordelingskurver i samme plot.
+
+```{r}
+#| lst-label: lst-mean-sd
+#| lst-cap: "Beregner gjennomsnittlig høyde og standardavvik for hhv. kvinner 
+#| og menn. Merk at her har vi benyttet data fra hele datasettet, 
+#| dvs. 7006 observasjoner."
+meanHeightMale <- heights |> 
+  filter(sex == 'male') %>% 
+  select(height) |> 
+  # konverterer en tibble med 3402 rekker og 1 kolonne
+  # til en vektor med 3402 elementer siden mean() forlanger en
+  # vektor som input
+  pull() |> 
+  # finner gjennomsnittet av verdiene i vektoren
+  mean()
+
+meanHeightFemale <- heights |> 
+  filter(sex == 'female') %>% 
+  select(height) |> 
+  pull() |> 
+  mean()
+
+# standard deviation
+sdHeightMale <- heights |> 
+  filter(sex == 'male') |> 
+  select(height) |> 
+  pull() |> 
+  sd()
+
+sdHeightFemale <- heights |>
+  filter(sex == 'female') |>
+  select(height) |>
+  pull() |> 
+  sd()
+```
+
+Så genererer vi histogram og overliggende empirisk fordeling tegnet utfra gjennomsnittlig høyde og tilhørende standardavvik som vi har regnet ut ovenfor.
+
+```{r}
+#| echo: fenced
+#| label: fig-hist
+#| fig-cap: "Histogram av høyde fordelt på kjønn, kvinner er mørk grå mens menn er lysere grå. I tillegg er normalfordeling 
+#| for observert gjennomsnitt og standard-avvik, også fordelt på kjønn, tegnet inn."
+#| lst-label: st-hist
+#| lst-cap: "Kode for å generer histogrammer for høyde for hhv. menn og 
+#| kvinner med inntegnet normalfordelingskurve (tetthetsfunksjon). 
+#| Normalfordelingskurvene er tegnet ut fra gjennomsnitt og standardavvik 
+#| beregnet ovenfor. Dataene er fra hele datasettet `heights`."
+
+heights %>%
+  ggplot() +
+  ### male ###
+  geom_histogram(
+    data = filter(heights, sex == "male"),
+    mapping = aes(x = height, y = after_stat(density)),
+    binwidth = 1,
+    alpha = 0.3,
+    colour = 'grey40',
+    fill = 'grey40'
+    ) + 
+  geom_vline(
+    xintercept = meanHeightMale,
+    colour = 'grey40', 
+    lwd = 0.75,
+    linetype = 3
+    ) +
+  stat_function(
+    fun = dnorm,
+    args = list(
+      mean = meanHeightMale, 
+      sd = sdHeightMale
+      ),
+    colour = 'grey40'
+    ) +
+  # female
+  geom_histogram(
+    data = filter(heights, sex == "female"),
+    mapping = aes(x = height, y = after_stat(density)),
+    binwidth = 1,
+    alpha = 0.7,
+    colour = 'black',
+    fill = 'grey40'
+    ) +
+  stat_function(
+    fun = dnorm,
+    args = list(
+      mean = meanHeightFemale,
+      sd = sdHeightFemale
+      ), 
+    colour = 'black'
+    ) +
+  geom_vline(
+    xintercept = meanHeightFemale,
+    colour = 'grey40',
+    lwd = 0.75,
+    linetype = 3
+    ) 
+```
+
+\clearpage
+
+## Referanser

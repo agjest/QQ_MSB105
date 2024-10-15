@@ -1,0 +1,7 @@
+---
+title: "Assignments h23"
+editor: visual
+format: html
+---
+
+-   [Assignment 2 h24](ass2/ass2-h24.qmd)
