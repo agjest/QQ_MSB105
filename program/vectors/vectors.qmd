@@ -193,6 +193,11 @@ x[c(3,5)]
 # name with capital letters
 x <- purrr::set_names(x, nm = LETTERS[10:15])
 x
+```
+
+## Sub-setting vectors cont. {.smaller}
+
+```{r}
 # subset by name
 x[c("J", "L", "M")]
 # replicate elements

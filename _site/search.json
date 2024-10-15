@@ -347,7 +347,7 @@
     "href": "program/vectors/vectors.html#sub-setting-vectors",
     "title": "Vectors",
     "section": "Sub-setting vectors",
-    "text": "Sub-setting vectors\n\n\nCode\nx &lt;- letters[10:15]\nx\n\n\n[1] \"j\" \"k\" \"l\" \"m\" \"n\" \"o\"\n\n\nCode\n# pick elements 3 and 5\nx[c(3,5)]\n\n\n[1] \"l\" \"n\"\n\n\nCode\n# name with capital letters\nx &lt;- purrr::set_names(x, nm = LETTERS[10:15])\nx\n\n\n  J   K   L   M   N   O \n\"j\" \"k\" \"l\" \"m\" \"n\" \"o\" \n\n\nCode\n# subset by name\nx[c(\"J\", \"L\", \"M\")]\n\n\n  J   L   M \n\"j\" \"l\" \"m\" \n\n\nCode\n# replicate elements\nx[c(\"L\", \"L\", \"J\", \"L\", rep(\"M\", 4))]\n\n\n  L   L   J   L   M   M   M   M \n\"l\" \"l\" \"j\" \"l\" \"m\" \"m\" \"m\" \"m\""
+    "text": "Sub-setting vectors\n\n\nCode\nx &lt;- letters[10:15]\nx\n\n\n[1] \"j\" \"k\" \"l\" \"m\" \"n\" \"o\"\n\n\nCode\n# pick elements 3 and 5\nx[c(3,5)]\n\n\n[1] \"l\" \"n\"\n\n\nCode\n# name with capital letters\nx &lt;- purrr::set_names(x, nm = LETTERS[10:15])\nx\n\n\n  J   K   L   M   N   O \n\"j\" \"k\" \"l\" \"m\" \"n\" \"o\""
   },
   {
     "objectID": "program/vectors/vectors.html#sub-setting-vectors-by-dropping-elements",
@@ -9007,5 +9007,12 @@
     "title": "Vectors",
     "section": "Naming elements in vector cont.",
     "text": "Naming elements in vector cont.\n\n\nCode\n# change one name\nnames(x)[[2]] &lt;- \"B\"\nx\n\n\na B c d \n1 2 3 4"
+  },
+  {
+    "objectID": "program/vectors/vectors.html#sub-setting-vectors-cont.",
+    "href": "program/vectors/vectors.html#sub-setting-vectors-cont.",
+    "title": "Vectors",
+    "section": "Sub-setting vectors cont.",
+    "text": "Sub-setting vectors cont.\n\n\nCode\n# subset by name\nx[c(\"J\", \"L\", \"M\")]\n\n\n  J   L   M \n\"j\" \"l\" \"m\" \n\n\nCode\n# replicate elements\nx[c(\"L\", \"L\", \"J\", \"L\", rep(\"M\", 4))]\n\n\n  L   L   J   L   M   M   M   M \n\"l\" \"l\" \"j\" \"l\" \"m\" \"m\" \"m\" \"m\""
   }
 ]
