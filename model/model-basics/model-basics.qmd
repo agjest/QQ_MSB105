@@ -308,9 +308,7 @@ y
 
 ## Model matrix
 
--   OLS: . . .
-
-$$\hat{\beta} = (X^T X)^{-1} X^T y$$
+-   OLS: $\widehat{\beta} = (X^T X)^{-1} X^T y$
 
 -   X above is the model_matrix
 
@@ -331,7 +329,7 @@ tail(X_mod, n = 4)
 
 ## Model matrix {.smaller}
 
--   Use $$\hat{\beta} = (X^T X)^{-1} X^T y$$ to calculate the two
+-   Use $$\widehat{\beta} = (X^T X)^{-1} X^T y$$ to calculate the two
     coefficients
 
 . . .

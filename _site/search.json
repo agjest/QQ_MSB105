@@ -1061,7 +1061,7 @@
     "href": "model/model-basics/model-basics.html#model-matrix",
     "title": "Model basics",
     "section": "Model matrix",
-    "text": "Model matrix\n\nOLS: . . .\n\n\\[\\hat{\\beta} = (X^T X)^{-1} X^T y\\]\n\nX above is the model_matrix\n\n\n\n\nCode\nX_mod &lt;- model_matrix(data = sim1a, formula = y ~ x)\nX_mod &lt;- X_mod %&gt;% rename(\"a_1\" = \"(Intercept)\")\ndim(X_mod)\n\n\n[1] 30  2"
+    "text": "Model matrix\n\nOLS: \\(\\widehat{\\beta} = (X^T X)^{-1} X^T y\\)\nX above is the model_matrix\n\n\n\n\nCode\nX_mod &lt;- model_matrix(data = sim1a, formula = y ~ x)\nX_mod &lt;- X_mod %&gt;% rename(\"a_1\" = \"(Intercept)\")\ndim(X_mod)\n\n\n[1] 30  2"
   },
   {
     "objectID": "model/model-basics/model-basics.html#model-matrix-1",
@@ -1075,7 +1075,7 @@
     "href": "model/model-basics/model-basics.html#model-matrix-2",
     "title": "Model basics",
     "section": "Model matrix",
-    "text": "Model matrix\n\nUse \\[\\hat{\\beta} = (X^T X)^{-1} X^T y\\] to calculate the two coefficients\n\n\n\n\nCode\nX &lt;- as.matrix(X_mod)\ny &lt;- sim1a$y\n(XTX &lt;- t(X) %*% X) # 2 x 30 * 30 x 2, result 2 x 2\n\n\n    a_1    x\na_1  30  165\nx   165 1155\n\n\nCode\n(XTXinv &lt;- solve(t(X) %*% X)) # invert\n\n\n            a_1            x\na_1  0.15555556 -0.022222222\nx   -0.02222222  0.004040404\n\n\nCode\n# check, should give I 2 x 2\nround(XTX %*% XTXinv, 2)\n\n\n    a_1 x\na_1   1 0\nx     0 1"
+    "text": "Model matrix\n\nUse \\[\\widehat{\\beta} = (X^T X)^{-1} X^T y\\] to calculate the two coefficients\n\n\n\n\nCode\nX &lt;- as.matrix(X_mod)\ny &lt;- sim1a$y\n(XTX &lt;- t(X) %*% X) # 2 x 30 * 30 x 2, result 2 x 2\n\n\n    a_1    x\na_1  30  165\nx   165 1155\n\n\nCode\n(XTXinv &lt;- solve(t(X) %*% X)) # invert\n\n\n            a_1            x\na_1  0.15555556 -0.022222222\nx   -0.02222222  0.004040404\n\n\nCode\n# check, should give I 2 x 2\nround(XTX %*% XTXinv, 2)\n\n\n    a_1 x\na_1   1 0\nx     0 1"
   },
   {
     "objectID": "model/model-basics/model-basics.html#model-matrix-3",
