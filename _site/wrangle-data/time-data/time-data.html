@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.549">
 
   <meta name="author" content="ag">
-  <title>MSB105 - Time Data</title>
+  <title>Data Science - Time Data</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -652,16 +652,16 @@ ag
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="fu">month</span>(us_d, <span class="at">label =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] Sep
-12 Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; Sep &lt; ... &lt; Dec</code></pre>
+<pre><code>[1] sep
+12 Levels: jan &lt; feb &lt; mar &lt; apr &lt; mai &lt; jun &lt; jul &lt; aug &lt; sep &lt; ... &lt; des</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a><span class="fu">month</span>(us_d, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] Sep
-12 Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; Sep &lt; ... &lt; Dec</code></pre>
+<pre><code>[1] sep
+12 Levels: jan &lt; feb &lt; mar &lt; apr &lt; mai &lt; jun &lt; jul &lt; aug &lt; sep &lt; ... &lt; des</code></pre>
 </div>
 </div>
 </section>
@@ -673,8 +673,8 @@ ag
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a><span class="fu">month</span>(us_d, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] September
-12 Levels: January &lt; February &lt; March &lt; April &lt; May &lt; June &lt; ... &lt; December</code></pre>
+<pre><code>[1] september
+12 Levels: januar &lt; februar &lt; mars &lt; april &lt; mai &lt; juni &lt; juli &lt; ... &lt; desember</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -851,14 +851,14 @@ ag
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a></a><span class="fu">today</span>() <span class="co"># date</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2024-09-26"</code></pre>
+<pre><code>[1] "2024-11-27"</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a></a><span class="fu">now</span>() <span class="co"># date time</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2024-09-26 14:16:26 CEST"</code></pre>
+<pre><code>[1] "2024-11-27 15:17:53 CET"</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -866,14 +866,14 @@ ag
 <span id="cb72-2"><a></a><span class="fu">as_date</span>(<span class="fu">now</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2024-09-26"</code></pre>
+<pre><code>[1] "2024-11-27"</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a></a><span class="fu">as_datetime</span>(<span class="fu">today</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2024-09-26 UTC"</code></pre>
+<pre><code>[1] "2024-11-27 UTC"</code></pre>
 </div>
 </div>
 </section>
@@ -1169,7 +1169,7 @@ $ date_dt_cl_m &lt;dttm&gt; 2000-01-01, 2000-11-01, 2001-07-01, 2002-06-01, 2004
 <span id="cb94-13"><a></a><span class="fu">my_life</span>() <span class="co"># with default values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 3117.85714285714 weeks old."</code></pre>
+<pre><code>[1] "You are about 3126.71428571429 weeks old."</code></pre>
 </div>
 </div>
 </div>
@@ -1207,7 +1207,7 @@ $ date_dt_cl_m &lt;dttm&gt; 2000-01-01, 2000-11-01, 2001-07-01, 2002-06-01, 2004
 <div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"weeks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 3117.85714285714 weeks old."</code></pre>
+<pre><code>[1] "You are about 3126.71428571429 weeks old."</code></pre>
 </div>
 </div>
 </div>
@@ -1243,7 +1243,7 @@ $ date_dt_cl_m &lt;dttm&gt; 2000-01-01, 2000-11-01, 2001-07-01, 2002-06-01, 2004
 <span id="cb99-20"><a></a><span class="fu">my_life</span>(<span class="dv">01032016</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 447 weeks old."</code></pre>
+<pre><code>[1] "You are about 456 weeks old."</code></pre>
 </div>
 </div>
 </div>
@@ -1256,28 +1256,28 @@ $ date_dt_cl_m &lt;dttm&gt; 2000-01-01, 2000-11-01, 2001-07-01, 2002-06-01, 2004
 <div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a></a><span class="fu">my_life</span>(<span class="st">"01032005"</span>, <span class="at">unit =</span> <span class="st">"weeks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 1021 weeks old."</code></pre>
+<pre><code>[1] "You are about 1030 weeks old."</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a></a><span class="fu">my_life</span>(<span class="st">"01032005"</span>, <span class="at">unit =</span> <span class="st">"days"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 7149 days old."</code></pre>
+<pre><code>[1] "You are about 7211 days old."</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a></a><span class="fu">my_life</span>(<span class="st">"01032005"</span>, <span class="at">unit =</span> <span class="st">"mins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 10294560 minutes old."</code></pre>
+<pre><code>[1] "You are about 10383840 minutes old."</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb107"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a></a><span class="fu">my_life</span>(<span class="st">"01032005"</span>, <span class="at">unit =</span> <span class="st">"secs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 617673600 seconds old."</code></pre>
+<pre><code>[1] "You are about 623030400 seconds old."</code></pre>
 </div>
 </div>
 </section>
@@ -1334,49 +1334,49 @@ $ date_dt_cl_m &lt;dttm&gt; 2000-01-01, 2000-11-01, 2001-07-01, 2002-06-01, 2004
 <div class="sourceCode cell-code" id="cb110"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"years"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 59.67 years old."</code></pre>
+<pre><code>[1] "You are about 59.84 years old."</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb112"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"months"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 716.06 months old."</code></pre>
+<pre><code>[1] "You are about 718.1 months old."</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb114"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"weeks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 3118 weeks old."</code></pre>
+<pre><code>[1] "You are about 3127 weeks old."</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb116"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"days"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 21825 days old."</code></pre>
+<pre><code>[1] "You are about 21887 days old."</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb118"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"hours"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 523800 hours old."</code></pre>
+<pre><code>[1] "You are about 525288 hours old."</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb120"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"mins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 31.428.000 minutes old."</code></pre>
+<pre><code>[1] "You are about 31.517.280 minutes old."</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb122"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a></a><span class="fu">my_life</span>(<span class="st">"25-12-1964"</span>, <span class="at">unit =</span> <span class="st">"secs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 1.885.680.000 seconds old."</code></pre>
+<pre><code>[1] "You are about 1.891.036.800 seconds old."</code></pre>
 </div>
 </div>
 </section>

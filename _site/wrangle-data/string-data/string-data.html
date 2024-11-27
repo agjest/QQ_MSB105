@@ -899,12 +899,12 @@ second</code></pre>
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a></a><span class="co"># number of characters</span></span>
 <span id="cb78-2"><a></a><span class="fu">nchar</span>(sult)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 329322</code></pre>
+<pre><code>[1] 309068</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a></a><span class="co"># the beginning of Sult</span></span>
 <span id="cb80-2"><a></a><span class="fu">str_sub</span>(sult, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">250</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "\nFØRSTE STYKKE\n\n\nDet var i den Tid, jeg gik omkring og sulted i Kristiania, denne\nforunderlige By, som ingen forlader, før han har fået Mærker af den . . . .\n\nJeg ligger vågen på min Kvist og hører en Klokke nedenunder mig slå seks\nSlag; det var alle"</code></pre>
+<pre><code>[1] "Jeg åbned Vinduet og så ud. Der, hvor jeg stod, havde jeg Udsigt til en\nKlædesnor og en åben Mark; langt ude lå Gruen tilbage af en nedbrændt\nSmedje, hvor nogle Arbejdere var i Færd med at rydde op. Jeg lagde mig med\nAlbuerne ned i Vinduet og stirred"</code></pre>
 </div>
 </div>
 </section>
@@ -925,7 +925,7 @@ second</code></pre>
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a></a><span class="co"># how many times does "sult" occur *Sult*</span></span>
 <span id="cb83-2"><a></a><span class="fu">str_count</span>(sult, ss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 33</code></pre>
+<pre><code>[1] 31</code></pre>
 </div>
 </div>
 </div>
@@ -944,7 +944,7 @@ second</code></pre>
 <span id="cb85-2"><a></a>ss <span class="ot">&lt;-</span> <span class="st">"[sS]{1}ult"</span></span>
 <span id="cb85-3"><a></a><span class="fu">str_count</span>(sult, ss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 54</code></pre>
+<pre><code>[1] 50</code></pre>
 </div>
 </div>
 </div>
@@ -957,7 +957,7 @@ second</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>.
 sult Sult 
-  33   21 </code></pre>
+  31   19 </code></pre>
 </div>
 </div>
 <ul>
@@ -990,7 +990,7 @@ sult Sult
 <div class="cell">
 <div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a></a><span class="fu">str_count</span>(sult, ss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 54</code></pre>
+<pre><code>[1] 50</code></pre>
 </div>
 </div>
 </div>
@@ -1006,7 +1006,7 @@ sult Sult
     Sult,\n      Sult,       Sult;       Sult!     Sultan,      sulte\n 
           1           2           1           1           1           1 
     sulted     sulted,     Sulten\n     sulten      Sulten     sulten,  
-          8           1           1           3           7           7 
+          6           1           1           3           5           7 
    sulten;     Sultens      sulter     sulter!     sultet\n     sultet  
           2           1           1           1           1           2 
    sultet,    Sultetid      sultne  
@@ -1029,7 +1029,7 @@ sult Sult
 <div class="cell">
 <div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a></a><span class="fu">str_count</span>(sult, ss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 52</code></pre>
+<pre><code>[1] 48</code></pre>
 </div>
 </div>
 <ul>
@@ -1046,7 +1046,7 @@ sult Sult
 <div class="cell-output cell-output-stdout">
 <pre><code>.
     Sult    sulte   sulted   sulten   Sulten  Sultens   sulter   sultet 
-       9        2       10       12        9        1        2        4 
+       9        2        8       12        7        1        2        4 
 Sultetid   sultne 
        1        2 </code></pre>
 </div>
@@ -1068,58 +1068,54 @@ Sultetid   sultne
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
        start    end
- [1,]     55     62
- [2,]  27762  27769
- [3,]  54800  54807
- [4,]  66793  66801
- [5,]  70676  70683
- [6,]  76311  76319
- [7,]  88391  88399
- [8,]  88405  88413
- [9,]  90187  90194
-[10,]  91179  91185
-[11,]  92854  92859
-[12,]  95786  95793
-[13,]  96267  96274
-[14,]  97348  97355
-[15,]  97793  97802
-[16,]  98697  98705
-[17,] 101059 101067
-[18,] 101085 101093
-[19,] 101301 101306
-[20,] 107928 107936
-[21,] 116916 116923
-[22,] 128100 128108
-[23,] 133854 133860
-[24,] 137071 137079
-[25,] 139494 139502
-[26,] 144019 144025
-[27,] 146030 146036
-[28,] 146278 146285
-[29,] 146481 146488
-[30,] 150040 150047
-[31,] 151345 151353
-[32,] 151570 151576
-[33,] 152111 152116
-[34,] 158436 158443
-[35,] 158973 158980
-[36,] 166092 166099
-[37,] 166316 166322
-[38,] 179690 179697
-[39,] 187656 187663
-[40,] 199163 199169
-[41,] 201139 201147
-[42,] 204967 204974
-[43,] 220179 220187
-[44,] 222618 222625
-[45,] 233194 233201
-[46,] 233597 233604
-[47,] 250287 250294
-[48,] 299629 299637
-[49,] 308292 308298
-[50,] 312845 312852
-[51,] 320039 320046
-[52,] 326770 326777</code></pre>
+ [1,]  26456  26463
+ [2,]  53494  53501
+ [3,]  65487  65495
+ [4,]  69370  69377
+ [5,]  75005  75013
+ [6,]  87085  87093
+ [7,]  87099  87107
+ [8,]  88881  88888
+ [9,]  89873  89879
+[10,]  91548  91553
+[11,]  94480  94487
+[12,]  94961  94968
+[13,]  96042  96049
+[14,]  96487  96496
+[15,]  97391  97399
+[16,]  99753  99761
+[17,]  99779  99787
+[18,]  99995 100000
+[19,] 106622 106630
+[20,] 115610 115617
+[21,] 126794 126802
+[22,] 132548 132554
+[23,] 135765 135773
+[24,] 138188 138196
+[25,] 142713 142719
+[26,] 144724 144730
+[27,] 144972 144979
+[28,] 145175 145182
+[29,] 148734 148741
+[30,] 150039 150047
+[31,] 150264 150270
+[32,] 150805 150810
+[33,] 157130 157137
+[34,] 157667 157674
+[35,] 164786 164793
+[36,] 165010 165016
+[37,] 178384 178391
+[38,] 186350 186357
+[39,] 197857 197863
+[40,] 199833 199841
+[41,] 203661 203668
+[42,] 218873 218881
+[43,] 221312 221319
+[44,] 231888 231895
+[45,] 232291 232298
+[46,] 248981 248988
+[47,] 298323 298331
+[48,] 306986 306992</code></pre>
 </div>
 </div>
 <p>First mention of <em>sult</em> in some form start 53 characters into the file.</p>
@@ -1167,12 +1163,12 @@ Sultetid   sultne
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a></a>tt <span class="ot">&lt;-</span> <span class="st">"(</span><span class="sc">\\</span><span class="st">.|</span><span class="sc">\\</span><span class="st">n)(.*[tT]ørst.*)(</span><span class="sc">\\</span><span class="st">.|</span><span class="sc">\\</span><span class="st">n)"</span></span>
 <span id="cb102-2"><a></a><span class="fu">str_match_all</span>(tørst, tt)[[<span class="dv">1</span>]][<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>),<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Det var i den Tid, jeg gik omkring og tørsted i Kristiania, denne"           
-[2] "om. Jeg havde så tydelig mærket, at når jeg tørsted lidt længe ad Gangen,"   
-[3] "ingen Frygt for at gå tørst tilsengs den Dag; de Tider var Gudskelov over!"  
-[4] "Kold og tørst, mer og mer uhyggelig tilmode, drev jeg opad Karl Johan; jeg"  
-[5] "Klokken var tre. Tørsten begyndte at blive noget slem med mig, jeg var mat"  
-[6] "fordømte Årstal mig? Nu gik jeg her og tørsted, så mine Tarmer krøb sammen i"</code></pre>
+<pre><code>[1] "Jeg gik i største Hast nedad Pilestrædet, hvor jeg vidste om en Pantelåner"  
+[2] "ingen Frygt for at gå tørst tilsengs den Dag; de Tider var Gudskelov over!"  
+[3] "Kold og tørst, mer og mer uhyggelig tilmode, drev jeg opad Karl Johan; jeg"  
+[4] "Klokken var tre. Tørsten begyndte at blive noget slem med mig, jeg var mat"  
+[5] "fordømte Årstal mig? Nu gik jeg her og tørsted, så mine Tarmer krøb sammen i"
+[6] "og Porten skulde lukkes. Jeg var tørst, meget tørst; de ti Kroner vared"     </code></pre>
 </div>
 </div>
 </div>
