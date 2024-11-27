@@ -1,0 +1,1286 @@
+---
+title: "Assingment 3; Pendling"
+author: Arnstein Gjestland
+format: 
+  html:
+    highlight-style: espresso
+  pdf:
+    fontsize: "10"
+    documentclass: article
+    margin-left: 2.7cm
+    margin-right: 2.7cm
+lang: no
+toc: true
+editor: visual
+df-print: tibble
+execute: 
+  echo: false
+  output: false
+---
+
+```{r}
+#| label: setup
+library(tidyverse) |> suppressPackageStartupMessages()
+library(lubridate) |> suppressPackageStartupMessages()
+library(PxWebApiData) |> suppressPackageStartupMessages()
+library(flextable) |> suppressPackageStartupMessages()
+```
+
+## Innledning
+
+I denne oppgaven skal vi studere pendle-mønster for en norsk region.
+Vi vil studere et utvalg kommuner i Sør-Rogaland (Nord-Jæren) i perioden 2000 t.o.m. 2023.
+Dataene vil vi i hovedsak hente fra SSB sin statistikktabell 03321, «*Sysselsatte (15-74 år), etter arbeidssteds- og bostedskommune. Pendlingsstrømmer. 4. kvartal (K) 2000 - 2023*».
+Vi skal benytte dataene til å generere grafikk som viser utviklingen i jobbpendling over tid for de ulike kommunene.
+Grafikken vil vi generere vha `geom_line()` fra ggplot2 pakken (del av tidyverse).
+For `geom_line()` trenger vi dataene i såkalt «long-format».
+Dette bør vi ta hensyn til alt fra starten av i vår behandling av pendle-dataene.
+
+I tillegg skal vi generere såkalte pendle-matriser («origin-destination-matrix»).
+I en pendle-matrise vil hver **rekke** angi hvor de som **bor i en kommune** arbeider.
+Tilsvarende angir en **kolonne** hvor de som **jobber i en kommune** bor.
+
+I Sør-Rogaland har det også vært kommunesammenslåinger som har gitt oss Nye-Stavanger og Nye-Sandnes fra 2020.
+Vi vil generere konsistente pendle-data for perioden 2000 t.o.m. 2023 som korresponderer med denne nye kommunestrukturen.
+
+Dataene fra SSB vil vi hente direkte inn i R via pakken `PxWebApiData`, som gir oss tilgang til SSB via en api.
+
+Vi vil hente kategorien «Alle kommuner» fra tabell 03321 og selv ta oss av aggregeringen av data til «Nye-Stavanger» og «Nye-Sandnes».
+
+Oppgaven er laget for å gi trening i å hente data direkte fra SSBs servere vha.
+PxWeb api-en (pakken `PxWebApiData`, funksjonen `ApiData12()` anbefales), benytte funksjonene fra chp.
+12 (`pivot_longer()`, `pivot_wider()` etc.) og lage et *tidy* datasett.
+Pendlematriser er ikke *tidy* så vi lager et stort *tidy* datasett for alle kommunene over hele tidsperioden 2000 til 2023 og henter så ut årsdata som vi lager pendlematriser av.
+
+I dokumentet er lagt inn noe hjelp og flere hint.
+Jeg har også noen steder vist resultatet av min analyse slik at dere har noen «check-points» for å se at dere er på rett veg.
+
+### Kommuner i Sør-Rogaland
+
+Vi definerer Nord-Jæren som kommunene listet nedenfor.
+Vi tar med både de «gamle» og «nye».
+Disse kommunene vil bare inneholde data for de årene de har eksistert.
+
+Sandnes (-2019), Stavanger, Nye-Sandnes, Bjerkreim, Hå, Klepp, Time, Gjesdal, Sola, Randaberg, Forsand (-2019), Strand, Hjelmeland, Finnøy (-2019), Rennesøy (-2019), Kvitsøy.
+
+De korresponderende kommune-numrene er:
+
+```         
+1102, 1103, 1108, 1114, 1119, 1120, 1121,1122, 1124, 1127, 1129,
+1130, 1133, 1141, 1142, 1144
+```
+
+Det er verdt å merke seg at fra 1.1.2020 har vi 1108 Sandnes som består av 1102 Sandnes og 1129 Forsand.
+Vi har også 1103 Stavanger som består av 1103 Stavanger, 1141 Finnøy (-2019) og 1142 Rennesøy (-2019).
+
+```{r}
+knr <- as.character(
+  c(
+    1102, 1103, 1108, 1114, 1119, 1120, 1121, 
+    1122, 1124, 1127, 1129, 1130, 1133, 1141, 1142, 1144
+    )
+  )
+```
+
+Vi ser at kommunesammenslåing blir behandlet ulikt for de to.
+Sandnes får nytt `knr`, mens Stavanger beholder sitt gamle.
+
+I tillegg ble en mindre del av Forsand skilt ut og slått sammen med Strand kommune.
+Her vil vi se bort fra dette og legge alle arbeidstakere fra Forsand til «Nye Sandnes» (1108).
+Det er langt vanskeligere å håndtere en splitting av kommuner enn en sammenslåing.
+
+## Hente data fra SSB
+
+Vi kunne trengt hele datasettet, dvs.
+for alle arbeidssted-kommuner, `akom`, og alle bosteds-kommuner,`bkom`, men det vil ikke SSB gi oss fra tabell 03321.
+Vi henter derfor ut data for alle `akom` (arbeidssted-kommuner) for dem som bor i en av kommunene på Nord-Jæren i et datasett, og et annet datasett der vi henter ut `bkom` (bostedkommune) for dem som arbeider i en kommune på Nord-Jæren.
+Vi vil da mangle informasjon om hvor mange som både bor og arbeider utenfor Nord-Jæren.
+Denne informasjonen vil vi nedenfor få tak i ved å hente data fra tabell 11616.
+
+Kall datasettet med antall arbeidstakere som arbeider på Nord-Jæren for `pend_00_23_ssb_arbNJ`, og datasettet med arbeidstakere som bor på Nord-Jæren for `pend_00_23_ssb_boNJ`.
+
+Se denne [sliden](https://msb105.netlify.app/explore-data/import-export-data/import-export-data.html#/read-10540-table) (parameteren Region) for tips om hvordan man velger *alle* kommuner.
+Se videre denne [sliden](https://msb105.netlify.app/explore-data/import-export-data/import-export-data.html#/check-variables-10540-table) for hvordan man kan finne hvilke data statistikktabell 03321 kan tilby.
+OBS!
+merk skrivemåten *Bokommuen*.
+Merk også at tid må angis som `character` vektor, dvs.
+`as.character(2000:2023)`.
+
+```{r}
+#| echo: true
+#| cache: true
+#Get more info about table
+ApiData(
+"http://data.ssb.no/api/v0/en/table/03321",
+returnApiQuery = TRUE
+) 
+```
+
+Hent arbeidstakere som bor på Nord-Jæren, jobber i kommuner over hele landet for perioden 2000-2023.
+Benytt funksjonen `PxWebApiData::ApiData12()` med argumentene:
+
+-   urlToData: nummer på tabellen som characters,
+
+-   ArbstedKomm: alle kommuner i landet ([Hint!](https://msb105.netlify.app/explore-data/import-export-data/import-export-data.html#/read-10540-table))
+
+-   **Bokommuen**: character vektor med kommune-numrene (knr) til kommunene på Nord-Jæren.
+
+-   Tid: character vektor med årene 2000 til 2023
+
+Når en er sikker på at en har fått dataene en ønsker fra SSB kan det være lurt å sette `#| cache: true` i chunk-en.
+Da blir dataene tatt vare på og en slipper å hente nye data hver gang en kjører koden i dokumentet.
+
+```{r}
+#| cache: true
+#| echo: true
+pend_00_23_ssb_boNJ <- ApiData12(
+    urlToData = "03321",
+    ArbstedKomm = list('*'),
+    Bokommuen = knr, # Merk skrivemåten
+    Tid = as.character(2000:2023)
+)
+```
+
+Finn på tilsvarende vis antall arbeidstakere som jobber på Nord-Jæren med bosteds-kommune fordelt over hele landet.
+Kall dette objektet for `pend_00_23_ssb_arbNJ`.
+Bruk funksjonen `ApiData12()` så får dere både `dataset` og tekst delen i en og samme dataframe.
+
+```{r}
+#| cache: true
+pend_00_23_ssb_arbNJ <- ApiData12(
+    urlToData = "03321",
+    ArbstedKomm = knr,
+    Bokommuen = list('*'), # Merk skrivemåten
+    Tid = as.character(2000:2023)
+)
+```
+
+Plukk så ut data fra `pend_00_23_ssb_boNJ` og plasser i `pend_00_23_boNJ`.
+
+Vi trenger variablene:
+
+-   `akom_navn`: Navn på arbeidsstedskommune tatt fra `desc_boNJ`
+
+-   `bkom_navn`: Navn på bostedskommune tatt fra `desc_boNJ`
+
+-   `akom`: `ArbstedKomm` men vi legger til en k foran kommunenummer vha.
+    `paste()` for å ha verdier som samsvarer med Rs regler for variabelnavn (kan ikke starte med et tall)
+
+-   `bkom`: `Bokommuen`, men vi legger til en k foran kommunenummer vha.
+    `paste()` for å ha verdier som samsvarer med Rs regler for variabelnavn (kan ikke starte med et tall)
+
+-   `aar`: Endrer navn på variabelen `Tid`
+
+-   `pendlere`: Endrer navn på variabelen `value`
+
+-   Til slutt dropper vi variabler vi ikke trenger
+
+-   Endrer rekkefølgen på variablene til: aar, akom, akom_navn, bkom, bkom_navn, pendlere
+
+-   Til slutt konverterer vi fra dataframe til tibble.
+
+```{r}
+#| echo: true
+pend_00_23_boNJ <- pend_00_23_ssb_boNJ %>% 
+  # Henter kommune navn fra desc df
+  mutate(
+    akom_navn = arbeidsstedskommune,
+    bkom_navn = bostedskommune ,
+    akom = paste("k", ArbstedKomm, sep = ""),
+    bkom = paste("k", Bokommuen, sep = "")
+  ) %>% 
+  # Endrer noen variabelnavn
+  rename(
+    aar = Tid,
+    pendlere = value 
+  )  %>%
+  select(aar, akom, akom_navn, bkom, bkom_navn, pendlere) %>% 
+  as_tibble()
+```
+
+Da skal vi ha noe som ser slik ut:
+
+```{r}
+#| paged.print: false
+#| echo: true
+#| output: true
+print(pend_00_23_boNJ, n = 5)
+```
+
+Gjør tilsvarende for `pend_00_23_ssb_arbNJ` og plasser resultatet i `pend_00_23_arbNJ`.
+
+```{r}
+pend_00_23_arbNJ <- pend_00_23_ssb_arbNJ %>% 
+  # Henter kommune navn fra desc df
+  mutate(
+    akom_navn = arbeidsstedskommune,
+    bkom_navn = bostedskommune,
+    akom = paste("k", ArbstedKomm, sep = ""),
+    bkom = paste("k", Bokommuen, sep = "")
+  ) %>% 
+  # Endrer noen variabelnavn
+  rename(
+    aar = Tid,
+    pendlere = value 
+  ) %>%
+  select(aar, akom, akom_navn, bkom, bkom_navn, pendlere) %>% 
+  as_tibble()
+```
+
+Da skal vi ende opp med noe som ser slik ut:
+
+```{r}
+#| paged.print: false
+#| output: true
+print(pend_00_23_arbNJ, n = 5)
+```
+
+### Kommunesammenslåingene
+
+Vi må lage nye variabler `nye_akom` og `nye_bkom` som tar hensyn til kommunesammenslåingen («Nye Stavanger» og «Nye Sandnes» fra 01-01-2020).
+I tillegg innfører vi en ny «Super kommune» RAL (Resten Av Landet) som inneholder alle kommuner som *ikke* inngår i Nord-Jæren.
+I den forbindelse trenger vi en ny kommunenummerliste for Nord-Jæren som ikke inneholder kommunene i «Nye Stavanger» og «Nye Sandnes».
+
+```{r}
+#| echo: true
+# knr Nord Jæren utenom kommunene som inngår i Nye Stavanger
+# og Nye Sandnes
+knr_u_SS <- paste(
+  "k", 
+  c(
+    1114, 1119, 1120, 1121, 1122, 1124, 1127, 1130, 1133, 1144
+    ),
+  sep = ""
+)
+```
+
+### Bosted Nord-Jæren
+
+Vi tar utgangspunkt i pend_00_21_boNJ og lager nye_bkom, nye_bkom_navn, nye_akom og nye_akom_navn der verdiene avhenger av hvilket nummer/navn kommunene hadde i utgangspunktet.
+Vi koder resten av landet som k9999 med navn RAL.
+
+```{r}
+#| echo: true
+#pend_00_21_boNJ 
+pend_00_23_boNJ <- pend_00_23_boNJ %>% 
+  mutate(
+    nye_bkom = case_when(
+      bkom %in% c("k1102", "k1108", "k1129") ~ "k1108",
+      bkom %in% c("k1103", "k1141", "k1142") ~ "k1103",
+      # Øvrige  Nord- Jæren beholder sin bkom
+      TRUE ~ bkom
+    ),
+    nye_bkom_navn = case_when(
+      bkom %in% c("k1102", "k1108", "k1129") ~ "Sandnes",
+      bkom %in% c("k1103", "k1141", "k1142") ~ "Stavanger",
+      # Øvrige  Nord- Jæren beholder sitt bkom_navn
+      TRUE ~ bkom_navn
+    ),
+    nye_akom = case_when(
+      akom %in% c("k1102", "k1108", "k1129") ~ "k1108",
+      akom %in% c("k1103", "k1141", "k1142") ~ "k1103",
+      # Øvrige  Nord- Jæren beholder sin akom
+      akom %in% knr_u_SS ~ akom,   
+      # Resten av landet kodes som knr "9999"
+      TRUE ~ "k9999"
+    ),
+    nye_akom_navn = case_when(
+      akom %in% c("k1102", "k1108", "k1129") ~ "Sandnes",
+      akom %in% c("k1103", "k1141", "k1142") ~ "Stavanger",
+      # Øvrige  Nord- Jæren beholder sitt akom_navn
+      akom %in% knr_u_SS ~ akom_navn,  
+      # Resten av landet kodes som knr "RAL"
+      TRUE ~ "RAL"
+      )
+  )
+```
+
+```{r}
+#| echo: true
+# pend_00_23_boNJ_agg
+pend_00_23_boNJ_agg <- pend_00_23_boNJ |>
+  group_by(nye_bkom, nye_akom, aar, 
+           nye_bkom_navn, nye_akom_navn) |>
+  summarise(pendlere = sum(pendlere), .groups = 'drop') |>
+  ungroup() |>  
+  select(aar, nye_akom, nye_akom_navn, nye_bkom, nye_bkom_navn, pendlere)
+```
+
+```{r}
+#| paged.print: false
+#| echo: false
+#| output: true
+print(pend_00_23_boNJ_agg, n  = 5)
+```
+
+```{r}
+#| echo: true
+#| output: true
+pend_00_23_boNJ_agg |>
+  distinct(nye_bkom) |> 
+  pull(nye_bkom)
+```
+
+```{r}
+#| echo: true
+#| output: true
+pend_00_23_boNJ_agg |>
+  distinct(nye_akom) |> 
+  pull(nye_akom)
+```
+
+### Arbeidssted Nord-Jæren
+
+Hvor bor arbeidstakere som jobber på Nord-Jæren?
+Gjør sammen aggregering for `pend_00_23_arbNJ` som vi gjorde for `pend_00_23_boNJ` ovenfor.
+
+```{r}
+#pend_00_23_arbNJ 
+pend_00_23_arbNJ <- pend_00_23_arbNJ %>% 
+  mutate(
+    nye_bkom = case_when(
+      bkom %in% c("k1102", "k1108", "k1129") ~ "k1108",
+      bkom %in% c("k1103", "k1141", "k1142") ~ "k1103",
+      # Øvrige  Nord- Jæren beholder sin bkom
+      bkom %in% knr_u_SS ~ bkom,
+      # Resten av landet
+      TRUE ~ "k9999"
+    ),
+    nye_bkom_navn = case_when(
+      bkom %in% c("k1102", "k1108", "k1129") ~ "Sandnes",
+      bkom %in% c("k1103", "k1141", "k1142") ~ "Stavanger",
+      # Øvrige  Nord- Jæren beholder sitt bkom_navn
+      bkom %in% knr_u_SS ~ bkom_navn,
+      # Resten av landet "RAL
+      TRUE ~ "RAL"
+    ),
+    nye_akom = case_when(
+      akom %in% c("k1102", "k1108", "k1129") ~ "k1108",
+      akom %in% c("k1103", "k1141", "k1142") ~ "k1103",
+      # Øvrige  Nord- Jæren beholder sin akom
+      TRUE ~ akom
+    ),
+    nye_akom_navn = case_when(
+      akom %in% c("k1102", "k1108", "k1129") ~ "Sandnes",
+      akom %in% c("k1103", "k1141", "k1142") ~ "Stavanger",
+      # Øvrige  Nord- Jæren beholder sitt akom_navn
+      TRUE ~ akom_navn
+      )
+  )
+```
+
+```{r}
+# pend_00_23_arbNJ_agg
+pend_00_23_arbNJ_agg <- pend_00_23_arbNJ |>
+  group_by(nye_akom, nye_bkom, aar, nye_akom_navn, nye_bkom_navn) |>
+  summarise(pendlere = sum(pendlere), .groups = 'drop')|> 
+  ungroup() |> 
+  select(aar, nye_akom, nye_akom_navn, nye_bkom, nye_bkom_navn, pendlere)
+```
+
+Da skal vi få noe som ser slik ut:
+
+```{r}
+#| paged.print: false
+#| output: true
+print(pend_00_23_arbNJ_agg, n = 5)
+```
+
+```{r}
+pend_00_23_arbNJ_agg |>
+  distinct(nye_bkom) |> 
+  pull(nye_bkom)
+```
+
+```{r}
+pend_00_23_arbNJ_agg |>
+  distinct(nye_akom) |> 
+  pull(nye_akom)
+```
+
+Ting ser ut til å være riktig så vi kan endre variabelnavn fra `nye_akom` til `akom`, og tilsvarende for de andre, i `pend_00_23_arbNJ_agg` og `pend_00_23_boNJ_agg`.
+
+Endrer variabelnavn `pend_00_23_arbNJ_agg`.
+Hint!
+`rename()`.
+
+```{r}
+#| echo: true
+pend_00_23_arbNJ_agg <- pend_00_23_arbNJ_agg |>
+  rename(
+    akom = nye_akom,
+    akom_navn = nye_akom_navn,
+    bkom = nye_bkom,
+    bkom_navn = nye_bkom_navn
+  )
+```
+
+Gjør tilsvarende for `pend_00_23_boNJ_agg`.
+
+```{r}
+pend_00_23_boNJ_agg <- pend_00_23_boNJ_agg |>
+  rename(
+    akom = nye_akom,
+    akom_navn = nye_akom_navn,
+    bkom = nye_bkom,
+    bkom_navn = nye_bkom_navn
+  )
+```
+
+Da skal vi ha følgende navn:
+
+```{r}
+#| echo: true
+#| output: true
+names(pend_00_23_arbNJ_agg)
+```
+
+og
+
+```{r}
+#| echo: true
+#| output: true
+names(pend_00_23_boNJ_agg)
+```
+
+Vi slår så sammen `pend_00_23_arbNJ_agg` og `pend_00_23_boNJ_agg` til et felles datasett vha.
+en `rbind()`.
+Det vi trenger fra `pend_00_23_boNJ_agg` er bare dem som bor NJ og arbeider i RAL.
+
+```{r}
+#| echo: true
+boNJ_arb_RAL <- pend_00_23_boNJ_agg |>
+  filter(akom == "k9999")
+```
+
+```{r}
+#| echo: true
+pend_00_23 <- bind_rows(
+  pend_00_23_arbNJ_agg,
+  boNJ_arb_RAL
+  )
+```
+
+Datasettene `pend_00_23`, `pend_00_23_arbNJ_agg` og `pend_00_23_boNJ_agg` vil være de vi skal jobbe med videre.
+Vi kan derfor gjøre litt rydding og kvitte oss med arb_RAL, pend_00_23_arbNJ, pend_00_23_boNJ, pend_00_23_ssb_arbNJ og pend_00_23_ssb_boNJ.
+
+```{r}
+#| echo: true
+rm(boNJ_arb_RAL, pend_00_23_arbNJ, pend_00_23_boNJ, 
+   pend_00_23_ssb_arbNJ, pend_00_23_ssb_boNJ
+   )
+```
+
+## Totalt antall arbeidstakere i hele landet per år
+
+For tabell 03321 får vi *ikke* lastet ned for *alle* bostedkommuner og *alle* jobbkommuner samtidig.
+Vi ønsker imidlertid å finne antallet arbeidstakere som *både* bor og jobber i resten av landet (RAL).
+Dette finner vi vha.
+(HL er Hele Landet):
+
+```         
+  Tot. arb. takere HL
+
+- Bor NJ jobber NJ 
+
+- Bor NJ jobber Ral 
+
+- Bor RAL jobber NJ 
+
+= Bor og jobber i RAL
+```
+
+Dette kan forenkles til:
+
+```         
+  Tot. arb. takere HL
+
+- Bor NJ jobber HL
+
+- Bor RAL jobber NJ
+
+= Bor og jobber i RAL
+```
+
+Vi henter data fra tabell 11616 fordi den gir oss data på fylkes-basis.
+Vi droppe «Svalbard og Jan Mayen» og «Kontinentalsokkelen» da det ikke finnes data for disse.
+Vi henter data for årene 2000 til 2023, begge kjønn, alder 15-74 år og ut fra hvor arbeidstakerne er bosatt.
+Vi er bare interessert i totalt antall arbeidstakere per år.
+
+```{r}
+#| echo: true
+fnr <- c(
+  "30", "01", "02", "06", "03", "34", "04", "05", "38",
+  "07", "08", "42", "09", "10", "11", "46", "12", "14",
+  "15", "50", "16", "17", "18", "54", "19", "20"
+  )
+```
+
+Hent vha.
+`ApiData12()` opplysninger fra tabell 11616 om antall arbeidstakere bosatt i hvert fylke årene 2000 til 2023.
+
+```{r}
+#| cache: true
+# Henter fra 11616 for der kan vi hente sysselsatte per fylke
+tot_arb_HL <- ApiData12(
+    urlToData = "11616",
+    Region = fnr,
+    Kjonn = c("1", "2"),
+    Alder = "15-74",
+    ContentsCode = "Bosatt",
+    Tid = as.character(2000:2023)
+)
+```
+
+Vi lager en tibble med to variabler, «Tid» (dvs. årstall) og «arbtak_HL».
+
+```{r}
+tot_arb_HL <- tot_arb_HL %>% 
+  group_by(Tid) %>% 
+  summarise(arbtak_HL = sum(value), .groups = 'drop') %>% 
+  ungroup() %>% 
+  rename(aar = Tid) %>% 
+  as_tibble()
+```
+
+Toppen av `tot_arb_HL` skal da se slik ut:
+
+```{r}
+#| paged.print: false
+#| output: true
+print(tot_arb_HL, n = 5)
+```
+
+#### Bor NJ jobber HL
+
+Definerer Nord-Jæren (NJ)
+
+```{r}
+#| echo: true
+NJ <- c(knr_u_SS, "k1103", "k1108")
+```
+
+Legg antall som bor på Nord-Jæren og jobber utenfor region i `bNJjHL`.
+
+```{r}
+#| echo: true
+bNJjHL <- pend_00_23 %>% 
+  filter(bkom %in% NJ) %>% 
+  group_by(aar) %>% 
+  summarise(bNJjHL = sum(pendlere))
+```
+
+#### Bor RAL jobber på NJ
+
+Gjør tilsvarende for dem som bor på Nord-Jæren, men jobber utenfor regionen.
+
+```{r}
+bRALjNJ <- pend_00_23 %>% 
+  filter(bkom == "k9999" & akom %in% NJ) %>% 
+  group_by(aar) %>% 
+  summarise(bRALjNJ = sum(pendlere), .groups = 'drop')  
+```
+
+Sett sammen tot_arb_HL, bNJjHL og bRALjNJ til tot_arb_HL slik at vi kan regne ut antall som bor i RAL og jobber i RAL (RAL; resten av landet).
+
+```{r}
+#| echo: true
+tot_arb_HL <- left_join(tot_arb_HL, bNJjHL, by = join_by(aar))
+tot_arb_HL <- left_join(tot_arb_HL, bRALjNJ, by = join_by(aar))
+```
+
+```{r}
+tot_arb_HL <- tot_arb_HL %>% 
+  mutate(
+    bRALjRAL = arbtak_HL - bNJjHL - bRALjNJ
+  )
+```
+
+```{r}
+total = tot_arb_HL %>% 
+  select(aar, pendlere = arbtak_HL) %>% 
+  mutate(
+    akom = "k0000",
+    akom_navn = "TotaltBo",
+    bkom = "k0000",
+    bkom_navn = "TotaltArb",
+    .before = pendlere
+  )
+```
+
+```{r}
+#| paged.print: false
+#| label: tot_arb_HL
+print(tot_arb_HL, width = 70)
+```
+
+```{r}
+p_bRALjRAL <- tot_arb_HL[c("aar", "bRALjRAL")] %>% 
+  mutate(
+    akom = "k9999",
+    akom_navn = "RAL",
+    bkom = "k9999",
+    bkom_navn = "RAL"
+  ) %>% 
+  rename(
+    pendlere = bRALjRAL
+    ) %>% 
+  select(aar, akom, akom_navn, bkom, bkom_navn, pendlere)
+```
+
+Legger p_bRALjRAL til pend_00_21.
+
+```{r}
+#| echo: true
+pend_00_23 <- bind_rows(pend_00_23, p_bRALjRAL)
+```
+
+\pagebreak[4]
+
+Sjekker at ting ser greit ut ved å lage en foreløpig pendle-matrise for 2010.
+
+```{r}
+#| label: tbl-pmat2010
+#| tbl-cap: Pendlematrise for 2010 for «Sør-fylket» i Rogaland. Kommunestrukturen er tilpasset endringene fra 2018.
+#| ft.arraystretch: 0.9
+#| paged.print: false
+#| echo: true
+#| output: true
+# pendlematrise 2010, bo Nord-Jæren
+pend_00_23 |>
+  ungroup() |>
+  filter(aar == "2010") |>
+  select(bkom, akom, pendlere) |>
+  pivot_wider(
+    names_from = akom,
+    values_from = pendlere
+  ) |> 
+  as_flextable(max_row = 20, show_coltype = FALSE) |> 
+  autofit() |> 
+  line_spacing(space = 0.3, part = "all")
+```
+
+Pendlematrise for 2010 i @tbl-pmat2010 ser grei ut.
+Mangler nå bare totalt antall slik at vi kan regne ut andeler.
+
+```{r}
+#| echo: true
+totalt_arb <- pend_00_23 |>
+  group_by(aar, akom, akom_navn) |>
+  summarise(pendlere = sum(pendlere), .groups = 'drop') |>
+  mutate(
+    bkom = "k0000",
+    bkom_navn = "TotaltArb"
+  )
+```
+
+```{r}
+#| echo: true
+totalt_bo <- pend_00_23 |>
+  group_by(aar, bkom, bkom_navn) |>
+  summarise(pendlere = sum(pendlere), .groups = 'drop') |>
+   mutate(
+    akom = "k0000",
+    akom_navn = "TotaltBo"
+  ) 
+```
+
+Bruk så `bind_rows()` for å legge til `totalt_arb` og `totalt_bo` til `pend_00_23` og legg resultatet i `pendle_data_00_23`.
+Her er det viktig at de tre har identiske variabelnavn og i samme rekkefølge.
+
+```{r}
+pendle_data_00_23 <- bind_rows(
+  pend_00_23,
+  totalt_arb,
+  totalt_bo,
+  total
+)
+```
+
+Vi skal da ha:
+
+```{r}
+#| echo: true
+#| output: true
+dim(pendle_data_00_23)
+```
+
+```{r}
+#| echo: true
+#| output: true
+names(pendle_data_00_23)
+```
+
+```{r}
+#| paged.print: false
+#| echo: true
+#| output: true
+print(pendle_data_00_23, n = 5)
+```
+
+## Andel pendlere
+
+Vi kan så regne ut andel av arbeidstakerne som bor i en kommune som jobber i de ulike kommunene.
+Dette kan gjøres på ulike måter, men det enkleste er kanskje å `pivot_wider()` og `across()` i en `mutate()`.
+Vi kan da benytte `mutate()` for å lage nye variabler med andelene for hver kommune.
+Legg resultatet i en tibble kalt `andel_pendle_data_00_23`.
+Det kan også være lurt å forandre variabelen `aar` til type `date` vha.
+`dmy()`.
+Dette vil senere gi oss finere plot av dataene.
+
+```{r}
+# Har skiftet til den nye funksjonen across() siden mutate_at etc.
+# er på veg ut
+andel_pendle_data_00_23 <- pendle_data_00_23 %>% 
+  unite(knrN, akom, akom_navn) %>% 
+  group_by(aar, bkom, bkom_navn) %>%
+  pivot_wider(
+    names_from = knrN,
+    values_from = pendlere
+  ) %>%
+  as_tibble() %>% 
+  mutate(
+    across(
+      .cols = k1103_Stavanger:k0000_TotaltBo,
+# standard anonym funksjon
+      .fns = function(x) round((x / k0000_TotaltBo) * 100, digits = 4)
+    )
+    ) %>% 
+  ungroup()
+```
+
+Da har vi:
+
+```{r}
+#| echo: true
+#| output: true
+dim(andel_pendle_data_00_23)
+```
+
+```{r}
+#| echo: true
+#| output: true
+names(andel_pendle_data_00_23)
+```
+
+```{r}
+#| paged.print: false
+#| echo: true
+#| output: true
+andel_pendle_data_00_23 |> 
+  head(n = 5) |> 
+  as_flextable()
+```
+
+Så går vi long før plot.
+
+```{r}
+andel_pendle_data_00_23_long <- andel_pendle_data_00_23 |>
+  select(aar:bkom_navn, k1103_Stavanger:k0000_TotaltBo) |>
+  pivot_longer(
+    cols = k1103_Stavanger:k0000_TotaltBo,
+    names_to = c("akomN"),
+    values_to = c("andel")
+  ) |> 
+  separate(
+    col = akomN,
+    into = c("akom", "akom_navn"),
+    sep = "_"
+  ) |>   
+  ungroup() %>% 
+  select(aar, akom, akom_navn, bkom, bkom_navn, andel)
+```
+
+Vi skal nå ha følgende «kommuner»:
+
+```{r}
+#| paged.print: false
+#| echo: false
+#| output: true
+pend_00_23 |> 
+  filter(aar == "2000") |> 
+  select(akom, akom_navn) |> 
+  distinct() |> 
+  as_flextable(max_row = 20, show_coltype = FALSE)
+```
+
+Og for datasettet vårt:
+
+```{r}
+#| echo: true
+#| output: true
+dim(andel_pendle_data_00_23_long)
+```
+
+```{r}
+#| echo: true
+#| output: true
+names(andel_pendle_data_00_23_long)
+```
+
+```{r}
+#| paged.print: false
+#| echo: true
+#| output: true
+print(andel_pendle_data_00_23_long, n = 5, width = 76)
+```
+
+Når vi nå endelig har fått dataene på rett form i andel_pendle_data_00_23_long er det relativt enkelt å lage fine line-plot av pendle-andeler og også å genere såkalte pendle-matriser for de årene vi måtte ønske.
+
+En siste ting vi bør gjøre er å konvertere `aar` til et `date` objekt.
+`ggplot()` vil gi oss en langt finere x-akse hvis vi har `aar` som `date` enn som nå `integer`.
+
+```{r}
+andel_pendle_data_00_23_long <- andel_pendle_data_00_23_long %>% 
+  mutate(
+    aar = dmy(paste("01-01-", aar, sep = ""))
+  )
+```
+
+## Bor og jobber i samme kommune på Nord-Jæren
+
+Da har vi datasettet vårt, `andel_pendle_data_00_23_long`, og vil bruke det i det resterende.
+
+Lag et linjeplot (`geom_line())` som viser utviklingen fra 2000 til 2023 i andelen arbeidstakere som bor og jobber i samme kommune.
+Hint!
+Sett «aesthetics» `group` og `colour` lik `bkom` (eller `akom`).
+
+```{r}
+#| echo: true
+#| output: true
+andel_pendle_data_00_23_long |> 
+  filter(akom == bkom) |>
+  filter(!(akom == "k9999" & bkom == "k9999")) |>
+  rename(
+    Bosted = bkom_navn
+  ) |>
+  ggplot(
+    mapping = aes(
+      x = aar, 
+      y = andel, 
+      group = bkom,
+      colour = bkom
+      )
+    ) +
+  geom_line(lwd = 0.75) +
+  theme(legend.position = 'bottom') +
+  ggtitle("Intern pendling")
+```
+
+```{r}
+#| label: tbl-bo-arb-samme
+#| tbl-cap: Tabell som viser andelen av arbeidstakere som jobber i samme kommune som hvor de bor i 2023.
+#| paged.print: false
+#| echo: false
+#| output: TRUE
+andel_pendle_data_00_23_long |> 
+  filter(akom == bkom) |>
+  filter(!(akom == "k9999" & bkom == "k9999")) |>
+  filter(aar == "2023-01-01") |>
+  rename(
+    Bosted = bkom_navn
+  ) |>
+  arrange(desc(andel)) |> 
+  as_flextable(max_row = 20, show_coltype = FALSE) |> 
+  line_spacing(space = 0.3, part = "all")
+```
+
+### Internpendling et utvalg kommuner
+
+```{r}
+#| echo: false
+#| output: true
+andel_pendle_data_00_23_long |> 
+  filter(akom == bkom) |>
+  filter(akom %in% c(
+    "k1133", "k1103", "k1130", "k1119", "k1144"
+    )
+    ) |>
+  rename(
+    Bosted = bkom_navn
+  ) |>
+  ggplot(
+    mapping = aes(
+      x = aar, 
+      y = andel, 
+      group = bkom, 
+      colour = Bosted
+      )
+    ) +
+  geom_line(lwd = 0.75) +
+  theme(legend.position = 'bottom')
+```
+
+### Definerer funksjoner for plot og tabell
+
+Viser koden for en funksjon som lager tabeller i det følgende.
+Det kan være hensiktmessig å lage en tilsvarende funksjon for plot-ene som skal lages.
+
+```{r}
+plot_pendlere <- function(knr) {
+  andel_pendle_data_00_23_long |>
+  filter(bkom == knr) |>
+  filter(!akom %in% c(knr, "k0000")) |>
+  ggplot(
+    mapping = aes(
+      x = aar, 
+      y = andel, 
+      group = akom_navn, 
+      colour = akom_navn,
+      linetype = akom_navn
+      )
+    ) +
+  geom_line(lwd = 0.75) +
+    # we have to do both to change legend names, else two legends
+    scale_colour_discrete(name = "Arbeidssted") +
+    scale_linetype_discrete(name = "Arbeidssted") +
+  ylab('Andel av arbeidstakere') +
+    theme(legend.position = 'bottom') 
+}
+```
+
+```{r}
+#| echo: true
+tab_pendlere <- function(knr)
+andel_pendle_data_00_23_long |>
+  filter(bkom == knr) |>
+  filter(!akom %in% c(knr, "k0000")) |>
+  filter(year(aar) == "2023") |>
+  arrange(desc(andel)) |>
+  mutate(andel = round(andel, digits = 2)) |>
+  select(`Place of work` = akom_navn, `Prop. in %` = andel) |>
+  as_flextable(show_coltype = FALSE) |> 
+  delete_part("footer") |> 
+  theme_booktabs()
+```
+
+### Hvor jobber folk bosatt i Stavanger kommune?
+
+Vi så ovenfor at 68.1% både bor og jobber i Stavanger kommune i 2023, men hvor jobber de som pendler ut av kommunen?
+Lag et linje-plot lik ovenfor, men som nå viser andelen som jobber i de ulike kommunene for folk som bor i Stavanger.
+Hvordan har andelen arbeidstakere som både bor og jobber i Stavanger utviklet seg over tid?
+
+```{r}
+#| echo: true
+plot_pendlere("k1103")
+```
+
+```{r}
+#| label: tbl-1103pend
+#| tbl-cap: Andelene som pendler ut av Stavanger i 2023.
+#| echo: fenced
+#| output: true
+tab_pendlere("k1103")
+```
+
+### Hvor jobber folk bosatt i Sandnes kommune?
+
+Vi så ovenfor at bare 45,5% av arbeidstakere bosatt i Sandnes jobbet i samme kommune i 2023.
+Hvor jobber de som jobber utenfor kommunen?
+Hvordan har andelen som både bor og jobber i Sandnes kommune utviklet seg over tid?
+Diskuter hva som kan være årsaken til at vi har denne forskjellen mellom Stavanger og Sandnes når det gjelder intern (innen samme kommune) pendling.
+
+Lag et linje-plot lik ovenfor, men som nå viser andelen som jobber i de ulike kommunene for folk som bor i Sandnes.
+Lag også en tabell som ovenfor som viser de fem med størst andel i 2023.
+
+```{r}
+#| echo: true
+#| output: true
+plot_pendlere("k1108")
+```
+
+```{r}
+#| label: tbl-1108pend
+#| tbl-cap: Andelene som pendler ut av Sandnes i 2023.
+#| echo: true
+#| output: true
+tab_pendlere("k1108")
+```
+
+### Hvor jobber folk bosatt i Sola kommune?
+
+Vi så ovenfor at 39.4% både bor og jobber i Sola kommune i 2023.
+Hvor jobber de som pendler ut av kommunen?
+
+Lag et linje-plot lik ovenfor, men som nå viser andelen som jobber i de ulike kommunene for folk som bor i Sola.
+Lag også en tabell som ovenfor som viser de fem med størst andel i 2023.
+
+```{r}
+#| label: fig-1124pend
+#| fig-cap: Utviklingen i pendling ut av Sola kommune i perioden 2000 til 2023.
+#| echo: false
+# Sola
+plot_pendlere("k1124")
+```
+
+```{r}
+#| label: tbl-1124pend
+#| tbl-cap: Andelene som pendler ut av Sola kommune i 2023.
+#| echo: false
+tab_pendlere("k1124")
+```
+
+### Hvor jobber folk bosatt i Randaberg kommune?
+
+Bare 27.6% av dem som bodde i Randaberg kommune i 2023 jobber i denne kommunen.
+Hvor jobber de som pendler ut av kommunen?
+
+Lag et linje-plot lik ovenfor, men som nå viser andelen som jobber i de ulike kommunene for folk som bor i Randaberg.
+Lag også en tabell som ovenfor som viser de fem med størst andel i 2023.
+
+```{r}
+#| label: fig-1127pend
+#| fig-cap: Utviklingen i pendling ut av Randaberg kommune i perioden 2000 til 2023.
+#| echo: false
+# Randaberg
+plot_pendlere("k1127")
+```
+
+```{r}
+#| label: tbl-1127pend
+#| tbl-cap: Andelene som pendler ut av Randaberg kommune i 2023.
+#| echo: false
+tab_pendlere("k1127")
+```
+
+### Hvor jobber folk bosatt i Klepp kommune?
+
+Klepp kommune ligger plassert mellom Sandnes og Bryne.
+Vi så ovenfor at 35,0% både bor og jobber i denne kommunen.
+Hvor jobber de som pendler ut av kommunen?
+
+Lag et linje-plot lik ovenfor, men som nå viser andelen som jobber i de ulike kommunene for folk som bor i Klepp.
+Lag også en tabell som ovenfor som viser de fem med størst andel i 2023.
+
+```{r}
+#| label: fig-1120pend
+#| fig-cap: Utviklingen i pendling ut av Klepp kommune i perioden 2000 til 2023.
+#| echo: false
+# Klepp
+plot_pendlere("k1120")
+```
+
+```{r}
+#| label: tbl-1120pend
+#| tbl-cap: Andelene som pendler ut av Klepp kommune i 2023.
+#| echo: false
+tab_pendlere("k1120")
+```
+
+### Hvor jobber folk bosatt i Time kommune?
+
+Lag et linje-plot lik ovenfor, men som nå viser andelen som jobber i de ulike kommunene for folk som bor i Time.
+Lag også en tabell som ovenfor som viser de fem med størst andel i 2023.
+
+```{r}
+#| label: fig-1121pend
+#| fig-cap: Utviklingen i pendling ut av Time kommune i perioden 2000 til 2023.
+#| echo: false
+# Time
+plot_pendlere("k1121")
+```
+
+```{r}
+#| label: tbl-1121pend
+#| tbl-cap: Pendling ut av Time kommune i 2023.
+#| echo: false
+tab_pendlere("k1121")
+```
+
+### Hvor jobber folk bosatt i Gjesdal kommune?
+
+Lag et linje-plot lik ovenfor, men som nå viser andelen som jobber i de ulike kommunene for folk som bor i Gjesdal.
+Lag også en tabell som ovenfor som viser de fem med størst andel i 2023.
+
+```{r}
+#| label: fig-1122pend
+#| fig-cap: Utviklingen i pendling ut av Gjesdal kommune i perioden 2000 til 2023.
+#| echo: false
+# Gjesdal
+plot_pendlere("k1122")
+```
+
+```{r}
+#| label: tbl-1122pend
+#| tbl-cap: Pendling ut av Gjesdal kommune i 2023.
+#| echo: false
+tab_pendlere("k1122")
+```
+
+### Hvor jobber folk bosatt i Hå kommune?
+
+Lag et linje-plot lik ovenfor, men som nå viser andelen som jobber i de ulike kommunene for folk som bor i Hå.
+Lag også en tabell som ovenfor som viser de fem med størst andel i 2023.
+
+```{r}
+#| label: fig-1119pend
+#| fig-cap: Utviklingen i pendling ut av Hå kommune i perioden 2000 til 2023.
+#| echo: false
+# Hå
+plot_pendlere("k1119")
+```
+
+```{r}
+#| label: tbl-1119pend
+#| tbl-cap: Pendling ut av Hå kommune i 2023.
+#| echo: false
+tab_pendlere("k1119")
+```
+
+### Hvor jobber folk bosatt i Bjerkreim kommune?
+
+Lag et linje-plot lik ovenfor, men som nå viser andelen som jobber i de ulike kommunene for folk som bor i Bjerkreim.
+Lag også en tabell som ovenfor som viser de fem med størst andel i 2023.
+
+```{r}
+#| label: fig-1114pend
+#| fig-cap: Utviklingen i pendling ut av Bjerkreim kommune i perioden 2000 til 2023.
+#| echo: false
+# Bjerkreim
+plot_pendlere("k1114")
+```
+
+```{r}
+#| label: tbl-1114pend
+#| tbl-cap: Pendling ut av Bjerkreim kommune i 2023.
+#| echo: false
+tab_pendlere("k1114")
+```
+
+### Hvor jobber folk bosatt i Strand kommune?
+
+Lag et linje-plot lik ovenfor, men som nå viser andelen som jobber i de ulike kommunene for folk som bor i Strand.
+Lag også en tabell som ovenfor som viser de fem med størst andel i 2023.
+
+```{r}
+#| label: fig-1130pend
+#| fig-cap: Utviklingen i pendling ut av Strand kommune i perioden 2000 til 2023.
+#| echo: false
+# Strand
+plot_pendlere("k1130")
+```
+
+```{r}
+#| label: tbl-1130pend
+#| tbl-cap: Pendling ut av Strand kommune i 2023.
+#| echo: false
+tab_pendlere("k1130")
+```
+
+Ryfast er et vegprosjekt som forbinder Strand kommune med Stavanger vha.
+ferjefri forbindelse.
+Prosjektet ble vedtatt av Stortinget i 2012, byggestart var våren 2013 og forbindelsen åpnet 30.
+des.
+2019.
+Total kostnad på prosjektet er 6-7 milliarder kroner.
+
+Stavanger Aftenblad skrev 12.
+oktober 2015:
+
+> Fra Strand, Forsand og Hjelmeland pendler over 1800 personer daglig til Forus og omegn.
+> Når reisetiden reduseres til 20 minutter kan Ryfast bidra til at Strand kommune utvikler seg til en forstadskommune til Stavanger …
+
+Diskuter utfra plot-et du genererte ovenfor om denne spådommen har slått til så langt.
+
+### Hvor stor pendling er det fra resten av landet til Nord-Jæren?
+
+Lag et linje-plot lik ovenfor, men som nå viser andelen som jobber i de ulike kommunene for folk som bor i resten av landet.
+Lag også en tabell som ovenfor som viser de fem med størst andel i 2023.
+
+```{r}
+#| label: fig-9999pend
+#| fig-cap: Utviklingen i pendling inn til Nord-Jæren fra resten av landet i perioden 2000 til 2023.
+#| echo: false
+# RAL
+plot_pendlere("k9999")
+```
+
+```{r}
+#| label: tbl-9999pend
+#| tbl-cap: Pendling inn til Nord-Jæren fra resten av landet i 2023.
+#| echo: false
+tab_pendlere("k9999") |> 
+  colformat_double(digits = 3)
+```
+
+## Pendlematriser
+
+Vi kan nå enkelt generere pendle-matriser for ulike år.
+Vi nøyer oss med årene 2000, 2005, 2010, 2015 og 2021.
+
+```{r}
+pend_mat <- function(y) {
+  pendle_data_00_23 |>
+  ungroup() |>
+  filter(aar == y) |>
+  select(bkom, akom, pendlere) |>
+  pivot_wider(
+    names_from = akom,
+    values_from = pendlere
+  ) |> 
+  as_flextable(max_row = 30, show_coltype = FALSE) |> 
+  fontsize(size = 8, part = "all") |> 
+  autofit() |>      
+  line_spacing(space = 0.3, part = "all")
+}
+```
+
+### 2000
+
+Generer en pendle-matrise for 2000 lik den vist i @fig-pm2000 nedenfor.
+
+```{r}
+#| label: fig-pm2000
+#| echo: false
+#| output: true
+# pendlematrise 2000, bo Nord-Jæren
+pend_mat(2000)
+```
+
+### 2005
+
+Generer en pendle-matrise for 2005.
+
+```{r}
+#| echo: false
+# pendlematrise 2005, bo Nord-Jæren
+pend_mat(2005)
+```
+
+### 2010
+
+Generer en pendle-matrise for 2010.
+
+```{r}
+#| echo: false
+# pendlematrise 2010, bo Nord-Jæren
+pend_mat(2010)
+```
+
+### 2015
+
+Generer en pendle-matrise for 2015.
+
+```{r}
+#| echo: false
+# pendlematrise 2015, bo Nord-Jæren
+pend_mat(2015)
+```
+
+### 2023
+
+```{r}
+#| label: fig-pm2023
+#| echo: false
+#| output: true
+#| fig-cap: Pendlematrise for år 2023 for Nord-Jæren.
+# pendlematrise 2023, bo Nord-Jæren
+pend_mat(2023)
+```
+
+Generer en pendle-matrise for 2023 se @fig-pm2023.
+
+```{r}
+#| echo: false
+#siste
+```

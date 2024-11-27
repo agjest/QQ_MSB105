@@ -5,3 +5,4 @@ format: html
 ---
 
 -   [Assignment 2 h24](ass2/ass2-h24.qmd)
+-   [Assignment 3 h24](ass3/ass3-h24.qmd)
