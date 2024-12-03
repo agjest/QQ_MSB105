@@ -1,8 +1,9 @@
 ---
-title: "Assignments h23"
+title: "Assignments h24"
 editor: visual
 format: html
 ---
 
 -   [Assignment 2 h24](ass2/ass2-h24.qmd)
 -   [Assignment 3 h24](ass3/ass3-h24.qmd)
+-   [Assignment 4 h24](ass4/ass4-h24.qmd)
