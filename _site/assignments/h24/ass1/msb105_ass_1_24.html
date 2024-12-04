@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="AG">
 
-<title>Data Science - Assignments h24</title>
+<title>Data Science - How can Quarto documents help with reproducibility in research?</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +24,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,7 +69,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -78,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Data Science</span>
     </a>
   </div>
@@ -89,35 +90,35 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">MSB105</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../introduction/introduction.html"> 
+    <a class="nav-link" href="../../../introduction/introduction.html"> 
 <span class="menu-text">Introduction</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../explore-data/explore-data.html"> 
+    <a class="nav-link" href="../../../explore-data/explore-data.html"> 
 <span class="menu-text">Explore Data</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../wrangle-data/wrangle-data.html"> 
+    <a class="nav-link" href="../../../wrangle-data/wrangle-data.html"> 
 <span class="menu-text">Data Wrangling</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../program/program.html"> 
+    <a class="nav-link" href="../../../program/program.html"> 
 <span class="menu-text">Program</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../model/model.html"> 
+    <a class="nav-link" href="../../../model/model.html"> 
 <span class="menu-text">Model</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../assignments/assignments.html"> 
+    <a class="nav-link" href="../../../assignments/assignments.html"> 
 <span class="menu-text">Assignments</span></a>
   </li>  
 </ul>
@@ -132,38 +133,91 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#literature-review" id="toc-literature-review" class="nav-link" data-scroll-target="#literature-review">Literature review</a></li>
+  <li><a href="#discussion-of-the-reseach-question-with-some-catching-heading" id="toc-discussion-of-the-reseach-question-with-some-catching-heading" class="nav-link" data-scroll-target="#discussion-of-the-reseach-question-with-some-catching-heading">Discussion of the reseach question with some catching heading</a>
+  <ul class="collapse">
+  <li><a href="#how-can-quarto-documents-help-with-reproducibility" id="toc-how-can-quarto-documents-help-with-reproducibility" class="nav-link" data-scroll-target="#how-can-quarto-documents-help-with-reproducibility">How can Quarto documents help with reproducibility?</a></li>
+  <li><a href="#what-problems-remains-and-how-can-these-be-solved" id="toc-what-problems-remains-and-how-can-these-be-solved" class="nav-link" data-scroll-target="#what-problems-remains-and-how-can-these-be-solved">What problems remains and how can these be solved?</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="msb105_ass_1_24.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Assignments h24</h1>
+<h1 class="title">How can Quarto documents help with reproducibility in research?</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>AG </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Wednesday 25 Sep, 2024</p>
+    </div>
+  </div>
   
     
   </div>
   
+<div>
+  <div class="abstract">
+    <div class="block-title">Abstract</div>
+    A very short abstract.
+  </div>
+</div>
 
 
 </header>
 
 
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Some smart stuff</p>
+</section>
+<section id="literature-review" class="level2">
+<h2 class="anchored" data-anchor-id="literature-review">Literature review</h2>
+<p>Smart stuff from others</p>
+</section>
+<section id="discussion-of-the-reseach-question-with-some-catching-heading" class="level2">
+<h2 class="anchored" data-anchor-id="discussion-of-the-reseach-question-with-some-catching-heading">Discussion of the reseach question with some catching heading</h2>
+<section id="how-can-quarto-documents-help-with-reproducibility" class="level3">
+<h3 class="anchored" data-anchor-id="how-can-quarto-documents-help-with-reproducibility">How can Quarto documents help with reproducibility?</h3>
+</section>
+<section id="what-problems-remains-and-how-can-these-be-solved" class="level3">
+<h3 class="anchored" data-anchor-id="what-problems-remains-and-how-can-these-be-solved">What problems remains and how can these be solved?</h3>
 <ul>
-<li><a href="../../assignments/h24/ass1/ass1-h24.html">Assignment 1 h24</a></li>
-<li><a href="../../assignments/h24/ass2/ass2-h24.html">Assignment 2 h24</a></li>
-<li><a href="../../assignments/h24/ass3/ass3-h24.html">Assignment 3 h24</a></li>
-<li><a href="../../assignments/h24/ass4/ass4-h24.html">Assignment 4 h24</a></li>
+<li>Package version</li>
+<li>R version, library versions</li>
 </ul>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

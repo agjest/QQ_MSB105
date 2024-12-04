@@ -5331,7 +5331,7 @@
     "href": "assignments/h24/ass-h24.html",
     "title": "Assignments h24",
     "section": "",
-    "text": "Assignment 2 h24\nAssignment 3 h24\nAssignment 4 h24"
+    "text": "Assignment 1 h24\nAssignment 2 h24\nAssignment 3 h24\nAssignment 4 h24"
   },
   {
     "objectID": "assignments/h24/ass2/ass2-h24.html",
@@ -9252,5 +9252,61 @@
     "title": "Assignment 4 2024 msb105",
     "section": "Enkle modeller",
     "text": "Enkle modeller\nVi har brukt nominelle verdier for GNP. Vil vi undersøke om det er noen sammenheng mellom GDP og Gini-koeffisienten bør vi se på endringen i de to variablene.\nEr det slik at høyrere verdiskapning (velstand) medfører større utjevning mellom regionene? Vi vil bruke en enkel modell diff_gini_nuts2 ~ diff_gdp_per_capita. Finner vi en signifikant positiv koeffisient for diff_gdp_per_capita indikerer dette økt utgjevning mellom regionene når gdp_per_capita (velstandsnivå) øker.\nVi gjør først en «data science» studie, der vi beregner en regresjonsmodellen for hver av de 173 NUTS2 regionene vi har. Fra disse 173 modellene plukker vi så ut koeffisienten for diff_gdp_per_capita. Vi lager så et «denisity plot» for disse og genererer også diverse beskrivende statistikk.\nTil slutt bruker vi dataene for å utføre en kanksje mer korrekt analyse der vi utnytter panel-strukturen i dataene og estimerer en «fixed effect» modell.\n\n«Data Science» modeller\n\n\nOppgave\n\nLag datasett for endringer i gdp_per_capita og gini_nuts2. Bruk gjerne koden nedenfor,\n\n\nNUTS2_diff &lt;- eu_data_nested |&gt; \n  unnest(NUTS2_data) |&gt; \n  mutate(\n    # Når vi tar diff får vi en obs. mindre. Legger derfor inn en NA først\n    # i vektoren\n    diff_gdp_per_capita = c(NA, diff(gdp_per_capita)),\n    diff_gini_nuts2 = c(NA, diff(gini_nuts2))\n    ) |&gt; \n  select(country_name, country, NUTS2, year, diff_gdp_per_capita, diff_gini_nuts2) %&gt;% \n  # Fjerner obs. der vi har NA\n  filter(complete.cases(.)) |&gt; \n  group_by(country_name, country, NUTS2) |&gt; \n  nest(.key = \"NUTS2_diff\")\n\n\n\nOppgave\n\nBruk modellen diff_gini_nuts2 ~ diff_gdp_per_capita på hver av de 173 NUTS3 regionene vha. en anonym funksjon som «mappes» på «list-column» NUTS2_diff. Legg resultatet i en variabel modell.\n\n\nHent ut koeffisientene fra de 173 modellene og legg resultatet i variabelen mod_coeff. Gjør dette ved å «mappe» funksjonen coeff() på list_column modell. (Hint: Husk at hvis vi ønsker en dataframe så må _df varianten av map.)\n\n\nNUTS2_diff &lt;- NUTS2_diff  |&gt; \n  group_by(country_name, country, NUTS2) |&gt; \n  mutate(\n    mod_coeff = map_df(\n      .x = modell,\n      .f = coef\n      )\n    )\n\n\nBrukk glance() funksjonen fra broom pakken og «map» denne på modell variabelen for å generere «model summary». Legg reultatet i en variabel mod_sum.\n\n\nNUTS2_diff &lt;- NUTS2_diff  |&gt; \n  group_by(country_name, country, NUTS2) |&gt; \n  mutate(\n    mod_sum = map_df(\n      .x = modell,\n      .f = glance\n      )\n    )\n\n\nBruk ggplot til å lage et «density plot» av til variabelen diff_gdp_per_capita. Legg inn en vertikal linje for gjennomsnitt diff_gdp_per_capita. (Hint! Husk argumentet na.rm = TRUE.)\n\n\nNUTS2_diff$mod_coeff |&gt; \n  ggplot() +\n  geom_density(mapping = aes(x = diff_gdp_per_capita), adjust = 0.6) +\n  geom_vline(mapping = aes(xintercept = mean(diff_gdp_per_capita, na.rm = TRUE)), \n                           colour = \"gray60\",\n                           linetype = \"dashed\")\n\n\n\n\n\n\n\n\n\nHvor mange av de 173 regrersjonskoeffisientene for diff_gdp_per_capita er positive?\n\n\nFinn gjennomsnitt («mean») av de 173 koeffisientene beregnet for diff_gdp_per_capita.\n\n\nUtfør en enkel t-test for å teste om diff_gdp_per_capita er signifikant størr enn 0.\n\n\n\nPanel modell\n\nBruk funksjonen plm() fra pakken plm til å utføre en panel-regresjon på dataene. For argumentet index kan dere bruke index = c(\"NUTS2\", \"year\"). Bruk samme enkle modell som ovenfor dvs. diff_gini_nuts2 ~ diff_gdp_per_capita. Putt resultatet av regresjonen i et objekt p_mod.\n\n\nVis summary() for p_mod og tolk resultatet.\n\n\nEn alternativ måte å finne summary() for p_mod er gjengitt i chunk-en nedenfor. Forklar hva som blir gjort her og sammenlign med resultatet av en ordinær summary().\n\n\nsummary(p_mod, vcov = function(x) vcovHC(x, method = \"white2\"))\n\nOneway (individual) effect Within Model\n\nNote: Coefficient variance-covariance matrix supplied: function(x) vcovHC(x, method = \"white2\")\n\nCall:\nplm(formula = \"diff_gini_nuts2 ~ diff_gdp_per_capita\", data = unnest(select(NUTS2_diff, \n    NUTS2, NUTS2_diff), NUTS2_diff), index = c(\"NUTS2\", \"year\"))\n\nUnbalanced Panel: n = 173, T = 13-22, N = 3677\n\nResiduals:\n       Min.     1st Qu.      Median     3rd Qu.        Max. \n-0.26115744 -0.00662310 -0.00083892  0.00496514  0.30950518 \n\nCoefficients:\n                      Estimate Std. Error t-value  Pr(&gt;|t|)    \ndiff_gdp_per_capita 2.7328e-06 1.3347e-07  20.476 &lt; 2.2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nTotal Sum of Squares:    2.0302\nResidual Sum of Squares: 1.7158\nR-Squared:      0.15488\nAdj. R-Squared: 0.11314\nF-statistic: 419.248 on 1 and 172 DF, p-value: &lt; 2.22e-16"
+  },
+  {
+    "objectID": "assignments/h24/ass1/ass1-h24.html",
+    "href": "assignments/h24/ass1/ass1-h24.html",
+    "title": "Assignment 1 H24",
+    "section": "",
+    "text": "Ta utgangspunkt i malen i dokumentet msb105_ass_1_24 (arkiver med filendelsen qmd) og skriv et mini-paper på 4-5 sider med utgangspunkt i foredraget «Robust and Reliable Science».\nOppgaven skal utføres individuelt og mot et Github repo. Opprett først repo-et på Github før du lager et prosjekt i RStudio. Legg filene msb105_ass_1_24.qmd, apa7.csl og reproducibility.bib inn i ditt nye prosjekt.\nKrav til oppgaven:\n\nDet skal utføres minst 15 commits\n\nMed gode «commit messages» ;-)\n\nDet skal være brukt minst 15 siteringer vha. siteringssystemet i Rstudio\n\nHelst noen (3-5) dere har funnet selv også som ikke er i reproducibility.bib\n\nDet skal brukes minst to grener som skal merges inn i main\n\nHusk: skift først til main\nSå i Terminal: git merge &lt;gren-navn&gt;\n\n\nNår dere er ferdige kan dere invitere meg (agjest) inn i repoet (eventuelt før hvis dere støter på problemer jeg kan hjelpe med)\nNår jeg er invitert vil jeg gjøre en fork av repo-et, fikse eventuelle feil og skrive et kort dokument med kommentarer og tips. Når jeg er ferdig vil dere får en «merge request» fra Github.\nDet er lov å spørre om hjelp! Hvis dere sender epost så bruk MSB105 i tittelen så er det mindre sjanse for at den blir oversett. Får dere ikke respons så prøv på ny. Det er dessverre litt «overload» på eposten min for tiden.\nOppstår det ting som alle kan ha bruk for å vite om vil jeg legge det ut som Melding her på Canvas."
+  },
+  {
+    "objectID": "assignments/h24/ass1/ass1-h24.html#første-oppgave-assignment-høsten-24",
+    "href": "assignments/h24/ass1/ass1-h24.html#første-oppgave-assignment-høsten-24",
+    "title": "Assignment 1 H24",
+    "section": "",
+    "text": "Ta utgangspunkt i malen i dokumentet msb105_ass_1_24 (arkiver med filendelsen qmd) og skriv et mini-paper på 4-5 sider med utgangspunkt i foredraget «Robust and Reliable Science».\nOppgaven skal utføres individuelt og mot et Github repo. Opprett først repo-et på Github før du lager et prosjekt i RStudio. Legg filene msb105_ass_1_24.qmd, apa7.csl og reproducibility.bib inn i ditt nye prosjekt.\nKrav til oppgaven:\n\nDet skal utføres minst 15 commits\n\nMed gode «commit messages» ;-)\n\nDet skal være brukt minst 15 siteringer vha. siteringssystemet i Rstudio\n\nHelst noen (3-5) dere har funnet selv også som ikke er i reproducibility.bib\n\nDet skal brukes minst to grener som skal merges inn i main\n\nHusk: skift først til main\nSå i Terminal: git merge &lt;gren-navn&gt;\n\n\nNår dere er ferdige kan dere invitere meg (agjest) inn i repoet (eventuelt før hvis dere støter på problemer jeg kan hjelpe med)\nNår jeg er invitert vil jeg gjøre en fork av repo-et, fikse eventuelle feil og skrive et kort dokument med kommentarer og tips. Når jeg er ferdig vil dere får en «merge request» fra Github.\nDet er lov å spørre om hjelp! Hvis dere sender epost så bruk MSB105 i tittelen så er det mindre sjanse for at den blir oversett. Får dere ikke respons så prøv på ny. Det er dessverre litt «overload» på eposten min for tiden.\nOppstår det ting som alle kan ha bruk for å vite om vil jeg legge det ut som Melding her på Canvas."
+  },
+  {
+    "objectID": "assignments/h24/ass1/msb105_ass_1_24.html",
+    "href": "assignments/h24/ass1/msb105_ass_1_24.html",
+    "title": "How can Quarto documents help with reproducibility in research?",
+    "section": "",
+    "text": "Some smart stuff"
+  },
+  {
+    "objectID": "assignments/h24/ass1/msb105_ass_1_24.html#introduction",
+    "href": "assignments/h24/ass1/msb105_ass_1_24.html#introduction",
+    "title": "How can Quarto documents help with reproducibility in research?",
+    "section": "",
+    "text": "Some smart stuff"
+  },
+  {
+    "objectID": "assignments/h24/ass1/msb105_ass_1_24.html#literature-review",
+    "href": "assignments/h24/ass1/msb105_ass_1_24.html#literature-review",
+    "title": "How can Quarto documents help with reproducibility in research?",
+    "section": "Literature review",
+    "text": "Literature review\nSmart stuff from others"
+  },
+  {
+    "objectID": "assignments/h24/ass1/msb105_ass_1_24.html#discussion-of-the-reseach-question-with-some-catching-heading",
+    "href": "assignments/h24/ass1/msb105_ass_1_24.html#discussion-of-the-reseach-question-with-some-catching-heading",
+    "title": "How can Quarto documents help with reproducibility in research?",
+    "section": "Discussion of the reseach question with some catching heading",
+    "text": "Discussion of the reseach question with some catching heading\n\nHow can Quarto documents help with reproducibility?\n\n\nWhat problems remains and how can these be solved?\n\nPackage version\nR version, library versions"
+  },
+  {
+    "objectID": "assignments/h24/ass1/msb105_ass_1_24.html#conclusion",
+    "href": "assignments/h24/ass1/msb105_ass_1_24.html#conclusion",
+    "title": "How can Quarto documents help with reproducibility in research?",
+    "section": "Conclusion",
+    "text": "Conclusion"
+  },
+  {
+    "objectID": "assignments/h24/ass1/msb105_ass_1_24.html#references",
+    "href": "assignments/h24/ass1/msb105_ass_1_24.html#references",
+    "title": "How can Quarto documents help with reproducibility in research?",
+    "section": "References",
+    "text": "References"
   }
 ]

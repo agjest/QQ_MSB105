@@ -1,0 +1,39 @@
+---
+title: "Assignment 1 H24"
+format: 
+  html: default
+  pdf: 
+    papersize: a4
+editor: visual
+lang: nb
+---
+
+## Første oppgave (assignment) høsten 24
+
+Ta utgangspunkt i malen i dokumentet [msb105_ass_1_24](./msb105_ass_1_24.txt) (arkiver med filendelsen qmd) og skriv et mini-paper på 4-5 sider med utgangspunkt i foredraget [«Robust and Reliable Science»](https://msb105.netlify.app/introduction/reproducibility/rr-science_h24#/title-slide).
+
+Oppgaven skal utføres individuelt og mot et Github repo.
+Opprett først repo-et på Github før du lager et prosjekt i RStudio.
+Legg filene msb105_ass_1_24.qmd, apa7.csl og reproducibility.bib inn i ditt nye prosjekt.
+
+Krav til oppgaven:
+
+-   Det skal utføres minst 15 commits
+    -   Med gode «commit messages» ;-)
+-   Det skal være brukt minst 15 siteringer vha. siteringssystemet i Rstudio
+    -   Helst noen (3-5) dere har funnet selv også som ikke er i reproducibility.bib
+-   Det skal brukes minst to grener som skal merges inn i main
+    -   Husk: skift først til main
+    -   Så i Terminal: `git merge <gren-navn>`
+
+Når dere er ferdige kan dere invitere meg (agjest) inn i repoet (eventuelt før hvis dere støter på problemer jeg kan hjelpe med)
+
+Når jeg er invitert vil jeg gjøre en fork av repo-et, fikse eventuelle feil og skrive et kort dokument med kommentarer og tips.
+Når jeg er ferdig vil dere får en «merge request» fra Github.
+
+Det er lov å spørre om hjelp!
+Hvis dere sender epost så bruk MSB105 i tittelen så er det mindre sjanse for at den blir oversett.
+Får dere ikke respons så prøv på ny.
+Det er dessverre litt «overload» på eposten min for tiden.
+
+Oppstår det ting som alle kan ha bruk for å vite om vil jeg legge det ut som Melding her på Canvas.
