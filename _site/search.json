@@ -5541,210 +5541,210 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#calculator",
     "title": "Very Short Intro to R",
     "section": "Calculator",
-    "text": "Calculator\n\n2 + 2\n\n[1] 4\n\n\n. . .\n\n(2/15)^0.25*exp(4) - 200\n\n[1] -167.0077\n\n\nClick here if you want to try it yourself."
+    "text": "Calculator\n\n\nCode\n2 + 2\n\n\n[1] 4\n\n\n\n\n\nCode\n(2/15)^0.25*exp(4) - 200\n\n\n[1] -167.0077\n\n\nClick here if you want to try it yourself."
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#variables",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#variables",
     "title": "Very Short Intro to R",
     "section": "Variables",
-    "text": "Variables\n\n2\n\n[1] 2\n\n\n. . .\nMust give it a name (an address to location in memory) to be able to retrieve it.\n\nx &lt;- 2\n\n. . .\nWe can also write x = 2, but &lt;- is the R way. We assign 2 to x.\n\n# get x\nx\n\n[1] 2"
+    "text": "Variables\n\n\nCode\n2\n\n\n[1] 2\n\n\n\nMust give it a name (an address to location in memory) to be able to retrieve it.\n\n\nCode\nx &lt;- 2\n\n\n\n\nWe can also write x = 2, but &lt;- is the R way. We assign 2 to x.\n\n\nCode\n# get x\nx\n\n\n[1] 2"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#variables-cont.",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#variables-cont.",
     "title": "Very Short Intro to R",
     "section": "Variables cont.",
-    "text": "Variables cont.\nTo both assign and print out result use parentheses.\n\n(y &lt;- 5)\n\n[1] 5\n\n\n. . .\n\n(z &lt;- x + y)\n\n[1] 7"
+    "text": "Variables cont.\nTo both assign and print out result use parentheses.\n\n\nCode\n(y &lt;- 5)\n\n\n[1] 5\n\n\n\n\n\nCode\n(z &lt;- x + y)\n\n\n[1] 7"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#variables-cont.-1",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#variables-cont.-1",
     "title": "Very Short Intro to R",
     "section": "Variables cont.",
-    "text": "Variables cont.\nWe can change an assignment.\n\n(x &lt;- 13)\n\n[1] 13\n\n\n. . .\n\nz\n\n[1] 7\n\n\nz retains value\n. . .\n\n# update assignment\n(z &lt;- x + y)\n\n[1] 18\n\n\nz gets new value"
+    "text": "Variables cont.\nWe can change an assignment.\n\n\nCode\n(x &lt;- 13)\n\n\n[1] 13\n\n\n\n\n\nCode\nz\n\n\n[1] 7\n\n\nz retains value\n\n\n\n\nCode\n# update assignment\n(z &lt;- x + y)\n\n\n[1] 18\n\n\nz gets new value"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#integers-floating-point-decimal-numeric",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#integers-floating-point-decimal-numeric",
     "title": "Very Short Intro to R",
     "section": "Integers, floating point (decimal), numeric",
-    "text": "Integers, floating point (decimal), numeric\n\ntypeof(z)\n\n[1] \"double\"\n\n\n. . .\nIf we want z to be an integer we must do\n\n# Why L? I don't know.\nx &lt;- 13L\ny &lt;- 5L\n(z &lt;- x + y)\n\n[1] 18\n\n\n. . .\n\ntypeof(z)\n\n[1] \"integer\""
+    "text": "Integers, floating point (decimal), numeric\n\n\nCode\ntypeof(z)\n\n\n[1] \"double\"\n\n\n\nIf we want z to be an integer we must do\n\n\nCode\n# Why L? I don't know.\nx &lt;- 13L\ny &lt;- 5L\n(z &lt;- x + y)\n\n\n[1] 18\n\n\n\n\n\n\nCode\ntypeof(z)\n\n\n[1] \"integer\""
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#vectors",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#vectors",
     "title": "Very Short Intro to R",
     "section": "Vectors",
-    "text": "Vectors\nR works on vectors. Even single digits, as above, are vectors of length 1.\n\n(x &lt;- c(2, 8, 9, 21:29, 17:12))\n\n [1]  2  8  9 21 22 23 24 25 26 27 28 29 17 16 15 14 13 12\n\n\n. . .\n\n(y &lt;- 6:(5 + length(x)))\n\n [1]  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23\n\n\n. . .\n\n(z &lt;- x + y)\n\n [1]  8 15 17 30 32 34 36 38 40 42 44 46 35 35 35 35 35 35\n\n\n. . .\nWhat happend?"
+    "text": "Vectors\nR works on vectors. Even single digits, as above, are vectors of length 1.\n\n\nCode\n(x &lt;- c(2, 8, 9, 21:29, 17:12))\n\n\n [1]  2  8  9 21 22 23 24 25 26 27 28 29 17 16 15 14 13 12\n\n\n\n\n\nCode\n(y &lt;- 6:(5 + length(x)))\n\n\n [1]  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23\n\n\n\n\n\n\nCode\n(z &lt;- x + y)\n\n\n [1]  8 15 17 30 32 34 36 38 40 42 44 46 35 35 35 35 35 35\n\n\n\n\nWhat happend?"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#vectors-cont.",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#vectors-cont.",
     "title": "Very Short Intro to R",
     "section": "Vectors cont.",
-    "text": "Vectors cont.\n\n(y &lt;- 6:14) \n\n[1]  6  7  8  9 10 11 12 13 14\n\n\nWhat will z now be?\n. . .\n\n(z &lt;- x + y)\n\n [1]  8 15 17 30 32 34 36 38 40 33 35 37 26 26 26 26 26 26\n\n\n. . .\n\n(y &lt;- 6:13) \n\n[1]  6  7  8  9 10 11 12 13"
+    "text": "Vectors cont.\n\n\nCode\n(y &lt;- 6:14) \n\n\n[1]  6  7  8  9 10 11 12 13 14\n\n\nWhat will z now be?\n\n\n\nCode\n(z &lt;- x + y)\n\n\n [1]  8 15 17 30 32 34 36 38 40 33 35 37 26 26 26 26 26 26\n\n\n\n\n\n\nCode\n(y &lt;- 6:13) \n\n\n[1]  6  7  8  9 10 11 12 13"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#vectors-cont.-1",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#vectors-cont.-1",
     "title": "Very Short Intro to R",
     "section": "Vectors cont.",
-    "text": "Vectors cont.\n\n(z &lt;- x + y)\n\nWarning in x + y: longer object length is not a multiple of shorter object\nlength\n\n\n [1]  8 15 17 30 32 34 36 38 32 34 36 38 27 27 27 27 19 19\n\n\n\nIf vectors not of same length R will replicate the shortest.\nIf a multiple NO WARNING!\n\nDANGER!\n\nElse the warning above"
+    "text": "Vectors cont.\n\n\nCode\n(z &lt;- x + y)\n\n\nWarning in x + y: longer object length is not a multiple of shorter object\nlength\n\n\n [1]  8 15 17 30 32 34 36 38 32 34 36 38 27 27 27 27 19 19\n\n\n\nIf vectors not of same length R will replicate the shortest.\nIf a multiple NO WARNING!\n\nDANGER!\n\nElse the warning above"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#change-type",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#change-type",
     "title": "Very Short Intro to R",
     "section": "Change type",
-    "text": "Change type\n\ntypeof(z)\n\n[1] \"double\"\n\n\n. . .\n\nz &lt;- as.integer(z)\n\n. . .\n\ntypeof(z)\n\n[1] \"integer\""
+    "text": "Change type\n\n\nCode\ntypeof(z)\n\n\n[1] \"double\"\n\n\n\n\n\nCode\nz &lt;- as.integer(z)\n\n\n\n\n\n\nCode\ntypeof(z)\n\n\n[1] \"integer\""
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#change-type-cont.",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#change-type-cont.",
     "title": "Very Short Intro to R",
     "section": "Change type cont.",
-    "text": "Change type cont.\n\nz &lt;- as.character(z)\n\n. . .\n\ntypeof(z)\n\n[1] \"character\"\n\n\n. . .\n\nz\n\n [1] \"8\"  \"15\" \"17\" \"30\" \"32\" \"34\" \"36\" \"38\" \"32\" \"34\" \"36\" \"38\" \"27\" \"27\" \"27\"\n[16] \"27\" \"19\" \"19\"\n\n\n\nNow quotes around number, hence character."
+    "text": "Change type cont.\n\n\nCode\nz &lt;- as.character(z)\n\n\n\n\n\nCode\ntypeof(z)\n\n\n[1] \"character\"\n\n\n\n\n\n\nCode\nz\n\n\n [1] \"8\"  \"15\" \"17\" \"30\" \"32\" \"34\" \"36\" \"38\" \"32\" \"34\" \"36\" \"38\" \"27\" \"27\" \"27\"\n[16] \"27\" \"19\" \"19\"\n\n\n\nNow quotes around number, hence character."
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#picking-values-in-vector",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#picking-values-in-vector",
     "title": "Very Short Intro to R",
     "section": "Picking values in vector",
-    "text": "Picking values in vector\n\n# first value\nz[1]\n\n[1] \"8\"\n\n\n. . .\nWhat will happen? Why?\n. . .\n\n# commented out else document will not run\n#z[1] + z[2]"
+    "text": "Picking values in vector\n\n\nCode\n# first value\nz[1]\n\n\n[1] \"8\"\n\n\n\nWhat will happen? Why?\n\n\n\n\nCode\n# commented out else document will not run\n#z[1] + z[2]"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#picking-values-in-vector-cont.",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#picking-values-in-vector-cont.",
     "title": "Very Short Intro to R",
     "section": "Picking values in vector cont.",
-    "text": "Picking values in vector cont.\nConvert back to integer\n\nz &lt;- as.integer(z)\nz[1] + z[2]\n\n[1] 23\n\n\n. . .\n\nz\n\n [1]  8 15 17 30 32 34 36 38 32 34 36 38 27 27 27 27 19 19\n\n\n. . .\nWhat will the next one return?\n\nz[1] + z[2:4]"
+    "text": "Picking values in vector cont.\nConvert back to integer\n\n\nCode\nz &lt;- as.integer(z)\nz[1] + z[2]\n\n\n[1] 23\n\n\n\n\n\nCode\nz\n\n\n [1]  8 15 17 30 32 34 36 38 32 34 36 38 27 27 27 27 19 19\n\n\n\n\nWhat will the next one return?\n\n\nCode\nz[1] + z[2:4]"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#picking-values-in-vector-cont.-1",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#picking-values-in-vector-cont.-1",
     "title": "Very Short Intro to R",
     "section": "Picking values in vector cont.",
-    "text": "Picking values in vector cont.\nQuite flexible, we can for instance do:\n\nx[5] + z[c(1:2, c(9, 3, 1), 13:11)]\n\n[1] 30 37 54 39 30 49 60 58\n\n\nNote that the indexes must be put inside c().\n. . .\n\nc(1:2, c(9, 3, 1), 13:11)\n\n[1]  1  2  9  3  1 13 12 11"
+    "text": "Picking values in vector cont.\nQuite flexible, we can for instance do:\n\n\nCode\nx[5] + z[c(1:2, c(9, 3, 1), 13:11)]\n\n\n[1] 30 37 54 39 30 49 60 58\n\n\nNote that the indexes must be put inside c().\n\n\n\nCode\nc(1:2, c(9, 3, 1), 13:11)\n\n\n[1]  1  2  9  3  1 13 12 11"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#picking-values-in-vector-cont.-2",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#picking-values-in-vector-cont.-2",
     "title": "Very Short Intro to R",
     "section": "Picking values in vector cont.",
-    "text": "Picking values in vector cont.\nWhat happened previous slide?\n\nx[5]\n\n[1] 22\n\n\n. . .\n\nz[c(1:2, c(9, 3, 1), 13:11)]\n\n[1]  8 15 32 17  8 27 38 36\n\n\n. . .\n\nx[5] + z[c(1:2, c(9, 3, 1), 13:11)]\n\n[1] 30 37 54 39 30 49 60 58"
+    "text": "Picking values in vector cont.\nWhat happened previous slide?\n\n\nCode\nx[5]\n\n\n[1] 22\n\n\n\n\n\nCode\nz[c(1:2, c(9, 3, 1), 13:11)]\n\n\n[1]  8 15 32 17  8 27 38 36\n\n\n\n\n\n\nCode\nx[5] + z[c(1:2, c(9, 3, 1), 13:11)]\n\n\n[1] 30 37 54 39 30 49 60 58"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#picking-values-in-vector-cont.-3",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#picking-values-in-vector-cont.-3",
     "title": "Very Short Intro to R",
     "section": "Picking values in vector cont.",
-    "text": "Picking values in vector cont.\n\nz &lt;- c(3, 5, 1, 9)\n\nWhat will the following return?\n\nz[-1]\n\n. . .\nWhat will the following return?\n\nz[-c(2:3)]\n\n\nz[-c(3:2)]"
+    "text": "Picking values in vector cont.\n\n\nCode\nz &lt;- c(3, 5, 1, 9)\n\n\nWhat will the following return?\n\n\nCode\nz[-1]\n\n\n\nWhat will the following return?\n\n\nCode\nz[-c(2:3)]\n\n\n\n\nCode\nz[-c(3:2)]"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#picking-values-in-vector-cont.-4",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#picking-values-in-vector-cont.-4",
     "title": "Very Short Intro to R",
     "section": "Picking values in vector cont.",
-    "text": "Picking values in vector cont.\nHow to drop last value?\n\nhead(z, n = -1)\n\n[1] 3 5 1\n\n\n. . .\n\nhead(z, n = -2)\n\n[1] 3 5\n\n\n. . .\nGet the two values at the end\n\nz[(length(z)-1):length(z)]\n\n[1] 1 9\n\n\nor\n. . .\n\ntail(z, n = 2)\n\n[1] 1 9"
+    "text": "Picking values in vector cont.\nHow to drop last value?\n\n\nCode\nhead(z, n = -1)\n\n\n[1] 3 5 1\n\n\n\n\n\nCode\nhead(z, n = -2)\n\n\n[1] 3 5\n\n\n\n\nGet the two values at the end\n\n\nCode\nz[(length(z)-1):length(z)]\n\n\n[1] 1 9\n\n\nor\n\n\n\n\nCode\ntail(z, n = 2)\n\n\n[1] 1 9"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#generating-empty-vectors",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-empty-vectors",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\n\nx &lt;- numeric(10)\n\n. . .\n\nx\n\n [1] 0 0 0 0 0 0 0 0 0 0\n\n\n\ntypeof(x)\n\n[1] \"double\"\n\n\n\nImportant technique used in loops.\nFaster to generate an empty vector of needed length than to grow it with one new value many times."
+    "text": "Generating empty vectors\n\n\nCode\nx &lt;- numeric(10)\n\n\n\n\n\nCode\nx\n\n\n [1] 0 0 0 0 0 0 0 0 0 0\n\n\n\n\nCode\ntypeof(x)\n\n\n[1] \"double\"\n\n\n\nImportant technique used in loops.\nFaster to generate an empty vector of needed length than to grow it with one new value many times."
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#generating-empty-vectors-1",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx &lt;- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d1 &lt;- t2 - t1)\n\nTime difference of 0.5210931 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx &lt;- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d1 &lt;- t2 - t1)\n\n\nTime difference of 0.532063 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nx &lt;- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d2 &lt;- t2 - t1)\n\nTime difference of 0.661551 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nx &lt;- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d2 &lt;- t2 - t1)\n\n\nTime difference of 0.6618378 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 26.95"
+    "text": "Speed Difference\n\n\nCode\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n\n[1] 24.39"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\nset.seed(666)\nt1 &lt;- Sys.time()\nx &lt;- rnorm(1000000)\nt2 &lt;- Sys.time()\n(d3 &lt;- t2 - t1)\n\nTime difference of 0.02735996 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n. . .\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 2317.95"
+    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 &lt;- Sys.time()\nx &lt;- rnorm(1000000)\nt2 &lt;- Sys.time()\n(d3 &lt;- t2 - t1)\n\n\nTime difference of 0.03010583 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 2098.37"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#other-types-of-vectors-logical",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#other-types-of-vectors-logical",
     "title": "Very Short Intro to R",
     "section": "Other types of vectors; logical",
-    "text": "Other types of vectors; logical\n\nx &lt;- x[1:10]\nq &lt;- x &lt; 0\n\n. . .\n\nq\n\n [1] FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE\n\n\n\nq is a boolen or logical vector\n\nTRUE for the values of x that are less than 0, and false for the ones that are not."
+    "text": "Other types of vectors; logical\n\n\nCode\nx &lt;- x[1:10]\nq &lt;- x &lt; 0\n\n\n\n\n\nCode\nq\n\n\n [1] FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE\n\n\n\nq is a boolen or logical vector\n\nTRUE for the values of x that are less than 0, and false for the ones that are not."
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#other-types-of-vectors-named",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#other-types-of-vectors-named",
     "title": "Very Short Intro to R",
     "section": "Other types of vectors; named",
-    "text": "Other types of vectors; named\n\ntemp &lt;- c(11, 17, 22, 15, 15, 25)\nweather &lt;- c(\"Rainy\", \"Sunny\", \"Sunny\", \"Fair\", \"Fair\", \"Sunny\") \n\n. . .\n\nnames(temp) &lt;- weather\n\n. . .\n\ntemp\n\nRainy Sunny Sunny  Fair  Fair Sunny \n   11    17    22    15    15    25 \n\n\n\ntemp[names(temp) == \"Sunny\"]\n\nSunny Sunny Sunny \n   17    22    25"
+    "text": "Other types of vectors; named\n\n\nCode\ntemp &lt;- c(11, 17, 22, 15, 15, 25)\nweather &lt;- c(\"Rainy\", \"Sunny\", \"Sunny\", \"Fair\", \"Fair\", \"Sunny\") \n\n\n\n\n\nCode\nnames(temp) &lt;- weather\n\n\n\n\n\n\nCode\ntemp\n\n\nRainy Sunny Sunny  Fair  Fair Sunny \n   11    17    22    15    15    25 \n\n\n\n\nCode\ntemp[names(temp) == \"Sunny\"]\n\n\nSunny Sunny Sunny \n   17    22    25"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#other-types-of-vectors-factor",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#other-types-of-vectors-factor",
     "title": "Very Short Intro to R",
     "section": "Other types of vectors; factor",
-    "text": "Other types of vectors; factor\n\n# some codeing of sex, 1 female, 2 male\nsex &lt;- c(1, 2, 1, 2, 2, 1, 2)\n\n. . .\n\n# new labels, \"F\" for 1 and \"M\" for 2\nsex_f &lt;- factor(sex, labels = c(\"F\", \"M\"))\n\n. . .\n\nsex_f\n\n[1] F M F M M F M\nLevels: F M\n\n\n\ntable(sex_f)\n\nsex_f\nF M \n3 4"
+    "text": "Other types of vectors; factor\n\n\nCode\n# some codeing of sex, 1 female, 2 male\nsex &lt;- c(1, 2, 1, 2, 2, 1, 2)\n\n\n\n\n\nCode\n# new labels, \"F\" for 1 and \"M\" for 2\nsex_f &lt;- factor(sex, labels = c(\"F\", \"M\"))\n\n\n\n\n\n\nCode\nsex_f\n\n\n[1] F M F M M F M\nLevels: F M\n\n\n\n\nCode\ntable(sex_f)\n\n\nsex_f\nF M \n3 4"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#rules-for-vectors",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#rules-for-vectors",
     "title": "Very Short Intro to R",
     "section": "Rules for vectors",
-    "text": "Rules for vectors\n\nEvery element of a vector must be of the same type.\nIf not, elements will be converted\n\n. . .\n\n(x &lt;- 1:3)\n\n[1] 1 2 3\n\n\n\ntypeof(x)\n\n[1] \"integer\"\n\n\n\n# insert \"b\" second place\nx[2] &lt;- \"b\"\n\n\nx\n\n[1] \"1\" \"b\" \"3\""
+    "text": "Rules for vectors\n\nEvery element of a vector must be of the same type.\nIf not, elements will be converted\n\n\n\n\nCode\n(x &lt;- 1:3)\n\n\n[1] 1 2 3\n\n\n\n\nCode\ntypeof(x)\n\n\n[1] \"integer\"\n\n\n\n\nCode\n# insert \"b\" second place\nx[2] &lt;- \"b\"\n\n\n\n\nCode\nx\n\n\n[1] \"1\" \"b\" \"3\""
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#rules-for-vectors-cont.",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#rules-for-vectors-cont.",
     "title": "Very Short Intro to R",
     "section": "Rules for vectors cont.",
-    "text": "Rules for vectors cont.\n\ntypeof(x)\n\n[1] \"character\"\n\n\n\n# will fail\n# x &lt;- as.integer(x)\n\n\nx &lt;- 1:3\n\n\nx[3] &lt;- 5.0\n\n\nx\n\n[1] 1 2 5\n\n\n\ntypeof(x)\n\n[1] \"double\""
+    "text": "Rules for vectors cont.\n\n\nCode\ntypeof(x)\n\n\n[1] \"character\"\n\n\n\n\nCode\n# will fail\n# x &lt;- as.integer(x)\n\n\n\n\nCode\nx &lt;- 1:3\n\n\n\n\nCode\nx[3] &lt;- 5.0\n\n\n\n\nCode\nx\n\n\n[1] 1 2 5\n\n\n\n\nCode\ntypeof(x)\n\n\n[1] \"double\""
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#lists",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#lists",
     "title": "Very Short Intro to R",
     "section": "Lists",
-    "text": "Lists\n\nMost flexible datatype in R, but also more complex and perhaps more difficult to work with\n\n. . .\n\nl &lt;- list(x = 1:3, y = c(\"A\", letters[4:13]), z = seq(from = 1.3, to = 2.7, by = 0.2))\n\n\nl\n\n$x\n[1] 1 2 3\n\n$y\n [1] \"A\" \"d\" \"e\" \"f\" \"g\" \"h\" \"i\" \"j\" \"k\" \"l\" \"m\"\n\n$z\n[1] 1.3 1.5 1.7 1.9 2.1 2.3 2.5 2.7\n\n\n\ntypeof(l)\n\n[1] \"list\""
+    "text": "Lists\n\nMost flexible datatype in R, but also more complex and perhaps more difficult to work with\n\n\n\n\nCode\nl &lt;- list(x = 1:3, y = c(\"A\", letters[4:13]), z = seq(from = 1.3, to = 2.7, by = 0.2))\n\n\n\n\nCode\nl\n\n\n$x\n[1] 1 2 3\n\n$y\n [1] \"A\" \"d\" \"e\" \"f\" \"g\" \"h\" \"i\" \"j\" \"k\" \"l\" \"m\"\n\n$z\n[1] 1.3 1.5 1.7 1.9 2.1 2.3 2.5 2.7\n\n\n\n\nCode\ntypeof(l)\n\n\n[1] \"list\""
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#lists-cont.",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#lists-cont.",
     "title": "Very Short Intro to R",
     "section": "Lists cont.",
-    "text": "Lists cont.\n\nFind the name of list elements\n\n. . .\n\n#make copy of l\nll &lt;- l\nnames(ll)\n\n[1] \"x\" \"y\" \"z\"\n\n\n\nchange name of first element in the list ll\n\n. . .\n\nnames(ll)[1] &lt;- \"New Name\"\n\n\nnames(ll)\n\n[1] \"New Name\" \"y\"        \"z\"       \n\n\n\nrm(ll)"
+    "text": "Lists cont.\n\nFind the name of list elements\n\n\n\n\nCode\n#make copy of l\nll &lt;- l\nnames(ll)\n\n\n[1] \"x\" \"y\" \"z\"\n\n\n\nchange name of first element in the list ll\n\n\n\n\n\nCode\nnames(ll)[1] &lt;- \"New Name\"\n\n\n\n\nCode\nnames(ll)\n\n\n[1] \"New Name\" \"y\"        \"z\"       \n\n\n\n\nCode\nrm(ll)"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#lists-cont.-1",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#lists-cont.-1",
     "title": "Very Short Intro to R",
     "section": "Lists cont.",
-    "text": "Lists cont.\n\ntypeof(l$x)\n\n[1] \"integer\"\n\n\n\nis.vector(l$x)\n\n[1] TRUE\n\n\n\nl$x, element x in list l\n\n. . .\n\ntypeof(l$y)\n\n[1] \"character\"\n\n\n. . .\n\ntypeof(l$z)\n\n[1] \"double\""
+    "text": "Lists cont.\n\n\nCode\ntypeof(l$x)\n\n\n[1] \"integer\"\n\n\n\n\nCode\nis.vector(l$x)\n\n\n[1] TRUE\n\n\n\nl$x, element x in list l\n\n\n\n\nCode\ntypeof(l$y)\n\n\n[1] \"character\"\n\n\n\n\n\n\nCode\ntypeof(l$z)\n\n\n[1] \"double\""
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#list-in-list",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#list-in-list",
     "title": "Very Short Intro to R",
     "section": "List in list",
-    "text": "List in list\n\nWe can have lists inside lists\n\n. . .\n\nl &lt;- list(\n  x = 1:3, \n  y = c(\"A\", letters[4:13]), \n  z = list(\n    za = seq(from = 1.3, to = 2.7, by = 0.2), \n    zb = c(TRUE, FALSE), \n    zc = 5:9,\n    zd = list(1, \"F\", 3.2)\n    )\n  )"
+    "text": "List in list\n\nWe can have lists inside lists\n\n\n\n\nCode\nl &lt;- list(\n  x = 1:3, \n  y = c(\"A\", letters[4:13]), \n  z = list(\n    za = seq(from = 1.3, to = 2.7, by = 0.2), \n    zb = c(TRUE, FALSE), \n    zc = 5:9,\n    zd = list(1, \"F\", 3.2)\n    )\n  )"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#list-in-list-cont.",
@@ -5758,28 +5758,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#list-in-list-cont.-1",
     "title": "Very Short Intro to R",
     "section": "List in list cont.",
-    "text": "List in list cont.\n\nl$z$zb\n\n[1]  TRUE FALSE"
+    "text": "List in list cont.\n\n\nCode\nl$z$zb\n\n\n[1]  TRUE FALSE"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#dataframes",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#dataframes",
     "title": "Very Short Intro to R",
     "section": "Dataframes",
-    "text": "Dataframes\n\nThe most used datastructure in R\nA dataframe is a list of vectors and/or lists of the same length.\n\n. . .\n\ndf &lt;- data.frame(x = 1:3, y = letters[1:3], z = LETTERS[1:3])\n\n\ndf\n\n\n\nxyz\n\n1aA\n\n2bB\n\n3cC"
+    "text": "Dataframes\n\nThe most used datastructure in R\nA dataframe is a list of vectors and/or lists of the same length.\n\n\n\n\nCode\ndf &lt;- data.frame(x = 1:3, y = letters[1:3], z = LETTERS[1:3])\n\n\n\n\nCode\ndf\n\n\n\n\nxyz\n\n1aA\n\n2bB\n\n3cC"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#the-following-will-not-work",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#the-following-will-not-work",
     "title": "Very Short Intro to R",
     "section": "The following will not work:",
-    "text": "The following will not work:\n\n\n\nx and y 3 elements, z 4 elements. x, y and z can not be put into a dataframe."
+    "text": "The following will not work:\n\nx and y 3 elements, z 4 elements. x, y and z can not be put into a dataframe."
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#this-will-work",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#this-will-work",
     "title": "Very Short Intro to R",
     "section": "This will work",
-    "text": "This will work\n\ndf1 &lt;- data.frame(x = 1:3, y = letters[1:3], \n                 z = df)\n\n\nstr(df1)\n\n'data.frame':   3 obs. of  5 variables:\n $ x  : int  1 2 3\n $ y  : chr  \"a\" \"b\" \"c\"\n $ z.x: int  1 2 3\n $ z.y: chr  \"a\" \"b\" \"c\"\n $ z.z: chr  \"A\" \"B\" \"C\""
+    "text": "This will work\n\n\nCode\ndf1 &lt;- data.frame(x = 1:3, y = letters[1:3], \n                 z = df)\n\n\n\n\nCode\nstr(df1)\n\n\n'data.frame':   3 obs. of  5 variables:\n $ x  : int  1 2 3\n $ y  : chr  \"a\" \"b\" \"c\"\n $ z.x: int  1 2 3\n $ z.y: chr  \"a\" \"b\" \"c\"\n $ z.z: chr  \"A\" \"B\" \"C\""
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#this-will-work-cont.",
@@ -5793,77 +5793,77 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#adding-a-variable-to-a-dataframe",
     "title": "Very Short Intro to R",
     "section": "Adding a variable to a dataframe",
-    "text": "Adding a variable to a dataframe\n\ndf\n\n\n\nxyz\n\n1aA\n\n2bB\n\n3cC"
+    "text": "Adding a variable to a dataframe\n\n\nCode\ndf\n\n\n\n\nxyz\n\n1aA\n\n2bB\n\n3cC"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#adding-a-variable-to-a-dataframe-1",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#adding-a-variable-to-a-dataframe-1",
     "title": "Very Short Intro to R",
     "section": "Adding a variable to a dataframe",
-    "text": "Adding a variable to a dataframe\n\ndf$q &lt;- c(2.1, 0.4, 0.9)\n\n. . .\n\n\nCode\ndf\n\n\n\n\nxyzq\n\n1aA2.1\n\n2bB0.4\n\n3cC0.9"
+    "text": "Adding a variable to a dataframe\n\n\nCode\ndf$q &lt;- c(2.1, 0.4, 0.9)\n\n\n\n\n\nCode\ndf\n\n\n\n\nxyzq\n\n1aA2.1\n\n2bB0.4\n\n3cC0.9"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#selecting-values-from-a-dataframe",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#selecting-values-from-a-dataframe",
     "title": "Very Short Intro to R",
     "section": "Selecting Values from a dataframe",
-    "text": "Selecting Values from a dataframe\nSelecting column 2\n\n# all rows, col 2\ndf[,2]\n\n[1] \"a\" \"b\" \"c\"\n\n\nSelecting columns 1 and 3\n\n# col 1 and 3\ndf[, c(1,3)]\n\n\n\nxz\n\n1A\n\n2B\n\n3C"
+    "text": "Selecting Values from a dataframe\nSelecting column 2\n\n\nCode\n# all rows, col 2\ndf[,2]\n\n\n[1] \"a\" \"b\" \"c\"\n\n\nSelecting columns 1 and 3\n\n\nCode\n# col 1 and 3\ndf[, c(1,3)]\n\n\n\n\nxz\n\n1A\n\n2B\n\n3C"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#selecting-values-from-a-dataframe-cont.",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#selecting-values-from-a-dataframe-cont.",
     "title": "Very Short Intro to R",
     "section": "Selecting Values from a dataframe cont.",
-    "text": "Selecting Values from a dataframe cont.\nSelecting column 2 by name\n\n# col 2 by name\ndf[, \"y\"]\n\n[1] \"a\" \"b\" \"c\"\n\n\nSelecting columns 1 and 3 by name\n\ndf[, c(\"x\", \"z\")]\n\n\n\nxz\n\n1A\n\n2B\n\n3C"
+    "text": "Selecting Values from a dataframe cont.\nSelecting column 2 by name\n\n\nCode\n# col 2 by name\ndf[, \"y\"]\n\n\n[1] \"a\" \"b\" \"c\"\n\n\nSelecting columns 1 and 3 by name\n\n\nCode\ndf[, c(\"x\", \"z\")]\n\n\n\n\nxz\n\n1A\n\n2B\n\n3C"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#selecting-values-from-a-dataframe-cont.-1",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#selecting-values-from-a-dataframe-cont.-1",
     "title": "Very Short Intro to R",
     "section": "Selecting Values from a dataframe cont.",
-    "text": "Selecting Values from a dataframe cont.\nSelecting row 1\n\n# select row 1\ndf[1,]\n\n\n\nxyzq\n\n1aA2.1"
+    "text": "Selecting Values from a dataframe cont.\nSelecting row 1\n\n\nCode\n# select row 1\ndf[1,]\n\n\n\n\nxyzq\n\n1aA2.1"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#selecting-values-from-a-dataframe-cont.-2",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#selecting-values-from-a-dataframe-cont.-2",
     "title": "Very Short Intro to R",
     "section": "Selecting Values from a dataframe cont.",
-    "text": "Selecting Values from a dataframe cont.\n\n# selecting row 1 and 3\ndf[c(1, 3),]\n\n\n\nxyzq\n\n1aA2.1\n\n3cC0.9"
+    "text": "Selecting Values from a dataframe cont.\n\n\nCode\n# selecting row 1 and 3\ndf[c(1, 3),]\n\n\n\n\nxyzq\n\n1aA2.1\n\n3cC0.9"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#selecting-values-from-a-dataframe-cont.-3",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#selecting-values-from-a-dataframe-cont.-3",
     "title": "Very Short Intro to R",
     "section": "Selecting Values from a dataframe cont.",
-    "text": "Selecting Values from a dataframe cont.\nSelecting row 1 and 3 from column 2 and 3\n\ndf[c(1, 3), 2:3]\n\n\n\nyz\n\naA\n\ncC"
+    "text": "Selecting Values from a dataframe cont.\nSelecting row 1 and 3 from column 2 and 3\n\n\nCode\ndf[c(1, 3), 2:3]\n\n\n\n\nyz\n\naA\n\ncC"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#selecting-values-from-a-dataframe-cont.-4",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#selecting-values-from-a-dataframe-cont.-4",
     "title": "Very Short Intro to R",
     "section": "Selecting Values from a dataframe cont.",
-    "text": "Selecting Values from a dataframe cont.\nSelecting value from row 2 and column 3\n\ndf[2, 3]\n\n[1] \"B\""
+    "text": "Selecting Values from a dataframe cont.\nSelecting value from row 2 and column 3\n\n\nCode\ndf[2, 3]\n\n\n[1] \"B\""
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#be-aware-of-the-following",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#be-aware-of-the-following",
     "title": "Very Short Intro to R",
     "section": "Be aware of the following",
-    "text": "Be aware of the following\nWhat type?\n\ntypeof(df[2, 3])\n\n[1] \"character\"\n\n\n\nis.vector(df[2, 3])\n\n[1] TRUE\n\n\n\nis.data.frame(df[2, 3])\n\n[1] FALSE\n\n\n\ntypeof(df[1:2, 3])\n\n[1] \"character\""
+    "text": "Be aware of the following\nWhat type?\n\n\nCode\ntypeof(df[2, 3])\n\n\n[1] \"character\"\n\n\n\n\nCode\nis.vector(df[2, 3])\n\n\n[1] TRUE\n\n\n\n\nCode\nis.data.frame(df[2, 3])\n\n\n[1] FALSE\n\n\n\n\nCode\ntypeof(df[1:2, 3])\n\n\n[1] \"character\""
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#be-aware-of-the-following-cont.",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#be-aware-of-the-following-cont.",
     "title": "Very Short Intro to R",
     "section": "Be aware of the following cont.",
-    "text": "Be aware of the following cont.\n\nis.vector(df[1:2, 3])\n\n[1] TRUE\n\n\n\nis.data.frame(df[1:2, 3])\n\n[1] FALSE\n\n\n\nis.data.frame(df[2, 2:3])\n\n[1] TRUE"
+    "text": "Be aware of the following cont.\n\n\nCode\nis.vector(df[1:2, 3])\n\n\n[1] TRUE\n\n\n\n\nCode\nis.data.frame(df[1:2, 3])\n\n\n[1] FALSE\n\n\n\n\nCode\nis.data.frame(df[2, 2:3])\n\n\n[1] TRUE"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#be-aware-of-the-following-cont.-1",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#be-aware-of-the-following-cont.-1",
     "title": "Very Short Intro to R",
     "section": "Be aware of the following cont.",
-    "text": "Be aware of the following cont.\n\ntypeof(df[c(1, 3), 2:3])\n\n[1] \"list\"\n\n\n\nis.vector(df[c(1, 3), 2:3])\n\n[1] FALSE\n\n\n\nis.data.frame(df[c(1, 3), 2:3])\n\n[1] TRUE"
+    "text": "Be aware of the following cont.\n\n\nCode\ntypeof(df[c(1, 3), 2:3])\n\n\n[1] \"list\"\n\n\n\n\nCode\nis.vector(df[c(1, 3), 2:3])\n\n\n[1] FALSE\n\n\n\n\nCode\nis.data.frame(df[c(1, 3), 2:3])\n\n\n[1] TRUE"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#be-aware-of-the-following-cont.-2",
@@ -5877,14 +5877,14 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#dataframe-versus-tibble",
     "title": "Very Short Intro to R",
     "section": "Dataframe versus Tibble",
-    "text": "Dataframe versus Tibble\nTibble part of tidyverse to be introduced later on, but important point\nA Tibble is a modernised version of a dataframe\n\ntib &lt;- as_tibble(df)\n\n\ntib\n\n\n\nxyzq\n\n1aA2.1\n\n2bB0.4\n\n3cC0.9"
+    "text": "Dataframe versus Tibble\nTibble part of tidyverse to be introduced later on, but important point\nA Tibble is a modernised version of a dataframe\n\n\nCode\ntib &lt;- as_tibble(df)\n\n\n\n\nCode\ntib\n\n\n\n\nxyzq\n\n1aA2.1\n\n2bB0.4\n\n3cC0.9"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#dataframe-versus-tibble-cont.",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#dataframe-versus-tibble-cont.",
     "title": "Very Short Intro to R",
     "section": "Dataframe versus Tibble cont.",
-    "text": "Dataframe versus Tibble cont.\n\nis.vector(tib[2,3])\n\n[1] FALSE\n\n\n. . .\n\n# tibble just an updated dataframe\nis.data.frame(tib[2,3])\n\n[1] TRUE\n\n\n. . .\nNote! Selecting from a tibble ALWAYS return a dataframe, selecting from a dataframe will return a dataframe OR a vector."
+    "text": "Dataframe versus Tibble cont.\n\n\nCode\nis.vector(tib[2,3])\n\n\n[1] FALSE\n\n\n\n\n\nCode\n# tibble just an updated dataframe\nis.data.frame(tib[2,3])\n\n\n[1] TRUE\n\n\n\n\nNote! Selecting from a tibble ALWAYS return a dataframe, selecting from a dataframe will return a dataframe OR a vector."
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#matrices",
@@ -5898,14 +5898,14 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#matrices-cont.",
     "title": "Very Short Intro to R",
     "section": "Matrices cont.",
-    "text": "Matrices cont.\n\n# define a matirc in R\nX &lt;- matrix(c(2, 2, -1, 5, 2, 6), nrow = 3, byrow = FALSE)\n\n. . .\n\nX\n\n     [,1] [,2]\n[1,]    2    5\n[2,]    2    2\n[3,]   -1    6\n\n\n. . .\n\nmatrix(c(2, 2, -1, 5, 2, 6), nrow = 3, byrow = TRUE)\n\n     [,1] [,2]\n[1,]    2    2\n[2,]   -1    5\n[3,]    2    6"
+    "text": "Matrices cont.\n\n\nCode\n# define a matirc in R\nX &lt;- matrix(c(2, 2, -1, 5, 2, 6), nrow = 3, byrow = FALSE)\n\n\n\n\n\nCode\nX\n\n\n     [,1] [,2]\n[1,]    2    5\n[2,]    2    2\n[3,]   -1    6\n\n\n\n\n\n\nCode\nmatrix(c(2, 2, -1, 5, 2, 6), nrow = 3, byrow = TRUE)\n\n\n     [,1] [,2]\n[1,]    2    2\n[2,]   -1    5\n[3,]    2    6"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#matrices-cont.-1",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#matrices-cont.-1",
     "title": "Very Short Intro to R",
     "section": "Matrices cont.",
-    "text": "Matrices cont.\n\n# transpose\nt(X)\n\n     [,1] [,2] [,3]\n[1,]    2    2   -1\n[2,]    5    2    6\n\n\n. . .\n\nY &lt;- matrix(c(-3, 2, 2.5, 6, -4, 4), nrow = 2, byrow = FALSE)\n\n. . .\n\nY\n\n     [,1] [,2] [,3]\n[1,]   -3  2.5   -4\n[2,]    2  6.0    4"
+    "text": "Matrices cont.\n\n\nCode\n# transpose\nt(X)\n\n\n     [,1] [,2] [,3]\n[1,]    2    2   -1\n[2,]    5    2    6\n\n\n\n\n\nCode\nY &lt;- matrix(c(-3, 2, 2.5, 6, -4, 4), nrow = 2, byrow = FALSE)\n\n\n\n\n\n\nCode\nY\n\n\n     [,1] [,2] [,3]\n[1,]   -3  2.5   -4\n[2,]    2  6.0    4"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#matrices-cont.-2",
@@ -5919,56 +5919,56 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#matrices-cont.-3",
     "title": "Very Short Intro to R",
     "section": "Matrices cont.",
-    "text": "Matrices cont.\n\ndim(X)\n\n[1] 3 2\n\n\n\ndim(Y)\n\n[1] 2 3\n\n\n\n# X %*% Y will be defined since (n_X = 2 = m_Y = 2) and the result will have dimension 3x3\nX %*% Y\n\n     [,1] [,2] [,3]\n[1,]    4 35.0   12\n[2,]   -2 17.0    0\n[3,]   15 33.5   28"
+    "text": "Matrices cont.\n\n\nCode\ndim(X)\n\n\n[1] 3 2\n\n\n\n\nCode\ndim(Y)\n\n\n[1] 2 3\n\n\n\n\nCode\n# X %*% Y will be defined since (n_X = 2 = m_Y = 2) and the result will have dimension 3x3\nX %*% Y\n\n\n     [,1] [,2] [,3]\n[1,]    4 35.0   12\n[2,]   -2 17.0    0\n[3,]   15 33.5   28"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#matrices-cont.-4",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#matrices-cont.-4",
     "title": "Very Short Intro to R",
     "section": "Matrices cont.",
-    "text": "Matrices cont.\n\\(X^TX\\) is important in econometrics\n\n# X, two variables with 3 obs. for each variable\nt(X) %*% X\n\n     [,1] [,2]\n[1,]    9    8\n[2,]    8   65\n\n\nFinding the inverse of a square matrix\n\n(XTX_inv &lt;- solve(t(X) %*% X))\n\n            [,1]        [,2]\n[1,]  0.12476008 -0.01535509\n[2,] -0.01535509  0.01727447"
+    "text": "Matrices cont.\n\\(X^TX\\) is important in econometrics\n\n\nCode\n# X, two variables with 3 obs. for each variable\nt(X) %*% X\n\n\n     [,1] [,2]\n[1,]    9    8\n[2,]    8   65\n\n\nFinding the inverse of a square matrix\n\n\nCode\n(XTX_inv &lt;- solve(t(X) %*% X))\n\n\n            [,1]        [,2]\n[1,]  0.12476008 -0.01535509\n[2,] -0.01535509  0.01727447"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#matrices-cont.-5",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#matrices-cont.-5",
     "title": "Very Short Intro to R",
     "section": "Matrices cont.",
-    "text": "Matrices cont.\nMultiplying a matrix with its inverse will give the identity matrix I\n\n(t(X) %*% X) %*% XTX_inv\n\n             [,1] [,2]\n[1,] 1.000000e+00    0\n[2,] 9.367507e-17    1\n\n\nGenerate identity matrix I\n\n(I &lt;- diag(2))\n\n     [,1] [,2]\n[1,]    1    0\n[2,]    0    1"
+    "text": "Matrices cont.\nMultiplying a matrix with its inverse will give the identity matrix I\n\n\nCode\n(t(X) %*% X) %*% XTX_inv\n\n\n             [,1] [,2]\n[1,] 1.000000e+00    0\n[2,] 9.367507e-17    1\n\n\nGenerate identity matrix I\n\n\nCode\n(I &lt;- diag(2))\n\n\n     [,1] [,2]\n[1,]    1    0\n[2,]    0    1"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#matrices-cont.-6",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#matrices-cont.-6",
     "title": "Very Short Intro to R",
     "section": "Matrices cont.",
-    "text": "Matrices cont.\nMultiplying a square matrix with I will return the matrix\n\n(t(X) %*% X) %*% I\n\n     [,1] [,2]\n[1,]    9    8\n[2,]    8   65\n\n\n\nI %*% (t(X) %*% X)\n\n     [,1] [,2]\n[1,]    9    8\n[2,]    8   65"
+    "text": "Matrices cont.\nMultiplying a square matrix with I will return the matrix\n\n\nCode\n(t(X) %*% X) %*% I\n\n\n     [,1] [,2]\n[1,]    9    8\n[2,]    8   65\n\n\n\n\nCode\nI %*% (t(X) %*% X)\n\n\n     [,1] [,2]\n[1,]    9    8\n[2,]    8   65"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#matrices-cont.-7",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#matrices-cont.-7",
     "title": "Very Short Intro to R",
     "section": "Matrices cont.",
-    "text": "Matrices cont.\nWe select elements from matrices like we do for dataframes\n\nX\n\n     [,1] [,2]\n[1,]    2    5\n[2,]    2    2\n[3,]   -1    6\n\n\n\nX[3, 1:2]\n\n[1] -1  6"
+    "text": "Matrices cont.\nWe select elements from matrices like we do for dataframes\n\n\nCode\nX\n\n\n     [,1] [,2]\n[1,]    2    5\n[2,]    2    2\n[3,]   -1    6\n\n\n\n\nCode\nX[3, 1:2]\n\n\n[1] -1  6"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#subsets",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#subsets",
     "title": "Very Short Intro to R",
     "section": "Subsets",
-    "text": "Subsets\n\ndim(cars)\n\n[1] 50  2\n\n\n\nhead(cars, n = 4)\n\n\n\nspeeddist\n\n42\n\n410\n\n74\n\n722"
+    "text": "Subsets\n\n\nCode\ndim(cars)\n\n\n[1] 50  2\n\n\n\n\nCode\nhead(cars, n = 4)\n\n\n\n\nspeeddist\n\n42\n\n410\n\n74\n\n722"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#subsets-cont.",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#subsets-cont.",
     "title": "Very Short Intro to R",
     "section": "Subsets cont.",
-    "text": "Subsets cont.\n\nsummary(cars)\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00"
+    "text": "Subsets cont.\n\n\nCode\nsummary(cars)\n\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#subsets-cont.-1",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#subsets-cont.-1",
     "title": "Very Short Intro to R",
     "section": "Subsets cont.",
-    "text": "Subsets cont.\n\n(cars_sub &lt;- subset(cars, subset = cars$speed &gt; 6 & cars$speed &lt; 11))\n\n\n\nspeeddist\n\n74\n\n722\n\n816\n\n910\n\n1018\n\n1026\n\n1034"
+    "text": "Subsets cont.\n\n\nCode\n(cars_sub &lt;- subset(cars, subset = cars$speed &gt; 6 & cars$speed &lt; 11))\n\n\n\n\nspeeddist\n\n74\n\n722\n\n816\n\n910\n\n1018\n\n1026\n\n1034"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#subsets-cont.-2",
@@ -5982,14 +5982,14 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#saveload-data",
     "title": "Very Short Intro to R",
     "section": "Save/load data",
-    "text": "Save/load data\n\nsave(cars_sub, file = \"cars_sub.Rdata\")\n\nDelete cars_sub\n\nrm(cars_sub)\n\n\n# should have done some house keeping ;-)\n# no cars_sub\nls()\n\n [1] \"d1\"      \"d2\"      \"d3\"      \"df\"      \"df1\"     \"i\"       \"I\"      \n [8] \"l\"       \"q\"       \"sex\"     \"sex_f\"   \"t1\"      \"t2\"      \"temp\"   \n[15] \"tib\"     \"weather\" \"x\"       \"X\"       \"XTX_inv\" \"y\"       \"Y\"      \n[22] \"z\""
+    "text": "Save/load data\n\n\nCode\nsave(cars_sub, file = \"cars_sub.Rdata\")\n\n\nDelete cars_sub\n\n\nCode\nrm(cars_sub)\n\n\n\n\nCode\n# should have done some house keeping ;-)\n# no cars_sub\nls()\n\n\n [1] \"d1\"      \"d2\"      \"d3\"      \"df\"      \"df1\"     \"i\"       \"I\"      \n [8] \"l\"       \"q\"       \"sex\"     \"sex_f\"   \"t1\"      \"t2\"      \"temp\"   \n[15] \"tib\"     \"weather\" \"x\"       \"X\"       \"XTX_inv\" \"y\"       \"Y\"      \n[22] \"z\""
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#saveload-data-1",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#saveload-data-1",
     "title": "Very Short Intro to R",
     "section": "Save/load data",
-    "text": "Save/load data\n\n# Note! we don't have to do cars_sub &lt;- load(…)\nload(file = \"cars_sub.Rdata\")\n\n\n# it's back\ndim(cars_sub)\n\n[1] 7 2"
+    "text": "Save/load data\n\n\nCode\n# Note! we don't have to do cars_sub &lt;- load(…)\nload(file = \"cars_sub.Rdata\")\n\n\n\n\nCode\n# it's back\ndim(cars_sub)\n\n\n[1] 7 2"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#help",
@@ -6003,28 +6003,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#very-simple-regression-analysis-in-r",
     "title": "Very Short Intro to R",
     "section": "Very simple regression analysis in R",
-    "text": "Very simple regression analysis in R\n\nlm1 &lt;- lm(formula = dist ~ speed, data = cars)\n\n\nsummary(lm1)\n\n\nCall:\nlm(formula = dist ~ speed, data = cars)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-29.069  -9.525  -2.272   9.215  43.201 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -17.5791     6.7584  -2.601   0.0123 *  \nspeed         3.9324     0.4155   9.464 1.49e-12 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 15.38 on 48 degrees of freedom\nMultiple R-squared:  0.6511,    Adjusted R-squared:  0.6438 \nF-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12"
+    "text": "Very simple regression analysis in R\n\n\nCode\nlm1 &lt;- lm(formula = dist ~ speed, data = cars)\n\n\n\n\nCode\nsummary(lm1)\n\n\n\nCall:\nlm(formula = dist ~ speed, data = cars)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-29.069  -9.525  -2.272   9.215  43.201 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -17.5791     6.7584  -2.601   0.0123 *  \nspeed         3.9324     0.4155   9.464 1.49e-12 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 15.38 on 48 degrees of freedom\nMultiple R-squared:  0.6511,    Adjusted R-squared:  0.6438 \nF-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#very-simple-regression-analysis-in-r-1",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#very-simple-regression-analysis-in-r-1",
     "title": "Very Short Intro to R",
     "section": "Very simple regression analysis in R",
-    "text": "Very simple regression analysis in R\nWithout intercept term\n\n# Note! -1 at end of formula\nlm2 &lt;- lm(formula = dist ~ speed -1, data = cars)\n\n\nsummary(lm2)\n\n\nCall:\nlm(formula = dist ~ speed - 1, data = cars)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-26.183 -12.637  -5.455   4.590  50.181 \n\nCoefficients:\n      Estimate Std. Error t value Pr(&gt;|t|)    \nspeed   2.9091     0.1414   20.58   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 16.26 on 49 degrees of freedom\nMultiple R-squared:  0.8963,    Adjusted R-squared:  0.8942 \nF-statistic: 423.5 on 1 and 49 DF,  p-value: &lt; 2.2e-16"
+    "text": "Very simple regression analysis in R\nWithout intercept term\n\n\nCode\n# Note! -1 at end of formula\nlm2 &lt;- lm(formula = dist ~ speed -1, data = cars)\n\n\n\n\nCode\nsummary(lm2)\n\n\n\nCall:\nlm(formula = dist ~ speed - 1, data = cars)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-26.183 -12.637  -5.455   4.590  50.181 \n\nCoefficients:\n      Estimate Std. Error t value Pr(&gt;|t|)    \nspeed   2.9091     0.1414   20.58   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 16.26 on 49 degrees of freedom\nMultiple R-squared:  0.8963,    Adjusted R-squared:  0.8942 \nF-statistic: 423.5 on 1 and 49 DF,  p-value: &lt; 2.2e-16"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#very-simple-regression-analysis-in-r-2",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#very-simple-regression-analysis-in-r-2",
     "title": "Very Short Intro to R",
     "section": "Very simple regression analysis in R",
-    "text": "Very simple regression analysis in R\n\n# only on a subset of data\nlm3 &lt;- lm(formula = dist ~ speed, \n          data = cars, \n          subset = cars$speed &gt; 6 & cars$speed &lt; 11\n          )\n\n\nsummary(lm3)\n\n\nCall:\nlm(formula = dist ~ speed, data = cars, subset = cars$speed &gt; \n    6 & cars$speed &lt; 11)\n\nResiduals:\n     3      4      5      6      7      8      9 \n-7.500 10.500  0.375 -9.750 -5.875  2.125 10.125 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)\n(Intercept)  -17.375     23.397  -0.743    0.491\nspeed          4.125      2.656   1.553    0.181\n\nResidual standard error: 8.981 on 5 degrees of freedom\nMultiple R-squared:  0.3253,    Adjusted R-squared:  0.1904 \nF-statistic: 2.411 on 1 and 5 DF,  p-value: 0.1812"
+    "text": "Very simple regression analysis in R\n\n\nCode\n# only on a subset of data\nlm3 &lt;- lm(formula = dist ~ speed, \n          data = cars, \n          subset = cars$speed &gt; 6 & cars$speed &lt; 11\n          )\n\n\n\n\nCode\nsummary(lm3)\n\n\n\nCall:\nlm(formula = dist ~ speed, data = cars, subset = cars$speed &gt; \n    6 & cars$speed &lt; 11)\n\nResiduals:\n     3      4      5      6      7      8      9 \n-7.500 10.500  0.375 -9.750 -5.875  2.125 10.125 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)\n(Intercept)  -17.375     23.397  -0.743    0.491\nspeed          4.125      2.656   1.553    0.181\n\nResidual standard error: 8.981 on 5 degrees of freedom\nMultiple R-squared:  0.3253,    Adjusted R-squared:  0.1904 \nF-statistic: 2.411 on 1 and 5 DF,  p-value: 0.1812"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#reporting-regression-results",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#reporting-regression-results",
     "title": "Very Short Intro to R",
     "section": "Reporting Regression Results",
-    "text": "Reporting Regression Results\n\nhuxreg(\n        lm1, lm2, lm3,\n        error_format = \"({statistic})\", \n        note         = \"{stars}. T statistics in parentheses.\"\n      )"
+    "text": "Reporting Regression Results\n\n\nCode\nhuxreg(\n        lm1, lm2, lm3,\n        error_format = \"({statistic})\", \n        note         = \"{stars}. T statistics in parentheses.\"\n      )"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#reporting-regression-results-cont.",
@@ -6038,35 +6038,35 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#classic-plotting",
     "title": "Very Short Intro to R",
     "section": "Classic plotting",
-    "text": "Classic plotting\nWe will mainly use the ggplot2 package in tidyverse for plotting\nHere is a tiny bit about the classic R plot() function\n\nplot(cars)"
+    "text": "Classic plotting\nWe will mainly use the ggplot2 package in tidyverse for plotting\nHere is a tiny bit about the classic R plot() function\n\n\nCode\nplot(cars)"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#classic-plotting-cont.",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#classic-plotting-cont.",
     "title": "Very Short Intro to R",
     "section": "Classic plotting cont.",
-    "text": "Classic plotting cont.\n\nplot(x = cars$dist, y = cars$speed)"
+    "text": "Classic plotting cont.\n\n\nCode\nplot(x = cars$dist, y = cars$speed)"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#classic-plotting-cont.-1",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#classic-plotting-cont.-1",
     "title": "Very Short Intro to R",
     "section": "Classic plotting cont.",
-    "text": "Classic plotting cont.\nClassic plot with regression line\n\nplot(cars)\nabline(lm(formula = dist ~ speed, data = cars))"
+    "text": "Classic plotting cont.\nClassic plot with regression line\n\n\nCode\nplot(cars)\nabline(lm(formula = dist ~ speed, data = cars))"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#classic-plotting-cont.-2",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#classic-plotting-cont.-2",
     "title": "Very Short Intro to R",
     "section": "Classic plotting cont.",
-    "text": "Classic plotting cont.\n\n# multiple regression\n# LifeCycleSavings from package Datasets\nmreg1 &lt;- lm(\n  formula =sr ~ pop15 + pop75 + dpi + ddpi, \n  data = LifeCycleSavings\n  )\nsummary(mreg1)\n\n\nCall:\nlm(formula = sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-8.2422 -2.6857 -0.2488  2.4280  9.7509 \n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 28.5660865  7.3545161   3.884 0.000334 ***\npop15       -0.4611931  0.1446422  -3.189 0.002603 ** \npop75       -1.6914977  1.0835989  -1.561 0.125530    \ndpi         -0.0003369  0.0009311  -0.362 0.719173    \nddpi         0.4096949  0.1961971   2.088 0.042471 *  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 3.803 on 45 degrees of freedom\nMultiple R-squared:  0.3385,    Adjusted R-squared:  0.2797 \nF-statistic: 5.756 on 4 and 45 DF,  p-value: 0.0007904"
+    "text": "Classic plotting cont.\n\n\nCode\n# multiple regression\n# LifeCycleSavings from package Datasets\nmreg1 &lt;- lm(\n  formula =sr ~ pop15 + pop75 + dpi + ddpi, \n  data = LifeCycleSavings\n  )\nsummary(mreg1)\n\n\n\nCall:\nlm(formula = sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-8.2422 -2.6857 -0.2488  2.4280  9.7509 \n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 28.5660865  7.3545161   3.884 0.000334 ***\npop15       -0.4611931  0.1446422  -3.189 0.002603 ** \npop75       -1.6914977  1.0835989  -1.561 0.125530    \ndpi         -0.0003369  0.0009311  -0.362 0.719173    \nddpi         0.4096949  0.1961971   2.088 0.042471 *  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 3.803 on 45 degrees of freedom\nMultiple R-squared:  0.3385,    Adjusted R-squared:  0.2797 \nF-statistic: 5.756 on 4 and 45 DF,  p-value: 0.0007904"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#classic-plotting-cont.-3",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#classic-plotting-cont.-3",
     "title": "Very Short Intro to R",
     "section": "Classic plotting cont.",
-    "text": "Classic plotting cont.\nNicer output than summary()\n\nhuxreg(\n        mreg1,\n        error_format = \"({statistic})\", \n        note         = \"{stars}. T statistics in parentheses.\"\n      )"
+    "text": "Classic plotting cont.\nNicer output than summary()\n\n\nCode\nhuxreg(\n        mreg1,\n        error_format = \"({statistic})\", \n        note         = \"{stars}. T statistics in parentheses.\"\n      )"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#classic-plotting-cont.-4",
@@ -6080,105 +6080,105 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#very-simple-function",
     "title": "Very Short Intro to R",
     "section": "Very Simple Function",
-    "text": "Very Simple Function\nIt’s very easy to write functions in R and we should start to practice at once.\n\nadd_numbers &lt;- function(x, y) {\n  x + y\n}\n\n\nadd_numbers(2,2)\n\n[1] 4\n\n\n\n# will fail\n#add_numbers(2)"
+    "text": "Very Simple Function\nIt’s very easy to write functions in R and we should start to practice at once.\n\n\nCode\nadd_numbers &lt;- function(x, y) {\n  x + y\n}\n\n\n\n\nCode\nadd_numbers(2,2)\n\n\n[1] 4\n\n\n\n\nCode\n# will fail\n#add_numbers(2)"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#very-simple-function-cont.",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#very-simple-function-cont.",
     "title": "Very Short Intro to R",
     "section": "Very simple function cont.",
-    "text": "Very simple function cont.\nImproved version\n\n# default value 0\nadd_numbers &lt;- function(x=0, y=0) {\n  x + y\n}\n\n\nadd_numbers()\n\n[1] 0\n\n\n\nadd_numbers(5, 10)\n\n[1] 15\n\n\n\nadd_numbers(3)\n\n[1] 3"
+    "text": "Very simple function cont.\nImproved version\n\n\nCode\n# default value 0\nadd_numbers &lt;- function(x=0, y=0) {\n  x + y\n}\n\n\n\n\nCode\nadd_numbers()\n\n\n[1] 0\n\n\n\n\nCode\nadd_numbers(5, 10)\n\n\n[1] 15\n\n\n\n\nCode\nadd_numbers(3)\n\n\n[1] 3"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#very-simple-function-cont.-1",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#very-simple-function-cont.-1",
     "title": "Very Short Intro to R",
     "section": "Very simple function cont.",
-    "text": "Very simple function cont.\nDivide two numbers\n\ndivide_numbers &lt;- function(x=0, y=1) {\n  x/y\n}\n\n\ndivide_numbers()\n\n[1] 0\n\n\n\ndivide_numbers(5)\n\n[1] 5\n\n\n\n# x = 0, y = 5\ndivide_numbers(,5)\n\n[1] 0"
+    "text": "Very simple function cont.\nDivide two numbers\n\n\nCode\ndivide_numbers &lt;- function(x=0, y=1) {\n  x/y\n}\n\n\n\n\nCode\ndivide_numbers()\n\n\n[1] 0\n\n\n\n\nCode\ndivide_numbers(5)\n\n\n[1] 5\n\n\n\n\nCode\n# x = 0, y = 5\ndivide_numbers(,5)\n\n\n[1] 0"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#very-simple-function-cont.-2",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#very-simple-function-cont.-2",
     "title": "Very Short Intro to R",
     "section": "Very simple function cont.",
-    "text": "Very simple function cont.\n\n# x is 5, y = 2\ndivide_numbers(5,2)\n\n[1] 2.5\n\n\n\n# named arguments, sequence does not matter\ndivide_numbers(y = 2, x = 5)\n\n[1] 2.5"
+    "text": "Very simple function cont.\n\n\nCode\n# x is 5, y = 2\ndivide_numbers(5,2)\n\n\n[1] 2.5\n\n\n\n\nCode\n# named arguments, sequence does not matter\ndivide_numbers(y = 2, x = 5)\n\n\n[1] 2.5"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#simple-function-with-for-next-loop.",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#simple-function-with-for-next-loop.",
     "title": "Very Short Intro to R",
     "section": "Simple function with for next loop.",
-    "text": "Simple function with for next loop.\n\nstart_stupid_fun &lt;- function(x1 = 0, n = 10) {\n# initialise x\nx = vector(mode = \"numeric\", length = n)\nx[1] = x1\n\nfor (i in seq_along(x[-1])) {\n  x[i + 1] = x[i] + 1\n}\nprint(x)\n}\n\n\nstart_stupid_fun()\n\n [1] 0 1 2 3 4 5 6 7 8 9\n\n\n\nstart_stupid_fun(x1 = 5, n = 15)\n\n [1]  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19"
+    "text": "Simple function with for next loop.\n\n\nCode\nstart_stupid_fun &lt;- function(x1 = 0, n = 10) {\n# initialise x\nx = vector(mode = \"numeric\", length = n)\nx[1] = x1\n\nfor (i in seq_along(x[-1])) {\n  x[i + 1] = x[i] + 1\n}\nprint(x)\n}\n\n\n\n\nCode\nstart_stupid_fun()\n\n\n [1] 0 1 2 3 4 5 6 7 8 9\n\n\n\n\nCode\nstart_stupid_fun(x1 = 5, n = 15)\n\n\n [1]  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#extensions",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#extensions",
     "title": "Very Short Intro to R",
     "section": "Extensions",
-    "text": "Extensions\n\n# probably from jørn\nstupid_fun &lt;- function(\n    x1 = 0, \n    n = 10, \n    d = 1, # how much to increase number\n    w = 80, # text width in chacters\n    width_fraction = 1, # how wide should the output be\n    print_to_console = TRUE # where to send the output\n    ) {\n  # we stop if we are to produce zero numbers\n  # stopifnot(n &gt; 0) an alternative but throws an error\n  # and stop compilation of the document/presentation\n  if(!n &gt; 0) return(\"n needs to be positive.\")\n  # max number of digits in numbers\n  dig =  nchar(n*d)\n  # width in number of charcter for output\n  w_out = w * width_fraction\n  # allocate a numeric vector with room for n numbers\n  x = vector(mode = \"numeric\", length = n)\n  # First number in output vector is x1\n  x[1] = x1\n  # we loop through x vector but drop first element\n  for (i in seq_along(x[-1])) {\n    # i starts at 1, so first is x1 + d\n    x[i + 1] = x[i] + d\n    }\n\n# nice trick to control print to console\nif (print_to_console) {\nprint(stringr::str_pad(x, width = dig, side = \"left\", pad = \" \"),\n      width = w_out)\n  } else {\n    tibble(x)\n  }\n}"
+    "text": "Extensions\n\n\nCode\n# probably from jørn\nstupid_fun &lt;- function(\n    x1 = 0, \n    n = 10, \n    d = 1, # how much to increase number\n    w = 80, # text width in chacters\n    width_fraction = 1, # how wide should the output be\n    print_to_console = TRUE # where to send the output\n    ) {\n  # we stop if we are to produce zero numbers\n  # stopifnot(n &gt; 0) an alternative but throws an error\n  # and stop compilation of the document/presentation\n  if(!n &gt; 0) return(\"n needs to be positive.\")\n  # max number of digits in numbers\n  dig =  nchar(n*d)\n  # width in number of charcter for output\n  w_out = w * width_fraction\n  # allocate a numeric vector with room for n numbers\n  x = vector(mode = \"numeric\", length = n)\n  # First number in output vector is x1\n  x[1] = x1\n  # we loop through x vector but drop first element\n  for (i in seq_along(x[-1])) {\n    # i starts at 1, so first is x1 + d\n    x[i + 1] = x[i] + d\n    }\n\n# nice trick to control print to console\nif (print_to_console) {\nprint(stringr::str_pad(x, width = dig, side = \"left\", pad = \" \"),\n      width = w_out)\n  } else {\n    tibble(x)\n  }\n}"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#testing",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#testing",
     "title": "Very Short Intro to R",
     "section": "Testing",
-    "text": "Testing\n\n# Generate 33 number starting with -13 and increasing by 5, default width\nstupid_fun(x1 = -13, n = 33, d = 5, print_to_console = TRUE)\n\n [1] \"-13\" \" -8\" \" -3\" \"  2\" \"  7\" \" 12\" \" 17\" \" 22\" \" 27\" \" 32\" \" 37\" \" 42\"\n[13] \" 47\" \" 52\" \" 57\" \" 62\" \" 67\" \" 72\" \" 77\" \" 82\" \" 87\" \" 92\" \" 97\" \"102\"\n[25] \"107\" \"112\" \"117\" \"122\" \"127\" \"132\" \"137\" \"142\" \"147\"\n\n\n\n# 13 numbers\nstupid_fun(x1 = -7, n = 13, width_fraction = 0.3, d = 5, \n           print_to_console = TRUE)\n\n [1] \"-7\" \"-2\" \" 3\" \" 8\"\n [5] \"13\" \"18\" \"23\" \"28\"\n [9] \"33\" \"38\" \"43\" \"48\"\n[13] \"53\""
+    "text": "Testing\n\n\nCode\n# Generate 33 number starting with -13 and increasing by 5, default width\nstupid_fun(x1 = -13, n = 33, d = 5, print_to_console = TRUE)\n\n\n [1] \"-13\" \" -8\" \" -3\" \"  2\" \"  7\" \" 12\" \" 17\" \" 22\" \" 27\" \" 32\" \" 37\" \" 42\"\n[13] \" 47\" \" 52\" \" 57\" \" 62\" \" 67\" \" 72\" \" 77\" \" 82\" \" 87\" \" 92\" \" 97\" \"102\"\n[25] \"107\" \"112\" \"117\" \"122\" \"127\" \"132\" \"137\" \"142\" \"147\"\n\n\n\n\nCode\n# 13 numbers\nstupid_fun(x1 = -7, n = 13, width_fraction = 0.3, d = 5, \n           print_to_console = TRUE)\n\n\n [1] \"-7\" \"-2\" \" 3\" \" 8\"\n [5] \"13\" \"18\" \"23\" \"28\"\n [9] \"33\" \"38\" \"43\" \"48\"\n[13] \"53\""
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#print-to-console-false",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#print-to-console-false",
     "title": "Very Short Intro to R",
     "section": "Print to console FALSE",
-    "text": "Print to console FALSE\n\nstupid_fun(x1 = -21, n = 5, width_fraction = 0.6, d = 5, \n           print_to_console = FALSE)\n\n\n\nx\n\n-21\n\n-16\n\n-11\n\n-6\n\n-1"
+    "text": "Print to console FALSE\n\n\nCode\nstupid_fun(x1 = -21, n = 5, width_fraction = 0.6, d = 5, \n           print_to_console = FALSE)\n\n\n\n\nx\n\n-21\n\n-16\n\n-11\n\n-6\n\n-1"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#zero-numbers",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#zero-numbers",
     "title": "Very Short Intro to R",
     "section": "Zero numbers",
-    "text": "Zero numbers\n\n# result for n=0, no error so the presentation compiles\nstupid_fun(x1 = -21, n = 0, width_fraction = 0.6, \n           d = 5, print_to_console=TRUE)\n\n[1] \"n needs to be positive.\""
+    "text": "Zero numbers\n\n\nCode\n# result for n=0, no error so the presentation compiles\nstupid_fun(x1 = -21, n = 0, width_fraction = 0.6, \n           d = 5, print_to_console=TRUE)\n\n\n[1] \"n needs to be positive.\""
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#head_and_tail",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#head_and_tail",
     "title": "Very Short Intro to R",
     "section": "Head_and_tail",
-    "text": "Head_and_tail\nWe have the functions head() and tail() to inspect respectively the start and end of a dataframe or similar object. Sometimes we might want to do bought with one command.\n\nFirst attempt\n\nhead_and_tail &lt;- function(x) {\n  c(head(x), tail(x))\n}"
+    "text": "Head_and_tail\nWe have the functions head() and tail() to inspect respectively the start and end of a dataframe or similar object. Sometimes we might want to do bought with one command.\nFirst attempt\n\n\nCode\nhead_and_tail &lt;- function(x) {\n  c(head(x), tail(x))\n}"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#head_and_tail-cont.",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#head_and_tail-cont.",
     "title": "Very Short Intro to R",
     "section": "Head_and_tail cont.",
-    "text": "Head_and_tail cont.\n\nhead_and_tail(mtcars[,1:6])\n\n$mpg\n[1] 21.0 21.0 22.8 21.4 18.7 18.1\n\n$cyl\n[1] 6 6 4 6 8 6\n\n$disp\n[1] 160 160 108 258 360 225\n\n$hp\n[1] 110 110  93 110 175 105\n\n$drat\n[1] 3.90 3.90 3.85 3.08 3.15 2.76\n\n$wt\n[1] 2.620 2.875 2.320 3.215 3.440 3.460\n\n$mpg\n[1] 26.0 30.4 15.8 19.7 15.0 21.4\n\n$cyl\n[1] 4 4 8 6 8 4\n\n$disp\n[1] 120.3  95.1 351.0 145.0 301.0 121.0\n\n$hp\n[1]  91 113 264 175 335 109\n\n$drat\n[1] 4.43 3.77 4.22 3.62 3.54 4.11\n\n$wt\n[1] 2.140 1.513 3.170 2.770 3.570 2.780"
+    "text": "Head_and_tail cont.\n\n\nCode\nhead_and_tail(mtcars[,1:6])\n\n\n$mpg\n[1] 21.0 21.0 22.8 21.4 18.7 18.1\n\n$cyl\n[1] 6 6 4 6 8 6\n\n$disp\n[1] 160 160 108 258 360 225\n\n$hp\n[1] 110 110  93 110 175 105\n\n$drat\n[1] 3.90 3.90 3.85 3.08 3.15 2.76\n\n$wt\n[1] 2.620 2.875 2.320 3.215 3.440 3.460\n\n$mpg\n[1] 26.0 30.4 15.8 19.7 15.0 21.4\n\n$cyl\n[1] 4 4 8 6 8 4\n\n$disp\n[1] 120.3  95.1 351.0 145.0 301.0 121.0\n\n$hp\n[1]  91 113 264 175 335 109\n\n$drat\n[1] 4.43 3.77 4.22 3.62 3.54 4.11\n\n$wt\n[1] 2.140 1.513 3.170 2.770 3.570 2.780"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#head_and_tail-cont.-1",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#head_and_tail-cont.-1",
     "title": "Very Short Intro to R",
     "section": "Head_and_tail cont.",
-    "text": "Head_and_tail cont.\n\nSecond attempt\n\nhead_and_tail &lt;- function(x, n=3L) {\nres = rbind(rep('Head',length(names(x))),\n        head(x, n = n),\n        rep('*-*-*',length(names(x))), \n        rep('Tail',length(names(x))), \n        tail(x, n = n)\n        )\nas_tibble(res)\n}"
+    "text": "Head_and_tail cont.\nSecond attempt\n\n\nCode\nhead_and_tail &lt;- function(x, n=3L) {\nres = rbind(rep('Head',length(names(x))),\n        head(x, n = n),\n        rep('*-*-*',length(names(x))), \n        rep('Tail',length(names(x))), \n        tail(x, n = n)\n        )\nas_tibble(res)\n}"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#head_and_tail-cont.-2",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#head_and_tail-cont.-2",
     "title": "Very Short Intro to R",
     "section": "Head_and_tail cont.",
-    "text": "Head_and_tail cont.\n\nTesting\n\nhead_and_tail(mtcars[,1:6], n = 3)\n\n\n\nmpgcyldisphpdratwt\n\nHeadHeadHeadHeadHeadHead\n\n2161601103.92.62\n\n2161601103.92.875\n\n22.84108933.852.32\n\n*-*-**-*-**-*-**-*-**-*-**-*-*\n\nTailTailTailTailTailTail\n\n19.761451753.622.77\n\n1583013353.543.57\n\n21.441211094.112.78"
+    "text": "Head_and_tail cont.\nTesting\n\n\nCode\nhead_and_tail(mtcars[,1:6], n = 3)\n\n\n\n\nmpgcyldisphpdratwt\n\nHeadHeadHeadHeadHeadHead\n\n2161601103.92.62\n\n2161601103.92.875\n\n22.84108933.852.32\n\n*-*-**-*-**-*-**-*-**-*-**-*-*\n\nTailTailTailTailTailTail\n\n19.761451753.622.77\n\n1583013353.543.57\n\n21.441211094.112.78"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#head_and_tail-cont.-3",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#head_and_tail-cont.-3",
     "title": "Very Short Intro to R",
     "section": "Head_and_tail cont.",
-    "text": "Head_and_tail cont.\n\nTesting\n\nh_a_t &lt;- head_and_tail(mtcars[,1:5], n = 2)"
+    "text": "Head_and_tail cont.\nTesting\n\n\nCode\nh_a_t &lt;- head_and_tail(mtcars[,1:5], n = 2)"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#head_and_tail-cont.-4",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#head_and_tail-cont.-4",
     "title": "Very Short Intro to R",
     "section": "Head_and_tail cont.",
-    "text": "Head_and_tail cont.\n\nh_a_t\n\n\n\nmpgcyldisphpdrat\n\nHeadHeadHeadHeadHead\n\n2161601103.9\n\n2161601103.9\n\n*-*-**-*-**-*-**-*-**-*-*\n\nTailTailTailTailTail\n\n1583013353.54\n\n21.441211094.11"
+    "text": "Head_and_tail cont.\n\n\nCode\nh_a_t\n\n\n\n\nmpgcyldisphpdrat\n\nHeadHeadHeadHeadHead\n\n2161601103.9\n\n2161601103.9\n\n*-*-**-*-**-*-**-*-**-*-*\n\nTailTailTailTailTail\n\n1583013353.54\n\n21.441211094.11"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#want-to-learn-more-classic-r",
