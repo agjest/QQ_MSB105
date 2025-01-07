@@ -5660,14 +5660,14 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx &lt;- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d1 &lt;- t2 - t1)\n\n\nTime difference of 0.5234571 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n\nCode\n# empty numeric vector\nx &lt;- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d1 &lt;- t2 - t1)\n\n\nTime difference of 0.519248 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nx &lt;- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d2 &lt;- t2 - t1)\n\n\nTime difference of 0.653161 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n\nCode\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nx &lt;- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d2 &lt;- t2 - t1)\n\n\nTime difference of 0.6479001 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#speed-difference",
@@ -5681,7 +5681,7 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 &lt;- Sys.time()\nx &lt;- rnorm(1000000)\nt2 &lt;- Sys.time()\n(d3 &lt;- t2 - t1)\n\n\nTime difference of 0.02994609 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 2081.12"
+    "text": "The R way\n\n\nCode\nset.seed(666)\nt1 &lt;- Sys.time()\nx &lt;- rnorm(1000000)\nt2 &lt;- Sys.time()\n(d3 &lt;- t2 - t1)\n\n\nTime difference of 0.0294838 secs\n\n\n\n\nCode\nhead(x, n = 10)\n\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n\n\nCode\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n\n[1] 2097.48"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r.html#other-types-of-vectors-logical",

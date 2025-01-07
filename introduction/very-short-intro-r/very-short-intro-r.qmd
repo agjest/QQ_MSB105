@@ -47,7 +47,7 @@ rm(list=ls())
 (2/15)^0.25*exp(4) - 200
 ```
 
-Click [here](demo-webr.qmd) if you want to try it yourself.
+Click [here](demo-webr.html) if you want to try it yourself.
 
 ## Variables
 
