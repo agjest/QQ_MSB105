@@ -4,31 +4,57 @@ filters:
   - webr
 ---
 
+This is **pure magic**. We run R in your web-browser via [WebR](https://docs.r-wasm.org/webr/latest/). The document is a Quarto document using the [quarto-webr](https://quarto-webr.thecoatlessprofessor.com) [Quarto](https://quarto.org) extension.
+
+Feel free to experiment with the code below.
+
 ## Calculator
 
 ```{webr-r}
 2 + 2
 ```
 
+How to do:
+  - Division (/)
+  - Multiplication (*)
+  - Exponentiation (^)
+  - Addition (+)
+  - Subtraction (-)
+  - Use a built in function (`exp()`)
+
 ```{webr-r}
-(2/15)^0.25*exp(4) - 200
+(2/15)^0.25*exp(4 + 1/2) - 200
 ```
 
 ## Variables
+
+Just print to screen. Result is gone forever.
 
 ```{webr-r}
 2
 ```
 
+If we want to keep the result we must give it a name. We put the value 2 into the variable `x`.
+
 ```{webr-r}
 x <- 2
 ```
+
+The we are able to retrieve it.
 
 ```{webr-r}
 x
 ```
 
+Enclose in parentheses if you want to both assign and print the result.
+
 ```{webr-r}
 (x <- 2)
+```
+
+An alternative is
+
+```{webr-r}
+x <- 2;x
 ```
 

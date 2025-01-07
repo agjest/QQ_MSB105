@@ -37,14 +37,14 @@ rm(list=ls())
 
 ## Calculator
 
+We start with the basics.
+
 ```{r}
 2 + 2
 ```
 
-. . .
-
 ```{r}
-(2/15)^0.25*exp(4) - 200
+(2/15)^0.25*exp(4 + 1/2) - 200
 ```
 
 Click [here](demo-webr.html) if you want to try it yourself.

@@ -222,6 +222,7 @@
 </section>
 <section id="calculator" class="slide level2">
 <h2>Calculator</h2>
+<p>We start with the basics.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -231,18 +232,16 @@
 <pre><code>[1] 4</code></pre>
 </div>
 </div>
-<div class="fragment">
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>(<span class="dv">2</span><span class="sc">/</span><span class="dv">15</span>)<span class="sc">^</span><span class="fl">0.25</span><span class="sc">*</span><span class="fu">exp</span>(<span class="dv">4</span>) <span class="sc">-</span> <span class="dv">200</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>(<span class="dv">2</span><span class="sc">/</span><span class="dv">15</span>)<span class="sc">^</span><span class="fl">0.25</span><span class="sc">*</span><span class="fu">exp</span>(<span class="dv">4</span> <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>) <span class="sc">-</span> <span class="dv">200</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -167.0077</code></pre>
+<pre><code>[1] -145.6049</code></pre>
 </div>
 </div>
 <p>Click <a href="demo-webr.html">here</a> if you want to try it yourself.</p>
-</div>
 </section>
 <section id="variables" class="slide level2">
 <h2>Variables</h2>
@@ -791,7 +790,7 @@ length</code></pre>
 <span id="cb88-11"><a></a>(d1 <span class="ot">&lt;-</span> t2 <span class="sc">-</span> t1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 0.519248 secs</code></pre>
+<pre><code>Time difference of 0.5346839 secs</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -825,7 +824,7 @@ length</code></pre>
 <span id="cb92-12"><a></a>(d2 <span class="ot">&lt;-</span> t2 <span class="sc">-</span> t1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 0.6479001 secs</code></pre>
+<pre><code>Time difference of 0.6676619 secs</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -848,7 +847,7 @@ length</code></pre>
 <span id="cb96-2"><a></a><span class="fu">round</span>((<span class="fu">as.double</span>(d2 <span class="sc">-</span> d1)<span class="sc">/</span><span class="fu">as.double</span>(d1))<span class="sc">*</span><span class="dv">100</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 24.78</code></pre>
+<pre><code>[1] 24.87</code></pre>
 </div>
 </div>
 </section>
@@ -864,7 +863,7 @@ length</code></pre>
 <span id="cb98-5"><a></a>(d3 <span class="ot">&lt;-</span> t2 <span class="sc">-</span> t1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 0.0294838 secs</code></pre>
+<pre><code>Time difference of 0.02970195 secs</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -885,7 +884,7 @@ length</code></pre>
 <span id="cb102-2"><a></a><span class="fu">round</span>((<span class="fu">as.double</span>(d2<span class="sc">-</span> d3)<span class="sc">/</span><span class="fu">as.double</span>(d3)) <span class="sc">*</span> <span class="dv">100</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2097.48</code></pre>
+<pre><code>[1] 2147.87</code></pre>
 </div>
 </div>
 </div>
