@@ -58,3 +58,4 @@ An alternative is
 x <- 2;x
 ```
 
+Back to [slide](very-short-intro-r.html).
