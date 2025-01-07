@@ -38,7 +38,7 @@ rm(list=ls())
 ## Calculator
 
 ```{r}
-2+2
+2 + 2
 ```
 
 . . .
@@ -46,6 +46,8 @@ rm(list=ls())
 ```{r}
 (2/15)^0.25*exp(4) - 200
 ```
+
+Click [here](./demo.qmd) if you want to try it yourself.
 
 ## Variables
 
