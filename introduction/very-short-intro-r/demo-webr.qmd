@@ -4,7 +4,7 @@ filters:
   - webr
 ---
 
-This is **pure magic**. We run R in your web-browser via [WebR](https://docs.r-wasm.org/webr/latest/). The document is a Quarto document using the [quarto-webr](https://quarto-webr.thecoatlessprofessor.com) [Quarto](https://quarto.org) extension.
+This is **pure magic**. We run R in your web-browser via [WebR](https://docs.r-wasm.org/webr/latest/). The document is a [Quarto](https://quarto.org) document using the [quarto-webr](https://quarto-webr.thecoatlessprofessor.com) Quarto extension.
 
 Feel free to experiment with the code below.
 
