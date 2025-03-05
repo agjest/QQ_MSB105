@@ -130,7 +130,7 @@ ggplot() +
 
 ## Adding a `geom_smooth()` layer
 
-::: columns
+::::: columns
 ::: {.column width="40%"}
 ```{r}
 #| eval: false
@@ -190,7 +190,7 @@ mapping = aes(x = disp,
     )
 ```
 :::
-:::
+:::::
 
 ## Exercise:
 
@@ -281,7 +281,7 @@ ggplot(
 
 ## Linear model, rlm
 
-::: columns
+::::: columns
 ::: {.column width="30%"}
 ```{r}
 #| warning: false
@@ -328,7 +328,7 @@ ggplot(
     )
 ```
 :::
-:::
+:::::
 
 ## Other data in the plot
 
@@ -367,7 +367,7 @@ df_mean
 
 ## Two different datasets
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ```{r}
 #| eval: false
@@ -438,11 +438,11 @@ ggplot(
 
 -   Note `data = df_mean` in last `geom_point()` in the code.
 :::
-:::
+:::::
 
 ## Two different datasets cont.
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ```{r}
 p_common <- ggplot(
@@ -499,7 +499,7 @@ p2 <-   p_common +
   labs(colour = "cyl")
 ```
 :::
-:::
+:::::
 
 ## Plot two ggplot objects p1 and p2
 
@@ -544,7 +544,7 @@ ggarrange(
 
 ## Three variables cont.
 
-::: columns
+::::: columns
 ::: {.column width="40%"}
 ```{r}
 cp1 <-   ggplot() +
@@ -586,11 +586,11 @@ cp1 <-   ggplot() +
 cp1
 ```
 :::
-:::
+:::::
 
 ## Three variables cont.
 
-::: columns
+::::: columns
 ::: {.column width="35%"}
 ```{r}
 bp1 <- ggplot() +
@@ -623,11 +623,11 @@ bp1 <- ggplot() +
 bp1
 ```
 :::
-:::
+:::::
 
 ## Another strategy; facets
 
-::: columns
+::::: columns
 ::: {.column width="35%"}
 ```{r}
 #| eval: false
@@ -675,7 +675,7 @@ ggplot(
     )
 ```
 :::
-:::
+:::::
 
 ## Facets, whole dataset in background
 
@@ -764,6 +764,8 @@ ggplot(
     colour = "Weight"
     )
 ```
+
+Click [here](rweb-ggplot.html) to experiment with the plot.
 
 ## Two facet variables
 
@@ -862,7 +864,7 @@ histogram(
 
 ## Classic
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ```{r}
 #| eval: false
@@ -954,7 +956,7 @@ with(
   )
 ```
 :::
-:::
+:::::
 
 ## Classic cont.
 

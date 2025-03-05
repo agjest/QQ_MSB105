@@ -1,0 +1,63 @@
+---
+title: "demo_webr"
+filters: 
+  - webr
+---
+
+This is **pure magic**.
+We run R in your web-browser via [WebR](https://docs.r-wasm.org/webr/latest/).
+The document is a [Quarto](https://quarto.org) document using the [quarto-webr](https://quarto-webr.thecoatlessprofessor.com) Quarto extension.
+
+Feel free to experiment with the code below.
+
+## ggplot
+
+How to generate a facet-plot with the whole dataset as grey points in the background.
+
+```{webr-r}
+#| echo: false
+#| message: false
+library(tidyverse)
+library(gridExtra)
+
+#new dataframe to use for the grey points
+hp_acc <- data.frame(
+  hp = mtcars$hp, 
+  acc = 1609.347/(2*mtcars$qsec^2)
+  )
+
+mtcars |> 
+ggplot(
+  mapping = aes(x = hp, y = 1609.347/(2*qsec^2))
+  ) +
+  geom_point(
+    data = hp_acc, 
+    mapping = aes(x = hp, y = acc), colour = "grey80"
+    ) +
+  facet_wrap(
+    ~cut_number(
+      wt, 
+      n =3 , 
+      labels = c("Light", "Medium", "Heavy")
+      )
+    ) +
+  geom_point(
+    mapping = aes(colour = cut_number(
+      wt, 
+      n = 3, 
+      labels = c("Light", "Medium", "Heavy")
+      )
+      ),
+    show.legend = FALSE
+    ) +
+  geom_smooth(
+    method = "lm", 
+    se = FALSE
+    ) +
+  labs(
+    y = "Mean acceleration (m/s^2)", 
+    colour = "Weight"
+    )
+```
+
+Back to [slide](intr-ggplot2-doc.html).
