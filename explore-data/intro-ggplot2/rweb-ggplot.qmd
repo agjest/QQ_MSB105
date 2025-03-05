@@ -60,4 +60,4 @@ ggplot(
     )
 ```
 
-Back to [slide](intr-ggplot2-doc.html).
+Back to [slide](index.html).

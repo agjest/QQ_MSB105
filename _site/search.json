@@ -1516,7 +1516,7 @@
     "href": "explore-data/intro-ggplot2/index.html#facets-whole-dataset-in-background-1",
     "title": "Introduction to ggplot",
     "section": "Facets, whole dataset in background",
-    "text": "Facets, whole dataset in background"
+    "text": "Facets, whole dataset in background\n\nClick here to experiment with the plot."
   },
   {
     "objectID": "explore-data/intro-ggplot2/index.html#two-facet-variables",
@@ -1565,7 +1565,7 @@
     "href": "explore-data/intro-ggplot2/index.html#one-variable",
     "title": "Introduction to ggplot",
     "section": "One variable",
-    "text": "One variable\n\nHistogram\nBoxplot\nDensity plot\nViolin plot\nand more\n\n\n\n\nMSB105"
+    "text": "One variable\n\nHistogram\nBoxplot\nDensity plot\nViolin plot\nand more"
   },
   {
     "objectID": "explore-data/eda/eda.html#packages-used",
