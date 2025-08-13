@@ -23,7 +23,6 @@ It will try to give you an idea of what Data Sciences is and also teach you some
 -   [Git and Github](git-github/git-github.qmd)
 -   [Very Short Intro to R](very-short-intro-r/very-short-intro-r.qmd)
     -   [Very Short Intro to R (as document)](very-short-intro-r/very-short-intro-r-document.qmd)
-    -   [Notater fra forelesning (in Norwegian)](very-short-intro-r/Innledende-R-notater-forelesning.qmd)
 -   [Zotero demo](Zotero_demo/Zotero_demo.qmd)
 -   [Reproducibility](reproducibility/rr-science_h24.qmd)
     -   [Bibliography](reproducibility/bibliography.qmd)
