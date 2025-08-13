@@ -20,6 +20,8 @@ suppressPackageStartupMessages(
 rm(list=ls())
 ```
 
+[https://urfie.net/downloads/PDF/URfIE_web.pdf](https://urfie.net/downloads/PDF/URfIE_web.pdf) is a nice introduction to R.
+
 ## Calculator
 
 ```{r}
