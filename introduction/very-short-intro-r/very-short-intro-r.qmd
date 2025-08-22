@@ -1382,7 +1382,7 @@ stupid_fun(x1 = -21, n = 0, width_fraction = 0.6,
 
 We have the functions `head()` and `tail()` to inspect respectively the
 start and end of a dataframe or similar object. Sometimes we might want
-to do bought with one command.
+to do both with one command.
 
 ### First attempt
 
