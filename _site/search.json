@@ -4036,7 +4036,7 @@
     "href": "assignments/assignments.html#different-years",
     "title": "Assignments",
     "section": "Different years",
-    "text": "Different years\n\nh23\nh24"
+    "text": "Different years\n\nh23\nh24\nh25"
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#setup",
@@ -9462,5 +9462,12 @@
     "title": "Assignment 1 H25",
     "section": "",
     "text": "Ta utgangspunkt i malen i dokumentet msb105_ass_1_25 (arkiver med filendelsen qmd) og skriv et mini-paper på 3-4 sider med utgangspunkt i foredraget «Robust and Reliable Science». Dere finner en screencast av dette foredraget under Panopto video på kursets Canvas-sider.\nOppgaven skal utføres individuelt og mot et Github repo. Opprett først repo-et på Github før du lager et prosjekt i RStudio. Legg filene msb105_ass_1_24.qmd, apa7.csl og reproducibility.bib inn i ditt nye prosjekt.\nKrav til oppgaven:\n\nDet skal utføres minst 15 commits\n\nMed gode «commit messages» ;-)\n\nDet skal være brukt minst 20 siteringer vha. siteringssystemet i Rstudio\n\nFem skal dere har funnet selv, dvs. at de ikke er i reproducibility.bib\n\nDet skal brukes minst to grener som skal merges inn i main\n\nHusk: skift først til main\nSå i Terminal: git merge &lt;gren-navn&gt;\n\n\nNår dere er ferdige kan dere invitere meg (agjest) inn i repoet (eventuelt før hvis dere støter på problemer jeg kan hjelpe med 8-) )\nNår jeg er invitert vil jeg gjøre en fork av repo-et, fikse eventuelle feil og skrive et kort dokument med kommentarer og tips. Når jeg er ferdig vil dere få en «merge request» fra Github.\nDet er lov å spørre om hjelp! Hvis dere sender epost så bruk MSB105 i tittelen så er det mindre sjanse for at den blir oversett. Send direkte til ag@hvl.no og ikke via Canvas. Får dere ikke respons så prøv på ny. Det er dessverre litt «overload» på eposten min for tiden.\nOppstår det ting som alle kan ha bruk for å vite om vil jeg legge det ut som Melding her på Canvas."
+  },
+  {
+    "objectID": "assignments/h25/ass-h25.html",
+    "href": "assignments/h25/ass-h25.html",
+    "title": "Assignments h25",
+    "section": "",
+    "text": "Assignment 1 h25"
   }
 ]

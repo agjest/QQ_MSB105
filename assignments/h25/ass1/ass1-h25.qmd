@@ -7,7 +7,6 @@ format:
   pdf: 
     papersize: a4
 editor: visual
-lang: nb
 ---
 
 ## Første oppgave (assignment) høsten 25

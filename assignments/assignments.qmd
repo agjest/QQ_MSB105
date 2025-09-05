@@ -9,3 +9,4 @@ The assignments for different years.
 
 -   [h23](h23/ass-h23.qmd)
 -   [h24](h24/ass-h24.qmd)
+-   [h25](h25/ass-h25.qmd)

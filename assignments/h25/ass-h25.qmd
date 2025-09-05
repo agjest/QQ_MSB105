@@ -1,0 +1,7 @@
+---
+title: "Assignments h25"
+editor: visual
+format: html
+---
+
+-   [Assignment 1 h25](ass1/ass1-h25.qmd)
