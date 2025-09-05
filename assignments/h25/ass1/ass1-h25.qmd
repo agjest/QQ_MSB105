@@ -11,11 +11,12 @@ editor: visual
 
 ## Første oppgave (assignment) høsten 25
 
-Ta utgangspunkt i malen i dokumentet [msb105_ass_1_25](./msb105_ass_1_25.txt) (arkiver med filendelsen qmd) og skriv et mini-paper på 3-4 sider med utgangspunkt i foredraget [«Robust and Reliable Science»](https://msb105.netlify.app/introduction/reproducibility/rr-science_h25#/title-slide). Dere finner en screencast av dette foredraget under [Panopto video](https://hvl.instructure.com/courses/32799/external_tools/1650) på kursets Canvas-sider.
+Ta utgangspunkt i malen i dokumentet [msb105_ass_1_25](./msb105_ass_1_25.txt) (arkiver med filendelsen qmd istedenfor .txt) og skriv et mini-paper på 3-4 sider med utgangspunkt i foredraget [«Robust and Reliable Science»](https://msb105.netlify.app/introduction/reproducibility/rr-science_h25#/title-slide). Dere finner en screencast av dette foredraget under [Panopto video](https://hvl.instructure.com/courses/32799/external_tools/1650) på kursets Canvas-sider.
+
+På kursets Canvas-sider under [Ass1](https://hvl.instructure.com/courses/32799/files/folder/Ass1) i Filer finner dere apa7.csl, msb105_ass_1_25.qmd og reproducibility.bib som kan være til hjelp.
 
 Oppgaven skal utføres individuelt og mot et Github repo.
-Opprett først repo-et på Github før du lager et prosjekt i RStudio.
-Legg filene msb105_ass_1_24.qmd, apa7.csl og reproducibility.bib inn i ditt nye prosjekt.
+Opprett først repo-et på Github før du lager et prosjekt i RStudio. `msb105Ass1` kan jo være et godt navn. Legg filene msb105_ass_1_24.qmd, apa7.csl og reproducibility.bib inn i ditt nye prosjekt.
 
 Krav til oppgaven:
 

@@ -16,12 +16,9 @@ format:
     papersize: A4
     fig-pos: "H"
 bibliography: reproducibility.bib
-abstract: "A very short abstract. Put the abstract text here."
+nocite: '@*'
+abstract: "A very short abstract. Put the abstract text here. One or two paragraphs summarising what follows below."
 ---
-
-## Abstract
-
-One or two paragraphs summarising what follows below.
 
 ## Introduction
 
@@ -33,7 +30,7 @@ Why is it of any consequence?
 
 Smart stuff from others about the topic.
 
-Use a least 20 citations, a least 5 of them must be new ( not in the provided .bib file).
+Use a least 20 citations, a least 5 of them must be new (not from the provided .bib file).
 
 Use both in-line and normal citations.
 

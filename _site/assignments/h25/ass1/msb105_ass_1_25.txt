@@ -1,0 +1,55 @@
+---
+title: "Is reproducibility good enough?"
+author: "Author Name"
+date: last-modified
+date-format: "dddd D MMM, YYYY"
+csl: apa7.csl
+lang: en-GB
+format:
+  html: default
+  typst:
+    papersize: a4
+  pdf:
+    documentclass: article
+    number-sections: true
+    keep-tex: true
+    papersize: A4
+    fig-pos: "H"
+bibliography: reproducibility.bib
+nocite: '@*'
+abstract: "A very short abstract. Put the abstract text here. One or two paragraphs summarising what follows below."
+---
+
+## Introduction
+
+What is this paper about?
+What is discussed?
+Why is it of any consequence?
+
+## Literature review
+
+Smart stuff from others about the topic.
+
+Use a least 20 citations, a least 5 of them must be new (not from the provided .bib file).
+
+Use both in-line and normal citations.
+
+Example:
+
+@gentleman2005 argues that bla bla bla.
+On the other hand it's claimed that bla bla [@barbalorenaa.2018; @bartlett2008].
+
+## Discussion of the reseach question
+
+-   Should replicability be the norm or is this to much to ask for now?
+-   Can Quarto documents help with reproducibility?
+-   What problems remains and how can these be solved?
+
+## Conclusion
+
+## References
+
+and
+
+-   Version number and reference to packages used
+-   R version used
