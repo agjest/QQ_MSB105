@@ -4,8 +4,6 @@ format:
   html: default
   typst:
     papersize: a4
-  pdf: 
-    papersize: a4
 editor: visual
 ---
 
