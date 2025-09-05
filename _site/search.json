@@ -2887,8 +2887,8 @@
     "objectID": "introduction/intro/intro.html#hvem-er-jeg",
     "href": "introduction/intro/intro.html#hvem-er-jeg",
     "title": "Introduksjon Data Science",
-    "section": "Hvem er jeg?",
-    "text": "Hvem er jeg?\n\nArnstein Gjestland\nKontor: 4063 (4. etasje mot vest)\nEpost: ag@hvl.no\nGithub nick: agjest"
+    "section": "",
+    "text": "Arnstein Gjestland\nKontor: 4063 (4. etasje mot vest)\nEpost: ag@hvl.no\nGithub nick: agjest"
   },
   {
     "objectID": "introduction/intro/intro.html#hovedpoeng",
@@ -2944,7 +2944,7 @@
     "href": "introduction/intro/intro.html#temaer-i-kurset-1",
     "title": "Introduksjon Data Science",
     "section": "Temaer i kurset",
-    "text": "Temaer i kurset\nAndre tema:\n\nPresentasjon av data\n\nggplot2\n\nVersjonskontroll\n\ngit\nGithub\n\nMer kompliserte datastrukturer\n\nlist-columns in dataframe\n\nModeller til tidy data (broom)"
+    "text": "Temaer i kurset\n\nAndre tema:\n\nPresentasjon av data\n\nggplot2\n\nVersjonskontroll\n\ngit\nGithub\n\nMer kompliserte datastrukturer\n\nlist-columns in dataframe\n\nModeller til tidy data (broom)"
   },
   {
     "objectID": "introduction/intro/intro.html#nærmere-om-rmarkdown",
@@ -2958,14 +2958,14 @@
     "href": "introduction/intro/intro.html#r-notebooks-kildekode-r-markdown",
     "title": "Introduksjon Data Science",
     "section": "R Notebooks (Kildekode R Markdown)",
-    "text": "R Notebooks (Kildekode R Markdown)\n\n\nCode\nknitr::include_graphics(\"eks-rmd.png\")\n\n\n\n\n\n\n\n\n\n\n\n\necho true in R Notebook"
+    "text": "R Notebooks (Kildekode R Markdown)\n\nknitr::include_graphics(\"eks-rmd.png\")\n\n\n\n\n\n\n\n\n\n\n\necho true in R Notebook"
   },
   {
     "objectID": "introduction/intro/intro.html#quarto-document-kildekode-r-markdown",
     "href": "introduction/intro/intro.html#quarto-document-kildekode-r-markdown",
     "title": "Introduksjon Data Science",
     "section": "Quarto Document (Kildekode R Markdown)",
-    "text": "Quarto Document (Kildekode R Markdown)\n\n\nCode\nknitr::include_graphics(\"eks-rmd.png\")\n\n\n\n\n\n\n\n\n\n\n\n\necho true in Quarto Document (R Notebook way still works)"
+    "text": "Quarto Document (Kildekode R Markdown)\n\nknitr::include_graphics(\"eks-rmd.png\")\n\n\n\n\n\n\n\n\n\n\n\necho true in Quarto Document (R Notebook way still works)"
   },
   {
     "objectID": "introduction/intro/intro.html#kildekode-r-markdown",
@@ -3035,21 +3035,21 @@
     "href": "introduction/intro/intro.html#ønsket-format-rmarkdown",
     "title": "Introduksjon Data Science",
     "section": "Ønsket format Rmarkdown",
-    "text": "Ønsket format Rmarkdown\n\nVelg format fra knitr menyen.\n\nVi velger ønsket format vha. knitr menyen."
+    "text": "Ønsket format Rmarkdown\n\n\n\nVelg format fra knitr menyen.\n\n\n. . .\n\nVi velger ønsket format vha. knitr menyen."
   },
   {
     "objectID": "introduction/intro/intro.html#ønsket-format-quarto-dokument",
     "href": "introduction/intro/intro.html#ønsket-format-quarto-dokument",
     "title": "Introduksjon Data Science",
     "section": "Ønsket format Quarto dokument",
-    "text": "Ønsket format Quarto dokument\n\nKlikk Render knappen. Hvis vi har definert flere format (pdf. html, docx) i YAML vil vi se en liten drop-down meny til høyre for Render kappen. Her kan vi velge hvilket format vi ønsker å «rendre» til.\nMed Quarto velger vi Render fra ikon-linjen øverst i editoren (øvre venstre «pane»)."
+    "text": "Ønsket format Quarto dokument\n\n\n\nKlikk Render knappen. Hvis vi har definert flere format (pdf. html, docx) i YAML vil vi se en liten drop-down meny til høyre for Render kappen. Her kan vi velge hvilket format vi ønsker å «rendre» til.\n\n\n\nMed Quarto velger vi Render fra ikon-linjen øverst i editoren (øvre venstre «pane»)."
   },
   {
     "objectID": "introduction/intro/intro.html#ønsket-format",
     "href": "introduction/intro/intro.html#ønsket-format",
     "title": "Introduksjon Data Science",
     "section": "Ønsket format",
-    "text": "Ønsket format\n\nDokumentformatene .pdf, .html og .docx er de mest relevante alternativene\nDet er også mulighet for å generere rapporter vha. en mal og parametre.\nFor en presentasjon ville vi hatt andre alternativer (som Powerpoint) og revealjs. Ønsket format blir angitt i YAML, f.eks. format: revealjs.\n\n\n\n\nMSB105"
+    "text": "Ønsket format\n\nDokumentformatene .pdf, .html og .docx er de mest relevante alternativene\nDet er også mulighet for å generere rapporter vha. en mal og parametre.\nFor en presentasjon ville vi hatt andre alternativer (som Powerpoint) og revealjs. Ønsket format blir angitt i YAML, f.eks. format: revealjs."
   },
   {
     "objectID": "introduction/s-d-d/cite.html",
@@ -3203,28 +3203,28 @@
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-empty-vectors-1",
     "title": "Very Short Intro to R",
     "section": "Generating empty vectors",
-    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx &lt;- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d1 &lt;- t2 - t1)\n\nTime difference of 0.5412781 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating empty vectors\nR starts indexing at 1 (not 0).\n\n# empty numeric vector\nx &lt;- numeric(1000000)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d1 &lt;- t2 - t1)\n\nTime difference of 0.5596049 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#generating-vector-incrementally",
     "title": "Very Short Intro to R",
     "section": "Generating vector incrementally",
-    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nx &lt;- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d2 &lt;- t2 - t1)\n\nTime difference of 0.687438 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
+    "text": "Generating vector incrementally\nSlower code. Allocate more space in memory for x for each iteration.\n\n# \"slow\" code\nrm(x)\nset.seed(666)\n# fill with values\nt1 &lt;- Sys.time()\nx &lt;- 0\nfor (i in 1:1000000) {\n  # standard normal\n  x[i] = rnorm(n = 1)\n}\nt2 &lt;- Sys.time()\n(d2 &lt;- t2 - t1)\n\nTime difference of 0.677464 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#speed-difference",
     "title": "Very Short Intro to R",
     "section": "Speed Difference",
-    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 27"
+    "text": "Speed Difference\n\n# percent slower\nround((as.double(d2 - d1)/as.double(d1))*100, digits = 2)\n\n[1] 21.06"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "href": "introduction/very-short-intro-r/very-short-intro-r-document.html#the-r-way",
     "title": "Very Short Intro to R",
     "section": "The R way",
-    "text": "The R way\n\nset.seed(666)\nt1 &lt;- Sys.time()\nx &lt;- rnorm(1000000)\nt2 &lt;- Sys.time()\n(d3 &lt;- t2 - t1)\n\nTime difference of 0.02611017 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 2532.84"
+    "text": "The R way\n\nset.seed(666)\nt1 &lt;- Sys.time()\nx &lt;- rnorm(1000000)\nt2 &lt;- Sys.time()\n(d3 &lt;- t2 - t1)\n\nTime difference of 0.02549696 secs\n\n\n\nhead(x, n = 10)\n\n [1]  0.75331105  2.01435467 -0.35513446  2.02816784 -2.21687445  0.75839618\n [7] -1.30618526 -0.80251957 -1.79224083 -0.04203245\n\n\n\n# percent faster\nround((as.double(d2- d3)/as.double(d3)) * 100, digits = 2)\n\n[1] 2557.04"
   },
   {
     "objectID": "introduction/very-short-intro-r/very-short-intro-r-document.html#other-types-of-vectors-logical",
@@ -9371,5 +9371,96 @@
     "title": "demo_webr",
     "section": "ggplot",
     "text": "ggplot\nHow to generate a facet-plot with the whole dataset as grey points in the background.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nBack to slide."
+  },
+  {
+    "objectID": "assignments/h25/ass1/msb105_ass_1_25.html",
+    "href": "assignments/h25/ass1/msb105_ass_1_25.html",
+    "title": "Is reproducibility good enough?",
+    "section": "",
+    "text": "One or two paragraphs summarising what follows below."
+  },
+  {
+    "objectID": "assignments/h25/ass1/msb105_ass_1_25.html#introduction",
+    "href": "assignments/h25/ass1/msb105_ass_1_25.html#introduction",
+    "title": "Is reproducibility good enough?",
+    "section": "Introduction",
+    "text": "Introduction\nWhat is this paper about? What is discussed? Why is it of any consequence?"
+  },
+  {
+    "objectID": "assignments/h25/ass1/msb105_ass_1_25.html#literature-review",
+    "href": "assignments/h25/ass1/msb105_ass_1_25.html#literature-review",
+    "title": "Is reproducibility good enough?",
+    "section": "Literature review",
+    "text": "Literature review\nSmart stuff from others about the topic.\nUse a least 20 citations, a least 5 of them must be new ( not in the provided .bib file).\nUse both in-line and normal citations.\nExample:\nGentleman (2005) argues that bla bla bla. On the other hand it’s claimed that bla bla (Barba, 2018; Bartlett & Frost, 2008)."
+  },
+  {
+    "objectID": "assignments/h25/ass1/msb105_ass_1_25.html#discussion-of-the-reseach-question-with-some-catching-heading",
+    "href": "assignments/h25/ass1/msb105_ass_1_25.html#discussion-of-the-reseach-question-with-some-catching-heading",
+    "title": "Is reproducibility good enough?",
+    "section": "Discussion of the reseach question with some catching heading",
+    "text": "Discussion of the reseach question with some catching heading\n\nHow can Quarto documents help with reproducibility?\n\n\nWhat problems remains and how can these be solved?\n\nPackage version\nR version, library versions"
+  },
+  {
+    "objectID": "assignments/h25/ass1/msb105_ass_1_25.html#conclusion",
+    "href": "assignments/h25/ass1/msb105_ass_1_25.html#conclusion",
+    "title": "Is reproducibility good enough?",
+    "section": "Conclusion",
+    "text": "Conclusion"
+  },
+  {
+    "objectID": "assignments/h25/ass1/msb105_ass_1_25.html#references",
+    "href": "assignments/h25/ass1/msb105_ass_1_25.html#references",
+    "title": "Is reproducibility good enough?",
+    "section": "References",
+    "text": "References\nand\n\nVersion number and reference to packages used\nR version used"
+  },
+  {
+    "objectID": "introduction/intro/intro.html",
+    "href": "introduction/intro/intro.html",
+    "title": "Introduksjon Data Science",
+    "section": "",
+    "text": "Arnstein Gjestland\nKontor: 4063 (4. etasje mot vest)\nEpost: ag@hvl.no\nGithub nick: agjest"
+  },
+  {
+    "objectID": "assignments/h25/ass1/ass1-h25.html",
+    "href": "assignments/h25/ass1/ass1-h25.html",
+    "title": "Assignment 1 H25",
+    "section": "",
+    "text": "Ta utgangspunkt i malen i dokumentet msb105_ass_1_25 (arkiver med filendelsen qmd) og skriv et mini-paper på 3-4 sider med utgangspunkt i foredraget «Robust and Reliable Science». Dere finner en screencast av dette foredraget under Panopto video på kursets Canvas-sider.\nOppgaven skal utføres individuelt og mot et Github repo. Opprett først repo-et på Github før du lager et prosjekt i RStudio. Legg filene msb105_ass_1_24.qmd, apa7.csl og reproducibility.bib inn i ditt nye prosjekt.\nKrav til oppgaven:\n\nDet skal utføres minst 15 commits\n\nMed gode «commit messages» ;-)\n\nDet skal være brukt minst 20 siteringer vha. siteringssystemet i Rstudio\n\nFem skal dere har funnet selv, dvs. at de ikke er i reproducibility.bib\n\nDet skal brukes minst to grener som skal merges inn i main\n\nHusk: skift først til main\nSå i Terminal: git merge &lt;gren-navn&gt;\n\n\nNår dere er ferdige kan dere invitere meg (agjest) inn i repoet (eventuelt før hvis dere støter på problemer jeg kan hjelpe med 8-) )\nNår jeg er invitert vil jeg gjøre en fork av repo-et, fikse eventuelle feil og skrive et kort dokument med kommentarer og tips. Når jeg er ferdig vil dere få en «merge request» fra Github.\nDet er lov å spørre om hjelp! Hvis dere sender epost så bruk MSB105 i tittelen så er det mindre sjanse for at den blir oversett. Send direkte til ag@hvl.no og ikke via Canvas. Får dere ikke respons så prøv på ny. Det er dessverre litt «overload» på eposten min for tiden.\nOppstår det ting som alle kan ha bruk for å vite om vil jeg legge det ut som Melding her på Canvas."
+  },
+  {
+    "objectID": "assignments/h25/ass1/ass1-h25.html#første-oppgave-assignment-høsten-24",
+    "href": "assignments/h25/ass1/ass1-h25.html#første-oppgave-assignment-høsten-24",
+    "title": "Assignment 1 H24",
+    "section": "",
+    "text": "Ta utgangspunkt i malen i dokumentet msb105_ass_1_24 (arkiver med filendelsen qmd) og skriv et mini-paper på 4-5 sider med utgangspunkt i foredraget «Robust and Reliable Science».\nOppgaven skal utføres individuelt og mot et Github repo. Opprett først repo-et på Github før du lager et prosjekt i RStudio. Legg filene msb105_ass_1_24.qmd, apa7.csl og reproducibility.bib inn i ditt nye prosjekt.\nKrav til oppgaven:\n\nDet skal utføres minst 15 commits\n\nMed gode «commit messages» ;-)\n\nDet skal være brukt minst 15 siteringer vha. siteringssystemet i Rstudio\n\nHelst noen (3-5) dere har funnet selv også som ikke er i reproducibility.bib\n\nDet skal brukes minst to grener som skal merges inn i main\n\nHusk: skift først til main\nSå i Terminal: git merge &lt;gren-navn&gt;\n\n\nNår dere er ferdige kan dere invitere meg (agjest) inn i repoet (eventuelt før hvis dere støter på problemer jeg kan hjelpe med)\nNår jeg er invitert vil jeg gjøre en fork av repo-et, fikse eventuelle feil og skrive et kort dokument med kommentarer og tips. Når jeg er ferdig vil dere får en «merge request» fra Github.\nDet er lov å spørre om hjelp! Hvis dere sender epost så bruk MSB105 i tittelen så er det mindre sjanse for at den blir oversett. Får dere ikke respons så prøv på ny. Det er dessverre litt «overload» på eposten min for tiden.\nOppstår det ting som alle kan ha bruk for å vite om vil jeg legge det ut som Melding her på Canvas."
+  },
+  {
+    "objectID": "assignments/h25/ass-h24.html",
+    "href": "assignments/h25/ass-h24.html",
+    "title": "Assignments h24",
+    "section": "",
+    "text": "Assignment 1 h24\nAssignment 2 h24\nAssignment 3 h24\nAssignment 4 h24"
+  },
+  {
+    "objectID": "assignments/h25/ass1/msb105_ass_1_25.html#abstract",
+    "href": "assignments/h25/ass1/msb105_ass_1_25.html#abstract",
+    "title": "Is reproducibility good enough?",
+    "section": "",
+    "text": "One or two paragraphs summarising what follows below."
+  },
+  {
+    "objectID": "assignments/h25/ass1/msb105_ass_1_25.html#discussion-of-the-reseach-question",
+    "href": "assignments/h25/ass1/msb105_ass_1_25.html#discussion-of-the-reseach-question",
+    "title": "Is reproducibility good enough?",
+    "section": "Discussion of the reseach question",
+    "text": "Discussion of the reseach question\n\nShould replicability be the norm or is this to much to ask for now?\nCan Quarto documents help with reproducibility?\nWhat problems remains and how can these be solved?"
+  },
+  {
+    "objectID": "assignments/h25/ass1/ass1-h25.html#første-oppgave-assignment-høsten-25",
+    "href": "assignments/h25/ass1/ass1-h25.html#første-oppgave-assignment-høsten-25",
+    "title": "Assignment 1 H25",
+    "section": "",
+    "text": "Ta utgangspunkt i malen i dokumentet msb105_ass_1_25 (arkiver med filendelsen qmd) og skriv et mini-paper på 3-4 sider med utgangspunkt i foredraget «Robust and Reliable Science». Dere finner en screencast av dette foredraget under Panopto video på kursets Canvas-sider.\nOppgaven skal utføres individuelt og mot et Github repo. Opprett først repo-et på Github før du lager et prosjekt i RStudio. Legg filene msb105_ass_1_24.qmd, apa7.csl og reproducibility.bib inn i ditt nye prosjekt.\nKrav til oppgaven:\n\nDet skal utføres minst 15 commits\n\nMed gode «commit messages» ;-)\n\nDet skal være brukt minst 20 siteringer vha. siteringssystemet i Rstudio\n\nFem skal dere har funnet selv, dvs. at de ikke er i reproducibility.bib\n\nDet skal brukes minst to grener som skal merges inn i main\n\nHusk: skift først til main\nSå i Terminal: git merge &lt;gren-navn&gt;\n\n\nNår dere er ferdige kan dere invitere meg (agjest) inn i repoet (eventuelt før hvis dere støter på problemer jeg kan hjelpe med 8-) )\nNår jeg er invitert vil jeg gjøre en fork av repo-et, fikse eventuelle feil og skrive et kort dokument med kommentarer og tips. Når jeg er ferdig vil dere få en «merge request» fra Github.\nDet er lov å spørre om hjelp! Hvis dere sender epost så bruk MSB105 i tittelen så er det mindre sjanse for at den blir oversett. Send direkte til ag@hvl.no og ikke via Canvas. Får dere ikke respons så prøv på ny. Det er dessverre litt «overload» på eposten min for tiden.\nOppstår det ting som alle kan ha bruk for å vite om vil jeg legge det ut som Melding her på Canvas."
   }
 ]

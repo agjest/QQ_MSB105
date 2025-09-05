@@ -344,7 +344,7 @@ window.Quarto = {
 [31] "grDevices" "utils"     "datasets"  "methods"   "base"     </code></pre>
 </div>
 </div>
-<p><a href="https://urfie.net/downloads/PDF/URfIE_web.pdf">https://urfie.net/downloads/PDF/URfIE_web.pdf</a> is a nice introduction to R.</p>
+<p><a href="https://urfie.net/downloads/PDF/URfIE_web.pdf" class="uri">https://urfie.net/downloads/PDF/URfIE_web.pdf</a> is a nice introduction to R.</p>
 <section id="calculator" class="level2">
 <h2 class="anchored" data-anchor-id="calculator">Calculator</h2>
 <div class="cell">
@@ -713,7 +713,7 @@ length</code></pre>
 <span id="cb88-10"><a href="#cb88-10" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb88-11"><a href="#cb88-11" aria-hidden="true" tabindex="-1"></a>(d1 <span class="ot">&lt;-</span> t2 <span class="sc">-</span> t1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 0.5412781 secs</code></pre>
+<pre><code>Time difference of 0.5596049 secs</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -741,7 +741,7 @@ length</code></pre>
 <span id="cb92-11"><a href="#cb92-11" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb92-12"><a href="#cb92-12" aria-hidden="true" tabindex="-1"></a>(d2 <span class="ot">&lt;-</span> t2 <span class="sc">-</span> t1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 0.687438 secs</code></pre>
+<pre><code>Time difference of 0.677464 secs</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -758,7 +758,7 @@ length</code></pre>
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># percent slower</span></span>
 <span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>((<span class="fu">as.double</span>(d2 <span class="sc">-</span> d1)<span class="sc">/</span><span class="fu">as.double</span>(d1))<span class="sc">*</span><span class="dv">100</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 27</code></pre>
+<pre><code>[1] 21.06</code></pre>
 </div>
 </div>
 </section>
@@ -771,7 +771,7 @@ length</code></pre>
 <span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb98-5"><a href="#cb98-5" aria-hidden="true" tabindex="-1"></a>(d3 <span class="ot">&lt;-</span> t2 <span class="sc">-</span> t1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 0.02611017 secs</code></pre>
+<pre><code>Time difference of 0.02549696 secs</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -785,7 +785,7 @@ length</code></pre>
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># percent faster</span></span>
 <span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>((<span class="fu">as.double</span>(d2<span class="sc">-</span> d3)<span class="sc">/</span><span class="fu">as.double</span>(d3)) <span class="sc">*</span> <span class="dv">100</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2532.84</code></pre>
+<pre><code>[1] 2557.04</code></pre>
 </div>
 </div>
 </section>
