@@ -10,6 +10,12 @@ The document is a [Quarto](https://quarto.org) document using the [quarto-webr](
 
 Feel free to experiment with the code below.
 
+**Exercise:**
+
+How must we change the code to generate the following plot?
+
+![Plot with legend below.](qwebr-canvas-image.png){width="657"}
+
 ## ggplot
 
 How to generate a facet-plot with the whole dataset as grey points in the background.
