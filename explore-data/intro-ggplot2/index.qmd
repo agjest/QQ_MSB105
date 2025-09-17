@@ -338,35 +338,20 @@ ggplot(
 ## Other data in the plot
 
 ```{r}
-## create tibble from scratch
-df_mean <-   tibble(
-  cyl = c("avg. car 4 cyl.", "avg. car 6 cyl.", "avg. car 8 cyl."), 
-  mpg = c(22.66, 17.74, 15.10), 
-  disp = c(105.14, 183.31, 353.10)
+df_mean <- mtcars |> 
+  group_by(cyl) |> 
+  summarise(
+    mpg = mean(mpg),
+    disp = mean(disp)
+  ) |> 
+  mutate(
+    cyl = c("avg. car 4 cyl.", 
+            "avg. car 6 cyl.", "avg. car 8 cyl.")
   )
 ```
 
 ```{r}
-df_mean
-```
-
-## Exercise:
-
-The first column involved some typing. How can we reduce the required
-typing? (hint! see `paste()` and `seq()`)
-
-```{r}
-#| echo: false
-#| eval: false
-df_mean <-   tibble(
-  cyl = paste("avg. car ", 
-              seq(4,8, by = 2), " cyl.", sep = ""), 
-  mpg = c(26.7, 19.7, 15.1), 
-  disp = c(105.1, 183.3, 353.1)
-  )
-```
-
-```{r}
+#| paged.print: false
 df_mean
 ```
 

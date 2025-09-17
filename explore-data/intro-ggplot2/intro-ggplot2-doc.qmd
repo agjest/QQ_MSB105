@@ -333,6 +333,16 @@ ggplot(
 ## Other data in the plot
 
 ```{r}
+#| echo: false
+mtcars |> 
+group_by(cyl) |> 
+summarise(
+m_mpg = mean(mpg),
+m_disp = mean(disp)
+)
+```
+
+```{r}
 ## create tibble from scratch
 df_mean <-   tibble(
   cyl = c("avg. car 4 cyl.", "avg. car 6 cyl.", "avg. car 8 cyl."), 

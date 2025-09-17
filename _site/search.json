@@ -1439,7 +1439,7 @@
     "href": "explore-data/intro-ggplot2/index.html#other-data-in-the-plot",
     "title": "Introduction to ggplot",
     "section": "Other data in the plot",
-    "text": "Other data in the plot\n\n\nCode\n## create tibble from scratch\ndf_mean &lt;-   tibble(\n  cyl = c(\"avg. car 4 cyl.\", \"avg. car 6 cyl.\", \"avg. car 8 cyl.\"), \n  mpg = c(22.66, 17.74, 15.10), \n  disp = c(105.14, 183.31, 353.10)\n  )\n\n\n\n\nCode\ndf_mean\n\n\n# A tibble: 3 × 3\n  cyl               mpg  disp\n  &lt;chr&gt;           &lt;dbl&gt; &lt;dbl&gt;\n1 avg. car 4 cyl.  22.7  105.\n2 avg. car 6 cyl.  17.7  183.\n3 avg. car 8 cyl.  15.1  353."
+    "text": "Other data in the plot\n\n\nCode\ndf_mean &lt;- mtcars |&gt; \n  group_by(cyl) |&gt; \n  summarise(\n    mpg = mean(mpg),\n    disp = mean(disp)\n  ) |&gt; \n  mutate(\n    cyl = c(\"avg. car 4 cyl.\", \n            \"avg. car 6 cyl.\", \"avg. car 8 cyl.\")\n  )\n\n\n\n\nCode\ndf_mean\n\n\n# A tibble: 3 × 3\n  cyl               mpg  disp\n  &lt;chr&gt;           &lt;dbl&gt; &lt;dbl&gt;\n1 avg. car 4 cyl.  26.7  105.\n2 avg. car 6 cyl.  19.7  183.\n3 avg. car 8 cyl.  15.1  353."
   },
   {
     "objectID": "explore-data/intro-ggplot2/index.html#exercise-4",
