@@ -7998,7 +7998,7 @@
     "href": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#facets-whole-dataset-in-background-1",
     "title": "Introduction to ggplot",
     "section": "Facets, whole dataset in background",
-    "text": "Facets, whole dataset in background\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nClick here to experiment with the plot."
+    "text": "Facets, whole dataset in background\n\n#new dataframe to use for the grey points\nhp_acc &lt;- data.frame(\n  hp = mtcars$hp, \n  acc = 1609.347/(2*mtcars$qsec^2)\n  )\n\n#new dataframe to use for the grey points\nhp_acc &lt;- data.frame(\n  hp = mtcars$hp, \n  acc = 1609.347/(2*mtcars$qsec^2)\n  )\n\nmtcars |&gt; \n  arrange(cyl) |&gt; \n  mutate(\n    cyl = fct(as.character(cyl))\n  ) |&gt; \nggplot(\n  mapping = aes(x = hp, y = 1609.347/(2*qsec^2))\n  ) +\n  geom_point(\n    data = hp_acc, \n    mapping = aes(x = hp, y = acc), colour = \"grey80\"\n    ) +\n  facet_wrap(\n    ~cut_number(\n      wt, \n      n =3 , \n      labels = c(\"Light\", \"Medium\", \"Heavy\")\n      )\n    ) +\n  geom_point(\n    mapping = aes(colour = cut_number(\n      wt, \n      n = 3, \n      labels = c(\"Light\", \"Medium\", \"Heavy\")\n      )\n      ),\n    show.legend = FALSE\n    ) +\n  geom_smooth(\n    method = \"lm\", \n    se = FALSE\n    ) +\n  labs(\n    y = \"Mean acceleration (m/s^2)\", \n    colour = \"Weight\"\n    )\n\n\n\n\n\n\n\n\nClick here to experiment with the plot."
   },
   {
     "objectID": "explore-data/intro-ggplot2/intro-ggplot2-doc.html#two-facet-variables",

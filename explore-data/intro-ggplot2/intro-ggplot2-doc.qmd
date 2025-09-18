@@ -734,15 +734,25 @@ ggplot(
 ## Facets, whole dataset in background
 
 ```{r}
-#| echo: false
+#| message: false
 #new dataframe to use for the grey points
 hp_acc <- data.frame(
   hp = mtcars$hp, 
   acc = 1609.347/(2*mtcars$qsec^2)
   )
 
+#new dataframe to use for the grey points
+hp_acc <- data.frame(
+  hp = mtcars$hp, 
+  acc = 1609.347/(2*mtcars$qsec^2)
+  )
+
+mtcars |> 
+  arrange(cyl) |> 
+  mutate(
+    cyl = fct(as.character(cyl))
+  ) |> 
 ggplot(
-  data = mtcars, 
   mapping = aes(x = hp, y = 1609.347/(2*qsec^2))
   ) +
   geom_point(
