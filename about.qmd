@@ -1,5 +1,7 @@
 ---
 title: "About"
+format:
+  html: default
 ---
 
 MSB105 is a course in Data Science at HVL.
@@ -11,4 +13,4 @@ We (still) use [R for Data Science 1e](https://r4ds.had.co.nz) as our syllabus.
 The slides at [MSB105](https://msb105.netlify.app) are what we cover in lectures.
 In addition we run code from the slides, and updated versions, in lectures.
 These sketches are synced against a public repo at Github.
-The current one for autumn 2024 is [here](https://github.com/agjest/first_repo_h24).
+The current one for autumn 2025 is [here](https://github.com/agjest/first_repo_msb105h25).
