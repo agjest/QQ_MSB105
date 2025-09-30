@@ -2279,7 +2279,7 @@
     "href": "explore-data/trans-data/index.html#filter-and-select-in-pipe-cont.",
     "title": "Transforming Data",
     "section": "filter() and select() in pipe cont.",
-    "text": "filter() and select() in pipe cont.\n\n\nCode\n# Use a pipe\nmy_vars_May &lt;-  flights %&gt;%\n  filter(month == 5) %&gt;%\n  select(arr_delay)\n\nmedian(my_vars_May$arr_delay, na.rm = TRUE)\n\n\n[1] -8\n\n\n\nTo calculate the median direct in the pipe we need another function called summarise() that we will cover soon."
+    "text": "filter() and select() in pipe cont.\n\n\nCode\n# Use a pipe\nmy_vars_May &lt;-  flights %&gt;%\n  filter(month == 5) %&gt;%\n  # renaming of variable in select() function\n  select(arrival_delay = arr_delay)\n\nmedian(my_vars_May$arrival_delay, na.rm = TRUE)\n\n\n[1] -8\n\n\n\nNote renaming of variable in select statement\nTo calculate the median direct in the pipe we need another function called summarise() that we will cover soon."
   },
   {
     "objectID": "explore-data/trans-data/index.html#new-variable-use-mutate",
@@ -2328,7 +2328,7 @@
     "href": "explore-data/trans-data/index.html#summarise-and-group_by-1",
     "title": "Transforming Data",
     "section": "summarise() and group_by()",
-    "text": "summarise() and group_by()\n\nHow to get median arr_delay for each month?\n\n\n\n\nCode\nflights %&gt;%\n  group_by(month) %&gt;%\n  summarise(median_arr_delay = median(arr_delay, na.rm = TRUE))\n\n\n# A tibble: 12 × 2\n   month median_arr_delay\n   &lt;int&gt;            &lt;dbl&gt;\n 1     1               -3\n 2     2               -3\n 3     3               -6\n 4     4               -2\n 5     5               -8\n 6     6               -2\n 7     7               -2\n 8     8               -5\n 9     9              -12\n10    10               -7\n11    11               -6\n12    12                2\n\n\n\n\nCode\n#siste\n\n\n\n\n\nMSB105"
+    "text": "summarise() and group_by()\n\nHow to get median arr_delay for each month?\n\n\n\n\nCode\nflights %&gt;%\n  group_by(month) %&gt;%\n  summarise(median_arr_delay = median(arr_delay, na.rm = TRUE))\n\n\n# A tibble: 12 × 2\n   month median_arr_delay\n   &lt;int&gt;            &lt;dbl&gt;\n 1     1               -3\n 2     2               -3\n 3     3               -6\n 4     4               -2\n 5     5               -8\n 6     6               -2\n 7     7               -2\n 8     8               -5\n 9     9              -12\n10    10               -7\n11    11               -6\n12    12                2\n\n\n\n\nCode\n#siste"
   },
   {
     "objectID": "introduction/introduction.html",

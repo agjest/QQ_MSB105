@@ -547,11 +547,13 @@ head(my_vars_May)
 # Use a pipe
 my_vars_May <-  flights %>%
   filter(month == 5) %>%
-  select(arr_delay)
+  # renaming of variable in select() function
+  select(arrival_delay = arr_delay)
 
-median(my_vars_May$arr_delay, na.rm = TRUE)
+median(my_vars_May$arrival_delay, na.rm = TRUE)
 ```
 
+-   Note renaming of variable in `select` statement
 -   To calculate the median direct in the pipe we need another function
     called `summarise()` that we will cover soon.
 
