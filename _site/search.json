@@ -1579,7 +1579,7 @@
     "href": "explore-data/eda/eda.html#generate-references-for-packages-used",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Generate References for Packages used",
-    "text": "Generate References for Packages used\n\n\nCode\n# create a bib file for the R packages \n# used in this document\n# Note! Needs to do a touch(eda.bib) in terminal before first run\n# else stops when bibliography: \"eda.bib\" not found in YAML\npacks &lt;- c(\"tidyverse\", \"nycflights13\", \"gridExtra\",\n           \"modelr\", \"grid\", \"ggplotify\", \"vtable\", \"flextable\")\nknitr::write_bib(\n  packs,\n  file = \"eda.bib\"\n  )\nrm(packs)"
+    "text": "Generate References for Packages used\n\n# create a bib file for the R packages \n# used in this document\n# Note! Needs to do a touch(eda.bib) in terminal before first run\n# else stops when bibliography: \"eda.bib\" not found in YAML\npacks &lt;- c(\"tidyverse\", \"nycflights13\", \"gridExtra\",\n           \"modelr\", \"grid\", \"ggplotify\", \"vtable\", \"flextable\")\nknitr::write_bib(\n  packs,\n  file = \"eda.bib\"\n  )\nrm(packs)"
   },
   {
     "objectID": "explore-data/eda/eda.html#chapter-6-workflow",
@@ -1607,14 +1607,14 @@
     "href": "explore-data/eda/eda.html#single-variable-load-data",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Single variable, load data",
-    "text": "Single variable, load data\n\n\n\nLoad the data\n\n\n\nCode\nmy_heights &lt;- modelr::heights\n\n\n\nAny NAs?\n\n\n\nCode\n# NAs in my_heights?\nmy_heights %&gt;% \n  apply(MARGIN = 2, FUN = is.na) %&gt;% \n  apply(MARGIN = 2, FUN = sum) |&gt; \n  print(width = 40)\n\n\n   income    height    weight       age \n        0         0        95         0 \n  marital       sex education      afqt \n        0         0        10       262 \n\n\n\n\nor\n\n\n\nCode\n# NAs in my_heights?\nmy_heights %&gt;% \n  is.na() %&gt;% \n  apply(MARGIN = 2, FUN = sum)  |&gt; \n  print(width = 40)\n\n\n   income    height    weight       age \n        0         0        95         0 \n  marital       sex education      afqt \n        0         0        10       262"
+    "text": "Single variable, load data\n\n\n\nLoad the data\n\n\nmy_heights &lt;- modelr::heights\n\n\nAny NAs?\n\n\n# NAs in my_heights?\nmy_heights %&gt;% \n  apply(MARGIN = 2, FUN = is.na) %&gt;% \n  apply(MARGIN = 2, FUN = sum) |&gt; \n  print(width = 40)\n\n   income    height    weight       age \n        0         0        95         0 \n  marital       sex education      afqt \n        0         0        10       262 \n\n\n\n\nor\n\n\n# NAs in my_heights?\nmy_heights %&gt;% \n  is.na() %&gt;% \n  apply(MARGIN = 2, FUN = sum)  |&gt; \n  print(width = 40)\n\n   income    height    weight       age \n        0         0        95         0 \n  marital       sex education      afqt \n        0         0        10       262"
   },
   {
     "objectID": "explore-data/eda/eda.html#single-variable-load-data-cont.",
     "href": "explore-data/eda/eda.html#single-variable-load-data-cont.",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Single variable, load data cont.",
-    "text": "Single variable, load data cont.\n\n\nNicer solution\n\n\nCode\n# number of NAs in each variable\n# drop variables with no NA\nmy_heights %&gt;% \n  is.na() %&gt;% \n  colSums() |&gt; \n  print(width = 40)\n\n\n   income    height    weight       age \n        0         0        95         0 \n  marital       sex education      afqt \n        0         0        10       262 \n\n\n\nor\n\n\nCode\n# number of NAs in each variable\n# drop variables with no NA\nmy_heights %&gt;% \n  is.na() %&gt;% \n  colSums() %&gt;% \n  .[. &gt; 0]\n\n\n   weight education      afqt \n       95        10       262"
+    "text": "Single variable, load data cont.\n\n\n\nNicer solution\nMore in line with tidyverse\n\n\n# number of NAs in each variable\n# drop variables with no NA\nmy_heights %&gt;% \n  is.na() %&gt;% \n  colSums() |&gt; \n  print(width = 40)\n\n   income    height    weight       age \n        0         0        95         0 \n  marital       sex education      afqt \n        0         0        10       262 \n\n\n\nor\n\n\n# number of NAs in each variable\n# drop variables with no NA\nmy_heights %&gt;% \n  is.na() %&gt;% \n  colSums() %&gt;% \n  .[. &gt; 0]\n\n   weight education      afqt \n       95        10       262 \n\n\n\n\nthe built in pipe is more restrictive\n\n\n# number of NAs in each variable\n# drop variables with no NA\nmy_heights |&gt; \n  is.na() |&gt; \n  colSums()  |&gt;  \n  _[_ &gt; 0]\n\nError in \"_\"[\"_\" &gt; 0] :    pipe placeholder may only appear once (&lt;input&gt;:4:3) Error during wrapup: not that many frames on the stack Error: no more error handlers available (recursive errors?); invoking 'abort' restart"
   },
   {
     "objectID": "explore-data/eda/eda.html#descriptive-statistics",
@@ -1628,63 +1628,63 @@
     "href": "explore-data/eda/eda.html#descriptive-statistics-ex.-my_heights",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Descriptive Statistics ex. my_heights",
-    "text": "Descriptive Statistics ex. my_heights\n\nSplits variables into two tables\n\n\n\n\n\n\nCode\n# package vtable \n# must be installed\nmy_heights %&gt;% \n  select(\n    -marital, \n    -sex\n    ) %&gt;% \n  # . to stop RStudio \n  # complaining about \n  # no data\n  vtable::st(data = ., out = \"return\") |&gt; \n  as_flextable()\n\n\n\n\n\n\n\nTable 1: Numeric variables.\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxcharactercharactercharactercharactercharactercharactercharactercharacterincome70064120455892016655000343830height7006674.152647084weight69111884476157212524age7006512.247495356education6996132.61121520afqt6744412901565100n: 6"
+    "text": "Descriptive Statistics ex. my_heights\n\nSplits variables into two tables\n\n\n\n\n\n# package vtable \n# must be installed\nmy_heights %&gt;% \n  select(\n    -marital, \n    -sex\n    ) %&gt;% \n  # . to stop RStudio \n  # complaining about \n  # no data\n  vtable::st(data = ., out = \"return\") |&gt; \n  as_flextable()\n\n\n\n\n\n\nTable 1: Numeric variables.\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxcharactercharactercharactercharactercharactercharactercharactercharacterincome70064120455892016655000343830height7006674.152647084weight69111884476157212524age7006512.247495356education6996132.61121520afqt6744412901565100n: 6"
   },
   {
     "objectID": "explore-data/eda/eda.html#descriptive-statistics-ex.-my_heights-1",
     "href": "explore-data/eda/eda.html#descriptive-statistics-ex.-my_heights-1",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Descriptive Statistics ex. my_heights",
-    "text": "Descriptive Statistics ex. my_heights\n\n\n\n\nCode\n# package vtable must \n# be installed\nmy_heights %&gt;% \n  select(marital, sex) %&gt;% \n  vtable::st(\n    data = ., \n    out = \"return\"\n    ) |&gt; \n  as_flextable()\n\n\n\n\n\n\n\nTable 2: Category variables.\n\n\n\nVariableNPercentcharactercharactercharactermarital7006... single112416%... married380654%... separated3665%... divorced154922%... widowed1612%sex7006... male340249%... female360451%n: 9"
+    "text": "Descriptive Statistics ex. my_heights\n\n\n\n# package vtable must \n# be installed\nmy_heights %&gt;% \n  select(marital, sex) %&gt;% \n  vtable::st(\n    data = ., \n    out = \"return\"\n    ) |&gt; \n  as_flextable()\n\n\n\n\n\n\nTable 2: Category variables.\n\n\n\nVariableNPercentcharactercharactercharactermarital7006... single112416%... married380654%... separated3665%... divorced154922%... widowed1612%sex7006... male340249%... female360451%n: 9"
   },
   {
     "objectID": "explore-data/eda/eda.html#a-simpler-alternative",
     "href": "explore-data/eda/eda.html#a-simpler-alternative",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "A simpler alternative",
-    "text": "A simpler alternative\n\nuse use_df_printer() from the flextable package\nwill print dataframes/tibbles nicely\nthe option out = \"return\" to st() ensures that a dataframe is returned\n\n\n\n\n\nCode\n# next line gives dataframe/tibble\n# as flextable\nuse_df_printer()\nmy_heights %&gt;% \n  select(marital, sex) %&gt;% \n  vtable::st(out = \"return\") \n\n\n\nVariableNPercentcharactercharactercharactermarital7006... single112416%... married380654%... separated3665%... divorced154922%... widowed1612%sex7006... male340249%... female360451%n: 9"
+    "text": "A simpler alternative\n\nuse use_df_printer() from the flextable package\nwill print dataframes/tibbles nicely\nthe option out = \"return\" to st() ensures that a dataframe is returned\n\n\n\n\n# next line gives dataframe/tibble\n# as flextable\nuse_df_printer()\nmy_heights %&gt;% \n  select(marital, sex) %&gt;% \n  vtable::st(out = \"return\") \n\n\nVariableNPercentcharactercharactercharactermarital7006... single112416%... married380654%... separated3665%... divorced154922%... widowed1612%sex7006... male340249%... female360451%n: 9"
   },
   {
     "objectID": "explore-data/eda/eda.html#descriptive-statistics-ex.-my_heights-2",
     "href": "explore-data/eda/eda.html#descriptive-statistics-ex.-my_heights-2",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Descriptive Statistics ex. my_heights",
-    "text": "Descriptive Statistics ex. my_heights\n\n\n\n\nCode\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  select(-marital) %&gt;% \n  vtable::st(\n    group = 'sex',\n    group.long = TRUE,\n    out = \"return\"\n    )\n```\n\n\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxcharactercharactercharactercharactercharactercharactercharactercharactersex: maleincome340253510693990500068000343830height340270355687284weight33922044194176225524age3402512.247495356education3396132.61121420afqt3248423001567100sex: femaleincome360429588353470045000343830height3604642.752626679weight35191734376143195430age3604512.247505356education3600132.62121520afqt3496412801563100n: 15"
+    "text": "Descriptive Statistics ex. my_heights\n\n\n\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  select(-marital) %&gt;% \n  vtable::st(\n    group = 'sex',\n    group.long = TRUE,\n    out = \"return\"\n    )\n```\n\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxcharactercharactercharactercharactercharactercharactercharactercharactersex: maleincome340253510693990500068000343830height340270355687284weight33922044194176225524age3402512.247495356education3396132.61121420afqt3248423001567100sex: femaleincome360429588353470045000343830height3604642.752626679weight35191734376143195430age3604512.247505356education3600132.62121520afqt3496412801563100n: 15"
   },
   {
     "objectID": "explore-data/eda/eda.html#desc.-stat.-ex.-my_heights",
     "href": "explore-data/eda/eda.html#desc.-stat.-ex.-my_heights",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Desc. Stat. ex. my_heights",
-    "text": "Desc. Stat. ex. my_heights\n\n\nmarried/unmarried women\n\n\nCode\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'female') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\n\nTable 3: Difference between married an unmarried women.\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxcharactercharactercharactercharactercharactercharactercharactercharactermarried: Noincome170326682309620041500343830height1703642.852626675weight16621774576145200410age1703512.347495356education1701132.62121420afqt1647332601151100married: Yesincome190132190386800047000343830height1901642.754626679weight18571694082140190430age1901512.247505356education1899142.63121620afqt1849472802372100n: 15"
+    "text": "Desc. Stat. ex. my_heights\n\n\nmarried/unmarried women\n\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'female') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\nTable 3: Difference between married an unmarried women.\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxcharactercharactercharactercharactercharactercharactercharactercharactermarried: Noincome170326682309620041500343830height1703642.852626675weight16621774576145200410age1703512.347495356education1701132.62121420afqt1647332601151100married: Yesincome190132190386800047000343830height1901642.754626679weight18571694082140190430age1901512.247505356education1899142.63121620afqt1849472802372100n: 15"
   },
   {
     "objectID": "explore-data/eda/eda.html#less-info.-marriedunmarried-women",
     "href": "explore-data/eda/eda.html#less-info.-marriedunmarried-women",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Less info. married/unmarried women",
-    "text": "Less info. married/unmarried women\n\n\n\n\nCode\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'female') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    summ = c(\"notNA(x)\" , \"mean(x)\", \n             \"sd(x)\"),\n    summ.names = c(\"N\", \"Mean\", \"SD\"),\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\n\nTable 4: Difference between married an unmarried women. Simplified table.\n\n\n\nVariableNMeanSDcharactercharactercharactercharactermarried: Noincome17032668230962height1703642.8weight166217745age1703512.3education1701132.6afqt16473326married: Yesincome19013219038680height1901642.7weight185716940age1901512.2education1899142.6afqt18494728n: 15"
+    "text": "Less info. married/unmarried women\n\n\n\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'female') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    summ = c(\"notNA(x)\" , \"mean(x)\", \n             \"sd(x)\"),\n    summ.names = c(\"N\", \"Mean\", \"SD\"),\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\nTable 4: Difference between married an unmarried women. Simplified table.\n\n\n\nVariableNMeanSDcharactercharactercharactercharactermarried: Noincome17032668230962height1703642.8weight166217745age1703512.3education1701132.6afqt16473326married: Yesincome19013219038680height1901642.7weight185716940age1901512.2education1899142.6afqt18494728n: 15"
   },
   {
     "objectID": "explore-data/eda/eda.html#desc.-stat.-ex.-my_heights-1",
     "href": "explore-data/eda/eda.html#desc.-stat.-ex.-my_heights-1",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Desc. Stat. ex. my_heights",
-    "text": "Desc. Stat. ex. my_heights\n\n\nmarried/unmarried men\n\n\nCode\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'male') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\n\nTable 5: Difference between married an unmarried men.\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxcharactercharactercharactercharactercharactercharactercharactercharactermarried: Noincome149732122505200045000343830height1497703.155687284weight14922004294170222524age1497512.247495356education1494122.21121420afqt1426342801055100married: Yesincome1905703177717102800083000343830height1905702.957687281weight190020739103180228480age1905512.347495356education1902142.72121620afqt1822483002174100n: 15"
+    "text": "Desc. Stat. ex. my_heights\n\n\nmarried/unmarried men\n\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'male') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\nTable 5: Difference between married an unmarried men.\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxcharactercharactercharactercharactercharactercharactercharactercharactermarried: Noincome149732122505200045000343830height1497703.155687284weight14922004294170222524age1497512.247495356education1494122.21121420afqt1426342801055100married: Yesincome1905703177717102800083000343830height1905702.957687281weight190020739103180228480age1905512.347495356education1902142.72121620afqt1822483002174100n: 15"
   },
   {
     "objectID": "explore-data/eda/eda.html#less-info.-marriedunmarried-men",
     "href": "explore-data/eda/eda.html#less-info.-marriedunmarried-men",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Less info. married/unmarried men",
-    "text": "Less info. married/unmarried men\n\n\n\n\nCode\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'male') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    summ = c(\"notNA(x)\" , \"mean(x)\", \n             \"sd(x)\"),\n    summ.names = c(\"N\", \"Mean\", \"SD\"),\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\n\nTable 6: Difference between married an unmarried men. Simplified table.\n\n\n\nVariableNMeanSDcharactercharactercharactercharactermarried: Noincome14973212250520height1497703.1weight149220042age1497512.2education1494122.2afqt14263428married: Yesincome19057031777171height1905702.9weight190020739age1905512.3education1902142.7afqt18224830n: 15"
+    "text": "Less info. married/unmarried men\n\n\n\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nmy_heights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'male') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    summ = c(\"notNA(x)\" , \"mean(x)\", \n             \"sd(x)\"),\n    summ.names = c(\"N\", \"Mean\", \"SD\"),\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\nTable 6: Difference between married an unmarried men. Simplified table.\n\n\n\nVariableNMeanSDcharactercharactercharactercharactermarried: Noincome14973212250520height1497703.1weight149220042age1497512.2education1494122.2afqt14263428married: Yesincome19057031777171height1905702.9weight190020739age1905512.3education1902142.7afqt18224830n: 15"
   },
   {
     "objectID": "explore-data/eda/eda.html#single-variable-graphical-description-bar-chart",
     "href": "explore-data/eda/eda.html#single-variable-graphical-description-bar-chart",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Single variable graphical description, bar chart",
-    "text": "Single variable graphical description, bar chart\nSimplest is bar-chart\n\n\n\n\nCode\nggplot(data = my_heights) +\n  geom_bar(\n    mapping = aes(\n      x = education\n      ), \n    na.rm = TRUE\n    ) +\n   theme(\n     axis.text = element_text(\n       size = 15\n       ),\n    axis.title = element_text(\n       size = 15\n       )\n   )\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Bar chart of education."
+    "text": "Single variable graphical description, bar chart\nSimplest is bar-chart\n\n\n\nggplot(data = my_heights) +\n  geom_bar(\n    mapping = aes(\n      x = education\n      ), \n    na.rm = TRUE\n    ) +\n   theme(\n     axis.text = element_text(\n       size = 15\n       ),\n    axis.title = element_text(\n       size = 15\n       )\n   )\n\n\n\n\n\n\n\n\n\n\nFigure 1: Bar chart of education."
   },
   {
     "objectID": "explore-data/eda/eda.html#the-peaks",
@@ -1705,14 +1705,14 @@
     "href": "explore-data/eda/eda.html#hist-and-geom_histogram",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "hist() and geom_histogram()",
-    "text": "hist() and geom_histogram()\n\n\nCode\nhist1 &lt;- ggplotify::as.ggplot(~hist(my_heights$income, breaks = 20))\nhist2 &lt;- ggplot(my_heights, mapping = aes(x = income)) +\n  geom_histogram(bins = 20)\n\ngridExtra::grid.arrange(hist1, hist2, ncol = 2)\n\n\n\n\nFigure 2"
+    "text": "hist() and geom_histogram()\n\nhist1 &lt;- ggplotify::as.ggplot(~hist(my_heights$income, breaks = 20))\nhist2 &lt;- ggplot(my_heights, mapping = aes(x = income)) +\n  geom_histogram(bins = 20)\n\ngridExtra::grid.arrange(hist1, hist2, ncol = 2)\n\n\n\nFigure 2"
   },
   {
     "objectID": "explore-data/eda/eda.html#geom_histogram-other-variables",
     "href": "explore-data/eda/eda.html#geom_histogram-other-variables",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "geom_histogram() other variables",
-    "text": "geom_histogram() other variables\n\n\nCode\nhist3 &lt;- ggplot(my_heights, mapping = aes(x = income)) +\n  geom_histogram(bins = 40, na.rm = TRUE)\nhist4 &lt;- ggplot(my_heights, mapping = aes(x = height)) +\n  geom_histogram(bins = 40, na.rm = TRUE)\nhist5 &lt;- ggplot(my_heights, mapping = aes(x = weight)) +\n  geom_histogram(bins = 40, na.rm = TRUE)\ngridExtra::grid.arrange(hist3, hist4, hist5, nrow = 1)"
+    "text": "geom_histogram() other variables\n\nhist3 &lt;- ggplot(my_heights, mapping = aes(x = income)) +\n  geom_histogram(bins = 40, na.rm = TRUE)\nhist4 &lt;- ggplot(my_heights, mapping = aes(x = height)) +\n  geom_histogram(bins = 40, na.rm = TRUE)\nhist5 &lt;- ggplot(my_heights, mapping = aes(x = weight)) +\n  geom_histogram(bins = 40, na.rm = TRUE)\ngridExtra::grid.arrange(hist3, hist4, hist5, nrow = 1)"
   },
   {
     "objectID": "explore-data/eda/eda.html#geom_histogram-other-variables-1",
@@ -1726,7 +1726,7 @@
     "href": "explore-data/eda/eda.html#geom_histogram-other-variables-2",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "geom_histogram() other variables",
-    "text": "geom_histogram() other variables\n\n\nCode\nhist6 &lt;- ggplot(my_heights, mapping = aes(x = age)) +\n  geom_histogram(bins = 40, na.rm = TRUE)\nhist7 &lt;- ggplot(my_heights, mapping = aes(x = education)) +\n  geom_histogram(bins = 40, na.rm = TRUE)\nhist8 &lt;- ggplot(my_heights, mapping = aes(x = afqt)) +\n  geom_histogram(bins = 40, na.rm = TRUE)\ngridExtra::grid.arrange(hist6, hist7, hist8, nrow = 1)"
+    "text": "geom_histogram() other variables\n\nhist6 &lt;- ggplot(my_heights, mapping = aes(x = age)) +\n  geom_histogram(bins = 40, na.rm = TRUE)\nhist7 &lt;- ggplot(my_heights, mapping = aes(x = education)) +\n  geom_histogram(bins = 40, na.rm = TRUE)\nhist8 &lt;- ggplot(my_heights, mapping = aes(x = afqt)) +\n  geom_histogram(bins = 40, na.rm = TRUE)\ngridExtra::grid.arrange(hist6, hist7, hist8, nrow = 1)"
   },
   {
     "objectID": "explore-data/eda/eda.html#geom_histogram-other-variables-3",
@@ -1754,7 +1754,7 @@
     "href": "explore-data/eda/eda.html#geom_density-faceted-on-sex-1",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "geom_density(); faceted on sex",
-    "text": "geom_density(); faceted on sex\n\n\nCode\nmy_heights %&gt;% \n  mutate(\n    edu_fac = cut(education, \n                  breaks = c(0, 12, 14, 16, 21), \n                  labels = c(\"NotHS\", \"NotTC\", \"NotC\", \"C+\"),\n                  right = FALSE) \n  ) %&gt;% \n  filter(!is.na(edu_fac) & income &gt; 0) %&gt;%\n  ggplot(mapping = aes(x = income, fill = edu_fac, colour = edu_fac)) +\n  geom_density(alpha = 0.2, na.rm = TRUE) + \n  facet_wrap(~sex)"
+    "text": "geom_density(); faceted on sex\n\nmy_heights %&gt;% \n  mutate(\n    edu_fac = cut(education, \n                  breaks = c(0, 12, 14, 16, 21), \n                  labels = c(\"NotHS\", \"NotTC\", \"NotC\", \"C+\"),\n                  right = FALSE) \n  ) %&gt;% \n  filter(!is.na(edu_fac) & income &gt; 0) %&gt;%\n  ggplot(mapping = aes(x = income, fill = edu_fac, colour = edu_fac)) +\n  geom_density(alpha = 0.2, na.rm = TRUE) + \n  facet_wrap(~sex)"
   },
   {
     "objectID": "explore-data/eda/eda.html#geom_density-faceted-on-sex-2",
@@ -1768,7 +1768,7 @@
     "href": "explore-data/eda/eda.html#geom_density-facet-edu_fac",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "geom_density(); facet edu_fac",
-    "text": "geom_density(); facet edu_fac\n\nPerhaps better to facet on education\n\n\n\n\nCode\nmy_heights %&gt;% \n  mutate(\n    edu_fac = cut(education, \n                  breaks = c(0, 12, 14, 16, 21), \n                  labels = c(\"NotHS\", \"NotTC\", \"NotC\", \"C+\"),\n                  right = FALSE) \n  ) %&gt;% \n  filter(!is.na(edu_fac) & income &gt; 0) %&gt;%\n  ggplot(mapping = aes(x = income, fill = sex, colour = sex)) +\n  geom_density(alpha = 0.2, na.rm = TRUE) + \n  facet_wrap(~edu_fac)"
+    "text": "geom_density(); facet edu_fac\n\nPerhaps better to facet on education\n\n\n\nmy_heights %&gt;% \n  mutate(\n    edu_fac = cut(education, \n                  breaks = c(0, 12, 14, 16, 21), \n                  labels = c(\"NotHS\", \"NotTC\", \"NotC\", \"C+\"),\n                  right = FALSE) \n  ) %&gt;% \n  filter(!is.na(edu_fac) & income &gt; 0) %&gt;%\n  ggplot(mapping = aes(x = income, fill = sex, colour = sex)) +\n  geom_density(alpha = 0.2, na.rm = TRUE) + \n  facet_wrap(~edu_fac)"
   },
   {
     "objectID": "explore-data/eda/eda.html#geom_density-facet-edu_fac-1",
@@ -1782,28 +1782,28 @@
     "href": "explore-data/eda/eda.html#income-equal-to-0",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Income equal to 0?",
-    "text": "Income equal to 0?\n\n\nCode\nmy_heights %&gt;% \n  dim()\n\n\n[1] 7006    8\n\n\n\n\n\nCode\nmy_heights %&gt;% \n  filter(income &lt; 1) %&gt;% \n  dim()\n\n\n[1] 1740    8"
+    "text": "Income equal to 0?\n\nmy_heights %&gt;% \n  dim()\n\n[1] 7006    8\n\n\n\n\nmy_heights %&gt;% \n  filter(income &lt; 1) %&gt;% \n  dim()\n\n[1] 1740    8"
   },
   {
     "objectID": "explore-data/eda/eda.html#income-equal-to-0-1",
     "href": "explore-data/eda/eda.html#income-equal-to-0-1",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Income equal to 0?",
-    "text": "Income equal to 0?\n\n\n\nCode\nmy_heights %&gt;% \n  filter(income &lt; 1) %&gt;%\n  select(sex) %&gt;%\n  group_by(sex) %&gt;%\n  table() \n\n\n\nsexCountPercentmale74542.8%female99557.2%Total1,740100.0%"
+    "text": "Income equal to 0?\n\n\nmy_heights %&gt;% \n  filter(income &lt; 1) %&gt;%\n  select(sex) %&gt;%\n  group_by(sex) %&gt;%\n  table() \n\n\nsexCountPercentmale74542.8%female99557.2%Total1,740100.0%"
   },
   {
     "objectID": "explore-data/eda/eda.html#income-equal-to-0-2",
     "href": "explore-data/eda/eda.html#income-equal-to-0-2",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Income equal to 0?",
-    "text": "Income equal to 0?\n\nNo income, grouped by sex and edu_fac\n\n\n\n\nCode\nmy_heights %&gt;% \n  mutate(\n    edu_fac = cut(education, \n                  breaks = c(0, 12, 14, 16, 21), \n                  labels = c(\"NotHS\", \"NotTC\", \"NotC\", \"C+\"),\n                  right = FALSE) \n  ) %&gt;% \n  filter(income &lt; 1) %&gt;%\n  select(sex, edu_fac) %&gt;%\n  group_by(sex) %&gt;%\n  table()\n\n\nsexedu_facNotHSNotTCNotCC+TotalmaleCount252 (14.5%)359 (20.7%)74 (4.3%)56 (3.2%)741 (42.8%)Mar. pct (1)50.7% ; 34.0%43.0% ; 48.4%35.1% ; 10.0%29.6% ; 7.6%femaleCount245 (14.1%)476 (27.5%)137 (7.9%)133 (7.7%)991 (57.2%)Mar. pct49.3% ; 24.7%57.0% ; 48.0%64.9% ; 13.8%70.4% ; 13.4%TotalCount497 (28.7%)835 (48.2%)211 (12.2%)189 (10.9%)1,732 (100.0%) (1) Columns and rows percentages"
+    "text": "Income equal to 0?\n\nNo income, grouped by sex and edu_fac\n\n\n\nmy_heights %&gt;% \n  mutate(\n    edu_fac = cut(education, \n                  breaks = c(0, 12, 14, 16, 21), \n                  labels = c(\"NotHS\", \"NotTC\", \"NotC\", \"C+\"),\n                  right = FALSE) \n  ) %&gt;% \n  filter(income &lt; 1) %&gt;%\n  select(sex, edu_fac) %&gt;%\n  group_by(sex) %&gt;%\n  table()\n\nsexedu_facNotHSNotTCNotCC+TotalmaleCount252 (14.5%)359 (20.7%)74 (4.3%)56 (3.2%)741 (42.8%)Mar. pct (1)50.7% ; 34.0%43.0% ; 48.4%35.1% ; 10.0%29.6% ; 7.6%femaleCount245 (14.1%)476 (27.5%)137 (7.9%)133 (7.7%)991 (57.2%)Mar. pct49.3% ; 24.7%57.0% ; 48.0%64.9% ; 13.8%70.4% ; 13.4%TotalCount497 (28.7%)835 (48.2%)211 (12.2%)189 (10.9%)1,732 (100.0%) (1) Columns and rows percentages"
   },
   {
     "objectID": "explore-data/eda/eda.html#boxplot",
     "href": "explore-data/eda/eda.html#boxplot",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Boxplot",
-    "text": "Boxplot\n\n\nCode\nmy_heights %&gt;% \n  mutate(\n    edu_fac = cut(education, \n                  breaks = c(0, 12, 14, 16, 21), \n                  labels = c(\"NotHS\", \"NotTC\", \"NotC\", \"C+\"),\n                  right = FALSE) \n  ) %&gt;% \n  filter(income &gt; 0) %&gt;% \n  ggplot(mapping = aes(x = edu_fac, y = income)) +\n  facet_wrap(~sex) + \n  geom_boxplot()"
+    "text": "Boxplot\n\nmy_heights %&gt;% \n  mutate(\n    edu_fac = cut(education, \n                  breaks = c(0, 12, 14, 16, 21), \n                  labels = c(\"NotHS\", \"NotTC\", \"NotC\", \"C+\"),\n                  right = FALSE) \n  ) %&gt;% \n  filter(income &gt; 0) %&gt;% \n  ggplot(mapping = aes(x = edu_fac, y = income)) +\n  facet_wrap(~sex) + \n  geom_boxplot()"
   },
   {
     "objectID": "explore-data/eda/eda.html#boxplot-1",
@@ -1817,7 +1817,7 @@
     "href": "explore-data/eda/eda.html#boxplot-code-turned-90",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Boxplot code, turned 90",
-    "text": "Boxplot code, turned 90\n\n\nCode\nmy_heights %&gt;% \n  mutate(\n    edu_fac = cut(education, \n                  breaks = c(0, 12, 14, 16, 21), \n                  labels = c(\"NotHS\", \"NotTC\", \"NotC\", \"C+\"),\n                  right = FALSE) \n  ) %&gt;% \n  filter(income &gt; 0) %&gt;% \n  ggplot(mapping = aes(x = edu_fac, y = income)) +\n  facet_wrap(~sex) + \n  geom_boxplot() + \n  coord_flip()"
+    "text": "Boxplot code, turned 90\n\nmy_heights %&gt;% \n  mutate(\n    edu_fac = cut(education, \n                  breaks = c(0, 12, 14, 16, 21), \n                  labels = c(\"NotHS\", \"NotTC\", \"NotC\", \"C+\"),\n                  right = FALSE) \n  ) %&gt;% \n  filter(income &gt; 0) %&gt;% \n  ggplot(mapping = aes(x = edu_fac, y = income)) +\n  facet_wrap(~sex) + \n  geom_boxplot() + \n  coord_flip()"
   },
   {
     "objectID": "explore-data/eda/eda.html#boxplot-plot-turned-90",
@@ -1859,7 +1859,7 @@
     "href": "explore-data/eda/eda.html#answer-quiz",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Answer Quiz",
-    "text": "Answer Quiz\n\n\nCode\nset.seed(999)\nmy_data &lt;- tibble(val = c(round(runif(97, 1, 10), 0), rep(NA, 3)))\ng &lt;- ggplot(my_data, mapping = aes(x = val)) \ng1 &lt;- g + geom_histogram()\ng2 &lt;- g + geom_bar()\ngridExtra::grid.arrange(g1, g2, ncol = 2)\nsum(my_data$val); mean(my_data$val)\nsum(my_data$val, na.rm = TRUE); mean(my_data$val, na.rm = TRUE)"
+    "text": "Answer Quiz\n\nset.seed(999)\nmy_data &lt;- tibble(val = c(round(runif(97, 1, 10), 0), rep(NA, 3)))\ng &lt;- ggplot(my_data, mapping = aes(x = val)) \ng1 &lt;- g + geom_histogram()\ng2 &lt;- g + geom_bar()\ngridExtra::grid.arrange(g1, g2, ncol = 2)\nsum(my_data$val); mean(my_data$val)\nsum(my_data$val, na.rm = TRUE); mean(my_data$val, na.rm = TRUE)"
   },
   {
     "objectID": "explore-data/eda/eda.html#answer-quiz-1",
@@ -1873,21 +1873,21 @@
     "href": "explore-data/eda/eda.html#answer-quiz-2",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Answer Quiz",
-    "text": "Answer Quiz\n\nWarnings about NAs from ggplot.\n\nCode\nsum(my_data$val); mean(my_data$val)\n\n\n[1] NA\n\n\n[1] NA\n\n\nCode\nsum(my_data$val, na.rm = TRUE); mean(my_data$val, na.rm = TRUE)\n\n\n[1] 519\n\n\n[1] 5.350515"
+    "text": "Answer Quiz\n\nWarnings about NAs from ggplot.\nsum(my_data$val); mean(my_data$val)\n\n[1] NA\n\n\n[1] NA\n\nsum(my_data$val, na.rm = TRUE); mean(my_data$val, na.rm = TRUE)\n\n[1] 519\n\n\n[1] 5.350515"
   },
   {
     "objectID": "explore-data/eda/eda.html#answer-quiz-3",
     "href": "explore-data/eda/eda.html#answer-quiz-3",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Answer Quiz",
-    "text": "Answer Quiz\n\nUsing na.rm = TRUE.\n\n\n\n\nCode\nset.seed(999)\nmy_data &lt;- tibble(val = c(round(runif(97, 1, 10), 0), rep(NA, 3)))\ng &lt;- ggplot(my_data, mapping = aes(x = val)) \ng1 &lt;- g + geom_histogram(binwidth = 1, na.rm = TRUE)\ng2 &lt;- g + geom_bar(na.rm = TRUE)\ngridExtra::grid.arrange(g1, g2, ncol = 2)\nsum(my_data$val); mean(my_data$val)\nsum(my_data$val, na.rm = TRUE); mean(my_data$val, na.rm = TRUE)"
+    "text": "Answer Quiz\n\nUsing na.rm = TRUE.\n\n\n\nset.seed(999)\nmy_data &lt;- tibble(val = c(round(runif(97, 1, 10), 0), rep(NA, 3)))\ng &lt;- ggplot(my_data, mapping = aes(x = val)) \ng1 &lt;- g + geom_histogram(binwidth = 1, na.rm = TRUE)\ng2 &lt;- g + geom_bar(na.rm = TRUE)\ngridExtra::grid.arrange(g1, g2, ncol = 2)\nsum(my_data$val); mean(my_data$val)\nsum(my_data$val, na.rm = TRUE); mean(my_data$val, na.rm = TRUE)"
   },
   {
     "objectID": "explore-data/eda/eda.html#answer-quiz-4",
     "href": "explore-data/eda/eda.html#answer-quiz-4",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Answer Quiz",
-    "text": "Answer Quiz\n\n\n\nCode\nsum(my_data$val); mean(my_data$val)\n\n\n[1] NA\n\n\n[1] NA\n\n\nCode\nsum(my_data$val, na.rm = TRUE); mean(my_data$val, na.rm = TRUE)\n\n\n[1] 519\n\n\n[1] 5.350515"
+    "text": "Answer Quiz\n\n\nsum(my_data$val); mean(my_data$val)\n\n[1] NA\n\n\n[1] NA\n\nsum(my_data$val, na.rm = TRUE); mean(my_data$val, na.rm = TRUE)\n\n[1] 519\n\n\n[1] 5.350515"
   },
   {
     "objectID": "explore-data/eda/eda.html#answer-quiz-5",
@@ -1915,7 +1915,7 @@
     "href": "explore-data/eda/eda.html#categorical-and-continuous-variable-code",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Categorical and continuous variable; code",
-    "text": "Categorical and continuous variable; code\n\n\nCode\nmy_heights %&gt;% \n  mutate(\n    edu_fac = cut(education, \n                  breaks = c(0, 12, 14, 16, 21), \n                  labels = c(\"NotHS\", \"NotTC\", \"NotC\", \"C+\"),\n                  right = FALSE) \n  ) %&gt;% \n  filter(income &gt; 0 & !is.na(weight) & !is.na(afqt) & !is.na(edu_fac)) %&gt;%\nggplot(mapping = aes(x = income, y = ..density..)) +\n  geom_freqpoly(mapping = aes(colour = edu_fac), binwidth = 10000)\n\n\n\nTry also binwidth = 3000"
+    "text": "Categorical and continuous variable; code\n\nmy_heights %&gt;% \n  mutate(\n    edu_fac = cut(education, \n                  breaks = c(0, 12, 14, 16, 21), \n                  labels = c(\"NotHS\", \"NotTC\", \"NotC\", \"C+\"),\n                  right = FALSE) \n  ) %&gt;% \n  filter(income &gt; 0 & !is.na(weight) & !is.na(afqt) & !is.na(edu_fac)) %&gt;%\nggplot(mapping = aes(x = income, y = ..density..)) +\n  geom_freqpoly(mapping = aes(colour = edu_fac), binwidth = 10000)\n\n\nTry also binwidth = 3000"
   },
   {
     "objectID": "explore-data/eda/eda.html#categorical-and-continuous-variable-plot",
@@ -1929,7 +1929,7 @@
     "href": "explore-data/eda/eda.html#two-categorical-variable-code",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Two categorical variable; code",
-    "text": "Two categorical variable; code\n\n\nCode\nmy_heights %&gt;% \n  mutate(\n    edu_fac = cut(education, \n                  breaks = c(0, 12, 14, 16, 21), \n                  labels = c(\"NotHS\", \"NotTC\", \"NotC\", \"C+\"),\n                  right = FALSE) \n  ) %&gt;% \n  filter(income &gt; 0 & !is.na(weight) & !is.na(afqt) & !is.na(edu_fac)) %&gt;%\n  ggplot() +\n  geom_count(mapping = aes(x = marital, y = edu_fac))"
+    "text": "Two categorical variable; code\n\nmy_heights %&gt;% \n  mutate(\n    edu_fac = cut(education, \n                  breaks = c(0, 12, 14, 16, 21), \n                  labels = c(\"NotHS\", \"NotTC\", \"NotC\", \"C+\"),\n                  right = FALSE) \n  ) %&gt;% \n  filter(income &gt; 0 & !is.na(weight) & !is.na(afqt) & !is.na(edu_fac)) %&gt;%\n  ggplot() +\n  geom_count(mapping = aes(x = marital, y = edu_fac))"
   },
   {
     "objectID": "explore-data/eda/eda.html#two-categorical-variable-plot",
@@ -1943,7 +1943,7 @@
     "href": "explore-data/eda/eda.html#one-continuouse-variable-one-with-many-categories",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "One continuouse variable, one with many categories",
-    "text": "One continuouse variable, one with many categories\n\n\nCode\nmy_heights %&gt;% \n  filter(income &gt; 0 & !is.na(weight) & !is.na(afqt) & !is.na(education)) %&gt;%\n  ggplot() +\n  geom_point(mapping = aes(x = education, y = income), alpha = 0.05)"
+    "text": "One continuouse variable, one with many categories\n\nmy_heights %&gt;% \n  filter(income &gt; 0 & !is.na(weight) & !is.na(afqt) & !is.na(education)) %&gt;%\n  ggplot() +\n  geom_point(mapping = aes(x = education, y = income), alpha = 0.05)"
   },
   {
     "objectID": "explore-data/eda/eda.html#one-continuouse-variable-one-with-many-categories-1",
@@ -1957,7 +1957,7 @@
     "href": "explore-data/eda/eda.html#two-continuous-variables",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Two continuous variables",
-    "text": "Two continuous variables\n\nUse diamonds dataset\nSmaller point size\n\n\n\n\nCode\ndiamonds %&gt;% \n  ggplot(mapping = aes(x = carat, y = price)) +\n  geom_point(size = 0.1)"
+    "text": "Two continuous variables\n\nUse diamonds dataset\nSmaller point size\n\n\n\ndiamonds %&gt;% \n  ggplot(mapping = aes(x = carat, y = price)) +\n  geom_point(size = 0.1)"
   },
   {
     "objectID": "explore-data/eda/eda.html#two-continuous-variables-1",
@@ -1971,7 +1971,7 @@
     "href": "explore-data/eda/eda.html#two-continuous-variables-alpha",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Two continuous variables; alpha",
-    "text": "Two continuous variables; alpha\n\n\nCode\ndiamonds %&gt;% \n  ggplot(mapping = aes(x = carat, y = price)) +\n  geom_point(alpha = 0.1, size = 0.2)"
+    "text": "Two continuous variables; alpha\n\ndiamonds %&gt;% \n  ggplot(mapping = aes(x = carat, y = price)) +\n  geom_point(alpha = 0.1, size = 0.2)"
   },
   {
     "objectID": "explore-data/eda/eda.html#two-continuous-variables-alpha-1",
@@ -1985,7 +1985,7 @@
     "href": "explore-data/eda/eda.html#two-continuous-variables-make-one-categorical",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Two continuous variables; make one categorical",
-    "text": "Two continuous variables; make one categorical\n\n\nCode\ndiamonds %&gt;% \n  filter(carat &lt;= 2) %&gt;% \n  ggplot(mapping = aes(x = carat, y = price)) +\n  geom_boxplot(mapping = aes(group = cut_width(carat, 0.1)))"
+    "text": "Two continuous variables; make one categorical\n\ndiamonds %&gt;% \n  filter(carat &lt;= 2) %&gt;% \n  ggplot(mapping = aes(x = carat, y = price)) +\n  geom_boxplot(mapping = aes(group = cut_width(carat, 0.1)))"
   },
   {
     "objectID": "explore-data/eda/eda.html#two-continuous-variables-make-one-categorical-1",
@@ -1999,14 +1999,14 @@
     "href": "explore-data/eda/eda.html#references",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "References",
-    "text": "References\n\n\n\nMSB105\n\n\n\n\nAuguie, Baptiste. 2017. gridExtra: Miscellaneous Functions for \"Grid\" Graphics. https://CRAN.R-project.org/package=gridExtra.\n\n\nGohel, David, and Panagiotis Skintzos. 2024. Flextable: Functions for Tabular Reporting. https://ardata-fr.github.io/flextable-book/.\n\n\nHuntington-Klein, Nick. 2024. Vtable: Variable Table for Variable Documentation. https://nickch-k.github.io/vtable/.\n\n\nWickham, Hadley. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2023a. Modelr: Modelling Functions That Work with the Pipe. https://modelr.tidyverse.org.\n\n\n———. 2023b. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686.\n\n\nYu, Guangchuang. 2023. Ggplotify: Convert Plot to Grob or Ggplot Object. https://github.com/GuangchuangYu/ggplotify."
+    "text": "References\n\n\n\n\nAuguie, Baptiste. 2017. gridExtra: Miscellaneous Functions for \"Grid\" Graphics. https://doi.org/10.32614/CRAN.package.gridExtra.\n\n\nGohel, David, and Panagiotis Skintzos. 2025. Flextable: Functions for Tabular Reporting. https://ardata-fr.github.io/flextable-book/.\n\n\nHuntington-Klein, Nick. 2024. Vtable: Variable Table for Variable Documentation. https://nickch-k.github.io/vtable/.\n\n\nWickham, Hadley. 2021. Nycflights13: Flights That Departed NYC in 2013. https://github.com/hadley/nycflights13.\n\n\n———. 2023a. Modelr: Modelling Functions That Work with the Pipe. https://modelr.tidyverse.org.\n\n\n———. 2023b. Tidyverse: Easily Install and Load the Tidyverse. https://tidyverse.tidyverse.org.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686.\n\n\nYu, Guangchuang. 2023. Ggplotify: Convert Plot to Grob or Ggplot Object. https://github.com/GuangchuangYu/ggplotify."
   },
   {
     "objectID": "explore-data/trans-data/index.html#introduction-to-transforming-data-chp.-5",
     "href": "explore-data/trans-data/index.html#introduction-to-transforming-data-chp.-5",
     "title": "Transforming Data",
     "section": "Introduction to Transforming Data (chp. 5)",
-    "text": "Introduction to Transforming Data (chp. 5)\nAddin ViewPipeSteps\n\nPackage (addIn) ViewPipeSteps\neasier debugging of pipes"
+    "text": "Introduction to Transforming Data (chp. 5)\n\nAddin ViewPipeSteps\n\nPackage (addIn) ViewPipeSteps\neasier debugging of pipes"
   },
   {
     "objectID": "explore-data/trans-data/index.html#nice-tutorials-on-rstudio",
@@ -2048,63 +2048,63 @@
     "href": "explore-data/trans-data/index.html#function-in-function-in-function",
     "title": "Transforming Data",
     "section": "Function in function in function …",
-    "text": "Function in function in function …\n\n\nCode\nset.seed(1234)\nres_mean_rnorm_3dig &lt;- paste(\"Result:\", round(mean(rnorm(n = 10, mean = 0, sd = 1)), digits = 3), sep = \"\")\nres_mean_rnorm_3dig\n\n\n[1] \"Result:-0.383\""
+    "text": "Function in function in function …\n\nset.seed(1234)\nres_mean_rnorm_3dig &lt;- paste(\"Result:\", round(mean(rnorm(n = 10, mean = 0, sd = 1)), digits = 3), sep = \"\")\nres_mean_rnorm_3dig\n\n[1] \"Result:-0.383\""
   },
   {
     "objectID": "explore-data/trans-data/index.html#temporary-variables",
     "href": "explore-data/trans-data/index.html#temporary-variables",
     "title": "Transforming Data",
     "section": "Temporary variables",
-    "text": "Temporary variables\n\nMeaningful names with clean-up\n\n\n\n\nCode\nset.seed(1234)\nres_rnorm &lt;- rnorm(n = 10, mean = 0, sd = 1)\nres_mean_rnorm &lt;- mean(res_rnorm)\nres_mean_rnorm_3dig &lt;- round(res_mean_rnorm, digits = 3)\nres_mean_rnorm_3dig_string &lt;- paste(\"Result:\", res_mean_rnorm_3dig, sep = \"\")\n# print result\nres_mean_rnorm_3dig_string\n\n\n[1] \"Result:-0.383\"\n\n\nCode\n# cleanup\nrm(res_rnorm, res_mean_rnorm, res_mean_rnorm_3dig, res_mean_rnorm_3dig_string)"
+    "text": "Temporary variables\n\nMeaningful names with clean-up\n\n. . .\n\nset.seed(1234)\nres_rnorm &lt;- rnorm(n = 10, mean = 0, sd = 1)\nres_mean_rnorm &lt;- mean(res_rnorm)\nres_mean_rnorm_3dig &lt;- round(res_mean_rnorm, digits = 3)\nres_mean_rnorm_3dig_string &lt;- paste(\"Result:\", res_mean_rnorm_3dig, sep = \"\")\n# print result\nres_mean_rnorm_3dig_string\n\n[1] \"Result:-0.383\"\n\n# cleanup\nrm(res_rnorm, res_mean_rnorm, res_mean_rnorm_3dig, res_mean_rnorm_3dig_string)"
   },
   {
     "objectID": "explore-data/trans-data/index.html#temporary-variables-in-reality",
     "href": "explore-data/trans-data/index.html#temporary-variables-in-reality",
     "title": "Transforming Data",
     "section": "Temporary variables (in reality)",
-    "text": "Temporary variables (in reality)\n\nWhat we usually do, bad variable names and no clean-up\n\n\n\n\nCode\nset.seed(1234)\ntmp &lt;- rnorm(n = 10, mean = 0, sd = 1)\ntmp1 &lt;- mean(tmp)\ntmp2 &lt;- round(tmp1, digits = 3)\npaste(\"Result:\", tmp2, sep = \"\")\n\n\n[1] \"Result:-0.383\"\n\n\n\n\nCode\n# ^t, object names that start with 't' \nls(pattern = \"^t\")\n\n\n[1] \"tmp\"  \"tmp1\" \"tmp2\""
+    "text": "Temporary variables (in reality)\n\nWhat we usually do, bad variable names and no clean-up\n\n. . .\n\nset.seed(1234)\ntmp &lt;- rnorm(n = 10, mean = 0, sd = 1)\ntmp1 &lt;- mean(tmp)\ntmp2 &lt;- round(tmp1, digits = 3)\npaste(\"Result:\", tmp2, sep = \"\")\n\n[1] \"Result:-0.383\"\n\n\n\n# ^t, object names that start with 't' \nls(pattern = \"^t\")\n\n[1] \"tmp\"  \"tmp1\" \"tmp2\""
   },
   {
     "objectID": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps",
     "href": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps",
     "title": "Transforming Data",
     "section": "The pipe with addin viewpipesteps",
-    "text": "The pipe with addin viewpipesteps\n\n\nCode\nset.seed(1234)\nres_mean_rnorm_3dig_string &lt;- \n  rnorm(n = 10, mean = 0, sd = 1) %&gt;%\n  mean() %&gt;%\n  round(digits = 3) %&gt;% \n  # The dot '.' is to show where the content of the pipe should be put\n  paste(\"Result:\", .)\nres_mean_rnorm_3dig_string\n\n\n[1] \"Result: -0.383\""
+    "text": "The pipe with addin viewpipesteps\n\nset.seed(1234)\nres_mean_rnorm_3dig_string &lt;- \n  rnorm(n = 10, mean = 0, sd = 1) %&gt;%\n  mean() %&gt;%\n  round(digits = 3) %&gt;% \n  # The dot '.' is to show where the content of the pipe should be put\n  paste(\"Result:\", .)\nres_mean_rnorm_3dig_string\n\n[1] \"Result: -0.383\""
   },
   {
     "objectID": "explore-data/trans-data/index.html#the-pipe-cont.",
     "href": "explore-data/trans-data/index.html#the-pipe-cont.",
     "title": "Transforming Data",
     "section": "The pipe cont.",
-    "text": "The pipe cont.\n\nWhat would happen if we dropped the ‘.’ in paste(\"Result:\", .)?\n\n\n\n\nCode\nset.seed(1234)\nres_mean_rnorm_3dig_string &lt;- \n  rnorm(n = 10, mean = 0, sd = 1) %&gt;%\n  mean() %&gt;%\n  round(digits = 3) %&gt;% \n  # The dot '.' is to show where the content of the pipe should be put\n  paste(\"Result:\")\nres_mean_rnorm_3dig_string\n\n\n[1] \"-0.383 Result:\""
+    "text": "The pipe cont.\n\nWhat would happen if we dropped the ‘.’ in paste(\"Result:\", .)?\n\n. . .\n\nset.seed(1234)\nres_mean_rnorm_3dig_string &lt;- \n  rnorm(n = 10, mean = 0, sd = 1) %&gt;%\n  mean() %&gt;%\n  round(digits = 3) %&gt;% \n  # The dot '.' is to show where the content of the pipe should be put\n  paste(\"Result:\")\nres_mean_rnorm_3dig_string\n\n[1] \"-0.383 Result:\""
   },
   {
     "objectID": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps-1",
     "href": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps-1",
     "title": "Transforming Data",
     "section": "The pipe with Addin viewpipesteps",
-    "text": "The pipe with Addin viewpipesteps\n\nRun the set.seed() function\nSelect the pipe\nChoose Print Pipe Chain Steps\n\n\n\n\n\nSelect the pipe"
+    "text": "The pipe with Addin viewpipesteps\n\nRun the set.seed() function\nSelect the pipe\nChoose Print Pipe Chain Steps\n\n. . .\n\n\n\nSelect the pipe"
   },
   {
     "objectID": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps-cont.",
     "href": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps-cont.",
     "title": "Transforming Data",
     "section": "The pipe with Addin viewpipesteps cont.",
-    "text": "The pipe with Addin viewpipesteps cont.\n\nSelect Print Pipe Chain Steps from Addins menu\n\n\n\n\n\nSelect Print Pipe Chain Steps in the Addins drop-down menu."
+    "text": "The pipe with Addin viewpipesteps cont.\n\nSelect Print Pipe Chain Steps from Addins menu\n\n. . .\n\n\n\nSelect Print Pipe Chain Steps in the Addins drop-down menu."
   },
   {
     "objectID": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps-cont.-1",
     "href": "explore-data/trans-data/index.html#the-pipe-with-addin-viewpipesteps-cont.-1",
     "title": "Transforming Data",
     "section": "The pipe with Addin viewpipesteps cont.",
-    "text": "The pipe with Addin viewpipesteps cont.\n\nIn the Console we will get the result (output) of every step in the pipe\n\n\n\n\n\nSelect Print Pipe Chain Steps from Addins drop-down menu."
+    "text": "The pipe with Addin viewpipesteps cont.\n\nIn the Console we will get the result (output) of every step in the pipe\n\n. . .\n\n\n\nSelect Print Pipe Chain Steps from Addins drop-down menu."
   },
   {
     "objectID": "explore-data/trans-data/index.html#the-pipe-alternative-not-much-used",
     "href": "explore-data/trans-data/index.html#the-pipe-alternative-not-much-used",
     "title": "Transforming Data",
     "section": "The pipe, alternative not much used",
-    "text": "The pipe, alternative not much used\n\n\nCode\nset.seed(1234)\nrnorm(\n  n = 10,\n  mean = 0,\n  sd = 1\n) %&gt;%\n  mean() %&gt;%\n  round(digits = 3) %&gt;% \n  paste(\"Result:\", .) -&gt; res_mean_rnorm_3dig_string\nres_mean_rnorm_3dig_string\n\n\n[1] \"Result: -0.383\""
+    "text": "The pipe, alternative not much used\n\nset.seed(1234)\nrnorm(\n  n = 10,\n  mean = 0,\n  sd = 1\n) %&gt;%\n  mean() %&gt;%\n  round(digits = 3) %&gt;% \n  paste(\"Result:\", .) -&gt; res_mean_rnorm_3dig_string\nres_mean_rnorm_3dig_string\n\n[1] \"Result: -0.383\""
   },
   {
     "objectID": "explore-data/trans-data/index.html#more-about-the-pipe",
@@ -2118,14 +2118,14 @@
     "href": "explore-data/trans-data/index.html#nycflights13",
     "title": "Transforming Data",
     "section": "nycflights13",
-    "text": "nycflights13\n\n\nCode\n# see setup at the top for loading of \n# nycflights13 package\n?nycflights13\n\n\nNo documentation for 'nycflights13' in specified packages and libraries:\nyou could try '??nycflights13'\n\n\n\nLoad the nycflights13 package.\nGet help via Packages pane and click nycflights13."
+    "text": "nycflights13\n\n# see setup at the top for loading of \n# nycflights13 package\n?nycflights13\n\nNo documentation for 'nycflights13' in specified packages and libraries:\nyou could try '??nycflights13'\n\n\n\n\n\nLoad the nycflights13 package.\n\n\n\nGet help via Packages pane and click nycflights13."
   },
   {
     "objectID": "explore-data/trans-data/index.html#nycflights13-1",
     "href": "explore-data/trans-data/index.html#nycflights13-1",
     "title": "Transforming Data",
     "section": "nycflights13",
-    "text": "nycflights13\n\nThe package contains 5 datsets\n\nairline\nairports\nflights\nplanes\nweather\n\nuse ? to read the help for each\n\n\n\n\nCode\n?flights"
+    "text": "nycflights13\n\nThe package contains 5 datsets\n\nairline\nairports\nflights\nplanes\nweather\n\nuse ? to read the help for each\n\n. . .\n\n?flights"
   },
   {
     "objectID": "explore-data/trans-data/index.html#variables-in-flights-from-help",
@@ -2146,42 +2146,42 @@
     "href": "explore-data/trans-data/index.html#a-first-look-on-flights",
     "title": "Transforming Data",
     "section": "A first look on flights",
-    "text": "A first look on flights\n\n\nCode\n# what size is it\ndim(flights)\n\n\n[1] 336776     19\n\n\n\n\n\nCode\n# what type; data.frame, tibble?\nclass(flights)\n\n\n[1] \"tbl_df\"     \"tbl\"        \"data.frame\""
+    "text": "A first look on flights\n\n# what size is it\ndim(flights)\n\n[1] 336776     19\n\n\n. . .\n\n# what type; data.frame, tibble?\nclass(flights)\n\n[1] \"tbl_df\"     \"tbl\"        \"data.frame\""
   },
   {
     "objectID": "explore-data/trans-data/index.html#a-first-look-on-flights-1",
     "href": "explore-data/trans-data/index.html#a-first-look-on-flights-1",
     "title": "Transforming Data",
     "section": "A first look on flights",
-    "text": "A first look on flights\n\n\nCode\nprint(\n  head(flights, n = 5),\n  width = 70\n  )\n\n\n# A tibble: 5 × 19\n   year month   day dep_time sched_dep_time dep_delay arr_time\n  &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;\n1  2013     1     1      517            515         2      830\n2  2013     1     1      533            529         4      850\n3  2013     1     1      542            540         2      923\n4  2013     1     1      544            545        -1     1004\n5  2013     1     1      554            600        -6      812\n# ℹ 12 more variables: sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;,\n#   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;,\n#   dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,\n#   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;"
+    "text": "A first look on flights\n\nprint(\n  head(flights, n = 5),\n  width = 70\n  )\n\n# A tibble: 5 × 19\n   year month   day dep_time sched_dep_time dep_delay arr_time\n  &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;\n1  2013     1     1      517            515         2      830\n2  2013     1     1      533            529         4      850\n3  2013     1     1      542            540         2      923\n4  2013     1     1      544            545        -1     1004\n5  2013     1     1      554            600        -6      812\n# ℹ 12 more variables: sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;,\n#   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;,\n#   dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,\n#   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;"
   },
   {
     "objectID": "explore-data/trans-data/index.html#using-filter-from-r4ds",
     "href": "explore-data/trans-data/index.html#using-filter-from-r4ds",
     "title": "Transforming Data",
     "section": "Using filter(), from r4ds",
-    "text": "Using filter(), from r4ds\n\n\nCode\nprint(\n  filter(flights, month == 1, day == 1),\n  n = 5, \n  width = 70\n  )\n\n\n# A tibble: 842 × 19\n   year month   day dep_time sched_dep_time dep_delay arr_time\n  &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;\n1  2013     1     1      517            515         2      830\n2  2013     1     1      533            529         4      850\n3  2013     1     1      542            540         2      923\n4  2013     1     1      544            545        -1     1004\n5  2013     1     1      554            600        -6      812\n# ℹ 837 more rows\n# ℹ 12 more variables: sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;,\n#   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;,\n#   dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,\n#   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;"
+    "text": "Using filter(), from r4ds\n\nprint(\n  filter(flights, month == 1, day == 1),\n  n = 5, \n  width = 70\n  )\n\n# A tibble: 842 × 19\n   year month   day dep_time sched_dep_time dep_delay arr_time\n  &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;\n1  2013     1     1      517            515         2      830\n2  2013     1     1      533            529         4      850\n3  2013     1     1      542            540         2      923\n4  2013     1     1      544            545        -1     1004\n5  2013     1     1      554            600        -6      812\n# ℹ 837 more rows\n# ℹ 12 more variables: sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;,\n#   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;,\n#   dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,\n#   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;"
   },
   {
     "objectID": "explore-data/trans-data/index.html#more-filter-ex-1",
     "href": "explore-data/trans-data/index.html#more-filter-ex-1",
     "title": "Transforming Data",
     "section": "More filter-ex-1",
-    "text": "More filter-ex-1\n\n\nCode\nprint(\n  filter(flights, month == 1, day %in% c(1, 15, 30)),\n  n = 5,\n  width = 70\n  )\n\n\n# A tibble: 2,636 × 19\n   year month   day dep_time sched_dep_time dep_delay arr_time\n  &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;\n1  2013     1     1      517            515         2      830\n2  2013     1     1      533            529         4      850\n3  2013     1     1      542            540         2      923\n4  2013     1     1      544            545        -1     1004\n5  2013     1     1      554            600        -6      812\n# ℹ 2,631 more rows\n# ℹ 12 more variables: sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;,\n#   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;,\n#   dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,\n#   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;\n\n\n\nWhy no day 15 and 30?\nnote %in%, it’s very handy and flexible"
+    "text": "More filter-ex-1\n\nprint(\n  filter(flights, month == 1, day %in% c(1, 15, 30)),\n  n = 5,\n  width = 70\n  )\n\n# A tibble: 2,636 × 19\n   year month   day dep_time sched_dep_time dep_delay arr_time\n  &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;\n1  2013     1     1      517            515         2      830\n2  2013     1     1      533            529         4      850\n3  2013     1     1      542            540         2      923\n4  2013     1     1      544            545        -1     1004\n5  2013     1     1      554            600        -6      812\n# ℹ 2,631 more rows\n# ℹ 12 more variables: sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;,\n#   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;,\n#   dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,\n#   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;\n\n\n\nWhy no day 15 and 30?\nnote %in%, it’s very handy and flexible"
   },
   {
     "objectID": "explore-data/trans-data/index.html#more-filter-ex-1-1",
     "href": "explore-data/trans-data/index.html#more-filter-ex-1-1",
     "title": "Transforming Data",
     "section": "More filter-ex-1",
-    "text": "More filter-ex-1\n\n\nCode\nflights_some_days_jan &lt;- filter(flights, month == 1, day %in% c(1, 15, 30))\n# tail(flights_some_days_jan, n = 5)\n# more control\nprint(\n  slice_tail(flights_some_days_jan, n = 7),\n  width = 70\n  )\n\n\n# A tibble: 7 × 19\n   year month   day dep_time sched_dep_time dep_delay arr_time\n  &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;\n1  2013     1    30       NA           1410        NA       NA\n2  2013     1    30       NA            810        NA       NA\n3  2013     1    30       NA           1510        NA       NA\n4  2013     1    30       NA           1725        NA       NA\n5  2013     1    30       NA           1800        NA       NA\n6  2013     1    30       NA           1506        NA       NA\n7  2013     1    30       NA            958        NA       NA\n# ℹ 12 more variables: sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;,\n#   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;,\n#   dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,\n#   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;"
+    "text": "More filter-ex-1\n\nflights_some_days_jan &lt;- filter(flights, month == 1, day %in% c(1, 15, 30))\n# tail(flights_some_days_jan, n = 5)\n# more control\nprint(\n  slice_tail(flights_some_days_jan, n = 7),\n  width = 70\n  )\n\n# A tibble: 7 × 19\n   year month   day dep_time sched_dep_time dep_delay arr_time\n  &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;\n1  2013     1    30       NA           1410        NA       NA\n2  2013     1    30       NA            810        NA       NA\n3  2013     1    30       NA           1510        NA       NA\n4  2013     1    30       NA           1725        NA       NA\n5  2013     1    30       NA           1800        NA       NA\n6  2013     1    30       NA           1506        NA       NA\n7  2013     1    30       NA            958        NA       NA\n# ℹ 12 more variables: sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;,\n#   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;,\n#   dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,\n#   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;"
   },
   {
     "objectID": "explore-data/trans-data/index.html#doing-it-with-a-pipe",
     "href": "explore-data/trans-data/index.html#doing-it-with-a-pipe",
     "title": "Transforming Data",
     "section": "Doing it with a Pipe",
-    "text": "Doing it with a Pipe\n\n\nCode\n  flights %&gt;% \n  filter(month == 1, day %in% c(1, 15, 30)) %&gt;% \n  slice_tail(n = 7) %&gt;% \n  print(width = 70)\n\n\n# A tibble: 7 × 19\n   year month   day dep_time sched_dep_time dep_delay arr_time\n  &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;\n1  2013     1    30       NA           1410        NA       NA\n2  2013     1    30       NA            810        NA       NA\n3  2013     1    30       NA           1510        NA       NA\n4  2013     1    30       NA           1725        NA       NA\n5  2013     1    30       NA           1800        NA       NA\n6  2013     1    30       NA           1506        NA       NA\n7  2013     1    30       NA            958        NA       NA\n# ℹ 12 more variables: sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;,\n#   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;,\n#   dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,\n#   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;"
+    "text": "Doing it with a Pipe\n\n  flights %&gt;% \n  filter(month == 1, day %in% c(1, 15, 30)) %&gt;% \n  slice_tail(n = 7) %&gt;% \n  print(width = 70)\n\n# A tibble: 7 × 19\n   year month   day dep_time sched_dep_time dep_delay arr_time\n  &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;\n1  2013     1    30       NA           1410        NA       NA\n2  2013     1    30       NA            810        NA       NA\n3  2013     1    30       NA           1510        NA       NA\n4  2013     1    30       NA           1725        NA       NA\n5  2013     1    30       NA           1800        NA       NA\n6  2013     1    30       NA           1506        NA       NA\n7  2013     1    30       NA            958        NA       NA\n# ℹ 12 more variables: sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;,\n#   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;,\n#   dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,\n#   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;"
   },
   {
     "objectID": "explore-data/trans-data/index.html#operators",
@@ -2195,14 +2195,14 @@
     "href": "explore-data/trans-data/index.html#use-near-not-for-doublenumeric",
     "title": "Transforming Data",
     "section": "Use near() not == for double/numeric",
-    "text": "Use near() not == for double/numeric\n\n\nCode\n(1/49) * 49 == 1\n\n\n[1] FALSE\n\n\nCode\n# and\n(1/49) * 49 == 49/49\n\n\n[1] FALSE\n\n\nCode\n# but\n(1/5) * 5 == 5/5\n\n\n[1] TRUE\n\n\nCode\n# but\n(5/4) == 1.25\n\n\n[1] TRUE"
+    "text": "Use near() not == for double/numeric\n\n(1/49) * 49 == 1\n\n[1] FALSE\n\n# and\n(1/49) * 49 == 49/49\n\n[1] FALSE\n\n# but\n(1/5) * 5 == 5/5\n\n[1] TRUE\n\n# but\n(5/4) == 1.25\n\n[1] TRUE"
   },
   {
     "objectID": "explore-data/trans-data/index.html#use-near-not-for-doublenumeric-cont.",
     "href": "explore-data/trans-data/index.html#use-near-not-for-doublenumeric-cont.",
     "title": "Transforming Data",
     "section": "Use near() not == for double/numeric cont.",
-    "text": "Use near() not == for double/numeric cont.\n\nuse near()\n\n\n\n\nCode\nnear(1/49 * 49, 1)\n\n\n[1] TRUE\n\n\nCode\nnear(1/5 * 5, 5/5)\n\n\n[1] TRUE"
+    "text": "Use near() not == for double/numeric cont.\n\nuse near()\n\n. . .\n\nnear(1/49 * 49, 1)\n\n[1] TRUE\n\nnear(1/5 * 5, 5/5)\n\n[1] TRUE"
   },
   {
     "objectID": "explore-data/trans-data/index.html#small-exercise",
@@ -2216,7 +2216,7 @@
     "href": "explore-data/trans-data/index.html#solution-small-exercise",
     "title": "Transforming Data",
     "section": "Solution Small Exercise",
-    "text": "Solution Small Exercise\n1) How many flights were there in April and September (total)?"
+    "text": "Solution Small Exercise\n1) How many flights were there in April and September (total)?\n. . .\n. . ."
   },
   {
     "objectID": "explore-data/trans-data/index.html#solution-small-exercise-cont.",
@@ -2230,7 +2230,7 @@
     "href": "explore-data/trans-data/index.html#solution-small-exercise-cont.-1",
     "title": "Transforming Data",
     "section": "Solution Small Exercise cont.",
-    "text": "Solution Small Exercise cont.\n3) How may flights were there during 2013 that had an arrival delay greater than or equal to 15 min., but less than 30 min.?\n\n\nNote use of .. Needed when using classic functions like [."
+    "text": "Solution Small Exercise cont.\n3) How may flights were there during 2013 that had an arrival delay greater than or equal to 15 min., but less than 30 min.?\n. . .\n. . .\n\nNote use of .. Needed when using classic functions like [."
   },
   {
     "objectID": "explore-data/trans-data/index.html#missing-values-na",
@@ -2244,56 +2244,56 @@
     "href": "explore-data/trans-data/index.html#arrange-sorts-rows",
     "title": "Transforming Data",
     "section": "arrange() sorts rows",
-    "text": "arrange() sorts rows\n\n\nCode\nprint(\n  arrange(flights, year, month, day),\n  n = 10,\n  width = 70\n  )\n\n\n# A tibble: 336,776 × 19\n    year month   day dep_time sched_dep_time dep_delay arr_time\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;\n 1  2013     1     1      517            515         2      830\n 2  2013     1     1      533            529         4      850\n 3  2013     1     1      542            540         2      923\n 4  2013     1     1      544            545        -1     1004\n 5  2013     1     1      554            600        -6      812\n 6  2013     1     1      554            558        -4      740\n 7  2013     1     1      555            600        -5      913\n 8  2013     1     1      557            600        -3      709\n 9  2013     1     1      557            600        -3      838\n10  2013     1     1      558            600        -2      753\n# ℹ 336,766 more rows\n# ℹ 12 more variables: sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;,\n#   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;,\n#   dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,\n#   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;"
+    "text": "arrange() sorts rows\n\nprint(\n  arrange(flights, year, month, day),\n  n = 10,\n  width = 70\n  )\n\n# A tibble: 336,776 × 19\n    year month   day dep_time sched_dep_time dep_delay arr_time\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;\n 1  2013     1     1      517            515         2      830\n 2  2013     1     1      533            529         4      850\n 3  2013     1     1      542            540         2      923\n 4  2013     1     1      544            545        -1     1004\n 5  2013     1     1      554            600        -6      812\n 6  2013     1     1      554            558        -4      740\n 7  2013     1     1      555            600        -5      913\n 8  2013     1     1      557            600        -3      709\n 9  2013     1     1      557            600        -3      838\n10  2013     1     1      558            600        -2      753\n# ℹ 336,766 more rows\n# ℹ 12 more variables: sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;,\n#   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;,\n#   dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,\n#   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;"
   },
   {
     "objectID": "explore-data/trans-data/index.html#arrange-sorts-rows-as-pipe",
     "href": "explore-data/trans-data/index.html#arrange-sorts-rows-as-pipe",
     "title": "Transforming Data",
     "section": "arrange() sorts rows as pipe",
-    "text": "arrange() sorts rows as pipe\n\n\nCode\nflights %&gt;% \n  arrange(year, month, day) %&gt;% \n  print(n = 10, width = 70)\n\n\n# A tibble: 336,776 × 19\n    year month   day dep_time sched_dep_time dep_delay arr_time\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;\n 1  2013     1     1      517            515         2      830\n 2  2013     1     1      533            529         4      850\n 3  2013     1     1      542            540         2      923\n 4  2013     1     1      544            545        -1     1004\n 5  2013     1     1      554            600        -6      812\n 6  2013     1     1      554            558        -4      740\n 7  2013     1     1      555            600        -5      913\n 8  2013     1     1      557            600        -3      709\n 9  2013     1     1      557            600        -3      838\n10  2013     1     1      558            600        -2      753\n# ℹ 336,766 more rows\n# ℹ 12 more variables: sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;,\n#   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;,\n#   dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,\n#   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;"
+    "text": "arrange() sorts rows as pipe\n\nflights %&gt;% \n  arrange(year, month, day) %&gt;% \n  print(n = 10, width = 70)\n\n# A tibble: 336,776 × 19\n    year month   day dep_time sched_dep_time dep_delay arr_time\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;\n 1  2013     1     1      517            515         2      830\n 2  2013     1     1      533            529         4      850\n 3  2013     1     1      542            540         2      923\n 4  2013     1     1      544            545        -1     1004\n 5  2013     1     1      554            600        -6      812\n 6  2013     1     1      554            558        -4      740\n 7  2013     1     1      555            600        -5      913\n 8  2013     1     1      557            600        -3      709\n 9  2013     1     1      557            600        -3      838\n10  2013     1     1      558            600        -2      753\n# ℹ 336,766 more rows\n# ℹ 12 more variables: sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;,\n#   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;,\n#   dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,\n#   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;"
   },
   {
     "objectID": "explore-data/trans-data/index.html#arrange-sort-rows-decending",
     "href": "explore-data/trans-data/index.html#arrange-sort-rows-decending",
     "title": "Transforming Data",
     "section": "arrange() sort rows decending",
-    "text": "arrange() sort rows decending\n\n\nCode\n#dec. first\nprint(arrange(flights, year, desc(month), day), n = 10, width = 70)\n\n\n# A tibble: 336,776 × 19\n    year month   day dep_time sched_dep_time dep_delay arr_time\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;\n 1  2013    12     1       13           2359        14      446\n 2  2013    12     1       17           2359        18      443\n 3  2013    12     1      453            500        -7      636\n 4  2013    12     1      520            515         5      749\n 5  2013    12     1      536            540        -4      845\n 6  2013    12     1      540            550       -10     1005\n 7  2013    12     1      541            545        -4      734\n 8  2013    12     1      546            545         1      826\n 9  2013    12     1      549            600       -11      648\n10  2013    12     1      550            600       -10      825\n# ℹ 336,766 more rows\n# ℹ 12 more variables: sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;,\n#   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;,\n#   dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,\n#   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;"
+    "text": "arrange() sort rows decending\n\n#dec. first\nprint(arrange(flights, year, desc(month), day), n = 10, width = 70)\n\n# A tibble: 336,776 × 19\n    year month   day dep_time sched_dep_time dep_delay arr_time\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;\n 1  2013    12     1       13           2359        14      446\n 2  2013    12     1       17           2359        18      443\n 3  2013    12     1      453            500        -7      636\n 4  2013    12     1      520            515         5      749\n 5  2013    12     1      536            540        -4      845\n 6  2013    12     1      540            550       -10     1005\n 7  2013    12     1      541            545        -4      734\n 8  2013    12     1      546            545         1      826\n 9  2013    12     1      549            600       -11      648\n10  2013    12     1      550            600       -10      825\n# ℹ 336,766 more rows\n# ℹ 12 more variables: sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;,\n#   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;,\n#   dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,\n#   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;"
   },
   {
     "objectID": "explore-data/trans-data/index.html#select-selects-the-variables-you-want",
     "href": "explore-data/trans-data/index.html#select-selects-the-variables-you-want",
     "title": "Transforming Data",
     "section": "select() selects the variables you want",
-    "text": "select() selects the variables you want\n\n\nCode\n(my_vars &lt;- select(flights, day, month, year, arr_delay))\n\n\n# A tibble: 336,776 × 4\n     day month  year arr_delay\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;\n 1     1     1  2013        11\n 2     1     1  2013        20\n 3     1     1  2013        33\n 4     1     1  2013       -18\n 5     1     1  2013       -25\n 6     1     1  2013        12\n 7     1     1  2013        19\n 8     1     1  2013       -14\n 9     1     1  2013        -8\n10     1     1  2013         8\n# ℹ 336,766 more rows\n\n\n\nHow to select the same variables, but only for May?"
+    "text": "select() selects the variables you want\n\n(my_vars &lt;- select(flights, day, month, year, arr_delay))\n\n# A tibble: 336,776 × 4\n     day month  year arr_delay\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;\n 1     1     1  2013        11\n 2     1     1  2013        20\n 3     1     1  2013        33\n 4     1     1  2013       -18\n 5     1     1  2013       -25\n 6     1     1  2013        12\n 7     1     1  2013        19\n 8     1     1  2013       -14\n 9     1     1  2013        -8\n10     1     1  2013         8\n# ℹ 336,766 more rows\n\n\n\nHow to select the same variables, but only for May?"
   },
   {
     "objectID": "explore-data/trans-data/index.html#filter-and-select-in-pipe",
     "href": "explore-data/trans-data/index.html#filter-and-select-in-pipe",
     "title": "Transforming Data",
     "section": "filter() and select() in pipe",
-    "text": "filter() and select() in pipe\n\n\nCode\n# Use a pipe\nmy_vars_May &lt;- flights %&gt;%\n  filter(month == 5) %&gt;%\n  select(day, month, year, arr_delay)\nhead(my_vars_May)\n\n\n# A tibble: 6 × 4\n    day month  year arr_delay\n  &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;\n1     1     5  2013       408\n2     1     5  2013         1\n3     1     5  2013        -4\n4     1     5  2013        -9\n5     1     5  2013       -23\n6     1     5  2013        -6\n\n\n\nHow do we find median arr_delay in May?"
+    "text": "filter() and select() in pipe\n\n# Use a pipe\nmy_vars_May &lt;- flights %&gt;%\n  filter(month == 5) %&gt;%\n  select(day, month, year, arr_delay)\nhead(my_vars_May)\n\n# A tibble: 6 × 4\n    day month  year arr_delay\n  &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;\n1     1     5  2013       408\n2     1     5  2013         1\n3     1     5  2013        -4\n4     1     5  2013        -9\n5     1     5  2013       -23\n6     1     5  2013        -6\n\n\n\nHow do we find median arr_delay in May?"
   },
   {
     "objectID": "explore-data/trans-data/index.html#filter-and-select-in-pipe-cont.",
     "href": "explore-data/trans-data/index.html#filter-and-select-in-pipe-cont.",
     "title": "Transforming Data",
     "section": "filter() and select() in pipe cont.",
-    "text": "filter() and select() in pipe cont.\n\n\nCode\n# Use a pipe\nmy_vars_May &lt;-  flights %&gt;%\n  filter(month == 5) %&gt;%\n  # renaming of variable in select() function\n  select(arrival_delay = arr_delay)\n\nmedian(my_vars_May$arrival_delay, na.rm = TRUE)\n\n\n[1] -8\n\n\n\nNote renaming of variable in select statement\nTo calculate the median direct in the pipe we need another function called summarise() that we will cover soon."
+    "text": "filter() and select() in pipe cont.\n\n# Use a pipe\nmy_vars_May &lt;-  flights %&gt;%\n  filter(month == 5) %&gt;%\n  # renaming of variable in select() function\n  select(arrival_delay = arr_delay)\n\nmedian(my_vars_May$arrival_delay, na.rm = TRUE)\n\n[1] -8\n\n\n\nNote renaming of variable in select statement\nTo calculate the median direct in the pipe we need another function called summarise() that we will cover soon."
   },
   {
     "objectID": "explore-data/trans-data/index.html#new-variable-use-mutate",
     "href": "explore-data/trans-data/index.html#new-variable-use-mutate",
     "title": "Transforming Data",
     "section": "New variable, use mutate",
-    "text": "New variable, use mutate\n\n\nCode\nmy_new_data &lt;- flights %&gt;%\n  select(year:day, ends_with(\"delay\"), distance, air_time) %&gt;%\n  mutate(\n    gain = dep_delay - arr_delay,\n    speed = (distance/air_time) * 60\n    ) %&gt;%\n  select(year:day, gain, everything()) %&gt;%\n  arrange(gain)\nhead(my_new_data, n = 5) \n\n\n# A tibble: 5 × 9\n   year month   day  gain dep_delay arr_delay distance air_time speed\n  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;\n1  2013    11     1  -196        -2       194     2475      336  442.\n2  2013     4    18  -181        -2       179     1389      234  356.\n3  2013     8     8  -165       180       345     2565      420  366.\n4  2013     7    10  -161        16       177     2586      387  401.\n5  2013     6    27  -157        43       200      544      120  272 \n\n\n\n\nNote use of the helper function ends_with()\n\nMany helper functions and they can save a lot of time\nSee ?select for details\n\nHow do we get speed between dep_delay and arr_delay?"
+    "text": "New variable, use mutate\n\nmy_new_data &lt;- flights %&gt;%\n  select(year:day, ends_with(\"delay\"), distance, air_time) %&gt;%\n  mutate(\n    gain = dep_delay - arr_delay,\n    speed = (distance/air_time) * 60\n    ) %&gt;%\n  select(year:day, gain, everything()) %&gt;%\n  arrange(gain)\nhead(my_new_data, n = 5) \n\n# A tibble: 5 × 9\n   year month   day  gain dep_delay arr_delay distance air_time speed\n  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;\n1  2013    11     1  -196        -2       194     2475      336  442.\n2  2013     4    18  -181        -2       179     1389      234  356.\n3  2013     8     8  -165       180       345     2565      420  366.\n4  2013     7    10  -161        16       177     2586      387  401.\n5  2013     6    27  -157        43       200      544      120  272 \n\n\n. . .\n\nNote use of the helper function ends_with()\n\nMany helper functions and they can save a lot of time\nSee ?select for details\n\nHow do we get speed between dep_delay and arr_delay?"
   },
   {
     "objectID": "explore-data/trans-data/index.html#new-variable-use-mutate-cont.",
     "href": "explore-data/trans-data/index.html#new-variable-use-mutate-cont.",
     "title": "Transforming Data",
     "section": "New variable, use mutate cont.",
-    "text": "New variable, use mutate cont.\n\n\nCode\nmy_new_data &lt;- flights %&gt;%\n  select(year:day, ends_with(\"delay\"), distance, air_time) %&gt;%\n  mutate(\n    gain = dep_delay - arr_delay,\n    speed = (distance/air_time) * 60\n    ) %&gt;%\n  select(year:day, gain, dep_delay, speed, everything()) %&gt;%\n  arrange(gain)\nhead(my_new_data, n=5) \n\n\n# A tibble: 5 × 9\n   year month   day  gain dep_delay speed arr_delay distance air_time\n  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n1  2013    11     1  -196        -2  442.       194     2475      336\n2  2013     4    18  -181        -2  356.       179     1389      234\n3  2013     8     8  -165       180  366.       345     2565      420\n4  2013     7    10  -161        16  401.       177     2586      387\n5  2013     6    27  -157        43  272        200      544      120"
+    "text": "New variable, use mutate cont.\n\nmy_new_data &lt;- flights %&gt;%\n  select(year:day, ends_with(\"delay\"), distance, air_time) %&gt;%\n  mutate(\n    gain = dep_delay - arr_delay,\n    speed = (distance/air_time) * 60\n    ) %&gt;%\n  select(year:day, gain, dep_delay, speed, everything()) %&gt;%\n  arrange(gain)\nhead(my_new_data, n=5) \n\n# A tibble: 5 × 9\n   year month   day  gain dep_delay speed arr_delay distance air_time\n  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n1  2013    11     1  -196        -2  442.       194     2475      336\n2  2013     4    18  -181        -2  356.       179     1389      234\n3  2013     8     8  -165       180  366.       345     2565      420\n4  2013     7    10  -161        16  401.       177     2586      387\n5  2013     6    27  -157        43  272        200      544      120"
   },
   {
     "objectID": "explore-data/trans-data/index.html#transmute",
@@ -2307,28 +2307,28 @@
     "href": "explore-data/trans-data/index.html#transmute-1",
     "title": "Transforming Data",
     "section": "transmute()",
-    "text": "transmute()\n\n\nCode\nmy_data &lt;- flights %&gt;%\n    transmute(\n    gain = dep_delay - arr_delay,\n    speed = (distance/air_time) * 60\n    ) %&gt;%\n  arrange(gain)\nhead(my_data, n = 3)\n\n\n# A tibble: 3 × 2\n   gain speed\n  &lt;dbl&gt; &lt;dbl&gt;\n1  -196  442.\n2  -181  356.\n3  -165  366."
+    "text": "transmute()\n\nmy_data &lt;- flights %&gt;%\n    transmute(\n    gain = dep_delay - arr_delay,\n    speed = (distance/air_time) * 60\n    ) %&gt;%\n  arrange(gain)\nhead(my_data, n = 3)\n\n# A tibble: 3 × 2\n   gain speed\n  &lt;dbl&gt; &lt;dbl&gt;\n1  -196  442.\n2  -181  356.\n3  -165  366."
   },
   {
     "objectID": "explore-data/trans-data/index.html#transmute-alternative-to-mutate-and-then-select",
     "href": "explore-data/trans-data/index.html#transmute-alternative-to-mutate-and-then-select",
     "title": "Transforming Data",
     "section": "transmute() alternative to mutate() and then select()",
-    "text": "transmute() alternative to mutate() and then select()\n\n\nCode\nmy_data &lt;- flights %&gt;%\n    mutate(\n    gain = dep_delay - arr_delay,\n    speed = (distance/air_time) * 60\n    ) %&gt;%\n  select(gain, speed) %&gt;%\n  arrange(gain)\nhead(my_data, n = 3)\n\n\n# A tibble: 3 × 2\n   gain speed\n  &lt;dbl&gt; &lt;dbl&gt;\n1  -196  442.\n2  -181  356.\n3  -165  366."
+    "text": "transmute() alternative to mutate() and then select()\n\nmy_data &lt;- flights %&gt;%\n    mutate(\n    gain = dep_delay - arr_delay,\n    speed = (distance/air_time) * 60\n    ) %&gt;%\n  select(gain, speed) %&gt;%\n  arrange(gain)\nhead(my_data, n = 3)\n\n# A tibble: 3 × 2\n   gain speed\n  &lt;dbl&gt; &lt;dbl&gt;\n1  -196  442.\n2  -181  356.\n3  -165  366."
   },
   {
     "objectID": "explore-data/trans-data/index.html#summarise-and-group_by",
     "href": "explore-data/trans-data/index.html#summarise-and-group_by",
     "title": "Transforming Data",
     "section": "summarise() and group_by()",
-    "text": "summarise() and group_by()\n\n\nCode\n# note na.rm = TRUE, else everything will be NA \n# even if just one NA\nflights %&gt;%\n  summarise(delay = median(arr_delay, na.rm = TRUE))\n\n\n# A tibble: 1 × 1\n  delay\n  &lt;dbl&gt;\n1    -5\n\n\n\n\nOur example with arr_delay from earlier\n\n\n\n\n\nCode\nflights %&gt;%\n  filter(month == 5) %&gt;%\n  select(arr_delay) %&gt;%\n  summarise(median_arr_delay = median(arr_delay, na.rm = TRUE))\n\n\n# A tibble: 1 × 1\n  median_arr_delay\n             &lt;dbl&gt;\n1               -8"
+    "text": "summarise() and group_by()\n\n# note na.rm = TRUE, else everything will be NA \n# even if just one NA\nflights %&gt;%\n  summarise(delay = median(arr_delay, na.rm = TRUE))\n\n# A tibble: 1 × 1\n  delay\n  &lt;dbl&gt;\n1    -5\n\n\n. . .\n\nOur example with arr_delay from earlier\n\n. . .\n\nflights %&gt;%\n  filter(month == 5) %&gt;%\n  select(arr_delay) %&gt;%\n  summarise(median_arr_delay = median(arr_delay, na.rm = TRUE))\n\n# A tibble: 1 × 1\n  median_arr_delay\n             &lt;dbl&gt;\n1               -8"
   },
   {
     "objectID": "explore-data/trans-data/index.html#summarise-and-group_by-1",
     "href": "explore-data/trans-data/index.html#summarise-and-group_by-1",
     "title": "Transforming Data",
     "section": "summarise() and group_by()",
-    "text": "summarise() and group_by()\n\nHow to get median arr_delay for each month?\n\n\n\n\nCode\nflights %&gt;%\n  group_by(month) %&gt;%\n  summarise(median_arr_delay = median(arr_delay, na.rm = TRUE))\n\n\n# A tibble: 12 × 2\n   month median_arr_delay\n   &lt;int&gt;            &lt;dbl&gt;\n 1     1               -3\n 2     2               -3\n 3     3               -6\n 4     4               -2\n 5     5               -8\n 6     6               -2\n 7     7               -2\n 8     8               -5\n 9     9              -12\n10    10               -7\n11    11               -6\n12    12                2\n\n\n\n\nCode\n#siste"
+    "text": "summarise() and group_by()\n\nHow to get median arr_delay for each month?\n\n. . .\n\nflights %&gt;%\n  group_by(month) %&gt;%\n  summarise(median_arr_delay = median(arr_delay, na.rm = TRUE))\n\n# A tibble: 12 × 2\n   month median_arr_delay\n   &lt;int&gt;            &lt;dbl&gt;\n 1     1               -3\n 2     2               -3\n 3     3               -6\n 4     4               -2\n 5     5               -8\n 6     6               -2\n 7     7               -2\n 8     8               -5\n 9     9              -12\n10    10               -7\n11    11               -6\n12    12                2\n\n\n\n#siste"
   },
   {
     "objectID": "introduction/introduction.html",
@@ -9469,5 +9469,19 @@
     "title": "Assignments h25",
     "section": "",
     "text": "Assignment 1 h25"
+  },
+  {
+    "objectID": "explore-data/trans-data/index.html",
+    "href": "explore-data/trans-data/index.html",
+    "title": "Transforming Data",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   4.0.0     ✔ tibble    3.3.0\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.1.0     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(nycflights13)\nlibrary(ViewPipeSteps)"
+  },
+  {
+    "objectID": "explore-data/eda/eda.html#single-variable-load-data-.smaller-.incremental-false",
+    "href": "explore-data/eda/eda.html#single-variable-load-data-.smaller-.incremental-false",
+    "title": "Exploratory Data Analysis (EDA)",
+    "section": "Single variable, load data {.smaller .incremental = FALSE}",
+    "text": "Single variable, load data {.smaller .incremental = FALSE}\n\n\n\nLoad the data\n\n\n\nCode\nmy_heights &lt;- modelr::heights\n\n\n\nAny NAs?\n\n\n\nCode\n# NAs in my_heights?\nmy_heights %&gt;% \n  apply(MARGIN = 2, FUN = is.na) %&gt;% \n  apply(MARGIN = 2, FUN = sum) |&gt; \n  print(width = 40)\n\n\n   income    height    weight       age \n        0         0        95         0 \n  marital       sex education      afqt \n        0         0        10       262 \n\n\n\n\nor\n\n\n\nCode\n# NAs in my_heights?\nmy_heights %&gt;% \n  is.na() %&gt;% \n  apply(MARGIN = 2, FUN = sum)  |&gt; \n  print(width = 40)\n\n\n   income    height    weight       age \n        0         0        95         0 \n  marital       sex education      afqt \n        0         0        10       262"
   }
 ]

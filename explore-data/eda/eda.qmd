@@ -6,8 +6,8 @@ format:
         theme: simple
         footer: '[MSB105](/index.html)'
         reveal_options:
-        code-fold: show
-        incremental: true
+        code-fold: false
+        incremental: false
         smaller: true
         scrollable: true
         slide-number: c/t
@@ -94,7 +94,7 @@ r4ds](https://r4ds.had.co.nz/exploratory-data-analysis.html).
 
 ## Single variable, load data {.smaller}
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 -   Load the data
 
@@ -125,13 +125,14 @@ my_heights %>%
   print(width = 40)
 ```
 :::
-:::
+:::::
 
 ## Single variable, load data cont.
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
-Nicer solution
+-   Nicer solution
+-   More in line with tidyverse
 
 ```{r}
 # number of NAs in each variable
@@ -141,10 +142,8 @@ my_heights %>%
   colSums() |> 
   print(width = 40)
 ```
-:::
 
-::: {.column width="50%"}
-or
+-   or
 
 ```{r}
 # number of NAs in each variable
@@ -155,7 +154,23 @@ my_heights %>%
   .[. > 0]
 ```
 :::
+
+::: {.column width="50%"}
+-   the built in pipe is more restrictive
+
+```{r}
+#| eval: false
+# number of NAs in each variable
+# drop variables with no NA
+my_heights |> 
+  is.na() |> 
+  colSums()  |>  
+  _[_ > 0]
+```
+
+`Error in "_"["_" > 0] :    pipe placeholder may only appear once (<input>:4:3) Error during wrapup: not that many frames on the stack Error: no more error handlers available (recursive errors?); invoking 'abort' restart`
 :::
+:::::
 
 ## Descriptive Statistics
 
@@ -178,7 +193,7 @@ Describe data by tables showing:
 
 . . .
 
-::: columns
+::::: columns
 ::: {.column width="30%"}
 ```{r}
 #| echo: true
@@ -218,11 +233,11 @@ my_heights %>%
   as_flextable()
 ```
 :::
-:::
+:::::
 
 ## Descriptive Statistics ex. my_heights {.smaller}
 
-::: columns
+::::: columns
 ::: {.column width="30%"}
 ```{r}
 #| echo: true
@@ -255,7 +270,7 @@ my_heights %>%
   as_flextable()
 ```
 :::
-:::
+:::::
 
 ## A simpler alternative
 
@@ -278,7 +293,7 @@ my_heights %>%
 
 ## Descriptive Statistics ex. my_heights
 
-::: columns
+::::: columns
 ::: {.column width="35%"}
 ```{r}
 #| eval: false
@@ -316,11 +331,11 @@ my_heights %>%
     )
 ```
 :::
-:::
+:::::
 
 ## Desc. Stat. ex. my_heights {.smaller}
 
-::: columns
+::::: columns
 ::: {.column width="35%"}
 married/unmarried women
 
@@ -380,11 +395,11 @@ my_heights %>%
     )
 ```
 :::
-:::
+:::::
 
 ## Less info. married/unmarried women
 
-::: columns
+::::: columns
 ::: {.column width="45%"}
 ```{r}
 #| eval: false
@@ -441,11 +456,11 @@ my_heights %>%
     )
 ```
 :::
-:::
+:::::
 
 ## Desc. Stat. ex. my_heights {.smaller}
 
-::: columns
+::::: columns
 ::: {.column width="35%"}
 married/unmarried men
 
@@ -505,11 +520,11 @@ my_heights %>%
     )
 ```
 :::
-:::
+:::::
 
 ## Less info. married/unmarried men
 
-::: columns
+::::: columns
 ::: {.column width="45%"}
 ```{r}
 #| eval: false
@@ -566,13 +581,13 @@ my_heights %>%
     )
 ```
 :::
-:::
+:::::
 
 ## Single variable graphical description, bar chart
 
 Simplest is bar-chart
 
-::: columns
+::::: columns
 ::: {.column width="40%"}
 ```{r}
 #| echo: true
@@ -618,7 +633,7 @@ ggplot(data = my_heights) +
    )
 ```
 :::
-:::
+:::::
 
 ## The peaks?
 
