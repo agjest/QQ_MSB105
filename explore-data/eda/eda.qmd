@@ -99,15 +99,15 @@ r4ds](https://r4ds.had.co.nz/exploratory-data-analysis.html).
 -   Load the data
 
 ```{r load-data}
-my_heights <- modelr::heights
+heights <- modelr::heights
 ```
 
 -   Any NAs?
 
 ```{r}
 #| paged.print: false
-# NAs in my_heights?
-my_heights %>% 
+# NAs in heights?
+heights %>% 
   apply(MARGIN = 2, FUN = is.na) %>% 
   apply(MARGIN = 2, FUN = sum) |> 
   print(width = 40)
@@ -118,8 +118,8 @@ my_heights %>%
 -   or
 
 ```{r}
-# NAs in my_heights?
-my_heights %>% 
+# NAs in heights?
+heights %>% 
   is.na() %>% 
   apply(MARGIN = 2, FUN = sum)  |> 
   print(width = 40)
@@ -137,7 +137,7 @@ my_heights %>%
 ```{r}
 # number of NAs in each variable
 # drop variables with no NA
-my_heights %>% 
+heights %>% 
   is.na() %>% 
   colSums() |> 
   print(width = 40)
@@ -148,7 +148,7 @@ my_heights %>%
 ```{r}
 # number of NAs in each variable
 # drop variables with no NA
-my_heights %>% 
+heights %>% 
   is.na() %>% 
   colSums() %>% 
   .[. > 0]
@@ -162,7 +162,7 @@ my_heights %>%
 #| eval: false
 # number of NAs in each variable
 # drop variables with no NA
-my_heights |> 
+heights |> 
   is.na() |> 
   colSums()  |>  
   _[_ > 0]
@@ -187,7 +187,7 @@ Describe data by tables showing:
         -   Variance
         -   Percentiles
 
-## Descriptive Statistics ex. my_heights
+## Descriptive Statistics ex. heights
 
 -   Splits variables into two tables
 
@@ -200,7 +200,7 @@ Describe data by tables showing:
 #| eval: false
 # package vtable 
 # must be installed
-my_heights %>% 
+heights %>% 
   select(
     -marital, 
     -sex
@@ -209,7 +209,16 @@ my_heights %>%
   # complaining about 
   # no data
   vtable::st(data = ., out = "return") |> 
-  as_flextable()
+  as_flextable(
+    show_coltype = FALSE,
+    max_row = 30
+  ) |> 
+  line_spacing(
+    space = 0.3
+  ) |> 
+  delete_part(
+    "footer"
+  )
 ```
 :::
 
@@ -221,7 +230,7 @@ my_heights %>%
 #| eval: true
 # package vtable 
 # must be installed
-my_heights %>% 
+heights %>% 
   select(
     -marital, 
     -sex
@@ -230,12 +239,21 @@ my_heights %>%
   # complaining about 
   # no data
   vtable::st(data = ., out = "return") |> 
-  as_flextable()
+  as_flextable(
+    show_coltype = FALSE,
+    max_row = 30
+  ) |> 
+  line_spacing(
+    space = 0.3
+  ) |> 
+  delete_part(
+    "footer"
+  ) 
 ```
 :::
 :::::
 
-## Descriptive Statistics ex. my_heights {.smaller}
+## Descriptive Statistics ex. heights {.smaller}
 
 ::::: columns
 ::: {.column width="30%"}
@@ -244,13 +262,13 @@ my_heights %>%
 #| eval: false
 # package vtable must 
 # be installed
-my_heights %>% 
+heights %>% 
   select(marital, sex) %>% 
   vtable::st(
     data = ., 
     out = "return"
     ) |> 
-  as_flextable()
+    as_flextable(     show_coltype = FALSE,     max_row = 30   )
 ```
 :::
 
@@ -261,13 +279,16 @@ my_heights %>%
 #| echo: false
 #| eval: true
 # package vtable must be installed
-my_heights %>% 
+heights %>% 
   select(marital, sex) %>% 
   vtable::st(
     data = ., 
     out = "return"
     ) |> 
-  as_flextable()
+    as_flextable(
+      show_coltype = FALSE,
+      max_row = 30
+      )
 ```
 :::
 :::::
@@ -286,12 +307,12 @@ my_heights %>%
 # next line gives dataframe/tibble
 # as flextable
 use_df_printer()
-my_heights %>% 
+heights %>% 
   select(marital, sex) %>% 
   vtable::st(out = "return") 
 ```
 
-## Descriptive Statistics ex. my_heights
+## Descriptive Statistics ex. heights
 
 ::::: columns
 ::: {.column width="35%"}
@@ -303,7 +324,7 @@ my_heights %>%
 # so just first 10 lines will
 # be printed
 use_df_printer()
-my_heights %>% 
+heights %>% 
   select(-marital) %>% 
   vtable::st(
     group = 'sex',
@@ -322,7 +343,7 @@ my_heights %>%
 # so just first 10 lines will
 # be printed
 use_df_printer()
-my_heights %>% 
+heights %>% 
   select(-marital) %>% 
   vtable::st(
     group = 'sex',
@@ -333,7 +354,7 @@ my_heights %>%
 :::
 :::::
 
-## Desc. Stat. ex. my_heights {.smaller}
+## Desc. Stat. ex. heights {.smaller}
 
 ::::: columns
 ::: {.column width="35%"}
@@ -347,7 +368,7 @@ married/unmarried women
 # so just first 10 lines will
 # be printed
 use_df_printer()
-my_heights %>% 
+heights %>% 
   mutate(
     married = if_else(
       marital == 'married', 
@@ -375,7 +396,7 @@ my_heights %>%
 # so just first 10 lines will
 # be printed
 use_df_printer()
-my_heights %>% 
+heights %>% 
   mutate(
     married = if_else(
       marital == 'married', 
@@ -409,7 +430,7 @@ my_heights %>%
 # so just first 10 lines will
 # be printed
 use_df_printer()
-my_heights %>% 
+heights %>% 
   mutate(
     married = if_else(
       marital == 'married', 
@@ -437,7 +458,7 @@ my_heights %>%
 #| echo: false
 #| ft_max_row: 15
 use_df_printer()
-my_heights %>% 
+heights %>% 
   mutate(
     married = if_else(
       marital == 'married', 
@@ -458,7 +479,7 @@ my_heights %>%
 :::
 :::::
 
-## Desc. Stat. ex. my_heights {.smaller}
+## Desc. Stat. ex. heights {.smaller}
 
 ::::: columns
 ::: {.column width="35%"}
@@ -472,7 +493,7 @@ married/unmarried men
 # so just first 10 lines will
 # be printed
 use_df_printer()
-my_heights %>% 
+heights %>% 
   mutate(
     married = if_else(
       marital == 'married', 
@@ -500,7 +521,7 @@ my_heights %>%
 # so just first 10 lines will
 # be printed
 use_df_printer()
-my_heights %>% 
+heights %>% 
   mutate(
     married = if_else(
       marital == 'married', 
@@ -534,7 +555,7 @@ my_heights %>%
 # so just first 10 lines will
 # be printed
 use_df_printer()
-my_heights %>% 
+heights %>% 
   mutate(
     married = if_else(
       marital == 'married', 
@@ -562,7 +583,7 @@ my_heights %>%
 #| echo: false
 #| ft_max_row: 15
 use_df_printer()
-my_heights %>% 
+heights %>% 
   mutate(
     married = if_else(
       marital == 'married', 
@@ -592,7 +613,7 @@ Simplest is bar-chart
 ```{r}
 #| echo: true
 #| eval: false
-ggplot(data = my_heights) +
+ggplot(data = heights) +
   geom_bar(
     mapping = aes(
       x = education
@@ -616,7 +637,7 @@ ggplot(data = my_heights) +
 #| fig-cap: "Bar chart of education."
 #| echo: false
 #| eval: true
-ggplot(data = my_heights) +
+ggplot(data = heights) +
   geom_bar(
     mapping = aes(
       x = education
@@ -660,8 +681,8 @@ ggplot(data = my_heights) +
 
 ```{r}
 #| label: fig-two-hist
-hist1 <- ggplotify::as.ggplot(~hist(my_heights$income, breaks = 20))
-hist2 <- ggplot(my_heights, mapping = aes(x = income)) +
+hist1 <- ggplotify::as.ggplot(~hist(heights$income, breaks = 20))
+hist2 <- ggplot(heights, mapping = aes(x = income)) +
   geom_histogram(bins = 20)
 
 gridExtra::grid.arrange(hist1, hist2, ncol = 2)
@@ -672,11 +693,11 @@ gridExtra::grid.arrange(hist1, hist2, ncol = 2)
 ```{r}
 #| echo: true
 #| eval: false
-hist3 <- ggplot(my_heights, mapping = aes(x = income)) +
+hist3 <- ggplot(heights, mapping = aes(x = income)) +
   geom_histogram(bins = 40, na.rm = TRUE)
-hist4 <- ggplot(my_heights, mapping = aes(x = height)) +
+hist4 <- ggplot(heights, mapping = aes(x = height)) +
   geom_histogram(bins = 40, na.rm = TRUE)
-hist5 <- ggplot(my_heights, mapping = aes(x = weight)) +
+hist5 <- ggplot(heights, mapping = aes(x = weight)) +
   geom_histogram(bins = 40, na.rm = TRUE)
 gridExtra::grid.arrange(hist3, hist4, hist5, nrow = 1)
 ```
@@ -685,11 +706,11 @@ gridExtra::grid.arrange(hist3, hist4, hist5, nrow = 1)
 
 ```{r}
 #| echo: false
-hist3 <- ggplot(my_heights, mapping = aes(x = income)) +
+hist3 <- ggplot(heights, mapping = aes(x = income)) +
   geom_histogram(bins = 40, na.rm = TRUE)
-hist4 <- ggplot(my_heights, mapping = aes(x = height)) +
+hist4 <- ggplot(heights, mapping = aes(x = height)) +
   geom_histogram(bins = 40, na.rm = TRUE)
-hist5 <- ggplot(my_heights, mapping = aes(x = weight)) +
+hist5 <- ggplot(heights, mapping = aes(x = weight)) +
   geom_histogram(bins = 40, na.rm = TRUE)
 gridExtra::grid.arrange(hist3, hist4, hist5, nrow = 1)
 ```
@@ -697,11 +718,11 @@ gridExtra::grid.arrange(hist3, hist4, hist5, nrow = 1)
 ## `geom_histogram()` other variables
 
 ```{r, eval = FALSE}
-hist6 <- ggplot(my_heights, mapping = aes(x = age)) +
+hist6 <- ggplot(heights, mapping = aes(x = age)) +
   geom_histogram(bins = 40, na.rm = TRUE)
-hist7 <- ggplot(my_heights, mapping = aes(x = education)) +
+hist7 <- ggplot(heights, mapping = aes(x = education)) +
   geom_histogram(bins = 40, na.rm = TRUE)
-hist8 <- ggplot(my_heights, mapping = aes(x = afqt)) +
+hist8 <- ggplot(heights, mapping = aes(x = afqt)) +
   geom_histogram(bins = 40, na.rm = TRUE)
 gridExtra::grid.arrange(hist6, hist7, hist8, nrow = 1)
 ```
@@ -709,11 +730,11 @@ gridExtra::grid.arrange(hist6, hist7, hist8, nrow = 1)
 ## `geom_histogram()` other variables
 
 ```{r, echo = FALSE}
-hist6 <- ggplot(my_heights, mapping = aes(x = age)) +
+hist6 <- ggplot(heights, mapping = aes(x = age)) +
   geom_histogram(bins = 40, na.rm = TRUE)
-hist7 <- ggplot(my_heights, mapping = aes(x = education)) +
+hist7 <- ggplot(heights, mapping = aes(x = education)) +
   geom_histogram(bins = 40, na.rm = TRUE)
-hist8 <- ggplot(my_heights, mapping = aes(x = afqt)) +
+hist8 <- ggplot(heights, mapping = aes(x = afqt)) +
   geom_histogram(bins = 40, na.rm = TRUE)
 gridExtra::grid.arrange(hist6, hist7, hist8, nrow = 1)
 ```
@@ -738,7 +759,7 @@ gridExtra::grid.arrange(hist6, hist7, hist8, nrow = 1)
 
 ```{r}
 #| eval: false
-my_heights %>% 
+heights %>% 
   mutate(
     edu_fac = cut(education, 
                   breaks = c(0, 12, 14, 16, 21), 
@@ -756,7 +777,7 @@ my_heights %>%
 ```{r}
 #| label: fig-facet-sex-code
 #| echo: false
-my_heights %>% 
+heights %>% 
   mutate(
     edu_fac = cut(education, 
                   breaks = c(0, 12, 14, 16, 21), 
@@ -778,7 +799,7 @@ my_heights %>%
 ```{r}
 #| label: fig-facet-edu-fac-code
 #| eval: false
-my_heights %>% 
+heights %>% 
   mutate(
     edu_fac = cut(education, 
                   breaks = c(0, 12, 14, 16, 21), 
@@ -796,7 +817,7 @@ my_heights %>%
 ```{r}
 #| label: fig-facet-edu-fac-plot
 #| echo: false
-my_heights %>% 
+heights %>% 
   mutate(
     edu_fac = cut(education, 
                   breaks = c(0, 12, 14, 16, 21), 
@@ -812,14 +833,14 @@ my_heights %>%
 ## Income equal to 0?
 
 ```{r}
-my_heights %>% 
+heights %>% 
   dim()
 ```
 
 . . .
 
 ```{r}
-my_heights %>% 
+heights %>% 
   filter(income < 1) %>% 
   dim()
 ```
@@ -828,7 +849,7 @@ my_heights %>%
 
 ```{r}
 #| output-location: column
-my_heights %>% 
+heights %>% 
   filter(income < 1) %>%
   select(sex) %>%
   group_by(sex) %>%
@@ -842,7 +863,7 @@ my_heights %>%
 . . .
 
 ```{r}
-my_heights %>% 
+heights %>% 
   mutate(
     edu_fac = cut(education, 
                   breaks = c(0, 12, 14, 16, 21), 
@@ -858,7 +879,7 @@ my_heights %>%
 ## Boxplot
 
 ```{r boxplot_code, eval = FALSE}
-my_heights %>% 
+heights %>% 
   mutate(
     edu_fac = cut(education, 
                   breaks = c(0, 12, 14, 16, 21), 
@@ -874,7 +895,7 @@ my_heights %>%
 ## Boxplot
 
 ```{r boxplot_plot, echo = FALSE}
-my_heights %>% 
+heights %>% 
   mutate(
     edu_fac = cut(education, 
                   breaks = c(0, 12, 14, 16, 21), 
@@ -890,7 +911,7 @@ my_heights %>%
 ## Boxplot code, turned 90
 
 ```{r boxplot_plot_code_flip, eval = FALSE}
-my_heights %>% 
+heights %>% 
   mutate(
     edu_fac = cut(education, 
                   breaks = c(0, 12, 14, 16, 21), 
@@ -907,7 +928,7 @@ my_heights %>%
 ## Boxplot plot, turned 90
 
 ```{r boxplot_plot_plot_flip, echo = FALSE}
-my_heights %>% 
+heights %>% 
   mutate(
     edu_fac = cut(education, 
                   breaks = c(0, 12, 14, 16, 21), 
@@ -1072,7 +1093,7 @@ sum(my_data$val, na.rm = TRUE); mean(my_data$val, na.rm = TRUE)
 ## Categorical and continuous variable; code
 
 ```{r freqpoly_code, eval = FALSE}
-my_heights %>% 
+heights %>% 
   mutate(
     edu_fac = cut(education, 
                   breaks = c(0, 12, 14, 16, 21), 
@@ -1080,7 +1101,7 @@ my_heights %>%
                   right = FALSE) 
   ) %>% 
   filter(income > 0 & !is.na(weight) & !is.na(afqt) & !is.na(edu_fac)) %>%
-ggplot(mapping = aes(x = income, y = ..density..)) +
+ggplot(mapping = aes(x = income, y = after_stat(density))) +
   geom_freqpoly(mapping = aes(colour = edu_fac), binwidth = 10000)
 ```
 
@@ -1089,7 +1110,7 @@ ggplot(mapping = aes(x = income, y = ..density..)) +
 ## Categorical and continuous variable; plot
 
 ```{r freqpoly_plot, echo = FALSE}
-my_heights %>% 
+heights %>% 
   mutate(
     edu_fac = cut(education, 
                   breaks = c(0, 12, 14, 16, 21), 
@@ -1104,7 +1125,7 @@ ggplot(mapping = aes(x = income, y = ..density..)) +
 ## Two categorical variable; code
 
 ```{r geom_count_code, eval = FALSE}
-my_heights %>% 
+heights %>% 
   mutate(
     edu_fac = cut(education, 
                   breaks = c(0, 12, 14, 16, 21), 
@@ -1119,7 +1140,7 @@ my_heights %>%
 ## Two categorical variable; plot
 
 ```{r geom_count_plot, echo = FALSE}
-my_heights %>% 
+heights %>% 
   mutate(
     edu_fac = cut(education, 
                   breaks = c(0, 12, 14, 16, 21), 
@@ -1134,7 +1155,7 @@ my_heights %>%
 ## One continuouse variable, one with many categories
 
 ```{r, eval = FALSE}
-my_heights %>% 
+heights %>% 
   filter(income > 0 & !is.na(weight) & !is.na(afqt) & !is.na(education)) %>%
   ggplot() +
   geom_point(mapping = aes(x = education, y = income), alpha = 0.05)
@@ -1143,7 +1164,7 @@ my_heights %>%
 ## One continuouse variable, one with many categories
 
 ```{r, echo = FALSE}
-my_heights %>% 
+heights %>% 
   filter(income > 0 & !is.na(weight) & !is.na(afqt) & !is.na(education) & income < 200000) %>%
   ggplot() +
   geom_point(mapping = aes(x = education, y = income), alpha = 0.05)
