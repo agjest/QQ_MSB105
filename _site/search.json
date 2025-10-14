@@ -1642,7 +1642,7 @@
     "href": "explore-data/eda/eda.html#a-simpler-alternative",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "A simpler alternative",
-    "text": "A simpler alternative\n\nuse use_df_printer() from the flextable package\nwill print dataframes/tibbles nicely\nthe option out = \"return\" to st() ensures that a dataframe is returned\n\n\n\n\n# next line gives dataframe/tibble\n# as flextable\nuse_df_printer()\nheights %&gt;% \n  select(marital, sex) %&gt;% \n  vtable::st(out = \"return\") \n\n\nVariableNPercentcharactercharactercharactermarital7006... single112416%... married380654%... separated3665%... divorced154922%... widowed1612%sex7006... male340249%... female360451%n: 9"
+    "text": "A simpler alternative\n\nuse use_df_printer() from the flextable package\nwill print dataframes/tibbles nicely\nthe option out = \"return\" to st() ensures that a dataframe is returned\n\n. . .\n\n# next line gives dataframe/tibble\n# as flextable\nuse_df_printer()\nheights %&gt;% \n  select(marital, sex) %&gt;% \n  vtable::st(out = \"return\") \n\nVariableNPercentcharactercharactercharactermarital7006... single112416%... married380654%... separated3665%... divorced154922%... widowed1612%sex7006... male340249%... female360451%n: 9"
   },
   {
     "objectID": "explore-data/eda/eda.html#descriptive-statistics-ex.-my_heights-2",
@@ -1663,7 +1663,7 @@
     "href": "explore-data/eda/eda.html#less-info.-marriedunmarried-women",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Less info. married/unmarried women",
-    "text": "Less info. married/unmarried women\n\n\n\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nheights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'female') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    summ = c(\"notNA(x)\" , \"mean(x)\", \n             \"sd(x)\"),\n    summ.names = c(\"N\", \"Mean\", \"SD\"),\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\nTable 4: Difference between married an unmarried women. Simplified table.\n\n\n\nVariableNMeanSDcharactercharactercharactercharactermarried: Noincome17032668230962height1703642.8weight166217745age1703512.3education1701132.6afqt16473326married: Yesincome19013219038680height1901642.7weight185716940age1901512.2education1899142.6afqt18494728n: 15"
+    "text": "Less info. married/unmarried women\n\n\n\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nheights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'female') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    summ = c(\"notNA(x)\" , \"mean(x)\", \n             \"sd(x)\"),\n    summ.names = c(\"N\", \"Mean\", \"SD\"),\n    out = \"return\"\n    )\n```\n\n\n\n\nWarning in vtable::st(., group = \"married\", group.long = TRUE, summ = c(\"notNA(x)\", : Factor variables ignore custom summ options. Cols 1 and 2 are count and percentage.\nBeware combining factors with a custom summ unless factor.numeric = TRUE.\n\n\n\n\nTable 4: Difference between married an unmarried women. Simplified table.\n\n\n\nVariableNMeanSDcharactercharactercharactercharactermarried: Noincome17032668230962height1703642.8weight166217745age1703512.3education1701132.6afqt16473326married: Yesincome19013219038680height1901642.7weight185716940age1901512.2education1899142.6afqt18494728n: 15"
   },
   {
     "objectID": "explore-data/eda/eda.html#desc.-stat.-ex.-my_heights-1",
@@ -1677,7 +1677,7 @@
     "href": "explore-data/eda/eda.html#less-info.-marriedunmarried-men",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Less info. married/unmarried men",
-    "text": "Less info. married/unmarried men\n\n\n\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nheights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'male') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    summ = c(\"notNA(x)\" , \"mean(x)\", \n             \"sd(x)\"),\n    summ.names = c(\"N\", \"Mean\", \"SD\"),\n    out = \"return\"\n    )\n```\n\n\n\n\n\n\nTable 6: Difference between married an unmarried men. Simplified table.\n\n\n\nVariableNMeanSDcharactercharactercharactercharactermarried: Noincome14973212250520height1497703.1weight149220042age1497512.2education1494122.2afqt14263428married: Yesincome19057031777171height1905702.9weight190020739age1905512.3education1902142.7afqt18224830n: 15"
+    "text": "Less info. married/unmarried men\n\n\n\n```{r}\n#| eval: false\n#| ft_max_row: 15\n# Default for ft_max_row is 10\n# so just first 10 lines will\n# be printed\nuse_df_printer()\nheights %&gt;% \n  mutate(\n    married = if_else(\n      marital == 'married', \n      TRUE, \n      FALSE\n      )\n    ) %&gt;% \n  filter(sex == 'male') %&gt;% \n  select(-sex, -marital) %&gt;% \n  vtable::st(\n    group = \"married\",\n    group.long = TRUE,\n    summ = c(\"notNA(x)\" , \"mean(x)\", \n             \"sd(x)\"),\n    summ.names = c(\"N\", \"Mean\", \"SD\"),\n    out = \"return\"\n    )\n```\n\n\n\n\nWarning in vtable::st(., group = \"married\", group.long = TRUE, summ = c(\"notNA(x)\", : Factor variables ignore custom summ options. Cols 1 and 2 are count and percentage.\nBeware combining factors with a custom summ unless factor.numeric = TRUE.\n\n\n\n\nTable 6: Difference between married an unmarried men. Simplified table.\n\n\n\nVariableNMeanSDcharactercharactercharactercharactermarried: Noincome14973212250520height1497703.1weight149220042age1497512.2education1494122.2afqt14263428married: Yesincome19057031777171height1905702.9weight190020739age1905512.3education1902142.7afqt18224830n: 15"
   },
   {
     "objectID": "explore-data/eda/eda.html#single-variable-graphical-description-bar-chart",
@@ -1705,7 +1705,7 @@
     "href": "explore-data/eda/eda.html#hist-and-geom_histogram",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "hist() and geom_histogram()",
-    "text": "hist() and geom_histogram()\n\nhist1 &lt;- ggplotify::as.ggplot(~hist(heights$income, breaks = 20))\nhist2 &lt;- ggplot(heights, mapping = aes(x = income)) +\n  geom_histogram(bins = 20)\n\ngridExtra::grid.arrange(hist1, hist2, ncol = 2)\n\n\n\nFigure 2"
+    "text": "hist() and geom_histogram()\n\nhist1 &lt;- ggplotify::as.ggplot(~hist(heights$income, breaks = 20))\n\nWarning: `aes_()` was deprecated in ggplot2 3.0.0.\nℹ Please use tidy evaluation idioms with `aes()`\nℹ The deprecated feature was likely used in the ggplotify package.\n  Please report the issue at\n  &lt;https://github.com/GuangchuangYu/ggplotify/issues&gt;.\n\nhist2 &lt;- ggplot(heights, mapping = aes(x = income)) +\n  geom_histogram(bins = 20)\n\ngridExtra::grid.arrange(hist1, hist2, ncol = 2)\n\n\n\n\n\n\n\nFigure 2"
   },
   {
     "objectID": "explore-data/eda/eda.html#geom_histogram-other-variables",
@@ -1761,42 +1761,42 @@
     "href": "explore-data/eda/eda.html#geom_density-faceted-on-sex-2",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "geom_density(); faceted on sex",
-    "text": "geom_density(); faceted on sex\n\n\nFigure 3"
+    "text": "geom_density(); faceted on sex\n\n\n\n\n\n\n\n\nFigure 3"
   },
   {
     "objectID": "explore-data/eda/eda.html#geom_density-facet-edu_fac",
     "href": "explore-data/eda/eda.html#geom_density-facet-edu_fac",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "geom_density(); facet edu_fac",
-    "text": "geom_density(); facet edu_fac\n\nPerhaps better to facet on education\n\n\n\nheights %&gt;% \n  mutate(\n    edu_fac = cut(education, \n                  breaks = c(0, 12, 14, 16, 21), \n                  labels = c(\"NotHS\", \"NotTC\", \"NotC\", \"C+\"),\n                  right = FALSE) \n  ) %&gt;% \n  filter(!is.na(edu_fac) & income &gt; 0) %&gt;%\n  ggplot(mapping = aes(x = income, fill = sex, colour = sex)) +\n  geom_density(alpha = 0.2, na.rm = TRUE) + \n  facet_wrap(~edu_fac)"
+    "text": "geom_density(); facet edu_fac\n\nPerhaps better to facet on education\n\n. . .\n\nheights %&gt;% \n  mutate(\n    edu_fac = cut(education, \n                  breaks = c(0, 12, 14, 16, 21), \n                  labels = c(\"NotHS\", \"NotTC\", \"NotC\", \"C+\"),\n                  right = FALSE) \n  ) %&gt;% \n  filter(!is.na(edu_fac) & income &gt; 0) %&gt;%\n  ggplot(mapping = aes(x = income, fill = sex, colour = sex)) +\n  geom_density(alpha = 0.2, na.rm = TRUE) + \n  facet_wrap(~edu_fac)"
   },
   {
     "objectID": "explore-data/eda/eda.html#geom_density-facet-edu_fac-1",
     "href": "explore-data/eda/eda.html#geom_density-facet-edu_fac-1",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "geom_density(); facet edu_fac",
-    "text": "geom_density(); facet edu_fac\n\n\nFigure 4"
+    "text": "geom_density(); facet edu_fac\n\n\n\n\n\n\n\n\nFigure 4"
   },
   {
     "objectID": "explore-data/eda/eda.html#income-equal-to-0",
     "href": "explore-data/eda/eda.html#income-equal-to-0",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Income equal to 0?",
-    "text": "Income equal to 0?\n\nheights %&gt;% \n  dim()\n\n[1] 7006    8\n\n\n\n\nheights %&gt;% \n  filter(income &lt; 1) %&gt;% \n  dim()\n\n[1] 1740    8"
+    "text": "Income equal to 0?\n\nheights %&gt;% \n  dim()\n\n[1] 7006    8\n\n\n. . .\n\nheights %&gt;% \n  filter(income &lt; 1) %&gt;% \n  dim()\n\n[1] 1740    8"
   },
   {
     "objectID": "explore-data/eda/eda.html#income-equal-to-0-1",
     "href": "explore-data/eda/eda.html#income-equal-to-0-1",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Income equal to 0?",
-    "text": "Income equal to 0?\n\n\nheights %&gt;% \n  filter(income &lt; 1) %&gt;%\n  select(sex) %&gt;%\n  group_by(sex) %&gt;%\n  table() \n\n\nsexCountPercentmale74542.8%female99557.2%Total1,740100.0%"
+    "text": "Income equal to 0?\n\nheights %&gt;% \n  filter(income &lt; 1) %&gt;%\n  select(sex) %&gt;%\n  group_by(sex) %&gt;%\n  table() \n\nsexCountPercentmale74542.8%female99557.2%Total1,740100.0%"
   },
   {
     "objectID": "explore-data/eda/eda.html#income-equal-to-0-2",
     "href": "explore-data/eda/eda.html#income-equal-to-0-2",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Income equal to 0?",
-    "text": "Income equal to 0?\n\nNo income, grouped by sex and edu_fac\n\n\n\nheights %&gt;% \n  mutate(\n    edu_fac = cut(education, \n                  breaks = c(0, 12, 14, 16, 21), \n                  labels = c(\"NotHS\", \"NotTC\", \"NotC\", \"C+\"),\n                  right = FALSE) \n  ) %&gt;% \n  filter(income &lt; 1) %&gt;%\n  select(sex, edu_fac) %&gt;%\n  group_by(sex) %&gt;%\n  table()\n\nsexedu_facNotHSNotTCNotCC+TotalmaleCount252 (14.5%)359 (20.7%)74 (4.3%)56 (3.2%)741 (42.8%)Mar. pct (1)50.7% ; 34.0%43.0% ; 48.4%35.1% ; 10.0%29.6% ; 7.6%femaleCount245 (14.1%)476 (27.5%)137 (7.9%)133 (7.7%)991 (57.2%)Mar. pct49.3% ; 24.7%57.0% ; 48.0%64.9% ; 13.8%70.4% ; 13.4%TotalCount497 (28.7%)835 (48.2%)211 (12.2%)189 (10.9%)1,732 (100.0%) (1) Columns and rows percentages"
+    "text": "Income equal to 0?\n\nNo income, grouped by sex and edu_fac\n\n. . .\n\nheights %&gt;% \n  mutate(\n    edu_fac = cut(education, \n                  breaks = c(0, 12, 14, 16, 21), \n                  labels = c(\"NotHS\", \"NotTC\", \"NotC\", \"C+\"),\n                  right = FALSE) \n  ) %&gt;% \n  filter(income &lt; 1) %&gt;%\n  select(sex, edu_fac) %&gt;%\n  group_by(sex) %&gt;%\n  table()\n\nsexedu_facNotHSNotTCNotCC+TotalmaleCount252 (14.5%)359 (20.7%)74 (4.3%)56 (3.2%)741 (42.8%)Mar. pct (1)50.7% ; 34.0%43.0% ; 48.4%35.1% ; 10.0%29.6% ; 7.6%femaleCount245 (14.1%)476 (27.5%)137 (7.9%)133 (7.7%)991 (57.2%)Mar. pct49.3% ; 24.7%57.0% ; 48.0%64.9% ; 13.8%70.4% ; 13.4%TotalCount497 (28.7%)835 (48.2%)211 (12.2%)189 (10.9%)1,732 (100.0%) (1) Columns and rows percentages"
   },
   {
     "objectID": "explore-data/eda/eda.html#boxplot",
@@ -1852,7 +1852,7 @@
     "href": "explore-data/eda/eda.html#quiz",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Quiz",
-    "text": "Quiz\nFrom r4ds. Use help (?)\n\nHow are NAs handled in geom_histogram()?\nHow are NAs handled in geom_bar()?\nHow are NAs handled in sum and mean"
+    "text": "Quiz\nFrom r4ds. Use help (?)\n\n\nHow are NAs handled in geom_histogram()?\nHow are NAs handled in geom_bar()?\nHow are NAs handled in sum and mean"
   },
   {
     "objectID": "explore-data/eda/eda.html#answer-quiz",
@@ -1866,28 +1866,28 @@
     "href": "explore-data/eda/eda.html#answer-quiz-1",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Answer Quiz",
-    "text": "Answer Quiz"
+    "text": "Answer Quiz\n\n\n`stat_bin()` using `bins = 30`. Pick better value `binwidth`.\n\n\nWarning: Removed 3 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\nWarning: Removed 3 rows containing non-finite outside the scale range\n(`stat_count()`)."
   },
   {
     "objectID": "explore-data/eda/eda.html#answer-quiz-2",
     "href": "explore-data/eda/eda.html#answer-quiz-2",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Answer Quiz",
-    "text": "Answer Quiz\n\nWarnings about NAs from ggplot.\nsum(my_data$val); mean(my_data$val)\n\n[1] NA\n\n\n[1] NA\n\nsum(my_data$val, na.rm = TRUE); mean(my_data$val, na.rm = TRUE)\n\n[1] 519\n\n\n[1] 5.350515"
+    "text": "Answer Quiz\n\n\n\nWarnings about NAs from ggplot.\n\n\n\nsum(my_data$val); mean(my_data$val)\n\n[1] NA\n\n\n[1] NA\n\nsum(my_data$val, na.rm = TRUE); mean(my_data$val, na.rm = TRUE)\n\n[1] 519\n\n\n[1] 5.350515"
   },
   {
     "objectID": "explore-data/eda/eda.html#answer-quiz-3",
     "href": "explore-data/eda/eda.html#answer-quiz-3",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Answer Quiz",
-    "text": "Answer Quiz\n\nUsing na.rm = TRUE.\n\n\n\nset.seed(999)\nmy_data &lt;- tibble(val = c(round(runif(97, 1, 10), 0), rep(NA, 3)))\ng &lt;- ggplot(my_data, mapping = aes(x = val)) \ng1 &lt;- g + geom_histogram(binwidth = 1, na.rm = TRUE)\ng2 &lt;- g + geom_bar(na.rm = TRUE)\ngridExtra::grid.arrange(g1, g2, ncol = 2)\nsum(my_data$val); mean(my_data$val)\nsum(my_data$val, na.rm = TRUE); mean(my_data$val, na.rm = TRUE)"
+    "text": "Answer Quiz\n\nUsing na.rm = TRUE.\n\n. . .\n\nset.seed(999)\nmy_data &lt;- tibble(val = c(round(runif(97, 1, 10), 0), rep(NA, 3)))\ng &lt;- ggplot(my_data, mapping = aes(x = val)) \ng1 &lt;- g + geom_histogram(binwidth = 1, na.rm = TRUE)\ng2 &lt;- g + geom_bar(na.rm = TRUE)\ngridExtra::grid.arrange(g1, g2, ncol = 2)\nsum(my_data$val); mean(my_data$val)\nsum(my_data$val, na.rm = TRUE); mean(my_data$val, na.rm = TRUE)"
   },
   {
     "objectID": "explore-data/eda/eda.html#answer-quiz-4",
     "href": "explore-data/eda/eda.html#answer-quiz-4",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Answer Quiz",
-    "text": "Answer Quiz\n\n\nsum(my_data$val); mean(my_data$val)\n\n[1] NA\n\n\n[1] NA\n\nsum(my_data$val, na.rm = TRUE); mean(my_data$val, na.rm = TRUE)\n\n[1] 519\n\n\n[1] 5.350515"
+    "text": "Answer Quiz\n\n\n\n\n\n\n\n\n\n\nsum(my_data$val); mean(my_data$val)\n\n[1] NA\n\n\n[1] NA\n\nsum(my_data$val, na.rm = TRUE); mean(my_data$val, na.rm = TRUE)\n\n[1] 519\n\n\n[1] 5.350515"
   },
   {
     "objectID": "explore-data/eda/eda.html#answer-quiz-5",
@@ -1922,7 +1922,7 @@
     "href": "explore-data/eda/eda.html#categorical-and-continuous-variable-plot",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Categorical and continuous variable; plot",
-    "text": "Categorical and continuous variable; plot"
+    "text": "Categorical and continuous variable; plot\n\n\nWarning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.\nℹ Please use `after_stat(density)` instead."
   },
   {
     "objectID": "explore-data/eda/eda.html#two-categorical-variable-code",
@@ -1957,7 +1957,7 @@
     "href": "explore-data/eda/eda.html#two-continuous-variables",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Two continuous variables",
-    "text": "Two continuous variables\n\nUse diamonds dataset\nSmaller point size\n\n\n\ndiamonds %&gt;% \n  ggplot(mapping = aes(x = carat, y = price)) +\n  geom_point(size = 0.1)"
+    "text": "Two continuous variables\n\nUse diamonds dataset\nSmaller point size\n\n. . .\n\ndiamonds %&gt;% \n  ggplot(mapping = aes(x = carat, y = price)) +\n  geom_point(size = 0.1)"
   },
   {
     "objectID": "explore-data/eda/eda.html#two-continuous-variables-1",
@@ -1992,7 +1992,7 @@
     "href": "explore-data/eda/eda.html#two-continuous-variables-make-one-categorical-1",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Two continuous variables; make one categorical",
-    "text": "Two continuous variables; make one categorical\n\nNot like the one in r4ds"
+    "text": "Two continuous variables; make one categorical\n\nNot like the one in r4ds\n\n. . ."
   },
   {
     "objectID": "explore-data/eda/eda.html#references",
@@ -9524,7 +9524,7 @@
     "href": "explore-data/eda/eda.html#descriptive-statistics-ex.-heights",
     "title": "Exploratory Data Analysis (EDA)",
     "section": "Descriptive Statistics ex. heights",
-    "text": "Descriptive Statistics ex. heights\n\nSplits variables into two tables\n\n\n\n\n\n# package vtable \n# must be installed\nheights %&gt;% \n  select(\n    -marital, \n    -sex\n    ) %&gt;% \n  # . to stop RStudio \n  # complaining about \n  # no data\n  vtable::st(data = ., out = \"return\") |&gt; \n  as_flextable(\n    show_coltype = FALSE,\n    max_row = 30\n  ) |&gt; \n  line_spacing(\n    space = 0.3\n  ) |&gt; \n  delete_part(\n    \"footer\"\n  )\n\n\n\n\n\n\nTable 1: Numeric variables.\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxincome70064120455892016655000343830height7006674.152647084weight69111884476157212524age7006512.247495356education6996132.61121520afqt6744412901565100"
+    "text": "Descriptive Statistics ex. heights\n\nSplits variables into two tables\n\n. . .\n\n\n\n# package vtable \n# must be installed\nheights %&gt;% \n  select(\n    -marital, \n    -sex\n    ) %&gt;% \n  # . to stop RStudio \n  # complaining about \n  # no data\n  vtable::st(data = ., out = \"return\") |&gt; \n  as_flextable(\n    show_coltype = FALSE,\n    max_row = 30\n  ) |&gt; \n  line_spacing(\n    space = 0.3\n  ) |&gt; \n  delete_part(\n    \"footer\"\n  )\n\n\n\n\n\n\nTable 1: Numeric variables.\n\n\n\nVariableNMeanStd. Dev.MinPctl. 25Pctl. 75Maxincome70064120455892016655000343830height7006674.152647084weight69111884476157212524age7006512.247495356education6996132.61121520afqt6744412901565100"
   },
   {
     "objectID": "explore-data/eda/eda.html#descriptive-statistics-ex.-heights-1",
