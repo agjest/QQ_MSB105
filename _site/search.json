@@ -5009,14 +5009,14 @@
     "href": "wrangle-data/tidy-data/tidy-data.html#load-tidyverse",
     "title": "Tidy Data",
     "section": "Load tidyverse",
-    "text": "Load tidyverse\n\n\nCode\nlibrary(tidyverse)\n\n\n\nNote the 8 packages that are loaded by tidyverse (taken from tidyverse.tidyverse.org)\n\nggplot2, for data visualisation.\ndplyr, for data manipulation.\ntidyr, for data tidying.\nreadr, for data import.\npurrr, for functional programming.\ntibble, for tibbles, a modern re-imagining of data frames.\nstringr, for strings.\nforcats, for factors."
+    "text": "Load tidyverse\n\nlibrary(tidyverse)\n\n\nNote the 8 packages that are loaded by tidyverse (taken from tidyverse.tidyverse.org)\n\nggplot2, for data visualisation.\ndplyr, for data manipulation.\ntidyr, for data tidying.\nreadr, for data import.\npurrr, for functional programming.\ntibble, for tibbles, a modern re-imagining of data frames.\nstringr, for strings.\nforcats, for factors."
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#load-tidyverse-cont.",
     "href": "wrangle-data/tidy-data/tidy-data.html#load-tidyverse-cont.",
     "title": "Tidy Data",
     "section": "Load tidyverse cont.",
-    "text": "Load tidyverse cont.\n\nNote that dplyr mask the two functions filter() and lag().\nHence calling filter() will give us the dplyr version.\nIf we need the original\n\n\n\n\nCode\nbase::Filter\n\n\n\n\nCode\nstats::lag"
+    "text": "Load tidyverse cont.\n\nNote that dplyr mask the two functions filter() and lag().\nHence calling filter() will give us the dplyr version.\nIf we need the original\n\n\n\nbase::Filter\n\n\nstats::lag"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#tidy-data",
@@ -5037,28 +5037,28 @@
     "href": "wrangle-data/tidy-data/tidy-data.html#tidy-data-table3",
     "title": "Tidy Data",
     "section": "Tidy Data; table3",
-    "text": "Tidy Data; table3\n\n\nCode\ntable3\n\n\n# A tibble: 6 × 3\n  country      year rate             \n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;            \n1 Afghanistan  1999 745/19987071     \n2 Afghanistan  2000 2666/20595360    \n3 Brazil       1999 37737/172006362  \n4 Brazil       2000 80488/174504898  \n5 China        1999 212258/1272915272\n6 China        2000 213766/1280428583\n\n\n\nIs table3 Tidy?\n\nNo!\n\nWhy not?\n\nRate: two values in one cell"
+    "text": "Tidy Data; table3\n\ntable3\n\n# A tibble: 6 × 3\n  country      year rate             \n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;            \n1 Afghanistan  1999 745/19987071     \n2 Afghanistan  2000 2666/20595360    \n3 Brazil       1999 37737/172006362  \n4 Brazil       2000 80488/174504898  \n5 China        1999 212258/1272915272\n6 China        2000 213766/1280428583\n\n\n\nIs table3 Tidy?\n\nNo!\n\nWhy not?\n\nRate: two values in one cell"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#tidy-data-table2",
     "href": "wrangle-data/tidy-data/tidy-data.html#tidy-data-table2",
     "title": "Tidy Data",
     "section": "Tidy Data; table2",
-    "text": "Tidy Data; table2\n\n\nCode\ntable2\n\n\n# A tibble: 12 × 4\n   country      year type            count\n   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;\n 1 Afghanistan  1999 cases             745\n 2 Afghanistan  1999 population   19987071\n 3 Afghanistan  2000 cases            2666\n 4 Afghanistan  2000 population   20595360\n 5 Brazil       1999 cases           37737\n 6 Brazil       1999 population  172006362\n 7 Brazil       2000 cases           80488\n 8 Brazil       2000 population  174504898\n 9 China        1999 cases          212258\n10 China        1999 population 1272915272\n11 China        2000 cases          213766\n12 China        2000 population 1280428583\n\n\n\nIs table2 Tidy?\n\nNo!\n\nWhy not?\n\nEach observation is spread over two rows"
+    "text": "Tidy Data; table2\n\ntable2\n\n# A tibble: 12 × 4\n   country      year type            count\n   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;\n 1 Afghanistan  1999 cases             745\n 2 Afghanistan  1999 population   19987071\n 3 Afghanistan  2000 cases            2666\n 4 Afghanistan  2000 population   20595360\n 5 Brazil       1999 cases           37737\n 6 Brazil       1999 population  172006362\n 7 Brazil       2000 cases           80488\n 8 Brazil       2000 population  174504898\n 9 China        1999 cases          212258\n10 China        1999 population 1272915272\n11 China        2000 cases          213766\n12 China        2000 population 1280428583\n\n\n\nIs table2 Tidy?\n\nNo!\n\nWhy not?\n\nEach observation is spread over two rows"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#tidy-data-table4",
     "href": "wrangle-data/tidy-data/tidy-data.html#tidy-data-table4",
     "title": "Tidy Data",
     "section": "Tidy Data; table4",
-    "text": "Tidy Data; table4\n\n\nCode\ntable4a\n\n\n# A tibble: 3 × 3\n  country     `1999` `2000`\n  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;\n1 Afghanistan    745   2666\n2 Brazil       37737  80488\n3 China       212258 213766\n\n\nCode\ntable4b\n\n\n# A tibble: 3 × 3\n  country         `1999`     `2000`\n  &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan   19987071   20595360\n2 Brazil       172006362  174504898\n3 China       1272915272 1280428583\n\n\n\nIs table4a and table4b Tidy?\n\nNo!\n\nWhy not?\n\nTwo observations in one row.\nThe observations are also spread over two tables."
+    "text": "Tidy Data; table4\n\ntable4a\n\n# A tibble: 3 × 3\n  country     `1999` `2000`\n  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;\n1 Afghanistan    745   2666\n2 Brazil       37737  80488\n3 China       212258 213766\n\ntable4b\n\n# A tibble: 3 × 3\n  country         `1999`     `2000`\n  &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan   19987071   20595360\n2 Brazil       172006362  174504898\n3 China       1272915272 1280428583\n\n\n\nIs table4a and table4b Tidy?\n\nNo!\n\nWhy not?\n\nTwo observations in one row.\nThe observations are also spread over two tables."
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#tidy-data-table1",
     "href": "wrangle-data/tidy-data/tidy-data.html#tidy-data-table1",
     "title": "Tidy Data",
     "section": "Tidy Data; table1",
-    "text": "Tidy Data; table1\n\n\nCode\ntable1\n\n\n# A tibble: 6 × 4\n  country      year  cases population\n  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan  1999    745   19987071\n2 Afghanistan  2000   2666   20595360\n3 Brazil       1999  37737  172006362\n4 Brazil       2000  80488  174504898\n5 China        1999 212258 1272915272\n6 China        2000 213766 1280428583\n\n\n\nIs table1 Tidy?\n\nYes!\n\nWhy?\n\nObservation: same time, same object\n\nEach variable is in a column\neach observation is in a row\neach cell contains one value.\n\n\nThe table is tidy"
+    "text": "Tidy Data; table1\n\ntable1\n\n# A tibble: 6 × 4\n  country      year  cases population\n  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan  1999    745   19987071\n2 Afghanistan  2000   2666   20595360\n3 Brazil       1999  37737  172006362\n4 Brazil       2000  80488  174504898\n5 China        1999 212258 1272915272\n6 China        2000 213766 1280428583\n\n\n\nIs table1 Tidy?\n\nYes!\n\nWhy?\n\nObservation: same time, same object\n\nEach variable is in a column\neach observation is in a row\neach cell contains one value.\n\n\nThe table is tidy"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#are-untidy-data-bad",
@@ -5079,21 +5079,21 @@
     "href": "wrangle-data/tidy-data/tidy-data.html#some-ex.-of-working-with-tidy-data-1",
     "title": "Tidy Data",
     "section": "Some ex. of working with tidy data; 1",
-    "text": "Some ex. of working with tidy data; 1\n\n\nCode\n# cases per 100.000\ntable1 &lt;- table1 %&gt;% \n  mutate(\n    rate = round((cases/population) * 100000,\n                 digits = 3)\n    )\n\n\n\nvery easy to make a new variable"
+    "text": "Some ex. of working with tidy data; 1\n\n# cases per 100.000\ntable1 &lt;- table1 %&gt;% \n  mutate(\n    rate = round((cases/population) * 100000,\n                 digits = 3)\n    )\n\n\nvery easy to make a new variable"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#some-ex.-of-working-with-tidy-data-2",
     "href": "wrangle-data/tidy-data/tidy-data.html#some-ex.-of-working-with-tidy-data-2",
     "title": "Tidy Data",
     "section": "Some ex. of working with tidy data; 2",
-    "text": "Some ex. of working with tidy data; 2\n\n\nCode\ntable1 %&gt;% \n  count(year, wt = cases)\n\n\n# A tibble: 2 × 2\n   year      n\n  &lt;dbl&gt;  &lt;dbl&gt;\n1  1999 250740\n2  2000 296920\n\n\n\nWhat is wt?\n\nThe answer is in help:\n\nwt Frequency weights.\nCan be NULL or a variable:\n\nIf NULL (the default), counts the number of rows in each group.\nIf a variable, computes sum(wt) for each group.\n\n\nHere cases is a variable and we get the total sum of cases in the two years."
+    "text": "Some ex. of working with tidy data; 2\n\ntable1 %&gt;% \n  count(year, wt = cases)\n\n# A tibble: 2 × 2\n   year      n\n  &lt;dbl&gt;  &lt;dbl&gt;\n1  1999 250740\n2  2000 296920\n\n\n\nWhat is wt?\n\nThe answer is in help:\n\nwt Frequency weights.\nCan be NULL or a variable:\n\nIf NULL (the default), counts the number of rows in each group.\nIf a variable, computes sum(wt) for each group.\n\n\nHere cases is a variable and we get the total sum of cases in the two years."
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#some-ex.-of-working-with-tidy-data-3-code",
     "href": "wrangle-data/tidy-data/tidy-data.html#some-ex.-of-working-with-tidy-data-3-code",
     "title": "Tidy Data",
     "section": "Some ex. of working with tidy data; 3 code",
-    "text": "Some ex. of working with tidy data; 3 code\n\n\nCode\n# Some changes from Wicham\n# embrace the pipe!\ntable1 %&gt;% \nggplot(mapping = aes(\n  x = parse_date(\n    as.character(year),\n    format = \"%Y\"\n    ),\n  y = rate,\n  colour = country\n  )\n  ) + \n  geom_line(mapping = aes(group = country)) + \n  geom_point() + \n  xlab(\"Time\") +\n  ylab(\"Rate per 100000\") +\n  theme(legend.position = \"bottom\")"
+    "text": "Some ex. of working with tidy data; 3 code\n\n# Some changes from Wicham\n# embrace the pipe!\ntable1 %&gt;% \nggplot(mapping = aes(\n  x = parse_date(\n    as.character(year),\n    format = \"%Y\"\n    ),\n  y = rate,\n  colour = country\n  )\n  ) + \n  geom_line(mapping = aes(group = country)) + \n  geom_point() + \n  xlab(\"Time\") +\n  ylab(\"Rate per 100000\") +\n  theme(legend.position = \"bottom\")"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#some-examples-of-working-with-tidy-data-3-plot",
@@ -5121,28 +5121,28 @@
     "href": "wrangle-data/tidy-data/tidy-data.html#pivot_longer-example-problem",
     "title": "Tidy Data",
     "section": "pivot_longer() example; problem",
-    "text": "pivot_longer() example; problem\n\n\nCode\ntable4a\n\n\n# A tibble: 3 × 3\n  country     `1999` `2000`\n  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;\n1 Afghanistan    745   2666\n2 Brazil       37737  80488\n3 China       212258 213766\n\n\n\nProblem: Each observation is spread out over two columns (two points of time)\nRemember definition of observation\nObservation: a set of measurements of the underlying phenomenon\n\nat the same time\nof the same object"
+    "text": "pivot_longer() example; problem\n\ntable4a\n\n# A tibble: 3 × 3\n  country     `1999` `2000`\n  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;\n1 Afghanistan    745   2666\n2 Brazil       37737  80488\n3 China       212258 213766\n\n\n\nProblem: Each observation is spread out over two columns (two points of time)\nRemember definition of observation\nObservation: a set of measurements of the underlying phenomenon\n\nat the same time\nof the same object"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#pivot_longer-example-how-to-fix-it",
     "href": "wrangle-data/tidy-data/tidy-data.html#pivot_longer-example-how-to-fix-it",
     "title": "Tidy Data",
     "section": "pivot_longer() example; how to fix it",
-    "text": "pivot_longer() example; how to fix it\n\n\nCode\ntidy4a &lt;- table4a %&gt;% \n  pivot_longer(cols = -country,\n               names_to = \"year\", \n               values_to = \"cases\")\ntidy4a\n\n\n# A tibble: 6 × 3\n  country     year   cases\n  &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;\n1 Afghanistan 1999     745\n2 Afghanistan 2000    2666\n3 Brazil      1999   37737\n4 Brazil      2000   80488\n5 China       1999  212258\n6 China       2000  213766\n\n\n\nNote: col = c(`1999`, `2000`) would also work, or cols = 2:3. The important thing is that the variable country is not to be included.\nThe new variables year and cases do not yet exist, hence they must be enclosed by quotes."
+    "text": "pivot_longer() example; how to fix it\n\ntidy4a &lt;- table4a %&gt;% \n  pivot_longer(cols = -country,\n               names_to = \"year\", \n               values_to = \"cases\")\ntidy4a\n\n# A tibble: 6 × 3\n  country     year   cases\n  &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;\n1 Afghanistan 1999     745\n2 Afghanistan 2000    2666\n3 Brazil      1999   37737\n4 Brazil      2000   80488\n5 China       1999  212258\n6 China       2000  213766\n\n\n\nNote: col = c(`1999`, `2000`) would also work, or cols = 2:3. The important thing is that the variable country is not to be included.\nThe new variables year and cases do not yet exist, hence they must be enclosed by quotes."
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#pivot_longer-example.fix-table4b",
     "href": "wrangle-data/tidy-data/tidy-data.html#pivot_longer-example.fix-table4b",
     "title": "Tidy Data",
     "section": "pivot_longer() example.fix table4b",
-    "text": "pivot_longer() example.fix table4b\n\n\nCode\ntidy4b &lt;- table4b %&gt;% \n  pivot_longer(\n    cols = -country,\n    names_to = \"year\",\n    values_to = \"pop\"\n  )\ntidy4b\n\n\n# A tibble: 6 × 3\n  country     year         pop\n  &lt;chr&gt;       &lt;chr&gt;      &lt;dbl&gt;\n1 Afghanistan 1999    19987071\n2 Afghanistan 2000    20595360\n3 Brazil      1999   172006362\n4 Brazil      2000   174504898\n5 China       1999  1272915272\n6 China       2000  1280428583"
+    "text": "pivot_longer() example.fix table4b\n\ntidy4b &lt;- table4b %&gt;% \n  pivot_longer(\n    cols = -country,\n    names_to = \"year\",\n    values_to = \"pop\"\n  )\ntidy4b\n\n# A tibble: 6 × 3\n  country     year         pop\n  &lt;chr&gt;       &lt;chr&gt;      &lt;dbl&gt;\n1 Afghanistan 1999    19987071\n2 Afghanistan 2000    20595360\n3 Brazil      1999   172006362\n4 Brazil      2000   174504898\n5 China       1999  1272915272\n6 China       2000  1280428583"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#make-tidy4-join",
     "href": "wrangle-data/tidy-data/tidy-data.html#make-tidy4-join",
     "title": "Tidy Data",
     "section": "Make tidy4 (join)",
-    "text": "Make tidy4 (join)\n\n\nCode\ntidy4 &lt;- tidy4a %&gt;% \n  left_join(tidy4b, by = c(\"country\", \"year\"))\ntidy4\n\n\n# A tibble: 6 × 4\n  country     year   cases        pop\n  &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan 1999     745   19987071\n2 Afghanistan 2000    2666   20595360\n3 Brazil      1999   37737  172006362\n4 Brazil      2000   80488  174504898\n5 China       1999  212258 1272915272\n6 China       2000  213766 1280428583"
+    "text": "Make tidy4 (join)\n\ntidy4 &lt;- tidy4a %&gt;% \n  left_join(tidy4b, by = c(\"country\", \"year\"))\ntidy4\n\n# A tibble: 6 × 4\n  country     year   cases        pop\n  &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan 1999     745   19987071\n2 Afghanistan 2000    2666   20595360\n3 Brazil      1999   37737  172006362\n4 Brazil      2000   80488  174504898\n5 China       1999  212258 1272915272\n6 China       2000  213766 1280428583"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#pivot_wider",
@@ -5156,7 +5156,7 @@
     "href": "wrangle-data/tidy-data/tidy-data.html#pivot_longer-example.-fix-table2",
     "title": "Tidy Data",
     "section": "pivot_longer() example. Fix table2",
-    "text": "pivot_longer() example. Fix table2\n\n\nCode\ntable2[1:3,]\n\n\n# A tibble: 3 × 4\n  country      year type          count\n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;\n1 Afghanistan  1999 cases           745\n2 Afghanistan  1999 population 19987071\n3 Afghanistan  2000 cases          2666\n\n\nCode\n(tidy2 &lt;- table2 %&gt;% \n  pivot_wider(names_from = type,\n              values_from = count))\n\n\n# A tibble: 6 × 4\n  country      year  cases population\n  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan  1999    745   19987071\n2 Afghanistan  2000   2666   20595360\n3 Brazil       1999  37737  172006362\n4 Brazil       2000  80488  174504898\n5 China        1999 212258 1272915272\n6 China        2000 213766 1280428583"
+    "text": "pivot_longer() example. Fix table2\n\ntable2[1:3,]\n\n# A tibble: 3 × 4\n  country      year type          count\n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;\n1 Afghanistan  1999 cases           745\n2 Afghanistan  1999 population 19987071\n3 Afghanistan  2000 cases          2666\n\n(tidy2 &lt;- table2 %&gt;% \n  pivot_wider(names_from = type,\n              values_from = count))\n\n# A tibble: 6 × 4\n  country      year  cases population\n  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan  1999    745   19987071\n2 Afghanistan  2000   2666   20595360\n3 Brazil       1999  37737  172006362\n4 Brazil       2000  80488  174504898\n5 China        1999 212258 1272915272\n6 China        2000 213766 1280428583"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#separate",
@@ -5170,21 +5170,21 @@
     "href": "wrangle-data/tidy-data/tidy-data.html#separate-example.-fix-table3",
     "title": "Tidy Data",
     "section": "separate() example. Fix table3",
-    "text": "separate() example. Fix table3\n\n\nCode\ntable3[1:3,] \n\n\n# A tibble: 3 × 3\n  country      year rate           \n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;          \n1 Afghanistan  1999 745/19987071   \n2 Afghanistan  2000 2666/20595360  \n3 Brazil       1999 37737/172006362\n\n\nCode\ntidy3 &lt;- table3 %&gt;% \n  separate(col = rate,\n           into = c(\"cases\", \"pop\"),\n           sep = \"/\"\n           )\ntidy3[1:5,]\n\n\n# A tibble: 5 × 4\n  country      year cases  pop       \n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 Afghanistan  1999 745    19987071  \n2 Afghanistan  2000 2666   20595360  \n3 Brazil       1999 37737  172006362 \n4 Brazil       2000 80488  174504898 \n5 China        1999 212258 1272915272"
+    "text": "separate() example. Fix table3\n\ntable3[1:3,] \n\n# A tibble: 3 × 3\n  country      year rate           \n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;          \n1 Afghanistan  1999 745/19987071   \n2 Afghanistan  2000 2666/20595360  \n3 Brazil       1999 37737/172006362\n\ntidy3 &lt;- table3 %&gt;% \n  separate(col = rate,\n           into = c(\"cases\", \"pop\"),\n           sep = \"/\"\n           )\ntidy3[1:5,]\n\n# A tibble: 5 × 4\n  country      year cases  pop       \n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     \n1 Afghanistan  1999 745    19987071  \n2 Afghanistan  2000 2666   20595360  \n3 Brazil       1999 37737  172006362 \n4 Brazil       2000 80488  174504898 \n5 China        1999 212258 1272915272"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#separate-example.-fix-table3-convert-true",
     "href": "wrangle-data/tidy-data/tidy-data.html#separate-example.-fix-table3-convert-true",
     "title": "Tidy Data",
     "section": "separate() example. Fix table3, convert = TRUE",
-    "text": "separate() example. Fix table3, convert = TRUE\n\n\nCode\ntable3[1:3,] \n\n\n# A tibble: 3 × 3\n  country      year rate           \n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;          \n1 Afghanistan  1999 745/19987071   \n2 Afghanistan  2000 2666/20595360  \n3 Brazil       1999 37737/172006362\n\n\nCode\ntidy3 &lt;- table3 %&gt;% \n  separate(col = rate,\n           into = c(\"cases\", \"pop\"),\n           sep = \"/\",\n           convert = TRUE\n           )\n# cases and pop now int, not chr\ntidy3[1:3,]\n\n\n# A tibble: 3 × 4\n  country      year cases       pop\n  &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;     &lt;int&gt;\n1 Afghanistan  1999   745  19987071\n2 Afghanistan  2000  2666  20595360\n3 Brazil       1999 37737 172006362"
+    "text": "separate() example. Fix table3, convert = TRUE\n\ntable3[1:3,] \n\n# A tibble: 3 × 3\n  country      year rate           \n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;          \n1 Afghanistan  1999 745/19987071   \n2 Afghanistan  2000 2666/20595360  \n3 Brazil       1999 37737/172006362\n\ntidy3 &lt;- table3 %&gt;% \n  separate(col = rate,\n           into = c(\"cases\", \"pop\"),\n           sep = \"/\",\n           convert = TRUE\n           )\n# cases and pop now int, not chr\ntidy3[1:3,]\n\n# A tibble: 3 × 4\n  country      year cases       pop\n  &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;     &lt;int&gt;\n1 Afghanistan  1999   745  19987071\n2 Afghanistan  2000  2666  20595360\n3 Brazil       1999 37737 172006362"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#separate-example.-fix-table3-sep-number",
     "href": "wrangle-data/tidy-data/tidy-data.html#separate-example.-fix-table3-sep-number",
     "title": "Tidy Data",
     "section": "separate() example. Fix table3, sep number",
-    "text": "separate() example. Fix table3, sep number\n\n\nCode\ntidy3century &lt;- tidy3 %&gt;% \n  separate(col = year,\n           into = c(\"century\", \"year\"),\n           sep = 2\n           )\ntidy3century\n\n\n# A tibble: 6 × 5\n  country     century year   cases        pop\n  &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;  &lt;int&gt;      &lt;int&gt;\n1 Afghanistan 19      99       745   19987071\n2 Afghanistan 20      00      2666   20595360\n3 Brazil      19      99     37737  172006362\n4 Brazil      20      00     80488  174504898\n5 China       19      99    212258 1272915272\n6 China       20      00    213766 1280428583\n\n\n\nsep = 2, separate after 2 char from left\nWhat would sep = -2 do?\n\nseparate before 2 char from right"
+    "text": "separate() example. Fix table3, sep number\n\ntidy3century &lt;- tidy3 %&gt;% \n  separate(col = year,\n           into = c(\"century\", \"year\"),\n           sep = 2\n           )\ntidy3century\n\n# A tibble: 6 × 5\n  country     century year   cases        pop\n  &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;  &lt;int&gt;      &lt;int&gt;\n1 Afghanistan 19      99       745   19987071\n2 Afghanistan 20      00      2666   20595360\n3 Brazil      19      99     37737  172006362\n4 Brazil      20      00     80488  174504898\n5 China       19      99    212258 1272915272\n6 China       20      00    213766 1280428583\n\n\n\nsep = 2, separate after 2 char from left\nWhat would sep = -2 do?\n\nseparate before 2 char from right"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#unite",
@@ -5198,7 +5198,7 @@
     "href": "wrangle-data/tidy-data/tidy-data.html#unite-example.-fix-tidy3century",
     "title": "Tidy Data",
     "section": "unite() example. Fix tidy3century",
-    "text": "unite() example. Fix tidy3century\n\n\nCode\ntidy3century[1:3,]\n\n\n# A tibble: 3 × 5\n  country     century year  cases       pop\n  &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;int&gt;     &lt;int&gt;\n1 Afghanistan 19      99      745  19987071\n2 Afghanistan 20      00     2666  20595360\n3 Brazil      19      99    37737 172006362\n\n\nCode\ntidy3century %&gt;% \n  unite(\n    col = \"year\",\n    century, year, # the columns we want to unite\n    sep = \"\" # what happens witout sep?\n  )\n\n\n# A tibble: 6 × 4\n  country     year   cases        pop\n  &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;      &lt;int&gt;\n1 Afghanistan 1999     745   19987071\n2 Afghanistan 2000    2666   20595360\n3 Brazil      1999   37737  172006362\n4 Brazil      2000   80488  174504898\n5 China       1999  212258 1272915272\n6 China       2000  213766 1280428583"
+    "text": "unite() example. Fix tidy3century\n\ntidy3century[1:3,]\n\n# A tibble: 3 × 5\n  country     century year  cases       pop\n  &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;int&gt;     &lt;int&gt;\n1 Afghanistan 19      99      745  19987071\n2 Afghanistan 20      00     2666  20595360\n3 Brazil      19      99    37737 172006362\n\ntidy3century %&gt;% \n  unite(\n    col = \"year\",\n    century, year, # the columns we want to unite\n    sep = \"\" # what happens witout sep?\n  )\n\n# A tibble: 6 × 4\n  country     year   cases        pop\n  &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;      &lt;int&gt;\n1 Afghanistan 1999     745   19987071\n2 Afghanistan 2000    2666   20595360\n3 Brazil      1999   37737  172006362\n4 Brazil      2000   80488  174504898\n5 China       1999  212258 1272915272\n6 China       2000  213766 1280428583"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#missing-values",
@@ -5212,84 +5212,84 @@
     "href": "wrangle-data/tidy-data/tidy-data.html#missing-values-example",
     "title": "Tidy Data",
     "section": "Missing values; example",
-    "text": "Missing values; example\n\n\nCode\nstocks &lt;- tibble(\n  year   = c(2015, 2015, 2015, \n             2015, 2016, 2016, 2016),\n  qtr    = c(   1,    2,    3,    \n                4,    2,    3,    4),\n  return = c(1.88, 0.59, 0.35,\n             NA, 0.92, 0.17, 2.66)\n)\nstocks\n\n\n# A tibble: 7 × 3\n   year   qtr return\n  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1  2015     1   1.88\n2  2015     2   0.59\n3  2015     3   0.35\n4  2015     4  NA   \n5  2016     2   0.92\n6  2016     3   0.17\n7  2016     4   2.66\n\n\n\nFirst quarter 2016 is missing"
+    "text": "Missing values; example\n\nstocks &lt;- tibble(\n  year   = c(2015, 2015, 2015, \n             2015, 2016, 2016, 2016),\n  qtr    = c(   1,    2,    3,    \n                4,    2,    3,    4),\n  return = c(1.88, 0.59, 0.35,\n             NA, 0.92, 0.17, 2.66)\n)\nstocks\n\n# A tibble: 7 × 3\n   year   qtr return\n  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1  2015     1   1.88\n2  2015     2   0.59\n3  2015     3   0.35\n4  2015     4  NA   \n5  2016     2   0.92\n6  2016     3   0.17\n7  2016     4   2.66\n\n\n\nFirst quarter 2016 is missing"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#implecitly-missing-becomes-explicitly-missing",
     "href": "wrangle-data/tidy-data/tidy-data.html#implecitly-missing-becomes-explicitly-missing",
     "title": "Tidy Data",
     "section": "Implecitly missing becomes explicitly missing",
-    "text": "Implecitly missing becomes explicitly missing\n\n\nCode\nstocks_wider &lt;- stocks %&gt;% \n  pivot_wider(\n    names_from = year,\n    values_from = return\n    )\nstocks_wider\n\n\n# A tibble: 4 × 3\n    qtr `2015` `2016`\n  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1     1   1.88  NA   \n2     2   0.59   0.92\n3     3   0.35   0.17\n4     4  NA      2.66\n\n\n\nNote that quarter 1 year 2016 now has become explicitly missing."
+    "text": "Implecitly missing becomes explicitly missing\n\nstocks_wider &lt;- stocks %&gt;% \n  pivot_wider(\n    names_from = year,\n    values_from = return\n    )\nstocks_wider\n\n# A tibble: 4 × 3\n    qtr `2015` `2016`\n  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;\n1     1   1.88  NA   \n2     2   0.59   0.92\n3     3   0.35   0.17\n4     4  NA      2.66\n\n\n\nNote that quarter 1 year 2016 now has become explicitly missing."
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#missing-values_drop_na-true",
     "href": "wrangle-data/tidy-data/tidy-data.html#missing-values_drop_na-true",
     "title": "Tidy Data",
     "section": "missing; values_drop_na = TRUE",
-    "text": "missing; values_drop_na = TRUE\n\n\nCode\nstocks_wider %&gt;% \n  pivot_longer(\n    cols = -qtr,\n    names_to = \"year\", # in quote since it does not exist yet\n    values_to = \"return\",\n    values_drop_na = TRUE\n  ) %&gt;% \n  arrange(year, qtr)\n\n\n# A tibble: 6 × 3\n    qtr year  return\n  &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;\n1     1 2015    1.88\n2     2 2015    0.59\n3     3 2015    0.35\n4     2 2016    0.92\n5     3 2016    0.17\n6     4 2016    2.66"
+    "text": "missing; values_drop_na = TRUE\n\nstocks_wider %&gt;% \n  pivot_longer(\n    cols = -qtr,\n    names_to = \"year\", # in quote since it does not exist yet\n    values_to = \"return\",\n    values_drop_na = TRUE\n  ) %&gt;% \n  arrange(year, qtr)\n\n# A tibble: 6 × 3\n    qtr year  return\n  &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;\n1     1 2015    1.88\n2     2 2015    0.59\n3     3 2015    0.35\n4     2 2016    0.92\n5     3 2016    0.17\n6     4 2016    2.66"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#missing-complete",
     "href": "wrangle-data/tidy-data/tidy-data.html#missing-complete",
     "title": "Tidy Data",
     "section": "missing; complete()",
-    "text": "missing; complete()\n\n\nCode\nstocks %&gt;% \n  complete(year, qtr)\n\n\n# A tibble: 8 × 3\n   year   qtr return\n  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1  2015     1   1.88\n2  2015     2   0.59\n3  2015     3   0.35\n4  2015     4  NA   \n5  2016     1  NA   \n6  2016     2   0.92\n7  2016     3   0.17\n8  2016     4   2.66\n\n\n\ncomplete() takes a set of columns, and finds all unique combinations.\nIt then ensures the original dataset contains all those values, filling in explicit NAs where necessary."
+    "text": "missing; complete()\n\nstocks %&gt;% \n  complete(year, qtr)\n\n# A tibble: 8 × 3\n   year   qtr return\n  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1  2015     1   1.88\n2  2015     2   0.59\n3  2015     3   0.35\n4  2015     4  NA   \n5  2016     1  NA   \n6  2016     2   0.92\n7  2016     3   0.17\n8  2016     4   2.66\n\n\n\ncomplete() takes a set of columns, and finds all unique combinations.\nIt then ensures the original dataset contains all those values, filling in explicit NAs where necessary."
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#missing-fill",
     "href": "wrangle-data/tidy-data/tidy-data.html#missing-fill",
     "title": "Tidy Data",
     "section": "missing; fill()",
-    "text": "missing; fill()\n\n\nCode\ntreatment &lt;- tribble(\n  ~ person,           ~ treatment, ~response,\n  \"Derrick Whitmore\", 1,           7,\n  NA,                 2,           10,\n  NA,                 3,           9,\n  \"Katherine Burke\",  1,           4\n)\ntreatment\n\n\n# A tibble: 4 × 3\n  person           treatment response\n  &lt;chr&gt;                &lt;dbl&gt;    &lt;dbl&gt;\n1 Derrick Whitmore         1        7\n2 &lt;NA&gt;                     2       10\n3 &lt;NA&gt;                     3        9\n4 Katherine Burke          1        4\n\n\n\nfill() can save one from a lot of work\nNA for person , should be the name of the person above\nimportant parameter:\n\n… Columns to fill. Names separated by “,”\n.direction = c(“down”, “up”, “downup”, “updown”))"
+    "text": "missing; fill()\n\ntreatment &lt;- tribble(\n  ~ person,           ~ treatment, ~response,\n  \"Derrick Whitmore\", 1,           7,\n  NA,                 2,           10,\n  NA,                 3,           9,\n  \"Katherine Burke\",  1,           4\n)\ntreatment\n\n# A tibble: 4 × 3\n  person           treatment response\n  &lt;chr&gt;                &lt;dbl&gt;    &lt;dbl&gt;\n1 Derrick Whitmore         1        7\n2 &lt;NA&gt;                     2       10\n3 &lt;NA&gt;                     3        9\n4 Katherine Burke          1        4\n\n\n\nfill() can save one from a lot of work\nNA for person , should be the name of the person above\nimportant parameter:\n\n… Columns to fill. Names separated by “,”\n.direction = c(“down”, “up”, “downup”, “updown”))"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#missing-fill-example",
     "href": "wrangle-data/tidy-data/tidy-data.html#missing-fill-example",
     "title": "Tidy Data",
     "section": "missing; fill() example",
-    "text": "missing; fill() example\n\n\nCode\ntreatment %&gt;% \n  fill(person, .direction = c(\"down\"))\n\n\n# A tibble: 4 × 3\n  person           treatment response\n  &lt;chr&gt;                &lt;dbl&gt;    &lt;dbl&gt;\n1 Derrick Whitmore         1        7\n2 Derrick Whitmore         2       10\n3 Derrick Whitmore         3        9\n4 Katherine Burke          1        4\n\n\n\n\nCode\ntreatment %&gt;% \n  fill(person, .direction = c(\"up\"))\n\n\n# A tibble: 4 × 3\n  person           treatment response\n  &lt;chr&gt;                &lt;dbl&gt;    &lt;dbl&gt;\n1 Derrick Whitmore         1        7\n2 Katherine Burke          2       10\n3 Katherine Burke          3        9\n4 Katherine Burke          1        4"
+    "text": "missing; fill() example\n\ntreatment %&gt;% \n  fill(person, .direction = c(\"down\"))\n\n# A tibble: 4 × 3\n  person           treatment response\n  &lt;chr&gt;                &lt;dbl&gt;    &lt;dbl&gt;\n1 Derrick Whitmore         1        7\n2 Derrick Whitmore         2       10\n3 Derrick Whitmore         3        9\n4 Katherine Burke          1        4\n\n\n\ntreatment %&gt;% \n  fill(person, .direction = c(\"up\"))\n\n# A tibble: 4 × 3\n  person           treatment response\n  &lt;chr&gt;                &lt;dbl&gt;    &lt;dbl&gt;\n1 Derrick Whitmore         1        7\n2 Katherine Burke          2       10\n3 Katherine Burke          3        9\n4 Katherine Burke          1        4"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#case-who",
     "href": "wrangle-data/tidy-data/tidy-data.html#case-who",
     "title": "Tidy Data",
     "section": "Case; who",
-    "text": "Case; who\n\n\nCode\ndim(who)\n\n\n[1] 7240   60\n\n\n\n\nCode\nwho[1:3, ]\n\n\n# A tibble: 3 × 60\n  country   iso2  iso3   year new_sp_m014 new_sp_m1524 new_sp_m2534 new_sp_m3544\n  &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;\n1 Afghanis… AF    AFG    1980          NA           NA           NA           NA\n2 Afghanis… AF    AFG    1981          NA           NA           NA           NA\n3 Afghanis… AF    AFG    1982          NA           NA           NA           NA\n# ℹ 52 more variables: new_sp_m4554 &lt;dbl&gt;, new_sp_m5564 &lt;dbl&gt;,\n#   new_sp_m65 &lt;dbl&gt;, new_sp_f014 &lt;dbl&gt;, new_sp_f1524 &lt;dbl&gt;,\n#   new_sp_f2534 &lt;dbl&gt;, new_sp_f3544 &lt;dbl&gt;, new_sp_f4554 &lt;dbl&gt;,\n#   new_sp_f5564 &lt;dbl&gt;, new_sp_f65 &lt;dbl&gt;, new_sn_m014 &lt;dbl&gt;,\n#   new_sn_m1524 &lt;dbl&gt;, new_sn_m2534 &lt;dbl&gt;, new_sn_m3544 &lt;dbl&gt;,\n#   new_sn_m4554 &lt;dbl&gt;, new_sn_m5564 &lt;dbl&gt;, new_sn_m65 &lt;dbl&gt;,\n#   new_sn_f014 &lt;dbl&gt;, new_sn_f1524 &lt;dbl&gt;, new_sn_f2534 &lt;dbl&gt;, …"
+    "text": "Case; who\n\ndim(who)\n\n[1] 7240   60\n\n\n\nwho[1:3, ]\n\n# A tibble: 3 × 60\n  country   iso2  iso3   year new_sp_m014 new_sp_m1524 new_sp_m2534 new_sp_m3544\n  &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;\n1 Afghanis… AF    AFG    1980          NA           NA           NA           NA\n2 Afghanis… AF    AFG    1981          NA           NA           NA           NA\n3 Afghanis… AF    AFG    1982          NA           NA           NA           NA\n# ℹ 52 more variables: new_sp_m4554 &lt;dbl&gt;, new_sp_m5564 &lt;dbl&gt;,\n#   new_sp_m65 &lt;dbl&gt;, new_sp_f014 &lt;dbl&gt;, new_sp_f1524 &lt;dbl&gt;,\n#   new_sp_f2534 &lt;dbl&gt;, new_sp_f3544 &lt;dbl&gt;, new_sp_f4554 &lt;dbl&gt;,\n#   new_sp_f5564 &lt;dbl&gt;, new_sp_f65 &lt;dbl&gt;, new_sn_m014 &lt;dbl&gt;,\n#   new_sn_m1524 &lt;dbl&gt;, new_sn_m2534 &lt;dbl&gt;, new_sn_m3544 &lt;dbl&gt;,\n#   new_sn_m4554 &lt;dbl&gt;, new_sn_m5564 &lt;dbl&gt;, new_sn_m65 &lt;dbl&gt;,\n#   new_sn_f014 &lt;dbl&gt;, new_sn_f1524 &lt;dbl&gt;, new_sn_f2534 &lt;dbl&gt;, …"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#case-who-cont.",
     "href": "wrangle-data/tidy-data/tidy-data.html#case-who-cont.",
     "title": "Tidy Data",
     "section": "Case; who cont.",
-    "text": "Case; who cont.\n\n\nCode\n# find type of vector with a pipe\ntypeof_who &lt;- who %&gt;% map(typeof) %&gt;% unlist()\n# print typeof_who\ntypeof_who\n\n\n     country         iso2         iso3         year  new_sp_m014 new_sp_m1524 \n \"character\"  \"character\"  \"character\"     \"double\"     \"double\"     \"double\" \nnew_sp_m2534 new_sp_m3544 new_sp_m4554 new_sp_m5564   new_sp_m65  new_sp_f014 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_sp_f1524 new_sp_f2534 new_sp_f3544 new_sp_f4554 new_sp_f5564   new_sp_f65 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \n new_sn_m014 new_sn_m1524 new_sn_m2534 new_sn_m3544 new_sn_m4554 new_sn_m5564 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \n  new_sn_m65  new_sn_f014 new_sn_f1524 new_sn_f2534 new_sn_f3544 new_sn_f4554 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_sn_f5564   new_sn_f65  new_ep_m014 new_ep_m1524 new_ep_m2534 new_ep_m3544 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_ep_m4554 new_ep_m5564   new_ep_m65  new_ep_f014 new_ep_f1524 new_ep_f2534 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_ep_f3544 new_ep_f4554 new_ep_f5564   new_ep_f65  newrel_m014 newrel_m1524 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnewrel_m2534 newrel_m3544 newrel_m4554 newrel_m5564   newrel_m65  newrel_f014 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnewrel_f1524 newrel_f2534 newrel_f3544 newrel_f4554 newrel_f5564   newrel_f65 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\""
+    "text": "Case; who cont.\n\n# find type of vector with a pipe\ntypeof_who &lt;- who %&gt;% map(typeof) %&gt;% unlist()\n# print typeof_who\ntypeof_who\n\n     country         iso2         iso3         year  new_sp_m014 new_sp_m1524 \n \"character\"  \"character\"  \"character\"     \"double\"     \"double\"     \"double\" \nnew_sp_m2534 new_sp_m3544 new_sp_m4554 new_sp_m5564   new_sp_m65  new_sp_f014 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_sp_f1524 new_sp_f2534 new_sp_f3544 new_sp_f4554 new_sp_f5564   new_sp_f65 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \n new_sn_m014 new_sn_m1524 new_sn_m2534 new_sn_m3544 new_sn_m4554 new_sn_m5564 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \n  new_sn_m65  new_sn_f014 new_sn_f1524 new_sn_f2534 new_sn_f3544 new_sn_f4554 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_sn_f5564   new_sn_f65  new_ep_m014 new_ep_m1524 new_ep_m2534 new_ep_m3544 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_ep_m4554 new_ep_m5564   new_ep_m65  new_ep_f014 new_ep_f1524 new_ep_f2534 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnew_ep_f3544 new_ep_f4554 new_ep_f5564   new_ep_f65  newrel_m014 newrel_m1524 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnewrel_m2534 newrel_m3544 newrel_m4554 newrel_m5564   newrel_m65  newrel_f014 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\" \nnewrel_f1524 newrel_f2534 newrel_f3544 newrel_f4554 newrel_f5564   newrel_f65 \n    \"double\"     \"double\"     \"double\"     \"double\"     \"double\"     \"double\""
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#case-who-cont.-1",
     "href": "wrangle-data/tidy-data/tidy-data.html#case-who-cont.-1",
     "title": "Tidy Data",
     "section": "Case; who cont.",
-    "text": "Case; who cont.\n\n\nCode\n# tabulate typeof_who\ntable(typeof_who)\n\n\ntypeof_who\ncharacter    double \n        3        57 \n\n\n\nThree variables are of type character, 57 of type integer\nVariable names might be values"
+    "text": "Case; who cont.\n\n# tabulate typeof_who\ntable(typeof_who)\n\ntypeof_who\ncharacter    double \n        3        57 \n\n\n\nThree variables are of type character, 57 of type integer\nVariable names might be values"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#where-to-start",
     "href": "wrangle-data/tidy-data/tidy-data.html#where-to-start",
     "title": "Tidy Data",
     "section": "Where to start?",
-    "text": "Where to start?\n\nWicham: The best place to start is almost always to gather together the columns that are not variables. (pivot_longer())\n\n\n\n\nCode\nwho[1:5, c(\"country\", \"iso2\", \"iso3\")]\n\n\n# A tibble: 5 × 3\n  country     iso2  iso3 \n  &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;\n1 Afghanistan AF    AFG  \n2 Afghanistan AF    AFG  \n3 Afghanistan AF    AFG  \n4 Afghanistan AF    AFG  \n5 Afghanistan AF    AFG  \n\n\n\n\nCode\nnames(who)[1:10]\n\n\n [1] \"country\"      \"iso2\"         \"iso3\"         \"year\"         \"new_sp_m014\" \n [6] \"new_sp_m1524\" \"new_sp_m2534\" \"new_sp_m3544\" \"new_sp_m4554\" \"new_sp_m5564\""
+    "text": "Where to start?\n\nWicham: The best place to start is almost always to gather together the columns that are not variables. (pivot_longer())\n\n\n\nwho[1:5, c(\"country\", \"iso2\", \"iso3\")]\n\n# A tibble: 5 × 3\n  country     iso2  iso3 \n  &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;\n1 Afghanistan AF    AFG  \n2 Afghanistan AF    AFG  \n3 Afghanistan AF    AFG  \n4 Afghanistan AF    AFG  \n5 Afghanistan AF    AFG  \n\n\n\nnames(who)[1:10]\n\n [1] \"country\"      \"iso2\"         \"iso3\"         \"year\"         \"new_sp_m014\" \n [6] \"new_sp_m1524\" \"new_sp_m2534\" \"new_sp_m3544\" \"new_sp_m4554\" \"new_sp_m5564\""
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#where-to-start-1",
     "href": "wrangle-data/tidy-data/tidy-data.html#where-to-start-1",
     "title": "Tidy Data",
     "section": "Where to start?",
-    "text": "Where to start?\n\n\nCode\nunique(who$new_sp_m014)[1:10]\n\n\n [1]  NA   0  30   8  52 129  90 127 139 151\n\n\n\nMight be number of cases\n\n\n\n\nCode\nnames(who)[50:60]\n\n\n [1] \"newrel_m3544\" \"newrel_m4554\" \"newrel_m5564\" \"newrel_m65\"   \"newrel_f014\" \n [6] \"newrel_f1524\" \"newrel_f2534\" \"newrel_f3544\" \"newrel_f4554\" \"newrel_f5564\"\n[11] \"newrel_f65\"  \n\n\n\n“new_sp_m014” etc. probably values not variables"
+    "text": "Where to start?\n\nunique(who$new_sp_m014)[1:10]\n\n [1]  NA   0  30   8  52 129  90 127 139 151\n\n\n\nMight be number of cases\n\n\n\nnames(who)[50:60]\n\n [1] \"newrel_m3544\" \"newrel_m4554\" \"newrel_m5564\" \"newrel_m65\"   \"newrel_f014\" \n [6] \"newrel_f1524\" \"newrel_f2534\" \"newrel_f3544\" \"newrel_f4554\" \"newrel_f5564\"\n[11] \"newrel_f65\"  \n\n\n\n“new_sp_m014” etc. probably values not variables"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#who-gather-variables",
     "href": "wrangle-data/tidy-data/tidy-data.html#who-gather-variables",
     "title": "Tidy Data",
     "section": "who, gather variables",
-    "text": "who, gather variables\n\n\nCode\nwho1 &lt;- who %&gt;% \n  pivot_longer(cols = new_sp_m014:newrel_f65,\n               names_to = \"key\",\n               values_to = \"cases\",\n               values_drop_na = TRUE\n               )\nwho1\n\n\n# A tibble: 76,046 × 6\n   country     iso2  iso3   year key          cases\n   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;\n 1 Afghanistan AF    AFG    1997 new_sp_m014      0\n 2 Afghanistan AF    AFG    1997 new_sp_m1524    10\n 3 Afghanistan AF    AFG    1997 new_sp_m2534     6\n 4 Afghanistan AF    AFG    1997 new_sp_m3544     3\n 5 Afghanistan AF    AFG    1997 new_sp_m4554     5\n 6 Afghanistan AF    AFG    1997 new_sp_m5564     2\n 7 Afghanistan AF    AFG    1997 new_sp_m65       0\n 8 Afghanistan AF    AFG    1997 new_sp_f014      5\n 9 Afghanistan AF    AFG    1997 new_sp_f1524    38\n10 Afghanistan AF    AFG    1997 new_sp_f2534    36\n# ℹ 76,036 more rows"
+    "text": "who, gather variables\n\nwho1 &lt;- who %&gt;% \n  pivot_longer(cols = new_sp_m014:newrel_f65,\n               names_to = \"key\",\n               values_to = \"cases\",\n               values_drop_na = TRUE\n               )\nwho1\n\n# A tibble: 76,046 × 6\n   country     iso2  iso3   year key          cases\n   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;\n 1 Afghanistan AF    AFG    1997 new_sp_m014      0\n 2 Afghanistan AF    AFG    1997 new_sp_m1524    10\n 3 Afghanistan AF    AFG    1997 new_sp_m2534     6\n 4 Afghanistan AF    AFG    1997 new_sp_m3544     3\n 5 Afghanistan AF    AFG    1997 new_sp_m4554     5\n 6 Afghanistan AF    AFG    1997 new_sp_m5564     2\n 7 Afghanistan AF    AFG    1997 new_sp_m65       0\n 8 Afghanistan AF    AFG    1997 new_sp_f014      5\n 9 Afghanistan AF    AFG    1997 new_sp_f1524    38\n10 Afghanistan AF    AFG    1997 new_sp_f2534    36\n# ℹ 76,036 more rows"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#whats-in-a-variable-name",
@@ -5303,28 +5303,28 @@
     "href": "wrangle-data/tidy-data/tidy-data.html#who1",
     "title": "Tidy Data",
     "section": "who1",
-    "text": "who1\n\n\nCode\nhead(who1, n=5)\n\n\n# A tibble: 5 × 6\n  country     iso2  iso3   year key          cases\n  &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;\n1 Afghanistan AF    AFG    1997 new_sp_m014      0\n2 Afghanistan AF    AFG    1997 new_sp_m1524    10\n3 Afghanistan AF    AFG    1997 new_sp_m2534     6\n4 Afghanistan AF    AFG    1997 new_sp_m3544     3\n5 Afghanistan AF    AFG    1997 new_sp_m4554     5\n\n\n\nhave to fix one inconsistency in key;\n\n“newrel” should have been “new_rel”\n\n\n\n\n\nCode\nwho2 &lt;- who1 %&gt;% \n  mutate(\n    key = str_replace(key, \"newrel\", \"new_rel\")\n  )"
+    "text": "who1\n\nhead(who1, n=5)\n\n# A tibble: 5 × 6\n  country     iso2  iso3   year key          cases\n  &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;\n1 Afghanistan AF    AFG    1997 new_sp_m014      0\n2 Afghanistan AF    AFG    1997 new_sp_m1524    10\n3 Afghanistan AF    AFG    1997 new_sp_m2534     6\n4 Afghanistan AF    AFG    1997 new_sp_m3544     3\n5 Afghanistan AF    AFG    1997 new_sp_m4554     5\n\n\n\nhave to fix one inconsistency in key;\n\n“newrel” should have been “new_rel”\n\n\n\n\nwho2 &lt;- who1 %&gt;% \n  mutate(\n    key = str_replace(key, \"newrel\", \"new_rel\")\n  )"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#separate-out-values-from-key-variable",
     "href": "wrangle-data/tidy-data/tidy-data.html#separate-out-values-from-key-variable",
     "title": "Tidy Data",
     "section": "Separate out values from “key” variable",
-    "text": "Separate out values from “key” variable\n\n\nCode\nwho3 &lt;- who2 %&gt;% \n  separate(col = key,\n           into = c(\"new\", \"type\", \"sexage\"),\n           sep = \"_\"\n           )\nwho3\n\n\n# A tibble: 76,046 × 8\n   country     iso2  iso3   year new   type  sexage cases\n   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;\n 1 Afghanistan AF    AFG    1997 new   sp    m014       0\n 2 Afghanistan AF    AFG    1997 new   sp    m1524     10\n 3 Afghanistan AF    AFG    1997 new   sp    m2534      6\n 4 Afghanistan AF    AFG    1997 new   sp    m3544      3\n 5 Afghanistan AF    AFG    1997 new   sp    m4554      5\n 6 Afghanistan AF    AFG    1997 new   sp    m5564      2\n 7 Afghanistan AF    AFG    1997 new   sp    m65        0\n 8 Afghanistan AF    AFG    1997 new   sp    f014       5\n 9 Afghanistan AF    AFG    1997 new   sp    f1524     38\n10 Afghanistan AF    AFG    1997 new   sp    f2534     36\n# ℹ 76,036 more rows"
+    "text": "Separate out values from “key” variable\n\nwho3 &lt;- who2 %&gt;% \n  separate(col = key,\n           into = c(\"new\", \"type\", \"sexage\"),\n           sep = \"_\"\n           )\nwho3\n\n# A tibble: 76,046 × 8\n   country     iso2  iso3   year new   type  sexage cases\n   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;\n 1 Afghanistan AF    AFG    1997 new   sp    m014       0\n 2 Afghanistan AF    AFG    1997 new   sp    m1524     10\n 3 Afghanistan AF    AFG    1997 new   sp    m2534      6\n 4 Afghanistan AF    AFG    1997 new   sp    m3544      3\n 5 Afghanistan AF    AFG    1997 new   sp    m4554      5\n 6 Afghanistan AF    AFG    1997 new   sp    m5564      2\n 7 Afghanistan AF    AFG    1997 new   sp    m65        0\n 8 Afghanistan AF    AFG    1997 new   sp    f014       5\n 9 Afghanistan AF    AFG    1997 new   sp    f1524     38\n10 Afghanistan AF    AFG    1997 new   sp    f2534     36\n# ℹ 76,036 more rows"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#drop-variables-and-split-sexage",
     "href": "wrangle-data/tidy-data/tidy-data.html#drop-variables-and-split-sexage",
     "title": "Tidy Data",
     "section": "Drop variables and split sexage",
-    "text": "Drop variables and split sexage\n\n\nCode\nwho5 &lt;- who3 %&gt;% \n  select(-new, -iso2, -iso3) %&gt;% \n  separate(col = sexage,\n           into = c(\"sex\", \"age\"),\n           sep = 1\n           )\nwho5\n\n\n# A tibble: 76,046 × 6\n   country      year type  sex   age   cases\n   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;\n 1 Afghanistan  1997 sp    m     014       0\n 2 Afghanistan  1997 sp    m     1524     10\n 3 Afghanistan  1997 sp    m     2534      6\n 4 Afghanistan  1997 sp    m     3544      3\n 5 Afghanistan  1997 sp    m     4554      5\n 6 Afghanistan  1997 sp    m     5564      2\n 7 Afghanistan  1997 sp    m     65        0\n 8 Afghanistan  1997 sp    f     014       5\n 9 Afghanistan  1997 sp    f     1524     38\n10 Afghanistan  1997 sp    f     2534     36\n# ℹ 76,036 more rows"
+    "text": "Drop variables and split sexage\n\nwho5 &lt;- who3 %&gt;% \n  select(-new, -iso2, -iso3) %&gt;% \n  separate(col = sexage,\n           into = c(\"sex\", \"age\"),\n           sep = 1\n           )\nwho5\n\n# A tibble: 76,046 × 6\n   country      year type  sex   age   cases\n   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;\n 1 Afghanistan  1997 sp    m     014       0\n 2 Afghanistan  1997 sp    m     1524     10\n 3 Afghanistan  1997 sp    m     2534      6\n 4 Afghanistan  1997 sp    m     3544      3\n 5 Afghanistan  1997 sp    m     4554      5\n 6 Afghanistan  1997 sp    m     5564      2\n 7 Afghanistan  1997 sp    m     65        0\n 8 Afghanistan  1997 sp    f     014       5\n 9 Afghanistan  1997 sp    f     1524     38\n10 Afghanistan  1997 sp    f     2534     36\n# ℹ 76,036 more rows"
   },
   {
     "objectID": "wrangle-data/tidy-data/tidy-data.html#split-age-into-age_start-and-age_end",
     "href": "wrangle-data/tidy-data/tidy-data.html#split-age-into-age_start-and-age_end",
     "title": "Tidy Data",
     "section": "Split age into age_start and age_end",
-    "text": "Split age into age_start and age_end\n\n\nCode\nwho6 &lt;- who5 %&gt;% \n  mutate(\n    age = str_pad(age, width = 4, side = \"left\", pad = \"0\"),\n    age = str_replace(age, \"0065\", \"6599\")\n  ) %&gt;% \n  separate(col = age,\n           into = c(\"age_start\", \"age_end\"),\n           sep = 2\n           )\nwho6[1:5,]\n\n\n# A tibble: 5 × 7\n  country      year type  sex   age_start age_end cases\n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 Afghanistan  1997 sp    m     00        14          0\n2 Afghanistan  1997 sp    m     15        24         10\n3 Afghanistan  1997 sp    m     25        34          6\n4 Afghanistan  1997 sp    m     35        44          3\n5 Afghanistan  1997 sp    m     45        54          5\n\n\nCode\ndim(who6)\n\n\n[1] 76046     7\n\n\n\n\n\nMSB105"
+    "text": "Split age into age_start and age_end\n\nwho6 &lt;- who5 %&gt;% \n  mutate(\n    age = str_pad(age, width = 4, side = \"left\", pad = \"0\"),\n    age = str_replace(age, \"0065\", \"6599\")\n  ) %&gt;% \n  separate(col = age,\n           into = c(\"age_start\", \"age_end\"),\n           sep = 2\n           )\nwho6[1:5,]\n\n# A tibble: 5 × 7\n  country      year type  sex   age_start age_end cases\n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;dbl&gt;\n1 Afghanistan  1997 sp    m     00        14          0\n2 Afghanistan  1997 sp    m     15        24         10\n3 Afghanistan  1997 sp    m     25        34          6\n4 Afghanistan  1997 sp    m     35        44          3\n5 Afghanistan  1997 sp    m     45        54          5\n\ndim(who6)\n\n[1] 76046     7"
   },
   {
     "objectID": "assignments/h24/ass-h24.html",

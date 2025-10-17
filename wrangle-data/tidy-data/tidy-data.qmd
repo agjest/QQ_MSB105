@@ -6,7 +6,6 @@ format:
         theme: simple
         footer: '[MSB105](/index.html)'
         reveal_options:
-        code-fold: show
         incremental: true
         smaller: true
         scrollable: true
