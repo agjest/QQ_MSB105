@@ -504,7 +504,7 @@ ss <- "\\s{1}([sS]ult[^a\\s.,;!]*)(\\s?|[^\\s.,;]*|[:punct:])?\\s"
 str_count(sult, ss)
 ```
 
--   Hamsun mentions some form of *sult* (hunger) 52 times in his novel.
+-   Hamsun mentions some form of *sult* (hunger) 48 times in his novel.
 
 ## What forms of "sult" occurce?
 

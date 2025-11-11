@@ -4190,7 +4190,7 @@
     "href": "wrangle-data/string-data/string-data.html#refining-our-match",
     "title": "Strings and regular expressions",
     "section": "Refining our match",
-    "text": "Refining our match\nWe might get rid of Resultat by demanding a whitespace before sult. Sultan we can get rid of by demanding that the first character after sult can’t be an “a”.\n\n\nss &lt;- \"\\\\s{1}([sS]ult[^a\\\\s.,;!]*)(\\\\s?|[^\\\\s.,;]*|[:punct:])?\\\\s\"\n\n\n\n\nstr_count(sult, ss)\n\n[1] 48\n\n\n\nHamsun mentions some form of sult (hunger) 52 times in his novel."
+    "text": "Refining our match\nWe might get rid of Resultat by demanding a whitespace before sult. Sultan we can get rid of by demanding that the first character after sult can’t be an “a”.\n\n\nss &lt;- \"\\\\s{1}([sS]ult[^a\\\\s.,;!]*)(\\\\s?|[^\\\\s.,;]*|[:punct:])?\\\\s\"\n\n\n\n\nstr_count(sult, ss)\n\n[1] 48\n\n\n\nHamsun mentions some form of sult (hunger) 48 times in his novel."
   },
   {
     "objectID": "wrangle-data/string-data/string-data.html#what-forms-of-sult-occurce",
