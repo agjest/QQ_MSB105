@@ -390,13 +390,13 @@ flights <- flights %>%
 ```{r}
 #| paged.print: false
 flights <- flights %>% 
-  select(year, month, day, dep_time, everything()) %>% 
-  head() |> 
-  print(width = 80)
+  select(year, month, day, dep_time, everything())
+
+flights %>%  print(width = 80)
 ```
 
 ```{r}
-#View(flights)
+flights[1:300,] |> View()
 ```
 
 ## The other joins
