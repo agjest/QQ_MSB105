@@ -50,11 +50,8 @@ file = "ag_ds.bib"
 ## Getting data from external source. (chap. 11)
 
 -   We will download some data from SSB.
--   We will get data from [ssb tab.
-    10540](https://www.ssb.no/statbank/table/10540/) which gives us
-    percentage of the workforce (split on age-group) that is unemployed.
--   We will get data for municipalities in Rogaland in the period Jan.
-    1999 to Dec. 2002
+-   We will get data from [ssb tab. 10540](https://www.ssb.no/statbank/table/10540/) which gives us percentage of the workforce (split on age-group) that is unemployed.
+-   We will get data for municipalities in Rogaland in the period Jan. 1999 to Dec. 2002
 
 ## Getting data from external source. (chap. 11) cont.
 
@@ -63,15 +60,12 @@ file = "ag_ds.bib"
 ## Getting data from external source. (chap. 11) cont.
 
 -   We can get the data into R in (at least) two ways:
-    1)  Use SSB web-app to select part of tables (up to 300000 cells
-        max)
+    1)  Use SSB web-app to select part of tables (up to 300000 cells max)
     2)  Use the SSB api (up to 800000 cells max)
 
 ## SSB web-app
 
-We can use the web-pages of SSB and download the data as .xlsx format
-and use the `read_xlsx()` function from the `readxl` package,
-[@R-readxl]
+We can use the web-pages of SSB and download the data as .xlsx format and use the `read_xlsx()` function from the `readxl` package, [@R-readxl]
 
 Generate the table in xlsx-format
 
@@ -92,42 +86,31 @@ Note that:
 -   decimal point is ',' and not '.' in "Norwegian .csv files"
     -   decimal point in SSB semicolon separated files seems to be '.'
 -   ';', not ',', is used to separate values in "Norwegian .csv files"
--   To read the data into R we will use the classic functions from the
-    `util` package `read.table()` and `read.csv2()`.
-    -   The `read_table()` and `read_csv2()` functions are "modern"
-        equivalents of these classics.
--   We use `read.table` since it's possible to specify `dec = ""` and
-    `sep = ""`.
-    -   `read.csv2` is a form of `read.table()` that already uses these
-        options.
+-   To read the data into R we will use the classic functions from the `util` package `read.table()` and `read.csv2()`.
+    -   The `read_table()` and `read_csv2()` functions are "modern" equivalents of these classics.
+-   We use `read.table` since it's possible to specify `dec = ""` and `sep = ""`.
+    -   `read.csv2` is a form of `read.table()` that already uses these options.
 
-    -   The modern ones uses `locale()`, but I could not get it to work
-        properly.
+    -   The modern ones uses `locale()`, but I could not get it to work properly.
 
 ## SSB web-app cont.
 
--   Under `Environment` in the upper right pane i R Studio there is also
-    an `Import Dataset` menu.
--   Note that it gives an error for the .csv file ("multibyte
-    character").
+-   Under `Environment` in the upper right pane i R Studio there is also an `Import Dataset` menu.
+-   Note that it gives an error for the .csv file ("multibyte character").
 
 ## Read Excel file
 
 -   The `Tidyverse` library does not load the `readxl` package.
-    -   To use the `read_xlsx()` function we will either have to use
-        `readxl::read_xlsx()` or first load the `readxl` package with
-        `library(readxl)`
--   put the `library()` commands in an r-chunk called *setup* at the
-    very start of your notebook.
-    -   The chunk named *setup* will be run *every time* you render the
-        quarto document.
--   If you haven't got the `readxl` package you have to install it
-    first.
+    -   To use the `read_xlsx()` function we will either have to use `readxl::read_xlsx()` or first load the `readxl` package with `library(readxl)`
+-   put the `library()` commands in an r-chunk called *setup* at the very start of your notebook.
+    -   The chunk named *setup* will be run *every time* you render the quarto document.
+-   If you haven't got the `readxl` package you have to install it first.
 
 ## Read Excel file cont.
 
 ```{r read-excel-file}
 RegHeltLedige <- readxl::read_excel(
+#  path = "explore-data/import-export-data/RegHeltLedige.xlsx", 
   path = "RegHeltLedige.xlsx", 
   sheet = "RegHeltLedige",
   skip = 1
@@ -203,33 +186,35 @@ head(as.data.frame(RegHeltLedige), n =200)
 
 -   Be future proof, write .csv files
 -   `readxl` packages does not have any `write*()` function
--   If you really have to write out an Excel worksheet try the `writexl`
-    package
+-   If you really have to write out an Excel worksheet try the `writexl` package
 
 ## Read .csv (Comma Separated Values) file
 
 -   In Norway we use "," as decimal sign.
-    -   Not "."
--   Hence our .csv files is really *semicolon* separated values.
--   We skip the first 3 lines and use the fourth as "header", i.e. as
-    variable names
--   SSB seems to be serving the files with iso-8859-1 encoding (or is it
-    CP-1252?).
-    -   
 
-        ![File -I command in Terminal](Terminal-File-I.png)
+    -   Not "."
+
+-   Hence our .csv files is really *semicolon* separated values.
+
+-   We skip the first 3 lines and use the fourth as "header", i.e. as variable names
+
+-   
+
+    ## SSB seems to be serving the files with iso-8859-1 encoding (or is it CP-1252?).
+
+    ```         
+    ![File -I command in Terminal](Terminal-File-I.png)
+    ```
 
     -   The command might be `file -i` on linux and windows
 
-    -   Those that find this very interesting might check out
-        [Windows-1252](https://en.wikipedia.org/wiki/Windows-1252)
+    -   Those that find this very interesting might check out [Windows-1252](https://en.wikipedia.org/wiki/Windows-1252)
 
         -   Thank God for unicode
 
 ## Read csv file with encoding
 
--   Select readr from the Import Dataset drop-down menu in the
-    Environment pane in the upper right corner.
+-   Select readr from the Import Dataset drop-down menu in the Environment pane in the upper right corner.
 -   This menu selection uses the **readr** package [@R-readr].
 
 . . .
@@ -238,8 +223,7 @@ head(as.data.frame(RegHeltLedige), n =200)
 
 ## Read csv file with encoding cont.
 
-![Readr error. Hit Return/Enter or click
-OK.](readr-prob.png){width="574"}
+![Readr error. Hit Return/Enter or click OK.](readr-prob.png){width="574"}
 
 -   This doesn't look to good.
 
@@ -281,6 +265,7 @@ OK.](readr-prob.png){width="574"}
 ```{r}
 my_data <- read_delim(
   # Change the file argument
+  #file = "explore-data/import-export-data/RegHeltLedige.csv",
   file = "RegHeltLedige.csv",
   delim = ";",
   escape_double = FALSE,
@@ -305,15 +290,11 @@ summary(my_data)
 
 ## SSB api (`PxWebApiData`)
 
--   We can also use the api provided by SSB together with the package
-    `PxWebApiData` and download the data directly into R.
+-   We can also use the api provided by SSB together with the package `PxWebApiData` and download the data directly into R.
 
--   See [ApiData tutorial](https://ssbviz.shinyapps.io/ApiData/) for a
-    simple introduction to the ApiData function in the *PxWebApiData*
-    package.
+-   See [ApiData tutorial](https://ssbviz.shinyapps.io/ApiData/) for a simple introduction to the ApiData function in the *PxWebApiData* package.
 
--   The *Introduction to PxWebApiData* vignette to the *PxWebApiData*
-    package is also a nice introduction.
+-   The *Introduction to PxWebApiData* vignette to the *PxWebApiData* package is also a nice introduction.
 
 ## Check metadata 10540 table
 
@@ -381,8 +362,7 @@ unemp99to02 <- unemp99to02 |>
 ## Write the data as a csv file.
 
 -   Write data out to disk.
--   It is recommended to save data as .csv files (pure text) to be
-    future proof.
+-   It is recommended to save data as .csv files (pure text) to be future proof.
 -   Check that it looks OK
 
 . . .

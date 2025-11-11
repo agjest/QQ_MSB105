@@ -6,7 +6,6 @@ format:
         theme: simple
         footer: '[MSB105](/index.html)'
         reveal_options:
-        code-fold: show
         incremental: true
         smaller: true
         scrollable: true
@@ -26,6 +25,8 @@ nocite: '@*'
 ```{r setup}
 library(tidyverse)
 library(nycflights13)
+
+options(paged.print = FALSE)
 ```
 
 ```{r bib, include=FALSE}
@@ -83,11 +84,12 @@ head(airlines, n = 3)
 ```
 
 ```{r}
+flights <- nycflights13::flights
 flights %>% 
   select(year:day, carrier, everything()) %>% 
   group_by(carrier) %>% 
   summarise(first(dep_time)) %>% 
-  head(, n= 3)
+  head(n= 3)
 ```
 
 -   **Carrier** possible key to get airlines names into the flights
@@ -143,11 +145,12 @@ airports %>%
 . . .
 
 ```{r}
-my_flights <- flights 
-my_flights <- my_flights%>% 
-  left_join(airlines, by = "carrier")
+flights <- nycflights13::flights 
+flights <- flights%>% 
+  # note x = flights, y = airlines
+  left_join(airlines, by = join_by("carrier"))
 
-my_flights %>% 
+flights %>% 
   select(carrier, name, everything()) %>% 
   head(3)
 ```
@@ -159,7 +162,7 @@ my_flights %>%
 . . .
 
 ```{r}
-nmf <- names(my_flights)
+nmf <- names(flights)
 nmf[nmf %in% names(planes)]
 ```
 
@@ -169,14 +172,15 @@ nmf[nmf %in% names(planes)]
 ## Join flights and planes
 
 ```{r}
-my_flights <- my_flights %>% 
-  left_join(planes, by = "tailnum", 
+flights <- flights %>% 
+  left_join(planes, by = join_by("tailnum"), 
             suffix = c("", "_plane"))
 
-my_flights %>% 
+flights %>% 
   select(tailnum, model, 
          year_plane, year, everything()) %>% 
-  head(n = 3)
+  head(n = 3) |> 
+  print(width = 80)
 ```
 
 ## Join origin and dest with airport data
@@ -193,29 +197,34 @@ my_flights %>%
 . . .
 
 ```{r}
-nmf <- names(my_flights)
+nmf <- names(flights)
 nmf[nmf %in% names(airports)]
 ```
 
 ```{r}
-head(my_flights$name, n = 4)
+head(flights$name, n = 4) |> 
+  print(width = 80)
 ```
 
 ```{r}
-head(airports$name, n = 4)
+head(airports$name, n = 4) |> 
+  print(width = 80)
 ```
 
 ## Join origin with airport data
 
 ```{r}
-my_flights <- my_flights %>% 
-  left_join(airports, 
-            by = c("origin" = "faa"), 
+#| paged.print: false
+flights <- flights %>% 
+  left_join(airports,
+            # Note new syntax
+            by = join_by(origin == faa), 
             suffix = c("_airline", "_origin_airport"), 
             keep = TRUE
             ) %>% 
   select(year:day, name_airline, name_origin_airport, everything())
-head(my_flights, n = 3)
+head(flights, n = 3) |> 
+   print(width = 80)
 ```
 
 ## Join dest with airport data
@@ -227,7 +236,7 @@ head(my_flights, n = 3)
 . . .
 
 ```{r}
-nmf <- names(my_flights)
+nmf <- names(flights)
 nmf[nmf %in% names(airports)]
 ```
 
@@ -239,20 +248,18 @@ nmf[nmf %in% names(airports)]
 
 ```{r}
 #work with tmp until correct then 
-#change to my_flights
-my_flights <- my_flights %>% 
+#change to flights
+flights <- flights %>% 
   left_join(airports, 
             by = c("dest" = "faa"),
             suffix = c("_origin", "_dest"),
             keep = FALSE
-            ) %>% 
-  rename(name_dest_airport = name) %>% 
+            ) |> 
   select(faa, origin, dest, lat_origin, lat_dest, everything())
-#View(my_flights[1:50,])
-```
 
--   we had to use a `rename` on the name variable since no variable
-    called name in my_flights, hence it didn't get any suffix.
+names(flights) |> 
+  print(width = 80)
+```
 
 ## Join origin airport and weather
 
@@ -272,7 +279,6 @@ my_flights <- my_flights %>%
 ## Check hour var. in weather
 
 ```{r}
-#| code-fold: false
 weather |> filter(origin == "EWR") |> select(hour) |> table()
 ```
 
@@ -292,13 +298,14 @@ weather |> filter(origin == "LGA") |> select(hour) |> table()
 ## Join origin airport and weather, fix dep_time
 
 -   We first develop our solution with less data. No need to use
-    `r dim(my_flights)[1]` observations while we develop our solution.
+    `r dim(flights)[1]` observations while we develop our solution.
 
 . . .
 
 ```{r}
 set.seed(666)
-(x <- sample(my_flights$dep_time, size = 30))
+(x <- sample(flights$dep_time, size = 30)) |> 
+  print(width = 80)
 ```
 
 -   Good mix, NA, 29, 826, 1156
@@ -307,13 +314,14 @@ set.seed(666)
 
 ```{r}
 x <- str_pad(x, width = 4, side = "left", pad = "0")
-x
+x |> print(width = 80)
 ```
 
 ## Join origin airport and weather, fix dep_time
 
 ```{r}
-(x <- as.numeric(str_sub(x, start = 1, end = 2)))
+(x <- as.numeric(str_sub(x, start = 1, end = 2))) |> 
+  print(width = 80)
 ```
 
 ## Join origin airport and weather; fix_dep_time
@@ -332,7 +340,7 @@ fix_dep_time <- function(x) {
 ## Join origin airport and weather; dep_time_hour
 
 ```{r}
-my_flights <- my_flights %>% 
+flights <- flights %>% 
   mutate(
     dep_time_hour = fix_dep_time(dep_time)
   )
@@ -345,7 +353,7 @@ my_flights <- my_flights %>%
 . . .
 
 ```{r}
-nmf <- names(my_flights)
+nmf <- names(flights)
 nmf[nmf %in% names(weather)]
 ```
 
@@ -355,9 +363,10 @@ nmf[nmf %in% names(weather)]
 ## Join origin airport and weather
 
 ```{r}
-my_flights <- my_flights %>% 
+flights <- flights %>% 
   left_join(weather, 
-            by = c("origin", "year", "month", "day", "dep_time_hour" = "hour"),
+            #by = c("origin", "year", "month", "day", "dep_time_hour" = "hour"),
+            by = join_by(origin, year, month, day, dep_time_hour == hour),
             suffix = c("", "_weather"), 
             keep = FALSE
             )
@@ -369,13 +378,14 @@ my_flights <- my_flights %>%
 
 ```{r}
 #| paged.print: false
-my_flights <- my_flights %>% 
+flights <- flights %>% 
   select(year, month, day, dep_time, everything()) %>% 
-  print(width = 75)
+  head() |> 
+  print(width = 80)
 ```
 
 ```{r}
-#View(my_flights)
+#View(flights)
 ```
 
 ## The other joins

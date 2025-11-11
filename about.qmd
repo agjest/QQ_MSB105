@@ -4,13 +4,6 @@ format:
   html: default
 ---
 
-MSB105 is a course in Data Science at HVL.
-It's part of our master program (“Siviløkonom”) in *Regional Economics and Innovations.* The course is taught in parallel with [MSB104](https://msb104.netlify.app) which is a course in applied econometrics.
-Both courses serve as a foundation for the applied part (50%) of the course [MSB205](https://msb205.netlify.app) (second year) which covers some applied *spatial* data science and spatial econometrics.
-Both MSB104 and MSB205 uses the same language, R, and style of coding as MSB105 which implies that nearly 30% (25/90) of the courses thought in our master is applied Data Science.
+MSB105 is a course in Data Science at HVL. It's part of our master program (“Siviløkonom”) in *Regional Economics and Innovations.* The course is taught in parallel with [MSB104](https://msb104.netlify.app) which is a course in applied econometrics. Both courses serve as a foundation for the applied part (50%) of the course [MSB205](https://msb205.netlify.app) (second year) which covers some applied *spatial* data science and spatial econometrics. Both MSB104 and MSB205 uses the same language, R, and style of coding as MSB105 which implies that nearly 30% (25/90) of the courses thought in our master is applied Data Science.
 
-We (still) use [R for Data Science 1e](https://r4ds.had.co.nz) as our syllabus.
-The slides at [MSB105](https://msb105.netlify.app) are what we cover in lectures.
-In addition we run code from the slides, and updated versions, in lectures.
-These sketches are synced against a public repo at Github.
-The current one for autumn 2025 is [here](https://github.com/agjest/first_repo_msb105h25).
+We (still) use [R for Data Science 1e](https://r4ds.had.co.nz) as our syllabus. The slides at [MSB105](https://msb105.netlify.app) are what we cover in lectures. In addition we run code from the slides, and updated versions, in lectures. These sketches are synced against a public repo at Github. The current one for autumn 2025 is [here](https://github.com/agjest/first_repo_msb105h25).
