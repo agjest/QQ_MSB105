@@ -414,6 +414,20 @@ ag
 <pre><code>[1] "year"    "tailnum"</code></pre>
 </div>
 </div>
+</div>
+<div class="fragment">
+<ul>
+<li class="fragment">simpler solution</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="co"># alternative</span></span>
+<span id="cb18-2"><a></a><span class="fu">intersect</span>(<span class="fu">names</span>(flights), <span class="fu">names</span>(planes))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "year"    "tailnum"</code></pre>
+</div>
+</div>
 <ul>
 <li class="fragment">“year” has two different meanings, year of the flight and the year the plane was built. We have to keep them apart (suffix option).</li>
 </ul>
@@ -422,15 +436,15 @@ ag
 <section id="join-flights-and-planes-1" class="slide level2">
 <h2>Join flights and planes</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>flights <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span> </span>
-<span id="cb18-2"><a></a>  <span class="fu">left_join</span>(planes, <span class="at">by =</span> <span class="fu">join_by</span>(<span class="st">"tailnum"</span>), </span>
-<span id="cb18-3"><a></a>            <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"_plane"</span>))</span>
-<span id="cb18-4"><a></a></span>
-<span id="cb18-5"><a></a>flights <span class="sc">%&gt;%</span> </span>
-<span id="cb18-6"><a></a>  <span class="fu">select</span>(tailnum, model, </span>
-<span id="cb18-7"><a></a>         year_plane, year, <span class="fu">everything</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb18-8"><a></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb18-9"><a></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>flights <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a></a>  <span class="fu">left_join</span>(planes, <span class="at">by =</span> <span class="fu">join_by</span>(<span class="st">"tailnum"</span>), </span>
+<span id="cb20-3"><a></a>            <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"_plane"</span>))</span>
+<span id="cb20-4"><a></a></span>
+<span id="cb20-5"><a></a>flights <span class="sc">%&gt;%</span> </span>
+<span id="cb20-6"><a></a>  <span class="fu">select</span>(tailnum, model, </span>
+<span id="cb20-7"><a></a>         year_plane, year, <span class="fu">everything</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-8"><a></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb20-9"><a></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 28
   tailnum model   year_plane  year month   day dep_time sched_dep_time dep_delay
@@ -461,23 +475,23 @@ ag
 </ul>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>nmf <span class="ot">&lt;-</span> <span class="fu">names</span>(flights)</span>
-<span id="cb20-2"><a></a>nmf[nmf <span class="sc">%in%</span> <span class="fu">names</span>(airports)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>nmf <span class="ot">&lt;-</span> <span class="fu">names</span>(flights)</span>
+<span id="cb22-2"><a></a>nmf[nmf <span class="sc">%in%</span> <span class="fu">names</span>(airports)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "name"</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">head</span>(flights<span class="sc">$</span>name, <span class="at">n =</span> <span class="dv">4</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb22-2"><a></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">head</span>(flights<span class="sc">$</span>name, <span class="at">n =</span> <span class="dv">4</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "United Air Lines Inc."  "United Air Lines Inc."  "American Airlines Inc."
 [4] "JetBlue Airways"       </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">head</span>(airports<span class="sc">$</span>name, <span class="at">n =</span> <span class="dv">4</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb24-2"><a></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">head</span>(airports<span class="sc">$</span>name, <span class="at">n =</span> <span class="dv">4</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb26-2"><a></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Lansdowne Airport"             "Moton Field Municipal Airport"
 [3] "Schaumburg Regional"           "Randall Airport"              </code></pre>
@@ -488,16 +502,16 @@ ag
 <section id="join-origin-with-airport-data" class="slide level2">
 <h2>Join origin with airport data</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>flights <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span> </span>
-<span id="cb26-2"><a></a>  <span class="fu">left_join</span>(airports,</span>
-<span id="cb26-3"><a></a>            <span class="co"># Note new syntax</span></span>
-<span id="cb26-4"><a></a>            <span class="at">by =</span> <span class="fu">join_by</span>(origin <span class="sc">==</span> faa), </span>
-<span id="cb26-5"><a></a>            <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">"_airline"</span>, <span class="st">"_origin_airport"</span>), </span>
-<span id="cb26-6"><a></a>            <span class="at">keep =</span> <span class="cn">TRUE</span></span>
-<span id="cb26-7"><a></a>            ) <span class="sc">%&gt;%</span> </span>
-<span id="cb26-8"><a></a>  <span class="fu">select</span>(year<span class="sc">:</span>day, name_airline, name_origin_airport, <span class="fu">everything</span>())</span>
-<span id="cb26-9"><a></a><span class="fu">head</span>(flights, <span class="at">n =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb26-10"><a></a>   <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>flights <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span> </span>
+<span id="cb28-2"><a></a>  <span class="fu">left_join</span>(airports,</span>
+<span id="cb28-3"><a></a>            <span class="co"># Note new syntax</span></span>
+<span id="cb28-4"><a></a>            <span class="at">by =</span> <span class="fu">join_by</span>(origin <span class="sc">==</span> faa), </span>
+<span id="cb28-5"><a></a>            <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">"_airline"</span>, <span class="st">"_origin_airport"</span>), </span>
+<span id="cb28-6"><a></a>            <span class="at">keep =</span> <span class="cn">TRUE</span></span>
+<span id="cb28-7"><a></a>            ) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-8"><a></a>  <span class="fu">select</span>(year<span class="sc">:</span>day, name_airline, name_origin_airport, <span class="fu">everything</span>())</span>
+<span id="cb28-9"><a></a><span class="fu">head</span>(flights, <span class="at">n =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb28-10"><a></a>   <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 36
    year month   day name_airline     name_origin_airport dep_time sched_dep_time
@@ -523,8 +537,8 @@ ag
 </ul>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>nmf <span class="ot">&lt;-</span> <span class="fu">names</span>(flights)</span>
-<span id="cb28-2"><a></a>nmf[nmf <span class="sc">%in%</span> <span class="fu">names</span>(airports)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>nmf <span class="ot">&lt;-</span> <span class="fu">names</span>(flights)</span>
+<span id="cb30-2"><a></a>nmf[nmf <span class="sc">%in%</span> <span class="fu">names</span>(airports)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "faa"   "lat"   "lon"   "alt"   "tz"    "dst"   "tzone"</code></pre>
 </div>
@@ -538,18 +552,18 @@ ag
 <section id="join-dest-with-airport-data-1" class="slide level2">
 <h2>Join dest with airport data</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="co">#work with tmp until correct then </span></span>
-<span id="cb30-2"><a></a><span class="co">#change to flights</span></span>
-<span id="cb30-3"><a></a>flights <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span> </span>
-<span id="cb30-4"><a></a>  <span class="fu">left_join</span>(airports, </span>
-<span id="cb30-5"><a></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"dest"</span> <span class="ot">=</span> <span class="st">"faa"</span>),</span>
-<span id="cb30-6"><a></a>            <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">"_origin"</span>, <span class="st">"_dest"</span>),</span>
-<span id="cb30-7"><a></a>            <span class="at">keep =</span> <span class="cn">FALSE</span></span>
-<span id="cb30-8"><a></a>            ) <span class="sc">|&gt;</span> </span>
-<span id="cb30-9"><a></a>  <span class="fu">select</span>(faa, origin, dest, lat_origin, lat_dest, <span class="fu">everything</span>())</span>
-<span id="cb30-10"><a></a></span>
-<span id="cb30-11"><a></a><span class="fu">names</span>(flights) <span class="sc">|&gt;</span> </span>
-<span id="cb30-12"><a></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="co">#work with tmp until correct then </span></span>
+<span id="cb32-2"><a></a><span class="co">#change to flights</span></span>
+<span id="cb32-3"><a></a>flights <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span> </span>
+<span id="cb32-4"><a></a>  <span class="fu">left_join</span>(airports, </span>
+<span id="cb32-5"><a></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"dest"</span> <span class="ot">=</span> <span class="st">"faa"</span>),</span>
+<span id="cb32-6"><a></a>            <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">"_origin"</span>, <span class="st">"_dest"</span>),</span>
+<span id="cb32-7"><a></a>            <span class="at">keep =</span> <span class="cn">FALSE</span></span>
+<span id="cb32-8"><a></a>            ) <span class="sc">|&gt;</span> </span>
+<span id="cb32-9"><a></a>  <span class="fu">select</span>(faa, origin, dest, lat_origin, lat_dest, <span class="fu">everything</span>())</span>
+<span id="cb32-10"><a></a></span>
+<span id="cb32-11"><a></a><span class="fu">names</span>(flights) <span class="sc">|&gt;</span> </span>
+<span id="cb32-12"><a></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "faa"                 "origin"              "dest"               
  [4] "lat_origin"          "lat_dest"            "year"               
@@ -588,7 +602,7 @@ ag
 <section id="check-hour-var.-in-weather" class="slide level2">
 <h2>Check hour var. in weather</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>weather <span class="sc">|&gt;</span> <span class="fu">filter</span>(origin <span class="sc">==</span> <span class="st">"EWR"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(hour) <span class="sc">|&gt;</span> <span class="fu">table</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>weather <span class="sc">|&gt;</span> <span class="fu">filter</span>(origin <span class="sc">==</span> <span class="st">"EWR"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(hour) <span class="sc">|&gt;</span> <span class="fu">table</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>hour
   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19 
@@ -598,7 +612,7 @@ ag
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>weather <span class="sc">|&gt;</span> <span class="fu">filter</span>(origin <span class="sc">==</span> <span class="st">"LGA"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(hour) <span class="sc">|&gt;</span> <span class="fu">table</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>weather <span class="sc">|&gt;</span> <span class="fu">filter</span>(origin <span class="sc">==</span> <span class="st">"LGA"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(hour) <span class="sc">|&gt;</span> <span class="fu">table</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>hour
   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19 
@@ -608,7 +622,7 @@ ag
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>weather <span class="sc">|&gt;</span> <span class="fu">filter</span>(origin <span class="sc">==</span> <span class="st">"LGA"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(hour) <span class="sc">|&gt;</span> <span class="fu">table</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>weather <span class="sc">|&gt;</span> <span class="fu">filter</span>(origin <span class="sc">==</span> <span class="st">"LGA"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(hour) <span class="sc">|&gt;</span> <span class="fu">table</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>hour
   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19 
@@ -628,9 +642,9 @@ ag
 </ul>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">set.seed</span>(<span class="dv">666</span>)</span>
-<span id="cb38-2"><a></a>(x <span class="ot">&lt;-</span> <span class="fu">sample</span>(flights<span class="sc">$</span>dep_time, <span class="at">size =</span> <span class="dv">30</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb38-3"><a></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="fu">set.seed</span>(<span class="dv">666</span>)</span>
+<span id="cb40-2"><a></a>(x <span class="ot">&lt;-</span> <span class="fu">sample</span>(flights<span class="sc">$</span>dep_time, <span class="at">size =</span> <span class="dv">30</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb40-3"><a></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 1353 1635  909 1458 1853  801 1323  624 1510  826   29 1953   NA  944 1154
 [16]  830 1443  725  752  610 1545  822 1905 1356  848 2024  744  911  820 1156</code></pre>
@@ -644,8 +658,8 @@ ag
 <section id="join-origin-airport-and-weather-fix-dep_time-1" class="slide level2">
 <h2>Join origin airport and weather, fix dep_time</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">str_pad</span>(x, <span class="at">width =</span> <span class="dv">4</span>, <span class="at">side =</span> <span class="st">"left"</span>, <span class="at">pad =</span> <span class="st">"0"</span>)</span>
-<span id="cb40-2"><a></a>x <span class="sc">|&gt;</span> <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">str_pad</span>(x, <span class="at">width =</span> <span class="dv">4</span>, <span class="at">side =</span> <span class="st">"left"</span>, <span class="at">pad =</span> <span class="st">"0"</span>)</span>
+<span id="cb42-2"><a></a>x <span class="sc">|&gt;</span> <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "1353" "1635" "0909" "1458" "1853" "0801" "1323" "0624" "1510" "0826"
 [11] "0029" "1953" NA     "0944" "1154" "0830" "1443" "0725" "0752" "0610"
@@ -656,8 +670,8 @@ ag
 <section id="join-origin-airport-and-weather-fix-dep_time-2" class="slide level2">
 <h2>Join origin airport and weather, fix dep_time</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>(x <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">str_sub</span>(x, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">2</span>))) <span class="sc">|&gt;</span> </span>
-<span id="cb42-2"><a></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a>(x <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">str_sub</span>(x, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">2</span>))) <span class="sc">|&gt;</span> </span>
+<span id="cb44-2"><a></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 13 16  9 14 18  8 13  6 15  8  0 19 NA  9 11  8 14  7  7  6 15  8 19 13  8
 [26] 20  7  9  8 11</code></pre>
@@ -667,23 +681,23 @@ ag
 <section id="join-origin-airport-and-weather-fix_dep_time" class="slide level2">
 <h2>Join origin airport and weather; fix_dep_time</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a>fix_dep_time <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb44-2"><a></a>  x <span class="ot">=</span> <span class="fu">str_pad</span>(x, <span class="at">width =</span> <span class="dv">4</span>, <span class="at">side =</span> <span class="st">"left"</span>, <span class="at">pad =</span> <span class="st">"0"</span>)</span>
-<span id="cb44-3"><a></a>  x <span class="ot">=</span> <span class="fu">str_sub</span>(x, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">2</span>)</span>
-<span id="cb44-4"><a></a>  <span class="co"># This is correct since hour 0: 23 in weather dataset</span></span>
-<span id="cb44-5"><a></a>  <span class="co"># Note that not all days have hour = 0</span></span>
-<span id="cb44-6"><a></a>  x <span class="ot">=</span> <span class="fu">as.integer</span>(x)</span>
-<span id="cb44-7"><a></a>  <span class="fu">return</span>(x)</span>
-<span id="cb44-8"><a></a>  }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a>fix_dep_time <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb46-2"><a></a>  x <span class="ot">=</span> <span class="fu">str_pad</span>(x, <span class="at">width =</span> <span class="dv">4</span>, <span class="at">side =</span> <span class="st">"left"</span>, <span class="at">pad =</span> <span class="st">"0"</span>)</span>
+<span id="cb46-3"><a></a>  x <span class="ot">=</span> <span class="fu">str_sub</span>(x, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">2</span>)</span>
+<span id="cb46-4"><a></a>  <span class="co"># This is correct since hour 0: 23 in weather dataset</span></span>
+<span id="cb46-5"><a></a>  <span class="co"># Note that not all days have hour = 0</span></span>
+<span id="cb46-6"><a></a>  x <span class="ot">=</span> <span class="fu">as.integer</span>(x)</span>
+<span id="cb46-7"><a></a>  <span class="fu">return</span>(x)</span>
+<span id="cb46-8"><a></a>  }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="join-origin-airport-and-weather-dep_time_hour" class="slide level2">
 <h2>Join origin airport and weather; dep_time_hour</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a>flights <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span> </span>
-<span id="cb45-2"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb45-3"><a></a>    <span class="at">dep_time_hour =</span> <span class="fu">fix_dep_time</span>(dep_time)</span>
-<span id="cb45-4"><a></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a>flights <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span> </span>
+<span id="cb47-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb47-3"><a></a>    <span class="at">dep_time_hour =</span> <span class="fu">fix_dep_time</span>(dep_time)</span>
+<span id="cb47-4"><a></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="join-origin-airport-and-weather-1" class="slide level2">
@@ -693,8 +707,8 @@ ag
 </ul>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a>nmf <span class="ot">&lt;-</span> <span class="fu">names</span>(flights)</span>
-<span id="cb46-2"><a></a>nmf[nmf <span class="sc">%in%</span> <span class="fu">names</span>(weather)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a>nmf <span class="ot">&lt;-</span> <span class="fu">names</span>(flights)</span>
+<span id="cb48-2"><a></a>nmf[nmf <span class="sc">%in%</span> <span class="fu">names</span>(weather)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "origin"    "year"      "month"     "day"       "hour"      "time_hour"</code></pre>
 </div>
@@ -707,23 +721,23 @@ ag
 <section id="join-origin-airport-and-weather-2" class="slide level2">
 <h2>Join origin airport and weather</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a>flights <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span> </span>
-<span id="cb48-2"><a></a>  <span class="fu">left_join</span>(weather, </span>
-<span id="cb48-3"><a></a>            <span class="co">#by = c("origin", "year", "month", "day", "dep_time_hour" = "hour"),</span></span>
-<span id="cb48-4"><a></a>            <span class="at">by =</span> <span class="fu">join_by</span>(origin, year, month, day, dep_time_hour <span class="sc">==</span> hour),</span>
-<span id="cb48-5"><a></a>            <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"_weather"</span>), </span>
-<span id="cb48-6"><a></a>            <span class="at">keep =</span> <span class="cn">FALSE</span></span>
-<span id="cb48-7"><a></a>            )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a>flights <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span> </span>
+<span id="cb50-2"><a></a>  <span class="fu">left_join</span>(weather, </span>
+<span id="cb50-3"><a></a>            <span class="co">#by = c("origin", "year", "month", "day", "dep_time_hour" = "hour"),</span></span>
+<span id="cb50-4"><a></a>            <span class="at">by =</span> <span class="fu">join_by</span>(origin, year, month, day, dep_time_hour <span class="sc">==</span> hour),</span>
+<span id="cb50-5"><a></a>            <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"_weather"</span>), </span>
+<span id="cb50-6"><a></a>            <span class="at">keep =</span> <span class="cn">FALSE</span></span>
+<span id="cb50-7"><a></a>            )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li class="fragment">We also ought to group the variables a bit better with <code>select()</code>.</li>
 </ul>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a>flights <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span> </span>
-<span id="cb49-2"><a></a>  <span class="fu">select</span>(year, month, day, dep_time, <span class="fu">everything</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb49-3"><a></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb49-4"><a></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a>flights <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span> </span>
+<span id="cb51-2"><a></a>  <span class="fu">select</span>(year, month, day, dep_time, <span class="fu">everything</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb51-3"><a></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb51-4"><a></a>  <span class="fu">print</span>(<span class="at">width =</span> <span class="dv">80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 54
    year month   day dep_time faa   origin dest  lat_origin lat_dest name_airline
@@ -744,7 +758,7 @@ ag
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a><span class="co">#View(flights)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a><span class="co">#View(flights)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>

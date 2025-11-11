@@ -4582,7 +4582,7 @@
     "href": "wrangle-data/relational-data/relational-data.html#join-flights-and-planes",
     "title": "Joins",
     "section": "Join flights and planes",
-    "text": "Join flights and planes\n\ncheck names\n\n\n\nnmf &lt;- names(flights)\nnmf[nmf %in% names(planes)]\n\n[1] \"year\"    \"tailnum\"\n\n\n\n“year” has two different meanings, year of the flight and the year the plane was built. We have to keep them apart (suffix option)."
+    "text": "Join flights and planes\n\ncheck names\n\n\n\nnmf &lt;- names(flights)\nnmf[nmf %in% names(planes)]\n\n[1] \"year\"    \"tailnum\"\n\n\n\n\n\nsimpler solution\n\n\n\n\n# alternative\nintersect(names(flights), names(planes))\n\n[1] \"year\"    \"tailnum\"\n\n\n\n“year” has two different meanings, year of the flight and the year the plane was built. We have to keep them apart (suffix option)."
   },
   {
     "objectID": "wrangle-data/relational-data/relational-data.html#join-flights-and-planes-1",

@@ -166,6 +166,17 @@ nmf <- names(flights)
 nmf[nmf %in% names(planes)]
 ```
 
+. . .
+
+-   simpler solution
+
+. . .
+
+```{r}
+# alternative
+intersect(names(flights), names(planes))
+```
+
 -   "year" has two different meanings, year of the flight and the year
     the plane was built. We have to keep them apart (suffix option).
 
