@@ -50,8 +50,8 @@ file = "ag_strings.bib"
 
 ## Strings; chapter 14
 
-::: columns
-::: {.column width="50%"}
+:::::: columns
+:::: {.column width="50%"}
 ::: nonincremental
 -   package *stringr* part of core tidyverse
     -   string functions
@@ -70,7 +70,7 @@ string4 <- "'test4'"
 string5 <- "first\nsecond"
 string6 <- "first\tsecond"
 ```
-:::
+::::
 
 ::: {.column width="50%"}
 ```{r}
@@ -97,12 +97,12 @@ writeLines(string5)
 writeLines(string6)
 ```
 :::
-:::
+::::::
 
 ## String functions
 
-::: columns
-::: {.column width="50%"}
+:::::: columns
+:::: {.column width="50%"}
 ::: nonincremental
 -   Some important ones
     -   str_length()
@@ -128,7 +128,7 @@ str_length(string1)
 # Note that \t counts as a character.
 str_length(string6)
 ```
-:::
+::::
 
 ::: {.column width="50%"}
 ```{r}
@@ -167,12 +167,12 @@ str_extract(z, pattern = "[:alpha:]+(\\d*)", group = 1)
 z <- str_c(z, collapse = ""); z
 ```
 :::
-:::
+::::::
 
 ## String functions cont.
 
-::: columns
-::: {.column width="50%"}
+:::::: columns
+:::: {.column width="50%"}
 ::: nonincremental
 -   str_match_all()
 
@@ -192,7 +192,7 @@ is capture group 2.
 ```{r}
 str_match(z, pattern = "(\\d+)[a,b]+\\d+([:alpha:]+)(.*)")
 ```
-:::
+::::
 
 ::: {.column width="50%"}
 New second group.
@@ -222,7 +222,7 @@ str_to_upper("bokstaver")
 str_to_title("this is a very important title")
 ```
 :::
-:::
+::::::
 
 ## Regular expressions
 
@@ -524,9 +524,11 @@ str_match_all(sult, ss)[[1]][,2] %>% table()
 . . .
 
 ```{r}
-# the first 5 occurrences 
-tmp <- str_locate_all(sult, ss)
-tmp
+# the first 6 occurrences 
+str_locate_all(sult, ss) |>  
+  # a list in pipe
+  pluck(1) |> 
+  head()
 ```
 
 First mention of *sult* in some form start 53 characters into the file.
